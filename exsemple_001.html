@@ -1,0 +1,304 @@
+<problem>
+<script type="loncapa/python">
+import json
+import hashlib
+
+unique_key = hashlib.md5(str(random.randrange(100))).hexdigest()[:5]
+
+arr = ["Дрессировщик", "Слон", "Указка", "Зритель", "Табло"]
+arr = ','.join(arr)
+length_object=0
+
+incorrect = [
+    "Дрессировщик",
+    "Слон",
+    "Зритель",
+    ]
+correct = [
+    ["Указка", "Табло"]
+    ]
+elements = incorrect + reduce(lambda x,y: x+y, correct)
+elements_object = {}
+
+def dict_index(dict, value):
+    result = None
+    for key in dict.keys():
+        if dict[key] == value:
+            result = key
+    if result is not None:
+        return result
+    else:
+        return None
+
+for element in set(elements):
+    elements_object["id_"+hashlib.md5(unique_key+str(length_object)).hexdigest()[:5]] = element
+    length_object += 1
+
+expect = []
+for item in correct:
+    expect.append(map(lambda x: dict_index(elements_object, x), item))
+
+def check(expect=expect, answer=None):
+    answers = json.loads(answer)
+    expects = expect
+
+    correct = 0
+    for expect in expects:
+        for answer in answers:
+            if expect == answer:
+                correct += 1
+    incorrect = len(answers) - correct
+  
+    points = (correct - incorrect)/float(len(expects))
+    
+    if points == 1:
+        return {'msg': '', 'ok': True, 'grade_decimal': points}
+    elif points > 0 and 1 > points:
+        return {'msg': '', 'ok': True, 'grade_decimal': points}
+    else:
+        return {'msg': '', 'ok': False, 'grade_decimal': points}
+
+
+elementsJSON = json.dumps(elements_object)
+</script>
+
+
+
+
+<div id="$unique_key">
+<div id="diagram_$unique_key"></div>
+
+  <customresponse cfn='check' type="ci" expect="correct">
+    <textline size="20"/>
+  </customresponse>
+
+</div>
+
+<script type="text/javascript">
+    function Answer(field){
+        this.field = "#" + field + " input[type=text]";
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function(){
+            this.fieldValue = $(this.field).val();
+            return this.fieldValue;
+        };
+        this.set = function(value){
+            if(value == undefined) value = this.fieldValue;
+            $(this.field).val(value);
+        };
+        this.getJSON = function(){
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function(object){
+            if(object == undefined) object = this.fieldObject;
+             this.set(JSON.stringify(object))
+        };
+        /* Утилиты */
+        /* Проверка строки на возможность преобразования в JSON */
+        this.isJsonString = function(str) {
+            try {JSON.parse(str);} 
+            catch (e) {return false;}
+            return true;
+        };
+    };
+
+
+var answer_$unique_key = new Answer("$unique_key");
+$( document ).ready(function(){$("#$unique_key input[type=text]").hide()});
+
+var elements_object = $elementsJSON;
+var elements_length = Object.keys(elements_object).length;
+var str_arr = "$arr";
+var arr = str_arr.split(',');
+ 
+var xmlns = "http://www.w3.org/2000/svg";
+var boxWidth = 800;
+var boxHeight = 300;
+var radius = 100;
+var angle = 360/elements_length; 
+var answer = answer_$unique_key.getJSON();
+var list = {};
+var pair = [];
+
+    
+function CreateSVG() {
+    var svgElem = document.createElementNS(xmlns, "svg");
+    svgElem.setAttributeNS (null, "viewBox", "0 0 " + boxWidth + " " + boxHeight);
+    svgElem.setAttributeNS (null, "width", boxWidth);
+    svgElem.setAttributeNS (null, "height", boxHeight);
+    svgElem.style.display = "block";
+    
+    var group_background = document.createElementNS(xmlns, "g");
+    group_background.setAttribute("id", "group_background")
+    svgElem.appendChild(group_background);
+
+    var group_line = document.createElementNS(xmlns, "g");
+    svgElem.appendChild(group_line);
+    
+    var  i =0;
+    for (var element in elements_object) {
+
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", boxWidth/2 + 2*(radius)*Math.cos((angle*i)/180*Math.PI));
+        circle.setAttribute("cy", boxHeight/2 + (radius)*Math.sin((angle*i)/180*Math.PI));
+        circle.setAttribute("r",  6);
+        circle.setAttribute("fill", "black");
+        circle.setAttribute("stroke", "black");
+        circle.setAttribute("class", "action_circle_$unique_key");
+        circle.setAttribute("id", element);
+        circle.setAttribute("style","cursor: pointer;")
+        group_line.appendChild(circle);
+        
+      //  list["id00"+i] = false;
+        
+        var text = document.createElementNS(xmlns, "text");
+        text.setAttribute('x',10 + boxWidth/2 + 2*(radius)*Math.cos((angle*i)/180*Math.PI));
+        text.setAttribute('y',6+ boxHeight/2 + (radius)*Math.sin((angle*i)/180*Math.PI));
+        text.setAttribute('fill', '#000');
+        text.textContent = elements_object[element];
+        text.setAttribute('font-style','italic');
+        text.setAttribute('font-family',"sans-serif");
+        text.setAttribute('font-size',"20");
+        group_line.appendChild(text);
+
+        i++;
+    };
+    
+    var svgContainer = document.getElementById("diagram_$unique_key");
+    svgContainer.innerHTML = svgElem.outerHTML; 
+
+};
+
+
+CreateSVG();
+
+//answer_$unique_key.setJSON(list)
+
+
+function pointRed(id){
+      $( id ).attr("stroke","red");
+      $( id ).attr("stroke-width","4")
+}
+/*for (key in answer){
+    if (answer[key]) {
+        pointRed("#"+key);
+        list[key] = true;
+}
+}*/
+
+//CreateLine();
+function test(){
+if (answer.length){
+    for (item in answer){
+        list['id' + Math.random().toString(16).substr(2, 8).toUpperCase()] = answer[item]
+        CreateLine()
+    }
+}
+}
+
+function createPair(value){
+    if(!pair.length){
+        pair.push(value);
+    }
+    else{
+        if(pair[0] != value){
+            pair.push(value); 
+            if(check()){
+                list['id' + Math.random().toString(16).substr(2, 8).toUpperCase()] = pair;
+                CreateLine();    
+                answer_$unique_key.setJSON(toMassiv(list));     
+            }
+            pair = [];
+        }
+    }
+    
+}
+
+function check(){
+    for(key in list){
+       // console.log(list[key], "   :   " , pair);
+        if(checkArrays(list[key], pair)){
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkArrays( arrA, arrB ){
+    if(arrA.length !== arrB.length) return false;
+    var cA = arrA.slice().sort().join(","); 
+    var cB = arrB.slice().sort().join(",");
+    return cA===cB;
+}
+
+function toMassiv(object){
+    var array =[];
+    for(key in object){
+        array.push(object[key]);
+    }
+    return array;
+}
+
+function CreateLine(){
+    var group_background = document.createElementNS(xmlns, "g");
+    $(".action_circle_$unique_key").attr("r",  6);
+    $(".action_circle_$unique_key").attr("fill", "black");
+    $(".action_circle_$unique_key").attr("stroke", "black");
+  
+    for(key in list){
+            var line = document.createElementNS(xmlns, "line");
+            line.setAttribute("id",  key);
+            line.setAttribute("x1", $("#"+list[key][0]).attr("cx"));
+            line.setAttribute("y1", $("#"+list[key][0]).attr("cy"));
+            line.setAttribute("x2", $("#"+list[key][1]).attr("cx"));
+            line.setAttribute("y2", $("#"+list[key][1]).attr("cy"));
+            pointRed("#"+list[key][0]);
+            pointRed("#"+list[key][1]);
+  
+            line.setAttribute("stroke", "red");
+            line.setAttribute("class", "red_line_$unique_key");
+            line.setAttribute("stroke-width", "4");
+            group_background.appendChild(line);         
+        }
+    document.getElementById('group_background').innerHTML = group_background.innerHTML;
+    answer_$unique_key.setJSON(toMassiv(list));
+    hren();
+}
+
+function hren(){
+    $(".red_line_$unique_key").click(function() {
+        console.log($(this).attr("id"));
+        delete list[$(this).attr("id")];
+        CreateLine();
+    }); 
+
+}
+
+$(".action_circle_$unique_key").click(function() {
+    //if ($( this ).attr("stroke")=="black") {
+      $(this).attr("stroke","red");
+      $(this).attr("stroke-width","4");
+      createPair($(this).attr("id"));
+      //  list[$(this).attr("id")] = true;
+    //CreateLine();
+   // }
+
+   /* else {
+      $( this ).attr("stroke","black");
+      $( this ).attr("stroke-width","1")
+
+  //  list[$(this).attr("id")] = false;    
+   // CreateLine();
+    }*/
+    hren();
+    console.log(JSON.stringify(list)) 
+}); 
+
+    test()
+
+
+
+  </script>
+</problem>
