@@ -1,0 +1,144 @@
+<script type="loncapa/python">
+from os import urandom
+import hashlib
+    
+def key():
+    key = hashlib.md5(urandom(128)).hexdigest()[:8]
+    return "id" + str(key)
+
+unique_id_1 = key()
+unique_id_2 = key()
+unique_id_3 = key()
+  </script>
+
+
+
+28. Приведите в соответствие «Платоновы тела» и явления. Рядом с «Платоновым телом» расположите явление.
+
+<script type="text/javascript">
+/* fild уникальный id приязанный к DIV и обрамляющее задание */
+function Answer(field){
+    	this.field = "#" + field + " input[type=text]";
+    	this.fieldValue = "";
+    	this.fieldObject = {};
+    	this.get = function(){
+    		this.fieldValue = $(this.field).val();
+    		return this.fieldValue;
+    	};
+    	this.set = function(value){
+    		if(value == undefined) value = this.fieldValue;
+    		$(this.field).val(value);
+    	};
+    	this.getJSON = function(){
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+    		return this.fieldObject;
+    	};
+    	this.setJSON = function(object){
+    		if(object == undefined) object = this.fieldObject;
+    		 this.set(JSON.stringify(object))
+    	};
+        /* Утилиты */
+        /* Проверка строки на возможность преобразования в JSON */
+        this.isJsonString = function(str) {
+            try {JSON.parse(str);} 
+            catch (e) {return false;}
+            return true;
+        };
+    };
+var answer_$unique_id_1 = new Answer("$unique_id_1");
+// Получение значения поля для в формате JSON формируется ответ студента
+var obj_$unique_id_1 = answer_$unique_id_1.getJSON();
+for (key in obj_$unique_id_1.ans) $("#$unique_id_1 #" + key).prepend($("#$unique_id_2 #"+obj_$unique_id_1.ans[key]))
+// Скрытие поля ответа $(this.field).hide();
+$( document ).ready(function(){$("#$unique_id_1 input[type=text]").hide()});
+// Подключение перемешивания
+$("#$unique_id_1 #listTerm, #$unique_id_1 #listDefinitely p").sortable({ 
+      revert:false,
+      connectWith: "p",
+      sort: function() { $("#$unique_id_1 #listDefinitely p").addClass('points') },
+      stop: function() {
+        $("#$unique_id_1 #listDefinitely p").removeClass('points')
+        var value_$unique_id_1={};
+        $("#$unique_id_1 #listDefinitely p").map(function(indx, element){
+            id = $(element).attr("id");
+            value_$unique_id_1[id] = $(element).find(".term").map(function(index, element){return $(element).attr("id")}).get();
+        }).get();
+        answer_$unique_id_1.setJSON({ans:value_$unique_id_1});
+        
+      }
+    });
+</script>
+<div id="$unique_id_1">
+<div id="listDefinitely">
+  <p id="d1"><span></span> Куб</p>
+  <p id="d2"><span></span> Октаэдр</p>
+  <p id="d3"><span></span> Икосаэдр</p>
+  <p id="d4"><span></span> Тетраэдр</p>
+  <p id="d5"><span></span> Додекаэдр</p>
+</div>
+<p id="listTerm">
+<span class="term" id="t1">Воздух</span>
+<span class="term" id="t2">Космос</span>
+<span class="term" id="t3">Вода</span>
+<span class="term" id="t4">Земля</span>
+<span class="term" id="t5">Огонь</span>
+</p>
+  <stringresponse answer='{"ans":{"d1":["t4"],"d2":["t1"],"d3":["t3"],"d4":["t5"],"d5":["t2"]}}' type="ci" >
+    <textline class="iq" size="20"/>
+  </stringresponse>
+</div>
+
+
+
+35. Приведите в соответствие органы человеческого тела и орудия, проекцией которого они являются
+<script type="text/javascript">
+var answer_$unique_id_2 = new Answer("$unique_id_2");
+// Получение значения поля для в формате JSON формируется ответ студента
+var obj_$unique_id_2 = answer_$unique_id_2.getJSON();
+for (key in obj_$unique_id_2.ans) $("#$unique_id_2 #" + key).prepend($("#$unique_id_2 #"+obj_$unique_id_2.ans[key]))
+// Скрытие поля ответа $(this.field).hide();
+$( document ).ready(function(){$("#$unique_id_2 input[type=text]").hide()});
+// Подключение перемешивания
+$("#$unique_id_2 #listTerm, #$unique_id_2 #listDefinitely p").sortable({ 
+      revert:false,
+      connectWith: "p",
+      sort: function() { $("#$unique_id_2 #listDefinitely p").addClass('points') },
+      stop: function() {
+        $("#$unique_id_2 #listDefinitely p").removeClass('points')
+        var value={};
+        $("#$unique_id_2 #listDefinitely p").map(function(indx, element){
+            id = $(element).attr("id");
+            value[id] = $(element).find(".term").map(function(index, element){return $(element).attr("id")}).get();
+        }).get();
+        answer_$unique_id_2.setJSON({ans:value});
+        
+      }
+    });
+</script>
+<div id="$unique_id_2">
+<div id="listDefinitely">
+<p id="d1"><span></span> искривленный палец </p>
+<p id="d2"><span></span> собранная в горсть рука </p>
+<p id="d3"><span></span> система кровообращения </p>
+<p id="d4"><span></span> вытянутый палец с острым когтем </p>
+<p id="d5"><span></span> вытянутая рука </p>
+<p id="d6"><span></span> ряд зубов </p>
+<p id="d7"><span></span> кулак </p>
+<p id="d8"><span></span> нервная система. </p>
+</div>
+<p id="listTerm">
+<span class="term" id="t1">чаша </span>
+<span class="term" id="t2">электрический телеграф </span>
+<span class="term" id="t3">сверло </span>
+<span class="term" id="t4">пила </span>
+<span class="term" id="t5">тупой наконечник орудия </span>
+<span class="term" id="t6">железная дорога </span>
+<span class="term" id="t7">копье </span>
+<span class="term" id="t8">мотыга</span>
+</p>
+  <stringresponse answer='{"ans":{"d1":["t8"],"d2":["t1"],"d3":["t6"],"d4":["t3"],"d5":["t7"],"d6":["t4"],"d7":["t5"],"d8":["t2"]}}' type="ci" >
+    <textline class="iq" size="20"/>
+  </stringresponse>
+</div>
+
+
