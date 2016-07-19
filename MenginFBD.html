@@ -1,65 +1,75 @@
 <script type="text/javascript">
-var menginFBD = {
-  // Settings
-  className:"mengin_fbd",
-  elementsId:[],
-
-  // Вспомогательные функции
-  genID: function() {
-    return 'id' + Math.random().toString(16).substr(2, 8).toUpperCase();
-  },
-
-  // Инициализация
-  init: function(){
-    var elements = document.getElementsByClassName("mengin_fbd");
-    console.log(elements, this.genID());
-    for(var i=0; i<elements.length; i++){
-      elements[i].id = this.genID();
-      this.elementsId.push(elements[i].id);
-      this.testEvent(elements[i].id);
-    }
-  }    
-}
 function Constructor(className){
-  this.className = "mengin_fbd";
-  this.containersID = [];
-  this.init = function()
-  //HTMLCollection как она работает
+    // Обявление переменных
+    this.className = "mengin_fbd";
+    this.containersID = [];
+    this.contaihersSVGObject = {};
+
+    // Вспомогательные функциии
+    // Функция генерации ID
+    this.genID = function() {
+        return 'id' + Math.random().toString(16).substr(2, 8).toUpperCase();
+      };
+
+    // Функция перебора HTMLCollection и NodeList и выполене функции action
+    this.forEach = function(collection, action) {
+        collection = collection || {};
+        for (var i = 0; i < collection.length; i++)
+            action(collection[i]);
+        };
+
+    this.workWithField = function (containerID){
+        this.field = "#" + containerID + " input[type=text]";
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function(){
+            this.fieldValue = $(this.field).val();
+            return this.fieldValue;
+        };
+        this.set = function(value){
+            if(value == undefined) value = this.fieldValue;
+            $(this.field).val(value);
+        };
+        this.getJSON = function(){
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function(object){
+            if(object == undefined) object = this.fieldObject;
+             this.set(JSON.stringify(object))
+        };
+        // Утилиты 
+        // Проверка строки на возможность преобразования в JSON 
+        this.isJsonString = function(str) {
+            try {JSON.parse(str);}
+            catch (e) {return false;}
+            return true;
+        };
+    };
+
+
+
+
+
+  //this.init = function(){
+    var containerList = document.getElementsByClassName(this.className);
+    forEach(containerList, function(containerElement){
+        var containerElementId = this.genID();
+        containerElement.id = containerElementId;
+        this.containersID.push(containerElementId);
+        this.contaihersSVGObject[containerElementId] = containerElement;
+    };)
+  };*/
+
+
 
 }
 
-function MenginFBD(field){
-    this.field = "#" + field + " input[type=text]";
-    this.fieldValue = "";
-    this.fieldObject = {};
-    this.get = function(){
-        this.fieldValue = $(this.field).val();
-        return this.fieldValue;
-    };
-    this.set = function(value){
-        if(value == undefined) value = this.fieldValue;
-        $(this.field).val(value);
-    };
-    this.getJSON = function(){
-        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
-        return this.fieldObject;
-    };
-    this.setJSON = function(object){
-        if(object == undefined) object = this.fieldObject;
-         this.set(JSON.stringify(object))
-    };
-    /* Утилиты */
-    /* Проверка строки на возможность преобразования в JSON */
-    this.isJsonString = function(str) {
-        try {JSON.parse(str);} 
-        catch (e) {return false;}
-        return true;
-    };
-};
 
 
 
 
-window.addEventListener("DOMContentLoaded", menginFBD.init.bind(menginFBD));
+
+//window.addEventListener("DOMContentLoaded", menginFBD.init.bind(menginFBD));
 //window.onload = function() {menginFBD.init()};
   </script>
