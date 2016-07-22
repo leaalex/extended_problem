@@ -1,5 +1,6 @@
-<svg class='test' viewBox="0 0 800 400"></svg>
-<svg class='test' viewBox="0 0 800 400"></svg>
+<div class='mengine_fbd'>
+<svg viewBox="0 0 800 400"></svg>
+</div>
 
 <script type="text/javascript">
 function Constructor(className){
@@ -131,7 +132,7 @@ function Constructor(className){
   };
 
   this.init = function(){
-    forEach(document.getElementsByClassName(className), this.createMenu.bind(this) )
+    forEach(document.getElementsByClassName(className), function (element){this.createMenu(element.querySelector("svg"))}.bind(this) )
 
   };
 
@@ -139,7 +140,7 @@ function Constructor(className){
 }
 
 
-var x = new Constructor('test');
+var x = new Constructor("mengine_fbd");
 x.init();
 
 </script>
