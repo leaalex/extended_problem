@@ -63,7 +63,7 @@ function Constructor(className){
   }
 
 
-  this.createMenu = function (SVGObject){
+  function createMenu(SVGObject){
     //создание группы в которую входят все элементы меню
     var svgMenu = createElementSVG('g', genID("svgMenu"), "svgMenu");
     //
@@ -113,9 +113,6 @@ function Constructor(className){
     scButtonOpenClose.innerHTML += '<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="5" y1="-5" x2="-5" y2="5"/>';
     scButtonOpenClose.innerHTML += '<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-5" y1="-5" x2="5" y2="5"/>';
 
-    svgMenu.appendChild(menuLevelOne);
-    svgMenu.appendChild(menuLevelTwo);
-    svgMenu.appendChild(scButtonOpenClose);
     append(svgMenu, [menuLevelOne, menuLevelTwo, scButtonOpenClose]);
     append(SVGObject, [svgMenu]);
 
@@ -138,7 +135,7 @@ function Constructor(className){
 
     scButtonOpenClose.addEventListener("click", function(e){
       console.log(e.target);
-      visibleMenu()
+      fn.visibleMenu()
     }, false);
 
     SVGObject.addEventListener("click", function(e){
@@ -147,7 +144,7 @@ function Constructor(className){
   };
 
   this.init = function(){
-    forEach(document.getElementsByClassName(className), function (element){this.createMenu(element.querySelector("svg"))}.bind(this) )
+    forEach(document.getElementsByClassName(className), function (element){createMenu(element.querySelector("svg"))}.bind(this) )
 
   };
 
