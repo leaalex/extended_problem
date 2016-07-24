@@ -13,7 +13,7 @@
 <script type="text/javascript">
 function Constructor(className){
 
-  this.className = className || "mengine_fbd";
+  var className = className || "mengine_fbd";
 
   // Функция генерации ID
   function genID(value) {
@@ -64,7 +64,7 @@ function Constructor(className){
 
 
   function createMenu(SVGObject){
-    //создание группы в которую входят все элементы меню
+    // создание группы в которую входят все элементы меню
     var svgMenu = createElementSVG('g', genID("svgMenu"), "svgMenu");
     //
     var menuLevelOne = createElementSVG('g', genID("menuLevelOne"), "menuLevelOne");
@@ -95,10 +95,10 @@ function Constructor(className){
       scMoment,
       scForce
     ]);
-
+    //
     var force = createElementSVG('g', genID("force"), "force");
     force.innerHTML = '<polygon fill="#FF691F" stroke="#724A22" stroke-miterlimit="10" points="91.583,0 63.478,-7.5 63.478,-2.927 0.583,-2.925 0.583,2.927 63.478,2.927 63.478,7.5 "/>';
-
+    //
     var moment = createElementSVG('g', genID("moment"), "moment");
     moment.innerHTML = '<path fill="#FF691F" stroke="#724A22" stroke-miterlimit="10" d="M13.446-42.098l-1.827,5.715c15.894,5.083,26.573,19.719,26.573,36.421c0,21.081-17.15,38.23-38.23,38.23c-3.102,0-6.152-0.373-9.118-1.099l1.245-1.925L-30.338,28l15.799,17.49l1.961-3.032c4.053,1.198,8.254,1.811,12.54,1.811c24.389,0,44.23-19.842,44.23-44.23C44.192-19.284,31.836-36.218,13.446-42.098z"/>';
     //
@@ -112,11 +112,16 @@ function Constructor(className){
     scButtonOpenClose.innerHTML = '<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="0" cy="0" r="10"/>';
     scButtonOpenClose.innerHTML += '<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="5" y1="-5" x2="-5" y2="5"/>';
     scButtonOpenClose.innerHTML += '<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-5" y1="-5" x2="5" y2="5"/>';
-
-    append(svgMenu, [menuLevelOne, menuLevelTwo, scButtonOpenClose]);
-    append(SVGObject, [svgMenu]);
-
-
+    //
+    append(svgMenu, [
+      menuLevelOne,
+      menuLevelTwo,
+      scButtonOpenClose
+    ]);
+    //
+    append(SVGObject, [
+      svgMenu
+    ]);
     // Функции управления элементами
     var fn={};
     fn.transformMenu = transform(svgMenu);
@@ -145,6 +150,8 @@ function Constructor(className){
 
   this.init = function(){
     forEach(document.getElementsByClassName(className), function (element){createMenu(element.querySelector("svg"))}.bind(this) )
+  };
+  this.initElement = function(){
 
   };
 
