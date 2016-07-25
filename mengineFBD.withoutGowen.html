@@ -12,7 +12,6 @@
 
 <script type="text/javascript">
 function Constructor(className){
-
   var className = className || "mengine_fbd";
 
   // Функция генерации ID
@@ -146,6 +145,8 @@ function Constructor(className){
     SVGObject.addEventListener("click", function(e){
       fn.transformMenu(200,200)
     }, false);
+
+  return SVGObject;
   };
 
   this.init = function(){
