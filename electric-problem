@@ -1,82 +1,95 @@
 <problem>
-  U-output = [4,5,6,7,8,9]
-  f-input = [50, 75, 10, 150, 200, 250, 300]
-  R-load = [1.0, 2.0, 3.0, 4.0, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1 ]
+  U_output_nominal = [4,5,6,7,8,9]
+  f_input = [50, 75, 10, 150, 200, 250, 300]
+  R_load = [1.0, 2.0, 3.0, 4.0, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1 ]
   K = [5, 6, 7, 8, 9, 10]
   E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1]
+  U_stabilization =
+  I_n = U_output_nominal / R_load
+  R_additional = U_stabilization - U_output_nominal / I_n
+  R_additional_E24 =
+  P_additional = I_n * I_n * R_additional_E24
+  I_stabilization =
+  U_0 =1.4 * U_stabilization
+  R_nominal = ( U_0 - U_stabilization ) / ( I_stabilization - I_n )
+  R_nominal_E24 =
+  P_nominal = ( I_stabilization - I_n ) * ( I_stabilization - I_n ) * R_nominal_E24
+  C_filter = ( I_stabilization - I_n ) * 100 / ( k * U_0 * f_input)
+  U_output = U_0 + 0.5 
+
   <p>
     Разобрать схему источника питания, состоящего из однополупериодного выпрямителя диод \(VD1\) сглаживающего фильтра \(C_ф\) и стабилизатора напряжения на стабилитроне \(VD2\)
   </p>
   <p>
-    Номинальное выходное напряжение \(U_{вых.ном} = $U-output \) В.
+    Номинальное выходное напряжение \(U_{вых.ном} = $U_output_nominal \) В.
   </p>
   <p>
-    Частота входного сигнала \(f = $f-input \) Гц.
+    Частота входного сигнала \(f = $f_input \) Гц.
   </p>
   <p>
-    Сопротивление нагрузки \( R_н = $R-load \) кОм.
+    Сопротивление нагрузки \( R_н = $R_load \) кОм.
   </p>
   <p>
     Коэффицент пульсациий на выходе выпрямителя \( K = $K\) %.
   </p>
 
   <span>1. \( U_{ст} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$U_stabilization">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>2. \( I_н = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$I_n">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>3. \( R_{доб} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$R_additional">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>4. \( R_{доб} \ (E24) = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$R_additional_E24">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>5. \( P_{доб} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$P_additional">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>6. \( I_{ст} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$I_stabilization">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>7. \( U_0 = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$U_0">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>8. \( R_{огр} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$R_nominal">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>9. \( R_{огр} \ (E24) = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$R_nominal_E24">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>10. \( P_{огр} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$P_nominal">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>11. \( C_ф = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$C_filter">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
   <span>12. \( U_{вх} = \) </span>
-  <numericalresponse answer="1">
+  <numericalresponse answer="$U_output">
     <responseparam type="tolerance" default="5%" />
     <formulaequationinput label=""/>
   </numericalresponse>
