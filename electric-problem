@@ -1,21 +1,81 @@
 <problem>
-  U_output_nominal = [4,5,6,7,8,9]
-  f_input = [50, 75, 10, 150, 200, 250, 300]
-  R_load = [1.0, 2.0, 3.0, 4.0, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1 ]
-  K = [5, 6, 7, 8, 9, 10]
-  E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1]
-  U_stabilization =
-  I_n = U_output_nominal / R_load
-  R_additional = U_stabilization - U_output_nominal / I_n
-  R_additional_E24 =
-  P_additional = I_n * I_n * R_additional_E24
-  I_stabilization =
-  U_0 =1.4 * U_stabilization
-  R_nominal = ( U_0 - U_stabilization ) / ( I_stabilization - I_n )
-  R_nominal_E24 =
-  P_nominal = ( I_stabilization - I_n ) * ( I_stabilization - I_n ) * R_nominal_E24
-  C_filter = ( I_stabilization - I_n ) * 100 / ( k * U_0 * f_input)
-  U_output = U_0 + 0.5 
+<script type="loncapa/python">
+U_output_nominal = random.choice([4, 5, 6, 7, 8, 9])
+f_input = random.choice([50, 75, 10, 150, 200, 250, 300])
+R_load = random.choice([1.0, 2.0, 3.0, 4.0, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1])
+K = random.choice([5, 6, 7, 8, 9, 10])
+E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1]
+
+def approx_equal(a, b, tol=0.05):
+    try:
+        a = float(a)
+        b = float(b)
+    except:
+      return False
+    return abs(a-b) &lt;= (abs(a)+abs(b))/2 * tol
+
+def check(exp, ans):
+    correct = 0
+    incorrect = 0
+
+    def get_standard_value(value, array=E24):
+        for item in array:
+            if item &lt; value:
+                end_value = array.index(item) + 1
+            else:
+                try:
+                    return array[end_value]
+                except:
+                    return array[0]
+
+    U_stabilization = get_standard_value(U_output_nominal, E24)
+    if approx_equal(ans[0], U_stabilization):
+        correct += 1
+
+    TEST = ans
+
+
+    I_n = U_output_nominal / R_load
+    if approx_equal(ans[1], I_n):
+        correct +=1
+
+    R_additional = U_stabilization - U_output_nominal / I_n
+    if approx_equal(ans[2], R_additional):
+        correct +=1
+
+
+    R_additional_E24 = get_standard_value(R_additional, E24)
+    if approx_equal(ans[3], R_additional):
+        correct +=1
+
+    P_additional = I_n * I_n * R_additional_E24
+    if approx_equal(ans[4], P_additional):
+        correct +=1
+
+    U_0 =1.4 * U_stabilization
+    if approx_equal(ans[6], U_0):
+        correct +=1
+
+    min_value = 3 * I_n
+    max_value = 5 * I_n
+  
+    I_stabilization = random.uniform(float(min_value), float(max_value))
+    R_nominal = ( U_0 - U_stabilization ) / ( I_stabilization - I_n )
+    R_nominal_E24 = get_standard_value(R_nominal, E24)
+    P_nominal = ( I_stabilization - I_n ) * ( I_stabilization - I_n ) * R_nominal_E24
+    C_filter = ( I_stabilization - I_n ) * 100 / ( K * U_0 * f_input)
+    U_output = U_0 + 0.5
+
+    points = correct/float(12)
+
+    if points == 1:
+        return {'msg': str(TEST), 'ok': True, 'grade_decimal': points}
+    elif points > 0 and 1 > points:
+        return {'msg': str(TEST), 'ok': False, 'grade_decimal': points}
+    else:
+        return {'msg': str(TEST), 'ok': False, 'grade_decimal': points}
+
+</script>
 
   <p>
     Разобрать схему источника питания, состоящего из однополупериодного выпрямителя диод \(VD1\) сглаживающего фильтра \(C_ф\) и стабилизатора напряжения на стабилитроне \(VD2\)
@@ -33,66 +93,45 @@
     Коэффицент пульсациий на выходе выпрямителя \( K = $K\) %.
   </p>
 
+  
+<customresponse cfn='check' type="ci" expect="correct">
   <span>1. \( U_{ст} = \) </span>
-  <numericalresponse answer="$U_stabilization">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>2. \( I_н = \) </span>
-  <numericalresponse answer="$I_n">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>3. \( R_{доб} = \) </span>
-  <numericalresponse answer="$R_additional">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>4. \( R_{доб} \ (E24) = \) </span>
-  <numericalresponse answer="$R_additional_E24">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>5. \( P_{доб} = \) </span>
-  <numericalresponse answer="$P_additional">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>6. \( I_{ст} = \) </span>
-  <numericalresponse answer="$I_stabilization">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+
   <span>7. \( U_0 = \) </span>
-  <numericalresponse answer="$U_0">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>8. \( R_{огр} = \) </span>
-  <numericalresponse answer="$R_nominal">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>9. \( R_{огр} \ (E24) = \) </span>
-  <numericalresponse answer="$R_nominal_E24">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>10. \( P_{огр} = \) </span>
-  <numericalresponse answer="$P_nominal">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>11. \( C_ф = \) </span>
-  <numericalresponse answer="$C_filter">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+    
   <span>12. \( U_{вх} = \) </span>
-  <numericalresponse answer="$U_output">
-    <responseparam type="tolerance" default="5%" />
-    <formulaequationinput label=""/>
-  </numericalresponse>
+    <textline size="20"/>
+</customresponse>
+    
 
 
 </problem>
