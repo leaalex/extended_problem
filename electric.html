@@ -1,0 +1,97 @@
+<problem>
+<script type="loncapa/python">
+taskId = "BHJGHKgklh"
+answer = "X_z * iX_x + iX_c"
+splitSymbols = ("*", "+", "=", "-")
+ 
+
+def getRule(answer, splitSymbols): 
+    def multiSplit(txt, seps):
+        default_sep = seps[0]
+        for sep in seps[1:]:
+            txt = txt.replace(sep, default_sep)
+        return [i.strip() for i in txt.split(default_sep)]
+    
+    symbols = multiSplit(answer, splitSymbols)
+    uniqList = list(set(symbols)) 
+    entryNumbers = []
+    minEntryList = []
+    maxEntryList = []
+    for elem in uniqList:
+        entryCount = symbols.count(elem)
+        entryNumbers.append(entryCount)
+        minEntryList.append("1")
+        maxEntryList.append(str(int(symbols.count(elem))+1))  
+    
+    rule = ','.join(uniqList)
+    rule = rule + "@"
+    rule = rule + ",".join(minEntryList)
+    rule = rule + ":"
+    rule = rule + ",".join(maxEntryList)  
+    rule = rule + "#10"
+    return rule  
+
+rule = getRule(answer, splitSymbols)
+
+</script>
+  
+<style type="textcss">
+  span.math span {
+    border-left-color: transparent !important;
+}
+  #$taskId .equation{
+  	display:none;
+  }
+  #$taskId .answer{
+  	display:none;
+  }
+</style>  
+  
+  
+<script type="text/javascript">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]]
+        }
+      });
+</script>
+
+<script type="text/javascript">
+(function () {
+window.$taskIdUpdateMath = function (TeX) {
+  	TeX = "\\(" + TeX + "\\)";
+   	TeX = TeX.replace(/i(\w)/g, "\\overline{"+ "$1" + "}")
+    document.getElementById("$taskId_MathOutput").innerHTML = TeX;
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub,"$taskId_MathOutput"]);
+}
+})();
+  
+document.getElementById("$taskId").getElementsByTagName("input")[0].oninput = function(element) {
+  	$taskIdUpdateMath(this.value);
+};
+
+if($("#$taskId input").val()){
+    $taskIdUpdateMath(document.getElementById("$taskId").getElementsByTagName("input")[0].value);
+}
+  
+</script>
+  
+	$rule
+
+<div id="$taskId">
+  <formularesponse type="ci" samples="$rule" answer="$answer">
+    <responseparam type="tolerance" default="0.00001"/>
+    <formulaequationinput size="40"  label="Enter the equation"/>
+  </formularesponse>
+
+
+  
+  <div>Введенное выражение:
+    	<div id="$taskId_MathOutput">
+    	</div>
+   </div>
+  
+  
+</div>
+
+</problem>   
