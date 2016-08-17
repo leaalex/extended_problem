@@ -40,10 +40,10 @@ rule = getRule(answer, splitSymbols)
     border-left-color: transparent !important;
 }
   #$taskId .equation{
-  	display:none;
+    display:none;
   }
   #$taskId .answer{
-  	display:none;
+    display:none;
   }
 </style>  
   
@@ -59,15 +59,15 @@ rule = getRule(answer, splitSymbols)
 <script type="text/javascript">
 (function () {
 window.$taskIdUpdateMath = function (TeX) {
-  	TeX = "\\(" + TeX + "\\)";
-   	TeX = TeX.replace(/i(\w)/g, "\\overline{"+ "$1" + "}")
+    TeX = "\\(" + TeX + "\\)";
+    TeX = TeX.replace(/i(\w)/g, "\\overline{"+ "$1" + "}")
     document.getElementById("$taskId_MathOutput").innerHTML = TeX;
     MathJax.Hub.Queue(["Typeset", MathJax.Hub,"$taskId_MathOutput"]);
 }
 })();
   
 document.getElementById("$taskId").getElementsByTagName("input")[0].oninput = function(element) {
-  	$taskIdUpdateMath(this.value);
+    $taskIdUpdateMath(this.value);
 };
 
 if($("#$taskId input").val()){
@@ -76,7 +76,7 @@ if($("#$taskId input").val()){
   
 </script>
   
-	$rule
+  $rule
 
 <div id="$taskId">
   <formularesponse type="ci" samples="$rule" answer="$answer">
@@ -87,8 +87,8 @@ if($("#$taskId input").val()){
 
   
   <div>Введенное выражение:
-    	<div id="$taskId_MathOutput">
-    	</div>
+      <div id="$taskId_MathOutput">
+      </div>
    </div>
   
   

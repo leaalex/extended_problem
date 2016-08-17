@@ -1,0 +1,133 @@
+<problem>
+<script type="loncapa/python">
+taskId = "BHJGHKgklh"
+answer1 = "X_z"
+answer2 = "X_z"
+
+splitSymbols = ("*", "+", "=", "-")
+
+def getRule(answer, splitSymbols): 
+    def multiSplit(txt, seps):
+        default_sep = seps[0]
+        for sep in seps[1:]:
+            txt = txt.replace(sep, default_sep)
+        return [i.strip() for i in txt.split(default_sep)]
+    
+    symbols = multiSplit(answer, splitSymbols)
+    uniqList = list(set(symbols)) 
+    entryNumbers = []
+    minEntryList = []
+    maxEntryList = []
+    for elem in uniqList:
+        entryCount = symbols.count(elem)
+        entryNumbers.append(entryCount)
+        minEntryList.append("1")
+        maxEntryList.append(str(int(symbols.count(elem))+1))  
+    
+    rule = ','.join(uniqList)
+    rule = rule + "@"
+    rule = rule + ",".join(minEntryList)
+    rule = rule + ":"
+    rule = rule + ",".join(maxEntryList)  
+    rule = rule + "#10"
+    return rule  
+
+rule1 = getRule(answer1, splitSymbols)
+rule2 = getRule(answer2, splitSymbols)
+  
+</script>
+  
+<style type="text/css">
+span.math span {
+    border-left-color: transparent !important;
+}
+#$taskId .equation{
+    display:none;
+}
+#$taskId .answer{
+    display:none;
+}
+
+</style>  
+  
+  
+<script type="text/javascript">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]]
+        }
+      });
+</script>
+
+<script type="text/javascript">
+(function () {
+window.$taskIdUpdateMath = function (element) {
+    TeX = "\\begin{cases} ";
+    
+    element.forEach(function(item, i, element) {
+      item = item.replace(/i(\w)/g, "\\overline{"+ "$1" + "}");
+      if(i!= element.length){
+        TeX = TeX + "y_"+ (i+1) + " = "+ item + "\\" + "\\";
+      }
+  });
+  
+    TeX = TeX + " \\end{cases}";
+    TeX = "\\(" + TeX + "\\)";
+  
+    document.getElementById("$taskId_MathOutput").innerHTML = TeX;
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub,"$taskId_MathOutput"]);
+}
+})();
+
+function getValues(){
+  var massiv = document.getElementById("$taskId").getElementsByTagName("input");
+  var returnMassiv = [];
+  var l = document.querySelector("#$taskId").querySelectorAll("input").length;
+  var i = 0;
+  while (i != l) {
+    returnMassiv.push(document.querySelector("#$taskId").querySelectorAll("input")[i].value);
+    i++;
+  }
+  return returnMassiv;
+
+  }  
+  
+
+document.getElementById("$taskId").getElementsByTagName("input")[0].oninput = function(element) {
+  $taskIdUpdateMath(getValues());
+};
+  
+  document.getElementById("$taskId").getElementsByTagName("input")[1].oninput = function(element) {
+  $taskIdUpdateMath(getValues());
+};
+
+if($("#$taskId input").val()){
+    $taskIdUpdateMath(getValues());
+}
+  
+</script>
+
+  <p>$rule1</p>
+  <p>$rule2</p>
+  
+<div id="$taskId">
+  
+  <formularesponse type="ci" samples="$rule1" answer="$answer1">
+    <responseparam type="tolerance" default="0.00001"/>
+    <formulaequationinput size="40"  label="Enter the equation"/>
+  </formularesponse>
+  
+  <formularesponse type="ci" samples="$rule2" answer="$answer2">
+    <responseparam type="tolerance" default="0.00001"/>
+    <formulaequationinput size="40"  label="Enter the equation"/>
+  </formularesponse>
+  
+  <div>Введенное выражение:
+      <div id="$taskId_MathOutput">
+      </div>
+  </div>
+  
+  
+</div>
+
+</problem>   
