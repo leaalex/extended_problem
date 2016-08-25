@@ -1,0 +1,166 @@
+<svg id="Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.33 327">
+  <defs>
+    <style>
+      .cls-1, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-3, .cls-4, .cls-6, .cls-7, .cls-8 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #39b54a;
+      }
+
+      .cls-1, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        stroke-width: 2px;
+      }
+
+      .cls-2, .cls-20, .cls-5, .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke: #fbb03b;
+      }
+
+      .cls-11, .cls-12, .cls-3 {
+        stroke-linecap: round;
+      }
+
+      .cls-5 {
+        stroke: #c1272d;
+      }
+
+      .cls-10, .cls-11, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-6, .cls-8 {
+        stroke: #000;
+      }
+
+      .cls-7 {
+        stroke: #0071bc;
+      }
+
+      .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-8 {
+        stroke-linecap: square;
+      }
+
+      .cls-9 {
+        stroke: blue;
+      }
+
+      .cls-12 {
+        stroke: gray;
+      }
+
+      .cls-13 {
+        stroke: #998675;
+      }
+
+      .cls-14 {
+        stroke: #ff0;
+      }
+
+      .cls-16 {
+        stroke-dasharray: 1.01 4.06;
+      }
+
+      .cls-17 {
+        stroke-dasharray: 12.17 4.06 1.01 4.06;
+      }
+
+      .cls-18 {
+        stroke-dasharray: 1 3.99;
+      }
+
+      .cls-19 {
+        stroke-dasharray: 11.96 3.99 1 3.99;
+      }
+    </style>
+  </defs>
+  <title>Безымянный-2</title>
+  <line class="cls-1" x1="303.38" y1="216.56" x2="303.38" y2="198.67"/>
+  <g>
+    <rect class="cls-2" x="158.63" y="107.5" width="24.5" height="66"/>
+    <line class="cls-3" x1="170.88" y1="107.5" x2="170.88" y2="68"/>
+    <line class="cls-4" x1="170.88" y1="213" x2="170.88" y2="173.5"/>
+  </g>
+  <g>
+    <rect class="cls-5" x="291.13" y="107.5" width="24.5" height="66"/>
+    <line class="cls-5" x1="303.38" y1="107.5" x2="303.38" y2="68"/>
+    <line class="cls-5" x1="303.38" y1="191.5" x2="303.38" y2="173.5"/>
+  </g>
+  <line class="cls-6" x1="303.38" y1="198.67" x2="303.38" y2="191.5"/>
+  <line class="cls-7" x1="303.38" y1="287.73" x2="303.38" y2="244.67"/>
+  <line class="cls-8" x1="170.88" y1="68" x2="393.33" y2="68"/>
+  <line class="cls-9" x1="303.38" y1="195.03" x2="393.33" y2="195.03"/>
+  <circle class="cls-10" cx="303.38" cy="68" r="2.5"/>
+  <circle class="cls-10" cx="303.38" cy="195.03" r="2.5"/>
+  <line class="cls-11" x1="150.8" y1="213" x2="184.63" y2="213"/>
+  <line class="cls-8" x1="292.96" y1="287.73" x2="313.8" y2="287.73"/>
+  <line class="cls-11" x1="178.13" y1="213" x2="185.06" y2="231.66"/>
+  <g>
+    <line class="cls-11" x1="164.32" y1="213" x2="158.64" y2="227.79"/>
+    <polygon points="156.93 225.02 158.95 226.98 161.76 226.88 157.14 231.69 156.93 225.02"/>
+  </g>
+  <g>
+    <line class="cls-11" x1="156.46" y1="213" x2="150.78" y2="227.79"/>
+    <polygon points="149.07 225.02 151.09 226.98 153.91 226.88 149.28 231.69 149.07 225.02"/>
+  </g>
+  <line class="cls-11" x1="284.69" y1="251.37" x2="284.69" y2="217.54"/>
+  <line class="cls-11" x1="284.69" y1="224.04" x2="303.38" y2="216.56"/>
+  <g>
+    <line class="cls-11" x1="284.69" y1="237.85" x2="299.48" y2="243.53"/>
+    <polygon points="296.72 245.25 298.67 243.22 298.57 240.41 303.38 245.03 296.72 245.25"/>
+  </g>
+  <line class="cls-6" x1="284.69" y1="231.66" x2="245.19" y2="231.66"/>
+  <line class="cls-11" x1="284.69" y1="245.17" x2="284.69" y2="217.91"/>
+  <line class="cls-12" x1="284.69" y1="231.66" x2="185.06" y2="231.66"/>
+  <line class="cls-13" x1="148.5" y1="231.69" x2="88.63" y2="231.69"/>
+  <g>
+    <line class="cls-14" x1="157.14" y1="232.27" x2="157.14" y2="251.5"/>
+    <line class="cls-14" x1="88.63" y1="251.5" x2="157.14" y2="251.5"/>
+  </g>
+  <g>
+    <polyline class="cls-15" points="378.33 51.11 378.33 45.11 372.33 45.11"/>
+    <line class="cls-16" x1="368.28" y1="45.11" x2="365.23" y2="45.11"/>
+    <line class="cls-17" x1="363.2" y1="45.11" x2="130.92" y2="45.11"/>
+    <polyline class="cls-15" points="128.89 45.11 122.89 45.11 122.89 51.11"/>
+    <line class="cls-18" x1="122.89" y1="55.1" x2="122.89" y2="58.09"/>
+    <line class="cls-19" x1="122.89" y1="60.08" x2="122.89" y2="267.34"/>
+    <polyline class="cls-15" points="122.89 269.33 122.89 275.33 128.89 275.33"/>
+    <line class="cls-16" x1="132.94" y1="275.33" x2="135.99" y2="275.33"/>
+    <line class="cls-17" x1="138.02" y1="275.33" x2="370.3" y2="275.33"/>
+    <polyline class="cls-15" points="372.33 275.33 378.33 275.33 378.33 269.33"/>
+    <line class="cls-18" x1="378.33" y1="265.35" x2="378.33" y2="262.36"/>
+    <line class="cls-19" x1="378.33" y1="260.37" x2="378.33" y2="53.1"/>
+  </g>
+  <g>
+    <rect class="cls-20" x="269.67" y="112.5" width="15.75" height="56"/>
+    <g>
+      <line class="cls-15" x1="277.55" y1="162.5" x2="277.55" y2="124.7"/>
+      <polygon points="279.58 126.09 277.55 118.5 275.51 126.09 279.58 126.09"/>
+    </g>
+  </g>
+  <g>
+    <rect class="cls-20" x="269.67" y="112.5" width="15.75" height="56"/>
+    <g>
+      <line class="cls-15" x1="277.55" y1="156.3" x2="277.55" y2="118.5"/>
+      <polygon points="279.58 154.91 277.55 162.5 275.51 154.91 279.58 154.91"/>
+    </g>
+  </g>
+  <g>
+    <rect class="cls-20" x="335.76" y="177.12" width="15.75" height="56" transform="translate(138.51 548.76) rotate(-90)"/>
+    <g>
+      <line class="cls-15" x1="365.63" y1="205.12" x2="327.83" y2="205.12"/>
+      <polygon points="329.22 203.09 321.63 205.13 329.22 207.16 329.22 203.09"/>
+    </g>
+  </g>
+  <g>
+    <rect class="cls-20" x="335.76" y="177.12" width="15.75" height="56" transform="translate(138.51 548.76) rotate(-90)"/>
+    <g>
+      <line class="cls-15" x1="359.43" y1="205.13" x2="321.63" y2="205.13"/>
+      <polygon points="358.04 203.09 365.63 205.13 358.04 207.16 358.04 203.09"/>
+    </g>
+  </g>
+</svg>
