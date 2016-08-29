@@ -1,0 +1,285 @@
+<problem>
+<script type="loncapc/python">
+taskId = "sdfdfghkamlx"
+answer = [1, 0, 1, 0]
+  
+def check_answer(expect, ans):
+    mas = ans.split(',')
+    studentAnswer = []
+    for i in mas:
+        studentAnswer.append(int(i))
+    studentGrade = False
+    if(len(answer) == len(studentAnswer)):
+        if(answer == studentAnswer):
+          studentGrade = True
+    if studentGrade == False:
+        return {'input_list': [ { 'ok': False, 'msg': 'Ответ неверен!'},]}
+    if studentGrade == True:
+        return {'input_list': [{ 'ok': True, 'msg': "Ответ верен", 'grade_decimal':1},]}
+</script>
+  
+<style>
+  #$taskId {
+   width:700px;
+  }
+  
+#$taskId .red-line{
+  fill:none;stroke:#FF0000;stroke-width:9;stroke-linecap:round;stroke-miterlimit:10;
+  }  
+#$taskId .zone-text{
+  font-size: 52px;
+  font-family: Open Sans;
+  }
+
+  #$taskId input{
+    display: none !important;
+  }
+  
+  #$taskId .area:hover{
+  cursor: pointer;
+       
+    stroke: black; 
+    stroke-width: 1.5;  
+    -webkit-transition: all 350ms;
+  }
+</style>
+<script type="text/javascript">
+
+
+var svgNS = "http://www.w3.org/2000/svg";
+
+function $taskIdcreateText(){
+var text1 = document.createElementNS(svgNS,"text");
+text1.setAttributeNS(null,"class","zone-text"); 
+text1.setAttributeNS(null,"transform", "translate(171.67 177.67)");
+text1.innerHTML = "0";
+document.getElementById("$taskId").getElementsByClassName("zone1")[0].appendChild(text1);   
+
+var text2 = document.createElementNS(svgNS,"text");
+text2.setAttributeNS(null,"class","zone-text"); 
+text2.setAttributeNS(null,"transform", "translate(326.33 177.67)");
+text2.innerHTML = "0";
+document.getElementById("$taskId").getElementsByClassName("zone2")[0].appendChild(text2);   
+  
+var text3 = document.createElementNS(svgNS,"text");
+text3.setAttributeNS(null,"class","zone-text"); 
+text3.setAttributeNS(null,"transform", "translate(477 177.67)");
+text3.innerHTML = "0";
+document.getElementById("$taskId").getElementsByClassName("zone3")[0].appendChild(text3);  
+  
+var text4 = document.createElementNS(svgNS,"text");
+text4.setAttributeNS(null,"class","zone-text"); 
+text4.setAttributeNS(null,"transform", "translate(629 177.67)");
+text4.innerHTML = "0";
+document.getElementById("$taskId").getElementsByClassName("zone4")[0].appendChild(text4);
+}  
+
+$taskIdcreateText();
+
+var $taskIdline1 = document.getElementById("$taskId").getElementsByClassName("zone1")[0].getElementsByClassName("red-line")[0]
+var $taskIdline2 = document.getElementById("$taskId").getElementsByClassName("zone2")[0].getElementsByClassName("red-line")[0]
+var $taskIdline3 = document.getElementById("$taskId").getElementsByClassName("zone3")[0].getElementsByClassName("red-line")[0]
+var $taskIdline4 = document.getElementById("$taskId").getElementsByClassName("zone4")[0].getElementsByClassName("red-line")[0]
+  
+
+
+
+var $taskIdline1to2 = document.createElementNS(svgNS,"line");
+document.getElementById("$taskId").getElementsByTagName("svg")[0].appendChild($taskIdline1to2);
+var $taskIdline2to3 = document.createElementNS(svgNS,"line");  
+document.getElementById("$taskId").getElementsByTagName("svg")[0].appendChild($taskIdline2to3); 
+var $taskIdline3to4 = document.createElementNS(svgNS,"line");
+document.getElementById("$taskId").getElementsByTagName("svg")[0].appendChild($taskIdline3to4);   
+
+function $taskIddrawConnection(){  
+$taskIdline1to2.setAttributeNS(null,"x1", $taskIdline1.getAttribute("x2"));
+$taskIdline1to2.setAttributeNS(null,"y1", $taskIdline1.getAttribute("y2"));
+$taskIdline1to2.setAttributeNS(null,"x2", $taskIdline2.getAttribute("x1"));
+$taskIdline1to2.setAttributeNS(null,"y2", $taskIdline2.getAttribute("y1"));
+$taskIdline1to2.setAttributeNS(null,"class","red-line");    
+
+$taskIdline2to3.setAttributeNS(null,"x1", $taskIdline2.getAttribute("x2"));
+$taskIdline2to3.setAttributeNS(null,"y1", $taskIdline2.getAttribute("y2"));
+$taskIdline2to3.setAttributeNS(null,"x2", $taskIdline3.getAttribute("x1"));
+$taskIdline2to3.setAttributeNS(null,"y2", $taskIdline3.getAttribute("y1"));
+$taskIdline2to3.setAttributeNS(null,"class","red-line");     
+
+$taskIdline3to4.setAttributeNS(null,"x1", $taskIdline3.getAttribute("x2"));
+$taskIdline3to4.setAttributeNS(null,"y1", $taskIdline3.getAttribute("y2"));
+$taskIdline3to4.setAttributeNS(null,"x2", $taskIdline4.getAttribute("x1"));
+$taskIdline3to4.setAttributeNS(null,"y2", $taskIdline4.getAttribute("y1"));
+$taskIdline3to4.setAttributeNS(null,"class","red-line");    
+  
+}  
+
+var $taskIdLines = document.querySelector("#$taskId").querySelectorAll(".area");
+  
+$taskIdLines.forEach(function(item, i, element) {
+  item.addEventListener("click", function(){ 
+    var element = item.querySelector(".red-line");
+    
+  if(element.classList.contains("line-zero")){
+      element.setAttributeNS(null,"y1", (parseInt(element.getAttribute("y1")) - 170));
+      element.setAttributeNS(null,"y2", (parseInt(element.getAttribute("y2")) - 170));
+      element.classList.remove("line-zero");
+      element.classList.add("line-one");
+        item.querySelector("text").innerHTML = "1";
+    }
+    else if(element.classList.contains("line-one")){
+      element.setAttributeNS(null,"y1", (parseInt(element.getAttribute("y1")) + 170));
+      element.setAttributeNS(null,"y2", (parseInt(element.getAttribute("y2")) + 170));
+      element.classList.remove("line-one");
+      element.classList.add("line-zero");
+        item.querySelector("text").innerHTML = "0";
+    }
+  $taskIddrawConnection();
+  $taskIdcreateAnswer();
+  });
+});
+  
+function $taskIdcreateAnswer(){
+    var answer = [0,0,0,0]
+    if(document.querySelector("#$taskId").querySelector(".zone1").querySelector(".red-line").classList.contains("line-zero")){
+      answer[0] = 0;
+    }
+    else if(document.querySelector("#$taskId").querySelector(".zone1").querySelector(".red-line").classList.contains("line-one")){
+      answer[0] = 1;
+    }
+    
+    if(document.querySelector("#$taskId").querySelector(".zone2").querySelector(".red-line").classList.contains("line-zero")){
+      answer[1] = 0;
+    }
+    else if(document.querySelector("#$taskId").querySelector(".zone2").querySelector(".red-line").classList.contains("line-one")){
+      answer[1] = 1;
+    }
+  
+    if(document.querySelector("#$taskId").querySelector(".zone3").querySelector(".red-line").classList.contains("line-zero")){
+      answer[2] = 0;
+    }
+    else if(document.querySelector("#$taskId").querySelector(".zone3").querySelector(".red-line").classList.contains("line-one")){
+      answer[2] = 1;
+    }
+  
+    if(document.querySelector("#$taskId").querySelector(".zone4").querySelector(".red-line").classList.contains("line-zero")){
+      answer[3] = 0;
+    }
+    else if(document.querySelector("#$taskId").querySelector(".zone4").querySelector(".red-line").classList.contains("line-one")){
+      answer[3] = 1;
+    }  
+  
+    document.querySelector("#$taskId").querySelector("input").value = answer.join(",");
+  }
+  
+if($("#$taskId input").val()){
+  $taskIdbuildValues();
+}  
+  
+function $taskIdbuildValues(){ 
+  var arr = $("#$taskId input").val().split(",");
+    if(arr[0] == 1){
+      $taskIdSetOne("zone1");
+    }
+    if(arr[1] == 1){
+      $taskIdSetOne("zone2");
+    }
+    if(arr[2] == 1){
+      $taskIdSetOne("zone3");
+    }
+    if(arr[3] == 1){
+      $taskIdSetOne("zone4");
+    }
+  }
+
+function $taskIdSetOne(className){
+  var build = document.querySelector("#$taskId");
+  build.getElementsByClassName(className)[0].getElementsByClassName("red-line")[0].setAttributeNS(null,"y1", (parseInt(build.getElementsByClassName(className)[0].getElementsByClassName("red-line")[0].getAttribute("y1")) - 170));
+  build.getElementsByClassName(className)[0].getElementsByClassName("red-line")[0].setAttributeNS(null,"y2", (parseInt(build.getElementsByClassName(className)[0].getElementsByClassName("red-line")[0].getAttribute("y2")) - 170));
+  build.getElementsByClassName(className)[0].getElementsByClassName("red-line")[0].classList.remove("line-zero");
+  build.getElementsByClassName(className)[0].getElementsByClassName("red-line")[0].classList.add("line-one");
+  build.getElementsByClassName(className)[0].getElementsByClassName("zone-text")[0].innerHTML = "1";
+  $taskIddrawConnection();
+}
+
+</script>
+  
+  
+<div id="$taskId">  
+<svg id="Слой_1" data-name="Слой 1" viewBox="0 0 895 544">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-4 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #000;
+      }
+
+      .cls-1 {
+        stroke-width: 3px;
+        stroke-dasharray: 21;
+      }
+
+      .cls-2 {
+        stroke-linecap: square;
+        stroke-width: 4px;
+      }
+
+      .cls-3 {
+        fill: #29abe2;
+      }
+
+      .cls-4 {
+
+      }
+    </style>
+  </defs>
+
+  <line class="cls-1" x1="718" y1="80" x2="718" y2="499.67"/>
+  <line class="cls-1" x1="262" y1="80" x2="262" y2="499.67"/>
+  <line class="cls-1" x1="566" y1="80" x2="566" y2="499.67"/>
+  <line class="cls-1" x1="414" y1="80" x2="414" y2="499.67"/>
+  <g>
+    <g>
+      <line class="cls-2" x1="110" y1="121.35" x2="110" y2="394"/>
+      <polygon points="100.7 127.69 110 93 119.3 127.69 100.7 127.69"/>
+    </g>
+    <g>
+      <line class="cls-2" x1="775.65" y1="394" x2="110" y2="394"/>
+      <polygon points="769.31 384.7 804 394 769.31 403.3 769.31 384.7"/>
+    </g>
+  </g>
+  <line class="cls-1" x1="566" y1="80" x2="566" y2="499.67"/>
+  <line class="cls-1" x1="718" y1="80" x2="718" y2="499.67"/>
+  <line class="cls-1" x1="718" y1="80" x2="718" y2="499.67"/>
+  <path d="M72,89.31h4.17L81.84,104a55.72,55.72,0,0,1,2.3,7.24h0.19q0.3-1.2,1.28-4.09T92,89.31h4.17l-11,29.25a14.59,14.59,0,0,1-3.83,6.15,8.15,8.15,0,0,1-5.38,1.82,15.65,15.65,0,0,1-3.52-.4V123a13.56,13.56,0,0,0,2.88.28q4,0,5.72-4.5l1.43-3.66Z"/>
+  
+  <g class="area zone1">
+    <rect class="cls-3" x="115.67" y="127" width="140.67" height="262" rx="13.5" ry="13.5"/>
+    <line class="cls-4 red-line line-zero" x1="110" y1="394" x2="262" y2="394"/>
+  </g>
+  
+  <g class="area zone2">
+    <rect class="cls-3" x="267.67" y="127" width="140.67" height="262" rx="13.5" ry="13.5"/>
+    <line class="cls-4 red-line line-zero" x1="262" y1="394" x2="414" y2="394"/>
+  </g>
+  
+  <g class="area zone3">
+    <rect class="cls-3" x="419.67" y="127" width="140.67" height="262" rx="13.5" ry="13.5"/>
+    <line class="cls-4 red-line line-zero" x1="414" y1="394" x2="566" y2="394"/>
+  </g>
+  
+  <g class="area zone4">
+    <rect class="cls-3" x="571.67" y="127" width="140.67" height="262" rx="13.5" ry="13.5"/>
+    <line class="cls-4 red-line line-zero" x1="566" y1="394" x2="718" y2="394"/>
+  </g>
+  <path d="M768.42,439.59a12.71,12.71,0,0,0,2-.15,12.9,12.9,0,0,0,1.52-.32v3a7.11,7.11,0,0,1-1.86.5,14,14,0,0,1-2.21.2q-7.45,0-7.45-7.85V419.67h-3.68v-1.87l3.68-1.62,1.64-5.48h2.25v6h7.45v3H764.3v15.12a5.2,5.2,0,0,0,1.1,3.56A3.83,3.83,0,0,0,768.42,439.59Z"/>
+</svg>
+  
+    <customresponse cfn="check_answer">
+     <textline  size="40" label="Ans1"/><br/>
+  </customresponse>
+  
+</div>  
+</problem>
