@@ -1,0 +1,158 @@
+<problem>
+<script type="loncapa/python">
+import json
+import hashlib
+
+taskId = hashlib.md5(str(random.randrange(100))).hexdigest()[:5]
+
+correct_answer = json.loads('{"answer":{"id4E289FA9":{"or-and":[]},"id281219A1":{"or-and":[]},"id9A32F94A":{"or-and":[["id9A32F94A_87","id9A32F94A_88","id9A32F94A_89","id9A32F94A_90","id9A32F94A_91","id9A32F94A_92","id9A32F94A_93","id9A32F94A_267","id9A32F94A_268","id9A32F94A_269","id9A32F94A_270","id9A32F94A_271","id9A32F94A_272","id9A32F94A_273"],["id9A32F94A_357","id9A32F94A_358","id9A32F94A_359","id9A32F94A_0","id9A32F94A_1","id9A32F94A_2","id9A32F94A_3","id9A32F94A_177","id9A32F94A_178","id9A32F94A_179","id9A32F94A_180","id9A32F94A_181","id9A32F94A_182","id9A32F94A_183"],["id9A32F94A_m1","id9A32F94A_m-1"]]}}}')
+
+keywords = ('or', 'and', 'not', 'or-and')
+right_answers = []
+wrong_answers = []
+
+def max_length(lst):
+    length = 0
+    for element in lst:
+        if len(element) > length:
+            length = len(element)
+    return length
+
+def check(expect, ans, checked=0, correct=0):
+    fail = False
+    student_answer = json.loads(ans)
+
+    correct_answers_list = []
+    student_answers_list = []
+
+    for key in student_answer:
+        student_answers_list += student_answer[key]
+
+    for key in correct_answer:
+        for value in correct_answer[key]:
+            with_keyword = False
+            if value in keywords:
+                if value == "or":
+                    keyword = value
+                    correct_values = correct_answer[key][keyword]
+                    for correct_value in correct_values:
+                        correct_answers_list += correct_value
+                        if len(set(correct_value) - set(student_answer[key])) == 0:
+                            with_keyword = True
+                            break
+                    if with_keyword:
+                        checked += len(student_answer[key])
+                        correct += len(student_answer[key])
+                    else:
+                        checked += len(student_answer[key])
+                elif value == "or-and":
+                    keyword = value
+                    max_points_current = 0
+                    correct_variant_len = 0
+                    checked_objects = []
+                    student_answer_key = set(student_answer[key])
+                    for obj in correct_answer[key][keyword]:
+                        if len(set(obj)) > max_points_current:
+                            max_points_current = len(set(obj))
+
+                    max_entry_variant = 0
+                    for obj in correct_answer[key][keyword]:
+
+                        correct_answers_list += obj
+
+                        if max_entry_variant &lt; len(set(obj)):
+                            max_entry_variant = len(set(obj))
+                            correct_variant_len = max_points_current = len(correct_answer[key][keyword])
+
+                        for answer in copy.deepcopy(student_answer_key):
+
+                            if answer in obj and obj not in checked_objects:
+                                correct += 1
+                                checked_objects.append(obj)
+                            elif answer not in obj:
+                                pass
+                            else:
+                                fail = True
+                    checked += correct_variant_len
+
+            elif value in student_answer[key]:
+                correct_answers_list.append(value)
+                right_answers.append(value)
+                checked += 1
+                correct += 1
+            else:
+                correct_answers_list.append(value)
+                wrong_answers.append(value)
+                checked += 1
+
+    if len(set(student_answers_list) - set(correct_answers_list)) or fail:
+        correct = 0
+
+    checks = {"result": correct / float(checked),
+              "right_answers": right_answers,
+              "wrong_answers": wrong_answers,
+              "checked": checked
+              }
+    if correct / float(checked) > 0:
+        return True
+    else:
+        return False
+
+</script>
+
+
+
+<div class="mengine_fbd" id="id$taskId">
+
+    <svg viewBox="0 0 687.54 159.97">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: red;
+          }
+
+          .cls-1, .cls-2 {
+            stroke: #000;
+            stroke-miterlimit: 10;
+          }
+
+          .cls-2 {
+            fill: #2e3192;
+          }
+        </style>
+      </defs>
+      <title>svg_test</title>
+      <g id="layer001">
+          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
+          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
+          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
+          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
+      </g>
+    </svg>
+
+    <p>Insert JSON.</p>
+    <customresponse cfn="check">
+        <textline size="40" label="JSONfield"/><br/>
+    </customresponse>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/FBD/scripts.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+var x = new Constructor("mengine_fbd");
+x.init();
+}
+var div_array = Array.prototype.slice.call(document.getElementById("layer001").querySelectorAll("circle"));
+div_array.forEach(function(element ,i ,array){
+    console.log(i);
+    element.id = "id$taskId_"+i;
+})
+</script>
+</problem>
