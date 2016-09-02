@@ -127,6 +127,22 @@ def check(expect, ans, checked=0, correct=0):
           <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
           <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
           <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
+          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
+          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
+          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
+          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
+          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
+          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
+          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
+          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
+          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
+          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
+          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
+          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
+          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
+          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
+          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
+          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
       </g>
     </svg>
 
@@ -143,7 +159,7 @@ def check(expect, ans, checked=0, correct=0):
 
 
 
-<script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/FBD/scripts.js"></script>
+<script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/FBD/mFBD.scripts.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 var x = new Constructor("mengine_fbd");
@@ -151,8 +167,8 @@ x.init();
 }
 var div_array = Array.prototype.slice.call(document.getElementById("layer001").querySelectorAll("circle"));
 div_array.forEach(function(element ,i ,array){
-    console.log(i);
-    element.id = "id$taskId_"+i;
+    element.id = "id$taskId_"+"000".substr(0, 2-i.toString().length)+i;
+    console.log(element.id, 2-i.toString().length);
 })
 </script>
 </problem>

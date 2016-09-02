@@ -127,12 +127,23 @@ function Constructor(className){
 
     scButtonOpenClose.addEventListener("click", function(e){
       console.log(e.target);
-      fn.visibleMenu()
-    }, false);
+      fn.visibleMenu("none")
+      fn.visibleMenuLevelOne();
+      fn.visibleMenuLevelTwo();
+  }, false);
 
     SVGObject.addEventListener("click", function(e){
-      fn.transformMenu(200,200)
-    }, false);
+        fn.visibleMenu("block")
+        var loc = cursorPoint(e);
+        fn.transformMenu(loc.x,loc.y)
+    }, true);
+//test
+    var pt = SVGObject.createSVGPoint()
+	function cursorPoint(evt){
+		pt.x = evt.clientX; pt.y = evt.clientY;
+		return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
+	}
+//test
 
   return SVGObject;
   };
@@ -146,7 +157,3 @@ function Constructor(className){
 
 
 }
-
-
-
-
