@@ -144,26 +144,31 @@ function Constructor(className){
     moment.visible("none");
 
     // Слушатели событий
-    scForce.addEventListener("click", function(e){
-      fn.visibleMenuLevelOne();
-      fn.visibleMenuLevelTwo();
-      force.visible();
-      force.action = true;
-    }, false);
+    scForce.addEventListener("click", function(event){
+        console.info('scForce click');
+        fn.visibleMenuLevelOne();
+        fn.visibleMenuLevelTwo();
+        force.visible();
+        force.action = true;
+        event.stopPropagation();
+  }, true);
 
-    scButtonOpenClose.addEventListener("click", function(e){
-      fn.visibleMenu("none")
-      fn.visibleMenuLevelOne("block");
-      fn.visibleMenuLevelTwo("none");
-      force.visible();
-      force.action = false;
-  }, false);
+    scButtonOpenClose.addEventListener("click", function(event){
+        console.info('scButtonOpenClose click');
+        fn.visibleMenu("none")
+        fn.visibleMenuLevelOne("block");
+        fn.visibleMenuLevelTwo("none");
+        force.visible();
+        force.action = false;
+        event.stopPropagation();
+  }, true);
 
     SVGObject.addEventListener("click", function(e){
+        console.info('SVGObject click');
         fn.visibleMenu("block");
         var mousePosition = cursorPoint(e);
         fn.translateMenu(mousePosition.x, mousePosition.y);
-    }, true);
+    }, false);
 
     SVGObject.addEventListener("mousemove", function(e){
         var mousePosition = cursorPoint(e);
