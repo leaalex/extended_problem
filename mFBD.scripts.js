@@ -1,50 +1,66 @@
-
 function Constructor(className){
-  var className = className || "mengine_fbd";
+    var className = className || "mengine_fbd";
 
-  // Функция генерации ID
-  function genID(value) {
-    var value = value+"_" || "id"
-      return value + Math.random().toString(16).substr(2, 8).toUpperCase();
+    // Функция генерации ID
+    function genID(value) {
+        var value = value+"_" || "id"
+        return value + Math.random().toString(16).substr(2, 8).toUpperCase();
     };
 
-  // Функция перебора HTMLCollection и NodeList и выполене функции action
-  function forEach(collection, action) {
-      collection = collection || {};
-      for (var i = 0; i < collection.length; i++)
-          action(collection[i]);
-      };
+    // Функция перебора HTMLCollection и NodeList и выполене функции action
+    function forEach(collection, action) {
+        collection = collection || {};
+        for (var i = 0; i < collection.length; i++)
+            action(collection[i]);
+    };
 
+    function translate(element){
+        return function (cx, cy){
+            element.x = cx;
+            element.y = cy;
+            element.setAttribute("transform", "translate("+cx+","+cy+")");
+        }
+    };
 
-  function transform(element){
-    return function (cx, cy){
-      element.setAttribute("transform", "translate("+cx+","+cy+")");
+    function rotate(element){
+        return function (a){
+            element.angle = a;
+            element.setAttribute("transform", "rotate("+a+")");
+        }
+    };
+
+    function scale(element){
+        return function (sx, sy){
+            element.scaleX = sx;
+            element.scaleY = sy;
+            element.setAttribute("transform", "scale("+sx+","+sy+")");
+        }
+    };
+
+    function toggle(element){
+        return function(value){
+            if (value != undefined) {
+                element.style.display = value;
+            }
+            else {
+                element.style.display == "block" ? element.style.display = "none" : element.style.display = "block";
+            }
+        }
     }
-  };
 
-  function toggle(element){
-    return function(value){
-      if (value != undefined) {
-        element.style.display = value;
-      }
-      else {
-        element.style.display == "block" ? element.style.display = "none" : element.style.display = "block";
-      }
-    }
-  }
+    function createElementSVG(name, id, classList, attributes){
+        var NS ="http://www.w3.org/2000/svg";
+        var element = document.createElementNS(NS, name);
+        if (id) element.id =id;
+        if (className) element.classList = classList;
+        if (attributes){
+            for (attribute in attributes){
+                element.setAttribute(attribute, attributes[attribute])
+            }
+        }
+        return element;
+    };
 
-  function createElementSVG(name, id, classList, attributes){
-    var NS ="http://www.w3.org/2000/svg";
-    var element = document.createElementNS(NS, name);
-    if (id) element.id =id;
-    if (className) element.classList = classList;
-    if (attributes){
-      for (attribute in attributes){
-        element.setAttribute(attribute, attributes[attribute])
-      }
-    }
-    return element;
-  };
   function append(element, array){
     array.forEach(function(el){element.appendChild(el)})
   }
@@ -111,38 +127,69 @@ function Constructor(className){
     ]);
     // Функции управления элементами
     var fn={};
-    fn.transformMenu = transform(svgMenu);
+    fn.translateMenu = translate(svgMenu);
     fn.visibleMenu = toggle(svgMenu);
     fn.visibleMenuLevelOne = toggle(menuLevelOne);
     fn.visibleMenuLevelTwo = toggle(menuLevelTwo);
+    force.rotate = rotate(force);
+    force.visible = toggle(force);
+    moment.scale = scale(moment);
+    moment.visible = toggle(moment);
+
+
     //Установка начальных условий
     fn.visibleMenuLevelOne("block");
     fn.visibleMenuLevelTwo("none");
+    force.visible("none")
+    moment.visible("none");
 
     // Слушатели событий
     scForce.addEventListener("click", function(e){
       fn.visibleMenuLevelOne();
       fn.visibleMenuLevelTwo();
+      force.visible();
+      force.action = true;
     }, false);
 
     scButtonOpenClose.addEventListener("click", function(e){
-      console.log(e.target);
       fn.visibleMenu("none")
-      fn.visibleMenuLevelOne();
-      fn.visibleMenuLevelTwo();
+      fn.visibleMenuLevelOne("block");
+      fn.visibleMenuLevelTwo("none");
+      force.visible();
+      force.action = false;
   }, false);
 
     SVGObject.addEventListener("click", function(e){
-        fn.visibleMenu("block")
-        var loc = cursorPoint(e);
-        fn.transformMenu(loc.x,loc.y)
+        fn.visibleMenu("block");
+        var mousePosition = cursorPoint(e);
+        fn.translateMenu(mousePosition.x, mousePosition.y);
     }, true);
+
+    SVGObject.addEventListener("mousemove", function(e){
+        var mousePosition = cursorPoint(e);
+        console.log(mousePosition);
+        atan2 = Math.atan2((-mousePosition.y+svgMenu.y),(mousePosition.x-svgMenu.x));
+        leftOrRigth= (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
+        var angleDegrees = (atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI));
+        var angle = Math.floor(angleDegrees);
+        force.rotate(-1 * angle);
+        moment.scale(leftOrRigth,1);
+        console.log("координата x, y:",svgMenu.x, svgMenu.y);
+        console.log("mouse x, y:",mousePosition.x, mousePosition.y);
+        console.log("угол:", force.angle)
+        console.log("force.action:",force.action)
+
+    });
+
+
 //test
-    var pt = SVGObject.createSVGPoint()
-	function cursorPoint(evt){
-		pt.x = evt.clientX; pt.y = evt.clientY;
-		return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
+	function cursorPoint(event){
+        var pt = SVGObject.createSVGPoint()
+        pt.x = event.clientX;
+        pt.y = event.clientY;
+        return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
 	}
+
 //test
 
   return SVGObject;
