@@ -98,7 +98,7 @@ function Constructor(className){
     //
     var menuLevelTwo = createElementSVG('g', genID("menuLevelTwo"), "menuLevelTwo");
     //
-    var activeSpaceForce = createElementSVG('circle', genID(activeSpaceForce), "activeSpaceForce",{ fill: '#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'500'});
+    var activeSpaceForce = createElementSVG('circle', genID("activeSpaceForce"), "activeSpaceForce",{ fill: '#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'500'});
     //Добовление элементов
     append(menuLevelOne, [
       whiteRound,
