@@ -98,7 +98,7 @@ function Constructor(className){
     //
     var menuLevelTwo = createElementSVG('g', genID("menuLevelTwo"), "menuLevelTwo");
     //
-    var activeSpaceForce = createElementSVG('circle', genID("activeSpaceForce"), "activeSpaceForce",{ fill: '#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'500'});
+//    var activeSpaceForce = createElementSVG('circle', genID("activeSpaceForce"), "activeSpaceForce",{ fill: '#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'500'});
     //Добовление элементов
     append(menuLevelOne, [
       whiteRound,
@@ -114,7 +114,7 @@ function Constructor(className){
     moment.innerHTML = '<path fill="#FF691F" stroke="#724A22" stroke-miterlimit="10" d="M13.446-42.098l-1.827,5.715c15.894,5.083,26.573,19.719,26.573,36.421c0,21.081-17.15,38.23-38.23,38.23c-3.102,0-6.152-0.373-9.118-1.099l1.245-1.925L-30.338,28l15.799,17.49l1.961-3.032c4.053,1.198,8.254,1.811,12.54,1.811c24.389,0,44.23-19.842,44.23-44.23C44.192-19.284,31.836-36.218,13.446-42.098z"/>';
     //
     append(menuLevelTwo,[
-      activeSpaceForce,
+//      activeSpaceForce,
       force,
       moment
     ]);
@@ -135,27 +135,29 @@ function Constructor(className){
     ]);
     // Функции управления элементами
     var fn={};
-    fn.translateMenu = translate(svgMenu);
-    fn.visibleMenu = toggle(svgMenu);
-    fn.visibleMenuLevelOne = toggle(menuLevelOne);
-    fn.visibleMenuLevelTwo = toggle(menuLevelTwo);
+    svgMenu.translate = translate(svgMenu);
+    svgMenu.visible = toggle(svgMenu);
+    menuLevelOne.visible = toggle(menuLevelOne);
+    menuLevelTwo.visible = toggle(menuLevelTwo);
     force.rotate = rotate(force);
+    force.translate = translate(force);
     force.visible = toggle(force);
     moment.scale = scale(moment);
     moment.visible = toggle(moment);
 
 
     //Установка начальных условий
-    fn.visibleMenuLevelOne("block");
-    fn.visibleMenuLevelTwo("none");
+    svgMenu.translate(0,0);
+    menuLevelOne.visible("block");
+    menuLevelTwo.visible("none");
     force.visible("none")
     moment.visible("none");
 
     // Слушатели событий
     scMoment.addEventListener("click", function(event){
 //        console.info('scForce click');
-        fn.visibleMenuLevelOne();
-        fn.visibleMenuLevelTwo();
+        menuLevelOne.visible();
+        menuLevelTwo.visible();
         moment.visible("block");
         moment.action = true;
         event.stopPropagation();
@@ -165,8 +167,8 @@ function Constructor(className){
 
     scForce.addEventListener("click", function(event){
 //        console.info('scForce click');
-        fn.visibleMenuLevelOne();
-        fn.visibleMenuLevelTwo();
+        menuLevelOne.visible();
+        menuLevelTwo.visible();
         force.visible("block");
         force.action = true;
         event.stopPropagation();
@@ -174,9 +176,9 @@ function Constructor(className){
 
     scButtonOpenClose.addEventListener("click", function(event){
 //        console.info('scButtonOpenClose click');
-        fn.visibleMenu("none")
-        fn.visibleMenuLevelOne("block");
-        fn.visibleMenuLevelTwo("none");
+        svgMenu.visible("none")
+        menuLevelOne.visible("block");
+        menuLevelTwo.visible("none");
 
         force.visible("none");
         force.action = false;
@@ -187,37 +189,43 @@ function Constructor(className){
   }, true);
 
     SVGObject.addEventListener("click", function(event){
-        if (force.action);
-        console.info('SVGObject click');
-        fn.visibleMenu("block");
-        var mousePosition = cursorPoint(SVGObject, event);
-        fn.translateMenu(mousePosition.x, mousePosition.y);
+        if (force.action) console.log(force.angle)
+
     }, false);
 
     SVGObject.addEventListener("mousemove", function(event){
         var mousePosition = cursorPoint(SVGObject, event);
-        atan2 = Math.atan2((-mousePosition.y+svgMenu.y),(mousePosition.x-svgMenu.x));
+        var atan2 = Math.atan2((mousePosition.y-svgMenu.y),(mousePosition.x-svgMenu.x));
+        var angleDegrees = Math.floor(atan2 > 0 ? 360 - atan2 * 360 / (2*Math.PI) : -atan2 * 360 / (2*Math.PI));
+        var angle = (atan2)*180/Math.PI;
+        force.rotate(Math.floor(angle));
         leftOrRigth= (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
-        var angleDegrees = (atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI));
-        var angle = Math.floor(angleDegrees);
-        force.rotate(-1 * angle);
         moment.scale(leftOrRigth,1);
-        console.log("координата x, y:",svgMenu.x, svgMenu.y);
-        console.log("mouse x, y:",mousePosition.x, mousePosition.y);
-        console.log("угол:", force.angle)
-        console.log("force.action:",force.action)
+
+//        console.log("02 координата x, y: " + svgMenu.x+" , "+ svgMenu.y);
+//        console.log("03 mouse x, y: " + mousePosition.x+" , "+ mousePosition.y);
+        console.log("угол:", angleDegrees, "realtime: ", angle)
+//        console.log("force.action:",force.action)
 
     });
-/*    var actionPoints = SVGObject.querySelectorAll(".actionPoints");
-    forEach(actionPoints, function(element){
-        points = element.querySelectorAll('circle')
-        forEach(points, function(point){
-            point.addEventListener("click", function(){
-                fn.visibleMenu("block");
-                fn.translateMenu(point.getAttribute("cx"),point.getAttribute("cy"))
-            });
+
+    var actionPoints = SVGObject.querySelector(".actionPoints").querySelectorAll('circle');
+    forEach(actionPoints, function(point){
+        point.addEventListener("click", function(){
+
+            menuLevelOne.visible("block");
+            menuLevelTwo.visible("none");
+
+            force.visible("none");
+            force.action = false;
+
+            moment.visible("none");
+            moment.action = false;
+            svgMenu.visible("block");
+            svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
+            console.log("04 point click: " + Number(point.getAttribute("cx")) +" , "+ Number(point.getAttribute("cy")))
         });
-    });*/
+    });
 
 
   return SVGObject;
