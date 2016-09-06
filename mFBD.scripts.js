@@ -91,7 +91,6 @@ function Constructor(className){
     scMoment.innerHTML = '<circle  fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="56" cy="18" r="28" />';
     scMoment.innerHTML += '<path d="M62.838-1.187l-0.925,2.854c9.076,2.939,14.039,12.802,11.065,21.979C70.002,32.826,60.199,37.9,51.123,34.959c-3.553-1.151-6.597-3.422-8.725-6.434l1.868-0.147l-5.635-15.864L35.578,29.07l3.448-0.272c2.497,4.255,6.443,7.483,11.172,9.017c2.053,0.666,4.137,0.982,6.19,0.981c8.594,0,16.63-5.544,19.443-14.226C79.317,13.82,73.488,2.264,62.838-1.187z"/>';
     scMoment.innerHTML += '<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="57" cy="19" r="2"></circle>';
-console.log("start",scMoment);
     //
     var scForce = createElementSVG('g', genID("scForce"), "scForce");
     scForce.innerHTML = '<circle  fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="-57" cy="19" r="28" />';
@@ -153,6 +152,17 @@ console.log("start",scMoment);
     moment.visible("none");
 
     // Слушатели событий
+    scMoment.addEventListener("click", function(event){
+//        console.info('scForce click');
+        fn.visibleMenuLevelOne();
+        fn.visibleMenuLevelTwo();
+        moment.visible("block");
+        moment.action = true;
+        event.stopPropagation();
+  }, true);
+
+
+
     scForce.addEventListener("click", function(event){
 //        console.info('scForce click');
         fn.visibleMenuLevelOne();
@@ -167,14 +177,18 @@ console.log("start",scMoment);
         fn.visibleMenu("none")
         fn.visibleMenuLevelOne("block");
         fn.visibleMenuLevelTwo("none");
+
         force.visible("none");
         force.action = false;
+
+        moment.visible("none");
+        moment.action = false;
         event.stopPropagation();
   }, true);
 
     SVGObject.addEventListener("click", function(event){
         if (force.action);
-//        console.info('SVGObject click');
+        console.info('SVGObject click');
         fn.visibleMenu("block");
         var mousePosition = cursorPoint(SVGObject, event);
         fn.translateMenu(mousePosition.x, mousePosition.y);
@@ -188,12 +202,22 @@ console.log("start",scMoment);
         var angle = Math.floor(angleDegrees);
         force.rotate(-1 * angle);
         moment.scale(leftOrRigth,1);
-//        console.log("координата x, y:",svgMenu.x, svgMenu.y);
-//        console.log("mouse x, y:",mousePosition.x, mousePosition.y);
-//        console.log("угол:", force.angle)
-//        console.log("force.action:",force.action)
+        console.log("координата x, y:",svgMenu.x, svgMenu.y);
+        console.log("mouse x, y:",mousePosition.x, mousePosition.y);
+        console.log("угол:", force.angle)
+        console.log("force.action:",force.action)
 
     });
+/*    var actionPoints = SVGObject.querySelectorAll(".actionPoints");
+    forEach(actionPoints, function(element){
+        points = element.querySelectorAll('circle')
+        forEach(points, function(point){
+            point.addEventListener("click", function(){
+                fn.visibleMenu("block");
+                fn.translateMenu(point.getAttribute("cx"),point.getAttribute("cy"))
+            });
+        });
+    });*/
 
 
   return SVGObject;

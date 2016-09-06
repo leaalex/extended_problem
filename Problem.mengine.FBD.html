@@ -130,23 +130,49 @@ def check(expect, ans, checked=0, correct=0):
 </defs>
 
       <title>svg_test</title>
-      <g id="layer001">
+      <g class="actionPoints">
           <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
           <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
           <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
           <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
-          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
-          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
-          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
-          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
-          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
-          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
-          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
-          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
-          <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
-          <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
-          <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
-          <circle class="cls-2" cx="678.66" cy="153.34" r="6.13"/>
+      </g>
+    </svg>
+
+    <p>Insert JSON.</p>
+    <customresponse cfn="check">
+        <textline size="40" label="JSONfield"/><br/>
+    </customresponse>
+</div>
+
+<div class="mengine_fbd" id="id$taskId">
+
+    <svg viewBox="0 0 687.54 159.97">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: red;
+          }
+
+          .cls-1, .cls-2 {
+            stroke: #000;
+            stroke-miterlimit: 10;
+          }
+
+          .cls-2 {
+            fill: #2e3192;
+          }
+        </style>
+        </defs>
+        <defs>
+  <filter id="f3" x="0" y="0" width="200%" height="200%">
+    <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+    <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+    <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+  </filter>
+</defs>
+
+      <title>svg_test</title>
+      <g class="actionPoints">
           <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
           <circle class="cls-1" cx="126.66" cy="125" r="6.13"/>
           <circle class="cls-2" cx="558.63" cy="95.5" r="6.13"/>
@@ -173,7 +199,7 @@ window.onload = function(){
 var x = new Constructor("mengine_fbd");
 x.init();
 }
-var div_array = Array.prototype.slice.call(document.getElementById("layer001").querySelectorAll("circle"));
+var div_array = Array.prototype.slice.call(document.querySelector(".actionPoints").querySelectorAll("circle"));
 div_array.forEach(function(element ,i ,array){
     element.id = "id$taskId_"+"000".substr(0, 2-i.toString().length)+i;
     console.log(element.id, 2-i.toString().length);
