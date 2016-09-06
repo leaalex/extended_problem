@@ -48,7 +48,7 @@ function Constructor(className){
         }
     }
 
-    function cursorPoint(event){
+    function cursorPoint(SVGObject, event){
         var pt = SVGObject.createSVGPoint()
         pt.x = event.clientX;
         pt.y = event.clientY;
@@ -176,12 +176,12 @@ console.log("start",scMoment);
         if (force.action);
 //        console.info('SVGObject click');
         fn.visibleMenu("block");
-        var mousePosition = cursorPoint(event);
+        var mousePosition = cursorPoint(SVGObject, event);
         fn.translateMenu(mousePosition.x, mousePosition.y);
     }, false);
 
     SVGObject.addEventListener("mousemove", function(event){
-        var mousePosition = cursorPoint(event);
+        var mousePosition = cursorPoint(SVGObject, event);
         atan2 = Math.atan2((-mousePosition.y+svgMenu.y),(mousePosition.x-svgMenu.x));
         leftOrRigth= (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
         var angleDegrees = (atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI));
