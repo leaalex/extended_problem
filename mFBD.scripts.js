@@ -48,6 +48,13 @@ function Constructor(className){
         }
     }
 
+    function cursorPoint(event){
+        var pt = SVGObject.createSVGPoint()
+        pt.x = event.clientX;
+        pt.y = event.clientY;
+        return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
+	}
+
     function createElementSVG(name, id, classList, attributes){
         var NS ="http://www.w3.org/2000/svg";
         var element = document.createElementNS(NS, name);
@@ -67,6 +74,7 @@ function Constructor(className){
 
 
   function createMenu(SVGObject){
+
     // создание группы в которую входят все элементы меню
     var svgMenu = createElementSVG('g', genID("svgMenu"), "svgMenu");
     //
@@ -83,6 +91,7 @@ function Constructor(className){
     scMoment.innerHTML = '<circle  fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="56" cy="18" r="28" />';
     scMoment.innerHTML += '<path d="M62.838-1.187l-0.925,2.854c9.076,2.939,14.039,12.802,11.065,21.979C70.002,32.826,60.199,37.9,51.123,34.959c-3.553-1.151-6.597-3.422-8.725-6.434l1.868-0.147l-5.635-15.864L35.578,29.07l3.448-0.272c2.497,4.255,6.443,7.483,11.172,9.017c2.053,0.666,4.137,0.982,6.19,0.981c8.594,0,16.63-5.544,19.443-14.226C79.317,13.82,73.488,2.264,62.838-1.187z"/>';
     scMoment.innerHTML += '<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="57" cy="19" r="2"></circle>';
+console.log("start",scMoment);
     //
     var scForce = createElementSVG('g', genID("scForce"), "scForce");
     scForce.innerHTML = '<circle  fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="-57" cy="19" r="28" />';
@@ -145,57 +154,47 @@ function Constructor(className){
 
     // Слушатели событий
     scForce.addEventListener("click", function(event){
-        console.info('scForce click');
+//        console.info('scForce click');
         fn.visibleMenuLevelOne();
         fn.visibleMenuLevelTwo();
-        force.visible();
+        force.visible("block");
         force.action = true;
         event.stopPropagation();
   }, true);
 
     scButtonOpenClose.addEventListener("click", function(event){
-        console.info('scButtonOpenClose click');
+//        console.info('scButtonOpenClose click');
         fn.visibleMenu("none")
         fn.visibleMenuLevelOne("block");
         fn.visibleMenuLevelTwo("none");
-        force.visible();
+        force.visible("none");
         force.action = false;
         event.stopPropagation();
   }, true);
 
-    SVGObject.addEventListener("click", function(e){
-        console.info('SVGObject click');
+    SVGObject.addEventListener("click", function(event){
+        if (force.action);
+//        console.info('SVGObject click');
         fn.visibleMenu("block");
-        var mousePosition = cursorPoint(e);
+        var mousePosition = cursorPoint(event);
         fn.translateMenu(mousePosition.x, mousePosition.y);
     }, false);
 
-    SVGObject.addEventListener("mousemove", function(e){
-        var mousePosition = cursorPoint(e);
-        console.log(mousePosition);
+    SVGObject.addEventListener("mousemove", function(event){
+        var mousePosition = cursorPoint(event);
         atan2 = Math.atan2((-mousePosition.y+svgMenu.y),(mousePosition.x-svgMenu.x));
         leftOrRigth= (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
         var angleDegrees = (atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI));
         var angle = Math.floor(angleDegrees);
         force.rotate(-1 * angle);
         moment.scale(leftOrRigth,1);
-        console.log("координата x, y:",svgMenu.x, svgMenu.y);
-        console.log("mouse x, y:",mousePosition.x, mousePosition.y);
-        console.log("угол:", force.angle)
-        console.log("force.action:",force.action)
+//        console.log("координата x, y:",svgMenu.x, svgMenu.y);
+//        console.log("mouse x, y:",mousePosition.x, mousePosition.y);
+//        console.log("угол:", force.angle)
+//        console.log("force.action:",force.action)
 
     });
 
-
-//test
-	function cursorPoint(event){
-        var pt = SVGObject.createSVGPoint()
-        pt.x = event.clientX;
-        pt.y = event.clientY;
-        return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
-	}
-
-//test
 
   return SVGObject;
   };

@@ -120,7 +120,15 @@ def check(expect, ans, checked=0, correct=0):
             fill: #2e3192;
           }
         </style>
-      </defs>
+        </defs>
+        <defs>
+  <filter id="f3" x="0" y="0" width="200%" height="200%">
+    <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+    <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+    <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+  </filter>
+</defs>
+
       <title>svg_test</title>
       <g id="layer001">
           <circle class="cls-1" cx="6.63" cy="67.17" r="6.13"/>
