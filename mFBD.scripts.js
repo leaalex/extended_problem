@@ -72,6 +72,14 @@ function Constructor(className){
     array.forEach(function(el){element.appendChild(el)})
   }
 
+    function addStyle(array, styleObject){
+        array.forEach(function(element){
+            for (style in styleObject){
+                element.style[style] = styleObject[style];
+            }
+        });
+    }
+
 
   function createMenu(SVGObject){
 
@@ -209,23 +217,37 @@ function Constructor(className){
 
     });
 
-    var actionPoints = SVGObject.querySelector(".actionPoints").querySelectorAll('circle');
-    forEach(actionPoints, function(point){
-        point.addEventListener("click", function(){
+    var actionPointsGroup = SVGObject.querySelectorAll(".actionPoints")
+    forEach(actionPointsGroup, function(actionPoints){
+        points = actionPoints.querySelectorAll('circle');
+        forEach(points, function(point){
+            point.addEventListener("click", function(){
 
-            menuLevelOne.visible("block");
-            menuLevelTwo.visible("none");
+                menuLevelOne.visible("block");
+                menuLevelTwo.visible("none");
 
-            force.visible("none");
-            force.action = false;
+                force.visible("none");
+                force.action = false;
 
-            moment.visible("none");
-            moment.action = false;
-            svgMenu.visible("block");
-            svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
-            console.log("04 point click: " + Number(point.getAttribute("cx")) +" , "+ Number(point.getAttribute("cy")))
+                moment.visible("none");
+                moment.action = false;
+                svgMenu.visible("block");
+                svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
+                console.log("04 point click: " + Number(point.getAttribute("cx")) +" , "+ Number(point.getAttribute("cy")))
+            });
+            addStyle([point],{cursor : "pointer"})
         });
     });
+
+    addStyle([scMoment, scForce, scDelAllinPoint, scButtonOpenClose],{cursor : "pointer"})
+    svgMenu.addEventListener("mouseover",function(event){
+        addStyle([scButtonOpenClose],{filter : "url(#f3)"})
+    })
+    svgMenu.addEventListener("mouseout",function(){
+        addStyle([scButtonOpenClose],{filter : "none"})
+    })
+
+
 
 
   return SVGObject;
