@@ -3,8 +3,8 @@ function Constructor(className){
 
     // Функция генерации ID
     function genID(value) {
-        var value = value+"_" || "id"
-        return value + Math.random().toString(16).substr(2, 8).toUpperCase();
+        var value = value || "id"
+        return value +"_" + Math.random().toString(16).substr(2, 8).toUpperCase();
     };
 
     // Функция перебора HTMLCollection и NodeList и выполене функции action
@@ -59,7 +59,8 @@ function Constructor(className){
         var NS ="http://www.w3.org/2000/svg";
         var element = document.createElementNS(NS, name);
         if (id) element.id =id;
-        if (className) element.classList = classList;
+
+        if (classList) element.classList.add(classList);
         if (attributes){
             for (attribute in attributes){
                 element.setAttribute(attribute, attributes[attribute])
@@ -240,15 +241,25 @@ function Constructor(className){
     });
 
     addStyle([scMoment, scForce, scDelAllinPoint, scButtonOpenClose],{cursor : "pointer"})
-    svgMenu.addEventListener("mouseover",function(event){
-        addStyle([scButtonOpenClose],{filter : "url(#f3)"})
-    })
-    svgMenu.addEventListener("mouseout",function(){
-        addStyle([scButtonOpenClose],{filter : "none"})
-    })
+//    svgMenu.addEventListener("mouseover",function(event){
+//        addStyle([scButtonOpenClose],{filter : "url(#f3)"})
+//    })
+//    svgMenu.addEventListener("mouseout",function(){
+//        addStyle([scButtonOpenClose],{filter : "none"})
+//    })
 
-
-
+// Этот код каким то образом добавляет css в DOM
+var css = ".scButtonOpenClose:hover line {stroke: #fff; -webkit-transition: all 350ms;} .scButtonOpenClose:hover circle {fill: #000; -webkit-transition: all 350ms;}";
+css += ".scButtonOpenClose:active line {stroke: #000; -webkit-transition: all 150ms;} .scButtonOpenClose:active circle {fill: #f00; -webkit-transition: all 150ms;}";
+css += ".actionPoints circle:hover {stroke: green; fill: gold; -webkit-transition: all 350ms;}"
+style = document.createElement("style")
+style.id = "fbd";
+if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+} else {
+    style.appendChild(document.createTextNode(css));
+}
+if(!document.querySelector("style#fbd")) document.querySelector("head").appendChild(style);
 
   return SVGObject;
   };
