@@ -222,6 +222,7 @@ function Constructor(className){
     forEach(actionPointsGroup, function(actionPoints){
         points = actionPoints.querySelectorAll('circle');
         forEach(points, function(point){
+
             point.addEventListener("click", function(){
 
                 menuLevelOne.visible("block");
@@ -241,17 +242,27 @@ function Constructor(className){
     });
 
     addStyle([scMoment, scForce, scDelAllinPoint, scButtonOpenClose],{cursor : "pointer"})
-//    svgMenu.addEventListener("mouseover",function(event){
+//    svgMenu.addEventListener("mouseenter",function(event){
 //        addStyle([scButtonOpenClose],{filter : "url(#f3)"})
 //    })
-//    svgMenu.addEventListener("mouseout",function(){
+//    svgMenu.addEventListener("mouseleave",function(){
 //        addStyle([scButtonOpenClose],{filter : "none"})
 //    })
 
 // Этот код каким то образом добавляет css в DOM
-var css = ".scButtonOpenClose:hover line {stroke: #fff; -webkit-transition: all 350ms;} .scButtonOpenClose:hover circle {fill: #000; -webkit-transition: all 350ms;}";
-css += ".scButtonOpenClose:active line {stroke: #000; -webkit-transition: all 150ms;} .scButtonOpenClose:active circle {fill: #f00; -webkit-transition: all 150ms;}";
-css += ".actionPoints circle:hover {stroke: green; fill: gold; -webkit-transition: all 350ms;}"
+var css = ".scButtonOpenClose:hover line {stroke: #ffffff; -webkit-transition: all 100ms;} .scButtonOpenClose:hover circle {fill: #000000; -webkit-transition: all 100ms;}";
+css += ".scButtonOpenClose:active line {stroke: #000000; -webkit-transition: all 150ms;} .scButtonOpenClose:active circle {fill: #ff691f; -webkit-transition: all 150ms;}";
+
+css += ".scMoment:hover path, .scForce:hover path, .scDelAllinPoint:hover path {fill: #000000; -webkit-transition: all 100ms;}"
+css += ".scMoment:hover circle, .scForce:hover circle, .scDelAllinPoint:hover circle {fill: #ff691f; stroke: #000000; stroke-width: 2px; -webkit-transition: all 100ms;}";
+
+css += ".scMoment:active path, .scForce:active path, .scDelAllinPoint:active path {fill: #000000; -webkit-transition: all 150ms;}"
+css += ".scMoment:active circle, .scForce:active circle, .scDelAllinPoint:active circle {fill: #ff691f; stroke: #000000; stroke-width: 1px; -webkit-transition: all 10ms;}";
+
+
+
+css += ".actionPoints circle:hover {stroke: #ff691f; stroke-width: 3px; fill: #ffffff; -webkit-transition: all 100ms;}"
+css += ".actionPoints circle {stroke: #000000; stroke-width: 2px; fill: #ff691f; -webkit-transition: all 100ms;}"
 style = document.createElement("style")
 style.id = "fbd";
 if (style.styleSheet) {
