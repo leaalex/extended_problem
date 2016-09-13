@@ -1,5 +1,6 @@
 function Constructor(className){
     var className = className || "mengine_fbd";
+
     var answer={};
 
     // Функция генерации ID
@@ -101,7 +102,7 @@ function Constructor(className){
     //
     var menuLevelOne = createElementSVG('g', genID("menuLevelOne"), "menuLevelOne");
     //
-    var whiteRound = createElementSVG('circle', genID(), "whiteRound",{ fill: '#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'50'});
+    var whiteRound = createElementSVG('circle', genID("whiteRound"), "whiteRound",{ stroke: "#000000", fill:'#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'65'});
     //
     var scDelAllinPoint = createElementSVG('g', genID("scDelAllinPoint"), "scDelAllinPoint");
     scDelAllinPoint.innerHTML = '<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="0" cy="58" r="28"></circle>';
@@ -122,7 +123,6 @@ function Constructor(className){
 //    var activeSpaceForce = createElementSVG('circle', genID("activeSpaceForce"), "activeSpaceForce",{ fill: '#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'500'});
     //Добовление элементов
     append(menuLevelOne, [
-      whiteRound,
       scDelAllinPoint,
       scMoment,
       scForce
@@ -146,9 +146,10 @@ function Constructor(className){
     scButtonOpenClose.innerHTML += '<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-5" y1="-5" x2="5" y2="5"/>';
     //
     append(svgMenu, [
-      menuLevelOne,
-      menuLevelTwo,
-      scButtonOpenClose
+        whiteRound,
+        menuLevelOne,
+        menuLevelTwo,
+        scButtonOpenClose
     ]);
     //
     append(SVGObject, [
@@ -202,6 +203,8 @@ function Constructor(className){
         answer[SVGObject.id][svgMenu.position] = [];
         event.stopPropagation();
         console.log(answer);
+        SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]});
+        SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
     }, true);
 
     scButtonOpenClose.addEventListener("click", function(event){
@@ -228,8 +231,10 @@ function Constructor(className){
             menuLevelTwo.visible();
             menuLevelOne.visible();
             svgMenu.visible();
-            answer[SVGObject.id][svgMenu.position].push(force.angle);
-            console.log(answer);
+            answer[SVGObject.parentNode.id][svgMenu.position].push(force.angle);
+            console.log(JSON.stringify(answer));
+            SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
+            SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
         }
         else if(moment.action){
             momentClone = moment.cloneNode(true);
@@ -240,8 +245,10 @@ function Constructor(className){
             menuLevelTwo.visible();
             menuLevelOne.visible();
             svgMenu.visible();
-            answer[SVGObject.id][svgMenu.position].push(moment.scaleX);
-            console.log(answer);
+            answer[SVGObject.parentNode.id][svgMenu.position].push(moment.scaleX>0?"mr":"ml");
+            SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
+            SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
+            console.log(JSON.stringify(answer));
         }
         if (svgMenu.style.display == "block") svgMenu.visible();
 
@@ -251,10 +258,26 @@ function Constructor(className){
     SVGObject.addEventListener("mousemove", function(event){
         var mousePosition = cursorPoint(SVGObject, event);
         var atan2 = Math.atan2((mousePosition.y-svgMenu.y),(mousePosition.x-svgMenu.x));
-        var angleDegrees = Math.floor(atan2 > 0 ? 360 - atan2 * 360 / (2*Math.PI) : -atan2 * 360 / (2*Math.PI));
-        var angle = (atan2)*180/Math.PI;
+        var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
+//        console.log(event.target)
+//        if(event.target.className =="click"){console.log('урра!!!')};
+        angle = Math.abs(angle-90)<5 ? 90 : angle;
+        angle = Math.abs(angle-270)<5 ? 270 : angle;
+        angle = Math.abs(angle)<5 ? 0 : angle;
+        angle = Math.abs(angle-180)<5 ? 180 : angle;
+
+        angle = Math.abs(angle-270)<5 ? 270 : angle;
+        angle = Math.abs(angle-30)<5 ? 30 : angle;
+        angle = Math.abs(angle-140)<5 ? 140 : angle;
+        var r = 91.583 - Math.floor(Math.sqrt((mousePosition.y-svgMenu.y)*(mousePosition.y-svgMenu.y)+(mousePosition.x-svgMenu.x)*(mousePosition.x-svgMenu.x)));
+        r = r>-10?r:-10;
+        r = r<30?r:30;
+        r = r+10;
+        var string = String(91.583-r) + ",0 " + String(63.478-r) + ",-7.5 " + String(63.478-r) + ",-2.927 0.583,-2.925 0.583,2.927 " + String(63.478-r) + ",2.927 " + String(63.478-r) + ",7.5"
+        force.querySelector("polygon").setAttribute('points', string )
         force.rotate(Math.floor(angle));
-        leftOrRigth= (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
+
+        leftOrRigth = (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
         moment.scale(leftOrRigth,1);
 
 //        console.log("02 координата x, y: " + svgMenu.x+" , "+ svgMenu.y);
@@ -278,19 +301,29 @@ function Constructor(className){
             answer[SVGObject.id][i]=[];
             i++;
             point.addEventListener("click", function(event){
+                if (force.action) {
+                    var atan2 = Math.atan2((point.getAttribute("cy")-svgMenu.y),(point.getAttribute("cx")-svgMenu.x));
+                    var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
+                    force.rotate(Math.floor(angle));
+                }
+                else if (moment.action){
 
-                menuLevelOne.visible("block");
-                menuLevelTwo.visible("none");
+                }
+                else{
+                    menuLevelOne.visible("block");
+                    menuLevelTwo.visible("none");
 
-                force.visible("none");
-                force.action = false;
+                    force.visible("none");
+                    force.action = false;
 
-                moment.visible("none");
-                moment.action = false;
-                svgMenu.visible("block");
-                svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
-                svgMenu.position = point.id;
-                event.stopPropagation();
+                    moment.visible("none");
+                    moment.action = false;
+                    svgMenu.visible("block");
+                    svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
+                    svgMenu.position = point.id;
+                    event.stopPropagation();
+                    }
+
             });
             addStyle([point],{cursor : "pointer"})
         });
@@ -318,6 +351,11 @@ css += ".scMoment:active circle, .scForce:active circle, .scDelAllinPoint:active
 
 css += ".actionPoints circle:hover {stroke: #ff691f; stroke-width: 3px; fill: #ffffff; -webkit-transition: all 100ms;}"
 css += ".actionPoints circle {stroke: #000000; stroke-width: 2px; fill: #ff691f; -webkit-transition: all 100ms;}"
+
+css+= ".force[transform='rotate(90)'] polygon {fill: #33c654;}";
+css+= ".force[transform='rotate(270)'] polygon {fill: #33c654;}"
+css+= ".force[transform='rotate(0)'] polygon {fill: red;}"
+css+= ".force[transform='rotate(180)'] polygon {fill: red;}"
 style = document.createElement("style")
 style.id = "fbd";
 if (style.styleSheet) {
@@ -331,7 +369,9 @@ if(!document.querySelector("style#fbd")) document.querySelector("head").appendCh
   };
 
   this.init = function(){
-    forEach(document.getElementsByClassName(className), function (element){createMenu(element.querySelector("svg"))}.bind(this) )
+    forEach(document.getElementsByClassName(className), function (element){
+        console.log(element.querySelector("input[type=text]"))
+        createMenu(element.querySelector("svg"))}.bind(this) )
   };
   this.initElement = function(){
 
