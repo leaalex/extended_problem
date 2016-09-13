@@ -1,5 +1,6 @@
 function Constructor(className){
     var className = className || "mengine_fbd";
+    var answer={};
 
     // Функция генерации ID
     function genID(value) {
@@ -45,6 +46,17 @@ function Constructor(className){
             else {
                 element.style.display == "block" ? element.style.display = "none" : element.style.display = "block";
             }
+        }
+    }
+
+    function transformAndScale(element){
+        return function (cx, cy, sx, sy){
+            element.setAttribute("transform", "translate("+cx+","+cy+") scale("+sx+","+sy+")");
+        }
+    }
+    function transformAndRotate(element){
+        return function (cx, cy, a){
+            element.setAttribute("transform", "translate("+cx+","+cy+") rotate("+a+")");
         }
     }
 
@@ -183,6 +195,15 @@ function Constructor(className){
         event.stopPropagation();
   }, true);
 
+    scDelAllinPoint.addEventListener("click", function(event){
+        answer[SVGObject.id][svgMenu.position].forEach(function(){
+            insertForce.removeChild(insertForce.querySelector(".f"+svgMenu.position))
+        });
+        answer[SVGObject.id][svgMenu.position] = [];
+        event.stopPropagation();
+        console.log(answer);
+    }, true);
+
     scButtonOpenClose.addEventListener("click", function(event){
 //        console.info('scButtonOpenClose click');
         svgMenu.visible("none")
@@ -198,7 +219,32 @@ function Constructor(className){
   }, true);
 
     SVGObject.addEventListener("click", function(event){
-        if (force.action) console.log(force.angle)
+        if (force.action) {
+            forceClone = force.cloneNode(true);
+            forceClone.classList.add("f"+svgMenu.position);
+            transformAndRotate(forceClone)(svgMenu.x, svgMenu.y, force.angle);
+            insertForce.appendChild(forceClone);
+            force.action = false;
+            menuLevelTwo.visible();
+            menuLevelOne.visible();
+            svgMenu.visible();
+            answer[SVGObject.id][svgMenu.position].push(force.angle);
+            console.log(answer);
+        }
+        else if(moment.action){
+            momentClone = moment.cloneNode(true);
+            momentClone.classList.add("f"+svgMenu.position);
+            transformAndScale(momentClone)(svgMenu.x, svgMenu.y, moment.scaleX, moment.scaleY );
+            insertForce.appendChild(momentClone);
+            moment.action = false;
+            menuLevelTwo.visible();
+            menuLevelOne.visible();
+            svgMenu.visible();
+            answer[SVGObject.id][svgMenu.position].push(moment.scaleX);
+            console.log(answer);
+        }
+        if (svgMenu.style.display == "block") svgMenu.visible();
+
 
     }, false);
 
@@ -213,17 +259,25 @@ function Constructor(className){
 
 //        console.log("02 координата x, y: " + svgMenu.x+" , "+ svgMenu.y);
 //        console.log("03 mouse x, y: " + mousePosition.x+" , "+ mousePosition.y);
-        console.log("угол:", angleDegrees, "realtime: ", angle)
+//        console.log("угол:", angleDegrees, "realtime: ", angle)
 //        console.log("force.action:",force.action)
 
     });
 
-    var actionPointsGroup = SVGObject.querySelectorAll(".actionPoints")
+    var actionPointsGroup = SVGObject.querySelectorAll(".actionPoints");
+    var insertForce = createElementSVG('g', genID("insertForce"), "insertForce");
+    SVGObject.insertBefore(insertForce, actionPointsGroup[0]);
+    answer[SVGObject.id] = {};
+    console.log(answer);
+    console.log(SVGObject.parentNode.id);
     forEach(actionPointsGroup, function(actionPoints){
         points = actionPoints.querySelectorAll('circle');
+        var i=0;
         forEach(points, function(point){
-
-            point.addEventListener("click", function(){
+            point.id = i;
+            answer[SVGObject.id][i]=[];
+            i++;
+            point.addEventListener("click", function(event){
 
                 menuLevelOne.visible("block");
                 menuLevelTwo.visible("none");
@@ -235,7 +289,8 @@ function Constructor(className){
                 moment.action = false;
                 svgMenu.visible("block");
                 svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
-                console.log("04 point click: " + Number(point.getAttribute("cx")) +" , "+ Number(point.getAttribute("cy")))
+                svgMenu.position = point.id;
+                event.stopPropagation();
             });
             addStyle([point],{cursor : "pointer"})
         });
