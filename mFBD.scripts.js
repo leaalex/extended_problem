@@ -103,6 +103,26 @@ function Constructor(className){
     var menuLevelOne = createElementSVG('g', genID("menuLevelOne"), "menuLevelOne");
     //
     var whiteRound = createElementSVG('circle', genID("whiteRound"), "whiteRound",{ stroke: "#000000", fill:'#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'65'});
+    var axis = createElementSVG('g', genID("axis"), "axis");;
+    if (SVGObject.dataset.type == "flat"){
+        var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
+        var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
+        append(axis, [
+          axisX,
+          axisY,
+        ]);
+    }
+    if (SVGObject.dataset.type == "isometry"){
+        var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
+        var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(-120)"});
+        var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(120)"});
+        append(axis, [
+            axisZ,
+            axisX,
+            axisY,
+        ]);
+
+    }
     //
     var scDelAllinPoint = createElementSVG('g', genID("scDelAllinPoint"), "scDelAllinPoint");
     scDelAllinPoint.innerHTML = '<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="0" cy="58" r="28"></circle>';
@@ -146,6 +166,7 @@ function Constructor(className){
     scButtonOpenClose.innerHTML += '<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-5" y1="-5" x2="5" y2="5"/>';
     //
     append(svgMenu, [
+        axis,
         whiteRound,
         menuLevelOne,
         menuLevelTwo,
@@ -170,6 +191,7 @@ function Constructor(className){
 
     //Установка начальных условий
     svgMenu.translate(0,0);
+    svgMenu.visible("none");
     menuLevelOne.visible("block");
     menuLevelTwo.visible("none");
     force.visible("none")
@@ -197,14 +219,15 @@ function Constructor(className){
   }, true);
 
     scDelAllinPoint.addEventListener("click", function(event){
-        answer[SVGObject.id][svgMenu.position].forEach(function(){
+        answer[SVGObject.parentNode.id][svgMenu.position].forEach(function(){
             insertForce.removeChild(insertForce.querySelector(".f"+svgMenu.position))
         });
-        answer[SVGObject.id][svgMenu.position] = [];
+        answer[SVGObject.parentNode.id][svgMenu.position] = [];
         event.stopPropagation();
         console.log(answer);
         SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]});
         SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
+        svgMenu.visible("none");
     }, true);
 
     scButtonOpenClose.addEventListener("click", function(event){
@@ -261,14 +284,21 @@ function Constructor(className){
         var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
 //        console.log(event.target)
 //        if(event.target.className =="click"){console.log('урра!!!')};
-        angle = Math.abs(angle-90)<5 ? 90 : angle;
-        angle = Math.abs(angle-270)<5 ? 270 : angle;
-        angle = Math.abs(angle)<5 ? 0 : angle;
-        angle = Math.abs(angle-180)<5 ? 180 : angle;
 
-        angle = Math.abs(angle-270)<5 ? 270 : angle;
-        angle = Math.abs(angle-30)<5 ? 30 : angle;
-        angle = Math.abs(angle-140)<5 ? 140 : angle;
+        if (SVGObject.dataset.type == "flat"){
+            angle = Math.abs(angle-90)<5 ? 90 : angle;
+            angle = Math.abs(angle-270)<5 ? 270 : angle;
+            angle = Math.abs(angle)<5 ? 0 : angle;
+            angle = Math.abs(angle-180)<5 ? 180 : angle;
+        }
+        else if(SVGObject.dataset.type == "isometry"){
+            angle = Math.abs(angle-270)<5 ? 270 : angle;
+            angle = Math.abs(angle-90)<5 ? 90 : angle;
+            angle = Math.abs(angle-30)<5 ? 30 : angle;
+            angle = Math.abs(angle-210)<5 ? 210 : angle;
+            angle = Math.abs(angle-330)<5 ? 330 : angle;
+            angle = Math.abs(angle-150)<5 ? 150 : angle;
+        }
         var r = 91.583 - Math.floor(Math.sqrt((mousePosition.y-svgMenu.y)*(mousePosition.y-svgMenu.y)+(mousePosition.x-svgMenu.x)*(mousePosition.x-svgMenu.x)));
         r = r>-10?r:-10;
         r = r<30?r:30;
@@ -280,25 +310,21 @@ function Constructor(className){
         leftOrRigth = (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
         moment.scale(leftOrRigth,1);
 
-//        console.log("02 координата x, y: " + svgMenu.x+" , "+ svgMenu.y);
-//        console.log("03 mouse x, y: " + mousePosition.x+" , "+ mousePosition.y);
-//        console.log("угол:", angleDegrees, "realtime: ", angle)
-//        console.log("force.action:",force.action)
+
 
     });
 
     var actionPointsGroup = SVGObject.querySelectorAll(".actionPoints");
     var insertForce = createElementSVG('g', genID("insertForce"), "insertForce");
     SVGObject.insertBefore(insertForce, actionPointsGroup[0]);
-    answer[SVGObject.id] = {};
-    console.log(answer);
-    console.log(SVGObject.parentNode.id);
+    answer[SVGObject.parentNode.id] = {};
+
     forEach(actionPointsGroup, function(actionPoints){
         points = actionPoints.querySelectorAll('circle');
         var i=0;
         forEach(points, function(point){
             point.id = i;
-            answer[SVGObject.id][i]=[];
+            answer[SVGObject.parentNode.id][i]=[];
             i++;
             point.addEventListener("click", function(event){
                 if (force.action) {
@@ -321,6 +347,7 @@ function Constructor(className){
                     svgMenu.visible("block");
                     svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
                     svgMenu.position = point.id;
+                    console.log(svgMenu.position)
                     event.stopPropagation();
                     }
 
@@ -352,10 +379,20 @@ css += ".scMoment:active circle, .scForce:active circle, .scDelAllinPoint:active
 css += ".actionPoints circle:hover {stroke: #ff691f; stroke-width: 3px; fill: #ffffff; -webkit-transition: all 100ms;}"
 css += ".actionPoints circle {stroke: #000000; stroke-width: 2px; fill: #ff691f; -webkit-transition: all 100ms;}"
 
-css+= ".force[transform='rotate(90)'] polygon {fill: #33c654;}";
-css+= ".force[transform='rotate(270)'] polygon {fill: #33c654;}"
-css+= ".force[transform='rotate(0)'] polygon {fill: red;}"
-css+= ".force[transform='rotate(180)'] polygon {fill: red;}"
+css+= "svg[data-type='flat'] .force[transform='rotate(90)'] polygon {fill: #33c654;}";
+css+= "svg[data-type='flat'] .force[transform='rotate(270)'] polygon {fill: #33c654;}";
+css+= "svg[data-type='flat'] .force[transform='rotate(0)'] polygon {fill: #33c654;}";
+css+= "svg[data-type='flat'] .force[transform='rotate(180)'] polygon {fill: #33c654;}";
+
+
+css+= "svg[data-type='isometry'] .force[transform='rotate(30)'] polygon {fill: #0ab9f1;}";
+css+= "svg[data-type='isometry'] .force[transform='rotate(90)'] polygon {fill: #0ab9f1;}";
+css+= "svg[data-type='isometry'] .force[transform='rotate(150)'] polygon {fill: #0ab9f1;}";
+css+= "svg[data-type='isometry'] .force[transform='rotate(210)'] polygon {fill: #0ab9f1;}";
+css+= "svg[data-type='isometry'] .force[transform='rotate(270)'] polygon {fill: #0ab9f1;}";
+css+= "svg[data-type='isometry'] .force[transform='rotate(330)'] polygon {fill: #0ab9f1;}";
+
+
 style = document.createElement("style")
 style.id = "fbd";
 if (style.styleSheet) {
