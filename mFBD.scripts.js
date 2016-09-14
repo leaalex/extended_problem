@@ -103,19 +103,28 @@ function Constructor(className){
     var menuLevelOne = createElementSVG('g', genID("menuLevelOne"), "menuLevelOne");
     //
     var whiteRound = createElementSVG('circle', genID("whiteRound"), "whiteRound",{ stroke: "#000000", fill:'#FFFFFF', opacity: '0.1', cx: '0',  cy: '0', r:'65'});
-    var axis = createElementSVG('g', genID("axis"), "axis");;
-    if (SVGObject.dataset.type == "flat"){
+    var axis = createElementSVG('g', genID("axis"), "axis");
+
+    if (SVGObject.parentNode.dataset.axis == "flat"){
         var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
         var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
         append(axis, [
-          axisX,
-          axisY,
+            axisX,
+            axisY,
         ]);
     }
-    if (SVGObject.dataset.type == "isometry"){
-        var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
-        var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(-120)"});
-        var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(120)"});
+    if (SVGObject.parentNode.dataset.axis == "isometry"){
+        if (SVGObject.parentNode.dataset.isometry){
+            var a = SVGObject.parentNode.dataset.isometry.split(',');
+            var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate("+ Number(a[0]) +")"});
+            var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate("+ Number(a[1]) +")"});
+            var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate("+ Number(a[2]) +")"});
+        }
+        else{
+            var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
+            var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(-120)"});
+            var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(120)"});
+        }
         append(axis, [
             axisZ,
             axisX,
@@ -199,7 +208,6 @@ function Constructor(className){
 
     // Слушатели событий
     scMoment.addEventListener("click", function(event){
-//        console.info('scForce click');
         menuLevelOne.visible();
         menuLevelTwo.visible();
         moment.visible("block");
@@ -210,7 +218,6 @@ function Constructor(className){
 
 
     scForce.addEventListener("click", function(event){
-//        console.info('scForce click');
         menuLevelOne.visible();
         menuLevelTwo.visible();
         force.visible("block");
@@ -224,14 +231,12 @@ function Constructor(className){
         });
         answer[SVGObject.parentNode.id][svgMenu.position] = [];
         event.stopPropagation();
-        console.log(answer);
         SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]});
         SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
         svgMenu.visible("none");
     }, true);
 
     scButtonOpenClose.addEventListener("click", function(event){
-//        console.info('scButtonOpenClose click');
         svgMenu.visible("none")
         menuLevelOne.visible("block");
         menuLevelTwo.visible("none");
@@ -255,7 +260,7 @@ function Constructor(className){
             menuLevelOne.visible();
             svgMenu.visible();
             answer[SVGObject.parentNode.id][svgMenu.position].push(force.angle);
-            console.log(JSON.stringify(answer));
+
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
         }
@@ -271,7 +276,7 @@ function Constructor(className){
             answer[SVGObject.parentNode.id][svgMenu.position].push(moment.scaleX>0?"mr":"ml");
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
-            console.log(JSON.stringify(answer));
+
         }
         if (svgMenu.style.display == "block") svgMenu.visible();
 
@@ -282,22 +287,35 @@ function Constructor(className){
         var mousePosition = cursorPoint(SVGObject, event);
         var atan2 = Math.atan2((mousePosition.y-svgMenu.y),(mousePosition.x-svgMenu.x));
         var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
-//        console.log(event.target)
-//        if(event.target.className =="click"){console.log('урра!!!')};
 
-        if (SVGObject.dataset.type == "flat"){
+
+        if (SVGObject.parentNode.dataset.axis == "flat"){
             angle = Math.abs(angle-90)<5 ? 90 : angle;
             angle = Math.abs(angle-270)<5 ? 270 : angle;
             angle = Math.abs(angle)<5 ? 0 : angle;
             angle = Math.abs(angle-180)<5 ? 180 : angle;
         }
-        else if(SVGObject.dataset.type == "isometry"){
-            angle = Math.abs(angle-270)<5 ? 270 : angle;
-            angle = Math.abs(angle-90)<5 ? 90 : angle;
-            angle = Math.abs(angle-30)<5 ? 30 : angle;
-            angle = Math.abs(angle-210)<5 ? 210 : angle;
-            angle = Math.abs(angle-330)<5 ? 330 : angle;
-            angle = Math.abs(angle-150)<5 ? 150 : angle;
+        else if(SVGObject.parentNode.dataset.axis == "isometry"){
+
+            if (SVGObject.parentNode.dataset.isometry){
+                var a = SVGObject.parentNode.dataset.isometry.split(',');
+                console.log(a);
+                angle = Math.abs(angle-Number(a[0]))<5 ? Number(a[0]) : angle;
+                angle = Math.abs(angle-Number(a[0])-180)<5 ? Number(a[0])+180 : angle;
+                angle = Math.abs(angle-Number(a[1]))<5 ? Number(a[1]) : angle;
+                angle = Math.abs(angle-Number(a[1])-180)<5 ? Number(a[1])+180 : angle;
+                angle = Math.abs(angle-Number(a[2]))<5 ? Number(a[2]) : angle;
+                angle = Math.abs(angle-Number(a[2])-180)<5 ? Number(a[2])+180 : angle;
+
+            }
+            else{
+                angle = Math.abs(angle-270)<5 ? 270 : angle;
+                angle = Math.abs(angle-90)<5 ? 90 : angle;
+                angle = Math.abs(angle-30)<5 ? 30 : angle;
+                angle = Math.abs(angle-210)<5 ? 210 : angle;
+                angle = Math.abs(angle-330)<5 ? 330 : angle;
+                angle = Math.abs(angle-150)<5 ? 150 : angle;
+            }
         }
         var r = 91.583 - Math.floor(Math.sqrt((mousePosition.y-svgMenu.y)*(mousePosition.y-svgMenu.y)+(mousePosition.x-svgMenu.x)*(mousePosition.x-svgMenu.x)));
         r = r>-10?r:-10;
@@ -347,7 +365,7 @@ function Constructor(className){
                     svgMenu.visible("block");
                     svgMenu.translate(Number(point.getAttribute("cx")),Number(point.getAttribute("cy")));
                     svgMenu.position = point.id;
-                    console.log(svgMenu.position)
+
                     event.stopPropagation();
                     }
 
@@ -379,18 +397,18 @@ css += ".scMoment:active circle, .scForce:active circle, .scDelAllinPoint:active
 css += ".actionPoints circle:hover {stroke: #ff691f; stroke-width: 3px; fill: #ffffff; -webkit-transition: all 100ms;}"
 css += ".actionPoints circle {stroke: #000000; stroke-width: 2px; fill: #ff691f; -webkit-transition: all 100ms;}"
 
-css+= "svg[data-type='flat'] .force[transform='rotate(90)'] polygon {fill: #33c654;}";
-css+= "svg[data-type='flat'] .force[transform='rotate(270)'] polygon {fill: #33c654;}";
-css+= "svg[data-type='flat'] .force[transform='rotate(0)'] polygon {fill: #33c654;}";
-css+= "svg[data-type='flat'] .force[transform='rotate(180)'] polygon {fill: #33c654;}";
+css+= "div[data-axis='flat'] .force[transform='rotate(90)'] polygon {fill: #33c654;}";
+css+= "div[data-axis='flat'] .force[transform='rotate(270)'] polygon {fill: #33c654;}";
+css+= "div[data-axis='flat'] .force[transform='rotate(0)'] polygon {fill: #33c654;}";
+css+= "div[data-axis='flat'] .force[transform='rotate(180)'] polygon {fill: #33c654;}";
 
 
-css+= "svg[data-type='isometry'] .force[transform='rotate(30)'] polygon {fill: #0ab9f1;}";
-css+= "svg[data-type='isometry'] .force[transform='rotate(90)'] polygon {fill: #0ab9f1;}";
-css+= "svg[data-type='isometry'] .force[transform='rotate(150)'] polygon {fill: #0ab9f1;}";
-css+= "svg[data-type='isometry'] .force[transform='rotate(210)'] polygon {fill: #0ab9f1;}";
-css+= "svg[data-type='isometry'] .force[transform='rotate(270)'] polygon {fill: #0ab9f1;}";
-css+= "svg[data-type='isometry'] .force[transform='rotate(330)'] polygon {fill: #0ab9f1;}";
+css+= "div[data-axis='isometry'] .force[transform='rotate(30)'] polygon {fill: #0ab9f1;}";
+css+= "div[data-axis='isometry'] .force[transform='rotate(90)'] polygon {fill: #0ab9f1;}";
+css+= "div[data-axis='isometry'] .force[transform='rotate(150)'] polygon {fill: #0ab9f1;}";
+css+= "div[data-axis='isometry'] .force[transform='rotate(210)'] polygon {fill: #0ab9f1;}";
+css+= "div[data-axis='isometry'] .force[transform='rotate(270)'] polygon {fill: #0ab9f1;}";
+css+= "div[data-axis='isometry'] .force[transform='rotate(330)'] polygon {fill: #0ab9f1;}";
 
 
 style = document.createElement("style")
@@ -407,7 +425,6 @@ if(!document.querySelector("style#fbd")) document.querySelector("head").appendCh
 
   this.init = function(){
     forEach(document.getElementsByClassName(className), function (element){
-        console.log(element.querySelector("input[type=text]"))
         createMenu(element.querySelector("svg"))}.bind(this) )
   };
   this.initElement = function(){
