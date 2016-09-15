@@ -114,17 +114,26 @@ function Constructor(className){
         ]);
     }
     if (SVGObject.parentNode.dataset.axis == "isometry"){
-        if (SVGObject.parentNode.dataset.isometry){
-            var a = SVGObject.parentNode.dataset.isometry.split(',');
+
+        var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
+        var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(-120)"});
+        var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(120)"});
+
+        append(axis, [
+            axisZ,
+            axisX,
+            axisY,
+        ]);
+
+    }
+    if (SVGObject.parentNode.dataset.axis == "custom"){
+        if (SVGObject.parentNode.dataset.custom){
+            var a = SVGObject.parentNode.dataset.custom.split(',');
             var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate("+ Number(a[0]) +")"});
             var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate("+ Number(a[1]) +")"});
             var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"-160", y1:"0",x2:"160", y2:"0", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate("+ Number(a[2]) +")"});
         }
-        else{
-            var axisZ = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1});
-            var axisX = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(-120)"});
-            var axisY = createElementSVG('line', genID("axis"), "axis",{ x1:"0", y1:"-160",x2:"0", y2:"160", stroke:"#000000", "stroke-dasharray":"12 5", "stroke-width":1, transform:"rotate(120)"});
-        }
+
         append(axis, [
             axisZ,
             axisX,
@@ -295,28 +304,38 @@ function Constructor(className){
             angle = Math.abs(angle)<5 ? 0 : angle;
             angle = Math.abs(angle-180)<5 ? 180 : angle;
         }
-        else if(SVGObject.parentNode.dataset.axis == "isometry"){
-
-            if (SVGObject.parentNode.dataset.isometry){
-                var a = SVGObject.parentNode.dataset.isometry.split(',');
-                console.log(a);
+        if (SVGObject.parentNode.dataset.axis == "isometry"){
+            angle = Math.abs(angle-270)<5 ? 270 : angle;
+            angle = Math.abs(angle-90)<5 ? 90 : angle;
+            angle = Math.abs(angle-30)<5 ? 30 : angle;
+            angle = Math.abs(angle-210)<5 ? 210 : angle;
+            angle = Math.abs(angle-330)<5 ? 330 : angle;
+            angle = Math.abs(angle-150)<5 ? 150 : angle;
+        }
+        if (SVGObject.parentNode.dataset.axis == "custom"){
+            if (SVGObject.parentNode.dataset.custom){
+                var a = SVGObject.parentNode.dataset.custom.split(',');
                 angle = Math.abs(angle-Number(a[0]))<5 ? Number(a[0]) : angle;
                 angle = Math.abs(angle-Number(a[0])-180)<5 ? Number(a[0])+180 : angle;
                 angle = Math.abs(angle-Number(a[1]))<5 ? Number(a[1]) : angle;
                 angle = Math.abs(angle-Number(a[1])-180)<5 ? Number(a[1])+180 : angle;
                 angle = Math.abs(angle-Number(a[2]))<5 ? Number(a[2]) : angle;
                 angle = Math.abs(angle-Number(a[2])-180)<5 ? Number(a[2])+180 : angle;
-
+                if (angle == Number(a[0])||angle == Number(a[0])+180||angle == Number(a[1])||angle == Number(a[1])+180||angle == Number(a[2])||angle == Number(a[2])+180) {
+                    force.setAttribute("data-select", "true");
+                }
+                else {
+                    force.removeAttribute("data-select");
+                }
             }
             else{
-                angle = Math.abs(angle-270)<5 ? 270 : angle;
-                angle = Math.abs(angle-90)<5 ? 90 : angle;
-                angle = Math.abs(angle-30)<5 ? 30 : angle;
-                angle = Math.abs(angle-210)<5 ? 210 : angle;
-                angle = Math.abs(angle-330)<5 ? 330 : angle;
-                angle = Math.abs(angle-150)<5 ? 150 : angle;
+                console.info("custom setting is not set");
             }
         }
+        else{
+            console.info("axis is undefined");
+        }
+
         var r = 91.583 - Math.floor(Math.sqrt((mousePosition.y-svgMenu.y)*(mousePosition.y-svgMenu.y)+(mousePosition.x-svgMenu.x)*(mousePosition.x-svgMenu.x)));
         r = r>-10?r:-10;
         r = r<30?r:30;
@@ -409,6 +428,10 @@ css+= "div[data-axis='isometry'] .force[transform='rotate(150)'] polygon {fill: 
 css+= "div[data-axis='isometry'] .force[transform='rotate(210)'] polygon {fill: #0ab9f1;}";
 css+= "div[data-axis='isometry'] .force[transform='rotate(270)'] polygon {fill: #0ab9f1;}";
 css+= "div[data-axis='isometry'] .force[transform='rotate(330)'] polygon {fill: #0ab9f1;}";
+
+css+= "div[data-axis='custom'] .force[data-select='true'] polygon {fill: gold;}";
+
+
 
 
 style = document.createElement("style")
