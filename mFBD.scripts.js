@@ -259,8 +259,9 @@ function Constructor(className){
   }, true);
 
     SVGObject.addEventListener("click", function(event){
-        if (force.action) {
+        if (force.action && answer[SVGObject.parentNode.id][svgMenu.position].indexOf(force.angle)<0) {
             forceClone = force.cloneNode(true);
+            forceClone.removeAttribute("data-select");
             forceClone.classList.add("f"+svgMenu.position);
             transformAndRotate(forceClone)(svgMenu.x, svgMenu.y, force.angle);
             insertForce.appendChild(forceClone);
@@ -273,7 +274,7 @@ function Constructor(className){
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
         }
-        else if(moment.action){
+        else if(moment.action && answer[SVGObject.parentNode.id][svgMenu.position].indexOf(force.angle)<0){
             momentClone = moment.cloneNode(true);
             momentClone.classList.add("f"+svgMenu.position);
             transformAndScale(momentClone)(svgMenu.x, svgMenu.y, moment.scaleX, moment.scaleY );
@@ -288,6 +289,7 @@ function Constructor(className){
 
         }
         if (svgMenu.style.display == "block") svgMenu.visible();
+        force.action = false;
 
 
     }, false);
