@@ -1,24 +1,13 @@
-function FindFBD(selector){
-    var array = [];
-    var elements = document.querySelectorAll(selector);
-    for (var i = 0; i < elements.length; i++){
-        array.push(elements[i]);
-    };
+function activationFBD(selector){
+    Array.prototype.filter.call(document.querySelectorAll(selector),function(element){return element.dataset.status==undefined}).forEach(function(element, i ,array){
+        var p = document.createElement('p');
+        p.innerText = "activate";
+        element.appendChild(p);
+        element.dataset.status = "activate";
+    });
+    setTimeout(function(){ActivationFBD(selector)}, 1000)
 }
-
-
-
-function findElement(selector){
-  Array.prototype.filter.call(document.querySelectorAll(selector),function(element){return element.dataset.status==undefined}).forEach(function(element, i ,array){
-      var p = document.createElement('p');
-      p.innerText = "activate";
-      element.appendChild(p);
-      element.dataset.status = "activate";
-  });
-  setTimeout(function(){findElement(selector);},1000)
-}
-
-findElement(".addELement");
+activationFBD(".mengine_fbd");
 
 
 
