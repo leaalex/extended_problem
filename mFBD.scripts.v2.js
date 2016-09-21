@@ -13,10 +13,8 @@ function activationFBD(selector){
 }
 
 function AddBorderSVG(element){
-    element.style.border = "1px solid gray";
+    element.style.filter = "blur(100%)"
 }
-
-
 
 
 // Конструктор работы с полем ответа
@@ -268,6 +266,9 @@ function FBD(element){
         force.visible("none")
         moment.visible("none");
 
+
+
+
         // Слушатели событий
         scMoment.addEventListener("click", function(event){
             menuLevelOne.visible();
@@ -294,7 +295,6 @@ function FBD(element){
             answer[SVGObject.parentNode.id][svgMenu.position] = [];
             event.stopPropagation();
             SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]});
-            SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
             svgMenu.visible("none");
         }, true);
 
@@ -325,7 +325,6 @@ function FBD(element){
                 answer[SVGObject.parentNode.id][svgMenu.position].push(force.angle);
 
                 SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
-                SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
             }
             else if(moment.action && answer[SVGObject.parentNode.id][svgMenu.position].indexOf(force.angle)<0){
                 momentClone = moment.cloneNode(true);
@@ -338,7 +337,6 @@ function FBD(element){
                 svgMenu.visible();
                 answer[SVGObject.parentNode.id][svgMenu.position].push(moment.scaleX>0?"mr":"ml");
                 SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
-                SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").setAttribute('value', JSON.stringify({answer:answer[SVGObject.parentNode.id]}));
 
             }
             if (svgMenu.style.display == "block") svgMenu.visible();
@@ -410,6 +408,8 @@ function FBD(element){
         SVGObject.insertBefore(insertForce, actionPointsGroup[0]);
         answer[SVGObject.parentNode.id] = {};
 
+
+
         forEach(actionPointsGroup, function(actionPoints){
             points = actionPoints.querySelectorAll('circle');
             var i=0;
@@ -446,6 +446,32 @@ function FBD(element){
                 addStyle([point],{cursor : "pointer"})
             });
         });
+
+        if(this.answer.get()){
+            answer[SVGObject.parentNode.id] = this.answer.getJSON().answer;
+
+            for (point in this.answer.fieldObject["answer"]){
+                console.log(this.answer.fieldObject["answer"][point]);
+                this.answer.fieldObject["answer"][point].forEach(function(angle, i, array){
+                    console.log(actionPointsGroup[0].querySelectorAll('circle')[point],angle)
+                    if (angle=="mr"||angle=="ml"){
+                        momentClone = moment.cloneNode(true);
+                        momentClone.classList.add("f"+point);
+                        momentClone.style.display ="block";
+                        scaleX = angle=="mr"?1:-1;
+                        transformAndScale(momentClone)(actionPointsGroup[0].querySelectorAll('circle')[point].getAttribute("cx"), actionPointsGroup[0].querySelectorAll('circle')[point].getAttribute("cy"), scaleX, 1);
+                        insertForce.appendChild(momentClone);
+                    }
+                    else{
+                        forceClone = force.cloneNode(true);
+                        forceClone.classList.add("f"+point);
+                        forceClone.style.display ="block";
+                        transformAndRotate(forceClone)(actionPointsGroup[0].querySelectorAll('circle')[point].getAttribute("cx"), actionPointsGroup[0].querySelectorAll('circle')[point].getAttribute("cy"), angle);
+                        insertForce.appendChild(forceClone);
+                    }
+                });
+            }
+        }
 
         addStyle([scMoment, scForce, scDelAllinPoint, scButtonOpenClose],{cursor : "pointer"})
     //    svgMenu.addEventListener("mouseenter",function(event){
@@ -500,7 +526,7 @@ function FBD(element){
         return SVGObject;
     };
 
-    createMenu(this.SVG);
+    createMenu.bind(this)(this.SVG);
 
 
 
