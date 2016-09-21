@@ -1,18 +1,19 @@
-var ObjectsFBD = {};
+if (ObjectsFBD==undefined) var ObjectsFBD = {};
+
 function activationFBD(selector){
     Array.prototype.filter.call(document.querySelectorAll(selector),function(element){return element.dataset.status==undefined}).forEach(function(element, i ,array){
+
         ObjectsFBD[element.id] = (new FBD(element));
 
         new AddBorderSVG(element);
         //Устанавливаем дополнительный аттрибут для отсеивания
         element.dataset.status = "activate";
     });
-    setTimeout(function(){activationFBD(selector)}, 1000)
+    setTimeout(function(){activationFBD(selector)}, 1000);
 }
 
 function AddBorderSVG(element){
     element.style.border = "1px solid gray";
-    console.log(element, "uodate style");
 }
 
 
@@ -51,6 +52,9 @@ function FBD(element){
     this.element = element;
     this.answer = new Answer(element.querySelector("input[type='text']"));
     this.SVG = element.querySelector("svg");
+    this.buttonCheck = element.parentNode.parentNode.querySelector(".action").querySelector(".Check");
+    this.buttonCheck.classList.remove("is-disabled");
+    var answer = {};
 
     // Перечень внутрених функций
     // Функция генерации ID
@@ -383,9 +387,8 @@ function FBD(element){
                     console.info("custom setting is not set");
                 }
             }
-            else{
-                console.info("axis is undefined");
-            }
+
+
 
             var r = 91.583 - Math.floor(Math.sqrt((mousePosition.y-svgMenu.y)*(mousePosition.y-svgMenu.y)+(mousePosition.x-svgMenu.x)*(mousePosition.x-svgMenu.x)));
             r = r>-10?r:-10;
