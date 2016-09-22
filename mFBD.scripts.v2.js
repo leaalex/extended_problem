@@ -13,7 +13,7 @@ function activationFBD(selector){
 }
 
 function AddBorderSVG(element){
-    element.style.filter = "blur(100%)"
+
 }
 
 
@@ -389,11 +389,12 @@ function FBD(element){
 
 
             var r = 91.583 - Math.floor(Math.sqrt((mousePosition.y-svgMenu.y)*(mousePosition.y-svgMenu.y)+(mousePosition.x-svgMenu.x)*(mousePosition.x-svgMenu.x)));
-            r = r>-10?r:-10;
+            r = r>-5?r:-5;
             r = r<30?r:30;
             r = r+10;
             var string = String(91.583-r) + ",0 " + String(63.478-r) + ",-7.5 " + String(63.478-r) + ",-2.927 0.583,-2.925 0.583,2.927 " + String(63.478-r) + ",2.927 " + String(63.478-r) + ",7.5"
             force.querySelector("polygon").setAttribute('points', string )
+            if (force.action) whiteRound.setAttribute("r",65-r-5);
             force.rotate(Math.floor(angle));
 
             leftOrRigth = (svgMenu.x-mousePosition.x > 0 ? -1 : 1)
