@@ -326,7 +326,7 @@ function FBD(element){
 
                 SVGObject.parentNode.querySelector("#" + SVGObject.parentNode.id + " input[type=text]").value = JSON.stringify({answer:answer[SVGObject.parentNode.id]})
             }
-            else if(moment.action && answer[SVGObject.parentNode.id][svgMenu.position].indexOf(force.angle)<0){
+            else if(moment.action && answer[SVGObject.parentNode.id][svgMenu.position].indexOf(moment.scaleX>0?"mr":"ml")<0){
                 momentClone = moment.cloneNode(true);
                 momentClone.classList.add("f"+svgMenu.position);
                 transformAndScale(momentClone)(svgMenu.x, svgMenu.y, moment.scaleX, moment.scaleY );
@@ -341,6 +341,7 @@ function FBD(element){
             }
             if (svgMenu.style.display == "block") svgMenu.visible();
             force.action = false;
+            moment.action = false;
 
 
         }, false);
@@ -355,6 +356,7 @@ function FBD(element){
                 angle = Math.abs(angle-90)<5 ? 90 : angle;
                 angle = Math.abs(angle-270)<5 ? 270 : angle;
                 angle = Math.abs(angle)<5 ? 0 : angle;
+                angle = Math.abs(angle-360)<5 ? 0 : angle;
                 angle = Math.abs(angle-180)<5 ? 180 : angle;
             }
             if (SVGObject.parentNode.dataset.axis == "isometry"){
@@ -497,20 +499,25 @@ function FBD(element){
         css += ".actionPoints circle:hover {stroke: #ff691f; stroke-width: 3px; fill: #ffffff; -webkit-transition: all 100ms;}"
         css += ".actionPoints circle {stroke: #000000; stroke-width: 2px; fill: #ff691f; -webkit-transition: all 100ms;}"
 
-        css+= "div[data-axis='flat'] .force[transform='rotate(90)'] polygon {fill: #33c654;}";
-        css+= "div[data-axis='flat'] .force[transform='rotate(270)'] polygon {fill: #33c654;}";
-        css+= "div[data-axis='flat'] .force[transform='rotate(0)'] polygon {fill: #33c654;}";
-        css+= "div[data-axis='flat'] .force[transform='rotate(180)'] polygon {fill: #33c654;}";
+        css+= "div[data-axis='flat'] .force[transform='rotate(90)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='flat'] .force[transform='rotate(270)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='flat'] .force[transform='rotate(0)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='flat'] .force[transform='rotate(180)'] polygon {stroke-width:2px}";
 
 
-        css+= "div[data-axis='isometry'] .force[transform='rotate(30)'] polygon {fill: #0ab9f1;}";
-        css+= "div[data-axis='isometry'] .force[transform='rotate(90)'] polygon {fill: #0ab9f1;}";
-        css+= "div[data-axis='isometry'] .force[transform='rotate(150)'] polygon {fill: #0ab9f1;}";
-        css+= "div[data-axis='isometry'] .force[transform='rotate(210)'] polygon {fill: #0ab9f1;}";
-        css+= "div[data-axis='isometry'] .force[transform='rotate(270)'] polygon {fill: #0ab9f1;}";
-        css+= "div[data-axis='isometry'] .force[transform='rotate(330)'] polygon {fill: #0ab9f1;}";
+        css+= "div[data-axis='isometry'] .force[transform='rotate(30)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='isometry'] .force[transform='rotate(90)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='isometry'] .force[transform='rotate(150)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='isometry'] .force[transform='rotate(210)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='isometry'] .force[transform='rotate(270)'] polygon {stroke-width:2px}";
+        css+= "div[data-axis='isometry'] .force[transform='rotate(330)'] polygon {stroke-width:2px}";
 
-        css+= "div[data-axis='custom'] .force[data-select='true'] polygon {fill: gold;}";
+        css+= "div[data-axis='custom'] .force[data-select='true'] polygon {stroke-width:2px}";
+        css+="span.message {background: #e6e6e6;padding: 6px;box-shadow: 0 2px 1px grey;margin: 2px 0 10px;font-size: 120%; text-align: center;}"
+        css+="span.message span.fbd_empty{color: rgb(212, 100, 70);}"
+        css+="span.message span.fbd_partial{color: rgb(212, 100, 70);}"
+        css+="span.message span.fbd_extra_arrow{color: rgb(212, 100, 70);}"
+        css+="span.message span.fbd_true{color: rgb(212, 100, 70);}"
 
 
 
