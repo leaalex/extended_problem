@@ -50,8 +50,8 @@ function FBD(element){
     this.element = element;
     this.answer = new Answer(element.querySelector("input[type='text']"));
     this.SVG = element.querySelector("svg");
-    this.buttonCheck = element.parentNode.parentNode.querySelector(".action").querySelector(".Check");
-    this.buttonCheck.classList.remove("is-disabled");
+    //this.buttonCheck = element.parentNode.parentNode.querySelector(".action").querySelector(".Check");
+    //this.buttonCheck.classList.remove("is-disabled");
     var answer = {};
 
     // Перечень внутрених функций
@@ -517,7 +517,7 @@ function FBD(element){
         css+="span.message span.fbd_empty{color: rgb(212, 100, 70);}"
         css+="span.message span.fbd_partial{color: rgb(212, 100, 70);}"
         css+="span.message span.fbd_extra_arrow{color: rgb(212, 100, 70);}"
-        css+="span.message span.fbd_true{color: rgb(212, 100, 70);}"
+        css+="span.message span.fbd_true{color: #166e36;}"
 
 
 
