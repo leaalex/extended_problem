@@ -47,13 +47,12 @@ function genID(value) {
 function Buffer(objectAnswer){
     this.coordinates = [];
 
-    this.get = function(value){
+    this.get = function(value, arrow_id){
         this.coordinates.push(value);
-        console.log(this.coordinates);
         if(this.complete()){
-            objectAnswer[genID()] = this.coordinates;
+            if(arrow_id) { objectAnswer[arrow_id] = this.coordinates; }
+            else { objectAnswer[genID()] = this.coordinates; }
             this.coordinates = [];
-            console.log(objectAnswer);
         }
     }
     
@@ -63,6 +62,13 @@ function Buffer(objectAnswer){
 
     this.stop = function(){
         this.coordinates = [];
+    }
+
+    this.getObject = function(){
+        return objectAnswer;
+    }
+    this.setObject = function(object){
+        objectAnswer = object;
     }
 
     this.getStartCoords = function(){
@@ -105,7 +111,7 @@ function sumObject(element){
         }
     }
 
-    this.svg_element = createSVGObject.bind(this)(6, 3, 2)
+    this.svg_element = createSVGObject.bind(this)(6, 2, 3)
     element.querySelector(".svg_object").appendChild(this.svg_element);
 
 
@@ -128,10 +134,15 @@ function sumObject(element){
         return element;
     };
 
-    function createTextSVG(x, y, text){
+    function createTextSVG(x, y, text, attributes){
         var NS ="http://www.w3.org/2000/svg";
         var textObject = document.createElementNS(NS,"text");
         var textObject = createElementSVG("text", null, null, {x: x, y: y});
+        if (attributes){
+            for (attribute in attributes){
+                textObject.setAttribute(attribute, attributes[attribute])
+            }
+        }
         var textNode = document.createTextNode(text);
         textObject.appendChild(textNode);
         return textObject;
@@ -144,6 +155,20 @@ function sumObject(element){
         return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
     }
 
+    function createArrow(x1, y1, x2, y2){
+        var arrowId = genID();
+        var arrowGroup = createElementSVG('g', "arrow_" + arrowId, "arrowGroup"); 
+        var arrowLine = createElementSVG('line', "arrowLine" + arrowId, "arrow-line", {stroke: "black", "stroke-width": "3",  "marker-end": "url(#"+'arrowMarker_' + arrowId + ")", x1: x1, y1: y1, x2: x2, y2: y2});
+        
+        arrowGroup.append(arrowLine);
+        
+        var arrowMarker = createElementSVG('marker', 'arrowMarker_' + arrowId, null, {"markerWidth": "10", "markerHeight": "10", "refX": "3", "refY": "3", "orient": "auto", "markerUnits": "strokeWidth"});
+        arrowMarker.innerHTML = '<path d="M0,0 L0,6 L6,3 z" fill="black" />';
+        arrowGroup.append(arrowMarker);
+
+        return arrowGroup;
+    }
+
     function createSVGObject(points_count, xblocks_count, yblocks_count){
         var pointsCount = points_count;
         var xBlocksCount = xblocks_count;
@@ -154,10 +179,10 @@ function sumObject(element){
         var svg_height = 400;
 
         var pointsMargins = 100;
-        var pointsRadius = 8;
+        var pointsRadius = 9;
         var blockMargins = 70;
-        var blockWidth = 60;
-        var blockPointsRadius = 8;
+        var blockWidth = 80;
+        var blockPointsRadius = 9;
         
         var svg = createElementSVG('svg', genID("svgObject"), null, {viewbox: '0 0 ' + svg_width + ' ' + svg_height, width: svg_width, height: svg_height });
 
@@ -166,73 +191,279 @@ function sumObject(element){
 
         var arrowMarkerId = genID("marker");
         var arrowGroup = createElementSVG('g', genID("arrowGroup"), "arrowGroup");
-        var arrowLine = createElementSVG('line', genID("arrowLine"), "arrow-line", {stroke: "black", "stroke-width": "3",  "marker-end": "url(#"+arrowMarkerId+")" });
+        var arrowLine = createElementSVG('line', genID("arrowLine"), "arrow-line", {stroke: "black", "stroke-width": "3",  "marker-end": "url(#" + arrowMarkerId + ")" });
         
         arrowGroup.append(arrowLine);
         
         var arrowMarker = createElementSVG('marker', arrowMarkerId, null, {"markerWidth": "10", "markerHeight": "10", "refX": "3", "refY": "3", "orient": "auto", "markerUnits": "strokeWidth"});
-        arrowMarker.innerHTML = '<path d="M0,0 L0,6 L9,3 z" fill="black" />';
+        arrowMarker.innerHTML = '<path d="M0,0 L0,6 L6,3 z" fill="black" />';
         arrowMarker.querySelector("path").style.display = "none";
         arrowGroup.append(arrowMarker);
 
         var pointsList = createElementSVG('g', genID("points_group"), null);
-
-
-
 
         var pointsArrays = Array.apply(null, {length: 6}).map(Number.call, Number);
         pointsArrays.forEach(function(item, i, arr) {
             pointsArrays[i] = [];
         });
 
-        var startColumn = 0;
+        var startColumn = 0;        
+        var usedPoints = [];
+        var startPoint;
 
+        var rect_height = (svg_height/(pointsCount+1)) * (pointsCount/xBlocksCount-1) + (svg_height/(pointsCount+1))/2;
+        var arr = Array.apply(null, {length: xBlocksCount}).map(Number.call, Number);
+        var groupXBlocks = createElementSVG('g', null, null, null);
+        arr.forEach(function(item, i, arr) {
+            x = svg_width/2 - blockWidth - blockMargins;
+            y = (svg_height/(pointsCount+1)) + ((pointsCount/xBlocksCount*i)*(svg_height/(pointsCount+1)))-(svg_height/(pointsCount+1))/4;
+
+            var rect = createElementSVG('rect', genID("rect"), "x-rect", {x: x, y: y, height: rect_height, width: blockWidth, fill: "#bdbdbd"});
+            groupXBlocks.append(rect);
+
+            groupXBlocks.append(createTextSVG(x + blockWidth/2 - 25, y + rect_height/2 + 8, ("ДПФ "+Math.floor(pointsCount/xBlocksCount)), null));
+
+            var BlockpointsCount = pointsCount/xBlocksCount;
+            var arrPoints = Array.apply(null, {length: BlockpointsCount}).map(Number.call, Number);
+            arrPoints.forEach(function(item, j, arr) {
+                var x = Math.floor(svg_width/2 - blockWidth - blockMargins);
+                var y = Math.floor((svg_height/(pointsCount+1)) + ((BlockpointsCount*(i)+j))*(svg_height/(pointsCount+1)));
+                
+                var point = createElementSVG('circle', genID("point"), "end-point", {cx: x, cy: y, r: blockPointsRadius, fill: "#04d804", stroke: "#12a212", "stroke-width": 2});
+                pointsList.append(point);
+
+                var inputDiv = document.createElement("div");
+                inputDiv.className = "input-container";
+                element.querySelector(".inputs-list").appendChild(inputDiv);
+
+                pointsArrays[1].push(point);
+
+                var x = Math.floor(svg_width/2 - blockWidth - blockMargins + blockWidth);
+                var point = createElementSVG('circle', genID("point"), "start-point", {cx: x, cy: y, r: blockPointsRadius, fill: "#90c9ff", stroke: "#be86ff", "stroke-width": 2});
+                pointsList.append(point);
+
+                pointsArrays[2].push(point);
+
+
+            });
+        });
+
+        var groupYBlocks = createElementSVG('g', null, null, null); 
+        var rect_height = (svg_height/(pointsCount+1)) * (pointsCount/yBlocksCount-1) + (svg_height/(pointsCount+1))/2;
+        var arr = Array.apply(null, {length: yBlocksCount}).map(Number.call, Number);
+
+        arr.forEach(function(item, i, arr) {
+            x = svg_width/2 + blockMargins;
+            y = (svg_height/(pointsCount+1)) + ((pointsCount/yBlocksCount*i)*(svg_height/(pointsCount+1)))-(svg_height/(pointsCount+1))/4;
+
+            var rect = createElementSVG('rect', genID("rect"), "y-rect", {x: x, y: y, height: rect_height, width: blockWidth, fill: "#bdbdbd"});
+            groupYBlocks.append(rect);
+
+            groupYBlocks.append(createTextSVG(x + blockWidth/2 - 25, y + rect_height/2 + 8, ("ДПФ "+Math.floor(pointsCount/yBlocksCount)), null));
+
+
+            var BlockpointsCount = pointsCount/yBlocksCount;
+            var arrPoints = Array.apply(null, {length: BlockpointsCount}).map(Number.call, Number);
+            arrPoints.forEach(function(item, j, arr) {
+                var x = Math.floor(svg_width/2 + blockMargins);
+                var y = Math.floor((svg_height/(pointsCount+1)) + ((BlockpointsCount*(i)+j))*(svg_height/(pointsCount+1)));
+
+                var point = createElementSVG('circle', genID("point"), "end-point", {cx: x, cy: y, r: blockPointsRadius, fill: "#04d804", stroke: "#12a212", "stroke-width": 2});
+                pointsList.append(point);
+
+            pointsArrays[3].push(point);
+
+                var x = Math.floor(svg_width/2 + blockMargins + blockWidth);
+                var point = createElementSVG('circle', genID("point"), "start-point", {cx: x, cy: y, r: blockPointsRadius, fill: "#90c9ff", stroke: "#be86ff", "stroke-width": 2});
+                pointsList.append(point);
+
+            pointsArrays[4].push(point);
+
+            });     
+        });
+
+        var arr = Array.apply(null, {length: pointsCount}).map(Number.call, Number);
+        arr.forEach(function(item, i, arr){
+            var group = createElementSVG('g', null, null, null);
+            var x = Math.floor(pointsMargins);
+            var y = Math.floor((i+1)*(svg_height/(pointsCount+1)));
+            var point = createElementSVG('circle', genID("point"), "start-point", {cx: x, cy: y, r: pointsRadius, fill: "#90c9ff", stroke: "#be86ff", "stroke-width": 2});
+            pointsList.append(point);
+
+            pointsArrays[0].push(point);
+
+            var signText = createTextSVG(pointsMargins-pointsRadius-30, (i+1)*(svg_height/(pointsCount+1))+5, "x" + i, null);
+            group.append(signText);
+            svg.append(group);
+        });
+
+        arr.forEach(function(item, i, arr){
+            var group = createElementSVG('g', null, null, null);
+            var x = Math.floor(svg_width-pointsMargins);
+            var y = Math.floor((i+1)*(svg_height/(pointsCount+1)));
+            var point = createElementSVG('circle', genID("point"), "end-point", {cx: x, cy: y, r: pointsRadius, fill: "#04d804", stroke: "#12a212", "stroke-width": 2});
+            pointsList.append(point);
+
+            pointsArrays[5].push(point);
+
+            var signText = createTextSVG(svg_width-pointsMargins+pointsRadius+3, (i+1)*(svg_height/(pointsCount+1))+5, "y" + i, null);
+            group.append(signText);
+            svg.append(group);
+        });
+
+
+        forEach = Array.prototype.forEach;
+
+        var inputsObject = {};
+
+        pointsArrays.forEach(function(array, i, arr){
+            array.forEach(function(item){
+                item.addEventListener("click", function(event){
+
+                    var targetX = event.target.getAttribute('cx');
+                    var targetY = event.target.getAttribute('cy');
+                    
+                    if(event.target.classList.contains("start-point") && !this.buffer.getStartCoords() && !usedPoints.includes(event.target)){
+
+                            startColumn = parseInt(i);
+
+                            this.buffer.get([targetX, targetY], null);
+                            this.answer.setJSON();
+
+                            arrowLine.setAttribute('x1', targetX);
+                            arrowLine.setAttribute('y1', targetY);
+                            arrowLine.setAttribute('x2', targetX);
+                            arrowLine.setAttribute('y2', targetY);
+
+                            pointsArrays[startColumn+1].forEach(function(array, i, arr){
+                                if(!usedPoints.includes(pointsArrays[startColumn+1][i])){
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke-width","4");
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke", "#ff8b19");
+                                }
+                            });
+
+                            startPoint = event.target;
+                    }
+
+                    else if(this.buffer.getStartCoords() && event.target.classList.contains("end-point") && pointsArrays[startColumn+1].includes(event.target) && !usedPoints.includes(event.target)){
+                        var mousePosition = cursorPoint(svg, event);
+
+                        var startX = this.buffer.getStartCoords()[0];
+                        var startY = this.buffer.getStartCoords()[1];
+                        
+                        var r = Math.floor(Math.sqrt((targetY-startY)*(targetY-startY)+(targetX-startX)*(targetX-startX)));
+                        var k = (r-pointsRadius-10) / r;
+                        var currentX = Math.floor(startX) + (targetX-startX) * k;
+                        var currentY = Math.floor(startY) + (targetY-startY) * k;
+                        
+                        arrowLine.setAttribute('x2', currentX);
+                        arrowLine.setAttribute('y2', currentY);
+                        arrowLine.style.display = "none";
+
+                        var newArrow = createArrow(startX, startY, currentX, currentY);
+
+                        usedPoints.push(event.target);
+                        usedPoints.push(startPoint);
+
+                        if(startColumn == 2){
+                            var input_index = pointsArrays[startColumn].indexOf(startPoint);
+                            var inputBlock = document.createElement("div");
+                            var label = document.createElement("label");
+                            var input = document.createElement("input");
+                            
+                            label.innerHTML = input_index + "  "; //'\(e^{-j \frac{2 \pi}{N}} \)' ;
+                            input.type = "text";
+                            input.className = "arrow-input";
+
+                            inputBlock.id = "arrow_input" +  newArrow.querySelector("line").getAttribute("id");
+                            inputBlock.appendChild(label);
+                            inputBlock.appendChild(input);
+                            element.querySelector(".inputs-list").querySelectorAll(".input-container")[input_index].appendChild(inputBlock);
+                            // input.focus();
+                            var new_k = (pointsRadius+15) / r;
+                            var new_currentX = Math.floor(startX) + (targetX-startX) * new_k;
+                            var new_currentY = Math.floor(startY) + (targetY-startY) * new_k;
+                            
+
+                            var arrowLabelCircle = createElementSVG('circle', null, null, {cx: new_currentX, cy: new_currentY, r: 8, fill: "black", stroke: "black", "stroke-width": 1});
+                            var arrowLabel = createTextSVG(parseInt(arrowLabelCircle.getAttribute("cx"))-  4, 6 + parseInt(arrowLabelCircle.getAttribute("cy")), input_index, {"fill":"white","font-size":"15", "font-weight":"bold"});
+                            
+                            if(input_index>9){
+                                arrowLabelCircle.setAttribute("r", "10")
+                                arrowLabel.setAttribute("x",parseInt(arrowLabelCircle.getAttribute("cx"))-9)
+                            }
+
+                            newArrow.append(arrowLabelCircle);
+                            newArrow.append(arrowLabel);
+                        } 
+
+                    pointsArrays[startColumn+1].forEach(function(array, i, arr){
+                                if(pointsArrays[startColumn+1][i].classList.contains("start-point")){
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke-width","2");
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke", "#be86ff");
+                                }
+                                
+                                if(pointsArrays[startColumn+1][i].classList.contains("end-point")){
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke-width","2");
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke", "#12a212");
+                                }
+                        });
+
+
+                        svg.append(newArrow, pointsList);
+
+                        this.buffer.get([targetX, targetY], newArrow.getAttribute("id"));
+                        this.answer.setJSON();
+                    }
+
+                }.bind(this));
+            }.bind(this));
+        }.bind(this));
 
         svg.addEventListener("mousemove", function(event){
-
            if(this.buffer.getStartCoords() && !this.buffer.complete()){
                 arrowLine.style.display = "block";
                 arrowMarker.querySelector("path").style.display = "block";
                 var mousePosition = cursorPoint(svg, event);
 
-                var atan2 = Math.atan2((mousePosition.y-this.buffer.getStartCoords()[1]),(mousePosition.x-this.buffer.getStartCoords()[0]));
-                var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
-           
-           // var r = 31.53 - Math.floor(Math.sqrt((mousePosition.y-this.buffer.getStartCoords()[1])*(mousePosition.y-this.buffer.getStartCoords()[1])+(mousePosition.x-this.buffer.getStartCoords()[0])*(mousePosition.x-this.buffer.getStartCoords()[0])));
-            // r = r<-10?r:-10;
-            // console.log("R: ", r);
-            // var string = String(31.583-r) + ",0 " + String(3.478-r) + ",-7.5 " + String(3.478-r) + ",-2.927 0.583,-2.925 0.583,2.927 " + String(3.478-r) + ",2.927 " + String(3.478-r) + ",7.5"
-            // arrow.querySelector("polygon").setAttribute('points', string )
-            // arrow.angle = Math.floor(angle);
-            // arrow.setAttribute("transform", "translate("+this.buffer.getStartCoords()[0]+","+this.buffer.getStartCoords()[1]+") rotate("+Math.floor(angle)+")");
+                var startX = this.buffer.getStartCoords()[0];
+                var startY = this.buffer.getStartCoords()[1];
 
-           // console.log(angle)
-                
-              //  if(angle >= 270 || angle <= 90){
+                var endX = event.target.getAttribute('cx');
+                var endY = event.target.getAttribute('cy');
 
-                    if(event.target.classList.contains("end-point") && pointsArrays[startColumn+1].includes(event.target)){
-                        var r = Math.floor(Math.sqrt((event.target.getAttribute('cy')-this.buffer.getStartCoords()[1])*(event.target.getAttribute('cy')-this.buffer.getStartCoords()[1])+(event.target.getAttribute('cx')-this.buffer.getStartCoords()[0])*(event.target.getAttribute('cx')-this.buffer.getStartCoords()[0])));
-                        //console.log(r);
-                        var k = (r-25) / r ;
-                        var currentX = Math.floor(this.buffer.getStartCoords()[0]) + (event.target.getAttribute('cx')-this.buffer.getStartCoords()[0]) * k;
-                        var currentY = Math.floor(this.buffer.getStartCoords()[1]) + (event.target.getAttribute('cy')-this.buffer.getStartCoords()[1]) * k;
-                        
-                        arrowLine.setAttribute('x2', currentX);
-                        arrowLine.setAttribute('y2', currentY);
-                    }
-                    else{
-                        var r = Math.floor(Math.sqrt((mousePosition.y-this.buffer.getStartCoords()[1])*(mousePosition.y-this.buffer.getStartCoords()[1])+(mousePosition.x-this.buffer.getStartCoords()[0])*(mousePosition.x-this.buffer.getStartCoords()[0])));
-                        r = r>30?r:50;
-                        //console.log(r);
-                        var k = (r-15) /  r;
-                        var currentX = Math.floor(this.buffer.getStartCoords()[0]) + (mousePosition.x-this.buffer.getStartCoords()[0]) * k;
-                        var currentY = Math.floor(this.buffer.getStartCoords()[1]) + (mousePosition.y-this.buffer.getStartCoords()[1]) * k;
-                        
-                        arrowLine.setAttribute('x2', currentX);
-                        arrowLine.setAttribute('y2', currentY);
-                    }
+                if(event.target.classList.contains("end-point") && pointsArrays[startColumn+1].includes(event.target) && !usedPoints.includes(event.target)){
+                    var r = Math.floor(Math.sqrt((endY-startY)*(endY-startY)+(endX-startX)*(endX-startX)));
+                    var k = (r-pointsRadius-10) / r;
+                    var currentX = Math.floor(startX) + (endX-startX) * k;
+                    var currentY = Math.floor(startY) + (endY-startY) * k;
+                    
+                    arrowLine.setAttribute('x2', currentX);
+                    arrowLine.setAttribute('y2', currentY);
 
-                //    }       
+                    event.target.setAttribute("stroke","gold");
+                    event.target.setAttribute("stroke-width","4");
+                }
+                else{
+                    var r = Math.floor(Math.sqrt((mousePosition.y-startY)*(mousePosition.y-startY)+(mousePosition.x-startX)*(mousePosition.x-startX)));
+                    r = r>30?r:50;
+
+                    var k = (r-8) /  r;
+                    var currentX = Math.floor(startX) + (mousePosition.x-startX) * k;
+                    var currentY = Math.floor(startY) + (mousePosition.y-startY) * k;
+                    
+                    arrowLine.setAttribute('x2', currentX);
+                    arrowLine.setAttribute('y2', currentY);
+                }
+  
+           }
+           else if(event.target.classList.contains("start-point") && !usedPoints.includes(event.target)){
+                event.target.setAttribute("stroke","gold");
+                event.target.setAttribute("stroke-width","4");
+           }
+           else if(event.target.classList.contains("arrow-line") && !this.buffer.getStartCoords()){
+                event.target.parentNode.querySelector("path").setAttribute("fill","red");
+                event.target.setAttribute("stroke","red");
            }
 
         }.bind(this));
@@ -240,188 +471,79 @@ function sumObject(element){
 
 
         svg.addEventListener("click", function(event){
-                if(!event.target.classList.contains("end-point") && !event.target.classList.contains("start-point")){
+
+                if(!event.target.classList.contains("end-point") && !event.target.classList.contains("start-point") && !event.target.classList.contains("arrow-line")){
                     arrowLine.style.display = "none";
                     this.buffer.stop();
+
+                    pointsArrays[startColumn+1].forEach(function(array, i, arr){
+                                if(pointsArrays[startColumn+1][i].classList.contains("start-point")){
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke-width","2");
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke", "#be86ff");
+                                }
+                                
+                                if(pointsArrays[startColumn+1][i].classList.contains("end-point")){
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke-width","2");
+                                    pointsArrays[startColumn+1][i].setAttribute("stroke", "#12a212");
+                                }
+                        });
+
                 }
-                if (event.target.classList.contains("arrow-line")){
+                if (event.target.classList.contains("arrow-line") && !this.buffer.getStartCoords()){
+
+                    var removedArrow = this.buffer.getObject()[event.target.parentNode.getAttribute('id')];
+                    for (var i=0; i < usedPoints.length; i++){
+                        if(usedPoints[i].getAttribute("cx") == removedArrow[0][0] && usedPoints[i].getAttribute("cy") == removedArrow[0][1]){
+                            usedPoints.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    for (var i=0; i < usedPoints.length; i++){
+                        if(usedPoints[i].getAttribute("cx") == removedArrow[1][0] && usedPoints[i].getAttribute("cy") == removedArrow[1][1]){
+                            usedPoints.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    var answer = this.buffer.getObject();
+
+                    delete answer[event.target.parentNode.getAttribute('id')];
+                    this.buffer.setObject(answer);
                     event.target.parentNode.remove();
+                    if (element.querySelector("#arrow_input" +  event.target.getAttribute("id"))) {
+                        element.querySelector("#arrow_input" +  event.target.getAttribute("id")).remove();
+                    }
                 }
-                console.log(event.target);
+
         }.bind(this));
 
 
-        var count = xBlocksCount;
-        var rect_height = (svg_height - 10*(count+1))/count;
-        var arr = Array.apply(null, {length: count}).map(Number.call, Number);
 
-        var groupXBlocks = createElementSVG('g', null, null, null);
-        
-        arr.forEach(function(item, i, arr) {
-            x = svg_width/2 - blockWidth - blockMargins;
-            y = i*rect_height+10*(i+1);
-            var rect = createElementSVG('rect', genID("rect"), "x-rect", {x: x, y: y, height: rect_height, width: blockWidth, fill: "#bdbdbd"});
-            groupXBlocks.append(rect);
-            var BlockpointsCount = pointsCount/xBlocksCount;
-            var arrPoints = Array.apply(null, {length: BlockpointsCount}).map(Number.call, Number);
-            arrPoints.forEach(function(item, j, arr) {
-                var x = svg_width/2 - blockWidth - blockMargins;
-                var y = i*rect_height + (rect_height/BlockpointsCount*j)+10*(i+1)+ rect_height/(2*BlockpointsCount);
-                
-                var point = createElementSVG('circle', genID("point"), "end-point", {cx: x, cy: y, r: blockPointsRadius, fill: "green"});
-                pointsList.append(point);
-
-            pointsArrays[1].push(point);
-
-
-                var x = svg_width/2 - blockWidth - blockMargins + blockWidth;
-                var point = createElementSVG('circle', genID("point"), "start-point", {cx: x, cy: y, r: blockPointsRadius, fill: "green"});
-                pointsList.append(point);
-
-            pointsArrays[2].push(point);
-
-
-            });
-        });
-
-        var groupYBlocks = createElementSVG('g', null, null, null);
-        var count = yBlocksCount;    
-        var rect_height = (svg_height - 10*(count+1))/count;
-        var arr = Array.apply(null, {length: count}).map(Number.call, Number);
-        arr.forEach(function(item, i, arr) {
-            x = svg_width/2 + blockMargins;
-            y = i*rect_height+10*(i+1);
-            var rect = createElementSVG('rect', genID("rect"), "y-rect", {x: x, y: y, height: rect_height, width: blockWidth, fill: "#bdbdbd"});
-            groupYBlocks.append(rect);
-            var BlockpointsCount = pointsCount/yBlocksCount;
-            var arrPoints = Array.apply(null, {length: BlockpointsCount}).map(Number.call, Number);
-            arrPoints.forEach(function(item, j, arr) {
-                var x = svg_width/2 + blockMargins;
-                var y = i*rect_height + (rect_height/BlockpointsCount*j)+10*(i+1)+ rect_height/(2*BlockpointsCount);
-                var point = createElementSVG('circle', genID("point"), "end-point", {cx: x, cy: y, r: blockPointsRadius, fill: "green"});
-                pointsList.append(point);
-
-            pointsArrays[3].push(point);
-
-                var x = svg_width/2 + blockMargins + blockWidth;
-                var point = createElementSVG('circle', genID("point"), "start-point", {cx: x, cy: y, r: blockPointsRadius, fill: "green"});
-                pointsList.append(point);
-
-            pointsArrays[4].push(point);
-
-            });     
-        });
-        
-        var count = pointsCount;
-        var arr = Array.apply(null, {length: count}).map(Number.call, Number);
-        arr.forEach(function(item, i, arr){
-            var group = createElementSVG('g', null, null, null);
-            var x = pointsMargins;
-            var y = (i+1)*(svg_height/(count+1));
-            var point = createElementSVG('circle', genID("point"), "start-point", {cx: x, cy: y, r: pointsRadius, fill: "green"});
-            pointsList.append(point);
-
-            pointsArrays[0].push(point);
-
-            var signText = createTextSVG(pointsMargins-pointsRadius-20, (i+1)*(svg_height/(count+1))+5, "x" + i);
-            group.append(signText);
-            svg.append(group);
-        });
-
-        arr.forEach(function(item, i, arr){
-            var group = createElementSVG('g', null, null, null);
-            var x = svg_width-pointsMargins;
-            var y = (i+1)*(svg_height/(count+1));
-            var point = createElementSVG('circle', genID("point"), "end-point", {cx: x, cy: y, r: pointsRadius, fill: "green"});
-            pointsList.append(point);
-
-            pointsArrays[5].push(point);
-
-            var signText = createTextSVG(svg_width-pointsMargins+pointsRadius+3, (i+1)*(svg_height/(count+1))+5, "y" + i);
-            group.append(signText);
-            svg.append(group);
-        });
-
-
-        forEach = Array.prototype.forEach;
-        // pointsList.querySelectorAll("circle").forEach(function(item){
-        //     item.addEventListener("click", function(event){
-        //         if(event.target.classList.contains("start-point") && !this.buffer.getStartCoords()){
-        //                 console.log("CASE 1");
-
-        //                 this.buffer.get([event.target.getAttribute('cx'), event.target.getAttribute('cy')]);
-        //                 this.answer.setJSON();
-
-        //                 arrowLine.setAttribute('x1', event.target.getAttribute('cx'));
-        //                 arrowLine.setAttribute('y1', event.target.getAttribute('cy'));
-
-        //                 arrowLine.setAttribute('x2', event.target.getAttribute('cx'));
-        //                 arrowLine.setAttribute('y2', event.target.getAttribute('cy'));
-        //         }
-        //         else if(this.buffer.getStartCoords() && event.target.classList.contains("end-point")){
-        //             console.log("CASE 2");
-
-        //             var mousePosition = cursorPoint(svg, event);
-        //             var atan2 = Math.atan2((mousePosition.y-this.buffer.getStartCoords()[1]),(mousePosition.x-this.buffer.getStartCoords()[0]));
-        //             var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
-        //             var r = Math.floor(Math.sqrt((mousePosition.y-this.buffer.getStartCoords()[1])*(mousePosition.y-this.buffer.getStartCoords()[1])+(mousePosition.x-this.buffer.getStartCoords()[0])*(mousePosition.x-this.buffer.getStartCoords()[0])));
-        //             var k = (r-25) / r;
-        //             var currentX = Math.floor(this.buffer.getStartCoords()[0]) + (event.target.getAttribute('cx')-this.buffer.getStartCoords()[0]) * k;
-        //             var currentY = Math.floor(this.buffer.getStartCoords()[1]) + (event.target.getAttribute('cy')-this.buffer.getStartCoords()[1]) * k;
-                    
-        //             arrowLine.setAttribute('x2', currentX);
-        //             arrowLine.setAttribute('y2', currentY);
-
-        //             svg.append(arrowGroup.cloneNode(true), pointsList);
-
-        //             this.buffer.get([event.target.getAttribute('cx'), event.target.getAttribute('cy')]);
-        //             this.answer.setJSON();
-        //         }
-
-        //     }.bind(this))
-        // }.bind(this))
-
-
-
-        pointsArrays.forEach(function(array, i, arr){
-            array.forEach(function(item){
-                item.addEventListener("click", function(event){
-                    if(event.target.classList.contains("start-point") && !this.buffer.getStartCoords()){
-                            console.log("CASE 1", i);
-
-                            startColumn = parseInt(i);
-
-                            this.buffer.get([event.target.getAttribute('cx'), event.target.getAttribute('cy')]);
-                            this.answer.setJSON();
-
-                            arrowLine.setAttribute('x1', event.target.getAttribute('cx'));
-                            arrowLine.setAttribute('y1', event.target.getAttribute('cy'));
-
-                            arrowLine.setAttribute('x2', event.target.getAttribute('cx'));
-                            arrowLine.setAttribute('y2', event.target.getAttribute('cy'));
-                    }
-                    else if(this.buffer.getStartCoords() && event.target.classList.contains("end-point") && pointsArrays[startColumn+1].includes(event.target)){
-                        console.log("CASE 2");
-
-                        var mousePosition = cursorPoint(svg, event);
-                        var atan2 = Math.atan2((mousePosition.y-this.buffer.getStartCoords()[1]),(mousePosition.x-this.buffer.getStartCoords()[0]));
-                        var angle = atan2 > 0 ? atan2 * 360 / (2*Math.PI) : 360 + atan2 * 360 / (2*Math.PI);
-                        var r = Math.floor(Math.sqrt((mousePosition.y-this.buffer.getStartCoords()[1])*(mousePosition.y-this.buffer.getStartCoords()[1])+(mousePosition.x-this.buffer.getStartCoords()[0])*(mousePosition.x-this.buffer.getStartCoords()[0])));
-                        var k = (r-25) / r;
-                        var currentX = Math.floor(this.buffer.getStartCoords()[0]) + (event.target.getAttribute('cx')-this.buffer.getStartCoords()[0]) * k;
-                        var currentY = Math.floor(this.buffer.getStartCoords()[1]) + (event.target.getAttribute('cy')-this.buffer.getStartCoords()[1]) * k;
+        svg.addEventListener("mouseout", function(event){
+                        if(event.target.classList.contains("start-point")){
+                            event.target.setAttribute("stroke-width","2");
+                            event.target.setAttribute("stroke", "#be86ff");
+                        }
                         
-                        arrowLine.setAttribute('x2', currentX);
-                        arrowLine.setAttribute('y2', currentY);
+                        if(event.target.classList.contains("end-point")){
+                            event.target.setAttribute("stroke-width","2");
+                            event.target.setAttribute("stroke", "#12a212");
+                        }
 
-                        svg.append(arrowGroup.cloneNode(true), pointsList);
+                        if(event.target.classList.contains("arrow-line")){
+                            event.target.parentNode.querySelector("path").setAttribute("fill","black");
+                            event.target.setAttribute("stroke","black");
+                        }
 
-                        this.buffer.get([event.target.getAttribute('cx'), event.target.getAttribute('cy')]);
-                        this.answer.setJSON();
-                    }
-
-                }.bind(this));
-            }.bind(this));
+                        if(this.buffer.getStartCoords() && !this.buffer.complete()){
+                            pointsArrays[startColumn+1].forEach(function(array, i, arr){
+                                    if(!usedPoints.includes(pointsArrays[startColumn+1][i])){
+                                        pointsArrays[startColumn+1][i].setAttribute("stroke-width","4");
+                                        pointsArrays[startColumn+1][i].setAttribute("stroke", "#ff8b19");
+                                    }
+                                });
+                        }
         }.bind(this));
 
 
@@ -431,14 +553,9 @@ function sumObject(element){
 
         svg.insertBefore(arrowGroup, pointsList);
 
-        console.log("pointsArrays: ", pointsArrays);
-
         return svg;
 
     };
-
-
-    // .bind(this)(this.SVG)
 }
 
 sumActivation(".sum_task");
