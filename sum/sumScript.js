@@ -2,7 +2,7 @@ if ( sumObjects==undefined ) var sumObjects = {};
 
 function sumActivation(selector){
     Array.prototype.filter.call(document.querySelectorAll(selector),function(element){return element.dataset.status==undefined}).forEach(function(element, i ,array){
-        sumObjects[element.id] = (new sumObject(element));
+        sumObjects[element.id] = (new sumObject(element, element.getAttribute("points_count"), element.getAttribute("xblocks_count"), element.getAttribute("yblocks_count")));
         element.dataset.status = "activate";
     });
     setTimeout(function(){sumActivation(selector)}, 1000);
@@ -81,7 +81,7 @@ function Buffer(objectAnswer){
 }
 
 
-function sumObject(element){
+function sumObject(element, points_count, xblocks_count, yblocks_count){
     this.element = element;
     //селектор добавить
     this.answer = new Answer(element.querySelector("#answerInput_"+element.id).querySelector("input[type='text']"));
@@ -111,14 +111,14 @@ function sumObject(element){
         }
     }
 
-    this.svg_element = createSVGObject.bind(this)(6, 2, 3)
+    this.svg_element = createSVGObject.bind(this)(points_count, xblocks_count, yblocks_count)
     element.querySelector(".svg_object").appendChild(this.svg_element);
 
 
 
-    if (this.answer.get()){
-        this.dataAnswer = this.answer.getJSON().answer;
-    }
+    // if (this.answer.get()){
+    //     this.dataAnswer = this.answer.getJSON().answer;
+    // }
 
     function createElementSVG(name, id, classList, attributes){
         var NS ="http://www.w3.org/2000/svg";
@@ -155,8 +155,14 @@ function sumObject(element){
         return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
     }
 
-    function createArrow(x1, y1, x2, y2){
-        var arrowId = genID();
+    function createArrow(x1, y1, x2, y2, arrow_id){
+        if(arrow_id) {
+            var arrowId = arrow_id.replace("arrow_", "");
+        }
+        else{
+            var arrowId = genID();
+        }
+        
         var arrowGroup = createElementSVG('g', "arrow_" + arrowId, "arrowGroup"); 
         var arrowLine = createElementSVG('line', "arrowLine" + arrowId, "arrow-line", {stroke: "black", "stroke-width": "3",  "marker-end": "url(#"+'arrowMarker_' + arrowId + ")", x1: x1, y1: y1, x2: x2, y2: y2});
         
@@ -170,13 +176,13 @@ function sumObject(element){
     }
 
     function createSVGObject(points_count, xblocks_count, yblocks_count){
-        var pointsCount = points_count;
-        var xBlocksCount = xblocks_count;
-        var yBlocksCount = yblocks_count;
+        var pointsCount = parseInt(points_count);
+        var xBlocksCount = parseInt(xblocks_count);
+        var yBlocksCount = parseInt(yblocks_count);
 
         // svg object sizes
         var svg_width = 800;
-        var svg_height = 400;
+        var svg_height = pointsCount * 50;
 
         var pointsMargins = 100;
         var pointsRadius = 9;
@@ -202,7 +208,15 @@ function sumObject(element){
 
         var pointsList = createElementSVG('g', genID("points_group"), null);
 
-        var pointsArrays = Array.apply(null, {length: 6}).map(Number.call, Number);
+
+        var inputAnswers = Array.apply(null, {length: pointsCount}).map(String.prototype.valueOf,"");
+        var answer = this.answer.getJSON();
+        answer["inputs"] = inputAnswers;
+        this.buffer.setObject(answer);
+
+
+        var pointsArrays = Array.apply(null, {length: pointsCount}).map(Number.call, Number);
+
         pointsArrays.forEach(function(item, i, arr) {
             pointsArrays[i] = [];
         });
@@ -234,6 +248,7 @@ function sumObject(element){
 
                 var inputDiv = document.createElement("div");
                 inputDiv.className = "input-container";
+
                 element.querySelector(".inputs-list").appendChild(inputDiv);
 
                 pointsArrays[1].push(point);
@@ -311,15 +326,10 @@ function sumObject(element){
             svg.append(group);
         });
 
-
         forEach = Array.prototype.forEach;
-
-        var inputsObject = {};
-
         pointsArrays.forEach(function(array, i, arr){
-            array.forEach(function(item){
+            array.forEach(function(item, j, arr){
                 item.addEventListener("click", function(event){
-
                     var targetX = event.target.getAttribute('cx');
                     var targetY = event.target.getAttribute('cy');
                     
@@ -327,7 +337,7 @@ function sumObject(element){
 
                             startColumn = parseInt(i);
 
-                            this.buffer.get([targetX, targetY], null);
+                            this.buffer.get([j, i], null);
                             this.answer.setJSON();
 
                             arrowLine.setAttribute('x1', targetX);
@@ -348,8 +358,8 @@ function sumObject(element){
                     else if(this.buffer.getStartCoords() && event.target.classList.contains("end-point") && pointsArrays[startColumn+1].includes(event.target) && !usedPoints.includes(event.target)){
                         var mousePosition = cursorPoint(svg, event);
 
-                        var startX = this.buffer.getStartCoords()[0];
-                        var startY = this.buffer.getStartCoords()[1];
+                        var startX = startPoint.getAttribute('cx');
+                        var startY = startPoint.getAttribute('cy');
                         
                         var r = Math.floor(Math.sqrt((targetY-startY)*(targetY-startY)+(targetX-startX)*(targetX-startX)));
                         var k = (r-pointsRadius-10) / r;
@@ -360,25 +370,34 @@ function sumObject(element){
                         arrowLine.setAttribute('y2', currentY);
                         arrowLine.style.display = "none";
 
-                        var newArrow = createArrow(startX, startY, currentX, currentY);
+                        var newArrow = createArrow(startX, startY, currentX, currentY, null);
 
                         usedPoints.push(event.target);
                         usedPoints.push(startPoint);
 
                         if(startColumn == 2){
+                            
                             var input_index = pointsArrays[startColumn].indexOf(startPoint);
                             var inputBlock = document.createElement("div");
                             var label = document.createElement("label");
                             var input = document.createElement("input");
                             
-                            label.innerHTML = input_index + "  "; //'\(e^{-j \frac{2 \pi}{N}} \)' ;
+                            label.innerHTML = "(" + input_index + ") : k = " + input_index; //'\(e^{-j \frac{2 \pi}{N}} \)' ;
                             input.type = "text";
                             input.className = "arrow-input";
 
                             inputBlock.id = "arrow_input" +  newArrow.querySelector("line").getAttribute("id");
                             inputBlock.appendChild(label);
                             inputBlock.appendChild(input);
+                            
+       //                      var formula = element.querySelector("#task_input_formula");
+       //                   var formulaClone = formula.cloneNode(true);
+       //                   formulaClone.style.display = "block";
+                            // formulaClone.id = "formula_input" +  newArrow.querySelector("line").getAttribute("id");
+       //                      element.querySelector(".inputs-list").querySelectorAll(".input-container")[input_index].appendChild(formulaClone);
+
                             element.querySelector(".inputs-list").querySelectorAll(".input-container")[input_index].appendChild(inputBlock);
+
                             // input.focus();
                             var new_k = (pointsRadius+15) / r;
                             var new_currentX = Math.floor(startX) + (targetX-startX) * new_k;
@@ -412,22 +431,22 @@ function sumObject(element){
 
                         svg.append(newArrow, pointsList);
 
-                        this.buffer.get([targetX, targetY], newArrow.getAttribute("id"));
+                        this.buffer.get([j, i], newArrow.getAttribute("id"));
                         this.answer.setJSON();
                     }
 
                 }.bind(this));
             }.bind(this));
         }.bind(this));
-
+        
         svg.addEventListener("mousemove", function(event){
            if(this.buffer.getStartCoords() && !this.buffer.complete()){
                 arrowLine.style.display = "block";
                 arrowMarker.querySelector("path").style.display = "block";
                 var mousePosition = cursorPoint(svg, event);
 
-                var startX = this.buffer.getStartCoords()[0];
-                var startY = this.buffer.getStartCoords()[1];
+                var startX = startPoint.getAttribute('cx');
+                var startY = startPoint.getAttribute('cy');
 
                 var endX = event.target.getAttribute('cx');
                 var endY = event.target.getAttribute('cy');
@@ -468,8 +487,6 @@ function sumObject(element){
 
         }.bind(this));
 
-
-
         svg.addEventListener("click", function(event){
 
                 if(!event.target.classList.contains("end-point") && !event.target.classList.contains("start-point") && !event.target.classList.contains("arrow-line")){
@@ -490,30 +507,44 @@ function sumObject(element){
 
                 }
                 if (event.target.classList.contains("arrow-line") && !this.buffer.getStartCoords()){
-
                     var removedArrow = this.buffer.getObject()[event.target.parentNode.getAttribute('id')];
                     for (var i=0; i < usedPoints.length; i++){
-                        if(usedPoints[i].getAttribute("cx") == removedArrow[0][0] && usedPoints[i].getAttribute("cy") == removedArrow[0][1]){
+                        if(usedPoints[i] == pointsArrays[removedArrow[0][1]][removedArrow[0][0]]){
                             usedPoints.splice(i, 1);
                             break;
                         }
                     }
 
                     for (var i=0; i < usedPoints.length; i++){
-                        if(usedPoints[i].getAttribute("cx") == removedArrow[1][0] && usedPoints[i].getAttribute("cy") == removedArrow[1][1]){
+                        if(usedPoints[i] == pointsArrays[removedArrow[1][1]][removedArrow[1][0]]){
                             usedPoints.splice(i, 1);
                             break;
                         }
                     }
 
                     var answer = this.buffer.getObject();
-
                     delete answer[event.target.parentNode.getAttribute('id')];
                     this.buffer.setObject(answer);
+                    this.answer.setJSON(answer);
                     event.target.parentNode.remove();
                     if (element.querySelector("#arrow_input" +  event.target.getAttribute("id"))) {
                         element.querySelector("#arrow_input" +  event.target.getAttribute("id")).remove();
+                        // element.querySelector("#formula_input" +  event.target.getAttribute("id")).remove();
                     }
+
+                    element.querySelector(".inputs-list").querySelectorAll(".input-container").forEach(function(item, i, arr){
+                        if(item.querySelector("input")){
+                            inputAnswers[i] = item.querySelector("input").value;
+                        }
+                        else{
+                            inputAnswers[i] = "";
+                        }
+                    });
+
+                    var answer = this.answer.getJSON();
+                    answer["inputs"] = inputAnswers;
+                    this.buffer.setObject(answer);
+                    this.answer.setJSON(answer);
                 }
 
         }.bind(this));
@@ -547,9 +578,78 @@ function sumObject(element){
         }.bind(this));
 
 
+
         svg.append(groupXBlocks);
         svg.append(groupYBlocks);
         svg.append(pointsList);
+
+        element.querySelector(".inputs-list").querySelectorAll(".input-container").forEach(function(item, i, arr){
+            item.addEventListener("change", function(event){
+                inputAnswers[i] = event.target.value;
+                var answer = this.answer.getJSON();
+                answer["inputs"] = inputAnswers;
+                this.buffer.setObject(answer);
+                this.answer.setJSON(answer);
+            }.bind(this));
+        }.bind(this));
+
+
+        if(this.answer.get()){
+            var answer = this.answer.getJSON();
+            inputAnswers = answer["inputs"];
+            this.answer.setJSON(answer);
+            this.buffer.setObject(answer);
+            Object.keys(answer).forEach(function(key,index) {
+
+                if(key != "inputs"){
+                    var startX = pointsArrays[answer[key][0][1]][answer[key][0][0]].getAttribute('cx');
+                    var startY = pointsArrays[answer[key][0][1]][answer[key][0][0]].getAttribute('cy');
+                    usedPoints.push(pointsArrays[answer[key][0][1]][answer[key][0][0]]);
+                    var targetX = pointsArrays[answer[key][1][1]][answer[key][1][0]].getAttribute('cx');
+                    var targetY = pointsArrays[answer[key][1][1]][answer[key][1][0]].getAttribute('cy');
+                    usedPoints.push(pointsArrays[answer[key][1][1]][answer[key][1][0]]);
+                    var r = Math.floor(Math.sqrt((targetY-startY)*(targetY-startY)+(targetX-startX)*(targetX-startX)));
+                    var k = (r-pointsRadius-10) / r;
+                    var currentX = Math.floor(startX) + (targetX-startX) * k;
+                    var currentY = Math.floor(startY) + (targetY-startY) * k;
+                    var newArrow = createArrow(startX, startY, currentX, currentY, key);
+                    if(answer[key][0][1] == 2){
+                            var input_index = pointsArrays[answer[key][0][1]].indexOf(pointsArrays[answer[key][0][1]][answer[key][0][0]]);
+                            var inputBlock = document.createElement("div");
+                            var label = document.createElement("label");
+                            var input = document.createElement("input");
+                            label.innerHTML = "(" + input_index + ") : k = " + input_index; 
+                            input.type = "text";
+                            input.value = answer["inputs"][input_index];
+                            input.className = "arrow-input";
+                            inputBlock.id = "arrow_input" +  newArrow.querySelector("line").getAttribute("id");
+                            inputBlock.appendChild(label);
+                            inputBlock.appendChild(input);
+                            //  var formula = element.querySelector("#task_input_formula");
+                            //  var formulaClone = formula.cloneNode(true);
+                            //  formulaClone.style.display = "block";
+                            //  formulaClone.id = "formula_input" +  newArrow.querySelector("line").getAttribute("id");
+                            //  element.querySelector(".inputs-list").querySelectorAll(".input-container")[input_index].appendChild(formulaClone);
+
+                            element.querySelector(".inputs-list").querySelectorAll(".input-container")[input_index].appendChild(inputBlock);
+                            var new_k = (pointsRadius+15) / r;
+                            var new_currentX = Math.floor(startX) + (targetX-startX) * new_k;
+                            var new_currentY = Math.floor(startY) + (targetY-startY) * new_k;
+                            var arrowLabelCircle = createElementSVG('circle', null, null, {cx: new_currentX, cy: new_currentY, r: 8, fill: "black", stroke: "black", "stroke-width": 1});
+                            var arrowLabel = createTextSVG(parseInt(arrowLabelCircle.getAttribute("cx"))-  4, 6 + parseInt(arrowLabelCircle.getAttribute("cy")), input_index, {"fill":"white","font-size":"15", "font-weight":"bold"});
+                            if(input_index>9){
+                                arrowLabelCircle.setAttribute("r", "10")
+                                arrowLabel.setAttribute("x",parseInt(arrowLabelCircle.getAttribute("cx"))-9)
+                            }
+                            newArrow.append(arrowLabelCircle);
+                            newArrow.append(arrowLabel);
+                    } 
+                    
+                    svg.append(newArrow, pointsList);
+
+                }
+                });
+        }
 
         svg.insertBefore(arrowGroup, pointsList);
 
