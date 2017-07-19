@@ -94,18 +94,21 @@ svg text{
     margin: 0 auto;
     display: flex;
 }
-#task_input_formula{
-  display: none;
-  }
-#task_input_formula .MathJax_SVG{
-  top: 6px !important;
-}
-  
+
 .input-container label{
   font-size: 1em;
   }
+.sum_task div[id^=inputtype]{
+  display:none;
+  }
 </style>
 <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/sum/sumScript.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+    var submitButton = document.querySelector("#id$taskId").parentNode.parentNode.querySelector("button.submit");
+    submitButton.disabled = false;
+}
+</script>
   <H2>Постройте граф алгоритма БПФ с основанием N=$points_count</H2>
 <div class="sum_task" id="id$taskId" points_count="$points_count" xblocks_count="$xblocks_count" yblocks_count="$yblocks_count">
   <div class="svg_object">
