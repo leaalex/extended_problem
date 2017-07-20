@@ -90,16 +90,21 @@ svg text{
 }
   
 .input-container{
-  width: 300px;
+  width: 340px;
     margin: 0 auto;
     display: flex;
 }
 
 .input-container label{
-  font-size: 1em;
+  font-size: 1.1em;
+    width: 100px;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
   }
+
 .sum_task div[id^=inputtype]{
-  display:none;
+    display:none;
   }
 </style>
 <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/sum/sumScript.js"></script>
