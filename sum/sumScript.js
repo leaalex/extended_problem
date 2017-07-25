@@ -191,13 +191,15 @@ function sumObject(element, points_count, xblocks_count, yblocks_count){
 
         var startPointsColor = "#00d6ff";
         var startPointStrokeColor = "#009ee2";
+        var startPointHoverColor = "#00d274"
+
         var endPointsColor = "#00d6ff";
         var endPointStrokeColor = "#009ee2";
         var pointsStrokeWidth = 1.5;
 
         var arrowColor = "#00d274";
         var arrowLabelFillColor = "#008147";
-        var arrowLabelStrokeColor = "##005e34";
+        var arrowLabelStrokeColor = "#005e34";
 
         var svg = createElementSVG('svg', genID("svgObject"), null, {viewbox: '0 0 ' + svg_width + ' ' + svg_height, width: svg_width, height: svg_height });
 
@@ -411,7 +413,7 @@ function sumObject(element, points_count, xblocks_count, yblocks_count){
                     arrowLine.setAttribute('x2', currentX);
                     arrowLine.setAttribute('y2', currentY);
 
-                    event.target.setAttribute("stroke","gold");
+                    event.target.setAttribute("stroke", startPointHoverColor);
                     event.target.setAttribute("stroke-width","4");
                 }
                 else{
@@ -426,7 +428,7 @@ function sumObject(element, points_count, xblocks_count, yblocks_count){
   
            }
            else if(event.target.classList.contains("start-point") && !usedPoints.includes(event.target)){
-                event.target.setAttribute("stroke","gold");
+                event.target.setAttribute("stroke", startPointHoverColor);
                 event.target.setAttribute("stroke-width","4");
            }
            else if(event.target.classList.contains("arrow-line") && !this.buffer.getStartCoords()){
