@@ -1,0 +1,148 @@
+<problem>
+    <style>
+    </style>
+<script type="loncapa/python">
+import json
+import hashlib
+
+taskId = hashlib.md5(str(random.randrange(100))).hexdigest()[:5]
+taskObject = {}
+
+SVG_width = 830
+SVG_height = 800
+    
+taskObject["SVG_width"] = SVG_width
+taskObject["SVG_height"] = SVG_height
+
+# Минимальный мастаб графа
+taskObject["min_scale"] = 0.5
+  
+# Минимальный мастаб графа
+taskObject["max_scale"] = 1.5
+taskObject["free_nodes_zone_height"] = 140
+taskObject["node_radius"] = 60
+taskObject["deep_radius"] = 160
+taskObject["group_circle_radius"] = 14
+taskObject["groups_area_width"] = 200
+taskObject["font_size"] = 0.75
+taskObject["graph_scale"] = 0.8
+taskObject["groups_area_color"] = "#c8c8c8"
+taskObject["graph_space_color"] = "#f6f6f6"
+taskObject["free_nodes_zone_color"] = "#cccdcc"
+taskObject["nodes_default_color"] = "azure"
+
+nodesObject = {
+        "main_node": {
+            "node_id": "id_B4166CAC",
+            "label": "Персонал предприятия",
+            "group": "empty_group"
+        },
+        "graph": [{
+                "node_id": "id_F4865F0E",
+                "label": "Промышленно- производственный персонал",
+                "children": [
+
+                ],
+                "group": "empty_group"
+            },
+            {
+                "node_id": "id_F442B871",
+                "label": "Непромышленный персонал",
+                "group": "empty_group"
+            }
+        ],
+        "free_nodes": [{
+                "node_id": "id_2DE99B5E",
+                "label": "Основные рабочие",
+                "group": "empty_group"
+            },
+            {
+                "node_id": "id_2544BE34",
+                "label": "Вспомогательные рабочие",
+                "group": "empty_group"
+            },
+            {
+                "node_id": "id_6BC2151D",
+                "label": "Руководители",
+                "group": "empty_group"
+            },
+            {
+                "node_id": "id_B2B04B58",
+                "label": "Специалисты",
+                "group": "empty_group"
+            },
+            {
+                "node_id": "id_279D8B43",
+                "label": "Другие служащие",
+                "group": "empty_group"
+            },
+            {
+                "node_id": "id_33AB8571",
+                "label": "Рабочие",
+                "group": "empty_group",
+                "children": []
+            },
+            {
+                "node_id": "id_10AF6B2A",
+                "label": "Служащие",
+                "group": "empty_group",
+                "children": []
+            }
+        ]
+    }
+nodesGroups = {
+        "empty_group": {
+            "title": "Я группа пустая",
+            "color": "azure"
+        },
+
+        "group_1": {
+            "title": "Я группа 1",
+            "color": "darkseagreen"
+        },
+        "group_2": {
+            "title": "Я группа номер 2",
+            "color": "deepskyblue"
+        }
+    }
+taskObject["nodesObject"] = nodesObject
+taskObject["nodesGroups"] = {} if not nodesGroups else nodesGroups
+taskObjectTemplate = json.dumps(taskObject)
+
+def check_answer(expect, ans):
+    answer = json.loads(ans)['graph_scale']
+    return {'input_list': [{ 'ok': True, 'msg': str(answer), 'grade_decimal':float(0.5) },]}
+ 
+</script>
+  
+<script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/mind_map/mind_map.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+    var submitButton = document.querySelector("#id$taskId").parentNode.parentNode.querySelector("button.submit");
+    submitButton.disabled = false;
+}
+document.getElementById("id$taskId").setAttribute("data", JSON.stringify($taskObjectTemplate));
+
+</script>  
+<div class="mind_map" id="id$taskId" data=''>
+  <p><strong>Задание.</strong> Сформируйте классификационную таблицу персонала предприятия.</p>
+    <div class="svg_object"></div>
+
+    <div id="input_id">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+    </div>
+</div>
+<style>
+    #id$taskId #input_id {
+        display: none !important;
+    }
+
+    #id$taskId .svg_object { 
+        width: $SVG_widthpx; 
+        height: $SVG_heightpx;
+    }
+</style>
+</problem>

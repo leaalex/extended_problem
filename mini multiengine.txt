@@ -169,34 +169,34 @@ if($("#$unique_id span.message")){
 </div>
 
 <style>
-  .capa_inputtype{
+  #$unique_id .capa_inputtype{
     text-align: center !important;
   }
-.conf-text{
+#$unique_id .conf-text{
   text-align: center !important;
   padding: 5px !important;
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.conf-wrong-cell{
+#$unique_id .conf-wrong-cell{
   border: 2px solid rgb(178, 6, 16) !important;
 }
 
-.conf-all-answers{
+#$unique_id .conf-all-answers{
   min-height: 60px
 }
-.conf-table td{
+#$unique_id .conf-table td{
   border: 1px solid #b2b2b2;
 }
 
-.conf-table{
+#$unique_id .conf-table{
   width:100%
 }
 
-td.conf-answers-place{
+#$unique_id  td.conf-answers-place{
   min-width: 250px;
 }
 
-.conf-item{
+#$unique_id .conf-item{
     display: inline-block;
 
     max-height: 100px;
@@ -210,7 +210,7 @@ td.conf-answers-place{
     cursor: move;
 }
 
-.conf-answers-place{
+#$unique_id .conf-answers-place{
   background: #f9f9f9;
 }
 
