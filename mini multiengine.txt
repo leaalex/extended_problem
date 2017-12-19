@@ -5,10 +5,10 @@ import hashlib
 import json
 
 # Включить подсветку неправильных ответов  
-enable_error_highlitghing = True
+enable_error_highlitghing = False
   
 #Показать поле ввода ответа
-show_input = False
+show_input = True
 
 if(show_input):
     show_input = "true"
@@ -21,7 +21,7 @@ def key():
 
 unique_id = key()
 
-correct_answer = {"a1":["b1"],"a2":["b2"],"a3":["b3"],"a4":["b4"]}
+correct_answer = {"a1":["b1","b10","b11"],"a2":["b2","b3","b9"],"a3":["b5","b6","b7", "b8"]}
 
 
 def check_answer(expect, ans):
@@ -92,9 +92,11 @@ if($show_input != true){
   $(document).ready(function(){$("#$unique_id span.message").hide()});
 }
     
-$("#$unique_id .conf-answers-place").sortable({ 
+$("#$unique_id .conf-answers-place").sortable({
       connectWith: "#$unique_id .conf-answers-place",
       stop: function() {
+        var submitButton = document.querySelector(".$unique_id").querySelector("button.submit");
+        submitButton.disabled = false;
         var value_$unique_id={};
         $("#$unique_id .conf-table td.conf-answers-place").map(function(indx, element){
             id = $(element).attr("id");
@@ -112,7 +114,6 @@ $("#$unique_id .conf-answers-place").sortable({
       out: function(event) { 
         $("#$unique_id #" + event.target.id).css("border","");
     }
-
 }).disableSelection();
 
 if($("#$unique_id span.message")){
@@ -133,39 +134,33 @@ if($("#$unique_id span.message")){
 <table class="conf-table">
 
   <tr>
-    <td class="conf-text">Момент количества движения материальной точки относительно центра</td>
-    <td id="a1" class="conf-answers-place"> </td>
+    <td class="conf-text">Уровни результатов обучения</td>
+    <td class="conf-text">Виды учебных заданий</td>
   </tr>
 
   <tr>
-    <td class="conf-text">Кинетическая энергия материальной точки</td>
+    <td class="conf-text">Воспроизведение знаний</td>
+    <td id="a1" class="conf-answers-place"></td>
+  </tr>
+
+  <tr>
+    <td class="conf-text">Решение учебных типовых задач</td>
     <td id="a2" class="conf-answers-place"></td>
   </tr>
 
-  <tr>
-    <td class="conf-text">Количество движения механической системы</td>
-    <td id="a3" class="conf-answers-place"></td>
-  </tr>
-
-  <tr>
-    <td class="conf-text">Кинетический момент механической системы относительно оси</td>
-    <td id="a4" class="conf-answers-place"></td>
-  </tr>
 
 </table>
 
+  
 <div id="conf-id" class= "conf-answers-place conf-all-answers">
-    <div id="b1" class="conf-item">\( \vec{k}_O = \vec{r} \times m \vec{v} \)</div>
-    <div id="b2" class="conf-item">\( \vec{Q} = \sum^{n}_{k=1} m_k \vec{v}_k \)</div>
-    <div id="b3" class="conf-item">\( K_z = \sum^{n}_{k=1} m_z (m_k \vec{v}_k) \)</div>
-    <div id="b4" class="conf-item">\( \frac{m v^2 }{2} \)</div>
+    <div id="b1" class="conf-item">задания на изучение нового учебного материала</div>
+    <div id="b2" class="conf-item">задания на структурирование нового учебного материала</div>
 </div>
 
-
 <customresponse cfn="check_answer">
-     <textline  size="40" label="Ans1"/><br/>
+     <textline  size="40" label="Enter number" /><br/>
 </customresponse>
-
+  
 </div>
 
 <style>
