@@ -1,0 +1,75 @@
+<problem>
+<style>
+#$unique_id #genotype_task_input{
+  display:none;
+}
+</style>
+
+<script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_JJ7dfHg"
+
+correct_answer = ["AAbb", "aaBb"]
+
+show_items_corectness = False
+partial_correctness = True
+  
+genotype_count = len(correct_answer)
+
+def check_answer(expect, ans):
+    max_grade = genotype_count
+    grade = 0
+    try:
+        student_answer = json.loads(ans)['answer']
+        response = []
+        for index, answer in enumerate(correct_answer):
+            item_for_check = "".join(student_answer[index])
+            response_item = {}
+            if item_for_check == correct_answer[index]:
+                grade = grade + 1
+                response_item['status'] = True
+            else:
+                response_item['status'] = False           
+            response.append(response_item)
+        grade_decimal = grade/max_grade
+        if(partial_correctness == False and grade_decimal != 1):
+            grade_decimal = 0
+        if(show_items_corectness == False):
+            response = []
+        if grade_decimal == 1:
+            return {'input_list': [{ 'ok': True, 'msg': str(json.dumps(response)), 'grade_decimal':1},]}
+        elif grade_decimal == 0:
+            return {'input_list': [{ 'ok': False, 'msg': str(json.dumps(response)), 'grade_decimal':0},]}
+        else:
+            return {'input_list': [{ 'ok': 'Partial', 'msg': str(json.dumps(response)), 'grade_decimal':grade_decimal},]}
+    except:
+        return {'input_list': [{ 'ok': False, 'msg': 'Произошла ошибка при проверке', 'grade_decimal':0},]}
+</script>
+
+  <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/genotype/genotype.js">
+</script>
+
+<p>Зеленая окраска арбузов (А) доминирует над полосатой, а круглая форма плодов над вытянутой. Скрестили зеленый арбуз вытянутой формы с полосатым круглым. Все потомки оказались зелеными и круглыми. <strong>Каковы генотипы родителей?</strong></p>
+  <h4>Ответ: </h4>
+    <div class="genotype-task" genotype_count="$genotype_count" id="$unique_id">
+        <div id="genotype_task_input">
+          <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+          </customresponse>
+  		</div>    
+    </div>
+  
+  <!--
+  <solution>
+   <div class="detailed-solution">
+            <p>Правильный ответ:</p>
+     		<p>Родитель 1: <strong>AAbb</strong></p>
+            <p>Родитель 2: <strong>aaBb</strong></p>
+        </div>
+    </solution>
+  -->
+  
+</problem>

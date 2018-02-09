@@ -63,7 +63,7 @@ function MatchingTableObjects(element, data){
     $(".matching_table").hide().fadeIn(500);
 
 	this.element = element;
-    var answer = new Answer(element.querySelector("#matching_table_input").querySelector("input[type='text']"));
+    var answer = new Answer(element.querySelector("#genotype_task_input").querySelector("input[type='text']"));
 
     $(".conf-answers-place",element).sortable({
         connectWith: "#" + element.id + " .conf-answers-place",
