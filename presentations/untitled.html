@@ -1,0 +1,51 @@
+<div class="view-mode menu-container" role="application" onmouseover="show_hide_menu(event)" onmouseout="show_hide_menu(event)" style="display:inline-block">
+	<button class="control view-mode-button">
+		<span class="icon-fallback-img"><span class="icon fa fa-caret-right" aria-hidden="true"></span></span>
+		<!--<span class="icon fa fa-picture-o"></span> -->
+		<span class="view-mode-button-value value">Видеолекция</span>
+	</button>
+
+	<ol class="view-modes menu">
+	   <li data-view-mode="video" class="view-mode-is-active"><button class="control view-mode-option" tabindex="-1">Видеолекция</button></li>
+	   <li data-view-mode="presentation"><button class="control view-mode-option" tabindex="-1">Презентация</button></li>
+	   <li data-view-mode="video_presentation"><button class="control view-mode-option" tabindex="-1">Совмещение</button></li>
+	</ol>
+</div>
+
+
+
+
+.video-controls .secondary-controls .view-mode.is-opened .control .icon {
+    transform: rotate(-90deg);
+ }
+
+.secondary-controls .view-mode .control .icon-fallback-img{
+    float: left;
+    transform-origin: center center;
+}
+
+.view-mode{
+    display: inline-block;
+    width: 140px;
+}
+
+.menu li.view-mode-is-active .view-mode-option{
+    border-left: 2px solid #0ea6ec !important;
+    color: #0ea6ec !important;
+}
+.menu-container .menu li .view-mode-option:hover{
+    background-color: #4f595d;
+}
+
+.menu-container .view-modes {
+    width: 140px !important;
+}
+
+.view-mode-option {
+    width: 100%;
+    text-align: left;
+}
+
+.view-mode-button{
+    width: 100%;
+}
