@@ -1,0 +1,394 @@
+<problem>
+<style>
+
+#$unique_id #select_task_input {
+  display: none !important;
+}
+
+#$unique_id .task-item {
+    display: inline;
+    padding: 1px;
+  }
+
+#$unique_id .task-paragraph{
+    display: inline-flex;
+    margin: 4px 0px;
+    /*border: 1px solid #e5e5e5;*/
+    width: 100%;
+}
+
+#$unique_id .task-paragraph-dragged{
+    /*background: #e6e6e6;*/
+}
+
+#$unique_id .task-item:hover{
+    background: #dcdada;
+    cursor: pointer;
+}
+
+#$unique_id .task-item.selected-item:hover{
+    background: #ffb3b3;
+    cursor: pointer;
+}
+
+#$unique_id .task-item.selected-item{
+    background: #a7ffaa;
+}
+
+#$unique_id .task-paragraph-drag{
+      padding-right: 6px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /*align-items: center;*/
+}
+
+#$unique_id .task-paragraph-drag-handler{
+    display: block;
+    float: none;
+    height: 24px;
+    width: 13px;
+    cursor: move;
+    padding: 6px;
+    background: transparent url(https://s31333.cdn.ngenix.net/351a7d/72a5921869/images/drag-handles.c03713dfd4ec.png) no-repeat center;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+#$unique_id .task-paragraph-placeholder { 
+    border: 2px dotted #636363;
+    margin: 0 1em 1em 0;
+    height: 100px;
+ }
+
+#$unique_id .task-paragraph-text{
+  background: #ffffffb3;
+}
+
+</style>
+
+  <script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_djkjvfds42v"
+
+def check_func(student_order, correct_order, student_selected, correct_selected):
+    response = {}
+    max_grade = len(correct_selected) * 2
+    grade = 0
+    
+    for item_id in student_selected:
+        if item_id in correct_selected:
+            grade += 1
+        else:
+            grade -= 1
+    if 0 > grade:
+        grade = 0
+
+    if student_order == correct_order:
+        grade += len(correct_selected)
+    grade_decimal = round(float(grade) / float(max_grade), 2)
+
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_answer(expect, ans):
+    correct_selected = ["h1r7a0fx", "xcb0q21l", "crk49lou", "ns59e8c7", "q51axf7r", "asupcklg", "hzutpit3", "z0iqo0lh", "lhjxch0y", "w2olbxys"]
+    correct_order = ["ya3z2myr", "e53mm97h", "erh1yd95", "b7fepmvr", "tkmdh2js", "tjc0p85t", "kzsleo9b", "abmlp66n", "iexmu2v0"]
+    try:
+        student_answer = json.loads(ans)
+        student_answer = student_answer["answer"]
+        student_order = student_answer["order"]
+        student_selected = student_answer["selected"]
+        response = check_func(student_order, correct_order, student_selected, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': response['message'], 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+
+</script>
+
+<script type="text/javascript">
+  
+if (TaskSelectObjects == undefined) var TaskSelectObjects = {};
+
+function TaskSelectActivation(selector) {
+    Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
+        return element.dataset.status == undefined
+    }).forEach(function(element, i, array) {
+        TaskSelectObjects[element.id] = (new TaskSelectObjects(element, element.getAttribute("data")));
+        element.dataset.status = "activate";
+    });
+    setTimeout(function() {
+        TaskSelectActivation(selector)
+    }, 1000);
+}  
+function Answer(elementField) {
+    this.elementField = elementField;
+    this.fieldValue = "";
+    this.fieldObject = {};
+    this.get = function() {
+        this.fieldValue = elementField.value;
+        return this.fieldValue;
+    };
+    this.set = function(value) {
+        if (value == undefined) value = this.fieldValue;
+        elementField.value = value;
+    };
+    this.getJSON = function() {
+        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+        return this.fieldObject;
+    };
+    this.setJSON = function(object) {
+        if (object == undefined) object = this.fieldObject;
+        this.set(JSON.stringify(object))
+    };
+    this.isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
+};
+
+$.fn.shuffleChildren = function() {
+    $.each(this.get(), function(index, el) {
+        var $el = $(el);
+        var $find = $el.children();
+
+        $find.sort(function() {
+            return 0.5 - Math.random();
+        });
+
+        $el.empty();
+        $find.appendTo($el);
+    });
+};
+
+function TaskSelectObjects(element, data){
+  this.element = element;
+
+  var answer = new Answer(element.querySelector("#select_task_input").querySelector("input[type='text']"));
+  var items = this.element.querySelectorAll(".task-item");
+
+  var problem =  $("#" + element.id).closest(".problem");
+  var checkButton = $("button.submit", problem);
+  checkButton.attr("disabled", "disabled");
+
+  items.forEach(function(item, i, arr){
+      item.addEventListener("click", function(event){
+          if ($(item).hasClass('selected-item')){
+              $(item).removeClass('selected-item')
+          }
+          else{
+              $(item).addClass('selected-item')  
+          }
+          setAnswer();
+      });
+  });
+
+    $(".task-select-sortable",element).sortable({
+        handle: ".task-paragraph-drag",
+        placeholder: "task-paragraph-placeholder",
+        start: function(event, ui) { 
+            $("#" + ui.item[0].id, element).addClass("task-paragraph-dragged");
+        },
+        stop: function(event, ui) {
+            $("#" + ui.item[0].id, element).removeClass("task-paragraph-dragged");
+            setAnswer();
+        }
+    });
+
+    function setAnswer(){
+      var problem =  $("#" + element.id).closest(".problem");
+      var checkButton = $("button.submit", problem);
+      checkButton.removeClass("is-disabled");
+      checkButton.disabled = false;
+      checkButton.removeAttr("disabled");
+
+      var student_answer = {};
+      student_answer["selected"] = [];
+      student_answer["order"] = [];
+
+      items.forEach(function(item, i, arr){
+          if ($(item).hasClass('selected-item')){
+            student_answer["selected"].push(item.id)
+          }
+      });
+      
+      var paragraphs = element.querySelectorAll(".task-paragraph");
+      paragraphs.forEach(function(item, i, arr){
+            student_answer["order"].push(item.id)
+      });
+
+      answer.setJSON({answer: student_answer}); 
+    }
+
+    if(answer.get()){
+        try {
+            var student_answer = answer.getJSON()["answer"];
+            student_answer["selected"].forEach(function(item_id, i, arr){
+              $("#"+item_id, element).addClass('selected-item');
+            });
+
+            student_answer["order"].forEach(function(item_id, i, arr){
+                $(".task-select-sortable")[0].append($("#" + item_id, element)[0]);    
+            });
+          }
+        catch (err) {
+        setAnswer();
+      }
+    }
+    else{
+        setAnswer();
+      // $ (".task-select-sortable", element).shuffleChildren(); // Вклюяить это для изначального перемешивания
+    }
+
+  //   if($("span.message", element)){
+  //     if( $("span.message", element).text() != ""){
+  //       var wrongCells = JSON.parse($("span.message",element).text())["wrong_cells"];
+  //       var message = JSON.parse($("span.message",element).text())["message"];
+  //       for (cellId in wrongCells){
+  //         $(".conf-table #" + wrongCells[cellId], element).addClass("conf-wrong-cell");
+  //       }
+  //       // $(".message-about-grade", element).html(message);
+  //     }
+  //   }
+}
+
+TaskSelectActivation(".task-select")
+</script>
+
+<div id="$unique_id" class="task-select">
+
+<p>Задание: восстановите логику текста, взгляните на него критически – определите фейковые элементы.</p>
+
+<div class="task-select-header">
+  <h3>Сердце, мозг и речь помогают диагностировать пограничное состояние</h3>
+  <h3>Новая система диагностики поможет предотвратить усиление психических расстройств.</h3>
+</div>
+
+<div class="task-select-sortable">
+
+<div class="task-paragraph" id="ya3z2myr">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="gj6n93vz">К пограничным психическим расстройствам относят всё, что находится на грани нормы и психического отклонения. </div>
+    <div class="task-item" id="h1r7a0fx">В латентном состояния не представляют опасности для индивида. </div>
+    <div class="task-item" id="rw9shy4p">От них страдают около 53% населения Земли, то есть </div>
+    <div class="task-item" id="fbipwwll">половина населения.</div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="e53mm97h">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="vglytc4q">Пограничные психические расстройства имеют слабо выраженную форму протекания, и почти в половине случаев пограничное расстройство невозможно выявить без обращения к специалисту соответствующего профиля. </div>
+    <div class="task-item" id="xcb0q21l">Само обращение к специалисту не гарантирует пациенту положительной динамики: зачастую специалист тоже страдает от такого заболевания, а контрперенос только усиливает общую картину. </div>
+    <div class="task-item" id="m3ebtlgh">Однако если не обнаружить вовремя пограничное расстройство, последствия могут оказаться весьма трагичными.</div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="erh1yd95">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="wrk2805u">Появление подобных расстройств обусловлено целым набором факторов, </div>
+    <div class="task-item" id="tihs0hc1">многие из которых непросто отследить – от перенесённых в детстве инфекций до плохой экологической обстановки, </div>
+    <div class="task-item" id="amr4hrrj">когда проблемы с психикой возникают из-за отравления солями тяжелых металлов, сероуглеродом и т. д. </div>
+    <div class="task-item" id="uavxk53k">Поэтому очень важно, чтобы у нас были методы, позволяющие быстро и точно оценить психофизическое состояние человека. </div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="b7fepmvr">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="ajxl160q">Исследователи из Пензенского государственного университета предложили использовать для выявления пограничных состояний данные </div>
+    <div class="task-item" id="ugl56ohw">электрокардиограммы, </div>
+    <div class="task-item" id="alaghyzr">энцефалограммы, </div>
+    <div class="task-item" id="crk49lou">маммографии </div>
+    <div class="task-item" id="zz7t78ty">и особенности речи </div>
+    <div class="task-item" id="ns59e8c7">и динамику изменения взгляда. </div>
+    <div class="task-item" id="xcefwdv4">Состояние психики влияет и на работу сердца, </div>
+    <div class="task-item" id="i7je7nts">и, естественно, на работу мозга, </div>
+    <div class="task-item" id="lg5le16g">а аномалии в работе мозга часто сказываются на речевых функциях и </div>
+    <div class="task-item" id="q51axf7r">во взгляде </div>
+    <div class="task-item" id="j6kc8gxb">пациента.</div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="tkmdh2js">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="vyn2h00t">Изменения в частоте сердечных сокращений, </div>
+    <div class="task-item" id="pwuwmeg5">мозговых электрических ритмов, </div>
+    <div class="task-item" id="bpy92dc9">скорости и тоне речи, </div>
+    <div class="task-item" id="asupcklg">фокусе и наполнении эмоциональным содержанием взгляда </div>
+    <div class="task-item" id="vc38zewl">анализируют математическими методами и в результате получают данные, </div>
+    <div class="task-item" id="q9ose4e5">которые помогут врачу поставить верный диагноз. </div>
+    <div class="task-item" id="sxxxbhwr">Сердце, мозг и речь в совокупности дают новые признаки, которые повышают достоверность диагностики. </div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="tjc0p85t">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="kb8xnhmg">В этом смысле новый метод, который описан в International Journal of Embedded and Real-Time Communication Systems (IJERTCS) и который уже применяется в медицинских учреждениях Пензы, </div>
+    <div class="task-item" id="wuwtqwhy">выгодно отличается от предыдущих, </div>
+    <div class="task-item" id="yviaja5a">которые работают с более низкой точностью и чувствительны к помехам.</div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="kzsleo9b">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="clts8syw">В дальнейшем авторы работы планируют создать устройство, которое будет регистрировать </div>
+    <div class="task-item" id="hzutpit3">состояние всего организма человека (функциональная работа мозга, транслируемая психикой, управляет всеми системами организма), </div>
+    <div class="task-item" id="w2olbxys">проводить экспертизу полученных данных. </div>
+    <div class="task-item" id="z0iqo0lh">Так, исследование психофизического состояния организма станет центральным моментом диагностики лечения всех отклонений. </div>
+    <div class="task-item" id="lhjxch0y">Контроль психического состояния организма человека сможет предотвратить развитие и усугубление болезни. </div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="abmlp66n">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="p94hwj6p">В первую очередь, такое устройство пригодится для обследования </div>
+    <div class="task-item" id="ajgfsspu">военнослужащих, </div>
+    <div class="task-item" id="v1pzvmi6">учителей, </div>
+    <div class="task-item" id="ou9ayni4">водителей, </div>
+    <div class="task-item" id="wwv30uc5">операторов особо опасных объектов </div>
+    <div class="task-item" id="i8mf51af">и людей других профессий, по долгу службы подверженных сильному стрессу.</div>
+  </div>
+</div>
+
+<div class="task-paragraph" id="iexmu2v0">
+  <div class="task-paragraph-drag"><div class="task-paragraph-drag-handler"></div></div>
+  <div class="task-paragraph-text">
+    <div class="task-item" id="efiil3q8">Работа выполнена при поддержке Российского научного фонда (РНФ).</div>
+  </div>
+</div>
+
+</div>
+  <div id="select_task_input">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="$unique_id" />
+      <br/>
+    </customresponse>
+   <!-- <div class="message-about-grade"></div> -->
+  </div>
+
+</div>
+</problem>
