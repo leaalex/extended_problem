@@ -22,17 +22,19 @@
 }
 
 #$unique_id .task-item:hover{
-    background: #dcdada;
+    /*background: #dcdada;*/
+    background: #a7ffaa;
     cursor: pointer;
 }
 
 #$unique_id .task-item.selected-item:hover{
     background: #ffb3b3;
+    /*background: #a7ffaa;*/
     cursor: pointer;
 }
 
 #$unique_id .task-item.selected-item{
-    background: #a7ffaa;
+    background: #ffff7e;
 }
 
 #$unique_id .task-paragraph-drag{
@@ -52,17 +54,26 @@
     padding: 6px;
     background: transparent url(https://s31333.cdn.ngenix.net/351a7d/72a5921869/images/drag-handles.c03713dfd4ec.png) no-repeat center;
     border: 1px solid #e5e5e5;
-    border-radius: 4px;
+    border-radius: 4px 0px 0px 4px;
 }
 
 #$unique_id .task-paragraph-placeholder { 
-    border: 2px dotted #636363;
-    margin: 0 1em 1em 0;
+    border: 1px dashed #9a9a9a;
+    border-radius: 4px;
+    /*margin: 0 1em 1em 0;*/
+    /*padding: -50px;*/
+    margin-left: 30px;
+    /*width: 100%;*/
     height: 100px;
  }
 
 #$unique_id .task-paragraph-text{
-  background: #ffffffb3;
+    background: #ffffffb3;
+    border: 1px solid #e5e5e5;
+    margin: 0 -7px;
+    padding: 4px 8px;
+        border-radius: 0px 4px 4px 4px;
+        width: 100%;
 }
 
 </style>
@@ -254,7 +265,7 @@ function TaskSelectObjects(element, data){
     }
     else{
         setAnswer();
-      // $ (".task-select-sortable", element).shuffleChildren(); // Вклюяить это для изначального перемешивания
+      // $ (".task-select-sortable", element).shuffleChildren(); // Включить это для изначального перемешивания
     }
 
   //   if($("span.message", element)){
