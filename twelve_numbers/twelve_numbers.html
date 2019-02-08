@@ -1,0 +1,255 @@
+<style type="text/css">
+
+.task-wrap{
+	    height: 680px;
+    /* background: #f6f6f6; */
+    border: 6px double #046b99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start-button{
+    font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;
+    /* height: 50px; */
+    background: #046b99;
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: normal;
+    border: none;
+}
+
+.start-button:hover{
+    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;*/
+    /* height: 50px; */
+    background: #035c83 !important;
+        border: none;
+}
+
+.timer-block{
+	text-align: center;
+    font-size: 2em;
+}
+
+
+
+
+
+
+
+
+
+.num-table-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.num-table-item {
+	flex: 1 0 21%;
+    margin: 5px;
+    font-size: 3em;
+    height: 100px;
+    background-color: #0000ff2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.result-num-table-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.result-num-table-item {
+  flex: 1 0 21%; /* explanation below */
+  margin: 5px;
+  height: 100px;
+  background-color: #0000ff2b;
+}
+
+.item-correct {
+	color: green;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var language = "ru";
+
+var start_btn_label = "Start";
+var check_btn_label = "Check";
+
+
+  		  var pad = function (num, size) {
+		      return ('000' + num).slice(size * -1);
+		    },
+		    in_sec = parseFloat(time).toFixed(3),
+		    hours = Math.floor(in_sec / 60 / 60),
+		    minutes = Math.floor(in_sec / 60) % 60,
+		    seconds = Math.floor(in_sec - minutes * 60),
+		    milliseconds = in_sec.slice(-3);
+
+/**
+ * https://gist.github.com/wcoder/fcee724b4f5b44062754
+ * @param seconds - кол-во секунд
+ * @param tick - функция, вызываемая каждую секунду
+ * @param result - функция, вызываемая по истечении времени
+ */
+function timer (seconds, tick, result) {
+	if (seconds != -1) {
+		tick(seconds);
+		seconds -= 1;
+		setTimeout(function () {
+			timer(seconds, tick, result);
+		}, 1000);
+	} else {
+		result();
+	}
+}
+function sec2time(timeInSeconds) {
+  var pad = function (num, size) {
+      return ('000' + num).slice(size * -1);
+    },
+    time = parseFloat(timeInSeconds).toFixed(3),
+    hours = Math.floor(time / 60 / 60),
+    minutes = Math.floor(time / 60) % 60,
+    seconds = Math.floor(time - minutes * 60),
+    milliseconds = time.slice(-3);
+
+  return pad(minutes, 2) + ':' + pad(seconds, 2)
+  // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+}
+
+
+function TwelveNumbers(element, time) {
+  var random_numbers = get_random_numbers(10,99,12);
+
+  var start_window = createStartBlock();
+
+  function createStartBlock() {
+  		var start_wrap = $('<div/>',{
+  			class: "task-wrap",
+  		});
+		var start_button = $('<button/>',{
+  			class: "start-button",
+  			text: start_btn_label,
+  		});
+  		start_button.click(function (e) {
+  			createTableBlock();
+  		})
+		$(start_wrap).append(start_button)
+  		$(element).html(start_wrap);
+  }
+
+  function createTableBlock(){
+  	var task_wrap = $('<div/>',{
+  		class: "task-wrap",
+  	});
+  	var num_table_wrap = $('<div/>',{
+  			class: "num-table-wrap",
+  		});
+  	random_numbers.forEach(function (item, i, arr) {
+  		var num_table_item = $('<div/>',{
+  			class: "num-table-item",
+  			text: item,
+  		});
+  		$(num_table_wrap).append(num_table_item);
+  	})
+	var timer_display = $('<div/>',{
+  		class: "timer-block",
+  	});
+  	timer(time, function (s) {
+		$(timer_display).html(sec2time(s));
+	}, function () {
+		console.log('Время вышло!');
+		createAnswerBlock()
+	});
+	$(task_wrap).append(timer_display);
+  	$(task_wrap).append(num_table_wrap);
+  	$(element).html(task_wrap);
+  }
+
+  function createAnswerBlock(){
+  	var user_input_wrap = $('<div/>',{
+  			class: "user-input-wrap",
+  		});
+  	var user_input = $('<input/>',{
+  	  		type: "text",
+  		class: "user-num-input",
+  	});
+	
+	var check_button = $('<button/>',{
+  			class: "check-button",
+  			text: check_btn_label,
+  	});
+
+  	check_button.click(function (e) {
+  		var answer = $(user_input).val();
+  		createResultBlock(answer);
+	})
+  	  	$(user_input_wrap).append(user_input);
+  	  	$(user_input_wrap).append(check_button);
+  	  	$(element).html(user_input_wrap);
+  }
+
+  function createResultBlock(answer){
+
+  	    var answer_arr = answer.split(/[ ,\t\n]+/).filter(function (item) { return !isNaN(parseFloat(item))}).map(function(item){return parseInt(item)});
+
+  	    var grade = 0;
+
+  	    result_block_wrap = $('<div/>',{
+  			class: "result-block-wrap",
+  		});
+
+  	    var result_num_table_wrap = $('<div/>',{
+  			class: "result-num-table-wrap",
+  		});
+	  	random_numbers.forEach(function (item, i, arr) {
+	  		var result_num_table_item = $('<div/>',{
+	  			class: "result-num-table-item",
+	  			text: item,
+	  			id: "result_number_" + item,
+	  			"data-number": item,
+	  		});
+	  		console.log(answer_arr, item);
+	  		if (answer_arr.includes(item)){
+	  			grade += 1;
+	  			result_num_table_item.addClass("item-correct");
+	  		}
+	  		$(result_num_table_wrap).append(result_num_table_item);
+	  	});
+	  	$(result_block_wrap).append(result_num_table_wrap);
+	  	$(result_block_wrap).append("<div>Correct: " + grade + "</div>" );
+  	    $(element).html(result_block_wrap);
+  		// console.log(answer);
+  }
+
+  function get_random_numbers(start,end,count) {
+	    return  Array(end - start + 1).fill().map((_, idx) => start + idx).sort(function (){ return .5 - Math.random()}).slice(0, count);
+  }
+}
+
+
+display = document.querySelector('#time');
+TwelveNumbers(display, 3000);
+
+$(restart).click(function (e) {
+  		TwelveNumbers(display, 3000);
+})
+
+</script>
+
+<div id="time">
+	
+</div>
+<button id="restart" >Resatrt</button>

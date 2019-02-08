@@ -1,0 +1,411 @@
+<style type="text/css">
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
+    line-height:30px;
+}
+
+.flex-item {
+        cursor: pointer;
+		background: white; /* tomato */
+    margin: -2px;
+   /* color: grey;*/ /* white */
+    border: 4px solid #046b99;
+    /* font-weight: bold; */
+    font-size: 4em;
+    text-align: center;
+    flex: 1 0 0px;
+    min-width: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+     user-select: none; /* Non-prefixed version, currently*/
+                              
+}
+
+.flex-item:hover{
+    background: #b3efff80;
+    font-weight: 600;
+}
+
+.flex-item:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+    float: left;
+}
+
+.table-wrap{
+    /*width: 600px;*/
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.start-window{
+  height: 680px;
+  /*background: #f6f6f6;*/
+      border: 6px double #046b99;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.start-button{
+    font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;
+    /* height: 50px; */
+    background: #046b99;
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: normal;
+    border: none;
+}
+
+.start-button:hover{
+    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;*/
+    /* height: 50px; */
+    background: #035c83 !important;
+        border: none;
+}
+
+.timer-block{
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px;
+}
+
+.delay-label{
+    padding: 14px;
+	/*background: #bdb9b2;*/
+	font-size: 2.0em;
+}
+
+.last-selected-num{
+        background: #b3efff;
+}
+</style>
+
+
+<script type="text/javascript" charset="utf-8">
+
+var language = "ru";
+
+var start_btn_label,
+  delay_label,
+  table_label,
+  time_label
+
+if (language == "ru") {
+  start_btn_label = "Начать";
+} else if (language == "en") {
+  start_btn_label = "Start";
+}
+else {
+  start_btn_label = "Start";
+}
+
+if (language == "ru") {
+  delay_label = "Начинаем через";
+} else if (language == "en") {
+  delay_label = "We start in";
+}
+else {
+  delay_label = "We start in";
+}
+
+if (language == "ru") {
+  table_label = "Таблица";
+} else if (language == "en") {
+  table_label = "Table";
+}
+else {
+  table_label = "Table";
+}
+
+if (language == "ru") {
+  time_label = "Время";
+} else if (language == "en") {
+  time_label = "Time";
+}
+else {
+  time_label = "Time";
+}
+
+var tables = [
+	[17, 9, 24, 25, 12, 8, 6, 1, 15, 7, 23, 21, 19, 3, 11, 20, 13, 4, 16, 5, 2, 14, 10, 18, 22], // 1
+	[20, 11, 16, 1, 18, 2, 21, 4, 14, 8, 13, 9, 19, 24, 5, 25, 15, 6, 23, 17, 10, 7, 22, 12, 3], // 2
+	[8, 14, 11, 3, 15, 21, 4, 25, 6, 13, 2, 23, 19, 24, 22, 20, 10, 9, 17, 5, 7, 12, 1, 18, 16], // 3
+	[21, 22, 9, 19, 14, 2, 5, 18, 25, 12, 23, 15, 6, 13, 8, 24, 11, 3, 17, 1, 4, 7, 16, 20, 10], // 4
+	[21, 20, 5, 23, 2, 14, 10, 19, 15, 25, 12, 3, 7, 13, 9, 24, 22, 8, 18, 11, 4, 17, 6, 16, 1], // 5
+	[23, 22, 1, 11, 9, 12, 25, 6, 14, 8, 21, 3, 17, 4, 19, 7, 2, 20, 13, 10, 16, 5, 24, 15, 18], // 6
+	[3, 21, 13, 4, 20, 8, 5, 1, 15, 11, 19, 12, 23, 7, 22, 10, 6, 14, 24, 18, 25, 17, 2, 16, 9], // 7
+	[25, 22, 14, 21, 15, 10, 5, 20, 1, 19, 4, 17, 12, 11, 24, 6, 13, 3, 18, 2, 23, 9, 7, 16, 8], // 8
+	[11, 25, 20, 24, 3, 23, 12, 21, 6, 16, 19, 10, 15, 2, 7, 9, 1, 13, 14, 22, 17, 18, 8, 5, 4], // 9
+	[8, 1, 5, 16, 6, 10, 25, 3, 11, 24, 2, 15, 4, 13, 23, 20, 9, 22, 19, 17, 14, 18, 12, 21, 7], // 10
+	[20, 9, 5, 21, 8, 11, 18, 1, 22, 7, 4, 15, 14, 2, 25, 13, 6, 17, 10, 23, 12, 3, 19, 16, 24], // 11
+	[11, 24, 8, 13, 2, 15, 20, 5, 22, 10, 17, 14, 1, 18, 4, 23, 7, 6, 19, 12, 9, 3, 25, 21, 16], // 12
+	[1, 25, 11, 3, 16, 14, 10, 15, 13, 4, 6, 19, 20, 21, 8, 18, 24, 17, 7, 12, 5, 23, 9, 22, 2], // 13
+	[16, 1, 8, 21, 25, 13, 24, 17, 20, 12, 2, 9, 22, 11, 18, 7, 19, 5, 4, 6, 3, 15, 10, 23, 14], // 14
+	[14, 22, 25, 19, 7, 6, 11, 3, 15, 4, 24, 23, 20, 8, 21, 13, 18, 2, 12, 16, 5, 9, 10, 17, 1], // 15
+	[21, 20, 6, 1, 12, 8, 25, 14, 17, 19, 22, 9, 24, 10, 7, 18, 15, 2, 4, 16, 3, 11, 23, 13, 5], // 16
+	[21, 10, 17, 8, 2, 19, 25, 16, 15, 23, 1, 7, 9, 12, 3, 11, 6, 13, 18, 5, 4, 14, 24, 22, 20], // 17
+	[14, 19, 9, 2, 16, 20, 3, 23, 6, 25, 13, 11, 22, 4, 1, 8, 18, 10, 7, 24, 12, 17, 5, 21, 15], // 18
+	[6, 15, 2, 13, 10, 21, 12, 11, 7, 8, 23, 9, 18, 4, 20, 1, 17, 22, 25, 5, 24, 14, 19, 3, 16], // 19
+	[14, 2, 17, 6, 12, 9, 22, 13, 1, 8, 23, 11, 21, 18, 25, 15, 19, 5, 4, 20, 3, 24, 10, 16, 7], // 20
+	[20, 25, 1, 12, 23, 14, 9, 18, 5, 15, 4, 10, 22, 24, 3, 19, 8, 2, 11, 16, 21, 13, 7, 6, 17], // 21
+	[6, 11, 1, 23, 2, 25, 21, 15, 7, 19, 24, 5, 18, 14, 8, 13, 22, 9, 20, 16, 10, 12, 4, 17, 3], // 22
+	[3, 18, 16, 12, 5, 6, 11, 4, 19, 10, 8, 22, 21, 7, 15, 23, 14, 25, 1, 17, 24, 13, 20, 9, 2], // 23
+	[3, 21, 11, 16, 4, 20, 8, 15, 18, 9, 7, 2, 6, 24, 17, 25, 13, 19, 5, 23, 12, 10, 1, 14, 22], // 24
+	[12, 6, 4, 21, 25, 1, 11, 23, 5, 15, 14, 17, 20, 9, 18, 10, 22, 2, 24, 7, 13, 3, 19, 8, 16], // 25
+	[10, 16, 22, 14, 5, 24, 6, 2, 18, 23, 17, 12, 4, 11, 1, 9, 25, 15, 13, 7, 19, 8, 20, 3, 21], // 26
+	[9, 13, 5, 12, 3, 16, 22, 10, 19, 18, 15, 4, 2, 11, 8, 17, 23, 25, 21, 1, 6, 14, 24, 7, 20], // 27
+	[15, 13, 14, 10, 5, 11, 8, 2, 18, 21, 6, 25, 24, 20, 12, 17, 23, 7, 9, 3, 16, 4, 19, 1, 22], // 28
+	[12, 2, 25, 24, 6, 15, 18, 20, 8, 1, 4, 21, 10, 7, 14, 13, 16, 3, 17, 19, 11, 22, 5, 23, 9], // 29
+	[3, 21, 12, 2, 25, 17, 20, 5, 16, 6, 7, 23, 22, 14, 11, 18, 8, 13, 24, 15, 4, 9, 19, 10, 1]  // 30
+];
+
+
+function timer(seconds, tick, result) {
+  if (seconds != 0) {
+    tick(seconds);
+    seconds -= 1;
+    setTimeout(function () {
+      timer(seconds, tick, result);
+    }, 1000);
+  } else {
+    result();
+  }
+}
+
+var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
+
+  var table;
+  var table_width = table_width || "100%";
+  var stage = stage;
+  var delay_sec = delay_sec || 3;
+  var wrap = $('<div/>', {
+    "class": "table-wrap",
+    "style": "width: " + table_width + "px"
+  });
+
+  var stopwatch_wrap = document.createElement('div');
+
+  var stopwatch = new Stopwatch(stopwatch_wrap, {
+    delay: 10
+  });
+
+  var required_num = 1;
+
+  function createStartWindow() {
+    var start_window_wrap = document.createElement('div');
+    start_window_wrap.className = "start-window";
+    $(elem).html(start_window_wrap);
+    var start_button = document.createElement('button');
+    start_button.className = "start-button";
+    start_button.innerHTML = start_btn_label;
+    start_window_wrap.appendChild(start_button);
+    start_button.onclick = function () {
+      createTable();
+      // createDelayWindow();
+    };
+  }
+
+  function createDelayWindow(delay) {
+    console.log("delay: ", delay)
+    var delay_window_wrap = document.createElement('div');
+    delay_window_wrap.className = "start-window";
+    $(elem).html(delay_window_wrap);
+    var delay_time = document.createElement('div');
+    delay_time.className = "delay-label";
+    delay_window_wrap.appendChild(delay_time);
+    timer(delay, function (s) {
+      delay_time.innerHTML = delay_label + " " + s;
+    }, function () {
+      createTable();
+    });
+  }
+
+  function showResultWindow() {
+    var result_window_wrap = document.createElement('div');
+    result_window_wrap.className = "start-window";
+    var result_wrap = document.createElement('div');
+    times.forEach(function (item, i, arr) {
+      var result_block = document.createElement('div');
+      result_block.innerHTML = table_label + " " + (i + 1) + ": " + sec2time(item);
+      result_wrap.appendChild(result_block);
+    });
+    result_window_wrap.appendChild(result_wrap);
+    $(elem).html(result_window_wrap);
+  }
+
+  function createTable() {
+    wrap.append(stopwatch_wrap);
+    var table_container = $("<div/>", {
+        "style": 'padding: 5px;border: 4px solid #046b99;'
+      });
+    [0, 1, 2, 3, 4].forEach(function (container, i, arr) {
+      var flex_container = $("<div/>", {
+        "class": 'flex-container'
+      });
+      [0, 1, 2, 3, 4].forEach(function (item, j, arr) {
+        var num = numbers_arr[5 * i + (j + 1) - 1];
+        var item = $('<div/>', {
+          "class": 'flex-item',
+          "html": num,
+          "data-number": num
+        }).appendTo(flex_container);
+
+        $(item).click(function (e) {
+          var clicked_num = parseInt(e.target.dataset.number);
+          if (clicked_num == required_num) {
+            required_num += 1;
+            $('.flex-item').removeClass("last-selected-num");
+            $(e.target).addClass("last-selected-num");
+            // css({"visibility": "hidden"})
+            if (required_num == 26) {
+              stage = stage + 1;
+              stopwatch.stop();
+              times.push(stopwatch.current_time())
+              if (stage !== 5) {
+                table = new SchulteTable(elem, user_tables[stage], stage, table_width, delay_sec);
+                table.start(use_delay = true);
+              } else {
+                showResultWindow();
+              }
+            }
+          }
+        });
+      });
+      $(table_container).append(flex_container);
+      // 
+
+    });
+    $(wrap).append(table_container);
+    $(elem).html(wrap);
+    $(elem).append('<p style="font-size: 1.4em;text-align: right;">' + table_label + " " + (stage + 1) + '/5</p>');
+    stopwatch.start();
+  }
+
+  function start(use_delay = false) {
+    if (use_delay) {
+      createDelayWindow(delay_sec);
+    } else {
+      createStartWindow();
+    }
+  }
+
+  this.start = start;
+};
+
+var Stopwatch = function (elem, options) {
+
+  var timer = createTimer(),
+    offset,
+    clock,
+    interval;
+
+  options = options || {};
+  options.delay = options.delay || 1;
+
+  elem.appendChild(timer);
+
+  reset();
+
+  // private functions
+  function createTimer() {
+    var timer_div = document.createElement("div")
+    timer_div.className = "timer-block";
+    return timer_div;
+  }
+
+
+  function start() {
+    if (!interval) {
+      offset = Date.now();
+      interval = setInterval(update, options.delay);
+    }
+  }
+
+  function stop() {
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    }
+  }
+
+  function reset() {
+    clock = 0;
+    render();
+  }
+
+  function update() {
+    clock += delta();
+    render();
+  }
+
+  function current_time() {
+    return clock / 1000;
+  }
+
+  function render() {
+    timer.innerHTML = time_label + ": <strong>" + sec2time(clock / 1000) + "</strong>";
+  }
+
+  function delta() {
+    var now = Date.now(),
+      d = now - offset;
+
+    offset = now;
+    return d;
+  }
+
+  // public API
+  this.current_time = current_time;
+  this.start = start;
+  this.stop = stop;
+  this.reset = reset;
+};
+
+var times = [];
+
+var user_tables = tables.sort(function () {
+  return .5 - Math.random()
+}).slice(0, 5);
+
+var table_width = 550;
+var delay_sec = 5;
+
+var html_element = document.getElementById("schulte_table");
+var table = new SchulteTable(html_element, user_tables[0], 0, table_width, delay_sec);
+table.start();
+
+</script>
+
+
+<div>
+
+<p><strong>Инструкция к тесту</strong><p>
+<p>Испытуемому предъявляют первую таблицу: «На этой таблице числа от 1 до 25
+расположены не по порядку». Затем таблицу закрывают и продолжают: «Покажи и назови
+все числа по порядку от 1 до 25. Постарайся делать это как можно быстрее и без ошибок».
+Таблицу открывают и одновременно с началом выполнения задания включают
+секундомер. Вторая, третья и последующие таблицы предъявляются без всяких
+инструкций.</p>
+
+<div id="schulte_table"></div>
+
+</div>

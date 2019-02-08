@@ -22,13 +22,11 @@
 }
 
 .incorrect-message{
-	background: #ffffff;
-    width: fit-content;
-    padding: 10px;
+	background: #daecf6;
+    padding: 20px 10px;
     margin: 10px 0px;
-    display: block;
-    border-radius: 4px;
-    border: 2px solid red;
+    border-radius: 2px;
+    border-left: 5px solid #0079bc;
 	display: none;
 }
 
@@ -42,6 +40,7 @@
 
 .hero-input-wrap input{
     margin-top: -1px;
+    margin-right: 4px;
     vertical-align: middle;
 }
 
@@ -51,7 +50,7 @@
 }
 
 .hero-input-wrap{
-    padding: 8px 8px;
+    padding: 10px 10px;
     margin: 6px 0px;
     border: 2px solid #e5e5e5;
     border-radius: 3px;
@@ -87,14 +86,32 @@
 	display: none;
 }
 
-
 #hero_task_input{
 	display: none;
 }
 
 .experiment-explanation{
 	display: none;
+	margin: 20px 0px;
+    padding: 2px 10px;
+    border-left: 8px solid #c7c7c9;
+    background: #f1f1f159;
+    
 }
+
+.experiment-explanation p:not(:first-child) {
+    text-indent: 20px;
+    padding: 0px;
+    margin: 12px 0px !important;
+}
+ 
+
+.step_3_task_text p:not(:first-child){
+    text-indent: 20px;
+    padding: 0px;
+    margin: 12px 0px !important;
+}
+ 
 
 </style>
 
@@ -126,9 +143,14 @@ def check_answer(expect, ans):
         if student_answer["correctness"]["experiment_3"] is True:
             grade += 1
 
-    grade_decimal = round(float(grade) / float(max_grade), 2)
+    grade_decimal = float(grade) / float(max_grade)
 
-    return {'input_list': [{'ok': 'Partial', 'msg': 'check', 'grade_decimal': grade_decimal}, ]}
+    if grade_decimal == 0:
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': grade_decimal}, ]}
+    elif grade_decimal == 1:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': grade_decimal}, ]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': '', 'grade_decimal': grade_decimal}, ]}
 </script>
 <meta charset="UTF-8" />
 <script type="text/javascript" charset="utf-8">
@@ -368,11 +390,11 @@ var heroes = [
 		class: "blonde",
 		class_title: "Блондинка",
 		theses: [
-					{letter: "a", text: "a) Люблю делать селфи"}, 
-					{letter: "b", text: "b) Хочу сделать милое цветное тату"}, 
-					{letter: "c", text: "c) Аутлеты – это для нищих"}, 
-					{letter: "g", text: "g) В мире каждый день происходит очень много нового"}, 
-					{letter: "i", text: "i) Фитоняши – это сила!"}
+					{letter: "a", text: "Люблю делать селфи"}, 
+					{letter: "b", text: "Хочу сделать милое цветное тату"}, 
+					{letter: "c", text: "Аутлеты – это для нищих"}, 
+					{letter: "g", text: "В мире каждый день происходит очень много нового"}, 
+					{letter: "i", text: "Фитоняши – это сила!"}
 				],
 		answers: {
 			"experiment_1": "a1", 
@@ -386,10 +408,10 @@ var heroes = [
 		class: "blonde",
 		class_title: "Блондинка",
 		theses: [
-					{letter: "d", text: "d) О человеке много можно сказать по его сумочке"}, 
-					{letter: "e", text: "e) Блондинкам нужно уступать дорогу"}, 
-					{letter: "f", text: "f) Блондинка – это не приговор!"}, 
-					{letter: "h", text: "h) Я не хотела бы жить на Манхэттене и только с козами делюсь я секретами"}
+					{letter: "d", text: "О человеке много можно сказать по его сумочке"}, 
+					{letter: "e", text: "Блондинкам нужно уступать дорогу"}, 
+					{letter: "f", text: "Блондинка – это не приговор!"}, 
+					{letter: "h", text: "Я не хотела бы жить на Манхэттене и только с козами делюсь я секретами"}
 				],
 		answers: {
 			"experiment_1": "a2", 
@@ -403,11 +425,11 @@ var heroes = [
 		class: "nerd",
 		class_title: "Ботан",
 		theses: [
-					{letter: "b", text: "b) Книги гораздо информативнее людей"}, 
-					{letter: "c", text: "c) Вечеринки – это пустая трата времени"}, 
-					{letter: "g", text: "g) Нет не решаемых проблем"}, 
-					{letter: "h", text: "h) Нужно хорошо учиться, чтобы не расстраивать маму"},
-					{letter: "i", text: "i) Девушки любят умных"}
+					{letter: "b", text: "Книги гораздо информативнее людей"}, 
+					{letter: "c", text: "Вечеринки – это пустая трата времени"}, 
+					{letter: "g", text: "Нет не решаемых проблем"}, 
+					{letter: "h", text: "Нужно хорошо учиться, чтобы не расстраивать маму"},
+					{letter: "i", text: "Девушки любят умных"}
 				],
 		answers: {
 			"experiment_1": "a2", 
@@ -421,10 +443,10 @@ var heroes = [
 		class: "nerd",
 		class_title: "Ботан",
 		theses: [
-					{letter: "a", text: "a) Знание – сила"}, 
-					{letter: "d", text: "d) Любое знание нуждается в опытной проверке"}, 
-					{letter: "e", text: "e) Прежде чем что-то сделать, нужно оценить все риски"}, 
-					{letter: "f", text: "f) Пока не попробуешь – не узнаешь"}
+					{letter: "a", text: "Знание – сила"}, 
+					{letter: "d", text: "Любое знание нуждается в опытной проверке"}, 
+					{letter: "e", text: "Прежде чем что-то сделать, нужно оценить все риски"}, 
+					{letter: "f", text: "Пока не попробуешь – не узнаешь"}
 				],
 		answers: {
 			"experiment_1": "a3", 
@@ -439,11 +461,11 @@ var heroes = [
 		class_title: "Внесистемный элемент",
 		theses: [
 					
-					{letter: "a", text: "a) Глупо мыслить стереотипами"},
-					{letter: "e", text: "e) Нужно жить в ногу со временем"},
-					{letter: "f", text: "f) Быть непохожим = быть собой"},
-					{letter: "g", text: "g) Выброси телевизор!"},
-					{letter: "h", text: "h) Facebook для сильных и независимых"}
+					{letter: "a", text: "Глупо мыслить стереотипами"},
+					{letter: "e", text: "Нужно жить в ногу со временем"},
+					{letter: "f", text: "Быть непохожим = быть собой"},
+					{letter: "g", text: "Выброси телевизор!"},
+					{letter: "h", text: "Facebook для сильных и независимых"}
 				],
 		answers: {
 			"experiment_1": "a4", 
@@ -457,10 +479,10 @@ var heroes = [
 		class:"offsystem",
 		class_title: "Внесистемный элемент",
 		theses: [
-					{letter: "b", text: "b) Главное в человеке – мозги"}, 
-					{letter: "c", text: "c) Главное в человеке – доброта"}, 
-					{letter: "d", text: "d) Делай то, что любишь"}, 
-					{letter: "i", text: "i) Мир сложен и непредсказуем"}
+					{letter: "b", text: "Главное в человеке – мозги"}, 
+					{letter: "c", text: "Главное в человеке – доброта"}, 
+					{letter: "d", text: "Делай то, что любишь"}, 
+					{letter: "i", text: "Мир сложен и непредсказуем"}
 				],
 		answers: {
 			"experiment_1": "a3", 
@@ -474,12 +496,12 @@ var heroes = [
 		class:"superhero",
 		class_title: "Супергерой",
 		theses: [
-					{letter: "a", text: "a) Мир пора спасать"}, 
-					{letter: "b", text: "b) Вокруг так много несправедливости"}, 
-					{letter: "e", text: "e) Современному миру не хватает героев"}, 
-					{letter: "f", text: "f) Добро всегда побеждает"}, 
-					{letter: "i", text: "i) Экзистенциальный кризис – для слабаков"}, 
-					{letter: "k", text: "k) На вашей планете не очень уютно"}
+					{letter: "a", text: "Мир пора спасать"}, 
+					{letter: "b", text: "Вокруг так много несправедливости"}, 
+					{letter: "e", text: "Современному миру не хватает героев"}, 
+					{letter: "f", text: "Добро всегда побеждает"}, 
+					{letter: "i", text: "Экзистенциальный кризис – для слабаков"}, 
+					{letter: "k", text: "На вашей планете не очень уютно"}
 				],
 		answers: {
 			"experiment_1": "a4", 
@@ -493,11 +515,11 @@ var heroes = [
 		class:"superhero",
 		class_title: "Супергерой",
 		theses: [
-					{letter: "c", text: "c) Герой начинается с переоценки ценностей"}, 
-					{letter: "d", text: "d) Солнце светит всем"}, 
-					{letter: "g", text: "g) Мир прекрасен – пока мы молоды"}, 
-					{letter: "h", text: "h) Главное в жизни – найти себя"}, 
-					{letter: "j", text: "j) В чем сила?"}
+					{letter: "c", text: "Герой начинается с переоценки ценностей"}, 
+					{letter: "d", text: "Солнце светит всем"}, 
+					{letter: "g", text: "Мир прекрасен – пока мы молоды"}, 
+					{letter: "h", text: "Главное в жизни – найти себя"}, 
+					{letter: "j", text: "В чем сила?"}
 		],
 		answers: {
 			"experiment_1": "a6", 
@@ -511,12 +533,12 @@ var heroes = [
 		class:"blogger",
 		class_title: "Блогер",
 		theses: [
-					{letter: "a", text: "a) Фриланс – для свободных духом"}, 
-					{letter: "b", text: "b) Модный – значит успешный"}, 
-					{letter: "c", text: "c) Удачный ракурс – залог успеха"}, 
-					{letter: "e", text: "e) Жизнь на скоростях"}, 
-					{letter: "f", text: "f) Долой банальность!"}, 
-					{letter: "h", text: "h) Wow – наше все"}
+					{letter: "a", text: "Фриланс – для свободных духом"}, 
+					{letter: "b", text: "Модный – значит успешный"}, 
+					{letter: "c", text: "Удачный ракурс – залог успеха"}, 
+					{letter: "e", text: "Жизнь на скоростях"}, 
+					{letter: "f", text: "Долой банальность!"}, 
+					{letter: "h", text: "Wow – наше все"}
 				],
 		answers: {
 			"experiment_1": "a5", 
@@ -530,11 +552,11 @@ var heroes = [
 		class:"blogger",
 		class_title: "Блогер",
 		theses: [
-					{letter: "d", text: "d) Поделиться опытом – помочь другому"}, 
-					{letter: "g", text: "g) Знание доступно всем"}, 
-					{letter: "i", text: "i) Называя мир, мы его изменяем"}, 
-					{letter: "j", text: "j) Только ирония может спасти современного человека"}, 
-					{letter: "k", text: "k) Не тупи!"}
+					{letter: "d", text: "Поделиться опытом – помочь другому"}, 
+					{letter: "g", text: "Знание доступно всем"}, 
+					{letter: "i", text: "Называя мир, мы его изменяем"}, 
+					{letter: "j", text: "Только ирония может спасти современного человека"}, 
+					{letter: "k", text: "Не тупи!"}
 				],
 		answers: {
 			"experiment_1": "a4", 
@@ -543,6 +565,7 @@ var heroes = [
 		}
 	}
 ]
+
 
 function get_hero_class(name){
 	return hero_classes.find(function(x){return x.name==name});
@@ -588,8 +611,11 @@ user_hero.student_answer = {
 	"experiment_3": "c1",
 }
 
+function scrollToElement(element){
+	$('html,body').animate({ scrollTop: element.offset().top - 10 });
+}
 
-var notification = $(".problem .notification").hide();
+var notification = $(".problem .notification.notification-submit").hide();
 var submit_button = $(".heroes-task").closest(".problem").find('button.submit');
 $(submit_button).css('text-transform','none');
 $(submit_button).hide();
@@ -628,16 +654,25 @@ function check_answer(experiment, answer){
 			if (answer == user_hero.hero["answers"][experiment]){
 				correctness = true;
 			}
+			else{
+				correctness = false;
+			}
 			break;
 		case "experiment_2":
 			if (answer == user_hero.hero["answers"][experiment]){
 				correctness = true;
 			 }
+			else{
+				correctness = false;
+			}
 			 break;
 		case "experiment_3":
 			if (answer == user_hero.hero["answers"][experiment]){
 				correctness = true;
 			 }
+			else{
+				correctness = false;
+			}
 			 break;
 		default:
 			 break;
@@ -647,6 +682,7 @@ function check_answer(experiment, answer){
 		user_hero.correctness[experiment] = true;
 	}
 	else{
+		user_hero.correctness[experiment] = false;
 		comment = comments[answer][user_hero.hero["name"]];
 	}
 	// user_hero.attempts[experiment] += 1;
@@ -724,7 +760,8 @@ function create_step_2(){
 	    }).appendTo(mod_wrap);
 	    var mod_label = $('<label />', {
 	    	for:  modification_element.letter + "_modification_" + user_hero.hero_class,
-	    	html: " " + modification_element.text
+	    	html: " " + modification_element.text // не отрисовывать букву
+	    	// html: " " + modification_element.letter + ") " + modification_element.text
 	    }).appendTo(mod_wrap);
 	    modifications_block.append(mod_wrap);
 	});
@@ -787,12 +824,13 @@ function create_step_3_1(){
 	$("#step_3").show();
 	
 	// $(submit_button).hide();
-	$("#step_3_experiment_1 .you-hero-modification").html('<p>Ваш герой: <strong>' + user_hero.hero.title + '</strong></p>')
+	$("#step_3_experiment_1 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
 	
 	var theses_block = $('<ul/>',{});
 	user_hero.hero.theses.forEach(function(thesis){
 		var thesis_block = $('<li/>', {
-			html: thesis.text
+			// html: thesis.letter + ") " + thesis.text
+			html: thesis.text // не отрисовывать букву
 		}).appendTo(theses_block)
 	});
 
@@ -800,6 +838,7 @@ function create_step_3_1(){
 	$('#step_3_experiment_1 span.attempts-label').html(user_hero.attempts["experiment_1"]);
 	$("#step_3_experiment_1_task .hero-input-wrap").click(function(e) {
 		if (!$('input', $(e.target)).is(':checked')){
+
 			$("#step_3_experiment_1_task .hero-input-wrap").each(function(index, element) {
 
 				$(element).removeClass("correct-answer").removeClass("incorrect-answer");
@@ -807,6 +846,7 @@ function create_step_3_1(){
 			});
 		}
 		user_hero.student_answer["experiment_1"] = $('input', $(e.target)).val();
+		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
 		$('input', $(e.target)).prop('checked', true);
 		answer.setJSON({answer: user_hero});
 	});
@@ -819,11 +859,16 @@ function create_step_3_1(){
 	});
 
 	$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).prop('checked', true);
+	var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
+	answer.setJSON({answer: user_hero});
+
 	$(submit_button).show();
 	if (user_hero.attempts["experiment_1"] == 0 ){
+		scrollToElement($(".heroes-task #step_3"));
 		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
 		$(submit_button).show();
 	}
+
 	else if (user_hero.attempts["experiment_1"] == 1 ){
 		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
 
@@ -850,6 +895,8 @@ function create_step_3_1(){
 		else{
 			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 			$("#step_3_experiment_1 .experiment-explanation").show();
+			// scrollToElement($("#step_3_experiment_1 .incorrect-message"));
+			console.log("!!!!!!!!");
 			$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
 		}
 		user_hero.current_step = 2;
@@ -869,12 +916,13 @@ function create_step_3_2(){
     $("#step_3_experiment_2").show();
 	
 	// $(submit_button).hide();
-	$("#step_3_experiment_2 .you-hero-modification").html('<p>Ваш герой: <strong>' + user_hero.hero.title + '</strong></p>')
+	$("#step_3_experiment_2 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
 	
 	var theses_block = $('<ul/>',{});
 	user_hero.hero.theses.forEach(function(thesis){
 		var thesis_block = $('<li/>', {
-			html: thesis.text
+			// html: thesis.letter + ") " + thesis.text 
+			html: thesis.text // не отрисовывать букву
 		}).appendTo(theses_block)
 	});
 
@@ -889,6 +937,7 @@ function create_step_3_2(){
 			});
 		}
 		user_hero.student_answer["experiment_2"] = $('input', $(e.target)).val();
+		var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
 		$('input', $(e.target)).prop('checked', true);
 		answer.setJSON({answer: user_hero});
 	});
@@ -901,8 +950,12 @@ function create_step_3_2(){
 	});
 
 	$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).prop('checked', true);
+	var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
+	answer.setJSON({answer: user_hero});
+
 	$(submit_button).show();
 	if (user_hero.attempts["experiment_2"] == 0 ){
+		scrollToElement($(".heroes-task #step_3"));
 		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
 		$(submit_button).show();
 	}
@@ -932,6 +985,8 @@ function create_step_3_2(){
 		else{
 			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 			$("#step_3_experiment_2 .experiment-explanation").show();
+			// scrollToElement($("#step_3_experiment_2 .incorrect-message"));
+			console.log("!!!!!!!!");
 			$("#step_3_experiment_2 .incorrect-message").html(result.comment).show();
 		}
 		user_hero.current_step = 3;
@@ -953,12 +1008,13 @@ function create_step_3_3(){
     $("#step_3_experiment_2").hide();
     $("#step_3_experiment_3").show();
 
-	$("#step_3_experiment_3 .you-hero-modification").html('<p>Ваш герой: <strong>' + user_hero.hero.title + '</strong></p>')
+	$("#step_3_experiment_3 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
 	
 	var theses_block = $('<ul/>',{});
 	user_hero.hero.theses.forEach(function(thesis){
 		var thesis_block = $('<li/>', {
-			html: thesis.text
+			html: thesis.text // не отрисовывать букву
+			// html: thesis.letter + ") " + thesis.text
 		}).appendTo(theses_block)
 	});
 
@@ -973,6 +1029,7 @@ function create_step_3_3(){
 			});
 		}
 		user_hero.student_answer["experiment_3"] = $('input', $(e.target)).val();
+		var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
 		$('input', $(e.target)).prop('checked', true);
 		answer.setJSON({answer: user_hero});
 	});
@@ -985,8 +1042,12 @@ function create_step_3_3(){
 	});
 
 	$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).prop('checked', true);
+	var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
+	answer.setJSON({answer: user_hero});
+
 	$(submit_button).hide();
 	if (user_hero.attempts["experiment_3"] == 0 ){
+		scrollToElement($(".heroes-task #step_3"));
 		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
 		$(submit_button).show();
 	}
@@ -997,6 +1058,7 @@ function create_step_3_3(){
 			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
 			$(submit_button).unbind("click.heroNamespace_3");
 			$(submit_button).hide();
+			$(notification).show();
 		}
 		else{
 			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
@@ -1015,10 +1077,13 @@ function create_step_3_3(){
 		else{
 			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 			$("#step_3_experiment_3 .experiment-explanation").show();
+			// scrollToElement($("#step_3_experiment_3 .incorrect-message"));
+			console.log("!!!!!!!!");
 			$("#step_3_experiment_3 .incorrect-message").html(result.comment).show();
 		}
 		$(submit_button).unbind("click.heroNamespace_3");
 		$(submit_button).hide();
+		$(notification).show();
 	}
 	
 }
@@ -1049,11 +1114,11 @@ function create_step_3_3(){
 
 	<div class="step_3_task_text">		
 		<p>Мысленный эксперимент № 1: <strong>Отправьте меня</strong></p>
-<!--  		<p>Стелиос может путешествовать только на телетранспортере. Раньше на полет с Земли до Марса уходили месяцы. Летать приходилось в тесном и далеко не безопасном космическом корабле. Компания «Телетранспортный экспресс Стелиоса» изменила эту ситуацию. Теперь такой полет продолжается всего несколько минут и проходит абсолютно безопасно.</p>
+ 		<p>Стелиос может путешествовать только на телетранспортере. Раньше на полет с Земли до Марса уходили месяцы. Летать приходилось в тесном и далеко не безопасном космическом корабле. Компания «Телетранспортный экспресс Стелиоса» изменила эту ситуацию. Теперь такой полет продолжается всего несколько минут и проходит абсолютно безопасно.</p>
 		<p>Тем не менее в настоящий момент компания судится с одним недовольным клиентом, обвиняющим ее в том, что она фактически убила его. Аргумент этого клиента прост: работа телетранспортера заключается в том, чтобы сканировать мозг и тело человека, клетка за клеткой, разрушая их, отправляя сканированную информацию на Марс и там восстанавливая человека. Несмотря на то что человек, оказавшийся на Марсе, выглядит, мыслит и ощущает себя точно так же, как и тот человек, которого усыпили и переместили в космосе, истец считает, что на самом деле в телетранспортере человека убивают и заменяют клоном.</p>
 		<p>Для Стелиоса такое утверждение звучит абсурдно. В конце концов, он сам путешествовал на телетранспортере десятки раз и сейчас не чувствует себя умершим. Как вообще истец может всерьез утверждать, что его убили, если он явно в состоянии довести дело до суда?</p>
 		<p>И все же, когда Стелиос в очередной раз вошел в кабину телетранспортера и приготовился нажатием кнопки начать свое сканирование, он на секунду задумался над тем, а не собирается ли он и в самом деле совершить самоубийство…</p>
-		<p><i>Источник:</i> Глава 10 книги Дерека Парфита «Доводы и люди» (Оксфорд Юниверсити Пресс, 1984).</p> -->
+		<p><i>Источник:</i> Глава 10 книги Дерека Парфита «Доводы и люди» (Оксфорд Юниверсити Пресс, 1984).</p>
 		
 		</div>
 		<div class="you-hero-modification"></div>
@@ -1067,9 +1132,6 @@ function create_step_3_3(){
 			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a6" value="a6" /> Главное – быть верным себе!</div>
 			<div class="incorrect-message"></div>
 			<div class="answer-button-wrap">
-<!-- 				<div>
-					<button id="step_3_experiment_1_check" class="hero-task-check">Проверить</button>
-				</div> -->
 				<div>
 					Использовано попыток: <span class="attempts-label">0</span> из 2 
 				</div>
@@ -1091,9 +1153,9 @@ function create_step_3_3(){
 	<div id="step_3_experiment_2">
 		<div class="step_3_task_text">
 			<p>Мысленный эксперимент № 2: <strong>Киберсекс</strong></p>
-			<!-- <p>Как и многим людям, женатым несколько лет, Дику наскучили его отношения с женой. Между ними уже не было прежней страсти. Сейчас они практически уже и не спали вместе. Но Дик вовсе не собирался уходить от жены. Он любил ее, и она была отличной матерью для их детей.</p>
+			<p>Как и многим людям, женатым несколько лет, Дику наскучили его отношения с женой. Между ними уже не было прежней страсти. Сейчас они практически уже и не спали вместе. Но Дик вовсе не собирался уходить от жены. Он любил ее, и она была отличной матерью для их детей.</p>
 			<p>Он прекрасно знал, что обычное решение этой проблемы было таким: завести роман на стороне. Ты просто признаешь, что твоя жена удовлетворяет одну часть твоих потребностей, а любовница другую. Но Дик действительно не хотел флиртовать за спиной жены, кроме того, он знал, что, даже если бы он и смог это делать, его жена не смирилась бы с такого рода свободными отношениями.</p>
-			<p>Поэтому, когда Дик услышал о компании «Байт на стороне» («Лучше, чем в натуре!»), ему пришлось отнестись к ней серьезно. Эта компания предлагала возможность завести виртуальный роман. Не какой-то однорукий кибернетический секс с реальным человеком на другом конце компьютерной линии, а виртуальную реальность, в которой ты «спишь» с самым что ни на есть искусственным человеком. Это похоже на настоящий секс, но, фактически, все твои ощущения вызваны компьютерами, стимулирующими твой разум, для того чтобы тебе казалось, что ты занимаешься реальным сексом. Те же захватывающие ощущения, как и при настоящем флирте, но без третьего человека и, следовательно, без реальной измены. </p> -->
+			<p>Поэтому, когда Дик услышал о компании «Байт на стороне» («Лучше, чем в натуре!»), ему пришлось отнестись к ней серьезно. Эта компания предлагала возможность завести виртуальный роман. Не какой-то однорукий кибернетический секс с реальным человеком на другом конце компьютерной линии, а виртуальную реальность, в которой ты «спишь» с самым что ни на есть искусственным человеком. Это похоже на настоящий секс, но, фактически, все твои ощущения вызваны компьютерами, стимулирующими твой разум, для того чтобы тебе казалось, что ты занимаешься реальным сексом. Те же захватывающие ощущения, как и при настоящем флирте, но без третьего человека и, следовательно, без реальной измены. </p>
 		</div>
 		<div class="you-hero-modification"></div>
 		<div class="you-hero-theses"></div>
@@ -1106,9 +1168,6 @@ function create_step_3_3(){
 			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b6" value="b6" /> Вы слишком все усложняете.</div>
 			<div class="incorrect-message"></div>
 			<div class="answer-button-wrap">
-<!-- 				<div>
-					<button id="step_3_experiment_2_check" class="hero-task-check">Проверить</button>
-				</div> -->
 				<div>Использовано попыток: <span class="attempts-label">0</span> из 2 
 				</div>
 			</div>
@@ -1129,11 +1188,11 @@ function create_step_3_3(){
 	<div id="step_3_experiment_3">
 		<div class="step_3_task_text">
 			<p>Мысленный эксперимент № 3: <strong>Выдумка</strong></p>
-			<!-- <p>«Нет ни одного аспекта человеческого поведения, которого нельзя было бы объяснить с точки зрения нашей эволюции как вида, — сказал доктор Киплинг своей восторженной аудитории (слушателям). — Возможно, кто-то хочет подвергнуть сомнению эту гипотезу?»</p>
+			<p>«Нет ни одного аспекта человеческого поведения, которого нельзя было бы объяснить с точки зрения нашей эволюции как вида, — сказал доктор Киплинг своей восторженной аудитории (слушателям). — Возможно, кто-то хочет подвергнуть сомнению эту гипотезу?»</p>
 			<p>Поднялась одна рука. «Почему сегодняшние дети носят бейсбольные кепки задом наперед?» — спросил кто-то в кепке, надетой козырьком вперед.</p>
 			<p>«Это объясняется двумя причинами, — ответил Киплинг уверенно и быстро. — Во-первых, вы должны задаться вопросом, какие сигналы самец должен послать потенциальной партнерше, чтобы подчеркнуть для нее свою пригодность в качестве источника здорового генетического материала, который обладает большей привлекательностью, чем генетический материал его конкурентов. Одним из ответов будет грубая физическая сила. А теперь давайте посмотрим на бейсбольную кепку. Носимая традиционно, она обеспечивает защиту от солнца, а также от взглядов агрессивных конкурентов. Надевая кепку козырьком назад, самец показывает, что он не нуждается в этой защите: он достаточно силен, чтобы противостоять стихиям и взглядам любого, кто мог бы ему угрожать.</p>
 			<p>Во-вторых, надевание кепки козырьком назад является жестом нон-конформизма. Приматы живут в крайне упорядоченной социальной системе. Игра по правилам считается необходимостью. Переворачивание кепки задом наперед говорит о том, что самец находится выше правил, которые сдерживают его конкурентов, и опять-таки показывает его превосходство в физической силе.</p>
-			<p>Следующий вопрос?»</p> -->
+			<p>Следующий вопрос?»</p>
 		</div>
 		<div class="you-hero-modification"></div>
 		<div class="you-hero-theses"></div>
@@ -1145,9 +1204,6 @@ function create_step_3_3(){
 			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c5" value="c5" /> Не думаю, что в основе поступков такая сложная мотивация.</div>
 			<div class="incorrect-message"></div>
 			<div class="answer-button-wrap">
-				<!-- <div>
-					<button id="step_3_experiment_3_check" class="hero-task-check">Проверить</button>
-				</div> -->
 				<div>
 					Использовано попыток: <span class="attempts-label">0</span> из 2 
 				</div>
