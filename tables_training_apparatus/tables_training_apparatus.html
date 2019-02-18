@@ -14,8 +14,8 @@
 }
 
 .flex-item {
-        cursor: pointer;
-		background: white; /* tomato */
+    cursor: pointer;
+	background: white; /* tomato */
     margin: -2px;
    /* color: grey;*/ /* white */
     border: 4px solid #046b99;
@@ -24,6 +24,7 @@
     text-align: center;
     flex: 1 0 0px;
     min-width: 1.5em;
+    word-break: initial;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,6 +83,7 @@
         border: none;
 }
 
+
 .timer-block{
     font-size: 1.5em;
     text-align: center;
@@ -97,6 +99,15 @@
 .last-selected-num{
         background: #b3efff;
 }
+
+.result-block{
+	margin: 0 1em;
+}
+
+#task_reset{
+	display: none;
+}
+
 </style>
 
 
@@ -104,46 +115,44 @@
 
 var language = "ru";
 
-var start_btn_label,
-  delay_label,
-  table_label,
-  time_label
 
-if (language == "ru") {
-  start_btn_label = "Начать";
-} else if (language == "en") {
-  start_btn_label = "Start";
-}
-else {
-  start_btn_label = "Start";
+var translations = new Object();
+translations = {
+	"en": {
+		"start_btn_label": "Start",
+		"reset_btn_label": "Restart",
+		"delay_label": "We start in",
+		"table_label": "Table",
+		"time_label": "Time",
+		"test_results_label": "Test results",
+		"result_label_1": '<p>Должна быть англ. версия: Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая&nbsp;устойчивость внимания&nbsp;и работоспособность в динамике.</p><div><table><tbody><tr><td><strong>Возраст</strong></td><td><strong>5 баллов</strong></td><td><strong>4 балла</strong></td><td><strong>3 балла</strong></td><td><strong>2 балла</strong></td><td><strong>1 балл</strong></td></tr> <tr><td><strong>10 лет</strong></td><td>45 и меньше</td><td>46-55</td><td>56-65</td><td>66-75</td><td>76 и больше</td></tr><tr><td><strong>11 лет</strong></td><td>35 и меньше</td><td>36-45</td><td>46-55</td><td>56-65</td><td>66 и больше</td></tr> <tr><td><strong>12 лет</strong></td><td>30 и меньше</td><td>31-35</td><td>36-45</td><td>46-55</td><td>56 и больше</td></tr></tbody></table></div>',
+		"result_label_2": "Должна быть англ. версия: Эффективность работы = ",
+		"result_label_3": "Должна быть англ. версия: Степень врабатываемости = ",
+		"result_label_4": "Должна быть англ. версия: Результат меньше 1,0 – показатель хорошей врабатываемости, соответственно, чем выше 1,0 данный показатель, тем больше испытуемому требуется подготовка к основной работе.",
+		"result_label_5": "Должна быть англ. версия: Психическая устойчивость = ",
+		"result_label_6": "Должна быть англ. версия: Показатель результата меньше 1,0 говорит о хорошей психической устойчивости, соответственно, чем выше данный показатель, тем хуже психическая устойчивость испытуемого к выполнению заданий.",
+		"text_task_label": "Должна быть англ. версия: <h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «СТАРТ» Вам будет поочередно предложено пять таблиц на которых в произвольном порядке расположены числа от 1 до 25. </p><p>Ваша задача заключается в том, чтобы нажать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Постарайся делать это как можно быстрее и без ошибок». Таблица открывается и одновременно с началом выполнения задания включается секундомер. Вторая, третья и последующие таблицы предъявляются без всяких инструкций с интервалом в 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p>Последняя правильно указанная цифра подсвечена голубым цветом.</p>",
+	},
+	"ru": {
+		"start_btn_label": "Начать",
+		"reset_btn_label": "Начать заново",
+		"delay_label": "Начинаем через",
+		"table_label": "Таблица",
+		"time_label": "Время",
+		"test_results_label": "Результаты теста",
+		"result_label_1": '<p>Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая&nbsp;устойчивость внимания&nbsp;и работоспособность в динамике.</p><div><table><tbody><tr><td><strong>Возраст</strong></td><td><strong>5 баллов</strong></td><td><strong>4 балла</strong></td><td><strong>3 балла</strong></td><td><strong>2 балла</strong></td><td><strong>1 балл</strong></td></tr> <tr><td><strong>10 лет</strong></td><td>45 и меньше</td><td>46-55</td><td>56-65</td><td>66-75</td><td>76 и больше</td></tr><tr><td><strong>11 лет</strong></td><td>35 и меньше</td><td>36-45</td><td>46-55</td><td>56-65</td><td>66 и больше</td></tr> <tr><td><strong>12 лет</strong></td><td>30 и меньше</td><td>31-35</td><td>36-45</td><td>46-55</td><td>56 и больше</td></tr></tbody></table></div>',
+		"result_label_2": "Эффективность работы = ",
+		"result_label_3": "Степень врабатываемости = ",
+		"result_label_4": "Результат меньше 1,0 – показатель хорошей врабатываемости, соответственно, чем выше 1,0 данный показатель, тем больше испытуемому требуется подготовка к основной работе.",
+		"result_label_5": "Психическая устойчивость = ",
+		"result_label_6": "Показатель результата меньше 1,0 говорит о хорошей психической устойчивости, соответственно, чем выше данный показатель, тем хуже психическая устойчивость испытуемого к выполнению заданий.",
+		"text_task_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «СТАРТ» Вам будет поочередно предложено пять таблиц на которых в произвольном порядке расположены числа от 1 до 25. </p><p>Ваша задача заключается в том, чтобы нажать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Постарайся делать это как можно быстрее и без ошибок». Таблица открывается и одновременно с началом выполнения задания включается секундомер. Вторая, третья и последующие таблицы предъявляются без всяких инструкций с интервалом в 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p>Последняя правильно указанная цифра подсвечена голубым цветом.</p>",
+	},
 }
 
-if (language == "ru") {
-  delay_label = "Начинаем через";
-} else if (language == "en") {
-  delay_label = "We start in";
-}
-else {
-  delay_label = "We start in";
-}
+var user_labels = translations[language];
 
-if (language == "ru") {
-  table_label = "Таблица";
-} else if (language == "en") {
-  table_label = "Table";
-}
-else {
-  table_label = "Table";
-}
 
-if (language == "ru") {
-  time_label = "Время";
-} else if (language == "en") {
-  time_label = "Time";
-}
-else {
-  time_label = "Time";
-}
 
 var tables = [
 	[17, 9, 24, 25, 12, 8, 6, 1, 15, 7, 23, 21, 19, 3, 11, 20, 13, 4, 16, 5, 2, 14, 10, 18, 22], // 1
@@ -178,6 +187,19 @@ var tables = [
 	[3, 21, 12, 2, 25, 17, 20, 5, 16, 6, 7, 23, 22, 14, 11, 18, 8, 13, 24, 15, 4, 9, 19, 10, 1]  // 30
 ];
 
+function sec2time(timeInSeconds) {
+  var pad = function (num, size) {
+      return ('000' + num).slice(size * -1);
+    },
+    time = parseFloat(timeInSeconds).toFixed(3),
+    hours = Math.floor(time / 60 / 60),
+    minutes = Math.floor(time / 60) % 60,
+    seconds = Math.floor(time - minutes * 60),
+    milliseconds = time.slice(-3);
+
+  return pad(minutes, 2) + ':' + pad(seconds, 2)
+  // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+}
 
 function timer(seconds, tick, result) {
   if (seconds != 0) {
@@ -197,11 +219,13 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
   var table_width = table_width || "100%";
   var stage = stage;
   var delay_sec = delay_sec || 3;
-  var wrap = $('<div/>', {
+  var wrap = $('<div></div>', {
     "class": "table-wrap",
-    "style": "width: " + table_width + "px"
+    "style": "max-width: " + table_width + "px"
   });
-
+  $("#task_text").html(user_labels.text_task_label);
+  $("#task_reset").html(user_labels.reset_btn_label);
+  $("#task_reset").hide();
   var stopwatch_wrap = document.createElement('div');
 
   var stopwatch = new Stopwatch(stopwatch_wrap, {
@@ -216,7 +240,7 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
     $(elem).html(start_window_wrap);
     var start_button = document.createElement('button');
     start_button.className = "start-button";
-    start_button.innerHTML = start_btn_label;
+    start_button.innerHTML = user_labels.start_btn_label;
     start_window_wrap.appendChild(start_button);
     start_button.onclick = function () {
       createTable();
@@ -225,7 +249,6 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
   }
 
   function createDelayWindow(delay) {
-    console.log("delay: ", delay)
     var delay_window_wrap = document.createElement('div');
     delay_window_wrap.className = "start-window";
     $(elem).html(delay_window_wrap);
@@ -233,7 +256,7 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
     delay_time.className = "delay-label";
     delay_window_wrap.appendChild(delay_time);
     timer(delay, function (s) {
-      delay_time.innerHTML = delay_label + " " + s;
+      delay_time.innerHTML = user_labels.delay_label + " " + s;
     }, function () {
       createTable();
     });
@@ -241,29 +264,46 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
 
   function showResultWindow() {
     var result_window_wrap = document.createElement('div');
-    result_window_wrap.className = "start-window";
+    // result_window_wrap.className = "start-window";
     var result_wrap = document.createElement('div');
-    times.forEach(function (item, i, arr) {
-      var result_block = document.createElement('div');
-      result_block.innerHTML = table_label + " " + (i + 1) + ": " + sec2time(item);
+
+    var ER = Number(times.reduce((a, b) => a + b, 0)/times.length).toFixed(1);
+    var VR =  Number(times[0]/ER).toFixed(2);
+    var PU = Number(times[3]/ER).toFixed(2);
+
+    $(result_wrap).append("<h2>" + user_labels.test_results_label + "</h2>");
+    $(result_wrap).append('<p>' + user_labels.result_label_1 +  '</p>');
+        times.forEach(function (item, i, arr) {
+    var result_block = document.createElement('div');
+      result_block.innerHTML = user_labels.table_label + " " + (i + 1) + ": " +  "<strong>" + sec2time(item) + "</strong>";
       result_wrap.appendChild(result_block);
     });
+    
+    $(result_wrap).append("<p></p>");
+    $(result_wrap).append(user_labels.result_label_1);
+    $(result_wrap).append("<p><strong>" + user_labels.result_label_2 + ER + "</strong></p>");
+    $(result_wrap).append("<p><strong>" + user_labels.result_label_3 + VR + "</strong></p>");
+    $(result_wrap).append("<p>" + user_labels.result_label_4  + "</p>");
+    $(result_wrap).append("<p><strong>" + user_labels.result_label_5 + PU + " </strong></p>");
+    $(result_wrap).append("<p>" + user_labels.result_label_6 + "</p>");
+
     result_window_wrap.appendChild(result_wrap);
     $(elem).html(result_window_wrap);
+    $("#task_reset").show();
   }
 
   function createTable() {
     wrap.append(stopwatch_wrap);
-    var table_container = $("<div/>", {
+    var table_container = $("<div></div>", {
         "style": 'padding: 5px;border: 4px solid #046b99;'
       });
     [0, 1, 2, 3, 4].forEach(function (container, i, arr) {
-      var flex_container = $("<div/>", {
+      var flex_container = $("<div></div>", {
         "class": 'flex-container'
       });
       [0, 1, 2, 3, 4].forEach(function (item, j, arr) {
         var num = numbers_arr[5 * i + (j + 1) - 1];
-        var item = $('<div/>', {
+        var item = $('<div></div>', {
           "class": 'flex-item',
           "html": num,
           "data-number": num
@@ -296,7 +336,7 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
     });
     $(wrap).append(table_container);
     $(elem).html(wrap);
-    $(elem).append('<p style="font-size: 1.4em;text-align: right;">' + table_label + " " + (stage + 1) + '/5</p>');
+    $(elem).append('<p style="font-size: 1.4em;text-align: right;">' + user_labels.table_label + " " + (stage + 1) + '/5</p>');
     stopwatch.start();
   }
 
@@ -362,7 +402,7 @@ var Stopwatch = function (elem, options) {
   }
 
   function render() {
-    timer.innerHTML = time_label + ": <strong>" + sec2time(clock / 1000) + "</strong>";
+    timer.innerHTML = user_labels.time_label + ": <strong>" + sec2time(clock / 1000) + "</strong>";
   }
 
   function delta() {
@@ -387,25 +427,27 @@ var user_tables = tables.sort(function () {
 }).slice(0, 5);
 
 var table_width = 550;
-var delay_sec = 5;
+var delay_sec = 7;
 
 var html_element = document.getElementById("schulte_table");
 var table = new SchulteTable(html_element, user_tables[0], 0, table_width, delay_sec);
 table.start();
 
+$("#task_reset").click(function (e) {
+	times = [];
+	user_tables = tables.sort(function () {
+	  return .5 - Math.random()
+	}).slice(0, 5);
+	var table = new SchulteTable(html_element, user_tables[0], 0, table_width, delay_sec);
+	table.start();
+})
+
+
 </script>
 
 
 <div>
-
-<p><strong>Инструкция к тесту</strong><p>
-<p>Испытуемому предъявляют первую таблицу: «На этой таблице числа от 1 до 25
-расположены не по порядку». Затем таблицу закрывают и продолжают: «Покажи и назови
-все числа по порядку от 1 до 25. Постарайся делать это как можно быстрее и без ошибок».
-Таблицу открывают и одновременно с началом выполнения задания включают
-секундомер. Вторая, третья и последующие таблицы предъявляются без всяких
-инструкций.</p>
-
-<div id="schulte_table"></div>
-
+  <div id="task_text"></div>
+  <div id="schulte_table"></div>
+  <button id="task_reset">Restart</button>
 </div>

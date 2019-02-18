@@ -1,0 +1,428 @@
+<style type="text/css">
+
+.task-wrap, .start-wrap, .result-wrap{
+	    /*height: 680px;*/
+    /* background: #f6f6f6; */
+    
+}
+
+.task-wrap{
+	height: 100%;
+}
+
+.start-wrap{
+	height: 680px;
+}
+
+.result-wrap{
+	height: 100%;
+}
+
+.start-wrap{
+	display: flex; 
+    justify-content: center; 
+    align-items: center; 
+	border: 6px double #046b99;
+}
+
+.check-button-wrap{
+	text-align: center;
+}
+
+.start-button, .check-button{
+    font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;
+    /*height: 50px; */
+    background: #046b99;
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: normal;
+    border: none;
+}
+.start-button:hover, .check-button:hover{
+    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;*/
+    /* height: 50px; */
+    background: #035c83 !important;
+    border: none;
+}
+
+.start-button:focus, .check-button:focus{
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.timer-block{
+	text-align: center;
+    font-size: 2em;
+}
+
+.series, .result-series{
+	background: aliceblue;
+	display: flex;
+	margin: 8px;
+	font-size: 2.5em;
+}
+	
+.num, .result-num{
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    word-break: initial;
+}
+
+.result-num.correct-num{
+	background: #0ed30e;
+}
+
+.result-num.incorrect-num{
+	background: #ff7070;
+}
+	    
+
+.student-input-num{
+	border-bottom: 4px solid #046b99;
+}
+
+input.num-input{
+	text-align: center;
+	width: 3.6rem;
+	font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+}
+
+input.num-input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input.num-input::-webkit-outer-spin-button,
+input.num-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var language = "ru";
+
+
+var translations = new Object();
+translations = {
+	"en": {
+		"start_btn_label": "Start",
+		"check_btn_label": "Check",
+		"restart_btn_label": "Restart",
+		"correct_answers_label": "Number of correct answers",
+		"comment_0_2_label": "You need to pay attention to the development of logical thinking. Do the exercises and remember that the main thing is the regularity of the exercises.",
+		"comment_3_5_label": "The result is within the normal range for an adult. But do not relax and continue to pay attention to the development of logical thinking.",
+		"comment_5_plus_label": "Congratulations! Your results are close to the maximum. Continue to improve your logical thinking performance.",
+		"test_results_label": "Test results",
+	},
+	"ru": {
+		"start_btn_label": "Начать",
+		"check_btn_label": "Проверить",
+		"restart_btn_label": "Начать заново",
+		"correct_answers_label": "Правильных ответов",
+		"comment_0_2_label": "Вам необходимо уделить внимание развитию логического мышления. Выполняйте упражнения и помните, что главное - это регулярность занятий",
+		"comment_3_5_label": "Результат в пределах нормы для взрослого человека. Но не расслабляйтесь и продолжайте уделять внимание развитию логического мышления",
+		"comment_5_plus_label": "Поздравляем! Ваши результаты близки к максимуму. Продолжайте совершенствовать свое показатели логического мышления",
+		"test_results_label": "Результаты теста",
+	},
+}
+
+var user_labels = translations[language];
+
+
+var series = {
+	"series_1": {
+		"answer": [12, 9],
+		"task":[24, ,21, 19, 18, 15, 13, "input", "input", 7]
+	},
+	"series_2": {
+		"answer": [25, 36],
+		"task":[1, 4, 9, 16, "input", "input", 49, 64, 81, 100]
+	},
+	"series_3": {
+		"answer": [13, 20 ],
+		"task":[16, 17, 15, 18, 14, 19, "input", "input"]
+	},
+	"series_4": {
+		"answer": [36, 38],
+		"task":[1, 3, 6, 8, 16, 18, "input", "input", 76, 78]
+	},
+	"series_5": {
+		"answer": [13],
+		"task":[7, 16, 9, ";", 5, 21, 16, ";", 9, "input", 4]
+	},
+	"series_6": {
+		"answer": [44, 46],
+		"task":[2, 4, 5, 10, 20, 22, "input", "input", 92, 94]
+	},
+	"series_7": {
+		"answer": [10, 4],
+		"task":[24, 22, 19, 15, "input", "input"]
+	}
+}
+
+function arraysEqual(a, b) {
+  var result = {}
+  result["map"] = []
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) {
+      result["map"].push(false);
+    }
+    else {
+      result["map"].push(true);
+    }
+  }
+  result["correctness"] = result["map"].indexOf(false) == -1
+  return result;
+}
+
+/**
+ * https://gist.github.com/wcoder/fcee724b4f5b44062754
+ * @param seconds - кол-во секунд
+ * @param tick - функция, вызываемая каждую секунду
+ * @param result - функция, вызываемая по истечении времени
+ */
+function timer (seconds, tick, result) {
+	if (seconds != -1) {
+		tick(seconds);
+		seconds -= 1;
+		setTimeout(function () {
+			timer(seconds, tick, result);
+		}, 1000);
+	} else {
+		result();
+	}
+}
+function sec2time(timeInSeconds) {
+  var pad = function (num, size) {
+      return ('000' + num).slice(size * -1);
+    },
+    time = parseFloat(timeInSeconds).toFixed(3),
+    hours = Math.floor(time / 60 / 60),
+    minutes = Math.floor(time / 60) % 60,
+    seconds = Math.floor(time - minutes * 60),
+    milliseconds = time.slice(-3);
+
+  return pad(minutes, 2) + ':' + pad(seconds, 2)
+  // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+}
+
+function NumericalSeries(element, time) {
+	var start_block = createStartBlock();
+	var time = time;
+	var task_wrap;
+
+	var restart_button = $("<button/>", {
+		html: user_labels.restart_btn_label
+	});
+
+	restart_button.click(function (e) {
+  			NumericalSeries(element, time);
+  	});
+
+	function createStartBlock() {
+  		var start_wrap = $('<div></div>',{
+  			class: "start-wrap",
+  		});
+		var start_button = $('<button></button>',{
+  			class: "start-button",
+  			text: user_labels.start_btn_label,
+  		});
+  		start_button.click(function (e) {
+  			createTaskBlock();
+  		})
+		$(start_wrap).append(start_button)
+  		$(element).html(start_wrap);
+  	}
+
+  	function createTaskBlock(){
+  		task_wrap = $('<div></div>',{
+  			class: "task-wrap",
+  		});
+
+  		Object.keys(series).forEach(function (key) {
+  			var series_block = $('<div></div>',{
+  				class: "series",
+  				id: key,
+  			});
+  			series[key]["task"].forEach(function (item, i, arr) {
+  				// console.log(item)
+  				if (Number.isInteger(item)){
+	  				var num = $('<div></div>',{
+	  					class: "num",
+	  					html: item.toString()
+	  				});
+	  				series_block.append(num)
+	  			}
+	  			else{
+	  				if (item == "input"){
+		  				var num_input = $('<div></div>',{
+		  					class: "num student-input-num",
+		  				});
+		  				var input = $('<input/>',{
+		  					type:"number", 
+		  					class:"num-input", 
+		  					min:"0",
+		  					max:"99",
+		  					maxlength: "2"
+		  				}).appendTo($(num_input));
+		  				series_block.append(num_input)
+	  				}
+	  				else {
+	  					var num = $('<div></div>',{
+	  						class: "num",
+	  						html: item.toString()
+	  					});
+	  				series_block.append(num)
+	  				}
+	  			}
+			
+			});
+			task_wrap.append(series_block);
+  		});
+  		var timer_display = $('<div></div>',{
+	  		class: "timer-block",
+	  	});
+	  	timer(time, function (s) {
+			$(timer_display).html(sec2time(s));
+		}, function () {
+			createResultBlock()
+		});
+		$(task_wrap).prepend(timer_display);
+
+		var check_button_wrap = $("<div/>", {
+			class: "check-button-wrap"
+		})
+  	
+		var check_button = $('<button></button>',{
+  			class: "check-button",
+  			text: user_labels.check_btn_label,
+  		}).appendTo(check_button_wrap);
+
+  		check_button.click(function (e) {
+  			createResultBlock();
+  		})
+
+		$(task_wrap).append(check_button_wrap);
+
+  		$(element).html(task_wrap);
+	}
+
+	function createResultBlock(){
+		var grade = 0;
+		var student_answers = {};
+		Object.keys(series).forEach(function (key) {
+			student_answers[key] = [];
+			$("#"+key + " .student-input-num .num-input", task_wrap).each(function( index ) {
+					student_answers[key].push( Number.isInteger(parseInt($(this).val())) ? parseInt($(this).val()) : "" );
+			});
+		});
+
+		var result_wrap = $('<div></div>',{
+  			class: "result-wrap",
+  		});
+
+  		result_wrap.append("<h2>" + user_labels.test_results_label + "</h2>");
+
+		Object.keys(series).forEach(function (key) {
+		    var result_series_block = $('<div></div>',{
+  				class: "result-series",
+  				id: "result_" + key,
+  			});
+  			var check_res = arraysEqual(series[key]["answer"], student_answers[key]);
+  			grade += check_res["correctness"] ? 1 : 0;
+  			console.log(check_res);
+  				var temp_i = 0;
+		      	series[key]["task"].forEach(function (item, i, arr) {
+
+  				if (Number.isInteger(item)){
+	  				var result_num = $('<div></div>',{
+	  					class: "result-num",
+	  					html: item.toString()
+	  				});
+	  				result_series_block.append(result_num)
+	  			}
+	  			else{
+	  				if (item == "input"){
+	  					// console.log()
+	  					var result_num = $('<div></div>',{
+		  					class: "result-num",
+		  					// html: 
+		  				});
+
+	  					if (student_answers[key][temp_i] !== ""){
+	  						result_num.html(student_answers[key][temp_i].toString())
+	  					}
+	  					else{
+	  						result_num.html("__")
+	  					}
+
+
+		  				// console.log(i);
+	  					if (check_res["map"][temp_i]){
+	  						result_num.addClass("correct-num");
+	  					}
+	  					else{
+	  						result_num.addClass("incorrect-num");
+	  					}
+
+		  				result_series_block.append(result_num)
+
+		  				result_series_block.append(result_num)
+		  				temp_i += 1
+	  				}
+	  				else {
+						var result_num = $('<div></div>',{
+	  						class: "result-num",
+	  						html: item.toString()
+	  					});
+	  					result_series_block.append(result_num)
+	  				}
+	  			}
+			
+			});
+
+		      	result_wrap.append(result_series_block)
+		});
+
+
+		var result_comment = $("<div/>", {
+			class: "result-comment",
+		});
+		result_comment.append("<p>" + user_labels.correct_answers_label +": " + grade.toString() + "</p>");
+		if (grade <= 2){
+			result_comment.append("<p>" + user_labels.comment_0_2_label + "</p>");
+		}
+		else if (grade >= 3 && grade <= 5){
+			result_comment.append("<p>" + user_labels.comment_3_5_label + "</p>");
+		}
+		else if (grade > 5 ){
+			result_comment.append("<p>" + user_labels.comment_5_plus_label + "</p>");
+		}
+		else {
+
+		}
+
+		result_wrap.append(result_comment);
+
+		result_wrap.append(restart_button);
+
+		$(element).html(result_wrap);
+	}
+
+}
+
+var delay_time= 5 * 60;
+display = document.querySelector('#numerical_series_task');
+NumericalSeries(display, delay_time);
+
+</script>
+
+<div id="task_text"></div>
+<div id="numerical_series_task">
+</div>

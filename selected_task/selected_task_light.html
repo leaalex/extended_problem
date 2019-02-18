@@ -1,0 +1,238 @@
+<problem>
+<style>
+
+#$unique_id #select_task_input {
+  display: none !important;
+}
+
+#$unique_id .task-item {
+    display: inline;
+    padding: 1px;
+  }
+
+#$unique_id .task-paragraph{
+    display: inline-flex;
+    margin: 4px 0px;
+    /*border: 1px solid #e5e5e5;*/
+    width: 100%;
+}
+
+#$unique_id .task-item:hover{
+    /*background: #dcdada;*/
+    background: #a7ffaa;
+    cursor: pointer;
+}
+
+#$unique_id .task-item.selected-item:hover{
+    background: #ffb3b3;
+    /*background: #a7ffaa;*/
+    cursor: pointer;
+}
+
+#$unique_id .task-item.selected-item{
+    background: #ffff7e;
+}
+
+#$unique_id .task-paragraph-text{
+/*    background: #ffffffb3;
+    border: 1px solid #e5e5e5;
+    margin: 0 -7px;
+    padding: 4px 8px;
+        border-radius: 0px 4px 4px 4px;
+        width: 100%;*/
+}
+
+</style>
+
+  <script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_z8k42wz6"
+
+def check_func(student_selected, correct_selected):
+    response = {}
+    max_grade = len(correct_selected)
+    grade = 0
+    
+    for item_id in student_selected:
+        if item_id in correct_selected:
+            grade += 1
+        else:
+            grade -= 1
+    if 0 > grade:
+        grade = 0
+
+    grade_decimal = float(grade) / float(max_grade)
+
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_answer(expect, ans):
+    correct_selected = ["hasu2v7d", "nvtnc0c3", "ui2dvoij", "wj8yilma", "relwf7bl"]
+    try:
+        student_answer = json.loads(ans)
+        student_answer = student_answer["answer"]
+        student_selected = student_answer["selected"]
+        response = check_func(student_selected, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': response['message'], 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+
+</script>
+
+<script type="text/javascript">
+  
+if (TaskSelectObjects == undefined) var TaskSelectObjects = {};
+
+function TaskSelectActivation(selector) {
+    Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
+        return element.dataset.status == undefined
+    }).forEach(function(element, i, array) {
+        TaskSelectObjects[element.id] = (new TaskSelectObjects(element, element.getAttribute("data")));
+        element.dataset.status = "activate";
+    });
+    setTimeout(function() {
+        TaskSelectActivation(selector)
+    }, 1000);
+}  
+function Answer(elementField) {
+    this.elementField = elementField;
+    this.fieldValue = "";
+    this.fieldObject = {};
+    this.get = function() {
+        this.fieldValue = elementField.value;
+        return this.fieldValue;
+    };
+    this.set = function(value) {
+        if (value == undefined) value = this.fieldValue;
+        elementField.value = value;
+    };
+    this.getJSON = function() {
+        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+        return this.fieldObject;
+    };
+    this.setJSON = function(object) {
+        if (object == undefined) object = this.fieldObject;
+        this.set(JSON.stringify(object))
+    };
+    this.isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
+};
+
+function TaskSelectObjects(element, data){
+  this.element = element;
+
+  var answer = new Answer(element.querySelector("#select_task_input").querySelector("input[type='text']"));
+  var items = this.element.querySelectorAll(".task-item");
+
+  var problem =  $("#" + element.id).closest(".problem");
+  var checkButton = $("button.submit", problem);
+  checkButton.attr("disabled", "disabled");
+
+  items.forEach(function(item, i, arr){
+      item.addEventListener("click", function(event){
+          if ($(item).hasClass('selected-item')){
+              $(item).removeClass('selected-item')
+          }
+          else{
+              $(item).addClass('selected-item')  
+          }
+          setAnswer();
+      });
+  });
+
+    function setAnswer(){
+      var problem =  $("#" + element.id).closest(".problem");
+      var checkButton = $("button.submit", problem);
+      checkButton.removeClass("is-disabled");
+      checkButton.disabled = false;
+      checkButton.removeAttr("disabled");
+
+      var student_answer = {};
+      student_answer["selected"] = [];
+
+      items.forEach(function(item, i, arr){
+          if ($(item).hasClass('selected-item')){
+            student_answer["selected"].push(item.id)
+          }
+      });
+      
+      answer.setJSON({answer: student_answer}); 
+    }
+
+    if(answer.get()){
+        try {
+            var student_answer = answer.getJSON()["answer"];
+            student_answer["selected"].forEach(function(item_id, i, arr){
+              $("#"+item_id, element).addClass('selected-item');
+            });
+          }
+        catch (err) {
+        setAnswer();
+      }
+    }
+    else{
+        setAnswer();
+    }
+}
+
+TaskSelectActivation(".task-select")
+</script>
+
+<div id="$unique_id" class="task-select">
+
+<p>Перед вами – коммуникативный блок дизайнерской анкеты. Выделите лишние слова и фразы. Для того, чтобы выделить фразу нопходимо кликнуть по ней левой клавишей мыши (клик по выбранной фразе снимает выделение). В ходе редактирования некоторые слова могут изменить падеж, это нормально, не нужно исправлять возникающие несогласования; важно добиться соответствия требованиям оформления анкеты.</p>
+
+<div style="padding: 5px;border: 1px solid #e6e6e6;">
+
+<div class="task-paragraph">
+  <div class="task-paragraph-text">
+    <div class="task-item" id="v2a74ba3">Добрый день, уважаемые друзья!</div>
+  </div>
+</div>
+
+<div class="task-paragraph">
+  <div class="task-paragraph-text">
+    <div class="task-item" id="hasu2v7d">Разрешите представить вашему вниманию нашу анкету. </div>
+    <div class="task-item" id="cgovjcpe">Мы </div>
+    <div class="task-item" id="nvtnc0c3">представляем компанию DDD и в данный момент заняты </div>
+    <div class="task-item" id="tag3myt1">разработкой полиграфической продукции для </div>
+    <div class="task-item" id="fspirtrb">городского праздника </div>
+    <div class="task-item" id="ui2dvoij">и хотим максимально учесть вкусы участников. </div>
+    <div class="task-item" id="erfnc4ut">Нам необходимо найти цветовую гамму мероприятия. </div>
+    <div class="task-item" id="iqasszuq">Ваши ответы </div>
+    <div class="task-item" id="wj8yilma">очень </div>
+    <div class="task-item" id="jwj8fqja">помогут нам при решении дизайнерских задач. </div>
+    <div class="task-item" id="relwf7bl">Отнеситесь к ним предельно внимательно.</div>
+  </div>
+</div>
+
+</div>
+  <div id="select_task_input">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="$unique_id" />
+      <br/>
+    </customresponse>
+   <!-- <div class="message-about-grade"></div> -->
+  </div>
+
+</div>
+</problem>

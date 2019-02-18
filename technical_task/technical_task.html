@@ -1,0 +1,435 @@
+<problem>
+
+<style type="text/css">
+.technical-task {
+    border: 2px solid #e5e5e5;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 10px;
+	display: none;
+}
+
+.technical-task ol,ul{
+    padding-left: 20px !important;
+}
+
+.technical-task-signature{
+	padding: 6px 6px;
+    text-align: right;
+    font-style: italic;
+}
+
+.choice-task-wrap{
+
+}
+
+.choice-task-wrap input{
+    margin-top: -1px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.choice-task-wrap label{
+	font-size: 1em;
+	cursor: pointer;
+}
+
+.choice-task-wrap{
+    padding: 10px 10px;
+    margin: 6px 0px;
+    border: 2px solid #e5e5e5;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.choice-task-wrap:hover{
+	border: 2px solid #009fe6;
+}
+
+#technical_task_input{
+	display: none !important;
+}
+
+#choice_task{
+	display: none;
+}
+
+#upload_task{
+	display: none ;
+}
+
+.vert.vert-1{
+	display: none;
+}
+</style>
+
+<script type="loncapa/python">
+import random
+import json
+unique_id = "task_djkjvfds42v"
+
+all_technical_tasks = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+user_choice_technical_tasks = sorted(random.sample(all_technical_tasks, 4))
+choice_btn_label = "Выбрать техническое задание"
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}, ]}
+
+</script>
+
+<script type="text/javascript">
+
+var choice_btn_label = '$choice_btn_label';
+var notification = $(".problem .notification.notification-submit").hide();
+
+function Answer(elementField) {
+    this.elementField = elementField;
+    this.fieldValue = "";
+    this.fieldObject = {};
+    this.get = function() {
+        this.fieldValue = elementField.value;
+        return this.fieldValue;
+    };
+    this.set = function(value) {
+        if (value == undefined) value = this.fieldValue;
+        elementField.value = value;
+    };
+    this.getJSON = function() {
+        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+        return this.fieldObject;
+    };
+    this.setJSON = function(object) {
+        if (object == undefined) object = this.fieldObject;
+        this.set(JSON.stringify(object))
+    };
+    this.isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
+};
+
+var user_choice_technical_tasks = $user_choice_technical_tasks;
+
+var answer = new Answer(document.querySelector("#technical_task_input").querySelector("input[type='text']"));
+
+var task_id = '$unique_id';
+var problem =  $("#" + task_id).closest(".problem");
+// var checkButton = $("button.submit", problem);
+ 
+var submit_button = $("#technical_task").closest(".problem").find('button.submit');
+$(submit_button).css('text-transform','none');
+$(submit_button).removeAttr('disabled');
+$(submit_button).hide();
+
+if(answer.get()){
+    user_technical_task = answer.getJSON()["choiced_task"];
+    // console.log(user_technical_task)
+    show_technical_task(user_technical_task)
+}
+else{
+	show_choice();
+}
+
+function show_choice(){
+	$("#technical_task_wording").show();
+	$("#all_tasks").show();
+	$("#choice_task").show();
+	$(".vert.vert-1").hide();
+
+	var choice_task_block = $("#choice_task");
+
+	user_choice_technical_tasks.forEach(function(item, i, arr){
+
+		var choice_block = $('<div/>', {
+			class: "choice-task-wrap",
+		})
+
+		var input_block = $('<input/>', {
+			type: "radio",
+			name: "technical_task_choice",
+			value: item.toString(),
+		}).appendTo(choice_block);
+
+		// console.log(choice_block)
+		$(choice_block).append("Техническое задание № " + (i+1).toString())
+		$(choice_task_block).append(choice_block);
+
+		choice_block.click(function(e) {
+			$('input', $(e.target)).prop('checked', true);
+			answer.setJSON({"choiced_task": $('input', $(e.target)).val().toString()})
+			$(submit_button).show();
+			$(submit_button).removeAttr('disabled');
+		});
+
+		var current_tz = $("#technical_task_" + item.toString());
+		$(current_tz).prepend("<h2>Техническое задание № " + (i+1).toString() + "</h2>");
+		$(current_tz).show();
+	});
+	
+	$('input[type=radio][name=technical_task_choice]').change(function() {
+			answer.setJSON({"choiced_task": $("input[name='technical_task_choice']:checked").val().toString()});
+			$(submit_button).show();
+			$(submit_button).removeAttr('disabled');
+	});
+	
+	$(submit_button).find('span.submit-label').text(choice_btn_label);
+}
+
+
+function show_technical_task(num){
+	$('body').scrollTo('#technical_task');
+	$("#technical_task_wording").hide();
+	$("#all_tasks").show();
+	$("#upload_task").show();
+	var current_tz = $("#technical_task_" + num.toString());
+	$(current_tz).prepend("<h2>Техническое задание</h2>");
+	$(current_tz).show();
+	$("#technical_task").prepend("<p><strong>Выбранное вами техническое задание:</strong></p>")
+	$(".vert.vert-1").show();
+
+}
+
+// user_choice_technical_tasks.forEach(function(item, i, arr){
+
+// });
+
+// console.log(user_choice_technical_tasks)	
+</script>
+
+<div id="technical_task">
+	<div id="technical_task_wording">
+		<p>Мы попросили студентов-дизайнеров сформулировать технические задания для слушателей данного онлайн-курса. Условием для них было соответствие требований ТЗ принципам Монреальской декларации дизайна.</p>
+		<p>Познакомьтесь с четырьмя из отобранных нами технических заданий, сформулированных для вас студентами более старших курсов. Выберите наиболее интересное для вас.</p>
+	</div>
+
+	<div id="all_tasks">
+		<div id="technical_task_01" class="technical-task">
+			<ol>
+			<li>Вероятно, вам приходилось замечать, что инструкции и правила поведения в определенных местах зачастую оборваны и исчерканы. Например, в лифте. Там на листе А4 обычно пишут полезную информацию о том, что нужно делать в случае остановки и другие правила, помогающие избежать происшествий. Согласитесь, в экстренной ситуации человеку может очень понадобиться данная информация, а она оказывается оборванна или зачеркнута. Подобное происходит из-за того, что человеку бывает сложно стоять и ничего не делать некоторое время, ему хочется взаимодействовать со средой, в которой он на данный момент находится.</li>
+			<li>Придумайте, какое графическое оформление может присутствовать в лифте, чтобы люди хотели с ним взаимодействовали и не портили инструкцию по безопасности. Нарисуйте небольшую схему, как именно человек будет взаимодействовать с вашим решением.</li>
+			</ol>
+			<p>Итак:</p>
+			<p>Желательно:</p>
+			<ol>
+			<li>Нарисовать схему поведения</li>
+			<li>Продумать взаимодействие человека с информацией</li>
+			<li>Подумать над экономичностью продукта</li>
+			</ol>
+			<p>Не желательно:</p>
+			<ol>
+			<li>Сводить идею до социального плаката</li>
+			<li>Использование нравоучительных лозунгов</li>
+			<li>Использование отрывных элементов</li>
+			</ol>
+			<div class="technical-task-signature">Вероника</div>
+		</div>
+
+		<div id="technical_task_02" class="technical-task">
+			<ol>
+			<li>
+			<p>В столовых или кафе столовые приборы иногда лежат все вместе и не внушают доверия. Правила гигиены явно нарушены. Представьте, как было бы приятно есть приборами, которые не лежали в общей «миске», которую не моют и которые не трогали другие люди.</p>
+			</li>
+			<li>
+			<p>Придумайте индивидуальную или общую упаковку для столовых приборов, которая бы соблюдала все правила гигиены и была приятна для использования. Помните, что упаковка должна быть не только эстетически красива, но бюджетная (т.к. университет является бюджетной организацией)</p>
+			</li>
+			</ol>
+			<div class="technical-task-signature">Елизавета Крупина</div>
+		</div>
+
+		<div id="technical_task_03" class="technical-task">
+			<p>Согласно Монреальской декларации 2017 года: дизайн - это посредник в создании безопасной, экологически устойчивой окружающей среды. На фото ниже изображен пластик, сделанный из картофеля (остатков кожуры и картофеля непригодного для продажи). В отличие от обычного пластика, этот материал разлагается через 2 месяца, в то время как обычная пластиковая бутылка может разлагаться 450 лет. Более подробная информация: <a href="https://www.jamesdysonaward.org/2018/project/potato-plastic/">https://www.jamesdysonaward.org/2018/project/potato-plastic/</a> </p>
+			<p>1. Подумайте, для каких еще целей можно использовать этот пластик (в каких продуктах)</p>
+			<p>Подумайте, какие еще материалы (остатки после производства и употребления, остатки пищевых продуктов) можно использовать для переработки в новые предметы, сделайте эскизы новых предметов, созданных их переработанных материалов.</p>
+
+			<figure style="text-align:center;">
+			  <img src="/static/DesignBasics_practice_03_01_img_01.png" alt="" style="width: 80%;"/>
+			  <figcaption></figcaption>
+			</figure>
+			<p></p>
+
+			<div class="technical-task-signature">Екатерина Сеина</div>
+		</div>
+
+		<div id="technical_task_04" class="technical-task">
+			<p>Согласно Монреальской декларации 2017 года: <strong>дизайн - это мост между технологиями и людьми.</strong></p>
+			<p>Это <i>PIGZBE</i>. Обучающее приложение для детей, созданное компанией <i>Primo toys</i>.</p>
+			<p>С помощью <i>PIGZBE</i> и пигги-кошелька дети в игровой форме учатся использовать электронные деньги, оплачивать покупки в Интернете, контролировать свой бюджет.</p>
+			<p>Ссылка на видео и более подробную информацию: <a href="https://pigzbe.com/?dst=PrimoToys">https://pigzbe.com/?dst=PrimoToys</a></p>
+			<p>Задание: предложите свой вариант подобного приложения (необязательно именно приложения), которое могло бы помочь облегчить знакомство людям более взрослого возраста с электронными кошельками, кредитными картами и т.д.</p>
+			<p><i>HINT</i>: Если детям необходим подход в игровой форме, подумайте, какой подход необходим пенсионерам, где они могут обучиться использовать возможности электронных денег, начните с этого).</p>
+			
+			<figure style="text-align:center;">
+			  <img src="/static/DesignBasics_practice_03_01_img_02.png" alt="" style="width: 80%;"/>
+			  <figcaption></figcaption>
+			</figure>
+			<p></p>
+			
+			<figure style="text-align:center;">
+			  <img src="/static/DesignBasics_practice_03_01_img_03.png" alt="" style="width: 80%;"/>
+			  <figcaption></figcaption>
+			</figure>
+
+			<div class="technical-task-signature">Е. Сеина</div>
+		</div>
+
+		<div id="technical_task_05" class="technical-task">
+			<p>В местах курения на улице, вблизи учебник заведений очень часто можно следующую картину: молодые люди плюются на землю, на тротуар. Автору данного вопроса, как и многим, не нравится наблюдать подобную картину: это демонстрация низкой культуры и воспитания.</p>
+			<p>Предложите такое оформление среды города (например, тротуара) или других объектов (не обязательно мусорной урны), использование которых поможет перестать портить вид улиц города.</p>
+			<div class="technical-task-signature">Н. Комиссарова</div>
+		</div>
+
+		<div id="technical_task_06" class="technical-task">
+			<p>Наверное, вам приходилось надевать бахилы и не всегда удачно. Иногда они могут порваться и оставить грязные следы на полу. Или обувь может быть настолько грязной, что можно испачкать руки, когда надеваешь их.</p>
+			<p>Придумайте, такие чехлы на обувь, чтобы они не рвались и не пачкали руки или вещи.</p>
+			<p>Желательно, чтобы:</p>
+			<ul>
+			<li>Выглядели эстетически-привлекательными</li>
+			<li>Были недорогие</li>
+			<li>Экологически чистые</li>
+			</ul>
+			<p>Нежелательно:</p>
+			<ul>
+			<li>Использование дополнительного оборудования для хранения</li>
+			<li>Использование единого обувного размера</li>
+			</ul>
+			<div class="technical-task-signature">Екатерина Бусыгина</div>
+		</div>
+
+		<div id="technical_task_07" class="technical-task">
+			<p>По утрам люди мечутся по дому в поисках ключей, что отнимает довольно много времени. Одна из вещей, которые люди чаще всего теряют - это ключи. После потери ключей человек не может попасть к себе домой, ему приходится менять замки и т.д.</p>
+			<p>Как решить вечную проблему поиска ключей. Предложите свою идею замены ключей, чтобы они всегда находились под рукой и желательно не терялись. Не сводите решение только к технологии. Помните о критериях продукта дизайна (см. тему 1).</p>
+			<p>Желательно:</p>
+			<ul>
+			<li>Продукт не громоздок</li>
+			<li>Продукт легко входит в домашний интерьер, независимо от его статуса и стиля</li>
+			<li>Продукт экономичен</li>
+			</ul>
+			<p>Нежелательно:</p>
+			<ul>
+			<li>Использование проводов</li>
+			<li>«Мими»-стилистика оформления</li>
+			</ul>
+			<div class="technical-task-signature">Виктория Мноян</div>
+		</div>
+
+		<div id="technical_task_08" class="technical-task">
+			<p>Согласно Монреальской декларации 2017 года, дизайн - это посредник в создании безопасной среды.</p>
+			<p>Бывало ли когда-нибудь, что Вы ударялись пальцем ноги об угол мебели? Придумайте концепцию кровати, которая соответствует следующим требованиям:</p>
+			<ul>
+			<li>удобна в использовании, не препятствовать движению человека по комнате</li>
+			<li>эстетична: красива, не перегружена деталями</li>
+			<li>экологична: сделана из перерабатываемых материалов, из наименьшего количества ресурсов</li>
+			</ul>
+			<p>Либо: Придумайте объект, защищающий ноги от ударов о мебель. Это может быть, как домашняя обувь, так и насадки на ножки мебели.</p>
+			<div class="technical-task-signature">Валерия Раздобреева</div>
+		</div>
+
+		<div id="technical_task_09" class="technical-task">
+			<p>Часто оказывается, что, придя в аудиторию на пару, вам некуда было положить свою сумку/рюкзак/пакет? Ведь крючки очень недолговечны в условиях бесконечного потока студентов, а занимать отдельную парту:</p>
+			<ul>
+			<li>неудобно;</li>
+			<li>возможно, нельзя ввиду недостатка свободных мест.</li>
+			</ul>
+			<p>Придумайте такой учебный стол или дополнительное оснащение аудитории, чтобы все смогли при случае разместить свои сумки.</p>
+			<p>Требования:</p>
+			<ul>
+			<li>компактность</li>
+			<li>момент трансформации в связи с изменением функции</li>
+			<li>эстетическая привлекательность</li>
+			<li>связь с университетской атмосферой и стилем</li>
+			<li>легкость утилизации</li>
+			</ul>
+			<div class="technical-task-signature">Анастасия Ермакова</div>
+		</div>
+
+		<div id="technical_task_10" class="technical-task">
+			<p>Многие люди, бывавшие в походах, знают, как неприятно попасть под дождь посреди леса, поля и т.д. Когда за спиной объемный тяжелый рюкзак, а вокруг кусты и ветки, использовать зонт невозможно, поэтому походники используют дождевики. Проблема этого приспособления в том, что оно выглядит некрасиво и зачастую очень непрочно.</p>
+			<p>Придумайте и нарисуйте дизайн и конструкцию такого дождевика, который будет приятно надеть человеку даже в городе (ведь мы часто ездим с объемными пакетами и сумками, и держать зонт в таких случаях очень неудобно).</p>
+			<p>Желательно:</p>
+			<ul>
+			<li>Красивый</li>
+			<li>Прочный</li>
+			<li>Удобный</li>
+			</ul>
+			<p>Нежелательно:</p>
+			<ul>
+			<li>Большой расход материала на лишние детали</li>
+			<li>Некомпактный размер</li>
+			</ul>
+			<div class="technical-task-signature">Екатерина Попкова</div>
+		</div>
+
+		<div id="technical_task_11" class="technical-task">
+			<ol>
+			<li>В школах, университетах существует множество любителей показать свои творческие способности на школьных партах, или на мебели в аудитории.</li>
+			<li>Придумайте такое место в учебных заведениях, которое позволило бы проявить свои творческие способности, или обменятся не менее важной информацией. Возможно, это будет выглядеть как специально отведенный кабинет, или какая-то часть стены в здании.</li>
+			</ol>
+			<p>Желательно:</p>
+			<ul>
+			<li>Чтобы не отвлекало от учебного процесса.</li>
+			<li>Подумать над экономичностью.</li>
+			<li>Выглядело эстетически привлекательно.</li>
+			</ul>
+			<p>Не желательно:</p>
+			<ul>
+			<li>Сложная форма взаимодействия</li>
+			</ul>
+			<div class="technical-task-signature">Анастасия Мокрицкая</div>
+		</div>
+
+		<div id="technical_task_12" class="technical-task">
+			<ol>
+			<li>В раздевалках для занятий физкультурой нет шкафчиков, закрывающихся на замок, куда студент может складывать свои вещи в том числе и ценные.</li>
+			<li>Придумайте и нарисуйте дизайн таких шкафчиков, какой они будут формы и где располагаться и на что будет фиксироваться ключ, для избежание его потери (ведь форма для занятий физической культуры чаще всего не содержит карманов).</li>
+			</ol>
+			<p>Желательно:</p>
+			<ul>
+			<li>Компактность</li>
+			<li>Удобство</li>
+			<li>Современность</li>
+			</ul>
+			<p>Нежелательно:</p>
+			<ul>
+			<li>Излишняя сложная форма.</li>
+			<li>Дороговизна материалов.</li>
+			<li>Вандальность, возможность легко сломать или испортить.</li>
+			</ul>
+			<div class="technical-task-signature">Дарья Митрюкова</div>
+		</div>
+	</div>
+	
+	<div id="choice_task">
+		<p>Выберите наиболее интересное для вас техническое задание:</p>
+	</div>
+
+	<div id="upload_task">
+		<p>Сделайте эскиз и загрузите файл в блоке ниже. Старайтесь добиться наибольшего соответствия формы вашего продукта параметрам технического задания.</p>
+		<p>В дальнейшем мы можем помочь вам усовершенствовать замысел либо оценить качество идеи.</p>
+      <p><strong>Загрузка эскиза:</strong></p>
+
+      <ul>
+      	<li>Нажмите кнопку <i>«Select a file»</i> в блоке ниже, выберите файл на Вашем компьютере.</li>
+      	<li>Нажмите кнопку <i>«Upload *имя_файла*»</i> чтобы отправить документ преподавателю на проверку.</li>
+      	<li>После отправки появится надпись <i>«File uploaded *имя_файла*»</i>, это означает, что файл успешно отправлен.</li>
+	  	<li>После того как преподаватель проверит Вашу работу, в этом же блоке появится оценка и, возможно, комметарий преподавателя.</li>
+	  	<li>Пока Ваша работа не проверена, остаётся возможность замениь документ (кнопка <i>«Select a file»</i>).</li> 
+	  </ul>
+	</div>
+
+  <div id="technical_task_input">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="$unique_id" />
+      <br/>
+    </customresponse>
+   <!-- <div class="message-about-grade"></div> -->
+  </div>
+
+</div>
+
+</problem>

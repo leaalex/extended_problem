@@ -1,17 +1,44 @@
 <style type="text/css">
 
-.task-wrap{
+.task-wrap, .start-wrap, .table-wrap, .result-wrap{
 	    height: 680px;
     /* background: #f6f6f6; */
-    border: 6px double #046b99;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    
 }
+
+.start-wrap{
+	border: 6px double #046b99;
+}
+
 .start-button{
     font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
     width: 200px;
+    /*height: 50px; */
+    background: #046b99;
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: normal;
+    border: none;
+}
+.start-button:hover{
+    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;*/
     /* height: 50px; */
+    background: #035c83 !important;
+    border: none;
+}
+#twelve_numbers{
+	    padding: 2px;
+}
+
+.check-button{
+    font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;
+     /*height: 50px; */
     background: #046b99;
     color: #ffffff;
     font-size: 1.8em;
@@ -19,24 +46,40 @@
     border: none;
 }
 
-.start-button:hover{
-    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
-    width: 200px;*/
-    /* height: 50px; */
+.check-button:hover{
     background: #035c83 !important;
-        border: none;
+    border: none;
 }
+
+
 
 .timer-block{
 	text-align: center;
     font-size: 2em;
 }
 
+.table-block{
+ 
+}
 
+.check-button-wrap{
+	    text-align: center;
+    margin: 16px 0px;
+}
 
+.user-num-input{
+	height: auto !important;
+	font-size: 3em;
+	width: 100%;
+}
 
+#restart_task{
+	display: none;
+}
 
-
+.task-text-block{
+	text-align: center;
+}
 
 
 
@@ -47,10 +90,11 @@
 
 
 .num-table-item {
-	flex: 1 0 21%;
+    /* cursor: pointer; */
+    flex: 1 0 21%;
     margin: 5px;
-    font-size: 3em;
-    height: 100px;
+    font-size: 3.5em;
+    /* height: 100px; */
     background-color: #0000ff2b;
     display: flex;
     justify-content: center;
@@ -61,6 +105,9 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    background: white;
+    margin: -2px;
+    border: 4px solid #046b99;
 }
 
 .result-num-table-wrap {
@@ -69,14 +116,18 @@
 }
 
 .result-num-table-item {
-  flex: 1 0 21%; /* explanation below */
-  margin: 5px;
-  height: 100px;
-  background-color: #0000ff2b;
+    flex: 1 0 21%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    margin: -2px;
+    font-size: 2em;
+    border: 4px solid #046b99;
 }
 
 .item-correct {
-	color: green;
+    background: #bcffbc;
 }
 
 </style>
@@ -85,18 +136,43 @@
 
 var language = "ru";
 
-var start_btn_label = "Start";
-var check_btn_label = "Check";
+
+var translations = new Object();
+translations = {
+	"en": {
+		"start_btn_label": "Start",
+		"check_btn_label": "Check",
+		"restart_btn_label": "Restart",
+		"test_results_label": "Test results",
+		"numbers_exceeded_label": "Number of entered numbers exceeded",
+		"task_text_label": 'Write down all the numbers you memorized through the space. Numbers can be written in any order, as soon as you finish, click the "Check" button.',
+		"main_task_text_label": "Здесь должно быть на англ: <h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет предъявлена таблица с числами. Ваша задача заключается в том, чтобы за 20 сек., запомнить как можно больше чисел. Через 20 сек. Таблица исчезнет, и Вы должны будете записать те числа, которые вы запомнили в открывшемся окне через пробел. Числа могут быть записаны в любой последовательности. </p><p>Пожалуйста, не записывайте цифры, а только ЗАПОМИНАЙТЕ.</p><p>Тренажер предназначен для оценки кратковременной зрительной памяти, ее объема и точности.</p>",
+	},
+	"ru": {
+		"start_btn_label": "Начать",
+		"check_btn_label": "Проверить",
+		"restart_btn_label": "Начать заново",
+		"test_results_label": "Результаты теста",
+		"numbers_exceeded_label": "Превышено количество введенных чисел!",
+		"task_text_label": "Запишите все числа, которые Вы запомнили через пробел. Числа могут быть записаны в любой последовательности, как только Вы закончите нажмите кнопку «Проверить».",
+		"main_task_text_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет предъявлена таблица с числами. Ваша задача заключается в том, чтобы за 20 сек., запомнить как можно больше чисел. Через 20 сек. Таблица исчезнет, и Вы должны будете записать те числа, которые вы запомнили в открывшемся окне через пробел. Числа могут быть записаны в любой последовательности. </p><p>Пожалуйста, не записывайте цифры, а только ЗАПОМИНАЙТЕ.</p><p>Тренажер предназначен для оценки кратковременной зрительной памяти, ее объема и точности.</p>",
+
+	},
+}
+
+var user_labels = translations[language];
 
 
-  		  var pad = function (num, size) {
-		      return ('000' + num).slice(size * -1);
-		    },
-		    in_sec = parseFloat(time).toFixed(3),
-		    hours = Math.floor(in_sec / 60 / 60),
-		    minutes = Math.floor(in_sec / 60) % 60,
-		    seconds = Math.floor(in_sec - minutes * 60),
-		    milliseconds = in_sec.slice(-3);
+
+
+  		  // var pad = function (num, size) {
+		    //   return ('000' + num).slice(size * -1);
+		    // },
+		    // in_sec = parseFloat(time).toFixed(3),
+		    // hours = Math.floor(in_sec / 60 / 60),
+		    // minutes = Math.floor(in_sec / 60) % 60,
+		    // seconds = Math.floor(in_sec - minutes * 60),
+		    // milliseconds = in_sec.slice(-3);
 
 /**
  * https://gist.github.com/wcoder/fcee724b4f5b44062754
@@ -132,16 +208,18 @@ function sec2time(timeInSeconds) {
 
 function TwelveNumbers(element, time) {
   var random_numbers = get_random_numbers(10,99,12);
-
   var start_window = createStartBlock();
+
+  $("#restart_task").html(user_labels.restart_btn_label)
+  $("#restart_task").hide();
 
   function createStartBlock() {
   		var start_wrap = $('<div/>',{
-  			class: "task-wrap",
+  			class: "start-wrap",
   		});
 		var start_button = $('<button/>',{
   			class: "start-button",
-  			text: start_btn_label,
+  			text: user_labels.start_btn_label,
   		});
   		start_button.click(function (e) {
   			createTableBlock();
@@ -151,8 +229,9 @@ function TwelveNumbers(element, time) {
   }
 
   function createTableBlock(){
+
   	var task_wrap = $('<div/>',{
-  		class: "task-wrap",
+  		class: "table-wrap",
   	});
   	var num_table_wrap = $('<div/>',{
   			class: "num-table-wrap",
@@ -170,7 +249,6 @@ function TwelveNumbers(element, time) {
   	timer(time, function (s) {
 		$(timer_display).html(sec2time(s));
 	}, function () {
-		console.log('Время вышло!');
 		createAnswerBlock()
 	});
 	$(task_wrap).append(timer_display);
@@ -179,35 +257,57 @@ function TwelveNumbers(element, time) {
   }
 
   function createAnswerBlock(){
+  	  	var check_wrap = $('<div/>',{
+  		class: "task-wrap",
+  	});
   	var user_input_wrap = $('<div/>',{
   			class: "user-input-wrap",
   		});
-  	var user_input = $('<input/>',{
+  	
+  	var task_text_block = $('<p/>', {
+		class: "task-text-block",
+		text: user_labels.task_text_label,
+	}).appendTo(user_input_wrap);
+
+  	var user_input = $('<textarea/>',{
   	  		type: "text",
-  		class: "user-num-input",
+  	  		rows: "2",
+  			class: "user-num-input",
   	});
 	
+	var check_button_wrap = $('<div>',{
+		class: "check-button-wrap"
+	});
+
 	var check_button = $('<button/>',{
   			class: "check-button",
-  			text: check_btn_label,
-  	});
+  			text: user_labels.check_btn_label,
+  	}).appendTo(check_button_wrap);
 
   	check_button.click(function (e) {
   		var answer = $(user_input).val();
   		createResultBlock(answer);
 	})
+  		$(user_input_wrap).append(task_text_block);
   	  	$(user_input_wrap).append(user_input);
-  	  	$(user_input_wrap).append(check_button);
-  	  	$(element).html(user_input_wrap);
+  	  	$(user_input_wrap).append(check_button_wrap);
+  	  	$(check_wrap).append(user_input_wrap)
+  	  	$(element).html(check_wrap);
   }
 
   function createResultBlock(answer){
 
   	    var answer_arr = answer.split(/[ ,\t\n]+/).filter(function (item) { return !isNaN(parseFloat(item))}).map(function(item){return parseInt(item)});
-
+  	    if (answer_arr.length > 15){
+  	    	alert(user_labels.numbers_exceeded_label);
+  	    	return;
+  	    }
   	    var grade = 0;
+  	    var result_wrap = $('<div/>',{
+  			class: "result-wrap",
+  		});
 
-  	    result_block_wrap = $('<div/>',{
+  	    var result_block_wrap = $('<div/>',{
   			class: "result-block-wrap",
   		});
 
@@ -221,17 +321,18 @@ function TwelveNumbers(element, time) {
 	  			id: "result_number_" + item,
 	  			"data-number": item,
 	  		});
-	  		console.log(answer_arr, item);
 	  		if (answer_arr.includes(item)){
 	  			grade += 1;
 	  			result_num_table_item.addClass("item-correct");
 	  		}
 	  		$(result_num_table_wrap).append(result_num_table_item);
 	  	});
+
+	  	result_wrap.append("<div>" + "<h2>" +  user_labels.test_results_label + "</h2>" + "<p>По результатам данного упражнения у Вас верно воспроизведенных чисел: <strong>" + grade + "</strong> (они подсвечены зеленым цветом).</p><p>- меньше 5 – ?????????</p><p>- от 5 до 9 чисел – это норма для взрослого человека</p><p>- больше 9 чисел – это замечательный результат </p><p>Вы в любое время можете вернутся к данному тренажеру и потренировать свою зрительную кратковременную память, тем самым улучшить или закрепить Ваши результаты.</p></div>")
 	  	$(result_block_wrap).append(result_num_table_wrap);
-	  	$(result_block_wrap).append("<div>Correct: " + grade + "</div>" );
-  	    $(element).html(result_block_wrap);
-  		// console.log(answer);
+	  	$(result_wrap).append(result_block_wrap)
+  	    $(element).html(result_wrap);
+  		$("#restart_task").show();
   }
 
   function get_random_numbers(start,end,count) {
@@ -239,17 +340,18 @@ function TwelveNumbers(element, time) {
   }
 }
 
+$("#task_text").html(user_labels.main_task_text_label);
 
-display = document.querySelector('#time');
-TwelveNumbers(display, 3000);
+var delay_time= 20;
+display = document.querySelector('#twelve_numbers');
+TwelveNumbers(display, delay_time);
 
-$(restart).click(function (e) {
-  		TwelveNumbers(display, 3000);
-})
+$("#restart_task").click(function (e) {
+  	TwelveNumbers(display, delay_time);
+});
 
 </script>
 
-<div id="time">
-	
-</div>
-<button id="restart" >Resatrt</button>
+<div id="task_text"></div>
+<div id="twelve_numbers"></div>
+<button id="restart_task">restart</button>

@@ -1,0 +1,158 @@
+<problem>
+
+<style type="text/css">
+</style>
+
+<script type="loncapa/python">
+import random
+
+all_images = {
+ "l_g_01" : { "name": "l_g_01", "lp_type": "l", "gois_type": "g"  },
+ "l_g_02" : { "name": "l_g_02", "lp_type": "l", "gois_type": "g"  },
+ "l_o_01" : { "name": "l_o_01", "lp_type": "l", "gois_type": "o"  },
+ "l_o_02" : { "name": "l_o_02", "lp_type": "l", "gois_type": "o"  },
+ "l_o_03" : { "name": "l_o_03", "lp_type": "l", "gois_type": "o"  },
+ "l_i_01" : { "name": "l_i_01", "lp_type": "l", "gois_type": "i"  },
+ "l_i_02" : { "name": "l_i_02", "lp_type": "l", "gois_type": "i"  },
+ "l_i_03" : { "name": "l_i_03", "lp_type": "l", "gois_type": "i"  },
+ "l_i_04" : { "name": "l_i_04", "lp_type": "l", "gois_type": "i"  },
+ "l_i_05" : { "name": "l_i_05", "lp_type": "l", "gois_type": "i"  },
+ "l_i_06" : { "name": "l_i_06", "lp_type": "l", "gois_type": "i"  },
+ "l_i_07" : { "name": "l_i_07", "lp_type": "l", "gois_type": "i"  },
+ "l_i_08" : { "name": "l_i_08", "lp_type": "l", "gois_type": "i"  },
+ "l_i_09" : { "name": "l_i_09", "lp_type": "l", "gois_type": "i"  },
+ "l_i_10" : { "name": "l_i_10", "lp_type": "l", "gois_type": "i"  },
+ "l_s_01" : { "name": "l_s_01", "lp_type": "l", "gois_type": "s"  },
+ "l_s_02" : { "name": "l_s_02", "lp_type": "l", "gois_type": "s"  },
+ "p_g_01" : { "name": "p_g_01", "lp_type": "p", "gois_type": "g"  },
+ "p_g_02" : { "name": "p_g_02", "lp_type": "p", "gois_type": "g"  },
+ "p_g_03" : { "name": "p_g_03", "lp_type": "p", "gois_type": "g"  },
+ "p_g_04" : { "name": "p_g_04", "lp_type": "p", "gois_type": "g"  },
+ "p_g_05" : { "name": "p_g_05", "lp_type": "p", "gois_type": "g"  },
+ "p_g_06" : { "name": "p_g_06", "lp_type": "p", "gois_type": "g"  },
+ "p_o_01" : { "name": "p_o_01", "lp_type": "p", "gois_type": "o"  },
+ "p_o_02" : { "name": "p_o_02", "lp_type": "p", "gois_type": "o"  },
+ "p_o_03" : { "name": "p_o_03", "lp_type": "p", "gois_type": "o"  },
+ "p_i_01" : { "name": "p_i_01", "lp_type": "p", "gois_type": "i"  },
+ "p_i_02" : { "name": "p_i_02", "lp_type": "p", "gois_type": "i"  },
+ "p_i_03" : { "name": "p_i_03", "lp_type": "p", "gois_type": "i"  },
+ "p_i_04" : { "name": "p_i_04", "lp_type": "p", "gois_type": "i"  },
+ "p_s_01" : { "name": "p_s_01", "lp_type": "p", "gois_type": "s"  },
+ "p_s_02" : { "name": "p_s_02", "lp_type": "p", "gois_type": "s"  },
+ "p_s_03" : { "name": "p_s_03", "lp_type": "p", "gois_type": "s"  },
+ "p_s_04" : { "name": "p_s_04", "lp_type": "p", "gois_type": "s"  },
+ "p_s_05" : { "name": "p_s_05", "lp_type": "p", "gois_type": "s"  },
+ "p_s_01_e": { "name": "p_s_01_e", "lp_type": "not", "gois_type": "not" },
+ "p_s_02_e": { "name": "p_s_02_e", "lp_type": "not", "gois_type": "not" },
+ "p_s_03_e": { "name": "p_s_03_e", "lp_type": "not", "gois_type": "not" },
+ "l_g_01_e": { "name": "l_g_01_e", "lp_type": "not", "gois_type": "not" },
+ "l_g_02_e": { "name": "l_g_02_e", "lp_type": "not", "gois_type": "not" },
+ "l_g_03_e": { "name": "l_g_03_e", "lp_type": "not", "gois_type": "not" },
+ "p_i_01_e": { "name": "p_i_01_e", "lp_type": "not", "gois_type": "not" },
+ "p_i_02_e": { "name": "p_i_02_e", "lp_type": "not", "gois_type": "not" },
+ "p_i_03_e": { "name": "p_i_03_e", "lp_type": "not", "gois_type": "not" },
+ "p_o_01_e": { "name": "p_o_01_e", "lp_type": "not", "gois_type": "not" },
+ "p_o_02_e": { "name": "p_o_02_e", "lp_type": "not", "gois_type": "not" },
+ "p_g_01_e": { "name": "p_g_01_e", "lp_type": "not", "gois_type": "not" },
+ "p_g_02_e": { "name": "p_g_02_e", "lp_type": "not", "gois_type": "not" },
+ "l_s_01_e": { "name": "l_s_01_e", "lp_type": "not", "gois_type": "not" },
+ "l_s_02_e": { "name": "l_s_02_e", "lp_type": "not", "gois_type": "not" },
+ "l_s_03_e": { "name": "l_s_03_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_01_e": { "name": "l_i_01_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_02_e": { "name": "l_i_02_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_03_e": { "name": "l_i_03_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_04_e": { "name": "l_i_04_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_05_e": { "name": "l_i_05_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_06_e": { "name": "l_i_06_e", "lp_type": "not", "gois_type": "not" },
+ "l_i_07_e": { "name": "l_i_07_e", "lp_type": "not", "gois_type": "not" },
+ "l_o_01_e": { "name": "l_o_01_e", "lp_type": "not", "gois_type": "not" },
+ "l_o_02_e": { "name": "l_o_02_e", "lp_type": "not", "gois_type": "not" },
+ "l_o_03_e": { "name": "l_o_03_e", "lp_type": "not", "gois_type": "not" }
+}
+
+max_step = 10
+student_images = random.sample(all_images.keys(), max_step)
+
+def check_answer(expect, ans):
+    grade_decimal = 1
+    return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': grade_decimal}, ]}
+
+</script>
+
+<script type="text/javascript">
+function Answer(elementField) {
+    this.elementField = elementField;
+    this.fieldValue = "";
+    this.fieldObject = {};
+    this.get = function() {
+        this.fieldValue = elementField.value;
+        return this.fieldValue;
+    };
+    this.set = function(value) {
+        if (value == undefined) value = this.fieldValue;
+        elementField.value = value;
+    };
+    this.getJSON = function() {
+        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+        return this.fieldObject;
+    };
+    this.setJSON = function(object) {
+        if (object == undefined) object = this.fieldObject;
+        this.set(JSON.stringify(object))
+    };
+    this.isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
+};
+
+var answer = new Answer(document.querySelector("#images_task_input").querySelector("input[type='text']"));
+
+var user_state = new Object();  	
+
+user_state.current_step = 1;
+user_state.images = $student_images;
+
+if(answer.get()){
+	user_state = answer.getJSON()["answer"];
+	user_state.current_step += 1;
+	console.log("Есть ответ");
+}
+else{
+	console.log("Нет ответа");
+	answer.setJSON({answer: user_state});
+}
+
+function 
+
+answer.setJSON({answer: user_state});
+$("#current_step").html(user_state.current_step)
+
+console.log(user_state);
+
+</script>
+<div id="images_task">
+
+<div> <span id="current_step"></span> / $max_step </div>
+
+<div id="task_block">
+	
+</div>
+
+<div>$student_images</div>
+  <div id="images_task_input">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="$unique_id" />
+      <br/>
+    </customresponse>
+   <!-- <div class="message-about-grade"></div> -->
+  </div>
+
+
+</div>
+
+</problem>
