@@ -8,7 +8,7 @@
 
 .lp-input-wrap input, .gois-input-wrap input{
     margin-top: -1px;
-    margin-right: 4px;
+    margin-right: 6px;
     vertical-align: middle;
 }
 
@@ -43,6 +43,14 @@
     text-align: center;
 }
 
+.images-task-end{
+    margin: 10px 0px;
+}
+
+.images-task-end h3{
+    text-align: center !important;
+}
+
 #images_task_input{
     display: none !important;
 }
@@ -53,7 +61,7 @@
 import random
 import json
 
-show_correct_answer = False
+show_correct_answer = True
 max_step =  10
 
 next_btn_label = "Дальше"
@@ -215,7 +223,7 @@ var max_step = '$max_step';
 max_step = parseInt(max_step);
 
 var lp_types = {
-    "l": { "let": "l", "title": "Личностые задачи" },
+    "l": { "let": "l", "title": "Личностные задачи" },
     "p": { "let": "p", "title": "Профессиональные задачи" },
     "not": { "let": "not", "title": "Не дизайн" }
 };
@@ -295,6 +303,7 @@ function createBase(step){
 
     if (max_step+1 == user_state.current_step){
         $(submit_button).hide();
+        $("#task_block").append('<div class="images-task-end"><h3>Вы прошли все шаги этого задания!</h3></div>');
     }
 }
 
