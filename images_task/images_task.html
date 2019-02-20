@@ -1,81 +1,173 @@
 <problem>
 
 <style type="text/css">
+
+#hidden_image {
+    display: none !important;
+}
+
+.lp-input-wrap input, .gois-input-wrap input{
+    margin-top: -1px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.lp-input-wrap label, .gois-input-wrap label{
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.lp-input-wrap, .gois-input-wrap{
+    padding: 10px 10px;
+    margin: 6px 0px;
+    border: 2px solid #e5e5e5;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.lp-input-wrap.correct-answer, .lp-input-wrap.correct-answer:hover, .gois-input-wrap.correct-answer, .gois-input-wrap.correct-answer:hover {
+    border: 2px solid #009b01;
+}
+
+.lp-input-wrap.incorrect-answer, .lp-input-wrap.incorrect-answer:hover, .gois-input-wrap.incorrect-answer, .gois-input-wrap.incorrect-answer:hover{
+    border: 2px solid #cb0711;
+}
+
+.task-image{
+    max-width: 450px;
+    max-height: 500px;
+    padding: 10px 0px;
+}
+
+#task_text_image{
+    text-align: center;
+}
+
+#images_task_input{
+    display: none !important;
+}
+
 </style>
 
 <script type="loncapa/python">
 import random
+import json
+
+show_correct_answer = False
+max_step =  10
+
+next_btn_label = "Дальше"
+choice_lp_btn_label = "Выбрать тип задачи"
+choice_gois_btn_label = "Выбрать тип дизайна"
+next_img_btn_label = "К следующему вопросу"
 
 all_images = {
- "l_g_01" : { "name": "l_g_01", "lp_type": "l", "gois_type": "g"  },
- "l_g_02" : { "name": "l_g_02", "lp_type": "l", "gois_type": "g"  },
- "l_o_01" : { "name": "l_o_01", "lp_type": "l", "gois_type": "o"  },
- "l_o_02" : { "name": "l_o_02", "lp_type": "l", "gois_type": "o"  },
- "l_o_03" : { "name": "l_o_03", "lp_type": "l", "gois_type": "o"  },
- "l_i_01" : { "name": "l_i_01", "lp_type": "l", "gois_type": "i"  },
- "l_i_02" : { "name": "l_i_02", "lp_type": "l", "gois_type": "i"  },
- "l_i_03" : { "name": "l_i_03", "lp_type": "l", "gois_type": "i"  },
- "l_i_04" : { "name": "l_i_04", "lp_type": "l", "gois_type": "i"  },
- "l_i_05" : { "name": "l_i_05", "lp_type": "l", "gois_type": "i"  },
- "l_i_06" : { "name": "l_i_06", "lp_type": "l", "gois_type": "i"  },
- "l_i_07" : { "name": "l_i_07", "lp_type": "l", "gois_type": "i"  },
- "l_i_08" : { "name": "l_i_08", "lp_type": "l", "gois_type": "i"  },
- "l_i_09" : { "name": "l_i_09", "lp_type": "l", "gois_type": "i"  },
- "l_i_10" : { "name": "l_i_10", "lp_type": "l", "gois_type": "i"  },
- "l_s_01" : { "name": "l_s_01", "lp_type": "l", "gois_type": "s"  },
- "l_s_02" : { "name": "l_s_02", "lp_type": "l", "gois_type": "s"  },
- "p_g_01" : { "name": "p_g_01", "lp_type": "p", "gois_type": "g"  },
- "p_g_02" : { "name": "p_g_02", "lp_type": "p", "gois_type": "g"  },
- "p_g_03" : { "name": "p_g_03", "lp_type": "p", "gois_type": "g"  },
- "p_g_04" : { "name": "p_g_04", "lp_type": "p", "gois_type": "g"  },
- "p_g_05" : { "name": "p_g_05", "lp_type": "p", "gois_type": "g"  },
- "p_g_06" : { "name": "p_g_06", "lp_type": "p", "gois_type": "g"  },
- "p_o_01" : { "name": "p_o_01", "lp_type": "p", "gois_type": "o"  },
- "p_o_02" : { "name": "p_o_02", "lp_type": "p", "gois_type": "o"  },
- "p_o_03" : { "name": "p_o_03", "lp_type": "p", "gois_type": "o"  },
- "p_i_01" : { "name": "p_i_01", "lp_type": "p", "gois_type": "i"  },
- "p_i_02" : { "name": "p_i_02", "lp_type": "p", "gois_type": "i"  },
- "p_i_03" : { "name": "p_i_03", "lp_type": "p", "gois_type": "i"  },
- "p_i_04" : { "name": "p_i_04", "lp_type": "p", "gois_type": "i"  },
- "p_s_01" : { "name": "p_s_01", "lp_type": "p", "gois_type": "s"  },
- "p_s_02" : { "name": "p_s_02", "lp_type": "p", "gois_type": "s"  },
- "p_s_03" : { "name": "p_s_03", "lp_type": "p", "gois_type": "s"  },
- "p_s_04" : { "name": "p_s_04", "lp_type": "p", "gois_type": "s"  },
- "p_s_05" : { "name": "p_s_05", "lp_type": "p", "gois_type": "s"  },
- "p_s_01_e": { "name": "p_s_01_e", "lp_type": "not", "gois_type": "not" },
- "p_s_02_e": { "name": "p_s_02_e", "lp_type": "not", "gois_type": "not" },
- "p_s_03_e": { "name": "p_s_03_e", "lp_type": "not", "gois_type": "not" },
- "l_g_01_e": { "name": "l_g_01_e", "lp_type": "not", "gois_type": "not" },
- "l_g_02_e": { "name": "l_g_02_e", "lp_type": "not", "gois_type": "not" },
- "l_g_03_e": { "name": "l_g_03_e", "lp_type": "not", "gois_type": "not" },
- "p_i_01_e": { "name": "p_i_01_e", "lp_type": "not", "gois_type": "not" },
- "p_i_02_e": { "name": "p_i_02_e", "lp_type": "not", "gois_type": "not" },
- "p_i_03_e": { "name": "p_i_03_e", "lp_type": "not", "gois_type": "not" },
- "p_o_01_e": { "name": "p_o_01_e", "lp_type": "not", "gois_type": "not" },
- "p_o_02_e": { "name": "p_o_02_e", "lp_type": "not", "gois_type": "not" },
- "p_g_01_e": { "name": "p_g_01_e", "lp_type": "not", "gois_type": "not" },
- "p_g_02_e": { "name": "p_g_02_e", "lp_type": "not", "gois_type": "not" },
- "l_s_01_e": { "name": "l_s_01_e", "lp_type": "not", "gois_type": "not" },
- "l_s_02_e": { "name": "l_s_02_e", "lp_type": "not", "gois_type": "not" },
- "l_s_03_e": { "name": "l_s_03_e", "lp_type": "not", "gois_type": "not" },
- "l_i_01_e": { "name": "l_i_01_e", "lp_type": "not", "gois_type": "not" },
- "l_i_02_e": { "name": "l_i_02_e", "lp_type": "not", "gois_type": "not" },
- "l_i_03_e": { "name": "l_i_03_e", "lp_type": "not", "gois_type": "not" },
- "l_i_04_e": { "name": "l_i_04_e", "lp_type": "not", "gois_type": "not" },
- "l_i_05_e": { "name": "l_i_05_e", "lp_type": "not", "gois_type": "not" },
- "l_i_06_e": { "name": "l_i_06_e", "lp_type": "not", "gois_type": "not" },
- "l_i_07_e": { "name": "l_i_07_e", "lp_type": "not", "gois_type": "not" },
- "l_o_01_e": { "name": "l_o_01_e", "lp_type": "not", "gois_type": "not" },
- "l_o_02_e": { "name": "l_o_02_e", "lp_type": "not", "gois_type": "not" },
- "l_o_03_e": { "name": "l_o_03_e", "lp_type": "not", "gois_type": "not" }
+ "l_g_01" : { "lp_type": "l", "gois_type": "g" },
+ "l_g_02" : { "lp_type": "l", "gois_type": "g" },
+ "l_o_01" : { "lp_type": "l", "gois_type": "o" },
+ "l_o_02" : { "lp_type": "l", "gois_type": "o" },
+ "l_o_03" : { "lp_type": "l", "gois_type": "o" },
+ "l_i_01" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_02" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_03" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_04" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_05" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_06" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_07" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_08" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_09" : { "lp_type": "l", "gois_type": "i" },
+ "l_i_10" : { "lp_type": "l", "gois_type": "i" },
+ "l_s_01" : { "lp_type": "l", "gois_type": "s" },
+ "l_s_02" : { "lp_type": "l", "gois_type": "s" },
+ "p_g_01" : { "lp_type": "p", "gois_type": "g" },
+ "p_g_02" : { "lp_type": "p", "gois_type": "g" },
+ "p_g_03" : { "lp_type": "p", "gois_type": "g" },
+ "p_g_04" : { "lp_type": "p", "gois_type": "g" },
+ "p_g_05" : { "lp_type": "p", "gois_type": "g" },
+ "p_g_06" : { "lp_type": "p", "gois_type": "g" },
+ "p_o_01" : { "lp_type": "p", "gois_type": "o" },
+ "p_o_02" : { "lp_type": "p", "gois_type": "o" },
+ "p_o_03" : { "lp_type": "p", "gois_type": "o" },
+ "p_i_01" : { "lp_type": "p", "gois_type": "i" },
+ "p_i_02" : { "lp_type": "p", "gois_type": "i" },
+ "p_i_03" : { "lp_type": "p", "gois_type": "i" },
+ "p_i_04" : { "lp_type": "p", "gois_type": "i" },
+ "p_s_01" : { "lp_type": "p", "gois_type": "s" },
+ "p_s_02" : { "lp_type": "p", "gois_type": "s" },
+ "p_s_03" : { "lp_type": "p", "gois_type": "s" },
+ "p_s_04" : { "lp_type": "p", "gois_type": "s" },
+ "p_s_05" : { "lp_type": "p", "gois_type": "s" },
+ "p_s_01_e": { "lp_type": "not", "gois_type": "not" },
+ "p_s_02_e": { "lp_type": "not", "gois_type": "not" },
+ "p_s_03_e": { "lp_type": "not", "gois_type": "not" },
+ "l_g_01_e": { "lp_type": "not", "gois_type": "not" },
+ "l_g_02_e": { "lp_type": "not", "gois_type": "not" },
+ "l_g_03_e": { "lp_type": "not", "gois_type": "not" },
+ "p_i_01_e": { "lp_type": "not", "gois_type": "not" },
+ "p_i_02_e": { "lp_type": "not", "gois_type": "not" },
+ "p_i_03_e": { "lp_type": "not", "gois_type": "not" },
+ "p_o_01_e": { "lp_type": "not", "gois_type": "not" },
+ "p_o_02_e": { "lp_type": "not", "gois_type": "not" },
+ "p_g_01_e": { "lp_type": "not", "gois_type": "not" },
+ "p_g_02_e": { "lp_type": "not", "gois_type": "not" },
+ "l_s_01_e": { "lp_type": "not", "gois_type": "not" },
+ "l_s_02_e": { "lp_type": "not", "gois_type": "not" },
+ "l_s_03_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_01_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_02_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_03_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_04_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_05_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_06_e": { "lp_type": "not", "gois_type": "not" },
+ "l_i_07_e": { "lp_type": "not", "gois_type": "not" },
+ "l_o_01_e": { "lp_type": "not", "gois_type": "not" },
+ "l_o_02_e": { "lp_type": "not", "gois_type": "not" },
+ "l_o_03_e": { "lp_type": "not", "gois_type": "not" }
 }
 
-max_step = 10
 student_images = random.sample(all_images.keys(), max_step)
+hidden_img = student_images[0] + ".jpg"
+
+def get_response(grade_decimal):
+    response = {}
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        response["ok"] = True
+    elif grade_decimal == 0:
+        response["ok"] = False
+    else:
+        response["ok"] = 'Partial'
+    return response
 
 def check_answer(expect, ans):
-    grade_decimal = 1
-    return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': grade_decimal}, ]}
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    grade = 0
+    current_image = student_answer["current_image"]
+    max_grade = max_step
+    current_step = int(student_answer["current_step"])
+    used_answers = student_answer["images"][:current_step]
+
+    for item in used_answers:
+        if all_images[item]["lp_type"] == "not":
+            if student_answer["answers"][item]["student_lp"] == "not":
+                grade += 1
+        else:
+            if all_images[item]["lp_type"] == student_answer["answers"][item]["student_lp"]:
+                    grade += 0.5
+                    if all_images[item]["gois_type"] == student_answer["answers"][item]["student_gois"]:
+                        grade += 0.5
+
+    if  student_answer["send_type"]["type"] == "check_lp" and student_answer["send_type"]["checked"] == True:
+        correct_answer = { current_image: { "correct_lp": all_images[current_image]["lp_type"] } }
+    elif student_answer["send_type"]["type"] == "check_gois" and student_answer["send_type"]["checked"] == True:
+        correct_answer = { current_image: { "correct_gois": all_images[current_image]["gois_type"] } }
+    else:
+        correct_answer = {}
+
+    grade_decimal = grade/max_grade
+    response = get_response(grade_decimal)
+    return {'input_list': [{'ok': response['ok'], 'msg': json.dumps(correct_answer), 'grade_decimal': grade_decimal}, ]}
 
 </script>
 
@@ -110,40 +202,241 @@ function Answer(elementField) {
     };
 };
 
+var next_btn_label = '$next_btn_label';
+var next_img_btn_label = '$next_img_btn_label';
+var choice_lp_btn_label = '$choice_lp_btn_label';
+var choice_gois_btn_label = '$choice_gois_btn_label';
+
+var show_correct_answer = '$show_correct_answer';
+show_correct_answer = (show_correct_answer.toLowerCase() === 'true');
+
+
+var max_step = '$max_step';
+max_step = parseInt(max_step);
+
+var lp_types = {
+    "l": { "let": "l", "title": "Личностые задачи" },
+    "p": { "let": "p", "title": "Профессиональные задачи" },
+    "not": { "let": "not", "title": "Не дизайн" }
+};
+
+var gois_types = {
+    "g": { "let": "g", "title": "Графический дизайн" },
+    "o": { "let": "o", "title": "Дизайн одежды" },
+    "i": { "let": "i", "title": "Индустриальный дизайн" },
+    "s": { "let": "s", "title": "Средовой дизайн" },
+};
+
+var notification = $(".problem .notification.notification-submit").hide();
+var submit_button = $("#images_task").closest(".problem").find('button.submit');
+$(submit_button).css('text-transform','none');
+
+$(submit_button).find('span.submit-label').text(choice_lp_btn_label);
+
+$(submit_button).attr("disabled", "disabled");
+$(submit_button).addClass("disabled");
+
+function enableSubmitButton(){
+    $(submit_button).removeClass("disabled");
+    $(submit_button).removeAttr("disabled");
+}
+
 var answer = new Answer(document.querySelector("#images_task_input").querySelector("input[type='text']"));
 
-var user_state = new Object();  	
+var hidden_img = '$hidden_img'
+var img_path = $("#hidden_image img").attr('src').replace(hidden_img, "");
+
+var user_state = new Object();      
 
 user_state.current_step = 1;
 user_state.images = $student_images;
+user_state.send_type = {
+    "type": "check_lp",
+    "checked": false,
+}; 
+
+user_state.answers = {};
+user_state.current_image = user_state.images[user_state.current_step - 1];
+
+user_state.images.forEach(function(element, index) {
+    user_state.answers[element] = {
+        "student_lp": "",
+        "student_gois": ""
+    }
+
+});
 
 if(answer.get()){
-	user_state = answer.getJSON()["answer"];
-	user_state.current_step += 1;
-	console.log("Есть ответ");
+    user_state = answer.getJSON()["answer"];
+    user_state.current_image = user_state.images[user_state.current_step - 1];
+    user_state.correctness = JSON.parse($("#images_task_input .message").html());
 }
 else{
-	console.log("Нет ответа");
-	answer.setJSON({answer: user_state});
+    answer.setJSON({answer: user_state});
+}
+    createBase(user_state.current_step);
+
+
+function createBase(step){
+    $("#current_step").html(user_state.current_step)
+
+    var image = $("<img/>", {
+        src: img_path + user_state.images[user_state.current_step - 1] + ".jpg",
+        class: "task-image",
+    });
+    $("#task_text_image").append(image);
+
+    if (user_state.send_type["type"] == "check_lp"){
+        createChoiceLP();            
+    }
+    else if (user_state.send_type["type"] == "check_gois"){
+        createChoiceGOIS();
+    }
+
+    if (max_step+1 == user_state.current_step){
+        $(submit_button).hide();
+    }
 }
 
-function 
+function createChoiceLP(){
+    $(submit_button).find('span.submit-label').text(choice_lp_btn_label);
+    Object.keys(lp_types).forEach(function(element, index) {
+        var lp_input_wrap = $("<div/>", {class: "lp-input-wrap"});
+        var lp_input = $("<input/>", {
+            type: "radio",
+            name: "lp_choice",
+            id: "lp_choice_v" + (index + 1).toString(),
+            value: lp_types[element]["let"],
+        }).appendTo(lp_input_wrap);
+
+        lp_input_wrap.append(lp_types[element]["title"]);
+        $("#choice_block").append($(lp_input_wrap));
+
+        if (user_state.send_type["checked"] == false){
+            lp_input_wrap.click(function(e) {
+                enableSubmitButton();
+                $('input', $(e.target)).prop('checked', true);
+                var lp_val = $("input[name='lp_choice']:checked").val()
+                user_state.answers[user_state.current_image]["student_lp"] = lp_val;
+                user_state.send_type["checked"] = true;
+                answer.setJSON({answer: user_state});
+            });
+        }
+        else {
+            enableSubmitButton();
+            $(lp_input).prop('disabled', true);
+            $(lp_input_wrap).css('cursor', 'not-allowed');
+        }
+    });
+
+    if (user_state.send_type["checked"] == true){
+            var selected_input = $("#choice_block .lp-input-wrap input[value=" + user_state.answers[user_state.current_image]["student_lp"] + "]");
+            selected_input.prop("checked", true)
+
+            if (user_state.correctness[user_state.current_image]["correct_lp"] == user_state.answers[user_state.current_image]["student_lp"]){
+                selected_input.closest('.lp-input-wrap').addClass("correct-answer");
+                $(submit_button).find('span.submit-label').text(next_btn_label);
+                user_state.send_type = {"type": "check_gois", "checked": false};
+
+                if (user_state.answers[user_state.current_image]["student_lp"] == "not"){
+                    $(submit_button).find('span.submit-label').text(next_img_btn_label);
+                    user_state.current_step += 1;
+                    user_state.send_type = {"type": "check_lp", "checked": false};
+                }
+            }
+            else{
+                if (show_correct_answer) {$("#choice_block").append("<p>Правильный ответ: " + lp_types[user_state.correctness[user_state.current_image]["correct_lp"]]["title"] + "</p>")}
+                selected_input.closest('.lp-input-wrap').addClass("incorrect-answer");
+                $(submit_button).find('span.submit-label').text(next_img_btn_label);
+                user_state.current_step += 1;
+                user_state.send_type = {"type": "check_lp", "checked": false};
+            }
+            enableSubmitButton();
+        }
+
+    answer.setJSON({answer: user_state});
+}
+
+function createChoiceGOIS(){
+    $(submit_button).find('span.submit-label').text(choice_gois_btn_label);
+
+    $("#choice_block").append("<p>Выберите тип дизайна, к которому относится этот объект: </p>")
+    Object.keys(gois_types).forEach(function(element, index) {
+        var gois_input_wrap = $("<div/>", {class: "gois-input-wrap"});
+        var gois_input = $("<input/>", {
+            type: "radio",
+            name: "gois_choice",
+            id: "gois_choice_v" + (index + 1).toString(),
+            value: gois_types[element]["let"],
+        }).appendTo(gois_input_wrap);
+        gois_input_wrap.append(gois_types[element]["title"]);
+        $("#choice_block").append($(gois_input_wrap));
+
+        if (user_state.send_type["checked"] == false){
+            gois_input_wrap.click(function(e) {
+                enableSubmitButton();
+                $('input', $(e.target)).prop('checked', true);
+                var gois_val = $("input[name='gois_choice']:checked").val()
+                user_state.answers[user_state.current_image]["student_gois"] = gois_val;
+                user_state.send_type["checked"] = true;
+                answer.setJSON({answer: user_state});
+            });
+        }
+        else{
+            enableSubmitButton();
+            $(gois_input).prop('disabled', true);
+            $(gois_input_wrap).css('cursor', 'not-allowed');
+        }
+    });
+
+
+    if (user_state.send_type["checked"] == true){
+            var selected_input = $("#choice_block .gois-input-wrap input[value=" + user_state.answers[user_state.current_image]["student_gois"] + "]");
+            selected_input.prop("checked", true)
+
+            if (user_state.correctness[user_state.current_image]["correct_gois"] == user_state.answers[user_state.current_image]["student_gois"]){
+                selected_input.closest('.gois-input-wrap').addClass("correct-answer");
+            }
+            else{
+                if (show_correct_answer) {$("#choice_block").append("<p>Правильный ответ: " + gois_types[user_state.correctness[user_state.current_image]["correct_gois"]]["title"] + "</p>")};
+                selected_input.closest('.gois-input-wrap').addClass("incorrect-answer");
+            }
+            user_state.send_type = {"type": "check_lp", "checked": false };
+            $(submit_button).find('span.submit-label').text(next_img_btn_label);
+            user_state.current_step += 1;
+            enableSubmitButton();
+        }
 
 answer.setJSON({answer: user_state});
-$("#current_step").html(user_state.current_step)
 
-console.log(user_state);
+}
 
+
+
+answer.setJSON({answer: user_state});
+
+$('body').scrollTo($("#images_task").closest(".xblock"))
 </script>
+
 <div id="images_task">
 
-<div> <span id="current_step"></span> / $max_step </div>
+<div id="hidden_image"><img src="/static/$hidden_img" /></div>
+
+
 
 <div id="task_block">
-	
+    <div><p>Формулировка задания</p></div>
+    <div id="task_text_image">
+     
+     <div> <h2>Вопрос <span id="current_step"></span> из $max_step </h2></div> 
+
+    </div>
+    <div id="choice_block">
+    </div>
+
+
 </div>
 
-<div>$student_images</div>
   <div id="images_task_input">
     <customresponse cfn="check_answer">
       <textline size="40" value="$unique_id" />
