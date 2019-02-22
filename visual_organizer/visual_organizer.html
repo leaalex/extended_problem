@@ -68,6 +68,8 @@ import json
 
 organizers_btn_label = "Выбрать анализатор"
 elements_btn_label = "Выбрать элемент"
+check_btn_label = "Проверить"
+
 unique_id = "task_djkjvfds42v"
 
 incorrect_elements = {
@@ -97,8 +99,84 @@ incorrect_elements = {
 	}
 }
 
-correct_answers = {
-	
+correct_answers_3_2 = {
+  "inductive_towers": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "a",
+      "question_2": "b",
+      "question_3": [
+        "b",
+        "c",
+        "e"
+      ]
+    }
+  },
+  "charts": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "c",
+      "question_2": "a",
+      "question_3": [
+        "b",
+        "d"
+      ]
+    }
+  },
+  "drawings_and_matrixes": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "b",
+      "question_2": "b",
+      "question_3": [
+        "a"
+      ]
+    }
+  },
+  "pie_chart": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "c",
+      "question_2": "a",
+      "question_3": [
+        "b",
+        "d"
+      ]
+    }
+  },
+  "pie_charts": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "c",
+      "question_2": "a",
+      "question_3": [
+        "b",
+        "d"
+      ]
+    }
+  },
+  "causal_card_chains": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "c",
+      "question_2": "a",
+      "question_3": [
+        "b",
+        "d"
+      ]
+    }
+  },
+  "current_cards": {
+    "step_3_1": {},
+    "step_3_2": {
+      "question_1": "c",
+      "question_2": "a",
+      "question_3": [
+        "b",
+        "d"
+      ]
+    }
+  }
 }
 
 def check_answer(expect, ans):
@@ -133,6 +211,7 @@ def check_answer(expect, ans):
 
 var organizers_btn_label = "$organizers_btn_label"
 var elements_btn_label = "$elements_btn_label"
+var check_btn_label = "$check_btn_label"
 
 var max_element_attemps = 3;
 
@@ -696,8 +775,6 @@ function getElementsByOrganizer(org){
 	return output_list;
 } 
 
-
-
 var user_state = new Object();
 user_state.step = 1;
 user_state.organizer = organizers[Object.keys(organizers)[0]];
@@ -837,6 +914,7 @@ function createChoiceOrganizer(){
 }
 
 function createStep3_2(){
+	setSubmitText(check_btn_label);
 	$("#visual_organizer_task").append("<h2>"  + user_state.element.title + "</h2>");
 	answer.setJSON({answer: user_state});
 
@@ -869,7 +947,33 @@ function createStep3_2(){
 		question_1_wrap.append(question_1_input_wrap)
 	});
 
+	all_questions[user_state.element.name]["question_2"]["answer_choices"].forEach(function(element, index) {
+		var question_2_input_wrap = $('<div/>', {
+			class: "question-input-wrap",
+		});
+		var question_2_input = $("<input/>", {
+            type: "radio",
+            name: "step_3_2_question_2",
+            value: element["let"]
+		});
+		question_2_input_wrap.append(question_2_input);
+		question_2_input_wrap.append(element["text"]);
+		question_2_wrap.append(question_2_input_wrap)
+	});
 
+	all_questions[user_state.element.name]["question_3"]["answer_choices"].forEach(function(element, index) {
+		var question_3_input_wrap = $('<div/>', {
+			class: "question-input-wrap",
+		});
+		var question_3_input = $("<input/>", {
+            type: "checkbox",
+            name: "step_3_2_question_3",
+            value: element["let"]
+		});
+		question_3_input_wrap.append(question_3_input);
+		question_3_input_wrap.append(element["text"]);
+		question_3_wrap.append(question_3_input_wrap)
+	});
 
 	questions_wrap.append(question_1_wrap);
 	questions_wrap.append(question_2_wrap);
