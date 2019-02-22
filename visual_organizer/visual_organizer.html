@@ -1,0 +1,1095 @@
+<problem>
+
+<style type="text/css">
+
+
+#visual_organizer_task_input{
+	/*display: none !important;*/
+}
+
+.organizers-input-wrap input{
+	margin-top: -1px !important;
+  	vertical-align: middle !important;
+}
+
+.incorrect-element-message{
+	background: #ffffff;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px 0px;
+    display: block;
+    border-radius: 4px;
+    border: 2px solid red;
+}
+
+.question-input-wrap input{
+    margin-top: -1px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.question-input-wrap label{
+	font-size: 1em;
+	cursor: pointer;
+}
+
+.question-input-wrap{
+    padding: 10px 10px;
+    margin: 6px 0px;
+    border: 2px solid #e5e5e5;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.question-input-wrap.correct-answer, .question-input-wrap.correct-answer:hover {
+    border: 2px solid #009b01;
+}
+
+.question-input-wrap.incorrect-answer, .question-input-wrap.incorrect-answer:hover{
+    border: 2px solid #cb0711;
+}
+
+.question-input-wrap:hover{
+	border: 2px solid #009fe6;
+}
+
+
+.question-wrap{
+	border: 1px solid #c7c7c9;
+    margin: 6px 0px;
+    padding: 10px;
+}
+
+</style>
+
+<script type="loncapa/python">
+import math
+import json
+
+organizers_btn_label = "Выбрать анализатор"
+elements_btn_label = "Выбрать элемент"
+unique_id = "task_djkjvfds42v"
+
+incorrect_elements = {
+	"venn_diagram" : {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Диаграмма Венна не может быть применена для определения правильности решения Мардж.",
+		"comment": "venn_diagram comment",
+	}, 
+	"web_charts": {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Веб диаграмма не может быть применена для определения правильности решения Мардж, поскольку выборка недостаточно репрезентативна.",
+		"comment": "web_charts comment",
+	}, 
+	"force_field_analysis": {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Анализ силовых полей не может быть применен для определения правильности решения Мардж, поскольку исход событий практически равновероятен на каждом шаге.",
+		"comment": "force_field_analysis comment",
+	},
+	"estimated_space": {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Оценочное пространство не может быть применено для определения правильности решения Мардж, поскольку вероятность события не связана с оценочными суждениями.",
+		"comment": "estimated_space comment",
+	},
+	"concept_maps": {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Концептуальные карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно находить причину события, а не его вероятность.",
+		"comment": "concept_maps comment",
+	},
+	"current_cards": {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Текущие карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно ставить цели, достижение которых минимальным образом зависит от случайных факторов.",
+		"comment": "current_cards comment",
+	}
+}
+
+correct_answers = {
+	
+}
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    grade_decimal = 1
+    response = {}
+    if int(student_answer["step"]) == 2:
+        if student_answer["element"]["name"] in incorrect_elements.keys():
+            response["element_correctness"] = {
+                "correctness": False,
+                "comment": incorrect_elements[student_answer["element"]["name"]]["comment"]
+            }
+        else:
+            response["element_correctness"] = {
+                "correctness": True, 
+                "comment": ""
+            }
+        if int(student_answer["element_attemps"]) >= 3:
+           response["element_correctness"] = {
+               "correctness": False,
+               "comment": "Превышено максимальное количество попыток!"
+           }
+           return {'input_list': [{'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}, ]}
+
+
+    return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': grade_decimal}, ]}
+</script>
+
+<meta charset="UTF-8" />
+<script type="text/javascript" charset="utf-8">
+
+var organizers_btn_label = "$organizers_btn_label"
+var elements_btn_label = "$elements_btn_label"
+
+var max_element_attemps = 3;
+
+function Answer(elementField) {
+    this.elementField = elementField;
+    this.fieldValue = "";
+    this.fieldObject = {};
+    this.get = function() {
+        this.fieldValue = elementField.value;
+        return this.fieldValue;
+    };
+    this.set = function(value) {
+        if (value == undefined) value = this.fieldValue;
+        elementField.value = value;
+    };
+    this.getJSON = function() {
+        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+        return this.fieldObject;
+    };
+    this.setJSON = function(object) {
+        if (object == undefined) object = this.fieldObject;
+        this.set(JSON.stringify(object))
+    };
+    this.isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
+};
+
+
+
+var submit_button = $("#visual_organizer").closest(".problem").find('button.submit');
+$(submit_button).css('text-transform','none');
+
+
+function setSubmitText(text){
+	$(submit_button).find('span.submit-label').text(text);
+}
+
+var all_questions = {
+  "inductive_towers": {
+    "question_1": {
+      "question_wording": "Вывод, который можно сделать по данной схеме:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Надо ставить на черное, если шарик 5 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "b",
+          "text": "Надо ставить на черное, если шарик 6 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "c",
+          "text": "Ставка на другой цвет после 5 попаданий не позволит выигрывать чаще, чем проигрывать."
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Подходит ли данный инструмент для Мардж:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да"
+        },
+        {
+          "let": "b",
+          "text": "Нет"
+        },
+        {
+          "let": "c",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Оценив условия мысленного эксперимента и визуального организатора, какой вывод можно сделать:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "У Мардж все отлично с логикой"
+        },
+        {
+          "let": "b",
+          "text": "Ошибка Мардж связана с мышлением и не вызвана каким-то сбоем в реальном мире"
+        },
+        {
+          "let": "c",
+          "text": "Мардж посчитала реальным то, что не было подтверждено ее наблюдениями"
+        },
+        {
+          "let": "d",
+          "text": "Мардж будет очень богатой очень скоро"
+        },
+        {
+          "let": "e",
+          "text": "Мардж – плохой экспериментатор"
+        }
+      ]
+    }
+  },
+  "charts": {
+    "question_1": {
+      "question_wording": "Вывод, который можно сделать по данной схеме:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Надо ставить на черное, если шарик 5 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "b",
+          "text": "Надо ставить на черное, если шарик 6 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "c",
+          "text": "Ставка на другой цвет после 5 попаданий не позволит выигрывать чаще, чем проигрывать."
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Подходит ли данный инструмент для Мардж:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да"
+        },
+        {
+          "let": "b",
+          "text": "Нет"
+        },
+        {
+          "let": "c",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Оценив условия мысленного эксперимента и визуального организатора, какой вывод можно сделать:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "У Мардж все отлично с логикой"
+        },
+        {
+          "let": "b",
+          "text": "Мардж посчитала реальным то, что не было подтверждено ее наблюдениями"
+        },
+        {
+          "let": "c",
+          "text": "Мардж будет очень богатой очень скоро"
+        },
+        {
+          "let": "d",
+          "text": "Мардж – плохой экспериментатор"
+        }
+      ]
+    }
+  },
+  "drawings_and_matrixes": {
+    "question_1": {
+      "question_wording": "Использовала ли Мардж данную формулу?",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да"
+        },
+        {
+          "let": "b",
+          "text": "Нет"
+        },
+        {
+          "let": "c",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Достаточно ли данной формулы для построения матрицы распределения вероятности?",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да"
+        },
+        {
+          "let": "b",
+          "text": "Нет"
+        },
+        {
+          "let": "c",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Какой величины не достаточно для построения матрицы и вычисления точной вероятности возможного выигрыша?",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Плотности перехода"
+        },
+        {
+          "let": "b",
+          "text": "Рассеянности перехода"
+        },
+        {
+          "let": "c",
+          "text": "Продолжительности наблюдения"
+        }
+      ]
+    }
+  },
+  "pie_chart": {
+    "question_1": {
+      "question_wording": "Вывод, который можно сделать по данной схеме:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Надо ставить на черное, если шарик 5 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "b",
+          "text": "Надо ставить на черное, если шарик 6 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "c",
+          "text": "Ставка на другой цвет после 5 попаданий не позволит выигрывать чаще, чем проигрывать."
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Подходит ли данный инструмент для Мардж:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да, при длительном наблюдении"
+        },
+        {
+          "let": "b",
+          "text": "Да, всегда"
+        },
+        {
+          "let": "c",
+          "text": "Нет"
+        },
+        {
+          "let": "d",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Оценив условия мысленного эксперимента и визуального организатора, какой вывод можно сделать:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "У Мардж все отлично с логикой"
+        },
+        {
+          "let": "b",
+          "text": "Мардж посчитала реальным то, что не было подтверждено ее наблюдениями"
+        },
+        {
+          "let": "c",
+          "text": "Мардж будет очень богатой очень скоро"
+        },
+        {
+          "let": "d",
+          "text": "Мардж – плохой экспериментатор"
+        },
+        {
+          "let": "e",
+          "text": ""
+        }
+      ]
+    }
+  },
+  "pie_charts": {
+    "question_1": {
+      "question_wording": "Вывод, который можно сделать по данной схеме:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Надо ставить на черное, если шарик 5 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "b",
+          "text": "Надо ставить на черное, если шарик 6 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "c",
+          "text": "Ставка на другой цвет после 5 попаданий не позволит выигрывать чаще, чем проигрывать."
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Подходит ли данный инструмент для Мардж:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да, при длительном наблюдении"
+        },
+        {
+          "let": "b",
+          "text": "Да, всегда"
+        },
+        {
+          "let": "c",
+          "text": "Нет"
+        },
+        {
+          "let": "d",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Оценив условия мысленного эксперимента и визуального организатора, какой вывод можно сделать:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "У Мардж все отлично с логикой"
+        },
+        {
+          "let": "b",
+          "text": "Мардж посчитала реальным то, что не было подтверждено ее наблюдениями"
+        },
+        {
+          "let": "c",
+          "text": "Мардж будет очень богатой очень скоро"
+        },
+        {
+          "let": "d",
+          "text": "Мардж – плохой экспериментатор"
+        }
+      ]
+    }
+  },
+  "causal_card_chains": {
+    "question_1": {
+      "question_wording": "Вывод, который можно сделать по данной схеме:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Надо ставить на черное, если шарик 5 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "b",
+          "text": "Надо ставить на черное, если шарик 6 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "c",
+          "text": "Мардж не нужно ходить в казино. Казино выигрывает чаще."
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Подходит ли данный инструмент для Мардж:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да, при правильной оценки вероятности"
+        },
+        {
+          "let": "b",
+          "text": "Да, всегда"
+        },
+        {
+          "let": "c",
+          "text": "Нет"
+        },
+        {
+          "let": "d",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Оценив условия мысленного эксперимента и визуального организатора, какой вывод можно сделать:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "У Мардж все отлично с логикой"
+        },
+        {
+          "let": "b",
+          "text": "Мардж посчитала реальным то, что не было подтверждено ее наблюдениями"
+        },
+        {
+          "let": "c",
+          "text": "Мардж будет очень богатой очень скоро"
+        },
+        {
+          "let": "d",
+          "text": "Мардж – плохой экспериментатор"
+        }
+      ]
+    }
+  },
+  "current_cards": {
+    "question_1": {
+      "question_wording": "Вывод, который можно сделать по данной схеме:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Надо ставить на черное, если шарик 5 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "b",
+          "text": "Надо ставить на черное, если шарик 6 раз выпал на красное. Это поможет чаще выигрывать, чем проигрывать."
+        },
+        {
+          "let": "c",
+          "text": "Мардж пытается снизить вероятность проигрыша."
+        },
+        {
+          "let": "d",
+          "text": "Данный инструмент дает представление о действиях Мардж, но не гарантирует выигрыш."
+        }
+      ]
+    },
+    "question_2": {
+      "question_wording": "Подходит ли данный инструмент для Мардж:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "Да, при правильной оценки вероятности"
+        },
+        {
+          "let": "b",
+          "text": "Да, всегда"
+        },
+        {
+          "let": "c",
+          "text": "Нет"
+        },
+        {
+          "let": "d",
+          "text": "Иногда"
+        }
+      ]
+    },
+    "question_3": {
+      "question_wording": "Оценив условия мысленного эксперимента и визуального организатора, какой вывод можно сделать:",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": "У Мардж все отлично с логикой"
+        },
+        {
+          "let": "b",
+          "text": "Мардж посчитала реальным то, что не было подтверждено ее наблюдениями"
+        },
+        {
+          "let": "c",
+          "text": "Мардж будет очень богатой очень скоро"
+        },
+        {
+          "let": "d",
+          "text": "Мардж – плохой экспериментатор"
+        }
+      ]
+    }
+  }
+}
+
+var answer = new Answer(document.querySelector("#visual_organizer").querySelector("input[type='text']"));
+
+var organizers = {
+	ground_to_top: {
+		name: "ground_to_top",
+		title: "«С земли – к вершине»",
+	},
+	birds_flight_to_ground: {
+		name: "birds_flight_to_ground",
+		title: "«С птичьего полета – к земле»",
+	},
+}
+
+var organizer_elements = {
+	inductive_towers: {
+		organizer: organizers.ground_to_top,
+		title: "Индуктивные башни",
+		name: "inductive_towers",
+	}, 
+	charts: {
+		organizer: organizers.ground_to_top,
+		title: "Графики",
+		name: "charts",
+	}, 
+	drawings_and_matrixes: {
+		organizer: organizers.ground_to_top,
+		title: "Чертежи и матрицы",
+		name: "drawings_and_matrixes"
+	}, 
+	venn_diagram: {
+		organizer: organizers.ground_to_top,
+		title: "Диаграмма Венна",
+		name: "venn_diagram",
+	}, 
+	pie_chart: {
+		organizer: organizers.ground_to_top,
+		title: "Диаграмма «Пирог»",
+		name: "pie_chart",
+	}, 
+	pie_charts: {
+		organizer: organizers.ground_to_top,
+		title: "Круговые диаграммы",
+		name: "pie_charts",
+	}, 
+	web_charts: {
+		organizer: organizers.ground_to_top,
+		title: "Веб-диаграммы",
+		name: "web_charts",
+	}, 
+	causal_card_chains: {
+		organizer: organizers.birds_flight_to_ground,
+		title: "Причинные цепочки-карты",
+		name: "causal_card_chains",
+	}, 
+	planning_cards: {
+		organizer: organizers.birds_flight_to_ground,
+		title: "Планирующие карты",
+		name: "planning_cards",
+	}, 
+	force_field_analysis: {
+		organizer: organizers.birds_flight_to_ground,
+		title: "Анализ силовых полей",
+		name: "force_field_analysis",
+	}, 
+	estimated_space: {
+		organizer: organizers.birds_flight_to_ground,
+		title: "Оценочное пространство",
+		name: "estimated_space",
+	}, 
+	concept_maps: {
+		organizer: organizers.birds_flight_to_ground,
+		title: "Концептуальные карты",
+		name: "concept_maps",
+	},
+	current_cards: {
+		organizer: organizers.birds_flight_to_ground,
+		title: "Текущие карты",
+		name: "current_cards",
+	}
+}
+
+function getElementsByOrganizer(org){
+	var output_list = [];
+	var tmp_org = org;
+	if (typeof org == 'string'){
+		tmp_org = tmp_org;
+	}
+	else{
+		tmp_org = org.name;
+	}
+	output_list = Object.keys(organizer_elements).filter(function(elem){ return organizer_elements[elem].organizer.name == tmp_org }).map(function(mapped){return organizer_elements[mapped]});
+	return output_list;
+} 
+
+
+
+var user_state = new Object();
+user_state.step = 1;
+user_state.organizer = organizers[Object.keys(organizers)[0]];
+user_state.element = getElementsByOrganizer(user_state.organizer)[0];
+user_state.element_attemps = 0;
+user_state.step_3_1 = {
+	answer:{},
+	attemps: 0
+}
+user_state.step_3_2 = {
+	answer:{},
+	attemps: 0
+}
+
+
+if(answer.get()){
+	
+	user_state = answer.getJSON()["answer"];
+	var response = JSON.parse($("#visual_organizer_task_input .message").html());
+
+	if (user_state.step == 1){
+		user_state.step = 2;
+	}
+
+	if(user_state.step == 2){
+		user_state.response = response;
+		if (user_state.response["element_correctness"]){
+				user_state.element_attemps += 1;
+				if (user_state.response["element_correctness"]["correctness"] == true){
+					user_state.step = 3;
+					createStep3_2();
+					console.log("New step creating");
+				}
+				else{
+					createChoiceOrganizerElement(true);
+				}
+		}
+		else{
+			createChoiceOrganizerElement();
+		}
+	}
+
+	else if(user_state.step == 3){
+		// console.log("create step 3");
+	}
+	else{
+		console.log("Unhandled step");
+	}
+}
+else{
+	createChoiceOrganizer();
+} 
+
+function createChoiceOrganizerElement(show_error=false){
+	
+	var choice_elements_wrap = $("<div/>", {
+		class: "",
+		html: "<p>Список элементов визуального организатора " + user_state.organizer.title + " </p>"
+	});
+	// ;
+	getElementsByOrganizer(user_state.organizer).forEach(function(element, index) {
+		var input_wrap = $("<div/>", {
+			class: "organizers-input-wrap",
+		});
+		var input = $("<input/>", {
+			type: "radio",
+			id: element.name + "Choice",
+			value: element.name,
+			name: "elementChoice"
+		});
+		var label = $("<label/>", {
+			for: element.name + "Choice",
+			html: "  " + element.title,
+		});
+		$(input).change(function() {
+			var element_choiced = $("input[name='elementChoice']:checked").val();
+			user_state.element = organizer_elements[element_choiced];
+			answer.setJSON({answer: user_state});
+		});
+
+		input_wrap.append(input);
+		input_wrap.append(label);
+		choice_elements_wrap.append(input_wrap);
+	});
+	
+	$("#visual_organizer_task").append(choice_elements_wrap);
+	// console.log("user_state.element: ", user_state.element.name + "Choice");
+	$("#" + user_state.element.name + "Choice").prop('checked', true);
+
+	if (show_error){
+		$("#visual_organizer_task").append('<div class="incorrect-element-message">' + user_state.response["element_correctness"]["comment"]+ " </div>");
+		if (user_state.element_attemps == max_element_attemps){
+			$("input[name='elementChoice']").attr('disabled', 'disabled');
+			$(submit_button).hide();
+		}
+	}
+	$("#visual_organizer_task").append("<p> Использовано попыток " + user_state.element_attemps + " из " + max_element_attemps + " </p>");
+	setSubmitText(elements_btn_label);
+	answer.setJSON({answer: user_state});
+}
+
+function createChoiceOrganizer(){
+	var choice_organizer_wrap = $("<div/>", {
+		class: "",
+		html: "<p>Выберите из списка наиболее подходящий визуальный анализатор: </p>"
+	});
+	Object.keys(organizers).forEach(function(element, index) {
+		var input_wrap = $("<div/>", {
+			class: "organizers-input-wrap",
+		});
+		var input = $("<input/>", {
+			type: "radio",
+			id: element + "Choice",
+			value: element,
+			name: "organizerChoice"
+		});
+		if (index == 0 ) input.attr('checked', 'checked');
+		var label = $("<label/>", {
+			for: element + "Choice",
+			html: "  " + organizers[element].title,
+		});
+		$(input).change(function() {
+			var organizer_choiced = $("input[name='organizerChoice']:checked").val();
+			user_state.organizer = organizers[organizer_choiced];
+			user_state.element = getElementsByOrganizer(user_state.organizer)[0];
+			answer.setJSON({answer: user_state});
+		});
+
+		input_wrap.append(input);
+		input_wrap.append(label);
+		choice_organizer_wrap.append(input_wrap);
+	});
+	$("#visual_organizer_task").append(choice_organizer_wrap);
+	setSubmitText(organizers_btn_label);
+	// user_state.step += 1;
+	answer.setJSON({answer: user_state});
+}
+
+function createStep3_2(){
+	$("#visual_organizer_task").append("<h2>"  + user_state.element.title + "</h2>");
+	answer.setJSON({answer: user_state});
+
+	var questions_wrap = $('<div/>', {});
+	var question_1_wrap = $('<div/>',{
+		class: "question-wrap"
+	});
+	question_1_wrap.append("<p>" + all_questions[user_state.element.name]["question_1"]["question_wording"] + "</p>");
+	var question_2_wrap = $('<div/>',{
+		class: "question-wrap"
+	});
+	question_2_wrap.append("<p>" + all_questions[user_state.element.name]["question_2"]["question_wording"] + "</p>");
+
+	var question_3_wrap = $('<div/>',{
+		class: "question-wrap"
+	});
+	question_3_wrap.append("<p>" + all_questions[user_state.element.name]["question_3"]["question_wording"] + "</p>");
+
+	all_questions[user_state.element.name]["question_1"]["answer_choices"].forEach(function(element, index) {
+		var question_1_input_wrap = $('<div/>', {
+			class: "question-input-wrap",
+		});
+		var question_1_input = $("<input/>", {
+            type: "radio",
+            name: "step_3_2_question_1",
+            value: element["let"]
+		});
+		question_1_input_wrap.append(question_1_input);
+		question_1_input_wrap.append(element["text"]);
+		question_1_wrap.append(question_1_input_wrap)
+	});
+
+
+
+	questions_wrap.append(question_1_wrap);
+	questions_wrap.append(question_2_wrap);
+	questions_wrap.append(question_3_wrap);
+
+	$("#visual_organizer_task").append(questions_wrap);
+}
+
+</script>
+
+<div id="visual_organizer">
+	
+	<div id="text_task">
+	<!--<p>Прочтите мысленный эксперимент «Колесо фортуны», выберите из списка наиболее подходящий инструмент для анализа информации, структурируйте ее, предложите решение проблемы (из списка), опираясь на проделанную работу.</p>-->
+	<!--
+		<h2>Мысленный эксперимент «Колесо фортуны»</h2>
+		<p>Не будучи математиком, Мардж вдруг поняла, что изобрела надежную систему обогащения при игре в рулетку.</p>
+		<p>В течение нескольких дней, приходя в казино, она наблюдала за вращением барабана. Ей удалось заметить, что на удивление часто шарик выпадал либо только на черное, либо только на красное. Однако пять раз подряд на один цвет он выпадал редко, а шесть раз подряд лишь пару раз в день.</p>
+		<p>На этом и должна была основываться ее система. Шансы на то, что шарик выпадет шесть раз подряд на поле одного цвета, были мизерными. Поэтому Мардж решила, что она будет наблюдать за игрой и, как только шарик выпадет пять раз подряд на красное, она сможет с уверенностью поставить на черное. Она должна будет выигрывать чаще, чем проигрывать, потому что шесть раз подряд на поле одного цвета шарик выпадал крайне редко. Она настолько уверилась в этом, что уже начала подумывать о том, как ей потратить выигранные деньги.</p>
+	-->
+	</div>
+
+	<div id="visual_organizer_task">
+		
+
+	</div>
+
+
+  <div id="visual_organizer_task_input">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="$unique_id" />
+    </customresponse>
+  </div>
+
+</div>
+
+
+
+<!-- 
+<style type="text/css">
+	.arrow-td{
+	    font-size: 3em;
+	    text-align: center !important;
+	    padding: 0px 0px !important;
+	}
+	.text-td{
+		border: 1px solid;
+    	padding: 8px 0px !important;
+	}
+
+	.text-td .item{
+		text-align: center;
+	}
+
+	#inductive_towers_table .text-td .item{
+		font-size: 0.75em;
+	}
+
+	#causal_card_chains_table{
+		width: 100%;
+	}
+
+</style>
+
+
+<table id="inductive_towers_table">
+<tbody>
+<tr>
+<td colspan="4" class="text-td" style="width: 40%">
+<div class="item" id="">Вероятность выпадения высокая</div>
+</td>
+<td class="arrow-td">→</td>
+<td class="text-td"><div class="item" id="">Ставка на другой цвет после 5 попаданий позволит выиграть</div></td>
+<td class="arrow-td">→</td>
+<td colspan="2" class="text-td">
+<div class="item" id="">Вероятность выпадения низкая</div>
+</td>
+</tr>
+<tr>
+<td colspan="4" class="arrow-td">↑</td>
+<td colspan="3" rowspan="4">
+</td>
+<td class="arrow-td">↑</td>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td colspan="4" class="text-td">
+<div class="item" id="">часто</div>
+</td>
+<td class="text-td">
+<div class="item" id="">редко</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Очень редко</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↑</td>
+<td class="arrow-td">↓</td>
+<td class="arrow-td">↓</td>
+<td class="arrow-td">↓</td>
+<td class="arrow-td">↓</td>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td class="text-td">
+<div class="item" id="">Выпадает на одно и то же поле 1 раз</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Выпадает на одно и то же поле 2 раза</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Выпадает на одно и то же поле 3 раза</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Выпадает на одно и то же поле 4 раза</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Выпадает на одно и то же поле 5 раз</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Выпадает на одно и то же поле 6 раз</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<table id="causal_card_chains_table">
+<tbody>
+<tr>
+<td class="text-td">
+<div class="item" id="">Поход в казино</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td class="text-td">
+<div class="item" id="">Наблюдение за рулеткой</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td class="text-td">
+<div class="item" id="">Выявление закономерности</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td class="text-td">
+<div class="item" id="">Оценка вероятности и рисков</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td class="text-td">
+<div class="item" id="">Решение сделать ставку</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table id="current_cards_table">
+<tbody>
+<tr>
+<td colspan="3" class="text-td">
+<div class="item" id="">Первый бросок шарика</div>
+</td>
+<td class="arrow-td">→</td>
+<td class="text-td">
+<div class="item" id="">Выпал на черное</div>
+</td>
+<td class="arrow-td">→</td>
+<td class="text-td">
+<div class="item" id="">Выпал на черное 2-4 раза</div>
+</td>
+<td class="arrow-td">→</td>
+<td class="text-td">
+<div class="item" id="">Выпал на черное 5 раз</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↑</td>
+<td rowspan="3"></td>
+<td class="arrow-td">↓</td>
+<td colspan="5" rowspan="4"></td>
+<td class="arrow-td">↓</td>
+</tr>
+<tr>
+<td class="text-td">
+<div class="item" id="">Не ставить</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Выпал на красное</div>
+</td>
+<td class="text-td">
+<div class="item" id="">Ставка на красное</div>
+</td>
+</tr>
+<tr>
+<td class="arrow-td">↑</td>
+<td class="arrow-td">↓</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="3" class="text-td">
+<div class="item" id="">Выпал на зеленое</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+ -->
+
+</problem>

@@ -3,6 +3,7 @@
 <style type="text/css">
 
 #hidden_image {
+    width: 0px !important;
     display: none !important;
 }
 
@@ -134,6 +135,7 @@ all_images = {
 }
 
 student_images = random.sample(all_images.keys(), max_step)
+
 hidden_img = student_images[0] + ".jpg"
 
 def get_response(grade_decimal):
@@ -252,7 +254,6 @@ function enableSubmitButton(){
 var answer = new Answer(document.querySelector("#images_task_input").querySelector("input[type='text']"));
 
 var hidden_img = '$hidden_img'
-var img_path = $("#hidden_image img").attr('src').replace(hidden_img, "");
 
 var user_state = new Object();      
 
@@ -269,7 +270,7 @@ user_state.current_image = user_state.images[user_state.current_step - 1];
 user_state.images.forEach(function(element, index) {
     user_state.answers[element] = {
         "student_lp": "",
-        "student_gois": ""
+        "student_gois": "",
     }
 
 });
@@ -282,14 +283,14 @@ if(answer.get()){
 else{
     answer.setJSON({answer: user_state});
 }
-    createBase(user_state.current_step);
 
+createBase();
 
-function createBase(step){
+function createBase(){
     $("#current_step").html(user_state.current_step)
 
     var image = $("<img/>", {
-        src: img_path + user_state.images[user_state.current_step - 1] + ".jpg",
+        src: $("#hidden_image img").attr('src').replace(hidden_img,  user_state.images[user_state.current_step - 1] + ".jpg"),
         class: "task-image",
     });
     $("#task_text_image").append(image);
@@ -301,7 +302,7 @@ function createBase(step){
         createChoiceGOIS();
     }
 
-    if (max_step+1 == user_state.current_step){
+    if (max_step + 1 == user_state.current_step){
         $(submit_button).hide();
         $("#task_block").append('<div class="images-task-end"><h3>Вы прошли все шаги этого задания!</h3></div>');
     }
@@ -398,7 +399,6 @@ function createChoiceGOIS(){
         }
     });
 
-
     if (user_state.send_type["checked"] == true){
             var selected_input = $("#choice_block .gois-input-wrap input[value=" + user_state.answers[user_state.current_image]["student_gois"] + "]");
             selected_input.prop("checked", true)
@@ -434,7 +434,17 @@ $('body').scrollTo($("#images_task").closest(".xblock"))
 
 
 <div id="task_block">
-    <div><p>Формулировка задания</p></div>
+    <h1>Переписать формулировки !!! </h1>
+    <div>
+        <p>На этом занятии важно научиться отличать продукты дизайна от всех остальных вещей – ремесленных, художественных, инженерных и т.п. Важно потренировать глаз, обращая внимание и на возраст этих продуктов.</p>
+        <p>Ниже представлены основные сферы дизайна. Предлагаем вам выбрать образцы дизайна для личной и профессиональной сферы, предварительно оценив каждый продукт по четырем критериям:</p>
+        <ul>
+            <li>промышленное изготовление</li>
+            <li>функциональность</li>
+            <li>эстетика</li>
+            <li>созданы между 1900 и 2019 годами</li>
+        </ul>
+    </div>
     <div id="task_text_image">
      
      <div> <h2>Вопрос <span id="current_step"></span> из $max_step </h2></div> 
@@ -451,7 +461,6 @@ $('body').scrollTo($("#images_task").closest(".xblock"))
       <textline size="40" value="$unique_id" />
       <br/>
     </customresponse>
-   <!-- <div class="message-about-grade"></div> -->
   </div>
 
 

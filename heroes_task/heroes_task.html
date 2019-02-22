@@ -585,7 +585,6 @@ function arraysEqual(a, b) {
 
 var task_id = '$unique_id';
 var problem =  $("#" + task_id).closest(".problem");
-var checkButton = $("button.submit", problem);
 
 var user_hero = new Object();
 user_hero.hero_class = undefined;
@@ -869,7 +868,7 @@ function create_step_3_1(){
 		$(submit_button).show();
 	}
 
-	else if (user_hero.attempts["experiment_1"] == 1 ){
+	else if ([1,2,3].includes(user_hero.attempts["experiment_1"]) ){
 		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
 
 		if (result.correctness){
@@ -887,7 +886,7 @@ function create_step_3_1(){
 		$(submit_button).show();
 	}
 
-	else if (user_hero.attempts["experiment_1"] == 2 ){
+	else if (user_hero.attempts["experiment_1"] == 4 ){
 		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
 		if (result.correctness){
 			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("correct-answer");
@@ -959,7 +958,7 @@ function create_step_3_2(){
 		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
 		$(submit_button).show();
 	}
-	else if (user_hero.attempts["experiment_2"] == 1 ){
+	else if ([1,2,3].includes(user_hero.attempts["experiment_2"]) ){
 		var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
 
 		if (result.correctness){
@@ -977,7 +976,7 @@ function create_step_3_2(){
 		$(submit_button).show();
 	}
 
-	else if (user_hero.attempts["experiment_2"] == 2 ){
+	else if (user_hero.attempts["experiment_2"] == 4 ){
 		var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
 		if (result.correctness){
 			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("correct-answer");
@@ -1051,7 +1050,7 @@ function create_step_3_3(){
 		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
 		$(submit_button).show();
 	}
-	else if (user_hero.attempts["experiment_3"] == 1 ){
+	else if ([1,2,3].includes(user_hero.attempts["experiment_3"]) ){
 		var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
 
 		if (result.correctness){
@@ -1069,7 +1068,7 @@ function create_step_3_3(){
 		answer.setJSON({answer: user_hero});
 	}
 
-	else if (user_hero.attempts["experiment_3"] == 2 ){
+	else if (user_hero.attempts["experiment_3"] == 4 ){
 		var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
 		if (result.correctness){
 			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
@@ -1109,7 +1108,7 @@ function create_step_3_3(){
 
 <div id="step_3">
 	<h2>Шаг 3.</h2>
-	<p>Задание: прочтите мысленный эксперимент, как вы думаете, чтобы сказал ваш герой по этому поводу.</p>
+	<p>Задание: прочтите мысленный эксперимент, как вы думаете, что бы сказал ваш герой по этому поводу.</p>
 	<div id="step_3_experiment_1">
 
 	<div class="step_3_task_text">		
@@ -1133,7 +1132,7 @@ function create_step_3_3(){
 			<div class="incorrect-message"></div>
 			<div class="answer-button-wrap">
 				<div>
-					Использовано попыток: <span class="attempts-label">0</span> из 2 
+					Использовано попыток: <span class="attempts-label">0</span> из 4 
 				</div>
 			</div>
 		</div>
@@ -1168,7 +1167,7 @@ function create_step_3_3(){
 			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b6" value="b6" /> Вы слишком все усложняете.</div>
 			<div class="incorrect-message"></div>
 			<div class="answer-button-wrap">
-				<div>Использовано попыток: <span class="attempts-label">0</span> из 2 
+				<div>Использовано попыток: <span class="attempts-label">0</span> из 4 
 				</div>
 			</div>
 		</div>
@@ -1205,7 +1204,7 @@ function create_step_3_3(){
 			<div class="incorrect-message"></div>
 			<div class="answer-button-wrap">
 				<div>
-					Использовано попыток: <span class="attempts-label">0</span> из 2 
+					Использовано попыток: <span class="attempts-label">0</span> из 4 
 				</div>
 			</div>
 		</div>
