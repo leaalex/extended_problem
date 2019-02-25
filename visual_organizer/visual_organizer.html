@@ -918,6 +918,12 @@ function createStep3_2(){
 	$("#visual_organizer_task").append("<h2>"  + user_state.element.title + "</h2>");
 	answer.setJSON({answer: user_state});
 
+	var answer_3_2 = {
+		"q1": "",
+		"q2": "",
+		"q3": [],
+	}
+
 	var questions_wrap = $('<div/>', {});
 	var question_1_wrap = $('<div/>',{
 		class: "question-wrap"
