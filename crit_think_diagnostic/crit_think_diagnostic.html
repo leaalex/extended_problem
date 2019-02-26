@@ -2,6 +2,10 @@
 
 <style type="text/css">
 
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
 
 .question-input-wrap input{
     margin-top: -1px;
@@ -36,7 +40,11 @@
 
 
 #crit_think_diagnostic_input{
-	/*display: none !important;*/
+	display: none !important;
+}
+
+#crit_think_diagnostic_diagram{
+	display: none;
 }
 
 </style>
@@ -48,9 +56,14 @@ import json
 check_btn_label = "Проверить"
 next_btn_label = "Дальше"
 
+savvy_label = "Смекалка"
+interpretation_label = "Интерпретация"
+analysis_label = "Анализ"
+logic_label = "Логика"
+
 correct_answers = {
     "question_0": {
-        "answer": "a",
+        "answer": "c",
         "progress": {
             "logic": 1,
             "analysis": 2,
@@ -68,7 +81,7 @@ correct_answers = {
         }
     },
     "question_2": {
-        "answer": "a",
+        "answer": "b",
         "progress": {
             "logic": 1,
             "analysis": 0,
@@ -77,7 +90,7 @@ correct_answers = {
         }
     },
     "question_3": {
-        "answer": "a",
+        "answer": "f",
         "progress": {
             "logic": 0,
             "analysis": 2,
@@ -95,7 +108,7 @@ correct_answers = {
         }
     },
     "question_5": {
-        "answer": "a",
+        "answer": "c",
         "progress": {
             "logic": 0,
             "analysis": 1,
@@ -113,7 +126,7 @@ correct_answers = {
         }
     },
     "question_7": {
-        "answer": "a",
+        "answer": "f",
         "progress": {
             "logic": 1,
             "analysis": 1,
@@ -122,7 +135,7 @@ correct_answers = {
         }
     },
     "question_8": {
-        "answer": "a",
+        "answer": "c",
         "progress": {
             "logic": 1,
             "analysis": 0,
@@ -131,7 +144,7 @@ correct_answers = {
         }
     },
     "question_9": {
-        "answer": "a",
+        "answer": "f",
         "progress": {
             "logic": 1,
             "analysis": 0,
@@ -140,7 +153,7 @@ correct_answers = {
         }
     },
     "question_10": {
-        "answer": "a",
+        "answer": "b",
         "progress": {
             "logic": 1,
             "analysis": 1,
@@ -158,7 +171,7 @@ correct_answers = {
         }
     },
     "question_12": {
-        "answer": "a",
+        "answer": "b",
         "progress": {
             "logic": 1,
             "analysis": 0,
@@ -167,7 +180,7 @@ correct_answers = {
         }
     },
     "question_13": {
-        "answer": "a",
+        "answer": "c",
         "progress": {
             "logic": 1,
             "analysis": 0,
@@ -176,7 +189,7 @@ correct_answers = {
         }
     },
     "question_14": {
-        "answer": "a",
+        "answer": "c",
         "progress": {
             "logic": 1,
             "analysis": 1,
@@ -197,21 +210,21 @@ def check_answer(expect, ans):
     student_answer = json.loads(ans)["answer"]
     grade = 0
     response = {}
-    current_step_id = "question_" + str(student_answer["step"])
+    # current_step_id = "question_" + str(student_answer["step"])
     student_answers = student_answer["answers"]
 
+    if student_answer["send_type"]["checked"] is False:
+        current_step_id = "question_" + str(student_answer["step"] - 1)
+    else:
+        current_step_id = "question_" + str(student_answer["step"])
+    
     for ans in range(0, len(correct_answers.keys())):
-        if student_answer["send_type"]["checked"] is False:
-            if ans - 1 == student_answer["step"]:
-                break
         ans = "question_" + str(ans)
-
         if student_answers[ans]["answer"] == correct_answers[ans]["answer"]:
             progress["logic"] += correct_answers[ans]["progress"]["logic"]
             progress["analysis"] += correct_answers[ans]["progress"]["analysis"]
             progress["savvy"] += correct_answers[ans]["progress"]["savvy"]
             progress["interpretation"] += correct_answers[ans]["progress"]["interpretation"]
-
         if current_step_id == ans:
             break
 
@@ -229,7 +242,7 @@ def check_answer(expect, ans):
 </script>
 
 <script type="text/javascript">
- 
+
 function Answer(elementField) {
     this.elementField = elementField;
     this.fieldValue = "";
@@ -262,12 +275,74 @@ function Answer(elementField) {
 
 var check_btn_label = '$check_btn_label'
 var next_btn_label = '$next_btn_label'
+var savvy_label = '$savvy_label'
+var interpretation_label = '$interpretation_label'
+var analysis_label = '$analysis_label'
+var logic_label = '$logic_label'
+
+$("#crit_think_diagnostic").closest(".problem").parent().find(".problem-progress").hide();
+var notification = $(".problem .notification.notification-submit").hide();
 
 var submit_button = $("#crit_think_diagnostic").closest(".problem").find('button.submit');
 $(submit_button).css('text-transform','none');
 
 $(submit_button).attr("disabled", "disabled");
 $(submit_button).addClass("disabled");
+
+function build_result(){
+	$(submit_button).hide();
+	$("#crit_think_diagnostic_diagram").prepend("<h2>Ваш результат: </h2>");
+	var scriptcore = document.createElement('script');
+	scriptcore.onload = function() {
+	var scriptcharts = document.createElement('script');
+	scriptcharts.src = "https://www.amcharts.com/lib/4/charts.js";
+	document.getElementsByTagName('head')[0].appendChild(scriptcharts);
+
+	scriptcharts.onload = function() {
+	$("#crit_think_diagnostic_diagram").show()
+	var scriptanimated = document.createElement('script');
+	scriptanimated.src = "https://www.amcharts.com/lib/4/themes/animated.js";
+	document.getElementsByTagName('head')[0].appendChild(scriptanimated);
+
+	scriptanimated.onload = function() {
+
+	var chart = am4core.create("chartdiv", am4charts.RadarChart);
+		chart.data = [{
+		  "diagnostic": savvy_label,
+		  "points": user_state.correctness["progress"]["savvy"]
+		}, {
+		  "diagnostic": interpretation_label,
+		  "points": user_state.correctness["progress"]["interpretation"]
+		}, {
+		  "diagnostic": analysis_label,
+		  "points": user_state.correctness["progress"]["analysis"]
+		}, {
+		  "diagnostic": logic_label,
+		  "points": user_state.correctness["progress"]["logic"]
+		},
+		];
+
+	var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+	categoryAxis.dataFields.category = "diagnostic";
+
+	var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+	valueAxis.min = 0;
+	valueAxis.max = 9;
+	valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
+	valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+
+	var series = chart.series.push(new am4charts.RadarSeries());
+	series.dataFields.valueY = "points";
+	series.dataFields.categoryX = "diagnostic";
+	// series.name = "Sales";
+	series.strokeWidth = 5;
+	}
+	}
+
+	};
+	scriptcore.src = "https://www.amcharts.com/lib/4/core.js";
+	document.getElementsByTagName('head')[0].appendChild(scriptcore);
+}
 
 function enableSubmitButton(){
     $(submit_button).removeClass("disabled");
@@ -286,15 +361,15 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Сидоров"
-				},
-				{
-					"let": "b",
 					"text": "Петров"
 				},
 				{
-					"let": "c",
+					"let": "b",
 					"text": "Иванов"
+				},
+				{
+					"let": "c",
+					"text": "Сидоров"
 				}
 		] 
 	},
@@ -324,12 +399,12 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "абракадабра не может быть однотонной и безрогой одновременно"
-				},				
+					"text": "абракадабра не может быть безрогой"
+				},
 				{
 					"let": "b",
-					"text": "абракадабра не может быть безрогой"
-				},				
+					"text": "абракадабра не может быть однотонной и безрогой одновременно"
+				},					
 				{
 					"let": "c",
 					"text": "абракадабра не может быть полосатой и безрогой одновременно"
@@ -341,8 +416,8 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Нужно регулировать оборот гомеопатических препаратов и поддельных лекарств, как и оборот наркотиков"
-				},				
+					"text": "Гомеопатия безвредна"
+				},			
 				{
 					"let": "b",
 					"text": "Наркотики – это  плохо"
@@ -358,10 +433,10 @@ var questions = {
 				{
 					"let": "e",
 					"text": "Поддельные лекарства могут содержать ядовитые вещества, опасные для здоровья"
-				},				
+				},	
 				{
 					"let": "f",
-					"text": "Гомеопатия безвредна"
+					"text": "Нужно регулировать оборот гомеопатических препаратов и поддельных лекарств, как и оборот наркотиков"
 				}
 
 		] 
@@ -393,19 +468,19 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Нет, не получится. Любой депутат ответит: «Я – правдолюб»"
-				},				
-				{
-					"let": "b",
-					"text": "Нет, не получится. На вопрос: «Из какой вы фракции?» - любой депутат ответит: «Я – правдофоб»"
-				},				
-				{
-					"let": "c",
 					"text": "Получится. Если депутат правдофоб, он точно ответит неправду"
 				},				
 				{
-					"let": "d",
+					"let": "b",
 					"text": "Получится. Принадлежность депутатов к фракциям зависит от того, как они ответят на поставленный вопрос"
+				},
+				{
+					"let": "c",
+					"text": "Нет, не получится. Любой депутат ответит: «Я – правдолюб»"
+				},				
+				{
+					"let": "d",
+					"text": "Нет, не получится. На вопрос: «Из какой вы фракции?» - любой депутат ответит: «Я – правдофоб»"
 				}
 		] 
 	},
@@ -435,27 +510,27 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Ни одно из перечисленных"
-				},				
-				{
-					"let": "b",
 					"text": "Плохие начальники летят с неба вниз"
 				},				
 				{
-					"let": "c",
+					"let": "b",
 					"text": "Хорошие начальники, которые умеют летать, - могут петь"
 				},				
 				{
-					"let": "d",
+					"let": "c",
 					"text": "Некоторые плохие начальники не могут петь"
 				},
 				{
-					"let": "e",
+					"let": "d",
 					"text": "Некоторые хорошие начальники плохи, так как они умеют петь"
 				},
 				{
-					"let": "f",
+					"let": "e",
 					"text": "Плохие начальники не падают с неба"
+				},
+				{
+					"let": "f",
+					"text": "Ни одно из перечисленных"
 				}
 		] 
 	},
@@ -464,16 +539,16 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Нет, моя зарплата стала чуть меньше"
-				},				
-				{
-					"let": "b",
 					"text": "Да, я просто вернулся к своей прежней зарплате"
 				},				
 				{
-					"let": "c",
+					"let": "b",
 					"text": "Да, я даже немного выиграл"
-				},				
+				},
+				{
+					"let": "c",
+					"text": "Нет, моя зарплата стала чуть меньше"
+				},			
 				{
 					"let": "d",
 					"text": "Нет, я очень сильно потерял в деньгах"
@@ -483,29 +558,30 @@ var questions = {
 	"question_9" : {
 		"html": "<p>Каждый квадрат круглый. Все квадраты красные…</p>",
 		"answers": [
+		
 				{
 					"let": "a",
-					"text": "Ни одно из перечисленных"
-				},				
-				{
-					"let": "b",
 					"text": "Бывают квадраты с красными углами"
 				},				
 				{
-					"let": "c",
+					"let": "b",
 					"text": "Бывают квадраты с круглыми углами"
 				},				
 				{
-					"let": "d",
+					"let": "c",
 					"text": "Бывают круглые красные углы"
 				},
 				{
-					"let": "e",
+					"let": "d",
 					"text": "Углы и квадраты круглые и красные"
 				},
 				{
-					"let": "f",
+					"let": "e",
 					"text": "У красных квадратов круглые углы"
+				},
+				{
+					"let": "f",
+					"text": "Ни одно из перечисленных"
 				}
 		] 
 	},
@@ -514,15 +590,15 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
+					"text": "Это невозможно определить"
+				},
+				{
+					"let": "b",
 					"text": "Да, это так"
 				},				
 				{
-					"let": "b",
-					"text": "Нет, писатель в этом пункте нам солгал"
-				},				
-				{
 					"let": "c",
-					"text": "Это невозможно определить"
+					"text": "Нет, писатель в этом пункте нам солгал"
 				}
 		] 
 	},
@@ -539,11 +615,11 @@ var questions = {
 				},				
 				{
 					"let": "c",
-					"text": "6"
-				},				
+					"text": "5"
+				},		
 				{
 					"let": "d",
-					"text": "5"
+					"text": "6"
 				}
 		] 
 	},
@@ -552,12 +628,12 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Из того, что некоторые демократические режимы привели к тоталитарному режиму, вовсе не следует, что другие демократические режимы приведут к тому же"
-				},				
+					"text": "Автор не учитывает, что увеличение уровня политической свободы может привести к демократизации общества"
+				},
 				{
 					"let": "b",
-					"text": "Автор не учитывает, что увеличение уровня политической свободы может привести к демократизации общества"
-				},				
+					"text": "Из того, что некоторые демократические режимы привели к тоталитарному режиму, вовсе не следует, что другие демократические режимы приведут к тому же"
+				},			
 				{
 					"let": "c",
 					"text": "Автор обращается к историческим примерам, которые не имеют отношения к данному случаю"
@@ -577,16 +653,16 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Арбуз-ягода"
-				},				
-				{
-					"let": "b",
 					"text": "Озеро-река"
 				},				
 				{
-					"let": "c",
+					"let": "b",
 					"text": "Испуг-бегство"
-				},				
+				},
+				{
+					"let": "c",
+					"text": "Арбуз-ягода"
+				},		
 				{
 					"let": "d",
 					"text": "Друг-приятель"
@@ -598,16 +674,16 @@ var questions = {
 		"answers": [
 				{
 					"let": "a",
-					"text": "Ж"
-				},				
-				{
-					"let": "b",
 					"text": "Г"
 				},				
 				{
-					"let": "c",
+					"let": "b",
 					"text": "Е"
-				},				
+				},	
+				{
+					"let": "c",
+					"text": "Ж"
+				},							
 				{
 					"let": "d",
 					"text": "К"
@@ -616,10 +692,9 @@ var questions = {
 					"let": "e",
 					"text": "Н"
 				}
-		] 
+		]
 	}
 }
-console.log(questions)
 
 var user_state = new Object();
 user_state.step = 0;
@@ -679,13 +754,18 @@ if(answer.get()){
 	user_state = answer.getJSON()["answer"];
 	user_state.correctness = JSON.parse($("#crit_think_diagnostic_input .message").html());
 	// createQuestion();
+	// console.log(user_state)
+	if(user_state.step == Object.keys(questions).length){
+		build_result();
+	}
+	else{
+		createQuestion();
+	}
 }
-// else{
-// 	answer.setJSON({answer: user_state});
-// 	createQuestion();
-// }
+else{
+	createQuestion();
+}
 
-createQuestion();
 
 function createQuestion(){
 	setSubmitText(check_btn_label);
@@ -693,7 +773,6 @@ function createQuestion(){
 	$("#crit_think_diagnostic_question").append("<h2> Вопрос " + (user_state.step + 1).toString() + " из " + Object.keys(questions).length + "</h2>");
 	var current_question_id = "question_" + user_state.step.toString();
 	var current_question = questions[current_question_id];
-	// console.log(current_question)
 	var question_text = $("<div/>", {
 		class: "question-text",
 		html: current_question["html"]
@@ -733,7 +812,6 @@ function createQuestion(){
 	});
 
 	if (user_state.send_type["checked"] == true){
-		console.log("checked: true");
 		setSubmitText(next_btn_label);
 		$("input[value=" + user_state.answers[current_question_id]["answer"] + "]" , inputs_block).prop('checked', true);
 		var selected_input = $("input[value=" + user_state.answers[current_question_id]["answer"] + "]" , inputs_block);
@@ -750,7 +828,6 @@ function createQuestion(){
         user_state.step += 1;
 	}
 	// else{
-	// 	console.log(" checked: false ");
 		
 	// }
 
@@ -771,7 +848,7 @@ function createQuestion(){
    </div>
 
    <div id="crit_think_diagnostic_diagram">
-   	
+   		<div id="chartdiv"></div>
    </div>
 
     <div id="crit_think_diagnostic_input">
