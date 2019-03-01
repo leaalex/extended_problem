@@ -2,10 +2,108 @@
 
 <style type="text/css">
 
-
-#visual_organizer_task_input{
-	/*display: none !important;*/
+/*
+//
+    !!! SORTABLE TABLE CSS !!!
+	!!! START !!!
+//
+*/
+.conf-table {
+   width: 100%;
 }
+
+.arrow-td {
+   font-size: 2em;
+   text-align: center !important;
+   padding: 4px !important;
+}
+
+.arrow-td i {
+   -webkit-text-stroke: 4px white;
+}
+
+td.text-td:first-child::after {
+   content: "";
+   vertical-align: top;
+   min-height: 50px;
+}
+
+.text-td {
+   height: 50px;
+   border: 2px solid #bfbfc1;
+   padding: 0px !important;
+}
+
+.text-td .conf-item {
+   text-align: center;
+}
+
+.text-td .conf-item {
+   height: 100%;
+   min-width: auto;
+}
+
+.conf-item {
+   max-height: 50px;
+   word-break: initial;
+   vertical-align: middle;
+   background: #f3f3f3;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 31%;
+   /*max-width: 31%;*/
+   text-align: center;
+   cursor: move;
+   min-width: auto;
+}
+
+.conf-item {
+   border: 1px solid #b2b2b2;
+}
+
+.fixed-item{
+    word-break: initial;
+    vertical-align: middle;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    -webkit-touch-callout: none;
+     -webkit-user-select: none;
+     -khtml-user-select: none; 
+     -moz-user-select: none;  
+     -ms-user-select: none;   
+     user-select: none;
+}
+
+.conf-table .conf-item {
+   width: 100%;
+   border: none;
+   margin: 0px;
+   max-height: 100%;
+}
+
+#conf-id {
+   display: flex;
+   flex-wrap: wrap;
+   background: #f5f5f580;
+   min-height: 120px;
+}
+
+#conf-id .conf-item {
+   max-height: 50px;
+   margin: 2px;
+}
+
+/*
+//
+	!!! END !!!
+//
+*/
 
 .organizers-input-wrap input{
 	margin-top: -1px !important;
@@ -60,6 +158,15 @@
     padding: 10px;
 }
 
+
+
+
+#visual_organizer_task_input{
+	/*display: none !important;*/
+}
+
+
+
 </style>
 
 <script type="loncapa/python">
@@ -89,21 +196,23 @@ incorrect_elements = {
 		#"comment": "Вы выбрали неверный инструмент визуального организатора. Оценочное пространство не может быть применено для определения правильности решения Мардж, поскольку вероятность события не связана с оценочными суждениями.",
 		"comment": "estimated_space comment",
 	},
-	"concept_maps": {
+	"concept_cards": {
 		#"comment": "Вы выбрали неверный инструмент визуального организатора. Концептуальные карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно находить причину события, а не его вероятность.",
-		"comment": "concept_maps comment",
+		"comment": "concept_cards comment",
 	},
-	"current_cards": {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Текущие карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно ставить цели, достижение которых минимальным образом зависит от случайных факторов.",
-		"comment": "current_cards comment",
+	"planning_cards": {
+		#"comment": "Вы выбрали неверный инструмент визуального организатора. Планирующие карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно ставить цели, достижение которых минимальным образом зависит от случайных факторов.",
+		"comment": "planning_cards comment",
 	}
 }
 
-correct_answers_3_2 = {
+correct_answers_3 = {
   "inductive_towers": {
-    "step_3_1": {},
+    "step_3_1": {
+    	"answer": {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"], "a6": ["b6"], "a7": ["b7"], "a8": ["b8"], "a9": ["b9"], "a10": ["b10"]}
+	},
     "step_3_2": {
-      "question_1": "a",
+      "question_1": "c",
       "question_2": "b",
       "question_3": [
         "b",
@@ -113,7 +222,12 @@ correct_answers_3_2 = {
     }
   },
   "charts": {
-    "step_3_1": {},
+    "step_3_1": {
+    	"answer": {
+	      "question_1": "a",
+	      "question_2": "a"
+    	}
+	},
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -124,7 +238,9 @@ correct_answers_3_2 = {
     }
   },
   "drawings_and_matrixes": {
-    "step_3_1": {},
+    "step_3_1": {
+    		"answer": "p1+p2+p3=1"
+	},
     "step_3_2": {
       "question_1": "b",
       "question_2": "b",
@@ -145,7 +261,9 @@ correct_answers_3_2 = {
     }
   },
   "pie_charts": {
-    "step_3_1": {},
+    "step_3_1": {
+        	"answer": "a"
+	},
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -156,7 +274,9 @@ correct_answers_3_2 = {
     }
   },
   "causal_card_chains": {
-    "step_3_1": {},
+    "step_3_1": {
+    	"answer": {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"]}
+	},
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -167,7 +287,9 @@ correct_answers_3_2 = {
     }
   },
   "current_cards": {
-    "step_3_1": {},
+    "step_3_1": {
+    	"answer": {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"], "a6": ["b6"]}
+	},
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -179,12 +301,16 @@ correct_answers_3_2 = {
   }
 }
 
+def check_table():
+    pass
+
 def check_answer(expect, ans):
     student_answer = json.loads(ans)
     student_answer = student_answer["answer"]
+    step = int(student_answer["step"])
     grade_decimal = 1
     response = {}
-    if int(student_answer["step"]) == 2:
+    if step == 2:
         if student_answer["element"]["name"] in incorrect_elements.keys():
             response["element_correctness"] = {
                 "correctness": False,
@@ -200,8 +326,8 @@ def check_answer(expect, ans):
                "correctness": False,
                "comment": "Превышено максимальное количество попыток!"
            }
-           return {'input_list': [{'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}, ]}
-
+    if step == 3:
+        pass
 
     return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': grade_decimal}, ]}
 </script>
@@ -214,6 +340,7 @@ var elements_btn_label = "$elements_btn_label"
 var check_btn_label = "$check_btn_label"
 
 var max_element_attemps = 3;
+var max_step_3_1_attemps = 3;
 
 function Answer(elementField) {
     this.elementField = elementField;
@@ -245,14 +372,182 @@ function Answer(elementField) {
     };
 };
 
-
-
 var submit_button = $("#visual_organizer").closest(".problem").find('button.submit');
 $(submit_button).css('text-transform','none');
 
 
 function setSubmitText(text){
 	$(submit_button).find('span.submit-label').text(text);
+}
+
+var task_tables = {
+	"inductive_towers": 
+	`<table id="inductive_towers_table" class="conf-table" style="font-size: 0.9em;">
+      <tbody>
+         <tr>
+            <td colspan="4" class="text-td conf-answers-place" style="width: 40%" id="a1">
+               
+            </td>
+            <td class="arrow-td"><i class="fa fa-arrow-right"></i></td>
+            <td class="text-td conf-answers-place" id="a2" style="width: 25%">
+               
+            </td>
+            <td class="arrow-td"><i class="fa fa-arrow-left"></i></td>
+            <td colspan="2" class="text-td conf-answers-place" style="width: 26%" id="a3"></td>
+         </tr>
+         <tr>
+            <td colspan="4" class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td colspan="3" rowspan="4"></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+         </tr>
+         <tr>
+            <td colspan="4" class="text-td conf-answers-place" id="a4"></td>
+            <td class="text-td conf-answers-place" id="a5"></td>
+            <td class="text-td"><div class="fixed-item">Очень редко</div></td>
+         </tr>
+         <tr>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+            <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+         </tr>
+         <tr>
+            <td class="text-td conf-answers-place" id="a6" style="width: 10%;"></td>
+            <td class="text-td conf-answers-place" id="a7" style="width: 10%;"></td>
+            <td class="text-td" style="width: 10%;"><div class="fixed-item">Выпадает на одно и то же поле 3 раза</div></td>
+            <td class="text-td conf-answers-place" id="a8" style="width: 10%;"></td>
+            <td class="text-td conf-answers-place" id="a9" style="width: 13%"></td>
+            <td class="text-td conf-answers-place" id="a10" style="width: 13%"></td>
+         </tr>
+      </tbody>
+   </table> 
+
+   <div id="conf-id" class="conf-answers-place conf-all-answers">
+      <div class="conf-item" id="b1">Вероятность выпадения высокая</div>
+      <div class="conf-item" id="b2">Ставка на другой цвет после 5 попаданий позволит выиграть</div>
+      <div class="conf-item" id="b3">Вероятность выпадения низкая</div>
+      <div class="conf-item" id="b4">часто</div>
+      <div class="conf-item" id="b5">редко</div>
+      <div class="conf-item" id="b6">Выпадает на одно и то же поле 1 раз</div>
+      <div class="conf-item" id="b7">Выпадает на одно и то же поле 2 раза</div>
+      <div class="conf-item" id="b8">Выпадает на одно и то же поле 4 раза</div>
+      <div class="conf-item" id="b9">Выпадает на одно и то же поле 5 раз</div>
+      <div class="conf-item" id="b10">Выпадает на одно и то же поле 6 раз</div>
+   </div>`,
+   "causal_card_chains":
+   `    <table id="causal_card_chains_table" class="conf-table">
+      <tbody>
+         <tr>
+            <td class="text-td conf-answers-place" id="a1">
+               
+            </td>
+         </tr>
+         <tr>
+            <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>   
+         </tr>
+         <tr>
+            <td class="text-td conf-answers-place" id="a2">
+               
+            </td>
+         </tr>
+         <tr>
+            <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>
+         </tr>
+         <tr>
+            <td class="text-td conf-answers-place" id="a3">
+               
+            </td>
+         </tr>
+         <tr>
+            <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>
+         </tr>
+         <tr>
+            <td class="text-td conf-answers-place" id="a4">
+               
+            </td>
+         </tr>
+         <tr>
+            <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>
+         </tr>
+         <tr>
+            <td class="text-td conf-answers-place" id="a5">
+               
+            </td>
+         </tr>
+      </tbody>
+   </table>
+
+   <div id="conf-id" class="conf-answers-place conf-all-answers">
+      <div class="conf-item" id="b1">Поход в казино</div>
+      <div class="conf-item" id="b2">Наблюдение за рулеткой</div>
+      <div class="conf-item" id="b3">Выявление закономерности</div>
+      <div class="conf-item" id="b4">Оценка вероятности и рисков</div>
+      <div class="conf-item" id="b5">Решение сделать ставку</div>
+   </div> `,
+   "current_cards": 
+   `<table id="current_cards_table" class="conf-table">
+   <tbody>
+      <tr>
+         <td colspan="3"  class="text-td conf-answers-place" id="a1" style="width: 32%;">
+            
+         </td>
+         <td class="arrow-td"><i class="fa fa-arrow-right"></i></td>
+         <td  class="text-td conf-answers-place" id="a2" style="width: 22%;">
+            
+         </td>
+         <td class="arrow-td"><i class="fa fa-arrow-right"></i></td>
+         <td  class="text-td conf-answers-place" id="a3" style="width: 24%;">
+            
+         </td>
+         <td class="arrow-td"><i class="fa fa-arrow-right"></i></td>
+         <td  class="text-td conf-answers-place" id="a4" style="width: 26%;">
+            
+         </td>
+      </tr>
+      <tr>
+         <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+         <td rowspan="3"></td>
+         <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>
+         <td colspan="5" rowspan="4"></td>
+         <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>
+      </tr>
+      <tr>
+      
+         <td  class="text-td" style="width: 15%;">
+            <div class="fixed-item">Не ставить</div>
+         </td>
+         <td  class="text-td conf-answers-place" id="a5" style="width: 15%;">
+            
+         </td>
+         <td  class="text-td">
+        <div class="fixed-item">Ставка на красное</div>
+         </td>
+      </tr>
+      <tr>
+         <td class="arrow-td"><i class="fa fa-arrow-up"></i></td>
+         <td class="arrow-td"><i class="fa fa-arrow-down"></i></td>
+         <td></td>
+      </tr>
+      <tr>
+         <td colspan="3"  class="text-td conf-answers-place" id="a6">
+            
+         </td>
+         <td></td>
+      </tr>
+   	</tbody>
+	</table>
+
+	<div id="conf-id" class="conf-answers-place conf-all-answers">
+	      <div class="conf-item" id="b1">Первый бросок шарика</div>
+	      <div class="conf-item" id="b2">Выпал на черное</div>
+	      <div class="conf-item" id="b3">Выпал на черное 2-4 раза</div>
+	      <div class="conf-item" id="b4">Выпал на черное 5 раз</div>
+	      <div class="conf-item" id="b5">Выпал на красное</div>
+	      <div class="conf-item" id="b6">Выпал на зеленое</div>
+	</div> `
 }
 
 var all_questions = {
@@ -629,10 +924,6 @@ var all_questions = {
         {
           "let": "c",
           "text": "Мардж пытается снизить вероятность проигрыша."
-        },
-        {
-          "let": "d",
-          "text": "Данный инструмент дает представление о действиях Мардж, но не гарантирует выигрыш."
         }
       ]
     },
@@ -750,10 +1041,10 @@ var organizer_elements = {
 		title: "Оценочное пространство",
 		name: "estimated_space",
 	}, 
-	concept_maps: {
+	concept_cards: {
 		organizer: organizers.birds_flight_to_ground,
 		title: "Концептуальные карты",
-		name: "concept_maps",
+		name: "concept_cards",
 	},
 	current_cards: {
 		organizer: organizers.birds_flight_to_ground,
@@ -781,6 +1072,7 @@ user_state.organizer = organizers[Object.keys(organizers)[0]];
 user_state.element = getElementsByOrganizer(user_state.organizer)[0];
 user_state.element_attemps = 0;
 user_state.step_3_1 = {
+	check_type: "",
 	answer:{},
 	attemps: 0
 }
@@ -805,8 +1097,8 @@ if(answer.get()){
 				user_state.element_attemps += 1;
 				if (user_state.response["element_correctness"]["correctness"] == true){
 					user_state.step = 3;
-					createStep3_2();
-					console.log("New step creating");
+					createStep3_1();
+					// console.log("New step creating");
 				}
 				else{
 					createChoiceOrganizerElement(true);
@@ -818,7 +1110,10 @@ if(answer.get()){
 	}
 
 	else if(user_state.step == 3){
-		// console.log("create step 3");
+		user_state.response = response;
+		createStep3_1();
+
+		console.log("create step 3");
 	}
 	else{
 		console.log("Unhandled step");
@@ -829,6 +1124,7 @@ else{
 } 
 
 function createChoiceOrganizerElement(show_error=false){
+	$("#visual_organizer_task").append("<h2>" + "Шаг 2. " + "</h2>");
 	
 	var choice_elements_wrap = $("<div/>", {
 		class: "",
@@ -877,6 +1173,7 @@ function createChoiceOrganizerElement(show_error=false){
 }
 
 function createChoiceOrganizer(){
+	$("#visual_organizer_task").append("<h2>" + "Шаг 1. " + "</h2>");
 	var choice_organizer_wrap = $("<div/>", {
 		class: "",
 		html: "<p>Выберите из списка наиболее подходящий визуальный анализатор: </p>"
@@ -915,7 +1212,7 @@ function createChoiceOrganizer(){
 
 function createStep3_2(){
 	setSubmitText(check_btn_label);
-	$("#visual_organizer_task").append("<h2>"  + user_state.element.title + "</h2>");
+	$("#visual_organizer_task").append("<h2> Шаг 3.2. "  + user_state.element.title + "</h2>");
 	answer.setJSON({answer: user_state});
 
 	var answer_3_2 = {
@@ -988,6 +1285,117 @@ function createStep3_2(){
 	$("#visual_organizer_task").append(questions_wrap);
 }
 
+function createStep3_1(){
+	$("#visual_organizer_task").append("<h2> Шаг 3.1. "  + user_state.element.title + "</h2>");
+        answer.setJSON({answer: user_state});
+
+	if( ["inductive_towers", "causal_card_chains", "current_cards"].includes(user_state.element.name)){
+		console.log("create table task!!");
+		createTableTask(user_state.element.name);
+	}
+	else if (["drawings_and_matrixes"].includes(user_state.element.name)){
+		console.log("create text input!!");
+	}
+	else if (["charts", "pie_chart", "pie_charts"].includes(user_state.element.name)){
+		console.log("create img choice!!")
+	}
+	else{
+		console.log("Undefined element!")
+	}
+}
+
+function createTableTask(name){
+	user_state.step_3_1.check_type = "table";
+	var html = task_tables[name];
+	var wrap = $("<div/>", {
+		id:"table_task",
+		html: html
+	});
+	$("#visual_organizer_task").append(wrap);
+
+	var element = $("#table_task");
+    
+	var student_build_answer = user_state.step_3_1.answer;
+
+    if (Object.keys(student_build_answer).length != 0){
+		for (key in student_build_answer) { 
+	    	for ( l in student_build_answer[key]) { 
+	    		// console.log(l)
+	    		$("#"+key, element).append($("#"+student_build_answer[key][l], element));
+	    	}
+	    }
+	}
+
+    setAnswer();
+    answer.setJSON({answer: user_state});
+    // }
+
+    $(".conf-answers-place",element).sortable({
+        connectWith: "#" + "table_task" + " .conf-answers-place",
+       cursorAt: {  },
+       cursor: "move",
+        start: function(event, ui) {
+           ui.item.css('width', 'fit-content')
+           ui.item.css('min-width', '300px');
+           ui.item.css('max-width', '400px');
+           ui.item.css('height', 'auto');
+           // console.log($(this))
+           $(".conf-answers-place", element).sortable( "option", "cursorAt", { left: ui.item.width() / 2, top: ui.item.height() / 2 } );
+        },
+        stop: function(event, ui) {
+           ui.item.css('max-width', 'inherit');
+           ui.item.css('min-width', 'auto');
+             setAnswer();
+        },
+        sort: function() {
+           // console.log("#" + "task_3_2" + " .conf-answers-place")
+            // $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
+        },
+        opacity: 0.8,
+        over: function(event) { 
+            $("#" + event.target.id, element).css("border","2px dashed #b2b2b2");
+        },
+        out: function(event) { 
+            $("#" + event.target.id, element).css("border","");
+        },
+        receive: function(event, ui) {
+            // so if > 10
+            if($(this).attr('id') !== 'conf-id'){
+               if ($(this).children().length == 2) {
+                   $(ui.sender).sortable('cancel');
+               }
+           }
+        },
+   }).disableSelection();
+
+    
+    function setAnswer(){
+       var student_answer = {};
+        $(".conf-table td.conf-answers-place", element).map(function(indx, item){   
+           item_id = $(item).attr("id");
+           student_answer[item_id] = $(item).find(".conf-item").map(function(index, sub_item){
+              return $(sub_item).attr("id")
+           }).get();
+        }).get();
+        user_state.step_3_1.answer = student_answer;
+        answer.setJSON({answer: user_state});
+    }
+    
+    $("#visual_organizer_task").append("<p> Использовано попыток " + user_state.step_3_1.attemps + " из " + max_step_3_1_attemps + " </p>");
+
+    if(user_state.step_3_1.attemps+1 == 4){
+    	console.log("to next step")
+    	user_state.step = 4;
+    }
+    else{
+    	// check correctness here
+    	user_state.step_3_1.attemps += 1;
+    }
+
+    answer.setJSON({answer: user_state});
+
+}
+
 </script>
 
 <div id="visual_organizer">
@@ -1007,6 +1415,15 @@ function createStep3_2(){
 
 	</div>
 
+<!-- 	<div style="display: none;">
+		<p>Пояснение к эксперименту: </p>
+		<p>Ошибка Мардж представляет собой предупреждение против всяких ограничений в мысленных эксперимента. Если ее система кажется надежной, то это происходит потому, что она уже испытала ее и система сработала. Сработала в ее голове. Если игрока можно так легко увести в сторону представлением о том, что случится в гипотетической ситуации, то так же легко можно увести в сторону и философа.</p>
+		<p>Однако ее ошибка связана с мышлением и не вызвана каким-то сбоем в реальном мире, подстраиваемом под интеллект. Эта ошибка заключается в том, что она перепугала вероятность того, что шарик выпадет шесть раз подряд на один и тот же цвет, и вероятность того, что шарик выпадет на поле того же цвета, после того как он выпал на него уже пять раз подряд.</p>
+		<p>Представьте себе, к примеру, любую азартную игру, в которой люди соревнуются друг с другом, подбрасывая монетку. В первом раунде участвуют шестьдесят четыре человека, во втором — тридцать два, в третьем — шестнадцать и так далее, до тех пор пока в финале не останется всего двое. В начале состязаний шансы на выигрыш у любого участника составляют 64: 1. Но к моменту финала каждый из оставшихся участников имеет шансы на выигрыш из расчета 50–50. Однако, по логике Мардж, такие ставки имеются уже в первом раунде. И поэтому в финале, несмотря на то что там остается всего два человека, Мардж посчитала бы, что каждый из них имеет шанс на выигрыш из расчета 64:1. И это, конечно, означает, что каждый участник может выиграть в 1 из 32 двух случаев!</p>
+		<p>Возвращаясь к рулетке, можно сказать, что и в самом деле маловероятно, чтобы шарик выпал шесть раз подряд на поле одинакового цвета, так же, как маловероятно (64: 1), что любой участник может выиграть соревнования по подбрасыванию монетки. Но, как только шарик выпадет пять раз на поле одного цвета, первоначальная невероятность выпадения шарика в шестой раз уже не важна: при следующем вращении рулетки шансы на то, что шарик выпадет либо на красное, либо на черное поле, составляют немногим меньше, чем 50–50 (а ведь на рулетке (барабане) есть еще два зеленых поля).</p>
+		<p>Смысл этой истории заключается в том, что невозможность того, что случилось в прошлом, не влияет на вероятность того, что еще должно случиться. Мардж должна была видеть это. Если бы она обратила внимание на то, как часто серия из пяти попаданий шарика на поле одного цвета превращается в серию из шести попаданий, она бы увидела, что в действительности, шансы на это составляли немногим меньше, чем 50–50. Таким образом, ее ошибка заключалась не в ошибочных рассуждениях, а в том, что она посчитала реальным то, что не было подтверждено ее наблюдениями. Она является плохим экспериментатором как в своих мыслях, так и наяву.</p>
+	</div> -->
+
 
   <div id="visual_organizer_task_input">
     <customresponse cfn="check_answer">
@@ -1016,190 +1433,5 @@ function createStep3_2(){
 
 </div>
 
-
-
-<!-- 
-<style type="text/css">
-	.arrow-td{
-	    font-size: 3em;
-	    text-align: center !important;
-	    padding: 0px 0px !important;
-	}
-	.text-td{
-		border: 1px solid;
-    	padding: 8px 0px !important;
-	}
-
-	.text-td .item{
-		text-align: center;
-	}
-
-	#inductive_towers_table .text-td .item{
-		font-size: 0.75em;
-	}
-
-	#causal_card_chains_table{
-		width: 100%;
-	}
-
-</style>
-
-
-<table id="inductive_towers_table">
-<tbody>
-<tr>
-<td colspan="4" class="text-td" style="width: 40%">
-<div class="item" id="">Вероятность выпадения высокая</div>
-</td>
-<td class="arrow-td">→</td>
-<td class="text-td"><div class="item" id="">Ставка на другой цвет после 5 попаданий позволит выиграть</div></td>
-<td class="arrow-td">→</td>
-<td colspan="2" class="text-td">
-<div class="item" id="">Вероятность выпадения низкая</div>
-</td>
-</tr>
-<tr>
-<td colspan="4" class="arrow-td">↑</td>
-<td colspan="3" rowspan="4">
-</td>
-<td class="arrow-td">↑</td>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td colspan="4" class="text-td">
-<div class="item" id="">часто</div>
-</td>
-<td class="text-td">
-<div class="item" id="">редко</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Очень редко</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↑</td>
-<td class="arrow-td">↓</td>
-<td class="arrow-td">↓</td>
-<td class="arrow-td">↓</td>
-<td class="arrow-td">↓</td>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td class="text-td">
-<div class="item" id="">Выпадает на одно и то же поле 1 раз</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Выпадает на одно и то же поле 2 раза</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Выпадает на одно и то же поле 3 раза</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Выпадает на одно и то же поле 4 раза</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Выпадает на одно и то же поле 5 раз</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Выпадает на одно и то же поле 6 раз</div>
-</td>
-</tr>
-</tbody>
-</table>
-
-
-<table id="causal_card_chains_table">
-<tbody>
-<tr>
-<td class="text-td">
-<div class="item" id="">Поход в казино</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td class="text-td">
-<div class="item" id="">Наблюдение за рулеткой</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td class="text-td">
-<div class="item" id="">Выявление закономерности</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td class="text-td">
-<div class="item" id="">Оценка вероятности и рисков</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td class="text-td">
-<div class="item" id="">Решение сделать ставку</div>
-</td>
-</tr>
-</tbody>
-</table>
-
-<table id="current_cards_table">
-<tbody>
-<tr>
-<td colspan="3" class="text-td">
-<div class="item" id="">Первый бросок шарика</div>
-</td>
-<td class="arrow-td">→</td>
-<td class="text-td">
-<div class="item" id="">Выпал на черное</div>
-</td>
-<td class="arrow-td">→</td>
-<td class="text-td">
-<div class="item" id="">Выпал на черное 2-4 раза</div>
-</td>
-<td class="arrow-td">→</td>
-<td class="text-td">
-<div class="item" id="">Выпал на черное 5 раз</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↑</td>
-<td rowspan="3"></td>
-<td class="arrow-td">↓</td>
-<td colspan="5" rowspan="4"></td>
-<td class="arrow-td">↓</td>
-</tr>
-<tr>
-<td class="text-td">
-<div class="item" id="">Не ставить</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Выпал на красное</div>
-</td>
-<td class="text-td">
-<div class="item" id="">Ставка на красное</div>
-</td>
-</tr>
-<tr>
-<td class="arrow-td">↑</td>
-<td class="arrow-td">↓</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="3" class="text-td">
-<div class="item" id="">Выпал на зеленое</div>
-</td>
-<td></td>
-</tr>
-</tbody>
-</table>
- -->
 
 </problem>

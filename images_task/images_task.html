@@ -67,7 +67,7 @@ max_step =  10
 
 next_btn_label = "Дальше"
 choice_lp_btn_label = "Выбрать тип задачи"
-choice_gois_btn_label = "Выбрать тип дизайна"
+choice_gois_btn_label = "Выбрать вид дизайна"
 next_img_btn_label = "К следующему вопросу"
 
 all_images = {
@@ -225,9 +225,9 @@ var max_step = '$max_step';
 max_step = parseInt(max_step);
 
 var lp_types = {
-    "l": { "let": "l", "title": "Личностные задачи" },
-    "p": { "let": "p", "title": "Профессиональные задачи" },
-    "not": { "let": "not", "title": "Не дизайн" }
+    "l": { "let": "l", "title": "Дизайн, решающий личностные задачи" },
+    "p": { "let": "p", "title": "Дизайн, решающий профессиональные задачи" },
+    "not": { "let": "not", "title": "Продукт не относится к дизайну" }
 };
 
 var gois_types = {
@@ -310,6 +310,9 @@ function createBase(){
 
 function createChoiceLP(){
     $(submit_button).find('span.submit-label').text(choice_lp_btn_label);
+
+    $("#choice_block").append("<p>Определите, какой из ваших потребностей соответствует этот продукт. При выборе ответа обращайте внимание на его формальные характеристики (цветовое решение, стиль, рациональность формы, практичность формы и т.д.) </p>")
+
     Object.keys(lp_types).forEach(function(element, index) {
         var lp_input_wrap = $("<div/>", {class: "lp-input-wrap"});
         var lp_input = $("<input/>", {
@@ -370,7 +373,7 @@ function createChoiceLP(){
 function createChoiceGOIS(){
     $(submit_button).find('span.submit-label').text(choice_gois_btn_label);
 
-    $("#choice_block").append("<p>Выберите тип дизайна, к которому относится этот объект: </p>")
+    $("#choice_block").append("<p>Выберите вид дизайна, к которому относится этот объект: </p>")
     Object.keys(gois_types).forEach(function(element, index) {
         var gois_input_wrap = $("<div/>", {class: "gois-input-wrap"});
         var gois_input = $("<input/>", {
@@ -434,7 +437,6 @@ $('body').scrollTo($("#images_task").closest(".xblock"))
 
 
 <div id="task_block">
-    <h1>Переписать формулировки !!! </h1>
     <div>
         <p>На этом занятии важно научиться отличать продукты дизайна от всех остальных вещей – ремесленных, художественных, инженерных и т.п. Важно потренировать глаз, обращая внимание и на возраст этих продуктов.</p>
         <p>Ниже представлены основные сферы дизайна. Предлагаем вам выбрать образцы дизайна для личной и профессиональной сферы, предварительно оценив каждый продукт по четырем критериям:</p>
@@ -444,6 +446,13 @@ $('body').scrollTo($("#images_task").closest(".xblock"))
             <li>эстетика</li>
             <li>созданы между 1900 и 2019 годами</li>
         </ul>
+
+        <p>Вам предстоит поочередно ответить на десять вопросов. В каждом примере необходимо: </p>
+        <ul>
+            <li>определить принадлежность/не принадлежность представленного продукта к дизайну;</li>
+            <li>вид дизайна.</li>
+        </ul>
+
     </div>
     <div id="task_text_image">
      
