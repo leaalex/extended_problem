@@ -176,6 +176,7 @@ import json
 organizers_btn_label = "Выбрать анализатор"
 elements_btn_label = "Выбрать элемент"
 check_btn_label = "Проверить"
+next_btn_label = "Дальше"
 
 unique_id = "task_djkjvfds42v"
 
@@ -301,14 +302,32 @@ correct_answers_3 = {
   }
 }
 
-def check_table():
-    pass
+def check_table(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    response = {"correctness": False}
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        response["correctness"] = True
+    return response
+
+
+def check_step_3_1(SA):
+    correctness = False
+    if SA["step_3_1"]["check_type"] == "table":
+        resp = check_table(correct_answers_3[SA["element"]["name"]]["step_3_1"]["answer"], SA["step_3_1"]["answer"])
+    else:
+        pass
+    return resp
 
 def check_answer(expect, ans):
+    max_grade = 6
     student_answer = json.loads(ans)
     student_answer = student_answer["answer"]
     step = int(student_answer["step"])
-    grade_decimal = 1
+    grade = 0
     response = {}
     if step == 2:
         if student_answer["element"]["name"] in incorrect_elements.keys():
@@ -327,7 +346,12 @@ def check_answer(expect, ans):
                "comment": "Превышено максимальное количество попыток!"
            }
     if step == 3:
+        response["step_3_1"] = check_step_3_1(student_answer)
+        if response["step_3_1"]["correctness"] == True:
+            grade += 3
+    else:
         pass
+    grade_decimal = grade/max_grade
 
     return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': grade_decimal}, ]}
 </script>
@@ -338,6 +362,7 @@ def check_answer(expect, ans):
 var organizers_btn_label = "$organizers_btn_label"
 var elements_btn_label = "$elements_btn_label"
 var check_btn_label = "$check_btn_label"
+var next_btn_label = "$next_btn_label"
 
 var max_element_attemps = 3;
 var max_step_3_1_attemps = 3;
@@ -1112,9 +1137,12 @@ if(answer.get()){
 	else if(user_state.step == 3){
 		user_state.response = response;
 		createStep3_1();
-
-		console.log("create step 3");
+		// console.log("create step 3");
 	}
+  else if(user_state.step == 4){
+    user_state.response = response;
+    createStep3_2();
+  }
 	else{
 		console.log("Unhandled step");
 	}
@@ -1305,6 +1333,7 @@ function createStep3_1(){
 }
 
 function createTableTask(name){
+  setSubmitText(check_btn_label);
 	user_state.step_3_1.check_type = "table";
 	var html = task_tables[name];
 	var wrap = $("<div/>", {
@@ -1384,11 +1413,25 @@ function createTableTask(name){
     $("#visual_organizer_task").append("<p> Использовано попыток " + user_state.step_3_1.attemps + " из " + max_step_3_1_attemps + " </p>");
 
     if(user_state.step_3_1.attemps+1 == 4){
-    	console.log("to next step")
+    	// console.log("to next step")
+      setSubmitText(next_btn_label);
+      $(".conf-answers-place",element).sortable("disable");
     	user_state.step = 4;
+      console.log("All attempts used. Show correct answer")
     }
     else{
     	// check correctness here
+      if (user_state.response["step_3_1"]){
+        if (user_state.response["step_3_1"]["correctness"] == true){
+          setSubmitText(next_btn_label);
+          $(".conf-answers-place",element).sortable("disable");
+          user_state.step = 4;
+          console.log('show correctness "True"');
+        }
+        else{
+          console.log('show correctness "False"');
+        }
+      }
     	user_state.step_3_1.attemps += 1;
     }
 
