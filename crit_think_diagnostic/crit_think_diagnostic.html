@@ -824,7 +824,7 @@ function createQuestion(){
             selected_input.closest('.question-input-wrap').addClass("correct-answer");
         }
         else{
-            // if (show_correct_answer) {$("#choice_block").append("<p>Правильный ответ: " + gois_types[user_state.correctness[user_state.current_image]["correct_gois"]]["title"] + "</p>")};
+        	inputs_block.append("<p> Правильный ответ: <b>" + questions[current_question_id]["answers"].filter(function(item) {return item["let"] == user_state.correctness["correct"][current_question_id]})[0].text + "</b></p>")
             selected_input.closest('.question-input-wrap').addClass("incorrect-answer");
         }
 		enableSubmitButton();

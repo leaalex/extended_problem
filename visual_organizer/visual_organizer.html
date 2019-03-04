@@ -139,6 +139,10 @@ td.text-td:first-child::after {
     cursor: pointer;
 }
 
+.question-input-wrap img {
+  max-width: 420px;
+}
+
 .question-input-wrap.correct-answer, .question-input-wrap.correct-answer:hover {
     border: 2px solid #009b01;
 }
@@ -153,7 +157,7 @@ td.text-td:first-child::after {
 
 
 .question-wrap{
-	border: 1px solid #c7c7c9;
+	/*border: 1px solid #c7c7c9;*/
     margin: 6px 0px;
     padding: 10px;
 }
@@ -165,7 +169,69 @@ td.text-td:first-child::after {
 	/*display: none !important;*/
 }
 
+.used-attemps{
+    margin-top: 30px;
+}
 
+.correctness-status.incorrect::after {
+    font-family: FontAwesome;
+    content: "\f00d";
+    color: #cb0712;
+    display: block;
+    text-align: center;
+    margin: 6px 0px;
+    font-size: 2.5em;
+}
+
+.correctness-status.correct::after {
+    font-family: FontAwesome;
+    content: "\f00c";
+    color: #009b00;
+    display: block;
+    text-align: center;
+    margin: 6px 0px;
+    font-size: 2.5em;
+}
+
+#math_input_wrap input {
+    border-radius: 2px !important;
+}
+
+#math_input_wrap.correct input {
+    border: 2px solid #009b00;
+}
+
+#math_input_wrap.incorrect input {
+    border: 2px solid #cb0712;
+}
+
+#math_input_wrap.correct::after {
+    font-family: FontAwesome;
+    content: "\f00c";
+    color: #009b00;
+    text-align: center;
+    margin: 0px 8px;
+    font-size: 1.5em;
+        vertical-align: -20%;
+}
+
+#math_input_wrap.incorrect::after {
+    font-family: FontAwesome;
+    content: "\f00d";
+    color: #cb0712;
+    text-align: center;
+    margin: 0px 8px;
+    font-size: 1.5em;
+        vertical-align: -20%;
+}
+
+#text_task_MathOutput{
+    background: #f2f2f2;
+    width: fit-content;
+    padding: 7px;
+    margin: 10px 0px;
+    border-radius: 4px;
+}
 
 </style>
 
@@ -178,32 +244,34 @@ elements_btn_label = "Выбрать элемент"
 check_btn_label = "Проверить"
 next_btn_label = "Дальше"
 
+p_label = "р"
+
 unique_id = "task_djkjvfds42v"
 
 incorrect_elements = {
 	"venn_diagram" : {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Диаграмма Венна не может быть применена для определения правильности решения Мардж.",
-		"comment": "venn_diagram comment",
+		"comment": "Вы выбрали неверный инструмент визуального организатора. Диаграмма Венна не может быть применена для определения правильности решения Мардж.",
+		#"comment": "venn_diagram comment",
 	}, 
 	"web_charts": {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Веб диаграмма не может быть применена для определения правильности решения Мардж, поскольку выборка недостаточно репрезентативна.",
-		"comment": "web_charts comment",
+		"comment": "Вы выбрали неверный инструмент визуального организатора. Веб диаграмма не может быть применена для определения правильности решения Мардж, поскольку выборка недостаточно репрезентативна.",
+		#"comment": "web_charts comment",
 	}, 
 	"force_field_analysis": {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Анализ силовых полей не может быть применен для определения правильности решения Мардж, поскольку исход событий практически равновероятен на каждом шаге.",
-		"comment": "force_field_analysis comment",
+		"comment": "Вы выбрали неверный инструмент визуального организатора. Анализ силовых полей не может быть применен для определения правильности решения Мардж, поскольку исход событий практически равновероятен на каждом шаге.",
+		#"comment": "force_field_analysis comment",
 	},
 	"estimated_space": {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Оценочное пространство не может быть применено для определения правильности решения Мардж, поскольку вероятность события не связана с оценочными суждениями.",
-		"comment": "estimated_space comment",
+		"comment": "Вы выбрали неверный инструмент визуального организатора. Оценочное пространство не может быть применено для определения правильности решения Мардж, поскольку вероятность события не связана с оценочными суждениями.",
+		#"comment": "estimated_space comment",
 	},
 	"concept_cards": {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Концептуальные карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно находить причину события, а не его вероятность.",
-		"comment": "concept_cards comment",
+		"comment": "Вы выбрали неверный инструмент визуального организатора. Концептуальные карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно находить причину события, а не его вероятность.",
+		#"comment": "concept_cards comment",
 	},
 	"planning_cards": {
-		#"comment": "Вы выбрали неверный инструмент визуального организатора. Планирующие карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно ставить цели, достижение которых минимальным образом зависит от случайных факторов.",
-		"comment": "planning_cards comment",
+		"comment": "Вы выбрали неверный инструмент визуального организатора. Планирующие карты не могут быть применены для определения правильности решения Мардж, поскольку данный инструментарий позволяет более эффективно ставить цели, достижение которых минимальным образом зависит от случайных факторов.",
+		#"comment": "planning_cards comment",
 	}
 }
 
@@ -211,7 +279,7 @@ correct_answers_3 = {
   "inductive_towers": {
     "step_3_1": {
     	"answer": {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"], "a6": ["b6"], "a7": ["b7"], "a8": ["b8"], "a9": ["b9"], "a10": ["b10"]}
-	},
+	  },
     "step_3_2": {
       "question_1": "c",
       "question_2": "b",
@@ -224,11 +292,8 @@ correct_answers_3 = {
   },
   "charts": {
     "step_3_1": {
-    	"answer": {
-	      "question_1": "a",
-	      "question_2": "a"
-    	}
-	},
+    	"answer": "a"
+	  },
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -240,8 +305,8 @@ correct_answers_3 = {
   },
   "drawings_and_matrixes": {
     "step_3_1": {
-    		"answer": "p1+p2+p3=1"
-	},
+    		"answer": ['1', 'p1', 'p2', 'p3']
+	  },
     "step_3_2": {
       "question_1": "b",
       "question_2": "b",
@@ -251,7 +316,9 @@ correct_answers_3 = {
     }
   },
   "pie_chart": {
-    "step_3_1": {},
+    "step_3_1": {
+        "answer": "b"
+    },
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -263,8 +330,8 @@ correct_answers_3 = {
   },
   "pie_charts": {
     "step_3_1": {
-        	"answer": "a"
-	},
+        	"answer": "c"
+	  },
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -277,7 +344,7 @@ correct_answers_3 = {
   "causal_card_chains": {
     "step_3_1": {
     	"answer": {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"]}
-	},
+	  },
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -290,7 +357,7 @@ correct_answers_3 = {
   "current_cards": {
     "step_3_1": {
     	"answer": {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"], "a6": ["b6"]}
-	},
+	  },
     "step_3_2": {
       "question_1": "c",
       "question_2": "a",
@@ -313,14 +380,52 @@ def check_table(CA, SA):
         response["correctness"] = True
     return response
 
+def check_text(CA, SA):
+    student_answer = sorted(SA.replace("_", "").replace(" ", "").replace("+", " ").replace("=", " ").split(" "))
+    response = {"correctness": False}
+    if CA == student_answer:
+        response["correctness"] = True
+    return response
+
+def check_choice(CA, SA):
+    response = {"correctness": False}
+    if CA == SA:
+        response["correctness"] = True
+    return response
 
 def check_step_3_1(SA):
     correctness = False
     if SA["step_3_1"]["check_type"] == "table":
         resp = check_table(correct_answers_3[SA["element"]["name"]]["step_3_1"]["answer"], SA["step_3_1"]["answer"])
+    elif SA["step_3_1"]["check_type"] == "text":
+        resp = check_text(correct_answers_3[SA["element"]["name"]]["step_3_1"]["answer"], SA["step_3_1"]["answer"])
+    elif SA["step_3_1"]["check_type"] == "choice":
+        resp = check_choice(correct_answers_3[SA["element"]["name"]]["step_3_1"]["answer"], SA["step_3_1"]["answer"])
     else:
-        pass
+        resp = {"correctness": False}
     return resp
+
+def check_step_3_2(SA):
+    response = {
+      "question_1": {
+        "correctness": False
+      },
+      "question_2": {
+        "correctness": False
+      },
+      "question_3": {
+        "correctness": False,
+        "user_correct": []
+      }
+    }
+    if SA["step_3_2"]["answer"]["question_1"] == correct_answers_3[SA["element"]["name"]]["step_3_2"]["question_1"]:
+        response["question_1"]["correctness"] = True
+    if SA["step_3_2"]["answer"]["question_2"] == correct_answers_3[SA["element"]["name"]]["step_3_2"]["question_2"]:
+        response["question_2"]["correctness"] = True
+
+    response["question_3"]["correctness"] = False
+    response["question_3"]["user_correct"] = ["lol", "kek"]
+    return response
 
 def check_answer(expect, ans):
     max_grade = 6
@@ -349,6 +454,18 @@ def check_answer(expect, ans):
         response["step_3_1"] = check_step_3_1(student_answer)
         if response["step_3_1"]["correctness"] == True:
             grade += 3
+    if step == 4:
+        response["step_3_1"] = check_step_3_1(student_answer)
+        if response["step_3_1"]["correctness"] == True:
+            grade += 3
+
+        response["step_3_2"] = check_step_3_2(student_answer)
+        if response["step_3_2"]["question_1"]["correctness"] == True:
+            grade += 1
+        if response["step_3_2"]["question_2"]["correctness"] == True:
+            grade += 1
+        if response["step_3_2"]["question_3"]["correctness"] == True:
+            grade += 1
     else:
         pass
     grade_decimal = grade/max_grade
@@ -366,6 +483,7 @@ var next_btn_label = "$next_btn_label"
 
 var max_element_attemps = 3;
 var max_step_3_1_attemps = 3;
+var max_step_3_2_attemps = 3;
 
 function Answer(elementField) {
     this.elementField = elementField;
@@ -397,12 +515,41 @@ function Answer(elementField) {
     };
 };
 
+(function () {
+window.TextTaskUpdateMath = function (TeX) {
+    TeX = "\\(" + TeX + "\\)";
+    TeX = TeX.replace(/i(\w)/g, "\\overline{"+ "$1" + "}")
+    document.getElementById("text_task_MathOutput").innerHTML = TeX;
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub,"text_task_MathOutput"]);
+}
+})();
+
+
+$.fn.shuffleChildren = function() {
+    $.each(this.get(), function(index, el) {
+        var $el = $(el);
+        var $find = $el.children();
+
+        $find.sort(function() {
+            return 0.5 - Math.random();
+        });
+
+        $el.empty();
+        $find.appendTo($el);
+    });
+};
+
 var submit_button = $("#visual_organizer").closest(".problem").find('button.submit');
 $(submit_button).css('text-transform','none');
 
 
+function enableSubmitButton(){
+    $(submit_button).removeClass("disabled");
+    $(submit_button).removeAttr("disabled");
+}
+
 function setSubmitText(text){
-	$(submit_button).find('span.submit-label').text(text);
+	  $(submit_button).find('span.submit-label').text(text);
 }
 
 var task_tables = {
@@ -804,10 +951,6 @@ var all_questions = {
         {
           "let": "d",
           "text": "Мардж – плохой экспериментатор"
-        },
-        {
-          "let": "e",
-          "text": ""
         }
       ]
     }
@@ -997,6 +1140,60 @@ var all_questions = {
   }
 }
 
+var questions_3_1 = {
+  "charts": {
+    "question_wording": "Текст вопроса для графиков",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": '<img src="/static/charts_3_1_img_01.png" />'
+        },
+        {
+          "let": "b",
+          "text": '<img src="/static/charts_3_1_img_02.png" />'
+        },
+        {
+          "let": "c",
+          "text": '<img src="/static/charts_3_1_img_03.png" />'
+        }
+      ]
+  },
+  "pie_chart": {
+    "question_wording": "Текст вопроса для диаграммы пирог",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": '<img src="/static/pie_chart_3_1_img_01.png" />'
+        },
+        {
+          "let": "b",
+          "text": '<img src="/static/pie_chart_3_1_img_02.png" />'
+        },
+        {
+          "let": "c",
+          "text": '<img src="/static/pie_chart_3_1_img_03.png" />'
+        }
+      ]
+  },
+  "pie_charts": {
+    "question_wording": "Текст вопроса для круговые диаграммы",
+      "answer_choices": [
+        {
+          "let": "a",
+          "text": '<img src="/static/pie_charts_3_1_img_01.png" />'
+        },
+        {
+          "let": "b",
+          "text": '<img src="/static/pie_charts_3_1_img_02.png" />'
+        },
+        {
+          "let": "c",
+          "text": '<img src="/static/pie_charts_3_1_img_03.png" />'
+        }
+      ]
+  }
+}
+
 var answer = new Answer(document.querySelector("#visual_organizer").querySelector("input[type='text']"));
 
 var organizers = {
@@ -1102,7 +1299,11 @@ user_state.step_3_1 = {
 	attemps: 0
 }
 user_state.step_3_2 = {
-	answer:{},
+	answer: {
+    question_1: "",
+    question_2: "",
+    question_3: [],
+  },
 	attemps: 0
 }
 
@@ -1195,7 +1396,7 @@ function createChoiceOrganizerElement(show_error=false){
 			$(submit_button).hide();
 		}
 	}
-	$("#visual_organizer_task").append("<p> Использовано попыток " + user_state.element_attemps + " из " + max_element_attemps + " </p>");
+	$("#visual_organizer_task").append('<div class="used-attemps">Использовано попыток ' + user_state.element_attemps + " из " + max_element_attemps + "</div>");
 	setSubmitText(elements_btn_label);
 	answer.setJSON({answer: user_state});
 }
@@ -1238,81 +1439,6 @@ function createChoiceOrganizer(){
 	answer.setJSON({answer: user_state});
 }
 
-function createStep3_2(){
-	setSubmitText(check_btn_label);
-	$("#visual_organizer_task").append("<h2> Шаг 3.2. "  + user_state.element.title + "</h2>");
-	answer.setJSON({answer: user_state});
-
-	var answer_3_2 = {
-		"q1": "",
-		"q2": "",
-		"q3": [],
-	}
-
-	var questions_wrap = $('<div/>', {});
-	var question_1_wrap = $('<div/>',{
-		class: "question-wrap"
-	});
-	question_1_wrap.append("<p>" + all_questions[user_state.element.name]["question_1"]["question_wording"] + "</p>");
-	var question_2_wrap = $('<div/>',{
-		class: "question-wrap"
-	});
-	question_2_wrap.append("<p>" + all_questions[user_state.element.name]["question_2"]["question_wording"] + "</p>");
-
-	var question_3_wrap = $('<div/>',{
-		class: "question-wrap"
-	});
-	question_3_wrap.append("<p>" + all_questions[user_state.element.name]["question_3"]["question_wording"] + "</p>");
-
-	all_questions[user_state.element.name]["question_1"]["answer_choices"].forEach(function(element, index) {
-		var question_1_input_wrap = $('<div/>', {
-			class: "question-input-wrap",
-		});
-		var question_1_input = $("<input/>", {
-            type: "radio",
-            name: "step_3_2_question_1",
-            value: element["let"]
-		});
-		question_1_input_wrap.append(question_1_input);
-		question_1_input_wrap.append(element["text"]);
-		question_1_wrap.append(question_1_input_wrap)
-	});
-
-	all_questions[user_state.element.name]["question_2"]["answer_choices"].forEach(function(element, index) {
-		var question_2_input_wrap = $('<div/>', {
-			class: "question-input-wrap",
-		});
-		var question_2_input = $("<input/>", {
-            type: "radio",
-            name: "step_3_2_question_2",
-            value: element["let"]
-		});
-		question_2_input_wrap.append(question_2_input);
-		question_2_input_wrap.append(element["text"]);
-		question_2_wrap.append(question_2_input_wrap)
-	});
-
-	all_questions[user_state.element.name]["question_3"]["answer_choices"].forEach(function(element, index) {
-		var question_3_input_wrap = $('<div/>', {
-			class: "question-input-wrap",
-		});
-		var question_3_input = $("<input/>", {
-            type: "checkbox",
-            name: "step_3_2_question_3",
-            value: element["let"]
-		});
-		question_3_input_wrap.append(question_3_input);
-		question_3_input_wrap.append(element["text"]);
-		question_3_wrap.append(question_3_input_wrap)
-	});
-
-	questions_wrap.append(question_1_wrap);
-	questions_wrap.append(question_2_wrap);
-	questions_wrap.append(question_3_wrap);
-
-	$("#visual_organizer_task").append(questions_wrap);
-}
-
 function createStep3_1(){
 	$("#visual_organizer_task").append("<h2> Шаг 3.1. "  + user_state.element.title + "</h2>");
         answer.setJSON({answer: user_state});
@@ -1323,9 +1449,11 @@ function createStep3_1(){
 	}
 	else if (["drawings_and_matrixes"].includes(user_state.element.name)){
 		console.log("create text input!!");
+    createTextTask(user_state.element.name);
 	}
 	else if (["charts", "pie_chart", "pie_charts"].includes(user_state.element.name)){
 		console.log("create img choice!!")
+    createChoiceTask(user_state.element.name);
 	}
 	else{
 		console.log("Undefined element!")
@@ -1340,13 +1468,16 @@ function createTableTask(name){
 		id:"table_task",
 		html: html
 	});
+
 	$("#visual_organizer_task").append(wrap);
 
 	var element = $("#table_task");
-    
+  
+  $("#conf-id", element).shuffleChildren();
+
 	var student_build_answer = user_state.step_3_1.answer;
 
-    if (Object.keys(student_build_answer).length != 0){
+  if (Object.keys(student_build_answer).length != 0){
 		for (key in student_build_answer) { 
 	    	for ( l in student_build_answer[key]) { 
 	    		// console.log(l)
@@ -1355,87 +1486,418 @@ function createTableTask(name){
 	    }
 	}
 
-    setAnswer();
-    answer.setJSON({answer: user_state});
-    // }
+  var correctness_status = $("<div/>", {
+    class: "correctness-status"
+  }).appendTo($("#visual_organizer_task"));
 
-    $(".conf-answers-place",element).sortable({
-        connectWith: "#" + "table_task" + " .conf-answers-place",
-       cursorAt: {  },
-       cursor: "move",
-        start: function(event, ui) {
-           ui.item.css('width', 'fit-content')
-           ui.item.css('min-width', '300px');
-           ui.item.css('max-width', '400px');
-           ui.item.css('height', 'auto');
-           // console.log($(this))
-           $(".conf-answers-place", element).sortable( "option", "cursorAt", { left: ui.item.width() / 2, top: ui.item.height() / 2 } );
-        },
-        stop: function(event, ui) {
-           ui.item.css('max-width', 'inherit');
-           ui.item.css('min-width', 'auto');
-             setAnswer();
-        },
-        sort: function() {
-           // console.log("#" + "task_3_2" + " .conf-answers-place")
-            // $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
-        },
-        opacity: 0.8,
-        over: function(event) { 
-            $("#" + event.target.id, element).css("border","2px dashed #b2b2b2");
-        },
-        out: function(event) { 
-            $("#" + event.target.id, element).css("border","");
-        },
-        receive: function(event, ui) {
-            // so if > 10
-            if($(this).attr('id') !== 'conf-id'){
-               if ($(this).children().length == 2) {
-                   $(ui.sender).sortable('cancel');
-               }
-           }
-        },
-   }).disableSelection();
+  setAnswer();
+  answer.setJSON({answer: user_state});
+
+  $(".conf-answers-place",element).sortable({
+      connectWith: "#" + "table_task" + " .conf-answers-place",
+     cursorAt: {  },
+     cursor: "move",
+      start: function(event, ui) {
+         ui.item.css('width', 'fit-content')
+         ui.item.css('min-width', '300px');
+         ui.item.css('max-width', '400px');
+         ui.item.css('height', 'auto');
+         correctness_status.removeClass('correct');
+         correctness_status.removeClass('incorrect');
+         $(".conf-answers-place", element).sortable( "option", "cursorAt", { left: ui.item.width() / 2, top: ui.item.height() / 2 } );
+      },
+      stop: function(event, ui) {
+         ui.item.css('max-width', 'inherit');
+         ui.item.css('min-width', 'auto');
+           setAnswer();
+      },
+      sort: function() {
+         // console.log("#" + "task_3_2" + " .conf-answers-place")
+          // $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
+      },
+      opacity: 0.8,
+      over: function(event) { 
+          $("#" + event.target.id, element).css("border","2px dashed #b2b2b2");
+      },
+      out: function(event) { 
+          $("#" + event.target.id, element).css("border","");
+      },
+      receive: function(event, ui) {
+          // so if > 10
+          if($(this).attr('id') !== 'conf-id'){
+             if ($(this).children().length == 2) {
+                 $(ui.sender).sortable('cancel');
+             }
+         }
+      },
+  }).disableSelection();
 
     
-    function setAnswer(){
-       var student_answer = {};
-        $(".conf-table td.conf-answers-place", element).map(function(indx, item){   
-           item_id = $(item).attr("id");
-           student_answer[item_id] = $(item).find(".conf-item").map(function(index, sub_item){
-              return $(sub_item).attr("id")
-           }).get();
-        }).get();
-        user_state.step_3_1.answer = student_answer;
-        answer.setJSON({answer: user_state});
-    }
-    
-    $("#visual_organizer_task").append("<p> Использовано попыток " + user_state.step_3_1.attemps + " из " + max_step_3_1_attemps + " </p>");
+  function setAnswer(){
+     var student_answer = {};
+      $(".conf-table td.conf-answers-place", element).map(function(indx, item){   
+         item_id = $(item).attr("id");
+         student_answer[item_id] = $(item).find(".conf-item").map(function(index, sub_item){
+            return $(sub_item).attr("id")
+         }).get();
+      }).get();
+      user_state.step_3_1.answer = student_answer;
+      answer.setJSON({answer: user_state});
+  }
 
-    if(user_state.step_3_1.attemps+1 == 4){
-    	// console.log("to next step")
+  $("#visual_organizer_task").append('<div class="used-attemps">Использовано попыток ' + user_state.step_3_1.attemps + " из " + max_step_3_1_attemps + "</div>");
+  if (user_state.response["step_3_1"]){
+     if(user_state.step_3_1.attemps == max_step_3_1_attemps){
       setSubmitText(next_btn_label);
       $(".conf-answers-place",element).sortable("disable");
-    	user_state.step = 4;
-      console.log("All attempts used. Show correct answer")
+      user_state.step = 4;
+      // All attempts used. Show correct answer
     }
     else{
-    	// check correctness here
-      if (user_state.response["step_3_1"]){
-        if (user_state.response["step_3_1"]["correctness"] == true){
-          setSubmitText(next_btn_label);
-          $(".conf-answers-place",element).sortable("disable");
-          user_state.step = 4;
-          console.log('show correctness "True"');
-        }
-        else{
-          console.log('show correctness "False"');
+      user_state.step_3_1.attemps += 1;
+    }
+    if (user_state.response["step_3_1"]["correctness"] == true){
+      setSubmitText(next_btn_label);
+      correctness_status.addClass("correct");
+      $(".conf-answers-place",element).sortable("disable");
+      user_state.step = 4;
+      // show correctness "True"
+    }
+    else{
+      correctness_status.addClass("incorrect");
+      // show correctness "False"
+    }
+  }
+  else{
+      user_state.step_3_1.attemps += 1;
+  }
+  answer.setJSON({answer: user_state});
+}
+
+function createTextTask(name){
+  setSubmitText(check_btn_label);
+  user_state.step_3_1.check_type = "text";
+  // var html = task_tables[name];
+  var wrap = $("<div/>", {
+    id:"text_task",
+  });
+
+  wrap.append("<p>Задание: Если \\(p_1\\) – вероятность выпадения на черное, \\(p_2\\) – вероятность выпадения на красное, \\(p_3\\) – вероятность выпадения на зеленое поле. Напишите формулу, связывающую все три вероятности.</p>")
+
+  if (typeof  user_state.step_3_1.answer === 'object'){
+     user_state.step_3_1.answer = "";
+  }
+
+  var input_wrap = $("<div/>", {
+    class: "",
+    id: "math_input_wrap"
+  })
+
+  var input = $("<input/>", {
+    type: "text",
+    id:"text_task_MathInput"
+  }).appendTo(input_wrap);
+
+  wrap.append(input_wrap)
+
+  var output = $("<div/>", {
+    id:"text_task_MathOutput"
+  }).appendTo(wrap);
+
+
+  $(input).on('input', function() {
+      TextTaskUpdateMath($(this).val());
+      input_wrap.removeClass('correct');
+      input_wrap.removeClass('incorrect');
+      user_state.step_3_1.answer = $(this).val();
+      answer.setJSON({answer: user_state});
+  });
+
+  $("#visual_organizer_task").append(wrap);
+  $("#visual_organizer_task").append('<div class="used-attemps">Использовано попыток ' + user_state.step_3_1.attemps + " из " + max_step_3_1_attemps + "</div>");
+
+
+  if (user_state.response["step_3_1"]){
+     $(input).val(user_state.step_3_1.answer);
+     TextTaskUpdateMath(user_state.step_3_1.answer);
+    if(user_state.step_3_1.attemps == max_step_3_1_attemps){
+      setSubmitText(next_btn_label);
+      $(input).attr('disabled', 'disabled');
+      user_state.step = 4;
+      // All attempts used. Show correct answer
+    }
+    else{
+      user_state.step_3_1.attemps += 1;
+    }
+    if (user_state.response["step_3_1"]["correctness"] == true){
+      setSubmitText(next_btn_label);
+      input_wrap.addClass("correct");
+      $(input).attr('disabled', 'disabled');
+      user_state.step = 4;
+      // show correctness "True"
+    }
+    else{
+      input_wrap.addClass("incorrect");
+      // show correctness "False"
+    }
+  }
+  else{
+      user_state.step_3_1.attemps += 1;
+  }
+  answer.setJSON({answer: user_state});
+}
+
+function createChoiceTask(name){
+  $(submit_button).attr("disabled", "disabled");
+  $(submit_button).addClass("disabled");
+  setSubmitText(check_btn_label);
+  user_state.step_3_1.check_type = "choice";
+
+  var current_question = questions_3_1[name];
+
+  var question_text = $("<div/>", {
+    class: "question-text",
+    html: current_question["question_wording"]
+  });
+
+  var inputs_block = $("<div/>", {
+    class: "inputs-block"
+  });
+
+  current_question["answer_choices"].forEach(function(element, index) {
+    var input_wrap = $("<div/>", {
+      class: "question-input-wrap"
+    });
+    var input = $("<input/>",{
+       type: "radio",
+       name: "question_choice",
+       value: element["let"],
+    });
+    input_wrap.append(input);
+    input_wrap.append(element["text"]);
+    inputs_block.append(input_wrap);
+    input_wrap.click(function(e) {
+      $('input', $(e.delegateTarget)).prop('checked', true);
+      var val = $("input[name='question_choice']:checked").val();
+      // console.log("val", val, e);
+      $(".question-input-wrap",inputs_block).removeClass("incorrect-answer");
+      user_state.step_3_1.answer = val;
+      answer.setJSON({answer: user_state});
+      enableSubmitButton();
+    });
+  });
+ 
+     $("#visual_organizer_task").append(question_text);
+    $("#visual_organizer_task").append(inputs_block);  
+    
+    $("#visual_organizer_task").append('<div class="used-attemps">Использовано попыток ' + user_state.step_3_1.attemps + " из " + (max_step_3_1_attemps-1) + "</div>");
+
+   if (user_state.response["step_3_1"]){
+     var selected_input = $("input[value=" + user_state.step_3_1.answer + "]" , inputs_block);
+     $("input[value=" + user_state.step_3_1.answer + "]", inputs_block).prop('checked', true);
+     enableSubmitButton();
+    if(user_state.step_3_1.attemps == (max_step_3_1_attemps-1)){
+      setSubmitText(next_btn_label);
+      user_state.step = 4;
+      $(".question-input-wrap input").prop('disabled', true);
+      $(".question-input-wrap").unbind( "click" )
+      $(".question-input-wrap").css('cursor', 'not-allowed');
+      // All attempts used. Show correct answer
+    }
+    else{
+      user_state.step_3_1.attemps += 1;
+    }
+    if (user_state.response["step_3_1"]["correctness"] == true){
+      setSubmitText(next_btn_label);
+      user_state.step = 4;
+      $(".question-input-wrap input").prop('disabled', true);
+      $(".question-input-wrap").unbind( "click" )
+      $(".question-input-wrap").css('cursor', 'not-allowed');
+      selected_input.closest('.question-input-wrap').addClass("correct-answer");
+      // show correctness "True"
+    }
+    else{
+      selected_input.closest('.question-input-wrap').addClass("incorrect-answer");
+      // show correctness "False"
+    }
+  }
+  else{
+      user_state.step_3_1.attemps += 1;
+  }
+  answer.setJSON({answer: user_state});
+}
+
+function createStep3_2(){
+  setSubmitText(check_btn_label);
+  $(submit_button).attr("disabled", "disabled");
+  $(submit_button).addClass("disabled");
+
+  $("#visual_organizer_task").append("<h2> Шаг 3.2. "  + user_state.element.title + "</h2>");
+  answer.setJSON({answer: user_state});
+
+  var answer_3_2 = {
+    "q1": "",
+    "q2": "",
+    "q3": [],
+  }
+
+  var questions_wrap = $('<div/>', {});
+  var question_1_wrap = $('<div/>',{
+    class: "question-wrap"
+  });
+  question_1_wrap.append("<p>" + all_questions[user_state.element.name]["question_1"]["question_wording"] + "</p>");
+  var question_2_wrap = $('<div/>',{
+    class: "question-wrap"
+  });
+  question_2_wrap.append("<p>" + all_questions[user_state.element.name]["question_2"]["question_wording"] + "</p>");
+
+  var question_3_wrap = $('<div/>',{
+    class: "question-wrap"
+  });
+  question_3_wrap.append("<p>" + all_questions[user_state.element.name]["question_3"]["question_wording"] + "</p>");
+
+  all_questions[user_state.element.name]["question_1"]["answer_choices"].forEach(function(element, index) {
+    var question_1_input_wrap = $('<div/>', {
+      class: "question-input-wrap",
+    });
+    var question_1_input = $("<input/>", {
+            type: "radio",
+            name: "step_3_2_question_1",
+            value: element["let"]
+    });
+    question_1_input_wrap.append(question_1_input);
+    question_1_input_wrap.append(element["text"]);
+    question_1_wrap.append(question_1_input_wrap);
+
+    question_1_input_wrap.click(function(e) {
+      $('input', $(e.delegateTarget)).prop('checked', true);
+      var val = $("input[name='step_3_2_question_1']:checked").val();
+      // console.log("val", val, e);
+      // $(".question-input-wrap",inputs_block).removeClass("incorrect-answer");
+      user_state.step_3_2.answer.question_1 = val;
+      answer.setJSON({answer: user_state});
+            if(user_state.step_3_2.answer.question_1.length != 0){
+        if(user_state.step_3_2.answer.question_2.length != 0){
+          if(user_state.step_3_2.answer.question_3.length != 0){
+              enableSubmitButton();
+          }
         }
       }
-    	user_state.step_3_1.attemps += 1;
-    }
+    });
 
-    answer.setJSON({answer: user_state});
+
+  });
+
+  all_questions[user_state.element.name]["question_2"]["answer_choices"].forEach(function(element, index) {
+    var question_2_input_wrap = $('<div/>', {
+      class: "question-input-wrap",
+    });
+    var question_2_input = $("<input/>", {
+            type: "radio",
+            name: "step_3_2_question_2",
+            value: element["let"]
+    });
+    question_2_input_wrap.append(question_2_input);
+    question_2_input_wrap.append(element["text"]);
+    question_2_wrap.append(question_2_input_wrap)
+
+    question_2_input_wrap.click(function(e) {
+      $('input', $(e.delegateTarget)).prop('checked', true);
+      var val = $("input[name='step_3_2_question_2']:checked").val();
+
+      user_state.step_3_2.answer.question_2 = val;
+      answer.setJSON({answer: user_state});
+
+      if(user_state.step_3_2.answer.question_1.length != 0){
+        if(user_state.step_3_2.answer.question_2.length != 0){
+          if(user_state.step_3_2.answer.question_3.length != 0){
+              enableSubmitButton();
+          }
+        }
+      }
+    });
+
+  });
+
+  all_questions[user_state.element.name]["question_3"]["answer_choices"].forEach(function(element, index) {
+    var question_3_input_wrap = $('<div/>', {
+      class: "question-input-wrap",
+    });
+    var question_3_input = $("<input/>", {
+            type: "checkbox",
+            name: "step_3_2_question_3",
+            value: element["let"]
+    });
+    question_3_input_wrap.append(question_3_input);
+    question_3_input_wrap.append(element["text"]);
+    question_3_wrap.append(question_3_input_wrap);
+
+    question_3_input_wrap.click(function(e) {
+      $('input', $(e.delegateTarget)).attr("checked", !$('input', $(e.delegateTarget)).attr("checked"));
+      // .prop('checked', true);
+      var ans = [];
+      $("input[name=step_3_2_question_3]").each(function() {
+        if($(this).prop('checked')){
+          ans.push($(this).val())
+        }
+        // ans.push()
+      })
+      console.log(ans);
+      user_state.step_3_2.answer.question_3 = ans;
+      if(user_state.step_3_2.answer.question_1.length != 0){
+        if(user_state.step_3_2.answer.question_2.length != 0){
+          if(user_state.step_3_2.answer.question_3.length != 0){
+              enableSubmitButton();
+          }
+        }
+      }
+    });
+
+
+  });
+
+  questions_wrap.append(question_1_wrap);
+  questions_wrap.append(question_2_wrap);
+  questions_wrap.append(question_3_wrap);
+
+  $("#visual_organizer_task").append(questions_wrap);
+
+
+  //  if (user_state.response["step_3_2"]){
+  //    var selected_input = $("input[value=" + user_state.step_3_1.answer + "]" , inputs_block);
+  //    $("input[value=" + user_state.step_3_1.answer + "]", inputs_block).prop('checked', true);
+  //    enableSubmitButton();
+  //   if(user_state.step_3_1.attemps == (max_step_3_1_attemps-1)){
+  //     setSubmitText(next_btn_label);
+  //     user_state.step = 4;
+  //     $(".question-input-wrap input").prop('disabled', true);
+  //     $(".question-input-wrap").unbind( "click" )
+  //     $(".question-input-wrap").css('cursor', 'not-allowed');
+  //     // All attempts used. Show correct answer
+  //   }
+  //   else{
+  //     user_state.step_3_1.attemps += 1;
+  //   }
+  //   if (user_state.response["step_3_1"]["correctness"] == true){
+  //     setSubmitText(next_btn_label);
+  //     user_state.step = 4;
+  //     $(".question-input-wrap input").prop('disabled', true);
+  //     $(".question-input-wrap").unbind( "click" )
+  //     $(".question-input-wrap").css('cursor', 'not-allowed');
+  //     selected_input.closest('.question-input-wrap').addClass("correct-answer");
+  //     // show correctness "True"
+  //   }
+  //   else{
+  //     selected_input.closest('.question-input-wrap').addClass("incorrect-answer");
+  //     // show correctness "False"
+  //   }
+  // }
+  // else{
+  //     user_state.step_3_1.attemps += 1;
+  // }
+
+
+
 
 }
 
@@ -1443,7 +1905,7 @@ function createTableTask(name){
 
 <div id="visual_organizer">
 	
-	<div id="text_task">
+	<div id="wording_task">
 	<!--<p>Прочтите мысленный эксперимент «Колесо фортуны», выберите из списка наиболее подходящий инструмент для анализа информации, структурируйте ее, предложите решение проблемы (из списка), опираясь на проделанную работу.</p>-->
 	<!--
 		<h2>Мысленный эксперимент «Колесо фортуны»</h2>
