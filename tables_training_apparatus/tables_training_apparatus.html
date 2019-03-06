@@ -104,15 +104,17 @@
 	margin: 0 1em;
 }
 
-#task_reset{
+#restart_task{
 	display: none;
 }
 
 </style>
 
 
+<script type="text/javascript" src="/static/Chart.js"></script>
 <script type="text/javascript" charset="utf-8">
 
+// двухбуквенный код
 var language = "ru";
 
 
@@ -124,14 +126,17 @@ translations = {
 		"delay_label": "We start in",
 		"table_label": "Table",
 		"time_label": "Time",
-		"test_results_label": "Test results",
-		"result_label_1": '<p>Должна быть англ. версия: Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая&nbsp;устойчивость внимания&nbsp;и работоспособность в динамике.</p><div><table><tbody><tr><td><strong>Возраст</strong></td><td><strong>5 баллов</strong></td><td><strong>4 балла</strong></td><td><strong>3 балла</strong></td><td><strong>2 балла</strong></td><td><strong>1 балл</strong></td></tr> <tr><td><strong>10 лет</strong></td><td>45 и меньше</td><td>46-55</td><td>56-65</td><td>66-75</td><td>76 и больше</td></tr><tr><td><strong>11 лет</strong></td><td>35 и меньше</td><td>36-45</td><td>46-55</td><td>56-65</td><td>66 и больше</td></tr> <tr><td><strong>12 лет</strong></td><td>30 и меньше</td><td>31-35</td><td>36-45</td><td>46-55</td><td>56 и больше</td></tr></tbody></table></div>',
-		"result_label_2": "Должна быть англ. версия: Эффективность работы = ",
-		"result_label_3": "Должна быть англ. версия: Степень врабатываемости = ",
-		"result_label_4": "Должна быть англ. версия: Результат меньше 1,0 – показатель хорошей врабатываемости, соответственно, чем выше 1,0 данный показатель, тем больше испытуемому требуется подготовка к основной работе.",
-		"result_label_5": "Должна быть англ. версия: Психическая устойчивость = ",
-		"result_label_6": "Должна быть англ. версия: Показатель результата меньше 1,0 говорит о хорошей психической устойчивости, соответственно, чем выше данный показатель, тем хуже психическая устойчивость испытуемого к выполнению заданий.",
-		"text_task_label": "Должна быть англ. версия: <h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «СТАРТ» Вам будет поочередно предложено пять таблиц на которых в произвольном порядке расположены числа от 1 до 25. </p><p>Ваша задача заключается в том, чтобы нажать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Постарайся делать это как можно быстрее и без ошибок». Таблица открывается и одновременно с началом выполнения задания включается секундомер. Вторая, третья и последующие таблицы предъявляются без всяких инструкций с интервалом в 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p>Последняя правильно указанная цифра подсвечена голубым цветом.</p>",
+    "time_sec_label": "Time (sec.)",
+    "graphic_label": "Гафик времени выполнения таблиц",
+    "test_results_label": "Результаты теста",
+    "result_label_1": '<p>Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая устойчивость внимания и работоспособность в динамике.</p>',
+    "VR_label": "Степень врабатываемости",
+    "PU_label": "Психическая устойчивость",
+    "VR_label_more_1":"Ваш результат больше единицы, что указывает на слабую врабатываемость. Вам требуется дополнительная подготовка перед началом работы.",
+    "VR_label_less_1":"Ваш результат меньше единицы, что указывает на хорошую врабатываемость. Вы быстро понимаете задания и незамедлительно включаетесь в работу.",
+    "PU_label_more_1":"Результат больше единицы указывает на слабую психическую устойчивость. Вам сложно долго концентрироваться на какой-либо деятельности. Помните, что регулярные тренировки концентрации внимания позволят вам улучшить показатели психической устойчивости.",
+    "PU_label_less_1":"Результат меньше единицы говорит о хорошей психической устойчивости. Вы можете долго концентрироваться на конкретной задаче и не отвлекаться на внешние помехи.",
+    "text_task_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет поочередно предложено пять таблиц, на которых в произвольном порядке расположены числа от 1 до 25.</p><p>Ваша задача заключается в том, чтобы нажимать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Важно делать это как можно быстрее и без ошибок. Секундомер фиксирует время выполнения каждой таблицы. Прохождение каждой последующей таблицы начинается через 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p></p>",
 	},
 	"ru": {
 		"start_btn_label": "Начать",
@@ -139,14 +144,17 @@ translations = {
 		"delay_label": "Начинаем через",
 		"table_label": "Таблица",
 		"time_label": "Время",
+    "time_sec_label": "Время (сек.)",
+    "graphic_label": "Гафик времени выполнения таблиц",
 		"test_results_label": "Результаты теста",
-		"result_label_1": '<p>Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая&nbsp;устойчивость внимания&nbsp;и работоспособность в динамике.</p><div><table><tbody><tr><td><strong>Возраст</strong></td><td><strong>5 баллов</strong></td><td><strong>4 балла</strong></td><td><strong>3 балла</strong></td><td><strong>2 балла</strong></td><td><strong>1 балл</strong></td></tr> <tr><td><strong>10 лет</strong></td><td>45 и меньше</td><td>46-55</td><td>56-65</td><td>66-75</td><td>76 и больше</td></tr><tr><td><strong>11 лет</strong></td><td>35 и меньше</td><td>36-45</td><td>46-55</td><td>56-65</td><td>66 и больше</td></tr> <tr><td><strong>12 лет</strong></td><td>30 и меньше</td><td>31-35</td><td>36-45</td><td>46-55</td><td>56 и больше</td></tr></tbody></table></div>',
-		"result_label_2": "Эффективность работы = ",
-		"result_label_3": "Степень врабатываемости = ",
-		"result_label_4": "Результат меньше 1,0 – показатель хорошей врабатываемости, соответственно, чем выше 1,0 данный показатель, тем больше испытуемому требуется подготовка к основной работе.",
-		"result_label_5": "Психическая устойчивость = ",
-		"result_label_6": "Показатель результата меньше 1,0 говорит о хорошей психической устойчивости, соответственно, чем выше данный показатель, тем хуже психическая устойчивость испытуемого к выполнению заданий.",
-		"text_task_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет поочередно предложено пять таблиц, на которых в произвольном порядке расположены числа от 1 до 25.</p><p>Ваша задача заключается в том, чтобы нажимать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Важно делать это как можно быстрее и без ошибок. Секундомер фиксирует время выполнения каждой таблицы. Прохождение каждой последующей таблицы начинается через 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p></p>",
+		"result_label_1": '<p>Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая устойчивость внимания и работоспособность в динамике.</p>',
+		"VR_label": "Степень врабатываемости",
+    "PU_label": "Психическая устойчивость",
+    "VR_label_more_1": "Ваш результат больше единицы, что указывает на слабую врабатываемость. Вам требуется дополнительная подготовка перед началом работы.",
+    "VR_label_less_1": "Ваш результат меньше единицы, что указывает на хорошую врабатываемость. Вы быстро понимаете задания и незамедлительно включаетесь в работу.",
+    "PU_label_more_1": "Результат больше единицы указывает на слабую психическую устойчивость. Вам сложно долго концентрироваться на какой-либо деятельности. Помните, что регулярные тренировки концентрации внимания позволят вам улучшить показатели психической устойчивости.",
+    "PU_label_less_1": "Результат меньше единицы говорит о хорошей психической устойчивости. Вы можете долго концентрироваться на конкретной задаче и не отвлекаться на внешние помехи.",
+    "text_task_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет поочередно предложено пять таблиц, на которых в произвольном порядке расположены числа от 1 до 25.</p><p>Ваша задача заключается в том, чтобы нажимать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Важно делать это как можно быстрее и без ошибок. Секундомер фиксирует время выполнения каждой таблицы. Прохождение каждой последующей таблицы начинается через 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p></p>",
 	},
 }
 
@@ -218,14 +226,14 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
   var table;
   var table_width = table_width || "100%";
   var stage = stage;
-  var delay_sec = delay_sec || 3;
+  var delay_sec = delay_sec || 7;
   var wrap = $('<div></div>', {
     "class": "table-wrap",
     "style": "max-width: " + table_width + "px"
   });
   $("#task_text").html(user_labels.text_task_label);
-  $("#task_reset").html(user_labels.reset_btn_label);
-  $("#task_reset").hide();
+  $("#restart_task").html(user_labels.reset_btn_label);
+  $("#restart_task").hide();
   var stopwatch_wrap = document.createElement('div');
 
   var stopwatch = new Stopwatch(stopwatch_wrap, {
@@ -267,29 +275,98 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
     // result_window_wrap.className = "start-window";
     var result_wrap = document.createElement('div');
 
-    var ER = Number(times.reduce((a, b) => a + b, 0)/times.length).toFixed(1);
-    var VR =  Number(times[0]/ER).toFixed(2);
-    var PU = Number(times[3]/ER).toFixed(2);
+    times = times.map(function(v) { return Math.round(v) });
+
+    var ER = Number(times.reduce((a, b) => a + b, 0)/times.length).toFixed(1); // эффективность работы
+    var VR =  Number(times[0]/ER).toFixed(2); // степень вырабатываемости
+    var PU = Number(times[3]/ER).toFixed(2); // психологическая устойчивость
 
     $(result_wrap).append("<h2>" + user_labels.test_results_label + "</h2>");
     $(result_wrap).append('<p>' + user_labels.result_label_1 +  '</p>');
-        times.forEach(function (item, i, arr) {
+
+
+    times.forEach(function (item, i, arr) {
     var result_block = document.createElement('div');
       result_block.innerHTML = user_labels.table_label + " " + (i + 1) + ": " +  "<strong>" + sec2time(item) + "</strong>";
       result_wrap.appendChild(result_block);
     });
-    
+
+    var chartJSContainer_wrap = $("<div/>",{ style: "padding: 10px"});
+    var chartJSContainer = $("<canvas>", {id:"chartJSContainer", width:"600", height:"400"}).appendTo(chartJSContainer_wrap)
+    chartJSContainer_wrap.appendTo(result_wrap);
+
     $(result_wrap).append("<p></p>");
-    // $(result_wrap).append(user_labels.result_label_1);
-    $(result_wrap).append("<p><strong>" + user_labels.result_label_2 + ER + "</strong></p>");
-    $(result_wrap).append("<p><strong>" + user_labels.result_label_3 + VR + "</strong></p>");
-    $(result_wrap).append("<p>" + user_labels.result_label_4  + "</p>");
-    $(result_wrap).append("<p><strong>" + user_labels.result_label_5 + PU + " </strong></p>");
-    $(result_wrap).append("<p>" + user_labels.result_label_6 + "</p>");
+
+    var VR_result_str = "<p><strong>" + user_labels.VR_label + " = " + VR + "</strong>. "
+    
+    if (VR <= 1){
+        VR_result_str += user_labels.VR_label_less_1 + "</p>";
+    }
+    else{
+        VR_result_str += user_labels.VR_label_more_1 + "</p>";
+    }
+    $(result_wrap).append(VR_result_str);
+
+    var PU_result_str = "<p><strong>" + user_labels.PU_label + " = " + PU + "</strong>. " 
+
+    if (PU <= 1){
+        PU_result_str += user_labels.PU_label_less_1 + "</p>";
+    }
+    else{
+        PU_result_str += user_labels.PU_label_more_1 + "</p>";
+    }
+    $(result_wrap).append(PU_result_str);
 
     result_window_wrap.appendChild(result_wrap);
     $(elem).html(result_window_wrap);
-    $("#task_reset").show();
+
+    new Chart(document.getElementById("chartJSContainer"), {
+        type: 'bar',
+        data: {
+            labels: [user_labels.table_label + " 1", user_labels.table_label + " 2", user_labels.table_label + " 3", user_labels.table_label + " 4", user_labels.table_label + " 5"],
+            datasets: [{
+                label: user_labels.time_sec_label,
+
+                backgroundColor: ["#3e95cd", "#3e95cd", "#3e95cd", "#3e95cd", "#3e95cd"],
+                "fill": false,
+                "backgroundColor": ["rgba(255, 99, 132, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 205, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(201, 203, 207, 0.6)"],
+                "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                "borderWidth": 1,
+                data: times
+            }]
+        },
+        options: {
+
+            responsive: true,
+            legend: {
+                display: false,
+            },
+            title: {
+                display: true,
+                text: user_labels.graphic_label,
+                fontSize: 16
+            },
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,
+                        beginAtZero: true,
+                        fontSize: 16
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontSize: 16
+                    }
+                }]
+
+            }
+        }
+
+    });
+    
+    $("#restart_task").show();
   }
 
   function createTable() {
@@ -427,13 +504,14 @@ var user_tables = tables.sort(function () {
 }).slice(0, 5);
 
 var table_width = 550;
-var delay_sec = 7;
+var delay_sec = 2; // default 7
 
-var html_element = document.getElementById("schulte_table");
-var table = new SchulteTable(html_element, user_tables[0], 0, table_width, delay_sec);
-table.start();
+$(document).ready(function () {
+    var html_element = document.getElementById("schulte_table");
+    var table = new SchulteTable(html_element, user_tables[0], 0, table_width, delay_sec);
+    table.start();
 
-$("#task_reset").click(function (e) {
+$("#restart_task").click(function (e) {
 	times = [];
 	user_tables = tables.sort(function () {
 	  return .5 - Math.random()
@@ -442,6 +520,7 @@ $("#task_reset").click(function (e) {
 	table.start();
 })
 
+});
 
 </script>
 
@@ -449,7 +528,7 @@ $("#task_reset").click(function (e) {
 <div>
   <div id="task_text"></div>
   <div id="schulte_table"></div>
-  <button id="task_reset">Restart</button>
+  <button id="restart_task">Restart</button>
 </div>
 
 
@@ -458,18 +537,4 @@ $("#task_reset").click(function (e) {
 
 Inclus_M2 тема 3.4
 
-Степень врабатываемости меньше или равно 1
-  Текст: Ваш результат меньше единицы, что указывает на хорошую врабатываемость. Вы быстро понимаете задания и незамедлительно включаетесь в работу. 
-
-
-Степень врабатываемости больше 1
-  Текст: Ваш результат больше единицы, что указывает на слабую врабатываемость. Вам требуется дополнительная подготовка перед началом работы.
-
-
-Психическая устойчивость меньше или равно 1
-  Текст: Результат меньше единицы говорит о хорошей психической устойчивости. Вы можете долго концентрироваться на конкретной задаче и не отвлекаться на внешние помехи.
-  
-Психическая устойчивость больше 1
-  Текст: Результат больше единицы указывает на слабую психическую устойчивость. Вам сложно долго концентрироваться на какой-либо деятельности. Помните, что регулярные тренировки концентрации внимания позволят вам улучшить показатели психической устойчивости.
-
-  -->
+-->

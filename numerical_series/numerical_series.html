@@ -27,6 +27,7 @@
 
 .check-button-wrap{
 	text-align: center;
+	margin: 20px 0px;
 }
 
 .start-button, .check-button{
@@ -58,17 +59,20 @@
 }
 
 .series, .result-series{
-	background: aliceblue;
-	display: flex;
-	margin: 8px;
-	font-size: 2.5em;
+    display: flex;
+    margin: 8px;
+    font-size: 2.5em;
+    border: 1px solid #c7c7c9;
+    border-radius: 3px;
 }
 	
 .num, .result-num{
     display: flex;
-    margin: 5px;
-    padding: 5px;
+    background: #f5f5f55e;
+    margin: 4px;
+    padding: 4px;
     justify-content: center;
+    min-width: 7%;
     align-items: center;
     word-break: initial;
 }
@@ -83,7 +87,8 @@
 	    
 
 .student-input-num{
-	border-bottom: 4px solid #046b99;
+	    background: #f5f5f5 !important;
+	/*border-bottom: 4px solid #046b99;*/
 }
 
 input.num-input{
@@ -115,6 +120,7 @@ translations = {
 		"check_btn_label": "Check",
 		"restart_btn_label": "Restart",
 		"correct_answers_label": "Number of correct answers",
+		"task_text_label": "",
 		"comment_0_2_label": "You need to pay attention to the development of logical thinking. Do the exercises and remember that the main thing is the regularity of the exercises.",
 		"comment_3_5_label": "The result is within the normal range for an adult. But do not relax and continue to pay attention to the development of logical thinking.",
 		"comment_5_plus_label": "Congratulations! Your results are close to the maximum. Continue to improve your logical thinking performance.",
@@ -125,6 +131,7 @@ translations = {
 		"check_btn_label": "Проверить",
 		"restart_btn_label": "Начать заново",
 		"correct_answers_label": "Правильных ответов",
+		"task_text_label": "<h2>Инструкция:</h2><p>Для начала прохождения тренажера нажмите кнопку «Начать». Вам будут предъявлены 7 числовых рядов. Необходимо найти закономерность построения каждого ряда и вписать недостающие числа. Время выполнения работы – 5 мин.</p><p>Методика оценивает логический аспект мышления.</p>",
 		"comment_0_2_label": "Вам необходимо уделить внимание развитию логического мышления. Выполняйте упражнения и помните, что главное - это регулярность занятий",
 		"comment_3_5_label": "Результат в пределах нормы для взрослого человека. Но не расслабляйтесь и продолжайте уделять внимание развитию логического мышления",
 		"comment_5_plus_label": "Поздравляем! Ваши результаты близки к максимуму. Продолжайте совершенствовать свое показатели логического мышления",
@@ -154,7 +161,7 @@ var series = {
 	},
 	"series_5": {
 		"answer": [13],
-		"task":[7, 16, 9, ";", 5, 21, 16, ";", 9, "input", 4]
+		"task":[7, 16, 9, 5, 21, 16, 9, "input", 4]
 	},
 	"series_6": {
 		"answer": [44, 46],
@@ -271,6 +278,10 @@ function NumericalSeries(element, time) {
 		  					max:"99",
 		  					maxlength: "2"
 		  				}).appendTo($(num_input));
+		  				
+		  				input.on('input',function(e){
+						  console.log($(this).val());
+						});
 		  				series_block.append(num_input)
 	  				}
 	  				else {
@@ -419,6 +430,7 @@ function NumericalSeries(element, time) {
 
 var delay_time= 5 * 60;
 display = document.querySelector('#numerical_series_task');
+$("#task_text").html(user_labels.task_text_label);
 NumericalSeries(display, delay_time);
 
 </script>
@@ -430,26 +442,10 @@ NumericalSeries(display, delay_time);
 
 <!-- 
 
-
-- убрать ";"
 - высыпать таблику правильную
 
 Inclus_M2 тема 3.5.
 
 Методика «Закономерности числового ряда»
-
-
-Инструкция: 
-
-Для начала прохождения тренажера нажмите кнопку «Начать». Вам будут предъявлены 7 числовых рядов. Необходимо найти закономерность построения каждого ряда и вписать недостающие числа. Время выполнения работы – 5 мин.
-
-Методика оценивает логический аспект мышления. 
-
-
-
-
-
-
-
 
 -->
