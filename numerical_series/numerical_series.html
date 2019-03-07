@@ -32,7 +32,7 @@
 
 .start-button, .check-button{
     font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
-    width: 200px;
+    width: 8em;
     /*height: 50px; */
     background: #046b99;
     color: #ffffff;
@@ -60,19 +60,23 @@
 
 .series, .result-series{
     display: flex;
-    margin: 8px;
+    margin: 0.2em;
     font-size: 2.5em;
-    border: 1px solid #c7c7c9;
+    /* border: 1px solid #c7c7c9; */
     border-radius: 3px;
 }
 	
 .num, .result-num{
+display: flex;
     display: flex;
-    background: #f5f5f55e;
-    margin: 4px;
-    padding: 4px;
+    color: black;
+    /* background: #dcdbdb; */
+    margin: 0.1em;
+    padding: 2.0px;
+    border: 1px solid #046b99;
+    border-radius: 2px;
     justify-content: center;
-    min-width: 7%;
+    width: calc(10% - 0.4em);
     align-items: center;
     word-break: initial;
 }
@@ -87,13 +91,13 @@
 	    
 
 .student-input-num{
-	    background: #f5f5f5 !important;
+	    background: #7fc0de !important;
 	/*border-bottom: 4px solid #046b99;*/
 }
 
 input.num-input{
 	text-align: center;
-	width: 3.6rem;
+	width: 100%;
 	font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
 }
 
@@ -104,6 +108,24 @@ input.num-input[type='number'] {
 input.num-input::-webkit-outer-spin-button,
 input.num-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+@media screen and (max-width: 992px) {
+	.series{
+		font-size: 1.5em;
+	}
+	.num{
+		 width: calc(10% - 0.5em);
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.series{
+		font-size: 1em;
+	}
+	.num{
+		 width: calc(10% - 0.6em);
+	}
 }
 
 </style>
@@ -278,7 +300,7 @@ function NumericalSeries(element, time) {
 		  					max:"99",
 		  					maxlength: "2"
 		  				}).appendTo($(num_input));
-		  				
+
 		  				input.on('input',function(e){
 						  console.log($(this).val());
 						});
@@ -327,6 +349,7 @@ function NumericalSeries(element, time) {
 	function createResultBlock(){
 		var grade = 0;
 		var student_answers = {};
+		console.log("student_answers: ", student_answers);
 		Object.keys(series).forEach(function (key) {
 			student_answers[key] = [];
 			$("#"+key + " .student-input-num .num-input", task_wrap).each(function( index ) {
