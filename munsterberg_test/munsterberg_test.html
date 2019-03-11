@@ -1,0 +1,154 @@
+<style type="text/css">
+
+    .task-let {
+        display: inline-block;
+        font-size: 1.2em;
+        background: azure;
+        /* border: 1px solid; */
+        padding: 2px;
+        /* border-bottom: 2px solid; */
+        cursor: pointer;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    .task-let:hover {
+        background: #7fc0de;
+    }
+
+    .selected-letter {
+        /*background: green;*/
+        border-bottom: 2px solid;
+    }
+
+
+</style>
+
+<script type="text/javascript">
+    var src_string = [
+        "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментроч",
+        "ягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицы",
+        "фцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщ",
+        "хэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырпл",
+        "ослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародш",
+        "лджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурс",
+        "йфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлж",
+        "эзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэ",
+        "хьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэ",
+        "нтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
+    ];
+
+    var sybmol_breaks = [54, 106, 157, 208, 259, 308, 359, 409, 460, 508];
+
+    var correct_strings = [
+        "солнце",
+        "район",
+        "новость",
+        "факт",
+        "экзамен",
+        "прокурор",
+        "теория",
+        "хоккей",
+        "телевизор",
+        "память",
+        "восприятие",
+        "любовь",
+        "спектакль",
+        "радость",
+        "народ",
+        "гиена",
+        "репортаж",
+        "конкурс",
+        "личность",
+        "плавание",
+        "комедия",
+        "отчаяние",
+        "лаборатория",
+        "основание",
+        "психиатрия"
+    ];
+
+    var src_array = [];
+    for (var i = 0; i < src_string.length; i++) {
+        src_array.push(
+            {
+                "id": "let_id_" + i.toString(),
+                "char": src_string.charAt(i),
+                "num": i.toString()
+                // "html":
+            }
+        );
+    }
+
+    var letters_task = $("<div>", {
+        id: "letters_task"
+    });
+
+    var selected_first;
+    var current_word = [];
+    var tmp_arr = [];
+    var selected_words = [];
+
+    src_array.forEach(function (let, idx) {
+        var letter_div = $("<div>", {
+            html: let.char,
+            value: let.char,
+            id: let.id,
+            class: "task-let",
+            num: let.num
+        });
+        if (sybmol_breaks.includes(idx)) letters_task.append("</br>");
+        letters_task.append(letter_div);
+
+        letter_div.click(function (event) {
+            // console.log(event.target);
+            if (selected_first) {
+
+                selected_first = undefined;
+                console.log(current_word);
+
+            } else {
+                current_word = [];
+                selected_first = letter_div;
+            }
+        });
+
+        letter_div.mouseover(function (event) {
+            if (selected_first) {
+                var start = parseInt(selected_first.attr('num'));
+                var end = parseInt($(event.target).attr('num'));
+                $(".task-let").removeClass("selected-letter");
+                if (end > start) {
+                    tmp_arr = src_array.slice(start, end + 1);
+                    console.log(tmp_arr);
+                    // var word = "";
+                    current_word = [];
+                    tmp_arr.forEach(function (elem) {
+                        console.log(start, " ", end);
+                        console.log($(elem.id));
+                        current_word.push(
+                            {
+                                "char": elem["char"],
+                                "num": elem["num"]
+                            }
+                        );
+                        $("#" + elem.id).addClass("selected-letter");
+                    });
+
+                }
+
+            }
+        });
+
+    });
+
+
+    $("#munsterberg_test").append(letters_task);
+
+</script>
+
+
+<div id="munsterberg_test">
+
+</div>
