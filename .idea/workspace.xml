@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="munsterberg_test" />
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="143" column="7" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
+            <state relative-caret-position="632">
+              <caret line="146" column="24" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -77,11 +74,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="1065" />
-    <option name="y" value="25" />
-    <option name="width" value="1495" />
-    <option name="height" value="1415" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="748" />
+    <option name="y" value="89" />
+    <option name="width" value="1642" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -102,7 +99,47 @@
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="mind map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="munsterberg_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="numerical_series" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="presentations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="selected_task" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="sum" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="tables_training_apparatus" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="technical_task" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="timeline" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -116,6 +153,7 @@
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -280,18 +318,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1470382492339</updated>
-      <workItem from="1552309598857" duration="5609000" />
+      <workItem from="1552309598857" duration="5796000" />
     </task>
+    <task id="LOCAL-00001" summary="munsterberg_test">
+      <created>1552316318472</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1552316318472</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5609000" />
+    <option name="totallyTimeSpent" value="5796000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1065" y="25" width="1495" height="1415" extended-state="4" />
+    <frame x="748" y="89" width="1642" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16644022" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15132798" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -322,6 +368,10 @@
       <collection />
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="munsterberg_test" />
+    <option name="LAST_COMMIT_MESSAGE" value="munsterberg_test" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/electric-problem">
       <provider selected="true" editor-type-id="text-editor">
@@ -339,8 +389,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="143" column="7" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
+        <state relative-caret-position="632">
+          <caret line="146" column="24" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="24" />
         </state>
       </provider>
     </entry>
