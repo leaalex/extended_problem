@@ -36,7 +36,7 @@
     /*height: 50px; */
     background: #046b99;
     color: #ffffff;
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-weight: normal;
     border: none;
 }
@@ -58,7 +58,7 @@
     font-size: 2em;
 }
 
-.series, .result-series{
+.series, .result-series, .right-series{
     display: flex;
     margin: 0.2em;
     font-size: 2.5em;
@@ -66,8 +66,8 @@
     border-radius: 3px;
 }
 	
-.num, .result-num{
-display: flex;
+.num, .result-num, .right-num{
+	display: flex;
     display: flex;
     color: black;
     /* background: #dcdbdb; */
@@ -79,20 +79,33 @@ display: flex;
     width: calc(10% - 0.4em);
     align-items: center;
     word-break: initial;
+  	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+ 	-khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                              supported by Chrome and Opera */
 }
 
 .result-num.correct-num{
-	background: #0ed30e;
+	/*background: #0ed30e;*/
+	border: 3px solid #009b01;
 }
 
 .result-num.incorrect-num{
-	background: #ff7070;
+	/*background: #ff7070;*/
+	border: 3px solid #cb0711;
 }
 	    
 
 .student-input-num{
 	    background: #7fc0de !important;
 	/*border-bottom: 4px solid #046b99;*/
+}
+
+.right-block{
+	display: none;
 }
 
 input.num-input{
@@ -110,21 +123,39 @@ input.num-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
+
+.highlight-num {
+    background: #6ee1ff;
+}
+
+
 @media screen and (max-width: 992px) {
-	.series{
+	.series, .result-series, .right-series{
 		font-size: 1.5em;
 	}
-	.num{
+	.num, .result-num, .right-num{
 		 width: calc(10% - 0.5em);
+	}
+	.timer-block{
+	    font-size: 1.7em;
+	}
+	.start-button, .check-button{
+		font-size: 1.5em;
 	}
 }
 
 @media screen and (max-width: 600px) {
-	.series{
+	.series, .result-series, .right-series{
 		font-size: 1em;
 	}
-	.num{
+	.num, .result-num, .right-num{
 		 width: calc(10% - 0.6em);
+	}
+	.timer-block{
+	    font-size: 1.2em;
+	}
+	.start-button, .check-button{
+		font-size: 1em;
 	}
 }
 
@@ -140,8 +171,10 @@ translations = {
 	"en": {
 		"start_btn_label": "Start",
 		"check_btn_label": "Check",
+		"show_correct_btn_label": "Show correct answer",
 		"restart_btn_label": "Restart",
 		"correct_answers_label": "Number of correct answers",
+		"correct_label": "Correct answer:",
 		"task_text_label": "",
 		"comment_0_2_label": "You need to pay attention to the development of logical thinking. Do the exercises and remember that the main thing is the regularity of the exercises.",
 		"comment_3_5_label": "The result is within the normal range for an adult. But do not relax and continue to pay attention to the development of logical thinking.",
@@ -151,12 +184,14 @@ translations = {
 	"ru": {
 		"start_btn_label": "Начать",
 		"check_btn_label": "Проверить",
+		"show_correct_btn_label": "Показать правильный ответ",
 		"restart_btn_label": "Начать заново",
 		"correct_answers_label": "Правильных ответов",
+		"correct_label": "Правильный ответ",
 		"task_text_label": "<h2>Инструкция:</h2><p>Для начала прохождения тренажера нажмите кнопку «Начать». Вам будут предъявлены 7 числовых рядов. Необходимо найти закономерность построения каждого ряда и вписать недостающие числа. Время выполнения работы – 5 мин.</p><p>Методика оценивает логический аспект мышления.</p>",
-		"comment_0_2_label": "Вам необходимо уделить внимание развитию логического мышления. Выполняйте упражнения и помните, что главное - это регулярность занятий",
-		"comment_3_5_label": "Результат в пределах нормы для взрослого человека. Но не расслабляйтесь и продолжайте уделять внимание развитию логического мышления",
-		"comment_5_plus_label": "Поздравляем! Ваши результаты близки к максимуму. Продолжайте совершенствовать свое показатели логического мышления",
+		"comment_0_2_label": "Вам необходимо уделить внимание развитию логического мышления. Выполняйте упражнения и помните, что главное - это регулярность занятий.",
+		"comment_3_5_label": "Результат в пределах нормы для взрослого человека. Но не расслабляйтесь и продолжайте уделять внимание развитию логического мышления.",
+		"comment_5_plus_label": "Поздравляем! Ваши результаты близки к максимуму. Продолжайте совершенствовать свое показатели логического мышления.",
 		"test_results_label": "Результаты теста",
 	},
 }
@@ -164,10 +199,11 @@ translations = {
 var user_labels = translations[language];
 
 
+
 var series = {
 	"series_1": {
 		"answer": [12, 9],
-		"task":[24, ,21, 19, 18, 15, 13, "input", "input", 7]
+		"task":[24, 21, 19, 18, 15, 13, "input", "input", 7]
 	},
 	"series_2": {
 		"answer": [25, 36],
@@ -208,6 +244,22 @@ function arraysEqual(a, b) {
   }
   result["correctness"] = result["map"].indexOf(false) == -1
   return result;
+}
+
+
+function validate_input(evt) {
+  var theEvent = evt || window.event;
+  if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+  } else {
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /^-?\d*$/;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
 }
 
 /**
@@ -298,7 +350,8 @@ function NumericalSeries(element, time) {
 		  					class:"num-input", 
 		  					min:"0",
 		  					max:"99",
-		  					maxlength: "2"
+		  					maxlength: "2",
+		  					onkeypress: 'validate_input(event)',
 		  				}).appendTo($(num_input));
 
 		  				input.on('input',function(e){
@@ -352,7 +405,7 @@ function NumericalSeries(element, time) {
 		console.log("student_answers: ", student_answers);
 		Object.keys(series).forEach(function (key) {
 			student_answers[key] = [];
-			$("#"+key + " .student-input-num .num-input", task_wrap).each(function( index ) {
+			$("#" + key + " .student-input-num .num-input", task_wrap).each(function( index ) {
 					student_answers[key].push( Number.isInteger(parseInt($(this).val())) ? parseInt($(this).val()) : "" );
 			});
 		});
@@ -361,6 +414,18 @@ function NumericalSeries(element, time) {
   			class: "result-wrap",
   		});
 
+		var right_block = $('<div></div>',{
+  			class: "right-block",
+  			html: "<h2>" + user_labels.correct_label + "</h2>"
+  		});
+
+		var show_correct_answer_button = $("<button/>", {
+			html: user_labels.show_correct_btn_label
+		});
+		show_correct_answer_button.click(function() {
+			right_block.slideToggle(500);
+		});
+
   		result_wrap.append("<h2>" + user_labels.test_results_label + "</h2>");
 
 		Object.keys(series).forEach(function (key) {
@@ -368,67 +433,74 @@ function NumericalSeries(element, time) {
   				class: "result-series",
   				id: "result_" + key,
   			});
+  			var right_series_block = $('<div></div>',{
+  				class: "right-series",
+  				id: "right_" + key,
+  			});
   			var check_res = arraysEqual(series[key]["answer"], student_answers[key]);
   			grade += check_res["correctness"] ? 1 : 0;
-  			console.log(check_res);
-  				var temp_i = 0;
-		      	series[key]["task"].forEach(function (item, i, arr) {
-
-  				if (Number.isInteger(item)){
+			var temp_i = 0;
+	      	series[key]["task"].forEach(function (item, i, arr) {
+				if (Number.isInteger(item)){
 	  				var result_num = $('<div></div>',{
 	  					class: "result-num",
 	  					html: item.toString()
 	  				});
-	  				result_series_block.append(result_num)
-	  			}
-	  			else{
-	  				if (item == "input"){
-	  					// console.log()
-	  					var result_num = $('<div></div>',{
+	  				result_series_block.append(result_num);
+
+	  				var right_num = $('<div></div>',{
+	  					class: "right-num",
+	  					html: item.toString()
+	  				});
+	  				right_series_block.append(right_num);
+
+				}
+				else{
+					if (item == "input"){
+						var result_num = $('<div></div>', {
 		  					class: "result-num",
-		  					// html: 
-		  				});
-
-	  					if (student_answers[key][temp_i] !== ""){
-	  						result_num.html(student_answers[key][temp_i].toString())
-	  					}
-	  					else{
-	  						result_num.html("__")
-	  					}
-
-
-		  				// console.log(i);
-	  					if (check_res["map"][temp_i]){
-	  						result_num.addClass("correct-num");
-	  					}
-	  					else{
-	  						result_num.addClass("incorrect-num");
-	  					}
-
-		  				result_series_block.append(result_num)
-
-		  				result_series_block.append(result_num)
-		  				temp_i += 1
-	  				}
-	  				else {
-						var result_num = $('<div></div>',{
-	  						class: "result-num",
-	  						html: item.toString()
 	  					});
-	  					result_series_block.append(result_num)
-	  				}
-	  			}
-			
-			});
+						if (student_answers[key][temp_i] !== ""){
+							result_num.html(student_answers[key][temp_i].toString())
+						}
+						if (check_res["map"][temp_i]){
+							result_num.addClass("correct-num");
+						}
+						else{
+							result_num.addClass("incorrect-num");
+						}
+		  				result_series_block.append(result_num);
 
-		      	result_wrap.append(result_series_block)
+
+
+		  				var right_num = $('<div></div>',{
+		  					class: "right-num highlight-num",
+		  					html: series[key].answer[temp_i].toString()
+		  				});
+		  				right_series_block.append(right_num);
+		  				// result_series_block.append(result_num);
+
+
+		  				temp_i += 1;
+					}
+					else {
+						var result_num = $('<div></div>',{
+							class: "result-num",
+							html: item.toString()
+						});
+						result_series_block.append(result_num);
+					}
+				}
+			});
+			result_wrap.append(result_series_block);
+			right_block.append(right_series_block);
 		});
 
 
 		var result_comment = $("<div/>", {
 			class: "result-comment",
 		});
-		result_comment.append("<p>" + user_labels.correct_answers_label +": " + grade.toString() + "</p>");
+		result_comment.append("<p style='font-weight:bold;'>" + user_labels.correct_answers_label +": " + grade.toString() + "</p>");
 		if (grade <= 2){
 			result_comment.append("<p>" + user_labels.comment_0_2_label + "</p>");
 		}
@@ -443,8 +515,13 @@ function NumericalSeries(element, time) {
 		}
 
 		result_wrap.append(result_comment);
+		
+		
+		result_wrap.append($("<p>", {html: restart_button }));
 
-		result_wrap.append(restart_button);
+		result_wrap.append($("<p>", {html: show_correct_answer_button }));
+
+		result_wrap.append(right_block);
 
 		$(element).html(result_wrap);
 	}

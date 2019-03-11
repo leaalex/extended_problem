@@ -80,6 +80,11 @@
 	width: 100%;
 }
 
+/*@media screen and (max-width: 992px) {
+}*/
+
+
+
 #restart_task{
 	display: none;
 }
@@ -137,12 +142,26 @@
     background: #bcffbc;
 }
 
+@media screen and (max-width: 500px) {
+    .user-num-input{
+      font-size: 2em;
+    }
+    .num-table-item{
+      font-size: 2em;
+    }
+
+    .check-button{
+      width: 160px;
+      font-size: 1.5em;
+    }
+}
+
 </style>
 
 <script type="text/javascript">
 
-//двухбуквенный код
-var language = "en";
+//двухбуквенный код языка
+var language = "ru";
 
 
 var translations = new Object();
@@ -286,7 +305,7 @@ function TwelveNumbers(element, time) {
 
   	var user_input = $('<textarea/>',{
   	  		type: "text",
-  	  		rows: "2",
+  	  		rows: "3",
   			class: "user-num-input",
   	});
 	

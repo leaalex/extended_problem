@@ -51,12 +51,12 @@
 
 .table-wrap{
     /*width: 600px;*/
-    padding: 50px;
+    /*padding: 50px;*/
     margin: 0 auto;
 }
 
 .start-window{
-  height: 680px;
+  height: 500px;
   /*background: #f6f6f6;*/
       border: 6px double #046b99;
   display: flex;
@@ -107,6 +107,29 @@
 #restart_task{
 	display: none;
 }
+
+
+@media screen and (max-width: 600px) {
+    .flex-item{
+      font-size: 2.5em;
+    }
+    .timer-block{
+      font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .flex-item{
+      font-size: 2em;
+    }
+    .timer-block{
+      font-size: 1em;
+    }
+    .delay-label{
+      font-size: 1.5em;
+    }
+}
+
 
 </style>
 
@@ -413,7 +436,7 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
     });
     $(wrap).append(table_container);
     $(elem).html(wrap);
-    $(elem).append('<p style="font-size: 1.4em;text-align: right;">' + user_labels.table_label + " " + (stage + 1) + '/5</p>');
+    $(elem).append('<p style="text-align: right;">' + user_labels.table_label + " " + (stage + 1) + '/5</p>');
     stopwatch.start();
   }
 
@@ -504,7 +527,7 @@ var user_tables = tables.sort(function () {
 }).slice(0, 5);
 
 var table_width = 550;
-var delay_sec = 2; // default 7
+var delay_sec = 7; // default 7
 
 $(document).ready(function () {
     var html_element = document.getElementById("schulte_table");
