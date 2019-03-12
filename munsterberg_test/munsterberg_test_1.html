@@ -1,0 +1,291 @@
+<style type="text/css">
+
+    .task-let {
+        display: inline-block;
+        font-size: 1.4em;
+        background: azure;
+        letter-spacing: 0.2em;
+        /* border: 1px solid; */
+        /* margin: 2px; */
+        /* border-bottom: 2px solid; */
+        cursor: pointer;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    .word-candidate{
+        background: #f0fbff;
+        /*border-bottom: 2px solid;*/
+        text-decoration: underline;
+    }
+
+    .first-selected{
+        font-weight: bold;
+    }
+
+
+
+    .task-let.word-hovered {
+        background: #7fc0de;
+    }
+
+    .remove-candidate{
+        background: red;
+        text-decoration: initial;
+    }
+
+    .word-finded {
+        /*visibility: hidden;*/
+        text-decoration:line-through;
+        /*text-decoration: underline;*/
+    }
+
+
+
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script type="text/javascript">
+
+    const id_prefix = "let_num_";
+
+    function range(start, end) {
+        if (start > end) {
+            end = [start, start = end][0];
+        }
+        return Array(end - start + 1).fill().map((_, idx) => start + idx);
+    }
+
+    var selected_words = [];
+
+    $(document).ready(function () {
+
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 27) {
+                clear_candidate()
+            }
+        });
+
+        function clear_candidate(){
+            first_selected = undefined;
+            $(".task-let").removeClass("word-candidate");
+            hovered_array = [];
+        }
+
+        function add_class(arr, class_str){
+            arr.forEach(function(item){
+                $("#"+id_prefix+item).addClass(class_str);
+            })
+        }
+
+        function remove_class(arr, class_str){
+            arr.forEach(function(item){
+
+                console.log("eke: ", $("#"+id_prefix+item));
+                $("#"+id_prefix+item).removeClass(class_str);
+            })
+        }
+
+        function num_arr_to_word(arr) {
+            var word = "";
+            // console.log(arr);
+            arr.forEach(function (num) {
+                // console.log();
+                word += $("#" + id_prefix + num.toString()).data('char');
+            });
+            return word;
+        }
+
+        var src_strings = ["бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментроч", "ягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицы", "фцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщ", "хэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырпл", "ослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародш", "лджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурс", "йфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлж", "эзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэ", "хьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэ", "нтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"];
+
+        var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
+
+        var num = 0;
+        var first_selected;
+        var hovered_array = [];
+        var finded_words = [];
+
+        var letters_task = $("<div>", {
+            id: "letters_task"
+        });
+
+        var task_progress = $("<div>", {
+            id: "task_progress",
+            style: "font-weight: bold",
+            html: "<p>Найдено слов: " + selected_words.length + "</p>"
+        });
+
+
+
+        src_strings.forEach(function (src_string, idx) {
+            var line = $("<div>", {
+                class: "line-wrap"
+            });
+
+            for (var i = 0; i < src_string.length; i++) {
+                var letter_div = $("<div>", {
+                    html: src_string.charAt(i),
+                    class: "task-let",
+                    "data-num": num.toString(),
+                    "data-char": src_string.charAt(i),
+                    id: id_prefix + num.toString()
+                });
+                // console.log(num);
+                line.append(letter_div);
+                num += 1;
+                letter_div.click(function (event) {
+                    console.log("Letter div click: ", event.target.dataset.num);
+                    console.log("First selected: ", first_selected);
+
+                    if (first_selected){
+                        var word = "";
+                        $(".word-candidate").each(function(index, element){
+                            word += element.dataset.char;
+                            // console.log(element);
+                        });
+
+                        // if(hovered_array.length < 3) {
+                        //     clear_candidate();
+                        //     return false;
+                        // }
+                        console.log("LOOOOOOOOOOOOOOOOl");
+
+                        hovered_array.forEach(function(num){
+                            $("#" + id_prefix + num.toString()).addClass("word-finded");
+                        });
+
+                        $(".task-let").removeClass("word-candidate");
+                        selected_words.push(hovered_array);
+
+                        console.log("removew");
+
+                        remove_class([first_selected], "first-selected");
+                        task_progress.html("<p>Найдено слов: " + selected_words.length + "</p>");
+
+                        first_selected = undefined;
+                    }
+                    else{
+
+                        // if ($(event.target).hasClass("word-finded")){
+                        //
+                        //     var num = parseInt(event.target.dataset.num);
+                        //     var del_index = 9999;
+                        //     var class_list = [];
+                        //
+                        //     selected_words.forEach(function(word, word_index){ word.forEach(function(w){ if(w == num){ del_index = word_index }  }) })
+                        //     // console.log("class_list: ", class_list);
+                        //     remove_class(selected_words[del_index], "word-finded remove-candidate");
+                        //     // console.log("index: ", index-1);
+                        //     selected_words.splice(del_index, 1);
+                        //
+                        //
+                        //     // selected_words.forEach(function(word, index){
+                        //     //     if( word.filter(function(w){ return parseInt(w)==parseInt(num) }).length > 0  ) {
+                        //     //         remove_class(selected_words[index], "word-finded");
+                        //     //         selected_words = selected_words.splice(index, 1);
+                        //     //     }
+                        //     // });
+                        //     task_progress.html("<p>Найдено слов: " + selected_words.length + "</p>");
+                        // }
+                        // else{
+
+                            first_selected = event.target.dataset.num;
+                        console.log("readdddmovew");
+
+                        add_class([first_selected], "first-selected")
+
+                        // }
+
+                    }
+// }
+                });
+
+                letter_div.mouseover(function (event) {
+                    // if ($(event.target).hasClass("word-finded")){
+                    //     var num = parseInt($(event.target).data('num'));
+                    //     // console.log(num);
+                    //     selected_words.forEach(function(word, index){
+                    //         if( word.filter(function(w){ return parseInt(w)==parseInt(num) }).length > 0  ) {
+                    //             // console.log(selected_words[index])
+                    //             selected_words[index].forEach(function (item) {
+                    //                 $("#" + id_prefix + parseInt(item)).addClass("remove-candidate");
+                    //             })
+                    //         }
+                    //     });
+                    //
+                    //     // return false
+                    // }else {
+                        $(".task-let").removeClass("word-candidate");
+
+
+                        if (first_selected) {
+                            // var num =
+                            var last_hovered = parseInt(event.target.dataset.num);
+
+                            hovered_array = range(parseInt(first_selected), last_hovered);
+                            console.log(first_selected, last_hovered);
+                            hovered_array.forEach(function (num) {
+                                $("#" + id_prefix + num.toString()).addClass("word-candidate");
+                            })
+                        } else {
+                            $(event.target).addClass("word-hovered");
+                        }
+                    // }
+                });
+
+                letter_div.mouseleave(function (event) {
+                    // if ($(event.target).hasClass("word-finded")) {
+                    //     $(".task-let").removeClass("remove-candidate");
+                    // }
+                    // else {
+                        $(event.target).removeClass("word-hovered");
+                    // }
+                });
+
+
+            }
+            letters_task.append(line);
+
+        });
+
+
+
+
+        // sybmol_breaks.forEach(function (last_num, idx) {
+        //
+        //     var first_num = idx == 0 ? 0 : sybmol_breaks[idx - 1];
+        //     var current_str = src_string.slice(first_num, last_num);
+        //     // console.log(current_str);
+        //
+        //     var line = $("<div>", {
+        //         class: "line-wrap"
+        //     });
+        //
+        //     for (var i = 0; i < current_str.length; i++) {
+        //         var letter_div = $("<div>", {
+        //             html: current_str.charAt(i),
+        //             class: "task-let",
+        //             num: (first_num + i).toString(),
+        //         });
+        //         // console.log();
+        //         line.append(letter_div);
+        //
+        //
+        //     }
+        //
+        //     letters_task.append(line);
+        //
+        // });
+
+        $("#munsterberg_test").append(letters_task);
+        $("#munsterberg_test").append(task_progress);
+
+    });
+</script>
+
+
+<div id="munsterberg_test">
+
+</div>
