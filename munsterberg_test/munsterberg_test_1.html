@@ -14,6 +14,10 @@
         user-select: none;
     }
 
+    .line-wrap{
+
+    }
+
     .word-candidate{
         background: #f0fbff;
         /*border-bottom: 2px solid;*/
@@ -45,7 +49,7 @@
 
 </style>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
 
 <script type="text/javascript">
 
@@ -82,11 +86,13 @@
 
         function remove_class(arr, class_str){
             arr.forEach(function(item){
-
                 console.log("eke: ", $("#"+id_prefix+item));
                 $("#"+id_prefix+item).removeClass(class_str);
             })
         }
+
+
+
 
         function num_arr_to_word(arr) {
             var word = "";
@@ -150,8 +156,6 @@
                         //     clear_candidate();
                         //     return false;
                         // }
-                        console.log("LOOOOOOOOOOOOOOOOl");
-
                         hovered_array.forEach(function(num){
                             $("#" + id_prefix + num.toString()).addClass("word-finded");
                         });

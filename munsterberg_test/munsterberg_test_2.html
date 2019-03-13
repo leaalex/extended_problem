@@ -1,0 +1,186 @@
+<style type="text/css">
+
+    .task-let {
+        display: inline-block;
+        font-size: 1.4em;
+        background: azure;
+        letter-spacing: 0.2em;
+        /* border: 1px solid; */
+        /* margin: 2px; */
+        /* border-bottom: 2px solid; */
+        cursor: pointer;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    .line-wrap{
+
+    }
+
+    #letters_task {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: stretch;
+    }
+
+</style>
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+
+<script type="text/javascript">
+    function range(start, end) {
+        if (start > end) {
+            end = [start, start = end][0];
+        }
+        return Array(end - start + 1).fill().map((_, idx) => start + idx);
+    }
+    const id_prefix = "let_num_";
+
+    $(document).ready(function () {
+
+        // $(document).on('keyup',function(evt) {
+        //     if (evt.keyCode == 27) {
+        //         clear_candidate()
+        //     }
+        // });
+
+        var letters_task = $("<div>", {
+            id: "letters_task"
+        });
+
+
+        var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
+
+        // var correct_strings = ["слово", "лолка"];
+
+
+        var src_str = "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
+        // var src_str = "ьгсловочяфактуекэлолка";
+
+        var str_arr = [];
+        var block_start = 0;
+        var msg = "";
+        var lol_num = 4;
+        correct_strings.forEach(function (word, idx) {
+            var msg = "";
+            var word_start_position = src_str.indexOf(word);
+            if(word_start_position != -1){
+                var word_end_position = word_start_position + word.length;
+                var start_next_position = src_str.indexOf(correct_strings[idx+1]);
+
+                if((idx+1)==correct_strings.length) {
+                    block_end = src_str.length;
+                    start_next_position = src_str.length;
+                }
+
+                var dist = start_next_position-word_end_position;
+
+                if (dist/lol_num > 1){
+                    var parts = Math.floor(dist/lol_num);
+                    console.log(range(1, parts));
+                    var ost = dist - lol_num*parts;
+                    var plus_after = Math.ceil(ost/2);
+                    var minus_before = ost-plus_after;
+                    //
+                    msg = "word_start_position: " + word_start_position.toString() + " " +"word_end_position: " + word_end_position.toString() + " " + "parts: " + parts.toString() + " dist: " + dist.toString() + " ost:" + ost.toString()+ " plus_after: " + plus_after.toString() + " " + "minus_before: " + minus_before.toString();
+                    //
+                    var block_end = word_end_position + plus_after;
+                    //
+                    var text_block = src_str.slice(block_start, block_end);
+                    str_arr.push(text_block);
+                    block_start = block_end;
+
+                    range(1, parts).forEach(function (part) {
+                        block_end = block_start + lol_num;
+                        var text_block = src_str.slice(block_start, block_end);
+                        str_arr.push(text_block);
+
+                        block_start = block_end;
+                    });
+
+                    console.log("idx: ", idx, "positions: ",block_start, block_end,dist, text_block, msg);// src_str.slice(start_position, word_end) );
+
+                    block_start = block_end
+
+                }
+                else{
+                    var block_end = word_end_position + Math.floor((start_next_position-word_end_position)/2);
+                    var text_block = src_str.slice(block_start, block_end);
+                    str_arr.push(text_block);
+
+                    console.log("idx: ", idx, "positions: ",block_start, block_end,dist, text_block, msg);// src_str.slice(start_position, word_end) );
+
+                    block_start = block_end
+                }
+
+
+            }
+            else{
+                console.log("!!!")
+            }
+        });
+        console.log(str_arr);
+        console.log(Math.max(...(str_arr.map(el => el.length))))
+        // var lll = "";
+        // str_arr.forEach(function (value) { lll += value });
+        // console.log(lll)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var src_strings = ["бсолнцевтргщ","оцрайонзгучновостьх", "эьгчяфактуекэкзаментроч", "ягшгцкпрокуроргу","рстабюетеорияентсд","жэбьамхоккейтрсицы", "фцуйгзхтелевизорсолд","жщзхюэлгщьбапамять","шогхеюжпждргщ", "хэнздвосприятиейцукенгшщзх","ъвафыапролдблюбовьавфырпл", "ослдспектакльячсмить","бюжюерадостьвуфцп","эждлорпкнародш", "лджьхэшщгиенакуы","фйшрепортажэждорлаф","ывюефбьконкурс", "йфячыцувскапрличность","зхжэьеюдшщглоджэп","рплаваниедтлж", "эзбьтрдщшжнпркывкомедияшлдкц","уйфотчаяниейфоячвтлджэ", "хьфтасенлабораториягщд","щнруцтргшщт","лроснованиезщдэркэ", "нтаопрукгвс","мтрпсихиатриябплмстчьйсм","тзацэъагнтэхт"];
+
+
+
+        str_arr.forEach(function (src_string, idx) {
+            var line = $("<div>", {
+                class: "line-wrap"
+            });
+
+            // console.log("idx: ", idx);
+
+            for (var i = 0; i < src_string.length; i++) {
+                var letter_div = $("<div>", {
+                    html: src_string.charAt(i),
+                    class: "task-let",
+                    "data-num": (1).toString(),
+                    "data-char": src_string.charAt(i),
+                    id: id_prefix + (1).toString()
+                });
+
+                // console.log("i: ", i);
+
+                line.append(letter_div);
+
+                letter_div.click(function (event) {
+                    console.log("Letter div click: ", event.target.dataset.num);
+                })
+
+
+            }
+            letters_task.append(line);
+
+        });
+
+
+        $("#munsterberg_test").append(letters_task);
+
+
+    });
+</script>
+
+
+<div id="munsterberg_test">
+
+</div>
