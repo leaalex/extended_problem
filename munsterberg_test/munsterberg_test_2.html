@@ -26,7 +26,7 @@
 
 </style>
 
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 <script type="text/javascript">
     function range(start, end) {
@@ -78,15 +78,14 @@
 
                 if (dist/lol_num > 1){
                     var parts = Math.floor(dist/lol_num);
-                    console.log(range(1, parts));
                     var ost = dist - lol_num*parts;
                     var plus_after = Math.ceil(ost/2);
                     var minus_before = ost-plus_after;
-                    //
+
                     msg = "word_start_position: " + word_start_position.toString() + " " +"word_end_position: " + word_end_position.toString() + " " + "parts: " + parts.toString() + " dist: " + dist.toString() + " ost:" + ost.toString()+ " plus_after: " + plus_after.toString() + " " + "minus_before: " + minus_before.toString();
-                    //
+
                     var block_end = word_end_position + plus_after;
-                    //
+
                     var text_block = src_str.slice(block_start, block_end);
                     str_arr.push(text_block);
                     block_start = block_end;

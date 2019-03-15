@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="munsterberg_test">
-      <change afterPath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,33 +42,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-              <folding>
-                <element signature="e#1553#1577#0" />
-                <element signature="e#1507#1531#0" />
-                <element signature="e#1175#1266#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+            <state relative-caret-position="-828">
+              <caret line="71" selection-start-line="71" selection-end-line="74" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
+        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="123" column="78" selection-start-line="123" selection-start-column="78" selection-end-line="123" selection-end-column="78" />
+            <state relative-caret-position="414">
+              <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="e#2293#3793#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,11 +90,17 @@
       <find>let_num_</find>
       <find>remove_class</find>
       <find>splice</find>
-      <find>console.log(</find>
       <find>finded_words</find>
       <find>курс</find>
-      <find>word-candidate</find>
       <find>теория</find>
+      <find>console.log(&quot;idx: &quot;, idx);</find>
+      <find>word-candidate</find>
+      <find>block_end</find>
+      <find>final_arr</find>
+      <find>console.log(</find>
+      <find>remove-candidate</find>
+      <find>first-letter-hover</find>
+      <find>searchInSelectedWords</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -110,16 +115,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test.html" />
-        <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html" />
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html" />
+        <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html" />
+        <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="195" />
-    <option name="y" value="164" />
+    <option name="x" value="184" />
+    <option name="y" value="111" />
     <option name="width" value="2307" />
-    <option name="height" value="1147" />
+    <option name="height" value="927" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -364,7 +370,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1470382492339</updated>
-      <workItem from="1552309598857" duration="44066000" />
+      <workItem from="1552309598857" duration="66739000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -377,10 +383,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44066000" />
+    <option name="totallyTimeSpent" value="66739000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="195" y="164" width="2307" height="1147" extended-state="0" />
+    <frame x="184" y="111" width="2307" height="927" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10726795" />
@@ -453,29 +459,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-828">
+          <caret line="71" selection-start-line="71" selection-end-line="74" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
+        <state relative-caret-position="309">
           <caret line="123" column="78" selection-start-line="123" selection-start-column="78" selection-end-line="123" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="e#1553#1577#0" />
-            <element signature="e#1507#1531#0" />
-            <element signature="e#1175#1266#0" />
-          </folding>
+        <state relative-caret-position="414">
+          <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html">
+    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+        <state relative-caret-position="345">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="e#2293#3793#0" />
+          </folding>
         </state>
       </provider>
     </entry>

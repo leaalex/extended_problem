@@ -1,0 +1,287 @@
+<style type="text/css">
+
+    .task-let {
+        display: inline-block;
+        font-size: 1.6em;
+        /*background: azure;*/
+        letter-spacing: 0.2em;
+        cursor: pointer;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    .line-wrap{
+
+    }
+
+    #letters_task {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: stretch;
+    }
+
+
+    /*.task-let:hover, */
+    .first-letter-hover{
+        /*background: #6ee1ff;*/
+        /*font-weight: bold;*/
+        text-shadow:0px 0px 1px black;
+    }
+
+    .first-letter-selected{
+        /*font-weight: bold;*/
+        text-shadow:0px 0px 1px black;
+        /*background: lightgreen;*/
+    }
+
+    .word-selected{
+        text-decoration: line-through;
+        /*font-weight: bold;*/
+        text-shadow:0px 0px 1px black;
+        /*background: #eeeed2;*/
+    }
+    .word-candidate{
+        /*background: #e6e6e6;*/
+        /*text-decoration: underline;*/
+        /*font-weight: bold;*/
+        text-shadow:0px 0px 1px black;
+    }
+
+
+    .remove-candidate{
+        background: #FF0000;
+    }
+
+
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script type="text/javascript">
+    function range(start, end) {
+        if (start > end) {
+            end = [start, start = end][0];
+        }
+        return Array(end - start + 1).fill().map((_, idx) => start + idx);
+    }
+
+    const id_prefix = "let_num_";
+    var selected_words = [];
+    var first_selected;
+
+    $(document).ready(function () {
+
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 27) {
+                clearSelect();
+            }
+        });
+
+        function clearSelect() {
+            first_selected = undefined;
+            $(".task-let").removeClass("first-letter-hover");
+            $(".task-let").removeClass("first-letter-selected");
+            $(".task-let").removeClass("word-candidate");
+        }
+
+        function addClass(arr, class_str){
+            arr.forEach(function(item){
+                $("#"+id_prefix+item).addClass(class_str);
+            })
+        }
+
+        function removeClass(arr, class_str){
+            arr.forEach(function(item){
+                $("#"+id_prefix+item).removeClass(class_str);
+            })
+        }
+
+
+        var letters_task = $("<div>", {
+            id: "letters_task"
+        });
+
+
+
+        var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
+        var src_str = "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
+
+        function searchInSelectedWords(element){
+            return element.includes(parseInt(this));
+        }
+
+        var num = 0;
+
+        var str_arr = [];
+        var word_start_position = 0;
+        var text_block = "";
+        correct_strings.forEach(function (word, idx) {
+            var word_end_position = src_str.indexOf(word);
+            if(word_end_position != -1){
+                if (idx == 0){
+                    text_block = src_str.slice(word_start_position, word_end_position);
+                    text_block.split('').forEach(letter => str_arr.push(letter));
+                    // [...text_block].forEach(c => );
+                }
+                word_start_position = word_end_position;
+                word_end_position = word_start_position+word.length;
+                text_block = src_str.slice(word_start_position, word_end_position);
+                str_arr.push(text_block);
+                word_start_position = word_end_position;
+                word_end_position = (idx+1)==correct_strings.length ? src_str.length : src_str.indexOf(correct_strings[idx+1]);
+                text_block = src_str.slice(word_start_position, word_end_position);
+                text_block.split('').forEach(letter => str_arr.push(letter));
+                word_start_position = word_end_position;
+            }
+            else{
+                console.log("Correct word is not defined.")
+            }
+        });
+
+        console.log(str_arr);
+
+        // var kek = 0;
+        // final_arr.forEach(lol => kek += lol.length)
+        // console.log(kek);
+
+        str_arr.forEach(function (src_string, idx) {
+            var line = $("<div>", {
+                class: "line-wrap"
+            });
+            // console.log(src_string);
+
+            src_string.split('').forEach(function (letter_elem) {
+                var letter = {
+                    html: $("<div>", {
+                        html: letter_elem,
+                        class: "task-let",
+                        "data-num": (num).toString(),
+                        "data-char": letter_elem,
+                        id: id_prefix + (num).toString()
+                    }),
+                    num: num,
+                    char: letter_elem
+                };
+
+                num += 1;
+
+                line.append(letter.html);
+
+                letter.html.click(function (event) {
+                    letter.html.removeClass("first-letter-hover");
+                    console.log("Letter div click: ", letter);
+                    if(first_selected){
+                        if (range(first_selected.num, letter.num).length < 3){
+                            clearSelect();
+                            return false;
+                        }
+                        if (letter.html.hasClass("word-selected")){
+                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
+                            var end = first_selected.num < letter.num ? selected_words[ind][selected_words[ind].length-1] : selected_words[ind][0];
+                            selected_words[ind] = range(first_selected.num, end);
+                            range(first_selected.num, end).forEach(number => $("#" + id_prefix + number).addClass("word-selected"));
+                            $(".task-let").removeClass("word-candidate")
+                        }
+                        else{
+
+                            var new_word = [];
+                            range(first_selected.num, letter.num).forEach(function(number) {
+                                $("#" + id_prefix + number).addClass("word-selected").removeClass("word-candidate");
+                                new_word.push(number);
+                            });
+                            // console.log(new_word);
+                            selected_words.push(new_word);
+                        }
+
+                        first_selected.html.removeClass("first-letter-selected");
+                        first_selected = undefined;
+                    }
+                    else{
+                        if (letter.html.hasClass("word-selected")){
+                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
+                            removeClass(selected_words[ind], "remove-candidate word-selected");
+                            selected_words.splice(ind,1);
+                        }
+                        else{
+                            first_selected = letter;
+                            first_selected.html.addClass("first-letter-selected");
+                        }
+                    }
+
+
+
+
+                });
+
+                letter.html.mouseover(function (event) {
+                // console.log("Letter div mouseover: ", letter);
+                    $(".task-let").removeClass("remove-candidate");
+                    if(first_selected){
+                        // return;
+                        $(".task-let").removeClass("word-candidate");
+
+                        if (letter.html.hasClass("word-selected")){
+                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
+                            var end = first_selected.num < letter.num ? selected_words[ind][selected_words[ind].length-1] : selected_words[ind][0];
+                            range(first_selected.num, end).forEach(number => $("#" + id_prefix + number).addClass("word-candidate"));
+                        }
+                        else{
+                            range(first_selected.num, letter.num).forEach(number => $("#" + id_prefix + number).addClass("word-candidate"));
+                        }
+                    }
+                    else{
+
+                        if (letter.html.hasClass("word-selected")){
+                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
+                            addClass(selected_words[ind], "remove-candidate");
+                            // console.log();
+                        }
+                        else{
+                            letter.html.addClass("first-letter-hover");
+                        }
+
+
+
+                        // return;
+                    }
+                });
+                //
+                letter.html.mouseleave(function (event) {
+                //     // console.log("Letter div mouseleave: ", letter);
+                    $(".task-let").removeClass("remove-candidate");
+                    $(".task-let").removeClass("first-letter-hover");
+                //     if(first_selected){
+                //         return;
+                //     }
+                //     else{
+                //         return;
+                //
+                //     }
+                });
+            });
+
+            letters_task.append(line);
+
+        });
+
+
+        $("#munsterberg_test").append(letters_task);
+
+
+    });
+
+
+    // var search_num = 1;
+    // var test_arr = [[0, 1, 2, 3, 4, 5, 6], [9, 10, 11, 12, 13], [18, 19, 20, 21, 22, 23, 24], [28, 29, 30, 31, 32, 33, 34, 35]]
+    // var found_index = test_arr.findIndex(, search_num)
+
+
+    // $(".line-wrap").each( function() { if($(this).children().length > 1){$(this).css("border", "2px solid green") }} )
+
+</script>
+
+
+<div id="munsterberg_test">
+
+</div>
