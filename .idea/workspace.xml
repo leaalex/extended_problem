@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="munsterberg_test">
+      <change afterPath="$PROJECT_DIR$/semantic_memory/semantic_memory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
@@ -20,80 +22,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/electric-problem">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/electric_problem.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1065">
-              <caret line="71" selection-start-line="71" selection-end-line="74" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2370">
-              <caret line="158" selection-start-line="158" selection-end-line="158" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="140" column="59" selection-start-line="140" selection-start-column="59" selection-end-line="140" selection-end-column="59" />
+            <state relative-caret-position="498">
+              <caret line="191" column="41" lean-forward="true" selection-start-line="191" selection-start-column="41" selection-end-line="191" selection-end-column="41" />
               <folding>
-                <element signature="e#5695#9770#0" />
+                <element signature="e#1302#1464#0" />
+                <element signature="e#1636#1729#0" />
+                <element signature="e#1764#2000#0" />
+                <element signature="e#2043#2168#0" />
+                <element signature="e#2214#2342#0" />
+                <element signature="e#2383#2425#0" />
+                <element signature="e#2516#2555#0" />
+                <element signature="e#4541#4588#0" />
+                <element signature="e#3576#3617#0" />
+                <element signature="e#3326#3390#0" />
+                <element signature="e#3663#3687#0" />
+                <element signature="e#4779#5194#0" />
+                <element signature="e#5253#6630#0" />
+                <element signature="e#6840#6890#0" />
+                <element signature="e#6989#7386#0" />
+                <element signature="e#6972#9483#0" />
                 <element signature="e#7974#9498#0" />
                 <element signature="e#9576#10018#0" />
+                <element signature="e#12380#15414#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="351" column="25" lean-forward="true" selection-start-line="351" selection-start-column="25" selection-end-line="351" selection-end-column="25" />
+              <folding>
+                <element signature="e#72#3347#0" />
+                <element signature="e#3372#3388#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="524" column="19" lean-forward="true" selection-start-line="524" selection-start-column="18" selection-end-line="526" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>гшщтлроснованиезщдэркэ</find>
-      <find>selected-letter</find>
-      <find>console.log</find>
-      <find>word-hovered</find>
-      <find>hovered_array</find>
-      <find>let_num_</find>
-      <find>remove_class</find>
-      <find>splice</find>
-      <find>finded_words</find>
-      <find>курс</find>
-      <find>теория</find>
-      <find>console.log(&quot;idx: &quot;, idx);</find>
-      <find>word-candidate</find>
       <find>block_end</find>
       <find>final_arr</find>
       <find>console.log(</find>
       <find>remove-candidate</find>
       <find>first-letter-hover</find>
       <find>searchInSelectedWords</find>
-      <find>absorbed</find>
       <find>push</find>
       <find>selected_words.push</find>
       <find>displaySelectedWords</find>
@@ -104,6 +101,20 @@
       <find>num</find>
       <find>num</find>
       <find>num</find>
+      <find>src_str</find>
+      <find>str_arr</find>
+      <find>absorbed</find>
+      <find>translations</find>
+      <find>correct_count_label</find>
+      <find>check_btn_label</find>
+      <find>splice</find>
+      <find>arrayToWord</find>
+      <find>hightligthCorrect</find>
+      <find>result_info</find>
+      <find>correct_strings</find>
+      <find>score</find>
+      <find>task-let</find>
+      <find>instruction_block</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -120,15 +131,16 @@
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test.html" />
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_2.html" />
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html" />
+        <option value="$PROJECT_DIR$/semantic_memory/semantic_memory.html" />
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="226" />
-    <option name="y" value="67" />
-    <option name="width" value="2212" />
-    <option name="height" value="1142" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="913" />
+    <option name="y" value="30" />
+    <option name="width" value="1457" />
+    <option name="height" value="1143" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -149,47 +161,12 @@
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="mind map" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="munsterberg_test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="numerical_series" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="presentations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="selected_task" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="sum" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="tables_training_apparatus" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="technical_task" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="timeline" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -199,6 +176,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -374,7 +352,7 @@
       <option name="presentableId" value="Default" />
       <updated>1470382492339</updated>
       <workItem from="1552309598857" duration="66739000" />
-      <workItem from="1552631837849" duration="8781000" />
+      <workItem from="1552631837849" duration="29667000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -387,13 +365,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75520000" />
+    <option name="totallyTimeSpent" value="96406000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="226" y="67" width="2212" height="1142" extended-state="0" />
+    <frame x="913" y="30" width="1457" height="1143" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.111923255" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17085077" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -456,13 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/electric-problem">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1815">
-          <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/electric_problem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -479,19 +450,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2370">
+        <state relative-caret-position="414">
           <caret line="158" selection-start-line="158" selection-end-line="158" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selected_task/selected_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/electric-problem">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="956">
+          <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="524" column="19" lean-forward="true" selection-start-line="524" selection-start-column="18" selection-end-line="526" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="351" column="25" lean-forward="true" selection-start-line="351" selection-start-column="25" selection-end-line="351" selection-end-column="25" />
+          <folding>
+            <element signature="e#72#3347#0" />
+            <element signature="e#3372#3388#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="140" column="59" selection-start-line="140" selection-start-column="59" selection-end-line="140" selection-end-column="59" />
+        <state relative-caret-position="498">
+          <caret line="191" column="41" lean-forward="true" selection-start-line="191" selection-start-column="41" selection-end-line="191" selection-end-column="41" />
           <folding>
-            <element signature="e#5695#9770#0" />
+            <element signature="e#1302#1464#0" />
+            <element signature="e#1636#1729#0" />
+            <element signature="e#1764#2000#0" />
+            <element signature="e#2043#2168#0" />
+            <element signature="e#2214#2342#0" />
+            <element signature="e#2383#2425#0" />
+            <element signature="e#2516#2555#0" />
+            <element signature="e#4541#4588#0" />
+            <element signature="e#3576#3617#0" />
+            <element signature="e#3326#3390#0" />
+            <element signature="e#3663#3687#0" />
+            <element signature="e#4779#5194#0" />
+            <element signature="e#5253#6630#0" />
+            <element signature="e#6840#6890#0" />
+            <element signature="e#6989#7386#0" />
+            <element signature="e#6972#9483#0" />
             <element signature="e#7974#9498#0" />
             <element signature="e#9576#10018#0" />
+            <element signature="e#12380#15414#0" />
           </folding>
         </state>
       </provider>

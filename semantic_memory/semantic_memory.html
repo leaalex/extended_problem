@@ -1,0 +1,362 @@
+<style>
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script type="text/javascript">
+
+    const series_A_lib = [
+        {
+            w1: "машина",
+            w2: "ехать",
+            required: "w2"
+        },
+        {
+            w1: "кружка",
+            w2: "пить",
+            required: "w2"
+        },
+        {
+            w1: "ручка",
+            w2: "писать",
+            required: "w2"
+        },
+        {
+            w1: "ботинки",
+            w2: "шнурки",
+            required: "w2"
+        },
+        {
+            w1: "собака",
+            w2: "лаять",
+            required: "w2"
+        },
+        {
+            w1: "зима",
+            w2: "снеговик",
+            required: "w2"
+        },
+        {
+            w1: "свеча",
+            w2: "гореть",
+            required: "w2"
+        },
+        {
+            w1: "очки",
+            w2: "видеть",
+            required: "w2"
+        },
+        {
+            w1: "утюг",
+            w2: "гладить",
+            required: "w2"
+        },
+        {
+            w1: "дерево",
+            w2: "лист",
+            required: "w2"
+        },
+        {
+            w1: "помидор",
+            w2: "овощ",
+            required: "w2"
+        },
+        {
+            w1: "рыцарь",
+            w2: "защищать",
+            required: "w2"
+        },
+        {
+            w1: "армия",
+            w2: "солдат",
+            required: "w2"
+        },
+        {
+            w1: "кирпич",
+            w2: "строить",
+            required: "w2"
+        },
+        {
+            w1: "кастрюля",
+            w2: "варить",
+            required: "w2"
+        },
+        {
+            w1: "стул",
+            w2: "сидеть",
+            required: "w2"
+        },
+        {
+            w1: "лопата",
+            w2: "яма",
+            required: "w2"
+        },
+        {
+            w1: "утро",
+            w2: "рассвет",
+            required: "w2"
+        },
+        {
+            w1: "время",
+            w2: "часы",
+            required: "w2"
+        },
+        {
+            w1: "телефон",
+            w2: "звонок",
+            required: "w2"
+        },
+        {
+            w1: "газ",
+            w2: "тормоз",
+            required: "w2"
+        },
+        {
+            w1: "свинья",
+            w2: "поросенок",
+            required: "w2"
+        },
+        {
+            w1: "гитара",
+            w2: "струна",
+            required: "w2"
+        },
+        {
+            w1: "страна",
+            w2: "город",
+            required: "w2"
+        },
+        {
+            w1: "собака",
+            w2: "щенок",
+            required: "w2"
+        },
+        {
+            w1: "рука",
+            w2: "локоть",
+            required: "w2"
+        },
+        {
+            w1: "ключ",
+            w2: "замок",
+            required: "w2"
+        },
+        {
+            w1: "соль",
+            w2: "перец",
+            required: "w2"
+        },
+        {
+            w1: "галстук",
+            w2: "бабочка",
+            required: "w2"
+        },
+        {
+            w1: "врач",
+            w2: "халат",
+            required: "w2"
+        },
+        {
+            w1: "зачет",
+            w2: "экзамен",
+            required: "w2"
+        },
+        {
+            w1: "лето",
+            w2: "море",
+            required: "w2"
+        },
+        {
+            w1: "карта",
+            w2: "искать",
+            required: "w2"
+        }];
+
+    const series_B_lib = [
+        {
+            w1: "слон",
+            w2: "автобус",
+            required: "w2"
+        },
+        {
+            w1: "брюки",
+            w2: "небо",
+            required: "w2"
+        },
+        {
+            w1: "ключи",
+            w2: "город",
+            required: "w2"
+        },
+        {
+            w1: "вилка",
+            w2: "провод",
+            required: "w2"
+        },
+        {
+            w1: "сестра",
+            w2: "дуб",
+            required: "w2"
+        },
+        {
+            w1: "бег",
+            w2: "огурец",
+            required: "w2"
+        },
+        {
+            w1: "остров",
+            w2: "пчела",
+            required: "w2"
+        },
+        {
+            w1: "гроза",
+            w2: "отец",
+            required: "w2"
+        },
+        {
+            w1: "химия",
+            w2: "матрас",
+            required: "w2"
+        },
+        {
+            w1: "корабль",
+            w2: "свинья",
+            required: "w2"
+        },
+        {
+            w1: "железо",
+            w2: "голова",
+            required: "w2"
+        },
+        {
+            w1: "часы",
+            w2: "звезда",
+            required: "w2"
+        },
+        {
+            w1: "краска",
+            w2: "водопад",
+            required: "w2"
+        },
+        {
+            w1: "осанка",
+            w2: "корона",
+            required: "w2"
+        },
+        {
+            w1: "самолет",
+            w2: "камень",
+            required: "w2"
+        },
+        {
+            w1: "десерт",
+            w2: "собор",
+            required: "w2"
+        },
+        {
+            w1: "спорт",
+            w2: "мороз",
+            required: "w2"
+        },
+        {
+            w1: "мамонт",
+            w2: "круг",
+            required: "w2"
+        },
+        {
+            w1: "горох",
+            w2: "брат",
+            required: "w2"
+        },
+        {
+            w1: "лампа",
+            w2: "круг",
+            required: "w2"
+        },
+        {
+            w1: "мышь",
+            w2: "кулак",
+            required: "w2"
+        },
+        {
+            w1: "щука",
+            w2: "ботинок",
+            required: "w2"
+        },
+        {
+            w1: "крот",
+            w2: "поезд",
+            required: "w2"
+        },
+        {
+            w1: "зеркало",
+            w2: "краб",
+            required: "w2"
+        },
+        {
+            w1: "карман",
+            w2: "крыша",
+            required: "w2"
+        },
+        {
+            w1: "капуста",
+            w2: "пояс",
+            required: "w2"
+        },
+        {
+            w1: "шапка",
+            w2: "март",
+            required: "w2"
+        },
+        {
+            w1: "враг",
+            w2: "кот",
+            required: "w2"
+        },
+        {
+            w1: "алмаз",
+            w2: "книга",
+            required: "w2"
+        },
+        {
+            w1: "стрела",
+            w2: "люстра",
+            required: "w2"
+        },
+        {
+            w1: "жаба",
+            w2: "носок",
+            required: "w2"
+        },
+        {
+            w1: "зуб",
+            w2: "дом",
+            required: "w2"
+        },
+        {
+            w1: "завтрак",
+            w2: "теннис",
+            required: "w2"
+        }];
+
+    var word_pairs_count = 15;
+    var series_A = series_A_lib.sort(function () { return .5 - Math.random()}).slice(0, word_pairs_count);
+    var series_B = series_B_lib.sort(function () { return .5 - Math.random()}).slice(0, word_pairs_count);
+
+    console.log(series_A);
+    console.log(series_B);
+
+    function showSeries(element, list, delay, delay_1){
+
+    }
+
+    showSeries(series_A);
+
+    $(document).ready(function () {
+        // $('#showMe').hide(0).delay(1000).show(0).delay(1000).hide(0)
+            // .show(0).delay(1000).hide(0);
+    })
+</script>
+
+<div id="semantic_memory">
+    <div id="showMe">yterkaujdsfngef</div>
+</div>

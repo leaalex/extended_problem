@@ -6,15 +6,17 @@
     .task-let {
         display: inline-block;
         font-size: 1.5em;
-        /*background: azure;*/
+        line-height: 1em !important;
         letter-spacing: 0.1em;
-        cursor: pointer;
+        /*cursor: pointer;*/
         -moz-user-select: none;
         -khtml-user-select: none;
         user-select: none;
     }
 
     .line-wrap{
+        margin: 0.1em 0px;
+        padding: 0.05em 0;
         line-height: 1.4em !important;
     }
 
@@ -29,12 +31,14 @@
     /*.task-let:hover, */
     .first-letter-hover{
         background: #6ee1ff;
+        cursor: pointer;
         /*font-weight: bold;*/
         /*text-shadow:0px 0px 1px black;*/
     }
 
     .first-letter-selected{
         /*font-weight: bold;*/
+        cursor: pointer;
         text-shadow:0px 0px 1px black;
         /*background: lightgreen;*/
     }
@@ -42,16 +46,35 @@
     .word-selected{
         text-decoration: line-through;
         /*font-weight: bold;*/
+        cursor: pointer;
         text-shadow:0px 0px 1px black;
         /*background: #eeeed2;*/
     }
     .word-candidate{
         /*background: #e6e6e6;*/
+        cursor: pointer;
         text-decoration: underline;
         /*font-weight: bold;*/
         text-shadow:0px 0px 1px black;
     }
 
+    .word-correct{
+        background: #009b00;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+
+    }
+
+    .word-correct .task-let{
+        /*text-decoration: none;*/
+        text-shadow: none;
+        cursor: initial;
+    }
+
+    .word-correct. word-selected {
+
+    }
 
     .remove-candidate{
         background: #ff3737;
@@ -64,6 +87,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 <script type="text/javascript">
+
     function range(start, end) {
         if (start > end) {
             end = [start, start = end][0];
@@ -71,11 +95,42 @@
         return Array(end - start + 1).fill().map((_, idx) => start + idx);
     }
 
+    const language = "en";
     const id_prefix = "let_num_";
+    const id_preview = "preview_let_num_";
     var selected_words = [];
     var first_selected;
-    var absorbed = [];
+    // var absorbed = [];
 
+    // var translations = new Object();
+    var translations = {
+        en: {
+            start_btn_label: "Start",
+            reset_btn_label: "Restart",
+            check_btn_label: "Check",
+            correct_count_label: "Правильно выбранных слов:",
+            incorrect_words: "Невыбранные слова (либо выбраны неверно):",
+            correct_words: "Правильно выбранные слова:",
+            selected_count_label: "Выделено слов:",
+            no_correct_label: "Нет правильно выбранных слов!",
+            all_correct_label: "Все слова выбраны правильно!",
+            of: "of" // применимо для "12 верных ответов __из__ 30"
+        },
+        ru: {
+            start_btn_label: "Начать",
+            reset_btn_label: "Начать заново",
+            check_btn_label: "Провериtь",
+            correct_count_label: "Правильно выбранных слов:",
+            incorrect_words: "Невыбранные слова (либо выбраны неверно):",
+            correct_words: "Правильно выбранные слова:",
+            selected_count_label: "Выделено слов:",
+            no_correct_label: "Нет правильно выбранных слов!",
+            all_correct_label: "Все слова выбраны правильно!",
+            of: "из" // применимо для "12 верных ответов __из__ 30"
+        }
+    };
+
+    var user_labels = translations[language];
 
     $(document).ready(function () {
 
@@ -104,7 +159,6 @@
             })
         }
 
-
         var letters_task = $("<div>", {
             id: "letters_task"
         });
@@ -113,59 +167,109 @@
             id: "task_info"
         });
 
+        var instruction_block = $("<div>",{
+            id: "instruction_block"
+        });
 
+        var result_block = $("<div>",{
+            id: "result_block"
+        });
 
         var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
         var src_str = "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
+
+        // createPreview(instruction_block);
+        //
+        // function createPreview(block){
+        //     var preview_str = "лгщьбапамятьшогхеюжп";
+        //     // var preview_blo
+        //     var line_block = $("<div>",{
+        //         class: "preview_line_block"
+        //     });
+        //     var preview_first = undefined;
+        //     preview_str.split('').forEach(function (letter_elem, i) {
+        //         var letter = {
+        //             html: $("<div>", {
+        //                 html: letter_elem,
+        //                 class: "preview-task-let",
+        //                 "data-num": (i).toString(),
+        //                 "data-char": letter_elem,
+        //                 id: id_preview + (i).toString()
+        //             }),
+        //             num: i,
+        //             char: letter_elem
+        //         };
+        //         line_block.append(letter.html);
+        //
+        //         letter.html.click(function (event) {
+        //             console.log(letter);
+        //         });
+        //         letter.html.mouseover(function (event) {
+        //
+        //         });
+        //         letter.html.mouseleave(function (event) {
+        //
+        //         })
+        //
+        //     });
+        //
+        //     instruction_block.append(line_block)
+        //
+        // }
 
         function searchInSelectedWords(element){
             return element.includes(parseInt(this));
         }
 
+        function arrayToWord(arr, source){
+            var display_word = "";
+            arr.forEach(function (word_letter){
+                display_word += source[word_letter];
+            });
+            return display_word;
+        }
 
         function displaySelectedWords(container, words){
+            /*
+            * Надо ли это?
+            * */
             $(container).html("");
-            $(container).append("<div><strong>Выделенные слова (" + words.length.toString() + "):</strong></div>");
-
-            words.forEach(function (word, i) {
-                var display_word = "";
-                word.forEach(function (word_letter){
-                    display_word += src_str[word_letter];
-                });
-                $(container).append("<div><strong>" + (i+1).toString() + ".</strong> " + display_word + "</div>");
-            });
-
+            $(container).append("<div><strong>" + user_labels.selected_count_label + " " + words.length.toString() + "</strong></div>");
+            //
+            // words.forEach(function (word, i) {
+            //     $(container).append("<div><strong>" + (i+1).toString() + ".</strong> " + arrayToWord(word, src_str) + "</div>");
+            // });
         }
 
-        function createStringsArray() {
-            // вытащить сюда создание массива для отрисовки
-        }
-
-
-        var str_arr = [];
-        var word_start_position = 0;
-        var text_block = "";
-        correct_strings.forEach(function (word, idx) {
-            var word_end_position = src_str.indexOf(word);
-            if(word_end_position != -1){
-                if (idx == 0){
-                    text_block = src_str.slice(word_start_position, word_end_position);
-                    text_block.split('').forEach(letter => str_arr.push(letter));
+        function createStringsArray(correct_arr, source) {
+            var str_arr_tmp = [];
+            var word_start_position = 0;
+            var text_block = "";
+            correct_arr.forEach(function (word, idx) {
+                var word_end_position = source.indexOf(word);
+                if(word_end_position != -1){
+                    if (idx == 0){
+                        text_block = source.slice(word_start_position, word_end_position);
+                        text_block.split('').forEach(letter => str_arr_tmp.push(letter));
+                    }
+                    word_start_position = word_end_position;
+                    word_end_position = word_start_position+word.length;
+                    text_block = source.slice(word_start_position, word_end_position);
+                    str_arr_tmp.push(text_block);
+                    word_start_position = word_end_position;
+                    word_end_position = (idx+1)==correct_arr.length ? source.length : source.indexOf(correct_arr[idx+1]);
+                    text_block = source.slice(word_start_position, word_end_position);
+                    text_block.split('').forEach(letter => str_arr_tmp.push(letter));
+                    word_start_position = word_end_position;
                 }
-                word_start_position = word_end_position;
-                word_end_position = word_start_position+word.length;
-                text_block = src_str.slice(word_start_position, word_end_position);
-                str_arr.push(text_block);
-                word_start_position = word_end_position;
-                word_end_position = (idx+1)==correct_strings.length ? src_str.length : src_str.indexOf(correct_strings[idx+1]);
-                text_block = src_str.slice(word_start_position, word_end_position);
-                text_block.split('').forEach(letter => str_arr.push(letter));
-                word_start_position = word_end_position;
-            }
-            else{
-                console.log("Correct word is not defined.")
-            }
-        });
+                else{
+                    console.log("Correct word is not defined.")
+                }
+            });
+            return str_arr_tmp;
+        }
+
+        var str_arr = createStringsArray(correct_strings, src_str);
 
         // console.log(str_arr);
         var num = 0;
@@ -209,7 +313,7 @@
                         }
                         var selected = range(first_selected.num, end);
 
-                        absorbed = [];
+                        var absorbed = [];
                         selected_words.forEach(function(value, index){
                             if (value.every((i => v => i = selected.indexOf(v, i) + 1)(0))){
                                 absorbed.push(index);
@@ -270,13 +374,89 @@
                     $(".task-let").removeClass("first-letter-hover");
                 });
             });
-
             letters_task.append(line);
-
         });
 
+        function createResult(){
+            $(result_block).html("");
+            var score = 0;
+            var max_score = correct_strings.length;
+            var correct_selected = [];
+            var incorrect_selected = [];
+            var not_selected = correct_strings.slice();
+
+            selected_words.forEach(function(word, index){
+                console.log("word: ", word);
+                var current_word = arrayToWord(word, src_str);
+                // console.log(current_word)
+                if (correct_strings.includes(current_word)){
+                    score += 1;
+                    correct_selected.push(word);
+                    var del_index = correct_strings.indexOf(current_word);
+                    not_selected.splice(del_index, 1);
+                    // correct_words_str += "<b>" + current_word + "</b>" + ", ";
+                }
+                else{
+                    // incorrect_words_str += "<b>" + current_word + "</b>" + ", ";
+                    incorrect_selected.push(word);
+                }
+            });
+
+            var correct_words_str = "";
+            correct_selected.forEach(function (val,i) {
+                correct_words_str += arrayToWord(val, src_str) +  ((i == correct_selected.length-1) ? ";" : ", ");
+            });
+
+            var incorrect_words_str = "";
+            not_selected.forEach(function (val, i) {
+                incorrect_words_str += val + ((i == not_selected.length-1) ? (incorrect_selected.length == 0) ? ";" : ", " : ", ");
+            });
+
+            incorrect_selected.forEach(function (val, i) {
+                incorrect_words_str += arrayToWord(val, src_str) +  ((i == incorrect_selected.length-1) ? ";" : ", ");
+            });
+
+            var result_info = $("<div>", {
+                class: "result-text",
+                html: user_labels.correct_count_label + " " + "<b>" + score.toString() + " " + user_labels.of + " " + max_score.toString() + "</b>"
+            });
+            $(result_block).append(result_info);
+            var display_correct_words_str = (score == 0 ) ? "<p>" + user_labels.no_correct_label + "</p>" : "<p>" + user_labels.correct_words + " <b>" + correct_words_str + "</b>" + "</p>";
+            var display_incorrect_words_str = (not_selected.length == 0 && incorrect_selected.length == 0) ? "<p>" + user_labels.all_correct_label + "</p>": "<p>" + user_labels.incorrect_words + " <b>" + incorrect_words_str + "</b>" + "</p>";
+            $(result_block).append(display_correct_words_str);
+            $(result_block).append(display_incorrect_words_str);
+            hightligthCorrect();
+            function hightligthCorrect(){
+                $(".task-let").unbind("click");
+                $(".task-let").unbind("mouseover");
+                $(".task-let").unbind("mouseleave");
+
+                $(".line-wrap").each(function() {
+                    if($(this).children().length > 1){
+                        $(this).addClass("word-correct");
+                    }
+                });
+            }
+            // console.log(score + " / " + max_score);
+            // console.log("correct_selected: ", correct_selected, "incorrect_selected: ", incorrect_selected);
+        }
+
+
+        var check_button = $("<button>", {
+            html: user_labels.check_btn_label
+        });
+
+
+        check_button.click(function (event){
+            createResult();
+        });
+
+        $("#munsterberg_test").append(instruction_block);
         $("#munsterberg_test").append(letters_task);
         $("#munsterberg_test").append(task_info);
+        $("#munsterberg_test").append(result_block);
+        $("#munsterberg_test").append(check_button);
+
         displaySelectedWords(task_info, selected_words);
     });
 
