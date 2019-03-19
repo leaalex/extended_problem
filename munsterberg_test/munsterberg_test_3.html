@@ -82,6 +82,12 @@
     .timer-block{
         text-align: center;
         font-size: 1.8em;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
     }
 
     .remove-candidate, .preview-remove-candidate{
@@ -133,7 +139,7 @@
 
 </style>
 
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 <script type="text/javascript">
 
@@ -163,14 +169,14 @@
             no_correct_label: "Нет правильно выбранных слов!",
             all_correct_label: "Все слова выбраны правильно!",
             selected_words_label: "Выделенные слова",
-            task_wording: "<p><b>Инструкция.</b> Среди буквенного текста имеются слова. Ваша задача - как можно быстрее считывая текст, подчеркнуть эти слова</p><p>Вот тут примерчик и все дела</p>",
+            task_wording: "<p><b>Инструкция.</b> Среди буквенного текста имеются слова. Ваша задача - как можно быстрее считывая текст, подчеркнуть эти слова</p><p><b>Время выполнения задания</b> — 2 минуты</p><p>Вот тут примерчик и все дела</p>",
             time_is_over_label: "Time is over!",
             of: "of" // применимо для "12 верных ответов __из__ 30"
         },
         ru: {
             start_btn_label: "Начать",
             reset_btn_label: "Начать заново",
-            check_btn_label: "Провериtь",
+            check_btn_label: "Проверить",
             correct_count_label: "Правильно выбранных слов:",
             incorrect_words: "Невыбранные слова (либо выбраны неверно):",
             correct_words: "Правильно выбранные слова:",
@@ -179,7 +185,7 @@
             all_correct_label: "Все слова выбраны правильно!",
             selected_words_label: "Выделенные слова",
             time_is_over_label: "Время вышло!",
-            task_wording: "<p><b>Инструкция.</b> Среди буквенного текста имеются слова. Ваша задача - как можно быстрее считывая текст, подчеркнуть эти слова</p><p>Вот тут примерчик и все дела</p>",
+            task_wording: "<p><b>Инструкция.</b> Среди буквенного текста имеются слова. Ваша задача - как можно быстрее считывая текст, подчеркнуть эти слова</p><p><b>Время выполнения задания</b> — 2 минуты</p><p>Вот тут примерчик и все дела</p>",
             of: "из" // применимо для "12 верных ответов __из__ 30"
         }
     };
@@ -342,6 +348,7 @@
             var start_wrap = $('<div></div>',{
                 class: "start-wrap"
             });
+
             var start_button = $('<button></button>',{
                 class: "start-button",
                 text: user_labels.start_btn_label
@@ -646,10 +653,11 @@
 
             function createResult() {
                 task_timer.stop();
-                timer_display.html("<div>" + user_labels.time_is_over_label + "</div>");
+                timer_display.html("<div style='color: #ff3b3b;'>" + user_labels.time_is_over_label + "</div>");
                 $(".task-let", html_element).removeClass("remove-candidate");
                 $(".task-let", html_element).removeClass("first-letter-hover");
                 $(".task-let", html_element).removeClass("first-letter-selected");
+                $(".task-let", html_element).removeClass("word-candidate");
 
                 $(result_block).html("");
                 var score = 0;
