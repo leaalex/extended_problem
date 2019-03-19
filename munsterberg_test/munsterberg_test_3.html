@@ -2,8 +2,11 @@
     #munsterberg_test{
         max-width: 1000px;
     }
-
-    .task-let {
+    #munsterberg_test p {
+        margin-bottom: 0.11575em !important;
+        margin-top: 0.51575em !important;
+    }
+    .task-let, .preview-task-let {
         display: inline-block;
         font-size: 1.5em;
         line-height: 1em !important;
@@ -14,8 +17,8 @@
         user-select: none;
     }
 
-    .line-wrap{
-        margin: 0.1em 0px;
+    .line-wrap, .preview-line-wrap{
+        margin: 0.05em 0px;
         padding: 0.05em 0;
         line-height: 1.4em !important;
     }
@@ -24,33 +27,33 @@
         display: flex;
         flex-wrap: wrap;
         align-content: stretch;
-        margin: 20px 0px;
+        margin: 8px 0px;
     }
 
 
     /*.task-let:hover, */
-    .first-letter-hover{
+    .first-letter-hover, .preview-first-letter-hover{
         background: #6ee1ff;
         cursor: pointer;
         /*font-weight: bold;*/
         /*text-shadow:0px 0px 1px black;*/
     }
 
-    .first-letter-selected{
+    .first-letter-selected, .preview-first-letter-selected{
         /*font-weight: bold;*/
         cursor: pointer;
         text-shadow:0px 0px 1px black;
         /*background: lightgreen;*/
     }
 
-    .word-selected{
+    .word-selected, .preview-word-selected{
         text-decoration: line-through;
         /*font-weight: bold;*/
         cursor: pointer;
         text-shadow:0px 0px 1px black;
         /*background: #eeeed2;*/
     }
-    .word-candidate{
+    .word-candidate, .preview-word-candidate{
         /*background: #e6e6e6;*/
         cursor: pointer;
         text-decoration: underline;
@@ -72,19 +75,65 @@
         cursor: initial;
     }
 
-    .word-correct. word-selected {
+    /*.word-correct. word-selected {*/
 
+    /*}*/
+
+    .timer-block{
+        text-align: center;
+        font-size: 1.8em;
     }
 
-    .remove-candidate{
+    .remove-candidate, .preview-remove-candidate{
         background: #ff3737;
         color: #ffffff;
     }
 
+    .preview_line_block {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: stretch;
+        margin: 8px 0px;
+
+    }
+
+    .preview-task-block{
+        padding: 6px;
+        margin: 10px 0px;
+        border: 1px solid #c7c7c9;
+        border-radius: 4px;
+
+    }
+
+    .start-button, .check-button{
+        font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+        width: 8em;
+        /*height: 50px; */
+        background: #046b99;
+        color: #ffffff;
+        font-size: 1.6em;
+        font-weight: normal;
+        border: none;
+    }
+    .start-button:hover, .check-button:hover{
+        /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+        width: 200px;*/
+        /* height: 50px; */
+        background: #035c83 !important;
+        border: none;
+    }
+
+    .start-button:focus, .check-button:focus{
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .start-wrap{
+        text-align: center;
+    }
 
 </style>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
 
 <script type="text/javascript">
 
@@ -95,11 +144,10 @@
         return Array(end - start + 1).fill().map((_, idx) => start + idx);
     }
 
-    const language = "en";
+    const language = "ru";
     const id_prefix = "let_num_";
     const id_preview = "preview_let_num_";
-    var selected_words = [];
-    var first_selected;
+
     // var absorbed = [];
 
     // var translations = new Object();
@@ -114,6 +162,9 @@
             selected_count_label: "Выделено слов:",
             no_correct_label: "Нет правильно выбранных слов!",
             all_correct_label: "Все слова выбраны правильно!",
+            selected_words_label: "Выделенные слова",
+            task_wording: "<p><b>Инструкция.</b> Среди буквенного текста имеются слова. Ваша задача - как можно быстрее считывая текст, подчеркнуть эти слова</p><p>Вот тут примерчик и все дела</p>",
+            time_is_over_label: "Time is over!",
             of: "of" // применимо для "12 верных ответов __из__ 30"
         },
         ru: {
@@ -126,6 +177,9 @@
             selected_count_label: "Выделено слов:",
             no_correct_label: "Нет правильно выбранных слов!",
             all_correct_label: "Все слова выбраны правильно!",
+            selected_words_label: "Выделенные слова",
+            time_is_over_label: "Время вышло!",
+            task_wording: "<p><b>Инструкция.</b> Среди буквенного текста имеются слова. Ваша задача - как можно быстрее считывая текст, подчеркнуть эти слова</p><p>Вот тут примерчик и все дела</p>",
             of: "из" // применимо для "12 верных ответов __из__ 30"
         }
     };
@@ -134,335 +188,587 @@
 
     $(document).ready(function () {
 
-        $(document).on('keyup',function(evt) {
-            if (evt.keyCode == 27) {
-                clearSelect();
-            }
-        });
 
-        function clearSelect() {
-            first_selected = undefined;
-            $(".task-let").removeClass("first-letter-hover");
-            $(".task-let").removeClass("first-letter-selected");
-            $(".task-let").removeClass("word-candidate");
-        }
+        var MunsterbergTest = function(html_element, task_time) {
 
-        function addClass(arr, class_str){
-            arr.forEach(function(item){
-                $("#"+id_prefix+item).addClass(class_str);
-            })
-        }
+            html_element.html("");
 
-        function removeClass(arr, class_str){
-            arr.forEach(function(item){
-                $("#"+id_prefix+item).removeClass(class_str);
-            })
-        }
+            var selected_words = [];
+            var first_selected;
+            var preview_first;
 
-        var letters_task = $("<div>", {
-            id: "letters_task"
-        });
-
-        var task_info = $("<div>", {
-            id: "task_info"
-        });
-
-        var instruction_block = $("<div>",{
-            id: "instruction_block"
-        });
-
-        var result_block = $("<div>",{
-            id: "result_block"
-        });
-
-        var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
-        var src_str = "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
-
-        // createPreview(instruction_block);
-        //
-        // function createPreview(block){
-        //     var preview_str = "лгщьбапамятьшогхеюжп";
-        //     // var preview_blo
-        //     var line_block = $("<div>",{
-        //         class: "preview_line_block"
-        //     });
-        //     var preview_first = undefined;
-        //     preview_str.split('').forEach(function (letter_elem, i) {
-        //         var letter = {
-        //             html: $("<div>", {
-        //                 html: letter_elem,
-        //                 class: "preview-task-let",
-        //                 "data-num": (i).toString(),
-        //                 "data-char": letter_elem,
-        //                 id: id_preview + (i).toString()
-        //             }),
-        //             num: i,
-        //             char: letter_elem
-        //         };
-        //         line_block.append(letter.html);
-        //
-        //         letter.html.click(function (event) {
-        //             console.log(letter);
-        //         });
-        //         letter.html.mouseover(function (event) {
-        //
-        //         });
-        //         letter.html.mouseleave(function (event) {
-        //
-        //         })
-        //
-        //     });
-        //
-        //     instruction_block.append(line_block)
-        //
-        // }
-
-        function searchInSelectedWords(element){
-            return element.includes(parseInt(this));
-        }
-
-        function arrayToWord(arr, source){
-            var display_word = "";
-            arr.forEach(function (word_letter){
-                display_word += source[word_letter];
+            $(document).on('keyup', function (evt) {
+                if (evt.keyCode == 27) {
+                    clearSelect();
+                    clearSelectPreview();
+                }
             });
-            return display_word;
-        }
 
-        function displaySelectedWords(container, words){
-            /*
+            var countdownTimer = function (elem, stop_time , options, stop_func) {
+
+                var timer = createTimer(),
+                    offset,
+                    clock,
+                    interval;
+
+                clock = stop_time * 1000;
+                options = options || {};
+                options.delay = options.delay || 1;
+
+                elem.appendChild(timer);
+
+                reset();
+
+                function createTimer() {
+                    var timer_div = document.createElement("div");
+                    return timer_div;
+                }
+
+
+                function start() {
+                    if (!interval) {
+                        offset = Date.now();
+                        interval = setInterval(update, options.delay);
+                    }
+                }
+
+                function stop() {
+                    if (interval) {
+                        clearInterval(interval);
+                        interval = null;
+                    }
+                }
+
+                function reset() {
+                    clock = stop_time * 1000;
+                    render();
+                }
+
+                function update() {
+                    // console.log(clock);
+                    if(clock > 0) {
+                        clock -= delta();
+                    }
+                    else{
+                        clock = 0;
+                        stop();
+                        stop_func();
+                    }
+                    render();
+                }
+
+                function current_time() {
+                    return clock / 1000;
+                }
+
+                function render() {
+                    timer.innerHTML = "" + sec2time(clock / 1000) + "";
+                }
+
+                function delta() {
+                    var now = Date.now(),
+                        d = now - offset;
+                    offset = now;
+                    return d;
+                }
+
+                function sec2time(timeInSeconds) {
+                    var pad = function (num, size) {
+                            return ('000' + num).slice(size * -1);
+                        },
+                        time = parseFloat(timeInSeconds).toFixed(3),
+                        hours = Math.floor(time / 60 / 60),
+                        minutes = Math.floor(time / 60) % 60,
+                        seconds = Math.floor(time - minutes * 60),
+                        milliseconds = time.slice(-3);
+
+                    return pad(minutes, 2) + ':' + pad(seconds, 2)
+                    // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+                }
+
+// public API
+                this.current_time = current_time;
+                this.start = start;
+                this.stop = stop;
+                this.reset = reset;
+            };
+
+            function clearSelect() {
+                first_selected = undefined;
+                $(".task-let", html_element).removeClass("first-letter-hover");
+                $(".task-let", html_element).removeClass("first-letter-selected");
+                $(".task-let", html_element).removeClass("word-candidate");
+            }
+
+            function clearSelectPreview() {
+                preview_first = undefined;
+                $(".preview-task-let", html_element).removeClass("preview-first-letter-hover");
+                $(".preview-task-let", html_element).removeClass("preview-first-letter-selected");
+                $(".preview-task-let", html_element).removeClass("preview-word-candidate");
+            }
+
+            function addClass(arr, class_str, prefix) {
+                arr.forEach(function (item) {
+                    $("#" + prefix + item, html_element).addClass(class_str);
+                })
+            }
+
+            function removeClass(arr, class_str, prefix) {
+                arr.forEach(function (item) {
+                    $("#" + prefix + item, html_element).removeClass(class_str);
+                })
+            }
+
+            var instruction_block = $("<div>", {
+                id: "instruction_block"
+            });
+
+            var letters_task = $("<div>", {
+                id: "letters_task"
+            }).hide();
+
+            var timer_display = $('<div></div>',{
+                class: "timer-block"
+            }).hide();
+
+            var task_info = $("<div>", {
+                id: "task_info"
+            }).hide();
+
+            var result_block = $("<div>", {
+                id: "result_block"
+            }).hide();
+
+            var start_wrap = $('<div></div>',{
+                class: "start-wrap"
+            });
+            var start_button = $('<button></button>',{
+                class: "start-button",
+                text: user_labels.start_btn_label
+            }).appendTo(start_wrap);
+
+
+            var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
+
+            var src_str = "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
+
+            var task_timer = new countdownTimer(timer_display[0], task_time + 1, {}, createResult);
+
+            createPreview(instruction_block);
+
+            function createPreview(block) {
+                var preview_str = "лгщьбапамятьшогхеюжп";
+                var preview_task_block = $("<div>", {
+                    class: "preview-task-block"
+                });
+                var preview_selected_words = [];
+                var task_wording = $("<div>", {
+                   html: user_labels.task_wording
+                });
+                var line_block = $("<div>", {
+                    class: "preview_line_block"
+                });
+                var selected_words_display = $("<div>", {
+                    class: "selected-words-display"
+                });
+                // var preview_first = undefined;
+                preview_str.split('').forEach(function (letter_elem, i) {
+                    var letter = {
+                        html: $("<div>", {
+                            html: letter_elem,
+                            class: "preview-task-let",
+                            "data-num": (i).toString(),
+                            "data-char": letter_elem,
+                            id: id_preview + (i).toString()
+                        }),
+                        num: i,
+                        char: letter_elem
+                    };
+                    line_block.append(letter.html);
+
+                    letter.html.click(function (event) {
+                        letter.html.removeClass("preview-first-letter-hover");
+
+                        if (preview_first) {
+                            if (range(preview_first.num, letter.num).length < 2) {
+                                clearSelectPreview();
+                                return false;
+                            }
+                            var ind = preview_selected_words.findIndex(searchInSelectedWords, letter.num);
+                            if (ind == -1) {
+                                var end = letter.num;
+                            } else {
+                                var end = preview_first.num < letter.num ? preview_selected_words[ind][preview_selected_words[ind].length - 1] : preview_selected_words[ind][0];
+                            }
+                            var selected = range(preview_first.num, end);
+
+                            var absorbed = [];
+                            preview_selected_words.forEach(function (value, index) {
+                                if (value.every((i => v => i = selected.indexOf(v, i) + 1) (0)
+                            ))
+                                {
+                                    absorbed.push(index);
+                                }
+                            });
+                            for (var i = absorbed.length - 1; i >= 0; i--) {
+                                preview_selected_words.splice(absorbed[i], 1);
+                            }
+                            preview_selected_words.push(selected);
+                            selected.forEach(function (number) {
+                                $("#" + id_preview + number, html_element).addClass("preview-word-selected").removeClass("preview-word-candidate")
+                            });
+                            $(".preview-task-let", html_element).removeClass("preview-word-candidate");
+                            preview_first.html.removeClass("preview-first-letter-selected");
+                            preview_first = undefined;
+                        } else {
+                            if (letter.html.hasClass("preview-word-selected")) {
+                                var ind = preview_selected_words.findIndex(searchInSelectedWords, letter.num);
+                                removeClass(preview_selected_words[ind], "preview-remove-candidate preview-word-selected", id_preview);
+                                preview_selected_words.splice(ind, 1);
+                                // displaySelectedWords(task_info, selected_words);
+                            } else {
+                                preview_first = letter;
+                                preview_first.html.addClass("preview-first-letter-selected");
+                            }
+                        }
+                        displayPreviewSelectedWords();
+                    });
+                    letter.html.mouseover(function (event) {
+                        $(".preview-task-let", html_element).removeClass("preview-remove-candidate");
+                        if (preview_first) {
+                            $(".preview-task-let", html_element).removeClass("preview-word-candidate");
+                            if (letter.html.hasClass("preview-word-selected")) {
+                                var ind = preview_selected_words.findIndex(searchInSelectedWords, letter.num);
+                                var end = preview_first.num < letter.num ? preview_selected_words[ind][preview_selected_words[ind].length - 1] : preview_selected_words[ind][0];
+                                range(preview_first.num, end).forEach(number => $("#" + id_preview + number, html_element).addClass("preview-word-candidate"));
+                            } else {
+                                range(preview_first.num, letter.num).forEach(number => $("#" + id_preview + number, html_element).addClass("preview-word-candidate"));
+                            }
+                        } else {
+                            if (letter.html.hasClass("preview-word-selected")) {
+                                var ind = preview_selected_words.findIndex(searchInSelectedWords, letter.num);
+                                addClass(preview_selected_words[ind], "preview-remove-candidate", id_preview);
+                            } else {
+                                letter.html.addClass("preview-first-letter-hover");
+                            }
+                        }
+                    });
+                    letter.html.mouseleave(function (event) {
+                        $(".preview-task-let", html_element).removeClass("preview-remove-candidate");
+                        $(".preview-task-let", html_element).removeClass("preview-first-letter-hover");
+                    })
+                });
+
+                function displayPreviewSelectedWords() {
+                    selected_words_display.html("");
+                    selected_words_display.append("<p><b>" + user_labels.selected_words_label + " (" + preview_selected_words.length.toString() + "): </b></p>");
+
+                    preview_selected_words.forEach(function (value, idx) {
+                        // if(idx == 0) selected_words_display.append("<ol>");
+                        selected_words_display.append("<div> <b>" + (idx + 1).toString() + ". </b>" + arrayToWord(value, preview_str) + "</div>");
+                        // if(idx == preview_selected_words.length-1) selected_words_display.append("</ol>");
+                    });
+
+                }
+
+                displayPreviewSelectedWords();
+
+                instruction_block.append(task_wording);
+                preview_task_block.append(line_block);
+                preview_task_block.append(selected_words_display);
+                instruction_block.append(preview_task_block);
+                // instruction_block
+                // instruction_block.append(selected_words_display)
+
+            }
+
+            function searchInSelectedWords(element) {
+                return element.includes(parseInt(this));
+            }
+
+            function arrayToWord(arr, source) {
+                var display_word = "";
+                arr.forEach(function (word_letter) {
+                    display_word += source[word_letter];
+                });
+                return display_word;
+            }
+
+            function displaySelectedWords(container, words) {
+                /*
             * Надо ли это?
             * */
-            $(container).html("");
-            $(container).append("<div><strong>" + user_labels.selected_count_label + " " + words.length.toString() + "</strong></div>");
-            //
-            // words.forEach(function (word, i) {
-            //     $(container).append("<div><strong>" + (i+1).toString() + ".</strong> " + arrayToWord(word, src_str) + "</div>");
-            // });
-        }
-
-        function createStringsArray(correct_arr, source) {
-            var str_arr_tmp = [];
-            var word_start_position = 0;
-            var text_block = "";
-            correct_arr.forEach(function (word, idx) {
-                var word_end_position = source.indexOf(word);
-                if(word_end_position != -1){
-                    if (idx == 0){
-                        text_block = source.slice(word_start_position, word_end_position);
-                        text_block.split('').forEach(letter => str_arr_tmp.push(letter));
-                    }
-                    word_start_position = word_end_position;
-                    word_end_position = word_start_position+word.length;
-                    text_block = source.slice(word_start_position, word_end_position);
-                    str_arr_tmp.push(text_block);
-                    word_start_position = word_end_position;
-                    word_end_position = (idx+1)==correct_arr.length ? source.length : source.indexOf(correct_arr[idx+1]);
-                    text_block = source.slice(word_start_position, word_end_position);
-                    text_block.split('').forEach(letter => str_arr_tmp.push(letter));
-                    word_start_position = word_end_position;
-                }
-                else{
-                    console.log("Correct word is not defined.")
-                }
-            });
-            return str_arr_tmp;
-        }
-
-        var str_arr = createStringsArray(correct_strings, src_str);
-
-        // console.log(str_arr);
-        var num = 0;
-
-        str_arr.forEach(function (src_string, idx) {
-            var line = $("<div>", {
-                class: "line-wrap"
-            });
-
-            src_string.split('').forEach(function (letter_elem) {
-                var letter = {
-                    html: $("<div>", {
-                        html: letter_elem,
-                        class: "task-let",
-                        "data-num": (num).toString(),
-                        "data-char": letter_elem,
-                        id: id_prefix + (num).toString()
-                    }),
-                    num: num,
-                    char: letter_elem
-                };
-
-                num += 1;
-
-                line.append(letter.html);
-
-                letter.html.click(function (event) {
-                    letter.html.removeClass("first-letter-hover");
-                    console.log("Letter div click: ", letter);
-                    if(first_selected){
-                        if (range(first_selected.num, letter.num).length < 2){
-                            clearSelect();
-                            return false;
-                        }
-                        var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
-                        if (ind == -1){
-                            var end = letter.num;
-                        }
-                        else{
-                            var end = first_selected.num < letter.num ? selected_words[ind][selected_words[ind].length-1] : selected_words[ind][0];
-                        }
-                        var selected = range(first_selected.num, end);
-
-                        var absorbed = [];
-                        selected_words.forEach(function(value, index){
-                            if (value.every((i => v => i = selected.indexOf(v, i) + 1)(0))){
-                                absorbed.push(index);
-                            }
-                        });
-                        for (var i = absorbed.length -1; i >= 0; i--){
-                            selected_words.splice(absorbed[i],1);
-                        }
-                        selected_words.push(selected);
-                        displaySelectedWords(task_info, selected_words);
-                        selected.forEach(function(number){$("#" + id_prefix + number).addClass("word-selected").removeClass("word-candidate") });
-                        $(".task-let").removeClass("word-candidate");
-                        first_selected.html.removeClass("first-letter-selected");
-                        first_selected = undefined;
-                    }
-                    else{
-                        if (letter.html.hasClass("word-selected")){
-                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
-                            removeClass(selected_words[ind], "remove-candidate word-selected");
-                            selected_words.splice(ind,1);
-                            displaySelectedWords(task_info, selected_words);
-
-                        }
-                        else{
-                            first_selected = letter;
-                            first_selected.html.addClass("first-letter-selected");
-                        }
-                    }
-                });
-
-                letter.html.mouseover(function (event) {
-                    $(".task-let").removeClass("remove-candidate");
-                    if(first_selected){
-                        $(".task-let").removeClass("word-candidate");
-                        if (letter.html.hasClass("word-selected")){
-                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
-                            var end = first_selected.num < letter.num ? selected_words[ind][selected_words[ind].length-1] : selected_words[ind][0];
-                            range(first_selected.num, end).forEach(number => $("#" + id_prefix + number).addClass("word-candidate"));
-                        }
-                        else{
-                            range(first_selected.num, letter.num).forEach(number => $("#" + id_prefix + number).addClass("word-candidate"));
-                        }
-                    }
-                    else{
-
-                        if (letter.html.hasClass("word-selected")){
-                            var ind = selected_words.findIndex(searchInSelectedWords,letter.num);
-                            addClass(selected_words[ind], "remove-candidate");
-                        }
-                        else{
-                            letter.html.addClass("first-letter-hover");
-                        }
-                    }
-                });
+                $(container).html("");
+                $(container).append("<div><strong>" + user_labels.selected_count_label + " " + words.length.toString() + "</strong></div>");
                 //
-                letter.html.mouseleave(function (event) {
-                    $(".task-let").removeClass("remove-candidate");
-                    $(".task-let").removeClass("first-letter-hover");
-                });
-            });
-            letters_task.append(line);
-        });
+                // words.forEach(function (word, i) {
+                //     $(container).append("<div><strong>" + (i+1).toString() + ".</strong> " + arrayToWord(word, src_str) + "</div>");
+                // });
+            }
 
-        function createResult(){
-            $(result_block).html("");
-            var score = 0;
-            var max_score = correct_strings.length;
-            var correct_selected = [];
-            var incorrect_selected = [];
-            var not_selected = correct_strings.slice();
-
-            selected_words.forEach(function(word, index){
-                console.log("word: ", word);
-                var current_word = arrayToWord(word, src_str);
-                // console.log(current_word)
-                if (correct_strings.includes(current_word)){
-                    score += 1;
-                    correct_selected.push(word);
-                    var del_index = correct_strings.indexOf(current_word);
-                    not_selected.splice(del_index, 1);
-                    // correct_words_str += "<b>" + current_word + "</b>" + ", ";
-                }
-                else{
-                    // incorrect_words_str += "<b>" + current_word + "</b>" + ", ";
-                    incorrect_selected.push(word);
-                }
-            });
-
-            var correct_words_str = "";
-            correct_selected.forEach(function (val,i) {
-                correct_words_str += arrayToWord(val, src_str) +  ((i == correct_selected.length-1) ? ";" : ", ");
-            });
-
-            var incorrect_words_str = "";
-            not_selected.forEach(function (val, i) {
-                incorrect_words_str += val + ((i == not_selected.length-1) ? (incorrect_selected.length == 0) ? ";" : ", " : ", ");
-            });
-
-            incorrect_selected.forEach(function (val, i) {
-                incorrect_words_str += arrayToWord(val, src_str) +  ((i == incorrect_selected.length-1) ? ";" : ", ");
-            });
-
-            var result_info = $("<div>", {
-                class: "result-text",
-                html: user_labels.correct_count_label + " " + "<b>" + score.toString() + " " + user_labels.of + " " + max_score.toString() + "</b>"
-            });
-            $(result_block).append(result_info);
-            var display_correct_words_str = (score == 0 ) ? "<p>" + user_labels.no_correct_label + "</p>" : "<p>" + user_labels.correct_words + " <b>" + correct_words_str + "</b>" + "</p>";
-            var display_incorrect_words_str = (not_selected.length == 0 && incorrect_selected.length == 0) ? "<p>" + user_labels.all_correct_label + "</p>": "<p>" + user_labels.incorrect_words + " <b>" + incorrect_words_str + "</b>" + "</p>";
-            $(result_block).append(display_correct_words_str);
-            $(result_block).append(display_incorrect_words_str);
-            hightligthCorrect();
-            function hightligthCorrect(){
-                $(".task-let").unbind("click");
-                $(".task-let").unbind("mouseover");
-                $(".task-let").unbind("mouseleave");
-
-                $(".line-wrap").each(function() {
-                    if($(this).children().length > 1){
-                        $(this).addClass("word-correct");
+            function createStringsArray(correct_arr, source) {
+                var str_arr_tmp = [];
+                var word_start_position = 0;
+                var text_block = "";
+                correct_arr.forEach(function (word, idx) {
+                    var word_end_position = source.indexOf(word);
+                    if (word_end_position != -1) {
+                        if (idx == 0) {
+                            text_block = source.slice(word_start_position, word_end_position);
+                            text_block.split('').forEach(letter => str_arr_tmp.push(letter)
+                        )
+                            ;
+                        }
+                        word_start_position = word_end_position;
+                        word_end_position = word_start_position + word.length;
+                        text_block = source.slice(word_start_position, word_end_position);
+                        str_arr_tmp.push(text_block);
+                        word_start_position = word_end_position;
+                        word_end_position = (idx + 1) == correct_arr.length ? source.length : source.indexOf(correct_arr[idx + 1]);
+                        text_block = source.slice(word_start_position, word_end_position);
+                        text_block.split('').forEach(letter => str_arr_tmp.push(letter)
+                    )
+                        ;
+                        word_start_position = word_end_position;
+                    } else {
+                        console.log("Correct word is not defined.")
                     }
                 });
+                return str_arr_tmp;
             }
-            // console.log(score + " / " + max_score);
-            // console.log("correct_selected: ", correct_selected, "incorrect_selected: ", incorrect_selected);
-        }
+
+            var str_arr = createStringsArray(correct_strings, src_str);
+
+            var num = 0;
+
+            str_arr.forEach(function (src_string, idx) {
+                var line = $("<div>", {
+                    class: "line-wrap"
+                });
+                src_string.split('').forEach(function (letter_elem) {
+                    var letter = {
+                        html: $("<div>", {
+                            html: letter_elem,
+                            class: "task-let",
+                            "data-num": (num).toString(),
+                            "data-char": letter_elem,
+                            id: id_prefix + (num).toString()
+                        }),
+                        num: num,
+                        char: letter_elem
+                    };
+
+                    num += 1;
+
+                    line.append(letter.html);
+
+                    letter.html.click(function (event) {
+                        letter.html.removeClass("first-letter-hover");
+                        if (first_selected) {
+                            if (range(first_selected.num, letter.num).length < 2) {
+                                clearSelect();
+                                return false;
+                            }
+                            var ind = selected_words.findIndex(searchInSelectedWords, letter.num);
+                            if (ind == -1) {
+                                var end = letter.num;
+                            } else {
+                                var end = first_selected.num < letter.num ? selected_words[ind][selected_words[ind].length - 1] : selected_words[ind][0];
+                            }
+                            var selected = range(first_selected.num, end);
+
+                            var absorbed = [];
+                            selected_words.forEach(function (value, index) {
+                                if (value.every((i => v => i = selected.indexOf(v, i) + 1) (0)
+                            ))
+                                {
+                                    absorbed.push(index);
+                                }
+                            });
+                            for (var i = absorbed.length - 1; i >= 0; i--) {
+                                selected_words.splice(absorbed[i], 1);
+                            }
+                            selected_words.push(selected);
+                            displaySelectedWords(task_info, selected_words);
+                            selected.forEach(function (number) {
+                                $("#" + id_prefix + number, html_element).addClass("word-selected").removeClass("word-candidate")
+                            });
+                            $(".task-let", html_element).removeClass("word-candidate");
+                            first_selected.html.removeClass("first-letter-selected");
+                            first_selected = undefined;
+                        } else {
+                            if (letter.html.hasClass("word-selected")) {
+                                var ind = selected_words.findIndex(searchInSelectedWords, letter.num);
+                                removeClass(selected_words[ind], "remove-candidate word-selected", id_prefix);
+                                selected_words.splice(ind, 1);
+                                displaySelectedWords(task_info, selected_words);
+
+                            } else {
+                                first_selected = letter;
+                                first_selected.html.addClass("first-letter-selected");
+                            }
+                        }
+                    });
+
+                    letter.html.mouseover(function (event) {
+                        $(".task-let", html_element).removeClass("remove-candidate");
+                        if (first_selected) {
+                            $(".task-let", html_element).removeClass("word-candidate");
+                            if (letter.html.hasClass("word-selected")) {
+                                var ind = selected_words.findIndex(searchInSelectedWords, letter.num);
+                                var end = first_selected.num < letter.num ? selected_words[ind][selected_words[ind].length - 1] : selected_words[ind][0];
+                                range(first_selected.num, end).forEach(number => $("#" + id_prefix + number, html_element).addClass("word-candidate")
+                            )
+                                ;
+                            } else {
+                                range(first_selected.num, letter.num).forEach(number => $("#" + id_prefix + number, html_element).addClass("word-candidate")
+                            )
+                                ;
+                            }
+                        } else {
+
+                            if (letter.html.hasClass("word-selected")) {
+                                var ind = selected_words.findIndex(searchInSelectedWords, letter.num);
+                                addClass(selected_words[ind], "remove-candidate", id_prefix);
+                            } else {
+                                letter.html.addClass("first-letter-hover");
+                            }
+                        }
+                    });
+                    //
+                    letter.html.mouseleave(function (event) {
+                        $(".task-let", html_element).removeClass("remove-candidate");
+                        $(".task-let", html_element).removeClass("first-letter-hover");
+                    });
+                });
+                letters_task.append(line);
+            });
+
+            function createResult() {
+                task_timer.stop();
+                timer_display.html("<div>" + user_labels.time_is_over_label + "</div>");
+                $(".task-let", html_element).removeClass("remove-candidate");
+                $(".task-let", html_element).removeClass("first-letter-hover");
+                $(".task-let", html_element).removeClass("first-letter-selected");
+
+                $(result_block).html("");
+                var score = 0;
+                var max_score = correct_strings.length;
+                var correct_selected = [];
+                var incorrect_selected = [];
+                var not_selected = correct_strings.slice();
+
+                selected_words.forEach(function (word, index) {
+
+                    var current_word = arrayToWord(word, src_str);
+                    if (correct_strings.includes(current_word)) {
+                        score += 1;
+                        correct_selected.push(word);
+                        var del_index = not_selected.indexOf(current_word);
+                        not_selected.splice(del_index, 1);
+                    } else {
+                        incorrect_selected.push(word);
+                    }
+                });
+
+                var correct_words_str = "";
+                correct_selected.forEach(function (val, i) {
+                    correct_words_str += arrayToWord(val, src_str) + ((i == correct_selected.length - 1) ? ";" : ", ");
+                });
+
+                var incorrect_words_str = "";
+                not_selected.forEach(function (val, i) {
+                    incorrect_words_str += val + ((i == not_selected.length - 1) ? (incorrect_selected.length == 0) ? ";" : ", " : ", ");
+                });
+
+                incorrect_selected.forEach(function (val, i) {
+                    incorrect_words_str += arrayToWord(val, src_str) + ((i == incorrect_selected.length - 1) ? ";" : ", ");
+                });
+
+                var result_info = $("<p>", {
+
+                    html: user_labels.correct_count_label + " " + "<b>" + score.toString() + " " + user_labels.of + " " + max_score.toString() + "</b>"
+                });
+                $(result_block).append(result_info);
+                var display_correct_words_str = (score == 0) ? "<p>" + user_labels.no_correct_label + "</p>" : "<p>" + user_labels.correct_words + " <b>" + correct_words_str + "</b>" + "</p>";
+                var display_incorrect_words_str = (not_selected.length == 0 && incorrect_selected.length == 0) ? "<p>" + user_labels.all_correct_label + "</p>" : "<p>" + user_labels.incorrect_words + " <b>" + incorrect_words_str + "</b>" + "</p>";
+
+                var restart_button = $("<button>", {
+                    html: user_labels.reset_btn_label
+                });
+
+                restart_button.click(function (event) {
+                    munsterberg_test = new MunsterbergTest($("#munsterberg_test"), task_time);
+                });
+
+                $(result_block).append(display_correct_words_str);
+                $(result_block).append(display_incorrect_words_str);
+                $(result_block).append(restart_button);
+                $(result_block).slideDown();
+                hightligthCorrect();
+
+                function hightligthCorrect() {
+                    $(".task-let").unbind("click");
+                    $(".task-let").unbind("mouseover");
+                    $(".task-let").unbind("mouseleave");
+
+                    $(".line-wrap").each(function () {
+                        if ($(this).children().length > 1) {
+                            $(this).addClass("word-correct");
+                        }
+                    });
+                }
+            }
 
 
-        var check_button = $("<button>", {
-            html: user_labels.check_btn_label
-        });
+            function startTask(){
+                task_timer.start();
+                timer_display.slideDown();
+                instruction_block.slideUp();
+                letters_task.slideDown();
+                start_button.hide();
+            }
+
+            start_button.click(function (event) {
+                startTask();
+            });
 
 
-        check_button.click(function (event){
-            createResult();
-        });
 
-        $("#munsterberg_test").append(instruction_block);
-        $("#munsterberg_test").append(letters_task);
-        $("#munsterberg_test").append(task_info);
-        $("#munsterberg_test").append(result_block);
-        $("#munsterberg_test").append(check_button);
+            $(html_element).append(instruction_block);
+            $(html_element).append(timer_display);
+            $(html_element).append(letters_task);
+            $(html_element).append(task_info);
+            $(html_element).append(result_block);
+            $(html_element).append(start_wrap);
 
-        displaySelectedWords(task_info, selected_words);
+            displaySelectedWords(task_info, selected_words);
+
+
+            // var check_button = $("<button>", {
+            //     html: user_labels.check_btn_label
+            // });
+            //
+            // check_button.click(function (event) {
+            //     createResult();
+            // });
+            //
+            // $(html_element).append(check_button);
+
+
+        };
+
+
+        var task_time = 10; // 2 * 60; // в секундах
+        var munsterberg_test = new MunsterbergTest($("#munsterberg_test"), task_time);
+
+        // $("#munsterberg_test_wrap").append(start_button);
     });
 
 </script>
 
-
+<div id="munsterberg_test_wrap">
 <div id="munsterberg_test">
 
+</div>
 </div>

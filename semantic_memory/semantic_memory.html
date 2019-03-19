@@ -1,4 +1,16 @@
 <style>
+
+    #words_pair_wrap{
+        font-size: 2em;
+        /*background: #6ee1ff;*/
+        padding: 20px;
+        height: 50px;
+        width: 500px;
+        display: flex;
+        justify-content: center; /* align horizontal */
+        align-items: center;
+    }
+
 </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
@@ -338,25 +350,80 @@
             required: "w2"
         }];
 
-    var word_pairs_count = 15;
-    var series_A = series_A_lib.sort(function () { return .5 - Math.random()}).slice(0, word_pairs_count);
-    var series_B = series_B_lib.sort(function () { return .5 - Math.random()}).slice(0, word_pairs_count);
+    var word_pairs_count = 4;
 
-    console.log(series_A);
-    console.log(series_B);
+    var series_A = series_A_lib.sort(function () {
+        return .5 - Math.random()
+    }).slice(0, word_pairs_count);
+    var series_B = series_B_lib.sort(function () {
+        return .5 - Math.random()
+    }).slice(0, word_pairs_count);
 
-    function showSeries(element, list, delay, delay_1){
-
-    }
-
-    showSeries(series_A);
-
+    console.log("series_A: ", series_A);
+    console.log("series_B: ", series_B);
     $(document).ready(function () {
-        // $('#showMe').hide(0).delay(1000).show(0).delay(1000).hide(0)
-            // .show(0).delay(1000).hide(0);
+
+        // function showSeries(element, list, delay, delay_1){
+
+
+        function showSeries(array, index, target, word_delay, word_pause) {
+            console.log(target);
+            // $(target).hide(1000);
+            var slideTime = 200;
+            let current_string = array[index].w1 + " - " + array[index].w2;
+            if (array.length - index === 1) {
+                $(target).html(current_string);
+                $(target).slideDown(slideTime);
+                setTimeout(function () {
+                    $(target).slideUp(slideTime);
+                    console.log("end");
+                    $("#start_series_A").hide();
+                    $("#start_series_B").show();
+                }, word_delay);
+            }
+            else {
+                $(target).html(current_string);
+                $(target).slideDown(slideTime);
+
+                setTimeout(function () {
+                        $(target).slideUp(slideTime);
+                        setTimeout(function () {
+                                showSeries(array, ++
+                                    index, target, word_delay, word_pause
+                                )
+                            },
+                            word_pause
+                        )
+                    },
+                    word_delay
+                )
+            }
+        }
+
+        $("#start_series_A").click(function () {
+            $("#series_title").html("Серия А");
+            showSeries(series_A, 0, $("#words_pair"), 4000, 600);
+
+        });
+
+        $("#start_series_B").click(function () {
+            $("#series_title").html("Серия Б");
+            showSeries(series_B, 0, $("#words_pair"), 4000, 600);
+        });
+
+        $("#start_series_B").hide();
+
     })
 </script>
 
 <div id="semantic_memory">
-    <div id="showMe">yterkaujdsfngef</div>
+
+    <button id="start_series_A">Начать первую серию</button>
+    <button id="start_series_B">Начать вторую серию</button>
+
+    <div id="series_title"></div>
+    <div id="words_pair_wrap">
+
+        <div id="words_pair"></div>
+    </div>
 </div>
