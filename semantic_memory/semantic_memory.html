@@ -1,12 +1,13 @@
 <style>
 
-    #words_pair_wrap{
+    #words_pair_wrap {
         font-size: 2em;
-        background: #aeeeff;
+        background: #f6f6f6;
         color: black;
         padding: 20px;
         height: 50px;
         /*width: 500px;*/
+        border: 2px solid #d7d7d7;
         display: flex;
         justify-content: center; /* align horizontal */
         align-items: center;
@@ -18,12 +19,75 @@
         user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
     }
 
-    #semantic_memory{
-        max-width: 1000px;
+    #semantic_memory {
+        max-width: 810px;
+        margin: 0 auto;
     }
 
+    .instruction-block{
+        background: #fafafa;
+        padding: 6px;
+        border-radius: 0.5em;
+    }
+
+    .start-button, .check-button {
+        font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;
+        width: 8em;
+        height: 50px;
+        background: #046b99;
+        color: #ffffff;
+        font-size: 1.6em;
+        font-weight: normal;
+        border: none;
+    }
+
+    .start-button:hover, .check-button:hover {
+        /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+        width: 200px;*/
+        /* height: 50px; */
+        background: #035c83 !important;
+        border: none;
+        cursor: pointer;
+    }
+
+    .start-button:focus, .check-button:focus {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .start-wrap {
+        padding: 2em 0;
+        text-align: center;
+    }
+
+    .input-pair-wrap{
+        margin: 6px;
+        border-radius: 6px;
+        background: #eefbff;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-pair-wrap .first-word{
+        padding: 6px;
+        font-size: 2em;
+        text-align: right;
+        flex-direction: column;
+        min-width: 25%;
+        word-break: initial;
+    }
+
+    .input-pair-wrap .second-word{
+        /*flex: 1;*/
+        word-break: initial;
+
+    }
+
+
 </style>
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 <script type="text/javascript">
 
@@ -36,7 +100,9 @@
             check_btn_label: "Check",
             series_a_label: "Series A",
             series_b_label: "Series B",
-
+            instruction_text: "Ход опыта. Испытуемым зачитывают слова. Они должны постараться запомнить их попарно. Затем экспериментатор прочитывает только первое слово каждой пары, а испытуемые записывают второе.",
+            instruction_label: "Инструкция",
+            delay_label: "We start in",
         },
         ru: {
             start_btn_label: "Начать",
@@ -44,9 +110,13 @@
             check_btn_label: "Проверить",
             series_a_label: "Серия А",
             series_b_label: "Серия Б",
-
+            instruction_text: "Ход опыта. Испытуемым зачитывают слова. Они должны постараться запомнить их попарно. Затем экспериментатор прочитывает только первое слово каждой пары, а испытуемые записывают второе.",
+            instruction_label: "Инструкция",
+            delay_label: "Начинаем через",
         }
     };
+
+    var user_labels = translations[language];
 
     const series_A_lib = [
         {
@@ -382,9 +452,9 @@
             required: "w2"
         }];
 
-    var word_pairs_count = 15;
-    var word_display_time = 4000;
-    var delay_between_words = 600;
+    var word_pairs_count = 5; //series_A_lib.length;
+    var word_display_time = 1000;
+    var delay_between_words = 400;
 
     var series_A = series_A_lib.sort(function () {
         return .5 - Math.random()
@@ -399,96 +469,100 @@
 
     $(document).ready(function () {
 
-//         var countdownTimer = function (elem, stop_time , options, stop_func) {
-//
-//             var timer = createTimer(),
-//                 offset,
-//                 clock,
-//                 interval;
-//
-//             clock = stop_time * 1000;
-//             options = options || {};
-//             options.delay = options.delay || 1;
-//
-//             elem.appendChild(timer);
-//
-//             reset();
-//
-//             function createTimer() {
-//                 var timer_div = document.createElement("div");
-//                 timer_div.className = "timer-block";
-//                 return timer_div;
-//             }
-//
-//
-//             function start() {
-//                 if (!interval) {
-//                     offset = Date.now();
-//                     console.log(interval);
-//                     interval = setInterval(update, options.delay);
-//                 }
-//             }
-//
-//             function stop() {
-//                 if (interval) {
-//                     clearInterval(interval);
-//                     interval = null;
-//                 }
-//             }
-//
-//             function reset() {
-//                 clock = stop_time * 1000;
-//                 render();
-//             }
-//
-//             function update() {
-//                 // console.log(clock);
-//                 if(clock > 0) {
-//                     clock -= delta();
-//                 }
-//                 else{
-//                     clock = 0;
-//                     stop();
-//                     stop_func();
-//                 }
-//                 render();
-//             }
-//
-//             function current_time() {
-//                 return clock / 1000;
-//             }
-//
-//             function render() {
-//                 timer.innerHTML = "<strong>" + sec2time(clock / 1000) + "</strong>";
-//             }
-//
-//             function delta() {
-//                 var now = Date.now(),
-//                     d = now - offset;
-//                 offset = now;
-//                 return d;
-//             }
-//
-//             function sec2time(timeInSeconds) {
-//                 var pad = function (num, size) {
-//                         return ('000' + num).slice(size * -1);
-//                     },
-//                     time = parseFloat(timeInSeconds).toFixed(3),
-//                     hours = Math.floor(time / 60 / 60),
-//                     minutes = Math.floor(time / 60) % 60,
-//                     seconds = Math.floor(time - minutes * 60),
-//                     milliseconds = time.slice(-3);
-//
-//                 return pad(minutes, 2) + ':' + pad(seconds, 2)
-//                 // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
-//             }
-//
-// // public API
-//             this.current_time = current_time;
-//             this.start = start;
-//             this.stop = stop;
-//             this.reset = reset;
-//         };
+
+
+        var countdownTimer = function (elem, stop_time , options, stop_func) {
+
+            var timer = createTimer(),
+                offset,
+                clock,
+                interval;
+
+
+            clock = stop_time * 1000;
+            options = options || {};
+            options.delay = options.delay || 1;
+            options.timer_prefix = options.timer_prefix + " " || "";
+
+            $(elem).append(timer);
+
+            reset();
+
+            function createTimer() {
+                var timer_div = document.createElement("div");
+                timer_div.className = "timer-block";
+                return timer_div;
+            }
+
+
+            function start() {
+                if (!interval) {
+                    offset = Date.now();
+                    console.log(interval);
+                    interval = setInterval(update, options.delay);
+                }
+            }
+
+            function stop() {
+                if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
+            }
+
+            function reset() {
+                clock = stop_time * 1000;
+                render();
+            }
+
+            function update() {
+                // console.log(clock);
+                if(clock > 0) {
+                    clock -= delta();
+                }
+                else{
+                    clock = 0;
+                    stop();
+                    stop_func();
+                }
+                render();
+            }
+
+            function current_time() {
+                return clock / 1000;
+            }
+
+            function render() {
+                timer.innerHTML = ""  + options.timer_prefix + sec2time(clock / 1000) + "";
+            }
+
+            function delta() {
+                var now = Date.now(),
+                    d = now - offset;
+                offset = now;
+                return d;
+            }
+
+            function sec2time(timeInSeconds) {
+                var pad = function (num, size) {
+                        return ('000' + num).slice(size * -1);
+                    },
+                    time = parseFloat(timeInSeconds).toFixed(3),
+                    hours = Math.floor(time / 60 / 60),
+                    minutes = Math.floor(time / 60) % 60,
+                    seconds = Math.floor(time - minutes * 60),
+                    milliseconds = time.slice(-3);
+
+                return pad(minutes, 2) + ':' + pad(seconds, 2)
+                // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+            }
+
+// public API
+            this.current_time = current_time;
+            this.start = start;
+            this.stop = stop;
+            this.reset = reset;
+        };
 
         var Stopwatch = function (elem, options) {
 
@@ -502,7 +576,7 @@
 
             // elem.
 
-            elem.appendChild(timer);
+            $(elem).append(timer);
 
             reset();
 
@@ -575,54 +649,195 @@
             this.reset = reset;
         };
 
-        function showSeries(array, index, target, word_delay, word_pause) {
+        var SemanticMemory = function (html_element) {
 
-            $("#test_div").append("<p> Задержка перед парой № "  + (index+1).toString() + ": "+ countdown_timer.current_time() + " сек. </p>");
-            countdown_timer.stop();
-            countdown_timer.reset();
 
-            // var slideTime = Math.round(word_pause/3);
-            var slideTime = Math.round(word_pause/3);
-            let current_string = array[index].w1 + " - " + array[index].w2;
-            if (array.length - index === 1) {
-                $(target).html(current_string);
-                $(target).slideDown(slideTime);
-                countdown_timer.start();
-                setTimeout(function () {
-                    $(target).slideUp(slideTime);
-                    $("#test_div").append("<p>Показывали пару № " + (index+1).toString() + ": " + countdown_timer.current_time() + " сек. </p>");
-                    $("#test_div").append("<p>Закончили</p>");
-                    countdown_timer.stop();
-                    countdown_timer.reset();
-                }, word_delay);
+            var countdown_timer;
+            var current_series_let = "A";
+            var current_series;
+
+            var instruction_div = $("<div>", {
+                class: "instruction-block",
+                // html: user_labels.instruction
+            });
+
+            instruction_div.append("<h2>" + user_labels.instruction_label + "</h2>");
+            instruction_div.append("<p>" + user_labels.instruction_text + "</p>");
+
+            var task_wrap = $("<div>", {
+                id: "task_wrap"
+            }).hide();
+
+            var countdown_timer = $("<div>",
+                {
+                    id: "countdown_timer"
+                }).appendTo(task_wrap);
+
+            var words_pair_wrap = $("<div>", {
+                id: "words_pair_wrap"
+            }).appendTo(task_wrap);
+
+            var words_pair = $("<div>", {
+                id: "words_pair"
+            }).appendTo(words_pair_wrap);
+
+            var start_wrap = $("<div>", {
+                class: "start-wrap"
+            });
+
+            var start_button = $("<button>", {
+                class: "start-button",
+                html: user_labels.start_btn_label
+            }).appendTo(start_wrap);
+
+
+            startTask();
+
+            function startTask() {
+
+                $(html_element).append(instruction_div);
+                $(html_element).append(start_wrap);
+                $(html_element).append(task_wrap);
             }
-            else {
-                $(target).html(current_string);
-                $(target).slideDown(slideTime);
+
+            start_button.click(function () {
+                startSeries();
+            });
+
+            function startSeries() {
+
+                $("#test_div").html("");
+                start_wrap.hide();
+                instruction_div.slideUp();
+
+                task_wrap.show();
+                stopwatch_timer = new Stopwatch(countdown_timer);
+                stopwatch_timer.start();
+
+                if (current_series_let == "A"){
+                    current_series = series_A
+                }
+                else {
+                    current_series = series_B
+                }
+
+                var countdown_timer = new countdownTimer(words_pair, 4, {timer_prefix: user_labels.delay_label}, function(){ words_pair.html(""); showSeries(current_series, 0, words_pair, word_display_time, delay_between_words) });
+
                 countdown_timer.start();
-                setTimeout(function () {
-                        $(target).slideUp(slideTime);
-                        $("#test_div").append("<p>Показывали пару № " + (index+1).toString() + ": " + countdown_timer.current_time() + " сек. </p>");
-                        countdown_timer.stop();
-                        countdown_timer.reset();
-                        setTimeout(function () { showSeries(array, ++index, target, word_delay, word_pause); }, word_pause);
-                        countdown_timer.start();
-                    },
-                    word_delay
-                )
+                // // words_pair_wrap.show()
+                // words_pair_wrap
+
+                // ;
+
+                // html_element
             }
-        }
 
-        var countdown_timer = new Stopwatch($("#countdown_timer")[0] );
+            function showSeries(array, index, target, word_delay, word_pause) {
 
-        $("#start_series_A").click(function () {
-            // $("#series_title").html("Серия А");
-            $("#test_div").html("");
-            // countdown_timer.stop();
-            // countdown_timer.reset();
-            countdown_timer.start();
-            showSeries(series_A, 0, $("#words_pair"), word_display_time, delay_between_words);
-        });
+                $("#test_div").append("<p> Задержка перед парой № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
+                stopwatch_timer.stop();
+                stopwatch_timer.reset();
+
+                // var slideTime = Math.round(word_pause/3);
+                var slideTime = 150; //Math.round(word_pause/3);
+                let current_string = array[index].w1 + "&nbsp;–&nbsp;" + array[index].w2;
+                if (array.length - index === 1) {
+                    $(target).html(current_string);
+                    $(target).fadeIn(slideTime);
+                    stopwatch_timer.start();
+                    setTimeout(function () {
+                        $(target).fadeOut(slideTime);
+                        $("#test_div").append("<p>Показывали пару № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
+                        // $("#test_div").append("<p>Закончили</p>");
+                        createAnswerBlock();
+                        stopwatch_timer.stop();
+                        stopwatch_timer.reset();
+                    }, word_delay);
+                } else {
+                    $(target).html(current_string);
+                    $(target).fadeIn(slideTime);
+                    stopwatch_timer.start();
+                    setTimeout(function () {
+                            $(target).fadeOut(slideTime);
+                            $("#test_div").append("<p>Показывали пару № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
+                            stopwatch_timer.stop();
+                            stopwatch_timer.reset();
+                            setTimeout(function () {
+                                showSeries(array, ++index, target, word_delay, word_pause);
+                            }, word_pause);
+                            stopwatch_timer.start();
+                        },
+                        word_delay
+                    )
+                }
+            }
+
+            // function
+            function createAnswerBlock() {
+                // task_wrap.slideUp();
+                task_wrap.html("");
+                var answer_wrap = $("<div>", {
+                    class: "answer_wrap"
+                });
+
+                current_series.forEach(function (value) {
+                   var input_pair_wrap = $("<div>", {
+                       class: "input-pair-wrap"
+                   });
+
+                    var first_word =  $("<div>", {
+                        class: "first-word",
+                        html: value.w1 + "&nbsp;–&nbsp;"
+                    });
+
+                    var second_word =  $("<div>", {
+                        class: "second-word"
+                    });
+
+                    var input_word = $("<input>", {
+                        class: "input-word",
+                        type: "text",
+                    }).appendTo(second_word);
+
+                    input_pair_wrap.append(first_word);
+                    input_pair_wrap.append(second_word);
+                    answer_wrap.append(input_pair_wrap);
+
+                });
+
+                var check_button = $("<button>", {
+                   html: user_labels.check_btn_label,
+                   class: "check-button"
+                });
+
+                check_button.click(function () {
+                   if
+                });
+
+                answer_wrap.append(check_button);
+
+
+
+                task_wrap.append(answer_wrap);
+
+            }
+
+            // $("#start_series_A").click(function () {
+            //     // $("#series_title").html("Серия А");
+            //     $("#test_div").html("");
+            //     // countdown_timer.stop();
+            //     // countdown_timer.reset();
+            //     countdown_timer.start();
+            //     showSeries(series_A, 0, $("#words_pair"), word_display_time, delay_between_words);
+            // });
+
+        };
+
+        var semantic_memory_task = document.getElementById("semantic_memory_task");
+
+        $("#semantic_memory_task").closest("xblock").css('overflow-x', 'initial');
+
+        var semantic_memory = new SemanticMemory(semantic_memory_task);
 
         // $("#start_series_B").click(function () {
         //     $("#series_title").html("Серия Б");
@@ -637,14 +852,18 @@
 
 <div id="semantic_memory">
 
-    <button id="start_series_A">Начать первую серию</button>
+    <!--<button id="start_series_A">Начать первую серию</button>-->
     <!--<button id="start_series_B">Начать вторую серию</button>-->
 
-    <!--<div id="series_title"></div>-->
-    <div id="countdown_timer"></div>
-    <div id="words_pair_wrap">
-        <div id="words_pair" style="display: none;"></div>
+    <div id="semantic_memory_task">
+
     </div>
+
+    <!--<div id="series_title"></div>-->
+    <!---->
+    <!--<div id="words_pair_wrap">-->
+    <!--<div id="words_pair" style="display: none;"></div>-->
+    <!--</div>-->
 
     <div id="test_div"></div>
 </div>
