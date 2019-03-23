@@ -5,7 +5,8 @@
         background: #f6f6f6;
         color: black;
         padding: 20px;
-        height: 50px;
+        /*height: 50px;*/
+        height: 8em;
         /*width: 500px;*/
         border: 2px solid #d7d7d7;
         display: flex;
@@ -32,11 +33,11 @@
 
     .start-button, .check-button {
         font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;
-        width: 8em;
-        height: 50px;
+        /*width: 6em;*/
+        text-shadow: none !important;
         background: #046b99;
         color: #ffffff;
-        font-size: 1.6em;
+        font-size: 1.5em;
         font-weight: normal;
         border: none;
     }
@@ -62,29 +63,42 @@
 
     .input-pair-wrap{
         margin: 6px;
+        padding: 6px 0px;
         border-radius: 6px;
         background: #eefbff;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+        /*flex-wrap: wrap;*/
+        /*justify-content: center;*/
+        /*align-items: center;*/
     }
 
     .input-pair-wrap .first-word{
-        padding: 6px;
-        font-size: 2em;
+        font-size: 1.5em;
         text-align: right;
         flex-direction: column;
-        min-width: 25%;
+        width: 50%;
         word-break: initial;
+        display: flex;
+        justify-content: center;
     }
 
     .input-pair-wrap .second-word{
-        /*flex: 1;*/
+        width: 50%;
         word-break: initial;
 
     }
 
+    .input-word{
+        font: initial !important;
+        width: 7em;
+        height: auto !important;
+        border-radius: 3px !important;
+        margin: 0px !important;
+        max-width: 90%;
+        font-size: 1.6em !important;
+        padding: 1px 6px !important;
+        font-family: Verdana,Geneva,sans-serif,sans-serif !important;
+    }
 
 </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
@@ -103,6 +117,7 @@
             instruction_text: "Ход опыта. Испытуемым зачитывают слова. Они должны постараться запомнить их попарно. Затем экспериментатор прочитывает только первое слово каждой пары, а испытуемые записывают второе.",
             instruction_label: "Инструкция",
             delay_label: "We start in",
+            check_block_instruction: "допишите второе слово:",
         },
         ru: {
             start_btn_label: "Начать",
@@ -113,356 +128,363 @@
             instruction_text: "Ход опыта. Испытуемым зачитывают слова. Они должны постараться запомнить их попарно. Затем экспериментатор прочитывает только первое слово каждой пары, а испытуемые записывают второе.",
             instruction_label: "Инструкция",
             delay_label: "Начинаем через",
+            check_block_instruction: "допишите второе слово:",
         }
     };
 
     var user_labels = translations[language];
 
-    const series_A_lib = [
-        {
+    const series_A_lib = {
+        a_word_0: {
             w1: "машина",
             w2: "ехать",
             required: "w2"
         },
-        {
+        a_word_1: {
             w1: "кружка",
             w2: "пить",
             required: "w2"
         },
-        {
+        a_word_2: {
             w1: "ручка",
             w2: "писать",
             required: "w2"
         },
-        {
+        a_word_3: {
             w1: "ботинки",
             w2: "шнурки",
             required: "w2"
         },
-        {
+        a_word_4: {
             w1: "собака",
             w2: "лаять",
             required: "w2"
         },
-        {
+        a_word_5: {
             w1: "зима",
             w2: "снеговик",
             required: "w2"
         },
-        {
+        a_word_6: {
             w1: "свеча",
             w2: "гореть",
             required: "w2"
         },
-        {
+        a_word_7: {
             w1: "очки",
             w2: "видеть",
             required: "w2"
         },
-        {
+        a_word_8: {
             w1: "утюг",
             w2: "гладить",
             required: "w2"
         },
-        {
+        a_word_9: {
             w1: "дерево",
             w2: "лист",
             required: "w2"
         },
-        {
+        a_word_10: {
             w1: "помидор",
             w2: "овощ",
             required: "w2"
         },
-        {
+        a_word_11: {
             w1: "рыцарь",
             w2: "защищать",
             required: "w2"
         },
-        {
+        a_word_12: {
             w1: "армия",
             w2: "солдат",
             required: "w2"
         },
-        {
+        a_word_13: {
             w1: "кирпич",
             w2: "строить",
             required: "w2"
         },
-        {
+        a_word_14: {
             w1: "кастрюля",
             w2: "варить",
             required: "w2"
         },
-        {
+        a_word_15: {
             w1: "стул",
             w2: "сидеть",
             required: "w2"
         },
-        {
+        a_word_16: {
             w1: "лопата",
             w2: "яма",
             required: "w2"
         },
-        {
+        a_word_17: {
             w1: "утро",
             w2: "рассвет",
             required: "w2"
         },
-        {
+        a_word_18: {
             w1: "время",
             w2: "часы",
             required: "w2"
         },
-        {
+        a_word_19: {
             w1: "телефон",
             w2: "звонок",
             required: "w2"
         },
-        {
+        a_word_20: {
             w1: "газ",
             w2: "тормоз",
             required: "w2"
         },
-        {
+        a_word_21: {
             w1: "свинья",
             w2: "поросенок",
             required: "w2"
         },
-        {
+        a_word_22: {
             w1: "гитара",
             w2: "струна",
             required: "w2"
         },
-        {
+        a_word_23: {
             w1: "страна",
             w2: "город",
             required: "w2"
         },
-        {
+        a_word_24: {
             w1: "собака",
             w2: "щенок",
             required: "w2"
         },
-        {
+        a_word_25: {
             w1: "рука",
             w2: "локоть",
             required: "w2"
         },
-        {
+        a_word_26: {
             w1: "ключ",
             w2: "замок",
             required: "w2"
         },
-        {
+        a_word_27: {
             w1: "соль",
             w2: "перец",
             required: "w2"
         },
-        {
+        a_word_28: {
             w1: "галстук",
             w2: "бабочка",
             required: "w2"
         },
-        {
+        a_word_29: {
             w1: "врач",
             w2: "халат",
             required: "w2"
         },
-        {
+        a_word_30: {
             w1: "зачет",
             w2: "экзамен",
             required: "w2"
         },
-        {
+        a_word_31: {
             w1: "лето",
             w2: "море",
             required: "w2"
         },
-        {
+        a_word_32: {
             w1: "карта",
             w2: "искать",
             required: "w2"
-        }];
+        }};
 
-    const series_B_lib = [
-        {
+    const series_B_lib = {
+        b_word_0: {
             w1: "слон",
             w2: "автобус",
             required: "w2"
         },
-        {
+        b_word_1: {
             w1: "брюки",
             w2: "небо",
             required: "w2"
         },
-        {
+        b_word_2: {
             w1: "ключи",
             w2: "город",
             required: "w2"
         },
-        {
+        b_word_3: {
             w1: "вилка",
             w2: "провод",
             required: "w2"
         },
-        {
+        b_word_4: {
             w1: "сестра",
             w2: "дуб",
             required: "w2"
         },
-        {
+        b_word_5: {
             w1: "бег",
             w2: "огурец",
             required: "w2"
         },
-        {
+        b_word_6: {
             w1: "остров",
             w2: "пчела",
             required: "w2"
         },
-        {
+        b_word_7: {
             w1: "гроза",
             w2: "отец",
             required: "w2"
         },
-        {
+        b_word_8: {
             w1: "химия",
             w2: "матрас",
             required: "w2"
         },
-        {
+        b_word_9: {
             w1: "корабль",
             w2: "свинья",
             required: "w2"
         },
-        {
+        b_word_10: {
             w1: "железо",
             w2: "голова",
             required: "w2"
         },
-        {
+        b_word_11: {
             w1: "часы",
             w2: "звезда",
             required: "w2"
         },
-        {
+        b_word_12: {
             w1: "краска",
             w2: "водопад",
             required: "w2"
         },
-        {
+        b_word_13: {
             w1: "осанка",
             w2: "корона",
             required: "w2"
         },
-        {
+        b_word_14: {
             w1: "самолет",
             w2: "камень",
             required: "w2"
         },
-        {
+        b_word_15: {
             w1: "десерт",
             w2: "собор",
             required: "w2"
         },
-        {
+        b_word_16: {
             w1: "спорт",
             w2: "мороз",
             required: "w2"
         },
-        {
+        b_word_17: {
             w1: "мамонт",
             w2: "круг",
             required: "w2"
         },
-        {
+        b_word_18: {
             w1: "горох",
             w2: "брат",
             required: "w2"
         },
-        {
+        b_word_19: {
             w1: "лампа",
             w2: "круг",
             required: "w2"
         },
-        {
+        b_word_20: {
             w1: "мышь",
             w2: "кулак",
             required: "w2"
         },
-        {
+        b_word_21: {
             w1: "щука",
             w2: "ботинок",
             required: "w2"
         },
-        {
+        b_word_22: {
             w1: "крот",
             w2: "поезд",
             required: "w2"
         },
-        {
+        b_word_23: {
             w1: "зеркало",
             w2: "краб",
             required: "w2"
         },
-        {
+        b_word_24: {
             w1: "карман",
             w2: "крыша",
             required: "w2"
         },
-        {
+        b_word_25: {
             w1: "капуста",
             w2: "пояс",
             required: "w2"
         },
-        {
+        b_word_26: {
             w1: "шапка",
             w2: "март",
             required: "w2"
         },
-        {
+        b_word_27: {
             w1: "враг",
             w2: "кот",
             required: "w2"
         },
-        {
+        b_word_28: {
             w1: "алмаз",
             w2: "книга",
             required: "w2"
         },
-        {
+        b_word_29: {
             w1: "стрела",
             w2: "люстра",
             required: "w2"
         },
-        {
+        b_word_30: {
             w1: "жаба",
             w2: "носок",
             required: "w2"
         },
-        {
+        b_word_31: {
             w1: "зуб",
             w2: "дом",
             required: "w2"
         },
-        {
+        b_word_32: {
             w1: "завтрак",
             w2: "теннис",
             required: "w2"
-        }];
+        }};
 
     var word_pairs_count = 5; //series_A_lib.length;
     var word_display_time = 1000;
     var delay_between_words = 400;
 
-    var series_A = series_A_lib.sort(function () {
-        return .5 - Math.random()
-    }).slice(0, word_pairs_count);
+    // var series_A = series_A_lib.sort(function () {
+    //     return .5 - Math.random()
+    // }).slice(0, word_pairs_count);
 
-    var series_B = series_B_lib.sort(function () {
+    var series_A = {};
+    Object.keys(series_A_lib).sort(function (value) {
         return .5 - Math.random()
-    }).slice(0, word_pairs_count);
+    }).slice(0, word_pairs_count).forEach(function(value){series_A[value] = (series_A_lib[value])});
+
+    var series_B = {};
+    Object.keys(series_B_lib).sort(function (value) {
+        return .5 - Math.random()
+    }).slice(0, word_pairs_count).forEach(function(value){series_B[value] = (series_B_lib[value])});
 
     console.log("series_A: ", series_A);
     console.log("series_B: ", series_B);
@@ -553,7 +575,8 @@
                     seconds = Math.floor(time - minutes * 60),
                     milliseconds = time.slice(-3);
 
-                return pad(minutes, 2) + ':' + pad(seconds, 2)
+                return seconds
+                // pad(minutes, 2) + ':' + pad(seconds, 2)
                 // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
             }
 
@@ -668,18 +691,15 @@
                 id: "task_wrap"
             }).hide();
 
+            var answer_wrap = $("<div>", {
+                class: "answer_wrap"
+            }).hide();
+
+
             var countdown_timer = $("<div>",
                 {
                     id: "countdown_timer"
                 }).appendTo(task_wrap);
-
-            var words_pair_wrap = $("<div>", {
-                id: "words_pair_wrap"
-            }).appendTo(task_wrap);
-
-            var words_pair = $("<div>", {
-                id: "words_pair"
-            }).appendTo(words_pair_wrap);
 
             var start_wrap = $("<div>", {
                 class: "start-wrap"
@@ -698,6 +718,7 @@
                 $(html_element).append(instruction_div);
                 $(html_element).append(start_wrap);
                 $(html_element).append(task_wrap);
+                $(html_element).append(answer_wrap);
             }
 
             start_button.click(function () {
@@ -707,7 +728,18 @@
             function startSeries() {
 
                 $("#test_div").html("");
+                task_wrap.html("");
                 start_wrap.hide();
+                task_wrap.hide()
+
+                var words_pair_wrap = $("<div>", {
+                    id: "words_pair_wrap"
+                }).appendTo(task_wrap);
+
+                var words_pair = $("<div>", {
+                    id: "words_pair"
+                }).appendTo(words_pair_wrap);
+
                 instruction_div.slideUp();
 
                 task_wrap.show();
@@ -721,7 +753,10 @@
                     current_series = series_B
                 }
 
-                var countdown_timer = new countdownTimer(words_pair, 4, {timer_prefix: user_labels.delay_label}, function(){ words_pair.html(""); showSeries(current_series, 0, words_pair, word_display_time, delay_between_words) });
+                var countdown_timer = new countdownTimer(words_pair, 4, {timer_prefix: user_labels.delay_label}, function(){
+                    // words_pair.fadeOut(200);
+                    showSeries(Object.keys(current_series), 0, words_pair, word_display_time, delay_between_words)
+                });
 
                 countdown_timer.start();
                 // // words_pair_wrap.show()
@@ -740,7 +775,7 @@
 
                 // var slideTime = Math.round(word_pause/3);
                 var slideTime = 150; //Math.round(word_pause/3);
-                let current_string = array[index].w1 + "&nbsp;–&nbsp;" + array[index].w2;
+                let current_string = current_series[array[index]].w1 + " – " + current_series[array[index]].w2;
                 if (array.length - index === 1) {
                     $(target).html(current_string);
                     $(target).fadeIn(slideTime);
@@ -774,20 +809,20 @@
 
             // function
             function createAnswerBlock() {
-                // task_wrap.slideUp();
-                task_wrap.html("");
-                var answer_wrap = $("<div>", {
-                    class: "answer_wrap"
-                });
+                task_wrap.slideUp();
+                // task_wrap.html("");
+                answer_wrap.html("");
+                answer_wrap.append("<p>" + user_labels.check_block_instruction + "</p>");
 
-                current_series.forEach(function (value) {
+                Object.keys(current_series).forEach(function (value) {
                    var input_pair_wrap = $("<div>", {
-                       class: "input-pair-wrap"
+                       class: "input-pair-wrap",
+                       id: value
                    });
 
                     var first_word =  $("<div>", {
                         class: "first-word",
-                        html: value.w1 + "&nbsp;–&nbsp;"
+                        html: current_series[value].w1 + "&nbsp;–&nbsp;"
                     });
 
                     var second_word =  $("<div>", {
@@ -805,20 +840,30 @@
 
                 });
 
+                var check_button_wrap =  $("<div>", {
+                    class: "start-wrap"
+                });
+
                 var check_button = $("<button>", {
                    html: user_labels.check_btn_label,
                    class: "check-button"
-                });
+                }).appendTo(check_button_wrap);
 
                 check_button.click(function () {
-                   if
+                   if (current_series_let == "A"){
+                       current_series_let = "B";
+                       startSeries();
+                   }
+                   else{
+                       console.log("финалочка")
+                   }
                 });
 
-                answer_wrap.append(check_button);
+                answer_wrap.append(check_button_wrap);
 
+                $(html_element).append(answer_wrap);
 
-
-                task_wrap.append(answer_wrap);
+                answer_wrap.slideDown();
 
             }
 
@@ -865,5 +910,5 @@
     <!--<div id="words_pair" style="display: none;"></div>-->
     <!--</div>-->
 
-    <div id="test_div"></div>
+    <!--<div id="test_div"></div>-->
 </div>

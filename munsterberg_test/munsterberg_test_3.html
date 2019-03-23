@@ -18,8 +18,9 @@
     }
 
     .line-wrap, .preview-line-wrap{
-        margin: 0.05em 0px;
-        padding: 0.05em 0;
+        /*margin: 0.05em 0px;*/
+        /*padding: 0.05em 0;*/
+        /*border-top: 3px solid #ffffff00;*/
         line-height: 1.4em !important;
     }
 
@@ -62,9 +63,12 @@
     }
 
     .word-correct{
-        background: #009b00;
-        color: white;
-        border-radius: 4px;
+        /*background: #009b00;*/
+        border: 2px solid #009b00;
+        margin: 5px 0px;
+        margin-top: -2px;
+        /* color: white; */
+        border-radius: 3px;
         text-decoration: none;
 
     }
@@ -75,6 +79,13 @@
         cursor: initial;
     }
 
+    .incorrect-selected {
+        background: #ff6e6e82;
+    }
+    .correct-selected {
+        background: #009b00;
+        color: white;
+    }
     /*.word-correct. word-selected {*/
 
     /*}*/
@@ -139,7 +150,7 @@
 
 </style>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
 
 <script type="text/javascript">
 
@@ -653,11 +664,12 @@
 
             function createResult() {
                 task_timer.stop();
-                timer_display.html("<div style='color: #ff3b3b;'>" + user_labels.time_is_over_label + "</div>");
+                timer_display.html("<div style='color: #6a3030;'>" + user_labels.time_is_over_label + "</div>");
                 $(".task-let", html_element).removeClass("remove-candidate");
                 $(".task-let", html_element).removeClass("first-letter-hover");
                 $(".task-let", html_element).removeClass("first-letter-selected");
                 $(".task-let", html_element).removeClass("word-candidate");
+                $(".task-let", html_element).removeClass("word-selected");
 
                 $(result_block).html("");
                 var score = 0;
@@ -673,6 +685,7 @@
                         score += 1;
                         correct_selected.push(word);
                         var del_index = not_selected.indexOf(current_word);
+                        addClass(word, "correct-selected", id_prefix);
                         not_selected.splice(del_index, 1);
                     } else {
                         incorrect_selected.push(word);
@@ -689,8 +702,11 @@
                     incorrect_words_str += val + ((i == not_selected.length - 1) ? (incorrect_selected.length == 0) ? ";" : ", " : ", ");
                 });
 
+                console.log(incorrect_selected);
+
                 incorrect_selected.forEach(function (val, i) {
                     incorrect_words_str += arrayToWord(val, src_str) + ((i == incorrect_selected.length - 1) ? ";" : ", ");
+                    addClass(val, "incorrect-selected", id_prefix);
                 });
 
                 var result_info = $("<p>", {
