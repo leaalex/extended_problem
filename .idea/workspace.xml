@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="munsterberg_test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/semantic_memory/semantic_memory.html" beforeDir="false" afterPath="$PROJECT_DIR$/semantic_memory/semantic_memory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_organizer/visual_organizer.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_organizer/visual_organizer.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="123" column="21" lean-forward="true" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-              <folding>
-                <element signature="e#119#1279#0" />
-              </folding>
+            <state relative-caret-position="1845">
+              <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -37,80 +34,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="791">
-              <caret line="62" selection-start-line="62" selection-end-line="63" selection-end-column="23" />
+            <state relative-caret-position="2445">
+              <caret line="163" selection-start-line="163" selection-end-line="180" selection-end-column="6" />
               <folding>
                 <element signature="e#10584#17538#0" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="725" column="15" lean-forward="true" selection-start-line="725" selection-start-column="15" selection-end-line="725" selection-end-column="15" />
-              <folding>
-                <element signature="e#1711#2632#0" />
-                <element signature="e#3792#7326#0" />
-                <element signature="e#7377#10770#0" />
-                <element signature="e#10123#12526#0" />
-                <element signature="e#11325#11863#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/visual_organizer/visual_organizer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="931">
-              <caret line="2121" column="10" selection-start-line="2121" selection-start-column="10" selection-end-line="2121" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/visual_organizer/untitled.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4154" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="338">
+              <caret line="857" lean-forward="true" selection-start-line="857" selection-end-line="857" />
+              <folding>
+                <element signature="e#12234#14945#0" />
+                <element signature="e#14997#17335#0" />
+                <element signature="e#18866#20163#0" />
+                <element signature="e#20243#22303#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+            <state relative-caret-position="142">
+              <caret line="130" column="23" lean-forward="true" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
               <folding>
-                <element signature="e#4009#27345#0" />
-                <element signature="e#4200#4351#0" />
-                <element signature="e#4911#6696#0" />
-                <element signature="e#5532#5830#0" />
-                <element signature="e#5874#6219#0" />
-                <element signature="e#6492#6653#0" />
-                <element signature="e#6888#6943#0" />
-                <element signature="e#6697#6747#0" />
-                <element signature="e#7267#7327#0" />
-                <element signature="e#6790#6837#0" />
-                <element signature="e#6989#7039#0" />
-                <element signature="e#9487#9520#0" />
-                <element signature="e#9566#9641#0" />
-                <element signature="e#7989#14907#0" />
-                <element signature="e#8177#8244#0" />
-                <element signature="e#8303#8374#0" />
-                <element signature="e#9084#12010#0" />
-                <element signature="e#12072#13684#0" />
-                <element signature="e#13747#13976#0" />
-                <element signature="e#14054#14725#0" />
-                <element signature="e#14961#15033#0" />
-                <element signature="e#15081#15302#0" />
-                <element signature="e#15364#15854#0" />
-                <element signature="e#15917#17490#0" />
-                <element signature="e#17683#23223#0" />
-                <element signature="e#22947#23144#0" />
+                <element signature="n#style#0;n#p#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -129,24 +83,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start-button</find>
-      <find>task_timer</find>
-      <find>hide()</find>
-      <find>slideDown</find>
-      <find>stop_time</find>
-      <find>slideUp</find>
-      <find>words_pair_wrap</find>
-      <find>stop_func</find>
-      <find>Stopwatch</find>
-      <find>countdown_timer</find>
-      <find>instruction-block</find>
-      <find>check-button</find>
       <find>check_btn_label</find>
       <find>semantic_memory</find>
       <find>start_wrap</find>
       <find>semantic_memory_task</find>
       <find>countdown_timer_1</find>
-      <find>start-wrap</find>
       <find>собака</find>
       <find>showSeries</find>
       <find>startSeries()</find>
@@ -159,6 +100,19 @@
       <find>answer</find>
       <find>addClass</find>
       <find>is_ov</find>
+      <find>instruction_block</find>
+      <find>preview-task-block</find>
+      <find>preview_task_block</find>
+      <find>start-wrap</find>
+      <find>munsterberg_test_wrap</find>
+      <find>score</find>
+      <find>not_selected_words</find>
+      <find>exampl</find>
+      <find>.start-wrap</find>
+      <find>restart</find>
+      <find>#result_block</find>
+      <find>result_block</find>
+      <find>current_series</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -179,17 +133,17 @@
         <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/numerical_series/numerical_series.html" />
         <option value="$PROJECT_DIR$/test.html" />
-        <option value="$PROJECT_DIR$/semantic_memory/semantic_memory.html" />
         <option value="$PROJECT_DIR$/visual_organizer/visual_organizer.html" />
         <option value="$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html" />
+        <option value="$PROJECT_DIR$/semantic_memory/semantic_memory.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="387" />
-    <option name="y" value="51" />
-    <option name="width" value="1801" />
-    <option name="height" value="1172" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="674" />
+    <option name="y" value="325" />
+    <option name="width" value="1742" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -225,6 +179,11 @@
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="twelve_numbers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="visual_organizer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -236,6 +195,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -413,6 +373,11 @@
       <workItem from="1552309598857" duration="66739000" />
       <workItem from="1552631837849" duration="44789000" />
       <workItem from="1552981723818" duration="52714000" />
+      <workItem from="1553507852236" duration="599000" />
+      <workItem from="1553585295853" duration="1384000" />
+      <workItem from="1553668845469" duration="11343000" />
+      <workItem from="1554101831037" duration="601000" />
+      <workItem from="1554196583268" duration="2944000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -425,13 +390,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164242000" />
+    <option name="totallyTimeSpent" value="181113000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="387" y="51" width="1801" height="1172" extended-state="1" />
+    <frame x="674" y="325" width="1742" height="1044" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17547807" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18150087" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -534,97 +499,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/numerical_series/numerical_series.html">
+    <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="181" column="45" lean-forward="true" selection-start-line="181" selection-start-column="45" selection-end-line="181" selection-end-column="45" />
-          <folding>
-            <element signature="e#8073#9873#0" />
-            <element signature="e#9904#13375#0" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="123" column="21" lean-forward="true" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-          <folding>
-            <element signature="e#119#1279#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="62" selection-start-line="62" selection-end-line="63" selection-end-column="23" />
-          <folding>
-            <element signature="e#10584#17538#0" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visual_organizer/untitled.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4154" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="725" column="15" lean-forward="true" selection-start-line="725" selection-start-column="15" selection-end-line="725" selection-end-column="15" />
-          <folding>
-            <element signature="e#1711#2632#0" />
-            <element signature="e#3792#7326#0" />
-            <element signature="e#7377#10770#0" />
-            <element signature="e#10123#12526#0" />
-            <element signature="e#11325#11863#0" />
-          </folding>
+        <state relative-caret-position="2745">
+          <caret line="183" selection-start-line="183" selection-end-line="197" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/visual_organizer/visual_organizer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
+        <state relative-caret-position="31815">
           <caret line="2121" column="10" selection-start-line="2121" selection-start-column="10" selection-end-line="2121" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visual_organizer/untitled.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/numerical_series/numerical_series.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="519" column="50" selection-start-line="519" selection-start-column="43" selection-end-line="519" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1845">
+          <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2445">
+          <caret line="163" selection-start-line="163" selection-end-line="180" selection-end-column="6" />
+          <folding>
+            <element signature="e#10584#17538#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+        <state relative-caret-position="142">
+          <caret line="130" column="23" lean-forward="true" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
           <folding>
-            <element signature="e#4009#27345#0" />
-            <element signature="e#4200#4351#0" />
-            <element signature="e#4911#6696#0" />
-            <element signature="e#5532#5830#0" />
-            <element signature="e#5874#6219#0" />
-            <element signature="e#6492#6653#0" />
-            <element signature="e#6888#6943#0" />
-            <element signature="e#6697#6747#0" />
-            <element signature="e#7267#7327#0" />
-            <element signature="e#6790#6837#0" />
-            <element signature="e#6989#7039#0" />
-            <element signature="e#9487#9520#0" />
-            <element signature="e#9566#9641#0" />
-            <element signature="e#7989#14907#0" />
-            <element signature="e#8177#8244#0" />
-            <element signature="e#8303#8374#0" />
-            <element signature="e#9084#12010#0" />
-            <element signature="e#12072#13684#0" />
-            <element signature="e#13747#13976#0" />
-            <element signature="e#14054#14725#0" />
-            <element signature="e#14961#15033#0" />
-            <element signature="e#15081#15302#0" />
-            <element signature="e#15364#15854#0" />
-            <element signature="e#15917#17490#0" />
-            <element signature="e#17683#23223#0" />
-            <element signature="e#22947#23144#0" />
+            <element signature="n#style#0;n#p#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="857" lean-forward="true" selection-start-line="857" selection-end-line="857" />
+          <folding>
+            <element signature="e#12234#14945#0" />
+            <element signature="e#14997#17335#0" />
+            <element signature="e#18866#20163#0" />
+            <element signature="e#20243#22303#0" />
           </folding>
         </state>
       </provider>

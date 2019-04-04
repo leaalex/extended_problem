@@ -100,6 +100,10 @@
         font-family: Verdana,Geneva,sans-serif,sans-serif !important;
     }
 
+    .restart-button{
+
+    }
+
 </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
@@ -476,18 +480,7 @@
     //     return .5 - Math.random()
     // }).slice(0, word_pairs_count);
 
-    var series_A = {};
-    Object.keys(series_A_lib).sort(function (value) {
-        return .5 - Math.random()
-    }).slice(0, word_pairs_count).forEach(function(value){series_A[value] = (series_A_lib[value])});
 
-    var series_B = {};
-    Object.keys(series_B_lib).sort(function (value) {
-        return .5 - Math.random()
-    }).slice(0, word_pairs_count).forEach(function(value){series_B[value] = (series_B_lib[value])});
-
-    console.log("series_A: ", series_A);
-    console.log("series_B: ", series_B);
 
     $(document).ready(function () {
 
@@ -673,11 +666,35 @@
         };
 
         var SemanticMemory = function (html_element) {
+            var student_answer = {
+                series_A: {},
+                series_B: {}
+            };
 
+            var series_A = {};
+            Object.keys(series_A_lib).sort(function (value) {
+                return .5 - Math.random()
+            }).slice(0, word_pairs_count).forEach(function(value){
+                series_A[value] = series_A_lib[value];
+                student_answer.series_A[value] = '';
+            });
+
+            var series_B = {};
+            Object.keys(series_B_lib).sort(function (value) {
+                return .5 - Math.random()
+            }).slice(0, word_pairs_count).forEach(function(value){
+                student_answer.series_B[value] = '';
+                series_B[value] = series_B_lib[value]
+            });
+
+            console.log("series_A: ", series_A);
+            console.log("series_B: ", series_B);
+            console.log("student_answer: ", student_answer);
 
             var countdown_timer;
             var current_series_let = "A";
             var current_series;
+
 
             var instruction_div = $("<div>", {
                 class: "instruction-block",
@@ -833,6 +850,11 @@
                         class: "input-word",
                         type: "text",
                     }).appendTo(second_word);
+
+                    input_word.on('input', function() {
+                        student_answer['series_'+current_series_let][value] = input_word.val();
+                        console.log(student_answer);
+                    });
 
                     input_pair_wrap.append(first_word);
                     input_pair_wrap.append(second_word);
