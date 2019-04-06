@@ -1,14 +1,20 @@
 <style>
 
+    #semantic_memory_task{
+        border: 6px double #046b99;
+        padding: 10px;
+    }
+
     #words_pair_wrap {
-        font-size: 2em;
-        background: #f6f6f6;
+        /*font-size: 2em;*/
+        font-size: 250%;
+        /*background: #f6f6f6;*/
         color: black;
         padding: 20px;
         /*height: 50px;*/
         height: 8em;
         /*width: 500px;*/
-        border: 2px solid #d7d7d7;
+        /*border: 2px solid #d7d7d7;*/
         display: flex;
         justify-content: center; /* align horizontal */
         align-items: center;
@@ -25,11 +31,11 @@
         margin: 0 auto;
     }
 
-    .instruction-block{
-        background: #fafafa;
-        padding: 6px;
-        border-radius: 0.5em;
-    }
+    /*.instruction-block{*/
+    /*    background: #fafafa;*/
+    /*    padding: 6px;*/
+    /*    border-radius: 0.5em;*/
+    /*}*/
 
     .start-button, .check-button {
         font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;
@@ -62,11 +68,11 @@
     }
 
     .input-pair-wrap{
-        margin: 6px;
-        padding: 6px 0px;
-        border-radius: 6px;
-        background: #eefbff;
-        display: flex;
+        /*margin: 6px;*/
+        padding: 6px;
+        /*border-radius: 6px;*/
+        /*background: #eefbff;*/
+        /*display: flex;*/
         /*flex-wrap: wrap;*/
         /*justify-content: center;*/
         /*align-items: center;*/
@@ -83,9 +89,13 @@
     }
 
     .input-pair-wrap .second-word{
-        width: 50%;
+        /*width: 50%;*/
         word-break: initial;
+    }
 
+    .input-pair-wrap .second-word label{
+        font-size: 1.5em;
+        color: black;
     }
 
     .input-word{
@@ -93,19 +103,25 @@
         width: 7em;
         height: auto !important;
         border-radius: 3px !important;
-        margin: 0px !important;
+        margin-left: 0px !important;
         max-width: 90%;
-        font-size: 1.6em !important;
+        font-size: 1.4em !important;
         padding: 1px 6px !important;
-        font-family: Verdana,Geneva,sans-serif,sans-serif !important;
+        font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif !important;
     }
 
     .restart-button{
 
     }
 
+    .answer-inputs-wrap{
+        margin: 0 auto;
+        width: fit-content;
+        text-align: right;
+    }
+
 </style>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
 
 <script type="text/javascript">
 
@@ -122,6 +138,10 @@
             instruction_label: "Инструкция",
             delay_label: "We start in",
             check_block_instruction: "допишите второе слово:",
+            result_label: "Results:",
+            logical_memory_label: "Объем логической памяти",
+            mechanical_memory_label: "Объем механической памяти",
+            true_reproduced_words_label:"Верно воспроизведенных слов", // Верно воспроизведенных слов: 10
         },
         ru: {
             start_btn_label: "Начать",
@@ -133,6 +153,12 @@
             instruction_label: "Инструкция",
             delay_label: "Начинаем через",
             check_block_instruction: "допишите второе слово:",
+            result_label: "Результаты:",
+            logical_memory_label: "Объем логической памяти",
+            mechanical_memory_label: "Объем механической памяти",
+            coeff_logical_memory_label: "Коэффициент логической памяти",
+            coeff_mechanical_memory_label: "Коэффициент механической памяти",
+            true_reproduced_words_label:"Верно воспроизведенных слов", // Верно воспроизведенных слов: 10
         }
     };
 
@@ -473,8 +499,9 @@
         }};
 
     var word_pairs_count = 5; //series_A_lib.length;
-    var word_display_time = 1000;
-    var delay_between_words = 400;
+    var word_display_time = 1000; // millisec
+    var delay_between_words = 400; // millisec
+    var delay_defore_start = 3 // in sec.
 
     // var series_A = series_A_lib.sort(function () {
     //     return .5 - Math.random()
@@ -695,13 +722,13 @@
             var current_series_let = "A";
             var current_series;
 
-
+            $(html_element).html("");
             var instruction_div = $("<div>", {
                 class: "instruction-block",
                 // html: user_labels.instruction
             });
 
-            instruction_div.append("<h2>" + user_labels.instruction_label + "</h2>");
+            instruction_div.append("<h2><strong>" + user_labels.instruction_label + "</strong></h2>");
             instruction_div.append("<p>" + user_labels.instruction_text + "</p>");
 
             var task_wrap = $("<div>", {
@@ -709,7 +736,11 @@
             }).hide();
 
             var answer_wrap = $("<div>", {
-                class: "answer_wrap"
+                id: "answer_wrap"
+            }).hide();
+
+            var result_wrap = $("<div>", {
+               id: "result_wrap"
             }).hide();
 
 
@@ -747,7 +778,7 @@
                 $("#test_div").html("");
                 task_wrap.html("");
                 start_wrap.hide();
-                task_wrap.hide()
+                task_wrap.hide();
 
                 var words_pair_wrap = $("<div>", {
                     id: "words_pair_wrap"
@@ -760,28 +791,23 @@
                 instruction_div.slideUp();
 
                 task_wrap.show();
+
                 stopwatch_timer = new Stopwatch(countdown_timer);
+
                 stopwatch_timer.start();
 
                 if (current_series_let == "A"){
-                    current_series = series_A
+                    current_series = series_A;
                 }
                 else {
-                    current_series = series_B
+                    current_series = series_B;
                 }
 
-                var countdown_timer = new countdownTimer(words_pair, 4, {timer_prefix: user_labels.delay_label}, function(){
-                    // words_pair.fadeOut(200);
+                var countdown_timer = new countdownTimer(words_pair, delay_defore_start, {timer_prefix: user_labels.delay_label}, function(){
                     showSeries(Object.keys(current_series), 0, words_pair, word_display_time, delay_between_words)
                 });
-
                 countdown_timer.start();
-                // // words_pair_wrap.show()
-                // words_pair_wrap
 
-                // ;
-
-                // html_element
             }
 
             function showSeries(array, index, target, word_delay, word_pause) {
@@ -824,12 +850,15 @@
                 }
             }
 
-            // function
             function createAnswerBlock() {
                 task_wrap.slideUp();
                 // task_wrap.html("");
                 answer_wrap.html("");
                 answer_wrap.append("<p>" + user_labels.check_block_instruction + "</p>");
+
+                var answer_inputs_wrap = $("<div>", {
+                   class: "answer-inputs-wrap"
+                });
 
                 Object.keys(current_series).forEach(function (value) {
                    var input_pair_wrap = $("<div>", {
@@ -837,13 +866,14 @@
                        id: value
                    });
 
-                    var first_word =  $("<div>", {
-                        class: "first-word",
-                        html: current_series[value].w1 + "&nbsp;–&nbsp;"
-                    });
+                    // var first_word =  $("<div>", {
+                    //     class: "first-word",
+                    //     html: current_series[value].w1 + "&nbsp;–&nbsp;"
+                    // });
 
                     var second_word =  $("<div>", {
-                        class: "second-word"
+                        class: "second-word",
+                        html: $("<label>", {html: current_series[value].w1 + "&nbsp;–&nbsp;"})
                     });
 
                     var input_word = $("<input>", {
@@ -852,16 +882,16 @@
                     }).appendTo(second_word);
 
                     input_word.on('input', function() {
-                        student_answer['series_'+current_series_let][value] = input_word.val();
+                        student_answer['series_' + current_series_let][value] = input_word.val();
                         console.log(student_answer);
                     });
 
-                    input_pair_wrap.append(first_word);
+                    // input_pair_wrap.append(first_word);
                     input_pair_wrap.append(second_word);
-                    answer_wrap.append(input_pair_wrap);
+                    answer_inputs_wrap.append(input_pair_wrap);
 
                 });
-
+                answer_wrap.append(answer_inputs_wrap);
                 var check_button_wrap =  $("<div>", {
                     class: "start-wrap"
                 });
@@ -872,13 +902,7 @@
                 }).appendTo(check_button_wrap);
 
                 check_button.click(function () {
-                   if (current_series_let == "A"){
-                       current_series_let = "B";
-                       startSeries();
-                   }
-                   else{
-                       console.log("финалочка")
-                   }
+                       createResultBlock();
                 });
 
                 answer_wrap.append(check_button_wrap);
@@ -888,15 +912,82 @@
                 answer_wrap.slideDown();
 
             }
+                
+            function createResultBlock() {
 
-            // $("#start_series_A").click(function () {
-            //     // $("#series_title").html("Серия А");
-            //     $("#test_div").html("");
-            //     // countdown_timer.stop();
-            //     // countdown_timer.reset();
-            //     countdown_timer.start();
-            //     showSeries(series_A, 0, $("#words_pair"), word_display_time, delay_between_words);
-            // });
+                console.log("createResultBlock: ", current_series_let);
+                answer_wrap.slideUp();
+                result_wrap.html("");
+                result_wrap.append("<p>" + user_labels.result_label + "</p>");
+                console.log(current_series);
+
+                var grade = 0;
+                var max_grade = Object.keys(current_series).length;
+
+                function compare_words(c_w, s_w){
+                    return c_w.toLowerCase() == s_w.replace(" ", "").toLowerCase();
+
+                }
+
+                // var result_table = $("<table>", {});
+                // result_table.append("<tr><td>Первое слово</td><td>Ваш ответ</td><td>Правильный ответ</td><td></td></tr>")
+                Object.keys(current_series).forEach(function (value) {
+
+                    var correct_word = current_series[value].w2;
+                    var student_word = student_answer['series_' + current_series_let][value];
+
+                    var correctness = compare_words(correct_word, student_word);
+
+
+                    if (correctness){
+                        grade += 1;
+                    }
+                    // var item_div = <di>
+                    var result_str = $("<div>", {
+                        html: current_series[value].w1 + "   " + student_answer['series_' + current_series_let][value] + " правильность: " + (correctness).toString() + (!correctness ? " правильный ответ: " + current_series[value].w2 : "")
+                    }).appendTo(result_wrap);
+                });
+
+                // result_wrap.append("<p> баллов " + grade.toString() + " из " + max_grade.toString() + "</p>");
+
+
+                var memory_volume = 0;
+
+                memory_volume = (grade/max_grade).toFixed(1);
+
+                if (current_series_let == "A") {
+                    result_wrap.append("<p>" + user_labels.coeff_logical_memory_label + ": " + memory_volume + "</p>");
+                    var start_button = $("<button>", {
+                        html: user_labels.start_btn_label + " вторую серию",
+                        class: "start-button"
+                    }).appendTo(result_wrap);
+
+                    start_button.click(function () {
+                        result_wrap.hide();
+                        current_series_let = "B";
+                        startSeries();
+                    });
+
+                }
+                else{
+                    result_wrap.append("<p>" + user_labels.coeff_mechanical_memory_label + ": " + memory_volume + "</p>");
+
+                    var restart_button = $("<button>", {
+                        html: user_labels.reset_btn_label
+                    });
+
+                    restart_button.click(function (event) {
+                        semantic_memory = new SemanticMemory(semantic_memory_task);
+                    });
+                    result_wrap.append(restart_button);
+                }
+
+
+
+                $(html_element).append(result_wrap);
+                result_wrap.slideDown();
+
+            }
 
         };
 
@@ -906,25 +997,13 @@
 
         var semantic_memory = new SemanticMemory(semantic_memory_task);
 
-        // $("#start_series_B").click(function () {
-        //     $("#series_title").html("Серия Б");
-        //     showSeries(series_B, 0, $("#words_pair"), word_display_time, delay_between_words);
-        // });
-        //
-        // $("#start_series_B").hide();
-
     });
 
 </script>
 
 <div id="semantic_memory">
 
-    <!--<button id="start_series_A">Начать первую серию</button>-->
-    <!--<button id="start_series_B">Начать вторую серию</button>-->
-
-    <div id="semantic_memory_task">
-
-    </div>
+    <div id="semantic_memory_task"></div>
 
     <!--<div id="series_title"></div>-->
     <!---->

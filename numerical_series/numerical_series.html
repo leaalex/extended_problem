@@ -174,6 +174,7 @@ translations = {
 		"show_correct_btn_label": "Show correct answer",
 		"restart_btn_label": "Restart",
 		"correct_answers_label": "Number of correct answers",
+        "instruction_label": "Инструкция",
 		"correct_label": "Correct answer:",
 		"task_text_label": "",
 		"comment_0_2_label": "You need to pay attention to the development of logical thinking. Do the exercises and remember that the main thing is the regularity of the exercises.",
@@ -188,7 +189,8 @@ translations = {
 		"restart_btn_label": "Начать заново",
 		"correct_answers_label": "Правильных ответов",
 		"correct_label": "Правильный ответ",
-		"task_text_label": "<h2>Инструкция:</h2><p>Для начала прохождения тренажера нажмите кнопку «Начать». Вам будут предъявлены 7 числовых рядов. Необходимо найти закономерность построения каждого ряда и вписать недостающие числа. Время выполнения работы – 5 мин.</p><p>Методика оценивает логический аспект мышления.</p>",
+        "instruction_label": "Инструкция",
+		"task_text_label": "<p>Для начала прохождения тренажера нажмите кнопку «Начать». Вам будут предъявлены 7 числовых рядов. Необходимо найти закономерность построения каждого ряда и вписать недостающие числа. Время выполнения работы – 5 мин.</p><p>Методика оценивает логический аспект мышления.</p>",
 		"comment_0_2_label": "Вам необходимо уделить внимание развитию логического мышления. Выполняйте упражнения и помните, что главное - это регулярность занятий.",
 		"comment_3_5_label": "Результат в пределах нормы для взрослого человека. Но не расслабляйтесь и продолжайте уделять внимание развитию логического мышления.",
 		"comment_5_plus_label": "Поздравляем! Ваши результаты близки к максимуму. Продолжайте совершенствовать свое показатели логического мышления.",
@@ -530,7 +532,7 @@ function NumericalSeries(element, time) {
 
 var delay_time= 5 * 60;
 display = document.querySelector('#numerical_series_task');
-$("#task_text").html(user_labels.task_text_label);
+$("#task_text").html("<h2><strong>"+user_labels.instruction_label + "</strong></h2>" + user_labels.task_text_label);
 NumericalSeries(display, delay_time);
 
 </script>
