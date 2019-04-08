@@ -94,7 +94,8 @@
     }
 
     .input-pair-wrap .second-word label{
-        font-size: 1.5em;
+        font-size: 1.35em;
+        line-height: 1.6em;
         color: black;
     }
 
@@ -104,7 +105,7 @@
         height: auto !important;
         border-radius: 3px !important;
         margin-left: 0px !important;
-        max-width: 90%;
+        max-width: 50%;
         font-size: 1.4em !important;
         padding: 1px 6px !important;
         font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif !important;
@@ -120,8 +121,41 @@
         text-align: right;
     }
 
+    .result_table{
+        display: block;
+    }
+    .td_1{
+        text-align: right;
+        /*background: #2e3192;*/
+    }
+    .td_2{
+        padding-right: 20px;
+        position: relative;
+        /*background: #2e3192;*/
+    }
+    .correct.td_2:after{
+        color: #009b00;
+        font-size: 1.7em;
+        content: "\02713";
+        position: absolute;
+        bottom: -0.3em;
+    }
+    .incorrect.td_2:after{
+        color: red;
+        font-size: 1.7em;
+        content: "\02715";
+        position: absolute;
+        bottom: -0.3em;
+    }
+    .td_3{
+        /*background: #2e3192;*/
+    }
+    .td_4{
+        background: #2e3192;
+    }
+
 </style>
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 <script type="text/javascript">
 
@@ -929,8 +963,8 @@
 
                 }
 
-                // var result_table = $("<table>", {});
-                // result_table.append("<tr><td>Первое слово</td><td>Ваш ответ</td><td>Правильный ответ</td><td></td></tr>")
+                var result_table = $("<table>", {class: "result_table"});
+                // result_table.append("<tr><td>Первое слово</td><td>Ваш ответ</td><td>Правильный ответ</td></tr>")
                 Object.keys(current_series).forEach(function (value) {
 
                     var correct_word = current_series[value].w2;
@@ -943,17 +977,18 @@
                         grade += 1;
                     }
                     // var item_div = <di>
-                    var result_str = $("<div>", {
-                        html: current_series[value].w1 + "   " + student_answer['series_' + current_series_let][value] + " правильность: " + (correctness).toString() + (!correctness ? " правильный ответ: " + current_series[value].w2 : "")
-                    }).appendTo(result_wrap);
+                    var result_str = $("<tr>", {
+                        html: "<td class='td_1'>" + current_series[value].w1 + "&nbsp;–" +  "</td><td class='td_2 " + (correctness ? "correct": "incorrect") + "'>" + student_answer['series_' + current_series_let][value] + "</td>" + (correctness ? "<td></td>": "<td class='td_3'>(" +current_series[value].w2 + ")</td>) ")
+                            // (correctness).toString() + (!correctness ? " правильный ответ: " + current_series[value].w2 : "")
+                    }).appendTo(result_table);
                 });
+
+                result_wrap.append(result_table);
 
                 // result_wrap.append("<p> баллов " + grade.toString() + " из " + max_grade.toString() + "</p>");
 
 
-                var memory_volume = 0;
-
-                memory_volume = (grade/max_grade).toFixed(1);
+                var memory_volume = (grade/max_grade).toFixed(1);
 
                 if (current_series_let == "A") {
                     result_wrap.append("<p>" + user_labels.coeff_logical_memory_label + ": " + memory_volume + "</p>");
@@ -970,7 +1005,7 @@
 
                 }
                 else{
-                    result_wrap.append("<p>" + user_labels.coeff_mechanical_memory_label + ": " + memory_volume + "</p>");
+                    result_wrap.append("<p>" + user_labels.coeff_mechanical_memory_label + ": <strong>" + memory_volume + "</strong></p>");
 
                     var restart_button = $("<button>", {
                         html: user_labels.reset_btn_label
