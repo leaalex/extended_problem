@@ -25,15 +25,6 @@
             border-radius: 3px;
             cursor: pointer;
         }
-
-        .question-input-wrap.correct-answer, .question-input-wrap.correct-answer:hover {
-            border: 2px solid #009b01;
-        }
-
-        .question-input-wrap.incorrect-answer, .question-input-wrap.incorrect-answer:hover{
-            border: 2px solid #cb0711;
-        }
-
         .question-input-wrap:hover{
             border: 2px solid #009fe6;
         }
@@ -43,7 +34,7 @@
             display: none !important;
         }
 
-        #crit_think_diagnostic_diagram{
+        #crit_think_diagnostic_result{
             display: none;
         }
 
@@ -53,191 +44,154 @@
     <script type="loncapa/python">
 import json
 
-check_btn_label = "Проверить"
 next_btn_label = "Дальше"
 
-savvy_label = "Смекалка"
-interpretation_label = "Интерпретация"
-analysis_label = "Анализ"
-logic_label = "Логика"
+res_label_1 = "Ваше отношение к критике скорее негативное, чем позитивное. Вы не любите, когда критикуют вас, а критикуя других, нередко утрачиваете чувство меры. И в том и другом случае вы весьма эмоциональны, легко возбуждаетесь, можете вспылить, допустить резкость. Вам необходим некий «комплекс стабильности», то есть Чувство уверенности в себе, в правомерности своих действий и решений, а для этого следует активно повышать свой деловой уровень, не переоценивая себя, но и не умаляя достоинств."
+res_label_2 = "Вы терпеливо относитесь к критике, считаете ее допустимым элементом управленческой жизни, не переоценивая однако ее значения. Ваше поведение в роли критикуемого и критикующего можно охарактеризовать как «контролируемую эмоциональность» - вы редко «выходите из себя». В то же время вам не чуждо чувство обиды, желание «насолить» критикам, оправдать свои ошибки."
+res_label_3 = "Вы по-деловому относитесь к критике, достаточно спокойно ее воспринимаете, мужественно и открыто признаете свои ошибки. Изредка вас посещает чувство досады на критику, однако вы не перебарщиваете, не стараетесь оправдаться, сваливая вину на других. Хорошее знание своего дела, уверенность в том, что вы на своем месте, позволяет вам не заботиться о личном авторитете, а помнить лишь о пользе дела."
+
 
 correct_answers = {
     "question_0": {
-        "answer": "c",
         "progress": {
-            "logic": 1,
-            "analysis": 2,
-            "savvy": 2,
-            "interpretation": 0
+            "a": 3,
+            "b": 0,
+            "c": 2
         }
     },
     "question_1": {
-        "answer": "a",
         "progress": {
-            "logic": 0,
-            "analysis": 0,
-            "savvy": 2,
-            "interpretation": 0
+            "a": 3,
+            "b": 1,
+            "c": 0
         }
     },
     "question_2": {
-        "answer": "b",
         "progress": {
-            "logic": 1,
-            "analysis": 0,
-            "savvy": 0,
-            "interpretation": 0
+            "a": 3,
+            "b": 0,
+            "c": 1
         }
     },
     "question_3": {
-        "answer": "f",
         "progress": {
-            "logic": 0,
-            "analysis": 2,
-            "savvy": 0,
-            "interpretation": 3
+            "a": 3,
+            "b": 2,
+            "c": 1
         }
     },
     "question_4": {
-        "answer": "a",
         "progress": {
-            "logic": 1,
-            "analysis": 0,
-            "savvy": 0,
-            "interpretation": 0
+            "a": 3,
+            "b": 1,
+            "c": 2
         }
     },
     "question_5": {
-        "answer": "c",
         "progress": {
-            "logic": 0,
-            "analysis": 1,
-            "savvy": 0,
-            "interpretation": 2
+            "a": 2,
+            "b": 1,
+            "c": 3
         }
     },
     "question_6": {
-        "answer": "a",
         "progress": {
-            "logic": 0,
-            "analysis": 2,
-            "savvy": 2,
-            "interpretation": 0
+            "a": 1,
+            "b": 0,
+            "c": 3
         }
     },
     "question_7": {
-        "answer": "f",
         "progress": {
-            "logic": 1,
-            "analysis": 1,
-            "savvy": 0,
-            "interpretation": 0
+            "a": 2,
+            "b": 1,
+            "c": 3
         }
     },
     "question_8": {
-        "answer": "c",
         "progress": {
-            "logic": 1,
-            "analysis": 0,
-            "savvy": 2,
-            "interpretation": 0
+            "a": 1,
+            "b": 0,
+            "c": 3
         }
     },
     "question_9": {
-        "answer": "f",
         "progress": {
-            "logic": 1,
-            "analysis": 0,
-            "savvy": 0,
-            "interpretation": 0
+            "a": 2,
+            "b": 0,
+            "c": 1
         }
     },
     "question_10": {
-        "answer": "b",
         "progress": {
-            "logic": 1,
-            "analysis": 1,
-            "savvy": 0,
-            "interpretation": 2
+            "a": 1,
+            "b": 2,
+            "c": 3
         }
     },
     "question_11": {
-        "answer": "a",
         "progress": {
-            "logic": 0,
-            "analysis": 0,
-            "savvy": 1,
-            "interpretation": 0
+            "a": 1,
+            "b": 3,
+            "c": 2
         }
     },
     "question_12": {
-        "answer": "b",
         "progress": {
-            "logic": 1,
-            "analysis": 0,
-            "savvy": 0,
-            "interpretation": 3
+            "a": 3,
+            "b": 0,
+            "c": 3
         }
     },
     "question_13": {
-        "answer": "c",
         "progress": {
-            "logic": 1,
-            "analysis": 0,
-            "savvy": 0,
-            "interpretation": 0
+            "a": 1,
+            "b": 2,
+            "c": 1
         }
     },
     "question_14": {
-        "answer": "c",
         "progress": {
-            "logic": 1,
-            "analysis": 1,
-            "savvy": 1,
-            "interpretation": 0
+            "a": 3,
+            "b": 0,
+            "c": 0
+        }
+    },
+    "question_15": {
+        "progress": {
+            "a": 2,
+            "b": 0,
+            "c": 1
         }
     }
 }
 
-progress = {
-            "logic": 0,
-            "analysis": 0,
-            "savvy": 0,
-            "interpretation": 0
-        }
 
 def check_answer(expect, ans):
     student_answer = json.loads(ans)["answer"]
-    grade = 0
-    response = {}
-    # current_step_id = "question_" + str(student_answer["step"])
     student_answers = student_answer["answers"]
+    current_step_id = "question_" + str(student_answer["step"])
 
-    if student_answer["send_type"]["checked"] is False:
-        current_step_id = "question_" + str(student_answer["step"] - 1)
-    else:
-        current_step_id = "question_" + str(student_answer["step"])
+    response = {}
+    progress = 0
 
-    for ans in range(0, len(correct_answers.keys())):
-        ans = "question_" + str(ans)
-        if student_answers[ans]["answer"] == correct_answers[ans]["answer"]:
-            progress["logic"] += correct_answers[ans]["progress"]["logic"]
-            progress["analysis"] += correct_answers[ans]["progress"]["analysis"]
-            progress["savvy"] += correct_answers[ans]["progress"]["savvy"]
-            progress["interpretation"] += correct_answers[ans]["progress"]["interpretation"]
-        if current_step_id == ans:
-            break
-
-
-    if student_answer["send_type"]["checked"]:
-        response["correct"] = {}
-        response["correct"][current_step_id] = correct_answers[current_step_id]["answer"]
-
-
+    for question_num in range(0, len(correct_answers.keys())):
+        question_id = "question_" + str(question_num)
+        student_let = student_answers[question_id]["answer"]
+        if current_step_id == question_id:
+           break
+        progress += correct_answers[question_id]["progress"][student_let]
 
     response["progress"] = progress
 
-    return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': grade}, ]}
+    if 18 >= progress:
+        response["msg"] = res_label_1
+    elif progress > 18 and 32 >= progress:
+        response["msg"] = res_label_2
+    else:
+        response["msg"] = res_label_3
+
+    return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1.0}, ]}
 
 </script>
 
@@ -273,12 +227,7 @@ def check_answer(expect, ans):
             };
         };
 
-        var check_btn_label = '$check_btn_label'
         var next_btn_label = '$next_btn_label'
-        var savvy_label = '$savvy_label'
-        var interpretation_label = '$interpretation_label'
-        var analysis_label = '$analysis_label'
-        var logic_label = '$logic_label'
 
         $("#crit_think_diagnostic").closest(".problem").parent().find(".problem-progress").hide();
         var notification = $(".problem .notification.notification-submit").hide();
@@ -291,57 +240,13 @@ def check_answer(expect, ans):
 
         function build_result(){
             $(submit_button).hide();
-            $("#crit_think_diagnostic_diagram").prepend("<h2>Ваш результат: </h2>");
-            var scriptcore = document.createElement('script');
-            scriptcore.onload = function() {
-                var scriptcharts = document.createElement('script');
-                scriptcharts.src = "https://www.amcharts.com/lib/4/charts.js";
-                document.getElementsByTagName('head')[0].appendChild(scriptcharts);
+            $("#crit_think_diagnostic_result").append("<p><strong>Результат:</strong></p>");
 
-                scriptcharts.onload = function() {
-                    $("#crit_think_diagnostic_diagram").show()
-                    var scriptanimated = document.createElement('script');
-                    scriptanimated.src = "https://www.amcharts.com/lib/4/themes/animated.js";
-                    document.getElementsByTagName('head')[0].appendChild(scriptanimated);
+            var res_msg = user_state.progress.msg;
 
-                    scriptanimated.onload = function() {
+            $("#crit_think_diagnostic_result").append("<p>" + res_msg + "</p>");
 
-                        var chart = am4core.create("chartdiv", am4charts.RadarChart);
-                        chart.data = [{
-                            "diagnostic": savvy_label,
-                            "points": user_state.correctness["progress"]["savvy"]
-                        }, {
-                            "diagnostic": interpretation_label,
-                            "points": user_state.correctness["progress"]["interpretation"]
-                        }, {
-                            "diagnostic": analysis_label,
-                            "points": user_state.correctness["progress"]["analysis"]
-                        }, {
-                            "diagnostic": logic_label,
-                            "points": user_state.correctness["progress"]["logic"]
-                        },
-                        ];
-
-                        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-                        categoryAxis.dataFields.category = "diagnostic";
-
-                        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-                        valueAxis.min = 0;
-                        valueAxis.max = 9;
-                        valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
-                        valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
-
-                        var series = chart.series.push(new am4charts.RadarSeries());
-                        series.dataFields.valueY = "points";
-                        series.dataFields.categoryX = "diagnostic";
-                        // series.name = "Sales";
-                        series.strokeWidth = 5;
-                    }
-                }
-
-            };
-            scriptcore.src = "https://www.amcharts.com/lib/4/core.js";
-            document.getElementsByTagName('head')[0].appendChild(scriptcore);
+            $("#crit_think_diagnostic_result").show();
         }
 
         function enableSubmitButton(){
@@ -357,344 +262,274 @@ def check_answer(expect, ans):
 
         var questions = {
             "question_0" :{
-                "html": "<p>В пассажирском поезде Петербург-Москва едут пассажиры. Сидоров, Петров и Иванов. У машиниста, электрика и кондуктора такие же фамилии.</p><p>Подсказки:</p><ul><li>В Москве живет Иванов</li><li>Пассажир, однофамилец кондуктора, живет в Питере</li><li>Кондуктор живет на половине пути от Питера до Москвы</li><li>Пассажир, который ближе к месту жительства кондуктора, чем другие пассажиры, в три раза старше кондуктора</li><li>20 лет в тот день исполнилось пассажиру Петрову</li><li>У электрика Сидоров (из бригады) выиграл в бильярд</li></ul><p>Какая фамилия у машиниста?</p>",
+                "html": "Считаете ли вы критику методом изживания недостатков в работе отдельных лиц или коллективов?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Петров"
+                        "text": "да, я считаю критику необходимым и нормальным элементом жизнедеятельности любого коллектива"
                     },
                     {
                         "let": "b",
-                        "text": "Иванов"
+                        "text": "критика лишь осложняет отношения в коллективе, поэтому я ее не признаю"
                     },
                     {
                         "let": "c",
-                        "text": "Сидоров"
+                        "text": "критика допустима, но не следует преувеличивать ее роль и прибегать к ней часто"
                     }
                 ]
             },
             "question_1" :{
-                "html": "<p>Щенок вместе с ошейником стоит 110 рублей. Щенок дороже ошейника на 100 рублей. Сколько стоит ошейник?</p>",
+                "html": "Как вы относитесь к публичной критике?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "5"
+                        "text": "считаю публичную критику действенной формой изживания недостатков"
                     },
                     {
                         "let": "b",
-                        "text": "10"
+                        "text": "полагаю, что лучше высказать имеющиеся замечания человеку в кабинете, чем публично на людях"
                     },
                     {
                         "let": "c",
-                        "text": "15"
-                    },
-                    {
-                        "let": "d",
-                        "text": "30"
+                        "text": "предпочитаю «кулуарную критику», то есть критику «за глаза», в неслужебной обстановке, в полушутливой форме"
                     }
                 ]
             },
             "question_2" :{
-                "html": "<p>Известно, что абракадабра обязательно или полосата, или рогата, или то и другое вместе. Выберете верное утверждение</p>",
+                "html": "Можно ли, по-вашему, критиковать начальство?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "абракадабра не может быть безрогой"
+                        "text": "да, конечно"
                     },
                     {
                         "let": "b",
-                        "text": "абракадабра не может быть однотонной и безрогой одновременно"
+                        "text": "не следует подрывать авторитет руководителя, поэтому публично критиковать начальство недопустимо"
                     },
                     {
                         "let": "c",
-                        "text": "абракадабра не может быть полосатой и безрогой одновременно"
+                        "text": "можно, но крайне осторожно"
                     }
                 ]
             },
             "question_3" :{
-                "html": "<p>Вы приехали на конференцию по проблемам контроля за оборотом наркотических средств в странах Восточной Европы. Один из спикеров заканчивает свое выступление так: «Существуют проблемы, требующие не меньшего внимания государства, чем борьба с наркотиками. По данным Генпрокуратуры, в прошлом году более 15% всех проданных лекарств являлись контрафактными. Некоторые из них содержат потенциально опасные для здоровья компоненты, которые могут сильно ухудшить состояние потребителей. С другой стороны, значительная часть продаж лекарственных препаратов приходится на гомеопатические средства — безвредные сами по себе, но не дающие реальных и ожидаемых покупателями лечебных эффектов». Какое утверждение наиболее точно отражает главный вывод этого текста?</p>",
+                "html": "Как вы относитесь к самокритике?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Гомеопатия безвредна"
+                        "text": "стараюсь быть объективным к себе и «своей» службе и, если вижу недостатки, открыто признаю их сам, не дожидаясь, пока на них укажут другие"
                     },
                     {
                         "let": "b",
-                        "text": "Наркотики – это  плохо"
+                        "text": "обычно я знаю недостатки работы «своей» службы и моей лично, но не спешу себя критиковать"
                     },
                     {
                         "let": "c",
-                        "text": "Поддельные лекарства – это плохо"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Гомеопатия хуже, чем наркотики и поддельные лекарства"
-                    },
-                    {
-                        "let": "e",
-                        "text": "Поддельные лекарства могут содержать ядовитые вещества, опасные для здоровья"
-                    },
-                    {
-                        "let": "f",
-                        "text": "Нужно регулировать оборот гомеопатических препаратов и поддельных лекарств, как и оборот наркотиков"
+                        "text": "критиковать себя ни к чему, так как охотников тебя поругать всегда хватает"
                     }
-
                 ]
             },
             "question_4" :{
-                "html": "<p>Оцените умозаключение: «А, потому что В». Где причина, а где следствие?</p>",
+                "html": "Высказывая критические замечания, стараетесь ли вы выражаться мягко, корректно, тактично, так, чтобы не задеть личность критикуемого?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "А – следствие, а В – причина"
+                        "text": "да, разумеется"
                     },
                     {
                         "let": "b",
-                        "text": "А – причина, а В – следствие"
+                        "text": "нет, считаю, что чем сильнее задета личность критикуемого, тем лучше"
                     },
                     {
                         "let": "c",
-                        "text": "В данном умозаключении не может быть причины"
-                    },
-                    {
-                        "let": "d",
-                        "text": "В данном умозаключении не может быть следствия"
-                    }
-
-                ]
-            },
-            "question_5" : {
-                "html": "<p>Вы попали на встречу с двумя депутатами парламента страны N, состоящих их двух фракций – правдофобов и правдолюбов. Первые всегда лгут, вторые – говорят правду. Можно ли определить, от какой фракции каждый депутат, спросив их об этом напрямую?</p>",
-                "answers": [
-                    {
-                        "let": "a",
-                        "text": "Получится. Если депутат правдофоб, он точно ответит неправду"
-                    },
-                    {
-                        "let": "b",
-                        "text": "Получится. Принадлежность депутатов к фракциям зависит от того, как они ответят на поставленный вопрос"
-                    },
-                    {
-                        "let": "c",
-                        "text": "Нет, не получится. Любой депутат ответит: «Я – правдолюб»"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Нет, не получится. На вопрос: «Из какой вы фракции?» - любой депутат ответит: «Я – правдофоб»"
+                        "text": "все зависит от этой самой «личности»: если она уж очень обидчива — учитываю это, а если нет — особо не церемонюсь"
                     }
                 ]
             },
-            "question_6" : {
-                "html": '<p>Найдите лишнюю фигуру…</p> <div style="text-align: center;"><img style="width: 500px;" src="/static/crithink_diagnostic_01_01.png" /> </div>',
+            "question_5" :{
+                "html": "Выступая с критическими замечаниями, стараетесь ли вы «подсластить пилюлю» указаниями на положительные моменты в деятельности объекта критики?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "1"
+                        "text": "да, обычно стараюсь"
                     },
                     {
                         "let": "b",
-                        "text": "2"
+                        "text": "нет, не вижу в этом необходимости"
                     },
                     {
                         "let": "c",
-                        "text": "3"
-                    },
-                    {
-                        "let": "d",
-                        "text": "4"
-                    },
-                    {
-                        "let": "e",
-                        "text": "5"
+                        "text": "если плохо знаю критикуемого или мне известно, что он обидится, тогда стараюсь"
                     }
                 ]
             },
-            "question_7" : {
-                "html": "<p>Хорошие начальники падают с неба. Плохие начальники могут петь. Выберете верное утверждение.</p>",
+            "question_6" :{
+                "html": "Дозируете ли вы объем критики, стараетесь ли соблюсти некую «меру критики»?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Плохие начальники летят с неба вниз"
+                        "text": "да, я стараюсь критиковать не более чем за один недостаток"
                     },
                     {
                         "let": "b",
-                        "text": "Хорошие начальники, которые умеют летать, - могут петь"
+                        "text": "нет, обычно высказываю все, что, на мой взгляд, плохо в деятельности объекта критики"
                     },
                     {
                         "let": "c",
-                        "text": "Некоторые плохие начальники не могут петь"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Некоторые хорошие начальники плохи, так как они умеют петь"
-                    },
-                    {
-                        "let": "e",
-                        "text": "Плохие начальники не падают с неба"
-                    },
-                    {
-                        "let": "f",
-                        "text": "Ни одно из перечисленных"
+                        "text": "стараюсь критиковать только по существу, не отвлекаясь на частности"
                     }
                 ]
             },
-            "question_8" : {
-                "html": "<p>Руководитель высоко оценил ваш проект и увеличил ваш оклад на 10%. Но через три дня прочитал квартальный отчет и понизил оклад на 10%. При этом он сказал: «Не переживай! Ты же ничего не теряешь!». Так ли это?</p>",
+            "question_7" :{
+                "html": "Вносите ли вы в ходе критического выступления какие-либо предложения для исправления положения или ограничиваетесь указанием на имеющиеся недостатки?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Да, я просто вернулся к своей прежней зарплате"
+                        "text": "да, я считаю, что тот, кто критикует, должен что-то предложить, иначе он критиковать не в праве, поэтому и стараюсь внести какие-либо предложения"
                     },
                     {
                         "let": "b",
-                        "text": "Да, я даже немного выиграл"
+                        "text": "нет, я полагаю, что главное — обнажить проблему, указать на недостаток, а как его устранить — дело критикуемой службы или других компетентных органов и специалистов"
                     },
                     {
                         "let": "c",
-                        "text": "Нет, моя зарплата стала чуть меньше"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Нет, я очень сильно потерял в деньгах"
+                        "text": "как правило, предпочтительней конструктивная критика, но если даже и трудно что-либо предложить, все равно нельзя замалчивать недостатки"
                     }
                 ]
             },
-            "question_9" : {
-                "html": "<p>Каждый квадрат круглый. Все квадраты красные…</p>",
+            "question_8" :{
+                "html": "Какова обычно ваша первая реакция на критику?",
                 "answers": [
-
                     {
                         "let": "a",
-                        "text": "Бывают квадраты с красными углами"
+                        "text": "стремлюсь тут же ответить, сразу прошу слова или говорю с места"
                     },
                     {
                         "let": "b",
-                        "text": "Бывают квадраты с круглыми углами"
+                        "text": "переживаю молча, с обидой, от ответного выступления стараюсь уклониться"
                     },
                     {
                         "let": "c",
-                        "text": "Бывают круглые красные углы"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Углы и квадраты круглые и красные"
-                    },
-                    {
-                        "let": "e",
-                        "text": "У красных квадратов круглые углы"
-                    },
-                    {
-                        "let": "f",
-                        "text": "Ни одно из перечисленных"
+                        "text": "обдумываю критику, выступать с ответом не спешу, но если настаивают, не отказываюсь"
                     }
                 ]
             },
-            "question_10" : {
-                "html": "<p>Один известный литератор написал в социальной сети пост, озаглавив его «Десять фактов обо мне, три из которых ложны»:</p><ol><li>Я всегда пишу только правду</li><li>Я - писатель</li><li>Я или часто работаю по ночам, или нет</li><li>У меня отсутствуют волосы на голове</li><li>Неверно, что я не писатель</li><li>Некоторые утверждения под нечетными номерами в этом списке ложны</li><li>Я ни разу не писал в социальных сетях</li><li>В этом списке есть хотя бы одно истинное утверждение</li><li>Утверждение под номером 3 ложно</li><li>В этом списке больше одного истинного утверждения</li></ol><p>Действительно ли у писателя имеется лысина?</p>",
+            "question_9" :{
+                "html": "Какое поведение характерно для вас при ответе на критику?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Это невозможно определить"
+                        "text": "как правило, стараюсь признать критику, даже если она не вовсем объективна"
                     },
                     {
                         "let": "b",
-                        "text": "Да, это так"
+                        "text": "прибегаю к методу «защиты от противного», то есть критикую критикующего"
                     },
                     {
                         "let": "c",
-                        "text": "Нет, писатель в этом пункте нам солгал"
+                        "text": "поскольку критика подрывает мой авторитет (или авторитет «моей службы»), пытаюсь защищаться, отвести критику, указать на смягчающие объективные обстоятельства и т. п."
                     }
                 ]
             },
-            "question_11" : {
-                "html": '<p>Какая цифра должна быть на месте знака вопроса?</p> <div style="text-align: center;"><img style="width: 300px;" src="/static/crithink_diagnostic_01_02.png" /> </div>',
+            "question_10" :{
+                "html": "Раздражает ли вас критика?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "2"
+                        "text": "да, как правило"
                     },
                     {
                         "let": "b",
-                        "text": "4"
+                        "text": "не очень"
                     },
                     {
                         "let": "c",
-                        "text": "5"
-                    },
-                    {
-                        "let": "d",
-                        "text": "6"
+                        "text": "смотря кто и как критикует"
                     }
                 ]
             },
-            "question_12" : {
-                "html": "<p>Читая статью о перспективах демократии в России, вы наткнулись на интересное рассуждение. По мнению автора, демократия как политическая система не способствует политической свободе. Автор приводит примеры демократий, которые в конечном итоге переродились в политические режимы с низким уровнем свободы. А также указывает, что есть просвещённые деспотии и олигархии, которые обеспечили довольно высокий уровень политической свободы для своих подданных. Впрочем, тезис автора статьи всё равно кажется не вполне корректным. В чем заключается основная ошибка рассуждения?</p>",
+            "question_11" :{
+                "html": "Появляется ли у вас чувство неприязни к критикующему вас человеку?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Автор не учитывает, что увеличение уровня политической свободы может привести к демократизации общества"
+                        "text": "да, как правило"
                     },
                     {
                         "let": "b",
-                        "text": "Из того, что некоторые демократические режимы привели к тоталитарному режиму, вовсе не следует, что другие демократические режимы приведут к тому же"
+                        "text": "нет, крайне редко"
                     },
                     {
                         "let": "c",
-                        "text": "Автор обращается к историческим примерам, которые не имеют отношения к данному случаю"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Приведенные аргументы никак не доказывают его изначальный тезис"
-                    },
-                    {
-                        "let": "e",
-                        "text": "Автор дает личную оценку историческим фактам"
+                        "text": "да, если критика несправедлива или высказывается в резкой, обидной форме"
                     }
                 ]
             },
-            "question_13" : {
-                "html": "<p>«Логика – наука». Какая из предложенных пар понятий логически подходит больше всего?</p>",
+            "question_12" :{
+                "html": "Как вы в дальнейшем строите отношения с критикующим вас человеком?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Озеро-река"
+                        "text": "как и прежде"
                     },
                     {
                         "let": "b",
-                        "text": "Испуг-бегство"
+                        "text": "стараюсь при случае «ответить взаимностью» или ущемить его интересы другим доступным мне способом"
                     },
                     {
                         "let": "c",
-                        "text": "Арбуз-ягода"
-                    },
-                    {
-                        "let": "d",
-                        "text": "Друг-приятель"
+                        "text": "некоторое время «обхожу» этого человека, стараюсь не вступать с ним в контакт"
                     }
                 ]
             },
-            "question_14" : {
-                "html": '<p>Определите, какая область на схеме соответствует следующим признакам: «Дорогой ресторан, где подают прекрасные говяжьи стейки, где нужно резервировать столик»</p> <div style="text-align: center;"><img style="width: 500px;" src="/static/crithink_diagnostic_01_03.png" /> </div>',
+            "question_13" :{
+                "html": "Как вы относитесь к тем, кто сам себя критикует?",
                 "answers": [
                     {
                         "let": "a",
-                        "text": "Г"
+                        "text": "считаю их «приспособленцами», «трусишками», «угодниками»"
                     },
                     {
                         "let": "b",
-                        "text": "Е"
+                        "text": "нормально отношусь, что тут особенного"
                     },
                     {
                         "let": "c",
-                        "text": "Ж"
+                        "text": "советую впредь не торопиться с самокритикой"
+                    }
+                ]
+            },
+            "question_14" :{
+                "html": "Существует ли уголовная ответственность за преследование критикующих?",
+                "answers": [
+                    {
+                        "let": "a",
+                        "text": "да"
                     },
                     {
-                        "let": "d",
-                        "text": "К"
+                        "let": "b",
+                        "text": "нет"
                     },
                     {
-                        "let": "e",
-                        "text": "Н"
+                        "let": "c",
+                        "text": "не знаю"
+                    }
+                ]
+            },
+            "question_15" :{
+                "html": "Вопрос-шутка: какое высказывание о критике вам ближе?",
+                "answers": [
+                    {
+                        "let": "a",
+                        "text": "критика — это лекарство, ее надо уметь применять и принимать"
+                    },
+                    {
+                        "let": "b",
+                        "text": "управленческая деятельность — тоже творчество, поэтому пусть меня оценивают те, кому положено, а не всяк, кому не лень"
+                    },
+                    {
+                        "let": "c",
+                        "text": "и на критику существует мода"
                     }
                 ]
             }
@@ -702,63 +537,62 @@ def check_answer(expect, ans):
 
         var user_state = new Object();
         user_state.step = 0;
-        user_state.send_type = {
-            "checked": false,
-        }
+        user_state.progress = 0;
         user_state.answers = {
             "question_0":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_1":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_2":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_3":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_4":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_5":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_6":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_7":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_8":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_9":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_10":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_11":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_12":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_13":
-                { "answer": "a",
+                { "answer": "a"
                 },
             "question_14":
-                { "answer": "a",
+                { "answer": "a"
+                },
+            "question_15":
+                { "answer": "a"
                 }
-        }
+        };
 
 
         if(answer.get()){
             user_state = answer.getJSON()["answer"];
-            user_state.correctness = JSON.parse($("#crit_think_diagnostic_input .message").html());
-            // createQuestion();
-            // console.log(user_state)
+            user_state.progress = JSON.parse($("#crit_think_diagnostic_input .message").html());
             if(user_state.step == Object.keys(questions).length){
                 build_result();
             }
@@ -770,16 +604,17 @@ def check_answer(expect, ans):
             createQuestion();
         }
 
-
         function createQuestion(){
-            setSubmitText(check_btn_label);
+            setSubmitText(next_btn_label);
             $("#crit_think_diagnostic_question").html("");
-            $("#crit_think_diagnostic_question").append("<h2> Вопрос " + (user_state.step + 1).toString() + " из " + Object.keys(questions).length + "</h2>");
+            $("#crit_think_diagnostic_question").append("<h2> Вопрос " + (user_state.step+1).toString() + " из " + Object.keys(questions).length + "</h2>");
             var current_question_id = "question_" + user_state.step.toString();
+            var current_step = user_state.step;
+
             var current_question = questions[current_question_id];
             var question_text = $("<div/>", {
                 class: "question-text",
-                html: current_question["html"]
+                html: "<p>" + current_question["html"] + "</p>"
             });
 
             var inputs_block = $("<div/>", {
@@ -799,43 +634,15 @@ def check_answer(expect, ans):
                 input_wrap.append(element["text"]);
                 inputs_block.append(input_wrap);
 
-                if (user_state.send_type["checked"] == false){
-                    input_wrap.click(function(e) {
-                        $('input', $(e.target)).prop('checked', true);
-                        var val = $("input[name='question_choice']:checked").val();
-                        user_state.answers[current_question_id]["answer"] = val;
-                        user_state.send_type["checked"] = true;
-                        answer.setJSON({answer: user_state});
-                        enableSubmitButton();
-                    });
-                }
-                else{
-                    $(input).prop('disabled', true);
-                    $(input_wrap).css('cursor', 'not-allowed');
-                }
+                input_wrap.click(function(e) {
+                    $('input', $(e.target)).prop('checked', true);
+                    var val = $("input[name='question_choice']:checked").val();
+                    user_state.answers[current_question_id]["answer"] = val;
+                    enableSubmitButton();
+                    user_state.step = current_step + 1;
+                    answer.setJSON({answer: user_state});
+                });
             });
-
-            if (user_state.send_type["checked"] == true){
-                setSubmitText(next_btn_label);
-                $("input[value=" + user_state.answers[current_question_id]["answer"] + "]" , inputs_block).prop('checked', true);
-                var selected_input = $("input[value=" + user_state.answers[current_question_id]["answer"] + "]" , inputs_block);
-                user_state.send_type = {"checked": false};
-                if (user_state.correctness["correct"][current_question_id] == user_state.answers[current_question_id]["answer"]){
-                    selected_input.closest('.question-input-wrap').addClass("correct-answer");
-                }
-                else{
-                    inputs_block.append("<p> Правильный ответ: <b>" + questions[current_question_id]["answers"].filter(function(item) {return item["let"] == user_state.correctness["correct"][current_question_id]})[0].text + "</b></p>")
-                    selected_input.closest('.question-input-wrap').addClass("incorrect-answer");
-                }
-                enableSubmitButton();
-
-                user_state.step += 1;
-            }
-            // else{
-
-            // }
-
-            // user_state.answers[current_question_id]["checked"] = true;
 
             $("#crit_think_diagnostic_question").append(question_text);
             $("#crit_think_diagnostic_question").append(inputs_block);
@@ -846,13 +653,12 @@ def check_answer(expect, ans):
     </script>
 
     <div id="crit_think_diagnostic">
-
+        <p>Выберите один из вариантов ответов на каждый из предлагаемых ниже вопросов.</p>
         <div id="crit_think_diagnostic_question">
 
         </div>
 
-        <div id="crit_think_diagnostic_diagram">
-            <div id="chartdiv"></div>
+        <div id="crit_think_diagnostic_result">
         </div>
 
         <div id="crit_think_diagnostic_input">
