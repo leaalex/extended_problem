@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="crit think diagnostic 2">
-      <change afterPath="$PROJECT_DIR$/vizitki/vizitki.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/humor_style/humor_style.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/semantic_memory/semantic_memory.html" beforeDir="false" afterPath="$PROJECT_DIR$/semantic_memory/semantic_memory.html" afterDir="false" />
     </list>
@@ -23,15 +24,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="65">
@@ -43,12 +35,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="894">
-              <caret line="1107" selection-start-line="1107" selection-end-line="1107" />
+            <state>
+              <caret selection-end-column="115" />
               <folding>
+                <element signature="n#style#0;n#!!top" />
+                <element signature="n#script#1;n#!!top" />
                 <element signature="e#5866#9489#0" />
                 <element signature="e#9517#13115#0" />
                 <element signature="e#13555#16266#0" />
@@ -60,11 +54,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="144" selection-start-line="144" selection-end-line="144" selection-end-column="38" />
+            <state>
+              <caret line="140" column="30" selection-start-line="140" selection-start-column="30" selection-end-line="140" selection-end-column="30" />
+              <folding>
+                <element signature="e#314#5063#0" />
+                <element signature="e#5033#5320#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images_task/images_task.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="380" column="16" selection-start-line="380" selection-start-column="12" selection-end-line="380" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -84,8 +91,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11370">
+            <state relative-caret-position="-246">
               <caret line="758" column="91" selection-start-line="758" selection-start-column="4" selection-end-line="758" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="123" column="78" selection-start-line="123" selection-start-column="78" selection-end-line="123" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -93,18 +109,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/heroes_task/heroes_task.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13500">
+            <state relative-caret-position="924">
               <caret line="900" column="23" selection-start-line="900" selection-start-column="18" selection-end-line="900" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
+        <entry file="file://$PROJECT_DIR$/numerical_series/numerical_series.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11505">
-              <caret line="767" selection-start-line="767" selection-end-line="773" selection-end-column="19" />
+            <state relative-caret-position="3472">
+              <caret line="522" selection-start-line="522" selection-end-line="522" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/selected_task/selected_task.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-180" />
           </provider>
         </entry>
       </file>
@@ -176,14 +202,15 @@
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnotic_2.html" />
         <option value="$PROJECT_DIR$/vizitki/vizitki.html" />
         <option value="$PROJECT_DIR$/semantic_memory/semantic_memory.html" />
+        <option value="$PROJECT_DIR$/humor_style/humor_style.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="296" />
-    <option name="y" value="256" />
-    <option name="width" value="2013" />
-    <option name="height" value="1135" />
+    <option name="x" value="196" />
+    <option name="y" value="466" />
+    <option name="width" value="1899" />
+    <option name="height" value="988" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -210,12 +237,12 @@
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="selected_task" type="462c0819:PsiDirectoryNode" />
+              <item name="logical scheme" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="twelve_numbers" type="462c0819:PsiDirectoryNode" />
+              <item name="semantic_memory" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -410,7 +437,7 @@
       <workItem from="1554196583268" duration="28544000" />
       <workItem from="1554876734783" duration="11694000" />
       <workItem from="1554974707529" duration="594000" />
-      <workItem from="1555156959153" duration="25696000" />
+      <workItem from="1555156959153" duration="31263000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -423,13 +450,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244697000" />
+    <option name="totallyTimeSpent" value="250264000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="296" y="256" width="2013" height="1135" extended-state="0" />
+    <frame x="196" y="466" width="1899" height="988" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15678392" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1663113" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -486,13 +513,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="crit think diagnostic 2" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="123" column="78" selection-start-line="123" selection-start-column="78" selection-end-line="123" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/electric_problem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -514,11 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/selected_task/selected_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/electric-problem">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="956">
@@ -536,16 +551,6 @@
     <entry file="file://$PROJECT_DIR$/visual_organizer/untitled.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/numerical_series/numerical_series.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="522" lean-forward="true" selection-start-line="522" selection-end-line="522" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/visual_organizer/visual_organizer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -557,27 +562,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11370">
-          <caret line="758" column="91" selection-start-line="758" selection-start-column="4" selection-end-line="758" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/heroes_task/heroes_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13500">
-          <caret line="900" column="23" selection-start-line="900" selection-start-column="18" selection-end-line="900" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11505">
-          <caret line="767" selection-start-line="767" selection-end-line="773" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -596,23 +580,6 @@
             <element signature="n#style#0;n#img#0;n#td#0;n#tr#4;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="102" column="14" selection-start-line="102" selection-start-column="14" selection-end-line="102" selection-end-column="14" />
-          <folding>
-            <element signature="e#10584#17538#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images_task/images_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="64" column="10" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -636,6 +603,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="144" selection-start-line="144" selection-end-line="144" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="102" column="14" selection-start-line="102" selection-start-column="14" selection-end-line="102" selection-end-column="14" />
+          <folding>
+            <element signature="e#10584#17538#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-246">
+          <caret line="758" column="91" selection-start-line="758" selection-start-column="4" selection-end-line="758" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="123" column="78" selection-start-line="123" selection-start-column="78" selection-end-line="123" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/munsterberg_test/munsterberg_test_3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6504">
+          <caret line="767" selection-start-line="767" selection-end-line="773" selection-end-column="19" />
+          <folding>
+            <element signature="e#11166#13942#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/heroes_task/heroes_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="900" column="23" selection-start-line="900" selection-start-column="18" selection-end-line="900" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/numerical_series/numerical_series.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3472">
+          <caret line="522" selection-start-line="522" selection-end-line="522" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selected_task/selected_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="115" />
+          <folding>
+            <element signature="n#style#0;n#!!top" />
+            <element signature="n#script#1;n#!!top" />
+            <element signature="e#5866#9489#0" />
+            <element signature="e#9517#13115#0" />
+            <element signature="e#13555#16266#0" />
+            <element signature="e#16318#18656#0" />
+            <element signature="e#21260#22396#0" />
+            <element signature="e#22476#24536#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnotic_2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -646,24 +693,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
+    <entry file="file://$PROJECT_DIR$/images_task/images_task.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="144" selection-start-line="144" selection-end-line="144" selection-end-column="38" />
+        <state relative-caret-position="462">
+          <caret line="380" column="16" selection-start-line="380" selection-start-column="12" selection-end-line="380" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
+    <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="894">
-          <caret line="1107" selection-start-line="1107" selection-end-line="1107" />
+        <state>
+          <caret line="140" column="30" selection-start-line="140" selection-start-column="30" selection-end-line="140" selection-end-column="30" />
           <folding>
-            <element signature="e#5866#9489#0" />
-            <element signature="e#9517#13115#0" />
-            <element signature="e#13555#16266#0" />
-            <element signature="e#16318#18656#0" />
-            <element signature="e#21260#22396#0" />
-            <element signature="e#22476#24536#0" />
+            <element signature="e#314#5063#0" />
+            <element signature="e#5033#5320#0" />
           </folding>
         </state>
       </provider>

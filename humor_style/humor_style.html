@@ -1,0 +1,205 @@
+<style>
+
+.question-wrap{
+    margin: 10px 0px;
+    padding: 10px;;
+    background: #c2dbe6;
+}
+
+.question-wrap-text{
+    margin: 5px 0px;
+}
+
+.question-wrap-radio{
+
+}
+
+.radio-label{
+    display: block;
+}
+
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+    var HumorStyle = function (html_element) {
+        console.log(html_element);
+
+        var questions_object = {
+            question_1: {
+                text: "Я не склонен постоянно шутить и смеяться с другими людьми."
+            },
+            question_2: {
+                text: "Обычно, когда я один и чувствую себя подавленным, юмор поднимает мне настроение."
+            },
+            question_3: {
+                text: "Если кто-то допускает ошибку, я часто подшучиваю над этим."
+            },
+            question_4: {
+                text: "Я позволяю людям смеяться, подшучивать над собой больше, чем следовало бы."
+            },
+            question_5: {
+                text: "Мне нетрудно рассмешить других — мне кажется, у меня от природы хорошее чувство юмора."
+            },
+            question_6: {
+                text: "Когда я подавлен, меня не смешат нелепости жизни."
+            },
+            question_7: {
+                text: "Мой юмор никогда не обижает и не задевает других людей."
+            },
+            question_8: {
+                text: "Я могу увлечься самокритикой или принижением самого себя, если это смешит мою семью или друзей."
+            },
+            question_9: {
+                text: "Мне редко удается рассмешить людей, когда я рассказываю смешные истории."
+            },
+            question_10: {
+                text: "Если я расстроен или чувствую себя несчастным, я стараюсь найти нечто смешное в ситуации, чтобы почувствовать себя лучше."
+            },
+            question_11: {
+                text: "Когда я шучу или рассказываю нечто смешное, меня мало волнует, обидит ли это кого-то."
+            },
+            question_12: {
+                text: "Я часто стараюсь расположить к себе людей, понравиться им, рассказывая что-нибудь смешное о своих слабостях, промахах или неудачах."
+            },
+            question_13: {
+                text: "Близкие друзья считают, что я много шучу и смеюсь."
+            },
+            question_14: {
+                text: "Если я расстроен чем-то, мое чувство юмора помогает мне не впадать в отчаяние."
+            },
+            question_15: {
+                text: "Мне не нравится, когда кто-то использует юмор с целью критики или унижения других."
+            },
+            question_16: {
+                text: "Я не склонен шутить над собой, делая себя объектом юмора."
+            },
+            question_17: {
+                text: "Обычно мне не нравится рассказывать анекдоты и развлекать людей."
+            },
+            question_18: {
+                text: "Если я один и чувствую себя несчастным, я стараюсь подумать о чем-нибудь смешном, чтобы поднять себе настроение."
+            },
+            question_19: {
+                text: "Если мне приходит в голову нечто остроумное, я не могу сдержаться и не рассказать, даже если это кого-то обидит."
+            },
+            question_20: {
+                text: "Я часто перегибаю палку, иронизируя над собой, чтобы рассмешить окружающих."
+            },
+            question_21: {
+                text: "Мне доставляет удовольствие веселить других.>"
+            },
+            question_22: {
+                text: "Мне трудно сохранять чувство юмора, если я расстроен или мне грустно."
+            },
+            question_23: {
+                text: "Я никогда не смеюсь над другими, даже если все мои друзья делают это."
+            },
+            question_24: {
+                text: "В компании друзей или в кругу семьи надо мной часто подшучивают."
+            },
+            question_25: {
+                text: "В компании друзей я шучу реже, чем другие.>"
+            },
+            question_26: {
+                text: "Даже если найти нечто смешное в ситуации, от трудностей это не избавит."
+            },
+            question_27: {
+                text: "Если мне кто-то не нравится, я часто шучу или подтруниваю над этим человеком."
+            },
+            question_28: {
+                text: "Я использую свои жизненные проблемы и слабости для того, чтобы повеселить других."
+            },
+            question_29: {
+                text: "Обычно в присутствии других людей я могу придумать гораздо более остроумные вещи, чем другие."
+            },
+            question_30: {
+                text: "Мне не всегда нужна компания для того, чтобы развеселиться – я найду над чем посмеяться, даже будучи в одиночестве."
+            },
+            question_31: {
+                text: "Даже если что-то кажется мне очень смешным, я не буду смеяться или шутить по этому поводу, если это кого-то обидит."
+            },
+            question_32: {
+                text: "Позволять другим смеяться надо мной – мой способ поддерживать друзей и семью в хорошем расположении духа."
+            }
+        };
+
+        var answer_choices = {
+            a: "Полностью не согласен",
+            b: "Не согласен",
+            c: "Скорее не согласен",
+            d: "Не могу определиться",
+            e: "Скорее согласен",
+            f: "Согласен",
+            g: "Полностью согласен"
+        };
+
+        var user_answers = {};
+        Object.keys(questions_object).forEach(function(item, idx){
+            // console.log(questions_object[item];
+            user_answers[item] = 'd';
+            let question_wrap = $("<div>",{
+               class: "question-wrap",
+               html: `<div class="question-wrap-text"><b>${idx+1}.</b> ${questions_object[item].text}</div>`
+            });
+
+            let radio_wrap = $("<div>",{
+                class: "question-wrap-radio"
+            });
+
+            Object.keys(answer_choices).forEach(function(answer, idx){
+                let radio_label = $("<label>", {
+                    html: answer_choices[answer],
+                    class: "radio-label",
+                });
+                let radio_input = $("<input>", {
+                    type: "radio",
+                    class: "radio-input",
+                    value: answer,
+                    name: item
+                });
+
+                radio_label.prepend(radio_input);
+                $(radio_wrap).append(radio_label);
+
+            });
+            question_wrap.append(radio_wrap);
+            $(html_element).append(question_wrap);
+
+        });
+
+
+        $(".radio-input").change(function() {
+            user_answers[this.name] = this.value;
+        });
+
+
+        // Object.keys(this.questions_object).forEach(item => console.log(this.questions_object[item]));
+        //
+        // Object.keys(this.answer_choices).forEach(item => console.log(this.answer_choices[item]));
+
+        // var kek = "dfgfdgdfga";
+        // console.log(kek);
+        // this.lol = "sdfdsf";
+        // console.log(this.lol);
+    };
+
+
+    var humor_style_block = document.getElementById("humor_style_block");
+
+    var humor_style = new HumorStyle(humor_style_block);
+
+    console.log(humor_style)
+
+
+    });
+
+</script>
+
+<div id="humor_style_block">
+
+</div>
