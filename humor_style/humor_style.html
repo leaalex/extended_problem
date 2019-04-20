@@ -1,9 +1,9 @@
 <style>
 
 .question-wrap{
-    margin: 10px 0px;
-    padding: 10px;;
-    background: #c2dbe6;
+    /*margin: 10px 0px;*/
+    padding: 10px;
+    border-bottom: 1px solid #c9c9c9;
 }
 
 .question-wrap-text{
@@ -11,24 +11,103 @@
 }
 
 .question-wrap-radio{
+    padding: 5px 10px;
+}
 
+.radio-input{
+    margin-top: -1px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 .radio-label{
+    width: fit-content;
     display: block;
+}
+
+
+.check-button-wrap {
+    padding: 1.5em 0;
+    text-align: center;
+}
+
+
+.check-button {
+    font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;
+    /*width: 6em;*/
+    text-shadow: none !important;
+    background: #046b99;
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: normal;
+    border: none;
+}
+
+.check-button:hover {
+    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+    width: 200px;*/
+    /* height: 50px; */
+    background: #035c83 !important;
+    border: none;
+    cursor: pointer;
+}
+
+.check-button:focus {
+    border: none !important;
+    box-shadow: none !important;
 }
 
 </style>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
 
 <script type="text/javascript">
     $(document).ready(function () {
 
+        const language = 'ru'; // ru or en
+        const translations = {
+            en: {
+                start_btn_label: "Начать",
+                reset_btn_label: "Начать заново",
+                check_btn_label: "Проверить",
+                result_label: "Результаты:",
+                start_instruction: "тут наверно надо что-то написать?",
+                result_instruction: "Здесь описаны присущие Вам тип(ы) юмора",
+
+                affiliated_label: "Аффилиативный юмор",
+                self_sustaining_label: "Самоподдерживающий",
+                aggressive_label: "Агрессивный юмор",
+                self_deprecating_label: "Самоуничижительный стиль",
+
+                affiliated_description: "(поддерживающий, направленный на других) связывается с экстраверсией, открытостью новому опыту, оптимизмом, жизнерадостностью, самопринятием и самоценностью, с успешностью установления и поддержания межличностных отношений, удовлетворенностью качеством жизни, преобладанием положительных эмоций и хорошего настроения. Люди c аффилиативным чувством юмора часто шутят, спонтанно вовлекаются в добродушный обмен шутливыми замечаниями. Этот мягкий, доброжелательный и толерантный стиль юмора способствует укреплению межличностных отношений и росту взаимной привлекательности.",
+                self_sustaining_description: "(поддерживающий, направленный на себя) стиль юмора подразумевает оптимистичный взгляд на жизнь, умение сохранять чувство юмора перед лицом трудностей и проблем, то есть является регулятором эмоций и механизмом совладания со стрессом. По сравнению с аффилиативным, самоподдерживающий юмор выполняет, в первую очередь, интрапсихическую функцию и потому не так сильно связан с экстраверсией. Он имеет отрицательную связь с нейротизмом и положительно коррелирует с оптимизмом, открытостью новому опыту, самоценностью и удовлетворенностью качеством жизни, с успешностью установления и поддержания межличностных отношений.",
+                aggressive_description: "(деструктивный, направленный на других) включает в себя сарказм, насмешку, подтрунивание, он может быть использован в целях манипуляции другим. Люди с агрессивным стилем юмора часто не могут справиться с желанием сострить, даже если шутка может кого-то обидеть. Этот стиль юмора положительно связан с нейротизмом, враждебностью, гневом и агрессией и отрицательно – с удовлетворенностью межличностными отношениями, дружелюбием и совестливостью, социальной компетентностью, способностью оказывать эмоциональную поддержку другому человеку и эффективностью юмора как копинг-стратегии.",
+                self_deprecating_description: "(деструктивный, направленный на себя) означает использование юмора, направленного против самого себя, с целью снискания расположения значимых других. Такие люди, заискивая перед окружающими, позволяют им делать себя объектом шуток и готовы разделить с ними этот смех. Хотя они могут восприниматься как остроумные и веселые, за этим стоят низкая самооценка и обостренная потребность в принятии. Они испытывают трудности в отстаивании своих прав. Самоуничижительный стиль юмора положительно связывается с нейротизмом, депрессией, тревогой и отрицательно – с удовлетворенностью межличностными отношениями, качеством жизни, психологическим благополучием, самоценностью.",
+            },
+            ru: {
+                start_btn_label: "Начать",
+                reset_btn_label: "Начать заново",
+                check_btn_label: "Проверить",
+                result_label: "Результаты:",
+                start_instruction: "тут наверно надо что-то написать? теоретически студент может набирать везде по нулям (даже ответив на все вопросы)",
+                result_instruction: "Здесь описаны присущие Вам тип(ы) юмора",
+
+                affiliated_label: "Аффилиативный юмор",
+                self_sustaining_label: "Самоподдерживающий",
+                aggressive_label: "Агрессивный юмор",
+                self_deprecating_label: "Самоуничижительный стиль",
+
+                affiliated_description: "(поддерживающий, направленный на других) связывается с экстраверсией, открытостью новому опыту, оптимизмом, жизнерадостностью, самопринятием и самоценностью, с успешностью установления и поддержания межличностных отношений, удовлетворенностью качеством жизни, преобладанием положительных эмоций и хорошего настроения. Люди c аффилиативным чувством юмора часто шутят, спонтанно вовлекаются в добродушный обмен шутливыми замечаниями. Этот мягкий, доброжелательный и толерантный стиль юмора способствует укреплению межличностных отношений и росту взаимной привлекательности.",
+                self_sustaining_description: "(поддерживающий, направленный на себя) стиль юмора подразумевает оптимистичный взгляд на жизнь, умение сохранять чувство юмора перед лицом трудностей и проблем, то есть является регулятором эмоций и механизмом совладания со стрессом. По сравнению с аффилиативным, самоподдерживающий юмор выполняет, в первую очередь, интрапсихическую функцию и потому не так сильно связан с экстраверсией. Он имеет отрицательную связь с нейротизмом и положительно коррелирует с оптимизмом, открытостью новому опыту, самоценностью и удовлетворенностью качеством жизни, с успешностью установления и поддержания межличностных отношений.",
+                aggressive_description: "(деструктивный, направленный на других) включает в себя сарказм, насмешку, подтрунивание, он может быть использован в целях манипуляции другим. Люди с агрессивным стилем юмора часто не могут справиться с желанием сострить, даже если шутка может кого-то обидеть. Этот стиль юмора положительно связан с нейротизмом, враждебностью, гневом и агрессией и отрицательно – с удовлетворенностью межличностными отношениями, дружелюбием и совестливостью, социальной компетентностью, способностью оказывать эмоциональную поддержку другому человеку и эффективностью юмора как копинг-стратегии.",
+                self_deprecating_description: "(деструктивный, направленный на себя) означает использование юмора, направленного против самого себя, с целью снискания расположения значимых других. Такие люди, заискивая перед окружающими, позволяют им делать себя объектом шуток и готовы разделить с ними этот смех. Хотя они могут восприниматься как остроумные и веселые, за этим стоят низкая самооценка и обостренная потребность в принятии. Они испытывают трудности в отстаивании своих прав. Самоуничижительный стиль юмора положительно связывается с нейротизмом, депрессией, тревогой и отрицательно – с удовлетворенностью межличностными отношениями, качеством жизни, психологическим благополучием, самоценностью.",
+            }
+        };
+
+        const user_labels = translations[language];
 
     var HumorStyle = function (html_element) {
-        console.log(html_element);
-
+        $(html_element).html("");
         var questions_object = {
             question_1: {
                 text: "Я не склонен постоянно шутить и смеяться с другими людьми."
@@ -137,55 +216,181 @@
             f: "Согласен",
             g: "Полностью согласен"
         };
-
         var user_answers = {};
-        Object.keys(questions_object).forEach(function(item, idx){
-            // console.log(questions_object[item];
-            user_answers[item] = 'd';
-            let question_wrap = $("<div>",{
-               class: "question-wrap",
-               html: `<div class="question-wrap-text"><b>${idx+1}.</b> ${questions_object[item].text}</div>`
+        let statements = {
+            direct: ["e", "f", "g"],
+            inverse: ["a", "b", "c"]
+        };
+        let humors = {
+            affiliated: {
+                direct: [1, 5, 9, 13, 21, 25, 29],
+                inverse: [17]
+            },
+            self_sustaining:{
+                direct: [2, 10, 14, 18, 30],
+                inverse: [6, 22, 26]
+            },
+            aggressive: {
+                direct: [3, 11, 19, 27],
+                inverse: [7, 15, 23, 31]
+            },
+            self_deprecating:{
+                direct: [4, 8, 12, 20, 24, 28, 32],
+                inverse: [16]
+            }
+        };
+
+        create_questions_block();
+
+        function set_result(){
+            let humors_result = {
+                affiliated: 0,
+                self_sustaining:0,
+                aggressive: 0,
+                self_deprecating:0
+            };
+
+            Object.keys(user_answers).forEach(function(item, idx){
+                let num_question = parseInt(item.replace('question_',''));
+
+                if(statements.direct.includes(user_answers[item])){
+                    if (humors.affiliated.direct.includes(num_question)){
+                        humors_result.affiliated += 1;
+                    }
+                    else if (humors.self_sustaining.direct.includes(num_question)){
+                        humors_result.self_sustaining += 1;
+                    }
+                    else if (humors.aggressive.direct.includes(num_question)){
+                        humors_result.aggressive += 1;
+                    }
+                    else if (humors.self_deprecating.direct.includes(num_question)){
+                        humors_result.self_deprecating += 1;
+                    }
+                    else {
+                        // console.error("Неизвестный вопрос", num_question);
+                    }
+                }
+                else if (statements.inverse.includes(user_answers[item])) {
+                    if (humors.affiliated.inverse.includes(num_question)){
+                        humors_result.affiliated += 1;
+                    }
+                    else if (humors.self_sustaining.inverse.includes(num_question)){
+                        humors_result.self_sustaining += 1;
+                    }
+                    else if (humors.aggressive.inverse.includes(num_question)){
+                        humors_result.aggressive += 1;
+                    }
+                    else if (humors.self_deprecating.inverse.includes(num_question)){
+                        humors_result.self_deprecating += 1;
+                    }
+                    else {
+                        // console.error("Неизвестный вопрос", num_question);
+                    }
+                }
+                else{
+                     // выбран вариант 'Не могу определиться'
+                     // console.log('Не могу определиться')
+                }
+
+
             });
 
-            let radio_wrap = $("<div>",{
-                class: "question-wrap-radio"
+            var humors_result_array = Object.keys(humors_result).map(item=>{return {'name': item, 'value': humors_result[item]}});
+            humors_result_array = humors_result_array.filter(item=>item.value==humors_result_array.reduce(function (prev, current) {return (prev.value > current.value) ? prev : current}).value);
+            return humors_result_array;
+        }
+
+        function createResultBlock() {
+
+            var result_block = $("<div>", {
+               html: "<h2>" + user_labels.result_label + "</h2>",
+               class: ""
             });
 
-            Object.keys(answer_choices).forEach(function(answer, idx){
-                let radio_label = $("<label>", {
-                    html: answer_choices[answer],
-                    class: "radio-label",
+            $(result_block).append("<p>" + user_labels.result_instruction + "</p>");
+
+            set_result().forEach(function (item) {
+                $(result_block).append("<p><strong>" + user_labels[item.name+"_label"] + "</strong> "  + user_labels[item.name+"_description"] +  "<p>");
+            });
+
+            $(html_element).html(result_block);
+
+            // console.log(set_result());
+
+            $("<button>", {
+                html: user_labels.reset_btn_label,
+                click: function () {
+                    humor_style = new HumorStyle(humor_style_block);
+                }
+            }).appendTo(html_element);
+
+            $('body').scrollTo(html_element, 300, {offset: -100});
+
+        }
+
+        function create_questions_block() {
+            $(html_element).append("<p>" + user_labels.start_instruction + "</p>");
+            Object.keys(questions_object).forEach(function (item, idx) {
+
+                user_answers[item] = 'd';
+                let question_wrap = $("<div>", {
+                    class: "question-wrap",
+                    html: `<div class="question-wrap-text"><b>${idx + 1}.</b> ${questions_object[item].text}</div>`
                 });
-                let radio_input = $("<input>", {
-                    type: "radio",
-                    class: "radio-input",
-                    value: answer,
-                    name: item
+
+                let radio_wrap = $("<div>", {
+                    class: "question-wrap-radio"
                 });
 
-                radio_label.prepend(radio_input);
-                $(radio_wrap).append(radio_label);
+                Object.keys(answer_choices).forEach(function (answer) {
+                    let radio_label = $("<label>", {
+                        html: answer_choices[answer],
+                        class: "radio-label",
+                    });
+                    let radio_input = $("<input>", {
+                        type: "radio",
+                        class: "radio-input",
+                        value: answer,
+                        name: item
+                    });
 
+                    if (user_answers[item] == answer){
+                        radio_input.prop('checked', true);
+                    }
+
+                    radio_label.prepend(radio_input);
+                    $(radio_wrap).append(radio_label);
+
+                });
+                question_wrap.append(radio_wrap);
+                $(html_element).append(question_wrap);
+
+                // let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
+                // $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
+                // user_answers[item] = value;
             });
-            question_wrap.append(radio_wrap);
-            $(html_element).append(question_wrap);
 
-        });
+            $(".radio-input").change(function () {
+                user_answers[this.name] = this.value;
+                // set_result()
+            });
 
+            var check_button_wrap = $("<div>", {
+                class: "check-button-wrap"
+            });
 
-        $(".radio-input").change(function() {
-            user_answers[this.name] = this.value;
-        });
+            var check_button = $("<button>", {
+                html: user_labels.check_btn_label,
+                class: "check-button"
+            }).appendTo(check_button_wrap);
 
+            check_button.click(function () {
+                createResultBlock();
+            });
 
-        // Object.keys(this.questions_object).forEach(item => console.log(this.questions_object[item]));
-        //
-        // Object.keys(this.answer_choices).forEach(item => console.log(this.answer_choices[item]));
+            $(html_element).append(check_button_wrap);
 
-        // var kek = "dfgfdgdfga";
-        // console.log(kek);
-        // this.lol = "sdfdsf";
-        // console.log(this.lol);
+        }
     };
 
 
