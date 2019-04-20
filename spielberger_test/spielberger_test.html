@@ -51,6 +51,25 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        const language = 'ru'; // ru or en
+        const translations = {
+            en: {
+                start_btn_label: "Начать",
+                reset_btn_label: "Начать заново",
+                check_btn_label: "Проверить",
+                result_label: "Результаты:",
+            },
+            ru: {
+                start_btn_label: "Начать",
+                reset_btn_label: "Начать заново",
+                check_btn_label: "Проверить",
+                result_label: "Результаты:"
+            }
+        };
+
+        const user_labels = translations[language];
+
         var spielberger_test_block = document.getElementById("spielberger_test_block");
 
 
@@ -253,7 +272,12 @@
 
                 results.RT.result = results.RT.E1 - results.RT.E2 + 50;
 
-                console.log(results);
+                return results;
+                // console.log(results);
+            }
+
+            function createResultBlock() {
+                    console.log(calculate_results())
             }
 
             function create_RT_aswer_table() {
@@ -270,8 +294,9 @@
 
                 Object.keys(RT_questions).forEach(function (item) {
                     var table_tr = $("<tr>", {html: "<td class='title-td'>" + RT_questions[item].text + "</td>"});
-                    // table_heading.append("<th>"+ + "</th>");
-                    user_answers.RT[item] = "c";
+
+                    // user_answers.RT[item] = "c";
+                    user_answers.RT[item] = "";
 
                     Object.keys(RT_choices).forEach(function (choice) {
                         let radio_label = $("<label>", {
@@ -285,26 +310,48 @@
                         });
 
                         radio_label.prepend(radio_input);
-                        if (user_answers.RT[item] == choice) radio_input.prop('checked', true);
+                        // if (user_answers.RT[item] == choice) radio_input.prop('checked', true);
                         let choice_td = $("<td>", {class: "radio-td", html: radio_label});
                         table_tr.append(choice_td)
                     });
-
-
                     answer_table.append(table_tr)
                 });
 
+
+
+                // set_result()
+
+                // console.log('ok');
                 $(html_element).append(answer_table);
+
+                // calculate_results();
+                var check_button_wrap = $("<div>", {
+                    class: "check-button-wrap"
+                });
+
+                var check_button = $("<button>", {
+                    html: user_labels.check_btn_label,
+                    class: "check-button",
+                    disabled: "disabled"
+                }).appendTo(check_button_wrap);
+
+                check_button.click(function () {
+                    createResultBlock();
+                });
+
+                $(html_element).append(check_button_wrap);
+
 
                 $(".RT-table .radio-input").change(function () {
                     user_answers.RT[this.name] = this.value;
-                    // console.log(user_answers.RT);
-                    calculate_results();
-                    // set_result()
+                    if(Object.keys(user_answers.RT).map(item=>user_answers.RT[item]).every(element=>element.length>0)){
+                        $(check_button).removeAttr("disabled");
+                    }
+                    console.log(this);
+                    // co
                 });
 
-
-
+                // return block;
             }
 
 

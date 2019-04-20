@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="crit think diagnostic 2">
-      <change afterPath="$PROJECT_DIR$/spielberger_test/spielberger_test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/humor_style/humor_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/humor_style/humor_style.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spielberger_test/spielberger_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/spielberger_test/spielberger_test.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,10 +23,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="251" lean-forward="true" selection-start-line="251" selection-end-line="251" />
+            <state relative-caret-position="572">
+              <caret line="302" column="8" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="38" />
               <folding>
+                <element signature="e#1249#7796#0" />
+                <element signature="e#7964#12650#0" />
                 <element signature="e#12682#12936#0" />
+                <element signature="e#13102#13612#0" />
               </folding>
             </state>
           </provider>
@@ -37,13 +38,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="261" column="50" lean-forward="true" selection-start-line="261" selection-start-column="50" selection-end-line="261" selection-end-column="50" />
+            <state relative-caret-position="376">
+              <caret line="314" column="14" lean-forward="true" selection-start-line="314" selection-start-column="14" selection-end-line="314" selection-end-column="14" />
               <folding>
                 <element signature="e#379#2364#0" />
                 <element signature="e#409#466#0" />
                 <element signature="e#2395#4730#0" />
                 <element signature="e#5304#5761#0" />
+                <element signature="e#6619#6830#0" />
               </folding>
             </state>
           </provider>
@@ -107,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>second_word</find>
-      <find>answer_wrap</find>
       <find>answer_inputs_wrap</find>
       <find>memory_volume</find>
       <find>crit_think_diagnostic_input</find>
@@ -137,6 +137,8 @@
       <find>scrollTo</find>
       <find>new</find>
       <find>swers</find>
+      <find>RT</find>
+      <find>block</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -169,8 +171,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1000" />
-    <option name="y" value="73" />
+    <option name="x" value="413" />
+    <option name="y" value="59" />
     <option name="width" value="1271" />
     <option name="height" value="1202" />
   </component>
@@ -389,7 +391,7 @@
       <workItem from="1554196583268" duration="28544000" />
       <workItem from="1554876734783" duration="11694000" />
       <workItem from="1554974707529" duration="594000" />
-      <workItem from="1555156959153" duration="49325000" />
+      <workItem from="1555156959153" duration="51799000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -402,10 +404,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268326000" />
+    <option name="totallyTimeSpent" value="270800000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1000" y="73" width="1271" height="1202" extended-state="0" />
+    <frame x="413" y="59" width="1271" height="1202" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -463,6 +465,18 @@
     <MESSAGE value="munsterberg_test" />
     <MESSAGE value="crit think diagnostic 2" />
     <option name="LAST_COMMIT_MESSAGE" value="crit think diagnostic 2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/spielberger_test/spielberger_test.html</url>
+          <line>357</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/electric_problem.py">
@@ -654,23 +668,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="251" lean-forward="true" selection-start-line="251" selection-end-line="251" />
+        <state relative-caret-position="572">
+          <caret line="302" column="8" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="38" />
           <folding>
+            <element signature="e#1249#7796#0" />
+            <element signature="e#7964#12650#0" />
             <element signature="e#12682#12936#0" />
+            <element signature="e#13102#13612#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="261" column="50" lean-forward="true" selection-start-line="261" selection-start-column="50" selection-end-line="261" selection-end-column="50" />
+        <state relative-caret-position="376">
+          <caret line="314" column="14" lean-forward="true" selection-start-line="314" selection-start-column="14" selection-end-line="314" selection-end-column="14" />
           <folding>
             <element signature="e#379#2364#0" />
             <element signature="e#409#466#0" />
             <element signature="e#2395#4730#0" />
             <element signature="e#5304#5761#0" />
+            <element signature="e#6619#6830#0" />
           </folding>
         </state>
       </provider>
