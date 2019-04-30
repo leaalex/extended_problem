@@ -1,121 +1,121 @@
 <problem>
 
-<style type="text/css">
-	
-.modification_block{
-	display: none;
-}
+	<style type="text/css">
 
-#modifications_list{
-	display: none;
-}
+		.modification_block{
+			display: none;
+		}
 
-#no_such_modifications{
-	background: #ffffff;
-    width: fit-content;
-    padding: 10px;
-    margin: 10px 0px;
-    display: block;
-    border-radius: 4px;
-    border: 2px solid red;
-	display: none;
-}
+		#modifications_list{
+			display: none;
+		}
 
-.incorrect-message{
-	background: #daecf6;
-    padding: 20px 10px;
-    margin: 10px 0px;
-    border-radius: 2px;
-    border-left: 5px solid #0079bc;
-	display: none;
-}
+		#no_such_modifications{
+			background: #ffffff;
+			width: fit-content;
+			padding: 10px;
+			margin: 10px 0px;
+			display: block;
+			border-radius: 4px;
+			border: 2px solid red;
+			display: none;
+		}
 
-#step_2{
-	display: none;
-}
+		.incorrect-message{
+			background: #daecf6;
+			padding: 20px 10px;
+			margin: 10px 0px;
+			border-radius: 2px;
+			border-left: 5px solid #0079bc;
+			display: none;
+		}
 
-#step_3{
-	display: none;
-}
+		#step_2{
+			display: none;
+		}
 
-.hero-input-wrap input{
-    margin-top: -1px;
-    margin-right: 4px;
-    vertical-align: middle;
-}
+		#step_3{
+			display: none;
+		}
 
-.hero-input-wrap label{
-	font-size: 1em;
-	cursor: pointer;
-}
+		.hero-input-wrap input{
+			margin-top: -1px;
+			margin-right: 4px;
+			vertical-align: middle;
+		}
 
-.hero-input-wrap{
-    padding: 10px 10px;
-    margin: 6px 0px;
-    border: 2px solid #e5e5e5;
-    border-radius: 3px;
-    cursor: pointer;
-}
+		.hero-input-wrap label{
+			font-size: 1em;
+			cursor: pointer;
+		}
 
-.hero-input-wrap.correct-answer, .hero-input-wrap.correct-answer:hover {
-    border: 2px solid #009b01;
-}
+		.hero-input-wrap{
+			padding: 10px 10px;
+			margin: 6px 0px;
+			border: 2px solid #e5e5e5;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 
-.hero-input-wrap.incorrect-answer, .hero-input-wrap.incorrect-answer:hover{
-    border: 2px solid #cb0711;
-}
+		.hero-input-wrap.correct-answer, .hero-input-wrap.correct-answer:hover {
+			border: 2px solid #009b01;
+		}
 
-.hero-input-wrap:hover{
-	border: 2px solid #009fe6;
-}
+		.hero-input-wrap.incorrect-answer, .hero-input-wrap.incorrect-answer:hover{
+			border: 2px solid #cb0711;
+		}
 
-.answer-button-wrap{
-	padding: 5px 0px 5px 0px;
-}
+		.hero-input-wrap:hover{
+			border: 2px solid #009fe6;
+		}
 
-.answer-button-wrap div{
-	display: inline;
-	padding: 0px 8px 0px 0px
-}
+		.answer-button-wrap{
+			padding: 5px 0px 5px 0px;
+		}
 
-#step_3_experiment_2{
-	display: none;
-}
+		.answer-button-wrap div{
+			display: inline;
+			padding: 0px 8px 0px 0px
+		}
 
-#step_3_experiment_3{
-	display: none;
-}
+		#step_3_experiment_2{
+			display: none;
+		}
 
-#hero_task_input{
-	display: none;
-}
+		#step_3_experiment_3{
+			display: none;
+		}
 
-.experiment-explanation{
-	display: none;
-	margin: 20px 0px;
-    padding: 2px 10px;
-    border-left: 8px solid #c7c7c9;
-    background: #f1f1f159;
-    
-}
+		#hero_task_input{
+			display: none;
+		}
 
-.experiment-explanation p:not(:first-child) {
-    text-indent: 20px;
-    padding: 0px;
-    margin: 12px 0px !important;
-}
- 
+		.experiment-explanation{
+			display: none;
+			margin: 20px 0px;
+			padding: 2px 10px;
+			border-left: 8px solid #c7c7c9;
+			background: #f1f1f159;
 
-.step_3_task_text p:not(:first-child){
-    text-indent: 20px;
-    padding: 0px;
-    margin: 12px 0px !important;
-}
- 
+		}
 
-</style>
+		.experiment-explanation p:not(:first-child) {
+			text-indent: 20px;
+			padding: 0px;
+			margin: 12px 0px !important;
+		}
 
-<script type="loncapa/python">
+
+		.step_3_task_text p:not(:first-child){
+			text-indent: 20px;
+			padding: 0px;
+			margin: 12px 0px !important;
+		}
+
+
+	</style>
+
+	<script type="loncapa/python">
 import math
 import json
 
@@ -152,1085 +152,1100 @@ def check_answer(expect, ans):
     else:
         return {'input_list': [{'ok': 'Partial', 'msg': '', 'grade_decimal': grade_decimal}, ]}
 </script>
-<meta charset="UTF-8" />
-<script type="text/javascript" charset="utf-8">
-function Answer(elementField) {
-    this.elementField = elementField;
-    this.fieldValue = "";
-    this.fieldObject = {};
-    this.get = function() {
-        this.fieldValue = elementField.value;
-        return this.fieldValue;
-    };
-    this.set = function(value) {
-        if (value == undefined) value = this.fieldValue;
-        elementField.value = value;
-    };
-    this.getJSON = function() {
-        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
-        return this.fieldObject;
-    };
-    this.setJSON = function(object) {
-        if (object == undefined) object = this.fieldObject;
-        this.set(JSON.stringify(object))
-    };
-    this.isJsonString = function(str) {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    };
-};
-var next_exp_label = '$to_next_ex';
-var choice_hero_btn_label = '$choice_hero_btn';
-var check_ans_btn_label = '$check_ans_btn';
-var choice_modify_btn_label = '$choice_modify_btn'
+	<meta charset="UTF-8" />
+	<script type="text/javascript" charset="utf-8">
+		function Answer(elementField) {
+			this.elementField = elementField;
+			this.fieldValue = "";
+			this.fieldObject = {};
+			this.get = function() {
+				this.fieldValue = elementField.value;
+				return this.fieldValue;
+			};
+			this.set = function(value) {
+				if (value == undefined) value = this.fieldValue;
+				elementField.value = value;
+			};
+			this.getJSON = function() {
+				if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+				return this.fieldObject;
+			};
+			this.setJSON = function(object) {
+				if (object == undefined) object = this.fieldObject;
+				this.set(JSON.stringify(object))
+			};
+			this.isJsonString = function(str) {
+				try {
+					JSON.parse(str);
+				} catch (e) {
+					return false;
+				}
+				return true;
+			};
+		};
+		var next_exp_label = '$to_next_ex';
+		var choice_hero_btn_label = '$choice_hero_btn';
+		var check_ans_btn_label = '$check_ans_btn';
+		var choice_modify_btn_label = '$choice_modify_btn'
 
-var answer = new Answer(document.querySelector("#hero_task_input").querySelector("input[type='text']"));
+		var answer = new Answer(document.querySelector("#hero_task_input").querySelector("input[type='text']"));
 
-var hero_classes = [{title: "Блондинка", name: "blonde"}, {title: "Ботан", name: "nerd"}, {title: "Внесистемный элемент", name: "offsystem"}, {title: "Супергерой", name: "superhero"}, {title: "Блогер", name: "blogger"}];
+		var hero_classes = [{title: "Блондинка", name: "blonde"}, {title: "Ботан", name: "nerd"}, {title: "Внесистемный элемент", name: "offsystem"}, {title: "Супергерой", name: "superhero"}, {title: "Блогер", name: "blogger"}];
 
-var comments = {
-	"a1": {
-		"socratic_blonde": "Похоже, блондинка – это все-таки диагноз!",
-		"bookworm": "Поздравляем, Вы блондинка!",
-		"almost_hipster": "Имидж ничто!",
-		"young_maximalist": "Меняйте Facebook на Instagram.",
-		"lucky": "красота – это страшная сила! Иногда она убивает..",
-		"fashionable": "Ловим хайп!",
-		"modern_socrat": "Может, кофе?",
-		"god_complex": "Нет, с таким make up’ом Вы мир не спасете!",
-		"brother": "Брат или сестра?! Вот в чем вопрос…"
-	},
+		var comments = {
+			"a1": {
+				"socratic_blonde": "Похоже, блондинка – это все-таки диагноз!",
+				"bookworm": "Поздравляем, Вы блондинка!",
+				"almost_hipster": "Имидж ничто!",
+				"young_maximalist": "Меняйте Facebook на Instagram.",
+				"lucky": "красота – это страшная сила! Иногда она убивает..",
+				"fashionable": "Ловим хайп!",
+				"modern_socrat": "Может, кофе?",
+				"god_complex": "Нет, с таким make up’ом Вы мир не спасете!",
+				"brother": "Брат или сестра?! Вот в чем вопрос…"
+			},
 
-	"a2": {
-		"legally_blonde": "О! Вы прокачали интеллект.",
-		"almost_hipster": "Но риск благородное дело?",
-		"young_maximalist": "Твоя жизнь – твои правила!",
-		"lucky": "А что это изменит?",
-		"fashionable": "А судьи кто?",
-		"god_complex": "Куда катится мир…",
-		"brother": "О где же ты, брат?!"
-	},
+			"a2": {
+				"legally_blonde": "О! Вы прокачали интеллект.",
+				"almost_hipster": "Но риск благородное дело?",
+				"young_maximalist": "Твоя жизнь – твои правила!",
+				"lucky": "А что это изменит?",
+				"fashionable": "А судьи кто?",
+				"god_complex": "Куда катится мир…",
+				"brother": "О где же ты, брат?!"
+			},
 
-	"a3": {
-		"legally_blonde": "Вы что?! В нирване на лабутенах????!!!!",
-		"socratic_blonde": "Что ж, забивай в навигатор..",
-		"bookworm": "Нирвана существует?",
-		"young_maximalist": "Живи здесь и сейчас!",
-		"fashionable": "Да Вы что?! Там же ни один девайс не работает!",
-		"modern_socrat": "А поговорить?",
-		"god_complex": "И Вам пора на пенсию..",
-		"brother": "Кого спасать будем?"
-	},
+			"a3": {
+				"legally_blonde": "Вы что?! В нирване на лабутенах????!!!!",
+				"socratic_blonde": "Что ж, забивай в навигатор..",
+				"bookworm": "Нирвана существует?",
+				"young_maximalist": "Живи здесь и сейчас!",
+				"fashionable": "Да Вы что?! Там же ни один девайс не работает!",
+				"modern_socrat": "А поговорить?",
+				"god_complex": "И Вам пора на пенсию..",
+				"brother": "Кого спасать будем?"
+			},
 
-	"a4": {
-		"legally_blonde": "Определенно, Вам это поможет))",
-		"socratic_blonde": "Приготовьтесь! Откройте свой разум.",
-		"bookworm": "Что ж, обоснуйте!",
-		"almost_hipster": "Не надо ничего менять, пока система работает.",
-		"lucky": "Долой систему!",
-		"fashionable": "Ломать – не строить!",
-		"modern_socrat": "Начинайте с себя!",
-		"brother": "Пройденный этап..."
-	},
+			"a4": {
+				"legally_blonde": "Определенно, Вам это поможет))",
+				"socratic_blonde": "Приготовьтесь! Откройте свой разум.",
+				"bookworm": "Что ж, обоснуйте!",
+				"almost_hipster": "Не надо ничего менять, пока система работает.",
+				"lucky": "Долой систему!",
+				"fashionable": "Ломать – не строить!",
+				"modern_socrat": "Начинайте с себя!",
+				"brother": "Пройденный этап..."
+			},
 
-	"a5": {
-		"legally_blonde": "Что ж, это тоже путь к популярности..",
-		"socratic_blonde": "Не выходи из комнаты, не совершай ошибку.",
-		"bookworm": "Поздравляем! Вы расширили границы своего мира.",
-		"almost_hipster": "А Вы уверены, что это будет смешно?",
-		"young_maximalist": "Вы ли это?",
-		"lucky": "Посмеемся…",
-		"modern_socrat": "Не информативно.",
-		"god_complex": "Это несерьезно!",
-		"brother": "Если только для тира…"
-	},
-	"a6": {
-		"legally_blonde": "Это не модно.",
-		"socratic_blonde": "Это скучно.",
-		"bookworm": "А вдруг мама расстроится?",
-		"almost_hipster": "А есть ли гарантия, что это Вы?!",
-		"young_maximalist": "Чем больше клонов, тем больше Вас.",
-		"lucky": "А не слишком ли это предсказуемо?",
-		"fashionable": "Морально устаревший вариант.",
-		"modern_socrat": "Помните о последствиях!",
-		"god_complex": "Так Вы на другую планету не переберетесь."
-	},
+			"a5": {
+				"legally_blonde": "Что ж, это тоже путь к популярности..",
+				"socratic_blonde": "Не выходи из комнаты, не совершай ошибку.",
+				"bookworm": "Поздравляем! Вы расширили границы своего мира.",
+				"almost_hipster": "А Вы уверены, что это будет смешно?",
+				"young_maximalist": "Вы ли это?",
+				"lucky": "Посмеемся…",
+				"modern_socrat": "Не информативно.",
+				"god_complex": "Это несерьезно!",
+				"brother": "Если только для тира…"
+			},
+			"a6": {
+				"legally_blonde": "Это не модно.",
+				"socratic_blonde": "Это скучно.",
+				"bookworm": "А вдруг мама расстроится?",
+				"almost_hipster": "А есть ли гарантия, что это Вы?!",
+				"young_maximalist": "Чем больше клонов, тем больше Вас.",
+				"lucky": "А не слишком ли это предсказуемо?",
+				"fashionable": "Морально устаревший вариант.",
+				"modern_socrat": "Помните о последствиях!",
+				"god_complex": "Так Вы на другую планету не переберетесь."
+			},
 
-	"b1": {
-		"socratic_blonde": "Не о том думаете.",
-		"bookworm": "А Вам зачем?",
-		"almost_hipster": "И медицинский сертификат…",
-		"young_maximalist": "А как же любовь?",
-		"lucky": "Вас и так любят.",
-		"modern_socrat": "А поговорить?",
-		"god_complex": "Вы же однолюб!",
-		"brother": "У Вас иные приоритеты."
-	},
+			"b1": {
+				"socratic_blonde": "Не о том думаете.",
+				"bookworm": "А Вам зачем?",
+				"almost_hipster": "И медицинский сертификат…",
+				"young_maximalist": "А как же любовь?",
+				"lucky": "Вас и так любят.",
+				"modern_socrat": "А поговорить?",
+				"god_complex": "Вы же однолюб!",
+				"brother": "У Вас иные приоритеты."
+			},
 
-	"b2": {
-		"legally_blonde": "Поздравляем! Вы думаете не только о себе.",
-		"bookworm": "А семья-то зачем?",
-		"almost_hipster": "Но Вы уже не хипстер.",
-		"young_maximalist": "Измена – это часть системы…",
-		"lucky": "Просто люби.",
-		"fashionable": "Придется менять профессию.",
-		"modern_socrat": "Это скучно…",
-		"god_complex": "Никто не узнает о Ваших подвигах.",
-		"brother": "Работы прибавится."
-	},
-	"b3": {
-		"legally_blonde": "Вы на грани развода.",
-		"socratic_blonde": "Не забывайте о контрацепции.",
-		"almost_hipster": "А если это любовь?",
-		"young_maximalist": "Нужно разводиться!",
-		"fashionable": "Не слишком ли это категорично?",
-		"modern_socrat": "Но если это не называть изменой – это не измена.",
-		"brother": "У вас слишком много дел в реальной жизни."
-	},
+			"b2": {
+				"legally_blonde": "Поздравляем! Вы думаете не только о себе.",
+				"bookworm": "А семья-то зачем?",
+				"almost_hipster": "Но Вы уже не хипстер.",
+				"young_maximalist": "Измена – это часть системы…",
+				"lucky": "Просто люби.",
+				"fashionable": "Придется менять профессию.",
+				"modern_socrat": "Это скучно…",
+				"god_complex": "Никто не узнает о Ваших подвигах.",
+				"brother": "Работы прибавится."
+			},
+			"b3": {
+				"legally_blonde": "Вы на грани развода.",
+				"socratic_blonde": "Не забывайте о контрацепции.",
+				"almost_hipster": "А если это любовь?",
+				"young_maximalist": "Нужно разводиться!",
+				"fashionable": "Не слишком ли это категорично?",
+				"modern_socrat": "Но если это не называть изменой – это не измена.",
+				"brother": "У вас слишком много дел в реальной жизни."
+			},
 
-	"b4": {
-		"legally_blonde": "А кто Вас будет обеспечивать?",
-		"socratic_blonde": "Пора обновить резюме.",
-		"bookworm": "Только маме не говорите.",
-		"lucky": "Все не так просто…",
-		"fashionable": "Вы лишитесь целевого сегмента.",
-		"modern_socrat": "Только если Вы философ.",
-		"god_complex": "Вы никогда не спасете такой мир.",
-		"brother": "Как же так, брат?"
-	},
+			"b4": {
+				"legally_blonde": "А кто Вас будет обеспечивать?",
+				"socratic_blonde": "Пора обновить резюме.",
+				"bookworm": "Только маме не говорите.",
+				"lucky": "Все не так просто…",
+				"fashionable": "Вы лишитесь целевого сегмента.",
+				"modern_socrat": "Только если Вы философ.",
+				"god_complex": "Вы никогда не спасете такой мир.",
+				"brother": "Как же так, брат?"
+			},
 
-	"b5": {
-		"legally_blonde": "Поздравляем! Вы больше не блондинка.",
-		"socratic_blonde": "Поздравляем! Вы больше не блондинка.",
-		"bookworm": "Укажите философскую школу для начала.",
-		"almost_hipster": "Maybe yes, maybe no…",
-		"young_maximalist": "Это беспринципно!",
-		"lucky": "Не типично для Вас.",
-		"fashionable": "Аудитория Вас не поймет.",
-		"god_complex": "Вы не древний грек!",
-		"brother": "А в чем же сила?"
-	},
+			"b5": {
+				"legally_blonde": "Поздравляем! Вы больше не блондинка.",
+				"socratic_blonde": "Поздравляем! Вы больше не блондинка.",
+				"bookworm": "Укажите философскую школу для начала.",
+				"almost_hipster": "Maybe yes, maybe no…",
+				"young_maximalist": "Это беспринципно!",
+				"lucky": "Не типично для Вас.",
+				"fashionable": "Аудитория Вас не поймет.",
+				"god_complex": "Вы не древний грек!",
+				"brother": "А в чем же сила?"
+			},
 
-	"b6":{
-		"legally_blonde": "Это прорыв!",
-		"socratic_blonde": "Ваши волосы стали на тон темнее.",
-		"bookworm": "Вы же любите сложности.",
-		"almost_hipster": "Ваш интеллект в силах с этим справиться.",
-		"young_maximalist": "Взрослеете! И это грустно…",
-		"fashionable": "Это банально!",
-		"modern_socrat": "Задавайте вопросы…",
-		"god_complex": "Для Вас нет невозможного."
-	},
+			"b6":{
+				"legally_blonde": "Это прорыв!",
+				"socratic_blonde": "Ваши волосы стали на тон темнее.",
+				"bookworm": "Вы же любите сложности.",
+				"almost_hipster": "Ваш интеллект в силах с этим справиться.",
+				"young_maximalist": "Взрослеете! И это грустно…",
+				"fashionable": "Это банально!",
+				"modern_socrat": "Задавайте вопросы…",
+				"god_complex": "Для Вас нет невозможного."
+			},
 
-	"c1":{
-		"socratic_blonde": "Девочки тоже носят кепки.",
-		"bookworm": "Женщина – это тоже результат эволюции.",
-		"almost_hipster": "У них тоже есть цель.",
-		"lucky": "Борьба со стереотипами – дело благородное, но не благодарное.",
-		"fashionable": "Ракурс не будет удачным.",
-		"modern_socrat": "А Вы не слишком упрощаете?",
-		"god_complex": "Wonder Woman.",
-		"brother": "Не от других же обезьян они произошли!"
-	},
+			"c1":{
+				"socratic_blonde": "Девочки тоже носят кепки.",
+				"bookworm": "Женщина – это тоже результат эволюции.",
+				"almost_hipster": "У них тоже есть цель.",
+				"lucky": "Борьба со стереотипами – дело благородное, но не благодарное.",
+				"fashionable": "Ракурс не будет удачным.",
+				"modern_socrat": "А Вы не слишком упрощаете?",
+				"god_complex": "Wonder Woman.",
+				"brother": "Не от других же обезьян они произошли!"
+			},
 
-	"c2":{
-		"legally_blonde": "Прогресс на лицо! Вы склонны к рефлексии.",
-		"bookworm": "Вы ограничиваете себя стереотипами.",
-		"almost_hipster": "А как же искусство?",
-		"young_maximalist": "Вы изменили себе(((",
-		"lucky": "Как-то это не по-доброму.",
-		"modern_socrat": "Хотелось бы спросить о разуме.",
-		"god_complex": "Как-то Вы себя ограничиваете.",
-		"brother": "Странная склонность к философии."
-	},
+			"c2":{
+				"legally_blonde": "Прогресс на лицо! Вы склонны к рефлексии.",
+				"bookworm": "Вы ограничиваете себя стереотипами.",
+				"almost_hipster": "А как же искусство?",
+				"young_maximalist": "Вы изменили себе(((",
+				"lucky": "Как-то это не по-доброму.",
+				"modern_socrat": "Хотелось бы спросить о разуме.",
+				"god_complex": "Как-то Вы себя ограничиваете.",
+				"brother": "Странная склонность к философии."
+			},
 
-	"c3":{
-		"legally_blonde": "Интеллектуальный рост налицо!",
-		"socratic_blonde": "Обычно блондинки так не выражаются.",
-		"young_maximalist": "У Вас есть альтернатива?",
-		"lucky": "Пример хороший, в Вашем духе.",
-		"fashionable": "А что не так с примером?",
-		"modern_socrat": "И даже ни одного вопроса не зададите?",
-		"god_complex": "В человеческой расе свои реалии.",
-		"brother": "А когда Вас начали интересовать длинные объяснения?"
-	},
+			"c3":{
+				"legally_blonde": "Интеллектуальный рост налицо!",
+				"socratic_blonde": "Обычно блондинки так не выражаются.",
+				"young_maximalist": "У Вас есть альтернатива?",
+				"lucky": "Пример хороший, в Вашем духе.",
+				"fashionable": "А что не так с примером?",
+				"modern_socrat": "И даже ни одного вопроса не зададите?",
+				"god_complex": "В человеческой расе свои реалии.",
+				"brother": "А когда Вас начали интересовать длинные объяснения?"
+			},
 
-	"c4":{
-		"legally_blonde": "Где Вы нашли это слово?",
-		"socratic_blonde": "Модные блогеры стали использовать такие слова?",
-		"bookworm": "Вы ограничили себя рамками социологии.",
-		"almost_hipster": "Стиль сухой, Вам не подходит.",
-		"young_maximalist": "Так Вы же против стереотипов.",
-		"fashionable": "Ваши читатели Вас не поймут.",
-		"modern_socrat": "Статистика – это не Ваше.",
-		"god_complex": "Человеческая природа – в каждом индивидууме.",
-		"brother": "Самцы все одинаковы."
-	},
+			"c4":{
+				"legally_blonde": "Где Вы нашли это слово?",
+				"socratic_blonde": "Модные блогеры стали использовать такие слова?",
+				"bookworm": "Вы ограничили себя рамками социологии.",
+				"almost_hipster": "Стиль сухой, Вам не подходит.",
+				"young_maximalist": "Так Вы же против стереотипов.",
+				"fashionable": "Ваши читатели Вас не поймут.",
+				"modern_socrat": "Статистика – это не Ваше.",
+				"god_complex": "Человеческая природа – в каждом индивидууме.",
+				"brother": "Самцы все одинаковы."
+			},
 
-	"c5":{
-		"legally_blonde": "Поздравляем! Вы вновь расширили свой словарный запас!",
-		"socratic_blonde": "Где Вы об этом прочитали?",
-		"bookworm": "Вам ли не знать, что она сложная.",
-		"almost_hipster": "Опыт доказывает обратное.",
-		"young_maximalist": "Это путь к стереотипам.",
-		"lucky": "Так Вы же говорите – мир сложен и непредсказуем.",
-		"fashionable": "А Вы точно об этом думали?",
-		"modern_socrat": "Вы не можете ставить под сомнение уникальность другого человека."
-	}
-}
+			"c5":{
+				"legally_blonde": "Поздравляем! Вы вновь расширили свой словарный запас!",
+				"socratic_blonde": "Где Вы об этом прочитали?",
+				"bookworm": "Вам ли не знать, что она сложная.",
+				"almost_hipster": "Опыт доказывает обратное.",
+				"young_maximalist": "Это путь к стереотипам.",
+				"lucky": "Так Вы же говорите – мир сложен и непредсказуем.",
+				"fashionable": "А Вы точно об этом думали?",
+				"modern_socrat": "Вы не можете ставить под сомнение уникальность другого человека."
+			}
+		}
 
-var heroes = [
-	{
-		title: "Блондинка в законе",
-		name: "legally_blonde",
-		class: "blonde",
-		class_title: "Блондинка",
-		theses: [
-					{letter: "a", text: "Люблю делать селфи"}, 
-					{letter: "b", text: "Хочу сделать милое цветное тату"}, 
-					{letter: "c", text: "Аутлеты – это для нищих"}, 
-					{letter: "g", text: "В мире каждый день происходит очень много нового"}, 
+		var heroes = [
+			{
+				title: "Блондинка в законе",
+				name: "legally_blonde",
+				class: "blonde",
+				class_title: "Блондинка",
+				theses: [
+					{letter: "a", text: "Люблю делать селфи"},
+					{letter: "b", text: "Хочу сделать милое цветное тату"},
+					{letter: "c", text: "Аутлеты – это для нищих"},
+					{letter: "g", text: "В мире каждый день происходит очень много нового"},
 					{letter: "i", text: "Фитоняши – это сила!"}
 				],
-		answers: {
-			"experiment_1": "a1", 
-			"experiment_2": "b1",
-			"experiment_3": "c1",
-		}
-	},
-	{
-		title: "Сократическая блондинка",
-		name: "socratic_blonde",
-		class: "blonde",
-		class_title: "Блондинка",
-		theses: [
-					{letter: "d", text: "О человеке много можно сказать по его сумочке"}, 
-					{letter: "e", text: "Блондинкам нужно уступать дорогу"}, 
-					{letter: "f", text: "Блондинка – это не приговор!"}, 
+				answers: {
+					"experiment_1": "a1",
+					"experiment_2": "b1",
+					"experiment_3": "c1",
+				}
+			},
+			{
+				title: "Сократическая блондинка",
+				name: "socratic_blonde",
+				class: "blonde",
+				class_title: "Блондинка",
+				theses: [
+					{letter: "d", text: "О человеке много можно сказать по его сумочке"},
+					{letter: "e", text: "Блондинкам нужно уступать дорогу"},
+					{letter: "f", text: "Блондинка – это не приговор!"},
 					{letter: "h", text: "Я не хотела бы жить на Манхэттене и только с козами делюсь я секретами"}
 				],
-		answers: {
-			"experiment_1": "a2", 
-			"experiment_2": "b2",
-			"experiment_3": "c2",
-		}
-	},
-	{
-		title: "Книжный червь",
-		name: "bookworm",
-		class: "nerd",
-		class_title: "Ботан",
-		theses: [
-					{letter: "b", text: "Книги гораздо информативнее людей"}, 
-					{letter: "c", text: "Вечеринки – это пустая трата времени"}, 
-					{letter: "g", text: "Нет не решаемых проблем"}, 
+				answers: {
+					"experiment_1": "a2",
+					"experiment_2": "b2",
+					"experiment_3": "c2",
+				}
+			},
+			{
+				title: "Книжный червь",
+				name: "bookworm",
+				class: "nerd",
+				class_title: "Ботан",
+				theses: [
+					{letter: "b", text: "Книги гораздо информативнее людей"},
+					{letter: "c", text: "Вечеринки – это пустая трата времени"},
+					{letter: "g", text: "Нет не решаемых проблем"},
 					{letter: "h", text: "Нужно хорошо учиться, чтобы не расстраивать маму"},
 					{letter: "i", text: "Девушки любят умных"}
 				],
-		answers: {
-			"experiment_1": "a2", 
-			"experiment_2": "b3",
-			"experiment_3": "c3",
-		}
-	},
-	{
-		title: "Почти хипстер",
-		name: "almost_hipster",
-		class: "nerd",
-		class_title: "Ботан",
-		theses: [
-					{letter: "a", text: "Знание – сила"}, 
-					{letter: "d", text: "Любое знание нуждается в опытной проверке"}, 
-					{letter: "e", text: "Прежде чем что-то сделать, нужно оценить все риски"}, 
+				answers: {
+					"experiment_1": "a2",
+					"experiment_2": "b3",
+					"experiment_3": "c3",
+				}
+			},
+			{
+				title: "Почти хипстер",
+				name: "almost_hipster",
+				class: "nerd",
+				class_title: "Ботан",
+				theses: [
+					{letter: "a", text: "Знание – сила"},
+					{letter: "d", text: "Любое знание нуждается в опытной проверке"},
+					{letter: "e", text: "Прежде чем что-то сделать, нужно оценить все риски"},
 					{letter: "f", text: "Пока не попробуешь – не узнаешь"}
 				],
-		answers: {
-			"experiment_1": "a3", 
-			"experiment_2": "b4",
-			"experiment_3": "c3",
-		}
-	},
-	{
-        title: "Юный максималист",
-		name: "young_maximalist",
-		class: "offsystem",
-		class_title: "Внесистемный элемент",
-		theses: [
-					
+				answers: {
+					"experiment_1": "a3",
+					"experiment_2": "b4",
+					"experiment_3": "c3",
+				}
+			},
+			{
+				title: "Юный максималист",
+				name: "young_maximalist",
+				class: "offsystem",
+				class_title: "Внесистемный элемент",
+				theses: [
+
 					{letter: "a", text: "Глупо мыслить стереотипами"},
 					{letter: "e", text: "Нужно жить в ногу со временем"},
 					{letter: "f", text: "Быть непохожим = быть собой"},
 					{letter: "g", text: "Выброси телевизор!"},
 					{letter: "h", text: "Facebook для сильных и независимых"}
 				],
-		answers: {
-			"experiment_1": "a4", 
-			"experiment_2": "b4",
-			"experiment_3": "c1",
-		}
-	},
-	{
-		title: "Счастливчик",
-		name: "lucky",
-		class:"offsystem",
-		class_title: "Внесистемный элемент",
-		theses: [
-					{letter: "b", text: "Главное в человеке – мозги"}, 
-					{letter: "c", text: "Главное в человеке – доброта"}, 
-					{letter: "d", text: "Делай то, что любишь"}, 
+				answers: {
+					"experiment_1": "a4",
+					"experiment_2": "b4",
+					"experiment_3": "c1",
+				}
+			},
+			{
+				title: "Счастливчик",
+				name: "lucky",
+				class:"offsystem",
+				class_title: "Внесистемный элемент",
+				theses: [
+					{letter: "b", text: "Главное в человеке – мозги"},
+					{letter: "c", text: "Главное в человеке – доброта"},
+					{letter: "d", text: "Делай то, что любишь"},
 					{letter: "i", text: "Мир сложен и непредсказуем"}
 				],
-		answers: {
-			"experiment_1": "a3", 
-			"experiment_2": "b3",
-			"experiment_3": "c4",
-		}
-	},
-	{
-		title: "Комплекс Бога",
-		name: "god_complex",
-		class:"superhero",
-		class_title: "Супергерой",
-		theses: [
-					{letter: "a", text: "Мир пора спасать"}, 
-					{letter: "b", text: "Вокруг так много несправедливости"}, 
-					{letter: "e", text: "Современному миру не хватает героев"}, 
-					{letter: "f", text: "Добро всегда побеждает"}, 
-					{letter: "i", text: "Экзистенциальный кризис – для слабаков"}, 
+				answers: {
+					"experiment_1": "a3",
+					"experiment_2": "b3",
+					"experiment_3": "c4",
+				}
+			},
+			{
+				title: "Комплекс Бога",
+				name: "god_complex",
+				class:"superhero",
+				class_title: "Супергерой",
+				theses: [
+					{letter: "a", text: "Мир пора спасать"},
+					{letter: "b", text: "Вокруг так много несправедливости"},
+					{letter: "e", text: "Современному миру не хватает героев"},
+					{letter: "f", text: "Добро всегда побеждает"},
+					{letter: "i", text: "Экзистенциальный кризис – для слабаков"},
 					{letter: "k", text: "На вашей планете не очень уютно"}
 				],
-		answers: {
-			"experiment_1": "a4", 
-			"experiment_2": "b3",
-			"experiment_3": "c5",
-		}
-	},
-	{
-		title: "Брат",
-		name: "brother",
-		class:"superhero",
-		class_title: "Супергерой",
-		theses: [
-					{letter: "c", text: "Герой начинается с переоценки ценностей"}, 
-					{letter: "d", text: "Солнце светит всем"}, 
-					{letter: "g", text: "Мир прекрасен – пока мы молоды"}, 
-					{letter: "h", text: "Главное в жизни – найти себя"}, 
+				answers: {
+					"experiment_1": "a4",
+					"experiment_2": "b3",
+					"experiment_3": "c5",
+				}
+			},
+			{
+				title: "Брат",
+				name: "brother",
+				class:"superhero",
+				class_title: "Супергерой",
+				theses: [
+					{letter: "c", text: "Герой начинается с переоценки ценностей"},
+					{letter: "d", text: "Солнце светит всем"},
+					{letter: "g", text: "Мир прекрасен – пока мы молоды"},
+					{letter: "h", text: "Главное в жизни – найти себя"},
 					{letter: "j", text: "В чем сила?"}
-		],
-		answers: {
-			"experiment_1": "a6", 
-			"experiment_2": "b6",
-			"experiment_3": "c5",
-		}
-	},
-	{
-		title: "Модный, но предсказуемый",
-		name: "fashionable",
-		class:"blogger",
-		class_title: "Блогер",
-		theses: [
-					{letter: "a", text: "Фриланс – для свободных духом"}, 
-					{letter: "b", text: "Модный – значит успешный"}, 
-					{letter: "c", text: "Удачный ракурс – залог успеха"}, 
-					{letter: "e", text: "Жизнь на скоростях"}, 
-					{letter: "f", text: "Долой банальность!"}, 
+				],
+				answers: {
+					"experiment_1": "a6",
+					"experiment_2": "b6",
+					"experiment_3": "c5",
+				}
+			},
+			{
+				title: "Модный, но предсказуемый",
+				name: "fashionable",
+				class:"blogger",
+				class_title: "Блогер",
+				theses: [
+					{letter: "a", text: "Фриланс – для свободных духом"},
+					{letter: "b", text: "Модный – значит успешный"},
+					{letter: "c", text: "Удачный ракурс – залог успеха"},
+					{letter: "e", text: "Жизнь на скоростях"},
+					{letter: "f", text: "Долой банальность!"},
 					{letter: "h", text: "Wow – наше все"}
 				],
-		answers: {
-			"experiment_1": "a5", 
-			"experiment_2": "b1",
-			"experiment_3": "c2",
-		}
-	},
-	{
-		title: "modernSocrat",
-		name: "modern_socrat",
-		class:"blogger",
-		class_title: "Блогер",
-		theses: [
-					{letter: "d", text: "Поделиться опытом – помочь другому"}, 
-					{letter: "g", text: "Знание доступно всем"}, 
-					{letter: "i", text: "Называя мир, мы его изменяем"}, 
-					{letter: "j", text: "Только ирония может спасти современного человека"}, 
+				answers: {
+					"experiment_1": "a5",
+					"experiment_2": "b1",
+					"experiment_3": "c2",
+				}
+			},
+			{
+				title: "modernSocrat",
+				name: "modern_socrat",
+				class:"blogger",
+				class_title: "Блогер",
+				theses: [
+					{letter: "d", text: "Поделиться опытом – помочь другому"},
+					{letter: "g", text: "Знание доступно всем"},
+					{letter: "i", text: "Называя мир, мы его изменяем"},
+					{letter: "j", text: "Только ирония может спасти современного человека"},
 					{letter: "k", text: "Не тупи!"}
 				],
-		answers: {
-			"experiment_1": "a4", 
-			"experiment_2": "b5",
-			"experiment_3": "c4",
-		}
-	}
-]
-
-
-function get_hero_class(name){
-	return hero_classes.find(function(x){return x.name==name});
-}
-
-function get_hero_by_name(name){
-	return heroes.find(function(x){return x.name==name});
-}
-
-function get_heroes_by_class(name){
-	return heroes.filter(function(x){return x.class==name});
-}
-
-function arraysEqual(a, b) {
-  	return JSON.stringify(a.sort()) == JSON.stringify(b.sort());
-}
-
-var task_id = '$unique_id';
-var problem =  $("#" + task_id).closest(".problem");
-
-var user_hero = new Object();
-user_hero.hero_class = undefined;
-// user_hero.submit_type = "set";
-user_hero.hero = undefined;
-user_hero.current_step = 0;
-user_hero.user_selected = [];
-user_hero.user_selected_attempts = 0;
-user_hero.attempts = {
-	"experiment_1": 0,
-	"experiment_2": 0,
-	"experiment_3": 0,
-}
-user_hero.correctness = {
-	"experiment_1": false,
-	"experiment_2": false,
-	"experiment_3": false,
-}
-
-user_hero.student_answer = {
-	"experiment_1": "a1",
-	"experiment_2": "b1",
-	"experiment_3": "c1",
-}
-
-function scrollToElement(element){
-	$('html,body').animate({ scrollTop: element.offset().top - 10 });
-}
-
-var notification = $(".problem .notification.notification-submit").hide();
-var submit_button = $(".heroes-task").closest(".problem").find('button.submit');
-$(submit_button).css('text-transform','none');
-$(submit_button).hide();
-
-if(answer.get()){
-    user_hero = answer.getJSON()["answer"];
-    if (user_hero.hero_class){
-    	if(user_hero.hero){
-    		console.log("user_hero: ", user_hero);
-    		switch(user_hero.current_step){
-    			case 1:
-    				create_step_3_1();
-    				break;
-    			case 2: 
-    				create_step_3_2();
-    				break;
-    			case 3:
-    			    create_step_3_3();
-    				break;
-    		}
-    	}
-    	else{
-    	create_step_2();
-    	}
-    }
-}
-else{
-    create_step_1();
-}
-
-function check_answer(experiment, answer){
-	var comment = "";
-	var correctness = false
-	switch(experiment){
-		case "experiment_1":
-			if (answer == user_hero.hero["answers"][experiment]){
-				correctness = true;
+				answers: {
+					"experiment_1": "a4",
+					"experiment_2": "b5",
+					"experiment_3": "c4",
+				}
 			}
-			else{
-				correctness = false;
-			}
-			break;
-		case "experiment_2":
-			if (answer == user_hero.hero["answers"][experiment]){
-				correctness = true;
-			 }
-			else{
-				correctness = false;
-			}
-			 break;
-		case "experiment_3":
-			if (answer == user_hero.hero["answers"][experiment]){
-				correctness = true;
-			 }
-			else{
-				correctness = false;
-			}
-			 break;
-		default:
-			 break;
-	}
-
-	if (correctness) {
-		user_hero.correctness[experiment] = true;
-	}
-	else{
-		user_hero.correctness[experiment] = false;
-		comment = comments[answer][user_hero.hero["name"]];
-	}
-	// user_hero.attempts[experiment] += 1;
-	return {"correctness": correctness, "comment": comment}
-}
+		]
 
 
-function create_step_1(){
-	hero_classes.forEach(function(element, index) {
-	  var hero_classes_wrap = $('<div/>',{});
-	  var hero_classes_input = $('<input/>', {
-  	    type: "radio",
-	    id: element.name + 'Choice',
-	    name: "heroChoice",
-	    value: element.name
-	  }).appendTo(hero_classes_wrap);
-	  
-	  if (index == 0 ){
-	  	hero_classes_input.attr('checked', 'checked');
-	  	user_hero.hero_class = element.name;
-	  	answer.setJSON({answer: user_hero});
-	  }
-
-	  var hero_classes_label = $('<label/>', {
-  	    for: element.name + 'Choice',
-		html: " " + element.title
-	  }).appendTo(hero_classes_wrap);
-	  $("#hero_class_choice").append(hero_classes_wrap);
-
-	$(hero_classes_input).change(function() {
-		var hero_choiced_id = $("input[name='heroChoice']:checked").val();
-		user_hero.hero_class = hero_choiced_id;
-		answer.setJSON({answer: user_hero});
-	});
-
-	});
-	
-	$(submit_button).find('span.submit-label').text(choice_hero_btn_label);
-	$(submit_button).show();
-
-}
-
-function create_step_2(){
-	$("#step_1").hide();
-	$(submit_button).hide();
-	$("#step_2").show()
-	var modifications_list = [];
-	var hero_class_title;
-	
-	$(submit_button).find('span.submit-label').text(choice_modify_btn_label);
-
-	heroes.filter(function(elem){return elem.class == user_hero.hero_class;}).forEach(function(element) {
-		hero_class_title = element.class_title;
-	    modifications_list = modifications_list.concat(element.theses);
-	});
-
-	modifications_list = modifications_list.sort(function(a,b){
-		return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
-	});
-
-	$("#modifications_choice").html('');
-	var modifications_block = $('<div/>',{
-		class: "modifications_block",
-		id: "modification_block_" + user_hero.hero_class,
-	});
-	modifications_block.append("<p>Ваш выбранный герой: <strong>" + hero_class_title + ".</strong> </p> <p>Теперь необходимо выбрать модификацию вашего героя.</p>");
-
-	modifications_list.forEach(function(modification_element) {
-	    var mod_wrap = $('<div/>',{});
-	    var mod_input = $('<input/>',{
-	    	type: "checkbox",
-	    	id: modification_element.letter + "_modification_" + user_hero.hero_class,
-	    	value: modification_element.letter,
-	    	name: "modification_" + user_hero.hero_class,
-	    }).appendTo(mod_wrap);
-	    var mod_label = $('<label />', {
-	    	for:  modification_element.letter + "_modification_" + user_hero.hero_class,
-	    	html: " " + modification_element.text // не отрисовывать букву
-	    	// html: " " + modification_element.letter + ") " + modification_element.text
-	    }).appendTo(mod_wrap);
-	    modifications_block.append(mod_wrap);
-	});
-	var no_such_modifications = $('<div />', {
-		id: "no_such_modifications",
-		html: "К сожалению, вы не попали в модификацию. Меняйте галочки!"
-	}).appendTo(modifications_block);
-
-	$("#modifications_choice").append(modifications_block);
-
-
-	user_hero.user_selected.forEach(function(sel){
-		$("#" + sel + "_modification_"+user_hero.hero_class).prop('checked', true);
-	});
-
-	$("#modification_block_"+user_hero.hero_class+" input[name='modification_"+user_hero.hero_class+"']").each(function(index, element) {
-		$(element).change(function() {
-		  $("#no_such_modifications").hide();
-		  if ($(element).is(':checked')) {
-		  		user_hero.user_selected.push($(element).val());
-		  }
-		  else{
-		  	var index = user_hero.user_selected.indexOf($(element).val());
-		  	if (index !== -1) { user_hero.user_selected.splice(index, 1)}
-		  }
-		  	get_heroes_by_class(user_hero.hero_class)
-
-	var candidate_1 = get_heroes_by_class(user_hero.hero_class)[0];
-	var candidate_2 = get_heroes_by_class(user_hero.hero_class)[1];
-
-	if (arraysEqual(user_hero.user_selected, candidate_1.theses.map(function(name) {return name.letter;}))){
-		user_hero.hero = candidate_1;
-		user_hero.current_step = 1;
-		answer.setJSON({answer: user_hero});
-	}
-	else if (arraysEqual(user_hero.user_selected, candidate_2.theses.map(function(name) {return name.letter;}))){
-		user_hero.hero = candidate_2;
-		user_hero.current_step = 1;
-		answer.setJSON({answer: user_hero});
-	}
-		  answer.setJSON({answer: user_hero});
-		});
-	});
-
-	$(submit_button).show();
-
-	if(user_hero.user_selected_attempts != 0){
-		$("#no_such_modifications").show()
-	}
-	user_hero.user_selected_attempts += 1;
-	answer.setJSON({answer: user_hero});
-
-}
-
-
-
-function create_step_3_1(){
-	$("#step_1").hide();
-	$("#step_2").hide();
-	$("#step_3").show();
-	
-	// $(submit_button).hide();
-	$("#step_3_experiment_1 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
-	
-	var theses_block = $('<ul/>',{});
-	user_hero.hero.theses.forEach(function(thesis){
-		var thesis_block = $('<li/>', {
-			// html: thesis.letter + ") " + thesis.text
-			html: thesis.text // не отрисовывать букву
-		}).appendTo(theses_block)
-	});
-
-	$("#step_3_experiment_1 .you-hero-theses").append(theses_block);
-	$('#step_3_experiment_1 span.attempts-label').html(user_hero.attempts["experiment_1"]);
-	$("#step_3_experiment_1_task .hero-input-wrap").click(function(e) {
-		if (!$('input', $(e.target)).is(':checked')){
-
-			$("#step_3_experiment_1_task .hero-input-wrap").each(function(index, element) {
-
-				$(element).removeClass("correct-answer").removeClass("incorrect-answer");
-				$("#step_3_experiment_1 .incorrect-message").hide();
-			});
+		function get_hero_class(name){
+			return hero_classes.find(function(x){return x.name==name});
 		}
-		user_hero.student_answer["experiment_1"] = $('input', $(e.target)).val();
-		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
-		$('input', $(e.target)).prop('checked', true);
-		answer.setJSON({answer: user_hero});
-	});
 
-	$(submit_button).unbind("click.heroNamespace_1");
-
-	$(submit_button).on("click.heroNamespace_1", function() { 
-		user_hero.attempts["experiment_1"] += 1;
-		answer.setJSON({answer: user_hero});
-	});
-
-	$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).prop('checked', true);
-	var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
-	answer.setJSON({answer: user_hero});
-
-	$(submit_button).show();
-	if (user_hero.attempts["experiment_1"] == 0 ){
-		scrollToElement($(".heroes-task #step_3"));
-		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
-		$(submit_button).show();
-	}
-
-	else if ([1,2,3].includes(user_hero.attempts["experiment_1"]) ){
-		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
-
-		if (result.correctness){
-			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("correct-answer");
-			user_hero.current_step = 2;
-			$(submit_button).unbind("click.heroNamespace_1");
-			$(submit_button).find('span.submit-label').text(next_exp_label);
+		function get_hero_by_name(name){
+			return heroes.find(function(x){return x.name==name});
 		}
-		else{
-			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
-			$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
-			$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+
+		function get_heroes_by_class(name){
+			return heroes.filter(function(x){return x.class==name});
 		}
-		answer.setJSON({answer: user_hero});
-		$(submit_button).show();
-	}
 
-	else if (user_hero.attempts["experiment_1"] == 4 ){
-		var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
-		if (result.correctness){
-			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("correct-answer");
+		function arraysEqual(a, b) {
+			return JSON.stringify(a.sort()) == JSON.stringify(b.sort());
 		}
-		else{
-			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
-			$("#step_3_experiment_1 .experiment-explanation").show();
-			// scrollToElement($("#step_3_experiment_1 .incorrect-message"));
-			console.log("!!!!!!!!");
-			$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
+
+		var task_id = '$unique_id';
+		var problem =  $("#" + task_id).closest(".problem");
+		var checkButton = $("button.submit", problem);
+
+		var user_hero = new Object();
+		user_hero.hero_class = undefined;
+		// user_hero.submit_type = "set";
+		user_hero.hero = undefined;
+		user_hero.current_step = 0;
+		user_hero.user_selected = [];
+		user_hero.user_selected_attempts = 0;
+		user_hero.attempts = {
+			"experiment_1": 0,
+			"experiment_2": 0,
+			"experiment_3": 0,
 		}
-		user_hero.current_step = 2;
-		$(submit_button).unbind("click.heroNamespace_1");
-		$(submit_button).find('span.submit-label').text(next_exp_label);
-		$(submit_button).show();
-		answer.setJSON({answer: user_hero});
-	}
-	
-}
-
-function create_step_3_2(){
-	$("#step_1").hide();
-	$("#step_2").hide();
-    $("#step_3_experiment_1").hide();
-    $("#step_3").show();
-    $("#step_3_experiment_2").show();
-	
-	// $(submit_button).hide();
-	$("#step_3_experiment_2 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
-	
-	var theses_block = $('<ul/>',{});
-	user_hero.hero.theses.forEach(function(thesis){
-		var thesis_block = $('<li/>', {
-			// html: thesis.letter + ") " + thesis.text 
-			html: thesis.text // не отрисовывать букву
-		}).appendTo(theses_block)
-	});
-
-	$("#step_3_experiment_2 .you-hero-theses").append(theses_block);
-	$('#step_3_experiment_2 span.attempts-label').html(user_hero.attempts["experiment_2"]);
-	$("#step_3_experiment_2_task .hero-input-wrap").click(function(e) {
-		if (!$('input', $(e.target)).is(':checked')){
-			$("#step_3_experiment_2_task .hero-input-wrap").each(function(index, element) {
-
-				$(element).removeClass("correct-answer").removeClass("incorrect-answer");
-				$("#step_3_experiment_2 .incorrect-message").hide();
-			});
+		user_hero.correctness = {
+			"experiment_1": false,
+			"experiment_2": false,
+			"experiment_3": false,
 		}
-		user_hero.student_answer["experiment_2"] = $('input', $(e.target)).val();
-		var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
-		$('input', $(e.target)).prop('checked', true);
-		answer.setJSON({answer: user_hero});
-	});
 
-	$(submit_button).unbind("click.heroNamespace_2");
-
-	$(submit_button).on("click.heroNamespace_2", function() { 
-		user_hero.attempts["experiment_2"] += 1;
-		answer.setJSON({answer: user_hero});
-	});
-
-	$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).prop('checked', true);
-	var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
-	answer.setJSON({answer: user_hero});
-
-	$(submit_button).show();
-	if (user_hero.attempts["experiment_2"] == 0 ){
-		scrollToElement($(".heroes-task #step_3"));
-		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
-		$(submit_button).show();
-	}
-	else if ([1,2,3].includes(user_hero.attempts["experiment_2"]) ){
-		var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
-
-		if (result.correctness){
-			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("correct-answer");
-			user_hero.current_step = 3;
-			$(submit_button).unbind("click.heroNamespace_2");
-			$(submit_button).find('span.submit-label').text(next_exp_label);
+		user_hero.student_answer = {
+			"experiment_1": "a2",
+			"experiment_2": "b2",
+			"experiment_3": "c1",
 		}
-		else{
-			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("incorrect-answer");
-			$("#step_3_experiment_2 .incorrect-message").html(result.comment).show();
-			$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+
+		function scrollToElement(element){
+			$('html,body').animate({ scrollTop: element.offset().top - 10 });
 		}
-		answer.setJSON({answer: user_hero});
-		$(submit_button).show();
-	}
 
-	else if (user_hero.attempts["experiment_2"] == 4 ){
-		var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
-		if (result.correctness){
-			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("correct-answer");
-		}
-		else{
-			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("incorrect-answer");
-			$("#step_3_experiment_2 .experiment-explanation").show();
-			// scrollToElement($("#step_3_experiment_2 .incorrect-message"));
-			console.log("!!!!!!!!");
-			$("#step_3_experiment_2 .incorrect-message").html(result.comment).show();
-		}
-		user_hero.current_step = 3;
-		$(submit_button).unbind("click.heroNamespace_2");
-		// 
-		$(submit_button).find('span.submit-label').text(next_exp_label);
-		$(submit_button).show();
-		answer.setJSON({answer: user_hero});
-	}
-	
-
-}
-
-function create_step_3_3(){
-	$("#step_1").hide();
-	$("#step_2").hide();
-    $("#step_3").show();
-	$("#step_3_experiment_1").hide();
-    $("#step_3_experiment_2").hide();
-    $("#step_3_experiment_3").show();
-
-	$("#step_3_experiment_3 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
-	
-	var theses_block = $('<ul/>',{});
-	user_hero.hero.theses.forEach(function(thesis){
-		var thesis_block = $('<li/>', {
-			html: thesis.text // не отрисовывать букву
-			// html: thesis.letter + ") " + thesis.text
-		}).appendTo(theses_block)
-	});
-
-	$("#step_3_experiment_3 .you-hero-theses").append(theses_block);
-	$('#step_3_experiment_3 span.attempts-label').html(user_hero.attempts["experiment_3"]);
-	$("#step_3_experiment_3_task .hero-input-wrap").click(function(e) {
-		if (!$('input', $(e.target)).is(':checked')){
-			$("#step_3_experiment_3_task .hero-input-wrap").each(function(index, element) {
-
-				$(element).removeClass("correct-answer").removeClass("incorrect-answer");
-				$("#step_3_experiment_3 .incorrect-message").hide();
-			});
-		}
-		user_hero.student_answer["experiment_3"] = $('input', $(e.target)).val();
-		var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
-		$('input', $(e.target)).prop('checked', true);
-		answer.setJSON({answer: user_hero});
-	});
-
-	$(submit_button).unbind("click.heroNamespace_3");
-
-	$(submit_button).on("click.heroNamespace_3", function() { 
-		user_hero.attempts["experiment_3"] += 1;
-		answer.setJSON({answer: user_hero});
-	});
-
-	$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).prop('checked', true);
-	var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
-	answer.setJSON({answer: user_hero});
-
-	$(submit_button).hide();
-	if (user_hero.attempts["experiment_3"] == 0 ){
-		scrollToElement($(".heroes-task #step_3"));
-		$(submit_button).find('span.submit-label').text(check_ans_btn_label);
-		$(submit_button).show();
-	}
-	else if ([1,2,3].includes(user_hero.attempts["experiment_3"]) ){
-		var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
-
-		if (result.correctness){
-			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
-			$(submit_button).unbind("click.heroNamespace_3");
-			$(submit_button).hide();
-			$(notification).show();
-		}
-		else{
-			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
-			$("#step_3_experiment_3 .incorrect-message").html(result.comment).show();
-			$(submit_button).find('span.submit-label').text(check_ans_btn_label);
-			$(submit_button).show();
-		}
-		answer.setJSON({answer: user_hero});
-	}
-
-	else if (user_hero.attempts["experiment_3"] == 4 ){
-		var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
-		if (result.correctness){
-			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
-		}
-		else{
-			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
-			$("#step_3_experiment_3 .experiment-explanation").show();
-			// scrollToElement($("#step_3_experiment_3 .incorrect-message"));
-			console.log("!!!!!!!!");
-			$("#step_3_experiment_3 .incorrect-message").html(result.comment).show();
-		}
-		$(submit_button).unbind("click.heroNamespace_3");
+		var notification = $(".problem .notification.notification-submit").hide();
+		var submit_button = $(".heroes-task").closest(".problem").find('button.submit');
+		$(submit_button).css('text-transform','none');
 		$(submit_button).hide();
-		$(notification).show();
-	}
-	
-}
 
-</script>
+		if(answer.get()){
+			user_hero = answer.getJSON()["answer"];
+			if (user_hero.hero_class){
+				if(user_hero.hero){
+					console.log("user_hero: ", user_hero);
+					switch(user_hero.current_step){
+						case 1:
+							create_step_3_1();
+							break;
+						case 2:
+							create_step_3_2();
+							break;
+						case 3:
+							create_step_3_3();
+							break;
+					}
+				}
+				else{
+					create_step_2();
+				}
+			}
+		}
+		else{
+			create_step_1();
+		}
+
+		function check_answer(experiment, answer){
+			var comment = "";
+			var correctness = false
+			switch(experiment){
+				case "experiment_1":
+					if (answer == user_hero.hero["answers"][experiment]){
+						correctness = true;
+					}
+					else{
+						correctness = false;
+					}
+					break;
+				case "experiment_2":
+					if (answer == user_hero.hero["answers"][experiment]){
+						correctness = true;
+					}
+					else{
+						correctness = false;
+					}
+					break;
+				case "experiment_3":
+					if (answer == user_hero.hero["answers"][experiment]){
+						correctness = true;
+					}
+					else{
+						correctness = false;
+					}
+					break;
+				default:
+					break;
+			}
+
+			if (correctness) {
+				user_hero.correctness[experiment] = true;
+			}
+			else{
+				user_hero.correctness[experiment] = false;
+				comment = comments[answer][user_hero.hero["name"]];
+			}
+			// user_hero.attempts[experiment] += 1;
+			return {"correctness": correctness, "comment": comment}
+		}
 
 
-<div class="heroes-task">
+		function create_step_1(){
+			hero_classes.forEach(function(element, index) {
+				var hero_classes_wrap = $('<div/>',{});
+				var hero_classes_input = $('<input/>', {
+					type: "radio",
+					id: element.name + 'Choice',
+					name: "heroChoice",
+					value: element.name
+				}).appendTo(hero_classes_wrap);
 
-<div id="step_1">
-	<div>
-		<p><strong>Задание:</strong> выберите героя и его модификацию, ответьте на вопросы мысленных экспериментов в соответствии со сделанным выбором.</p>
-	</div>
-	<h2>Шаг 1.</h2>
-	<p>Выберите героя:</p>
-	<div id="hero_class_choice"></div>
-</div>
+				if (index == 0 ){
+					hero_classes_input.attr('checked', 'checked');
+					user_hero.hero_class = element.name;
+					answer.setJSON({answer: user_hero});
+				}
 
-<div id="step_2">
-	<h2>Шаг 2.</h2>
-	<div id="modifications_choice"></div>
-</div>
+				var hero_classes_label = $('<label/>', {
+					for: element.name + 'Choice',
+					html: " " + element.title
+				}).appendTo(hero_classes_wrap);
+				$("#hero_class_choice").append(hero_classes_wrap);
 
-<div id="step_3">
-	<h2>Шаг 3.</h2>
-	<p>Задание: прочтите мысленный эксперимент, как вы думаете, что бы сказал ваш герой по этому поводу.</p>
-	<div id="step_3_experiment_1">
+				$(hero_classes_input).change(function() {
+					var hero_choiced_id = $("input[name='heroChoice']:checked").val();
+					user_hero.hero_class = hero_choiced_id;
+					answer.setJSON({answer: user_hero});
+				});
 
-	<div class="step_3_task_text">		
-		<p>Мысленный эксперимент № 1: <strong>Отправьте меня</strong></p>
- 		<p>Стелиос может путешествовать только на телетранспортере. Раньше на полет с Земли до Марса уходили месяцы. Летать приходилось в тесном и далеко не безопасном космическом корабле. Компания «Телетранспортный экспресс Стелиоса» изменила эту ситуацию. Теперь такой полет продолжается всего несколько минут и проходит абсолютно безопасно.</p>
-		<p>Тем не менее в настоящий момент компания судится с одним недовольным клиентом, обвиняющим ее в том, что она фактически убила его. Аргумент этого клиента прост: работа телетранспортера заключается в том, чтобы сканировать мозг и тело человека, клетка за клеткой, разрушая их, отправляя сканированную информацию на Марс и там восстанавливая человека. Несмотря на то что человек, оказавшийся на Марсе, выглядит, мыслит и ощущает себя точно так же, как и тот человек, которого усыпили и переместили в космосе, истец считает, что на самом деле в телетранспортере человека убивают и заменяют клоном.</p>
-		<p>Для Стелиоса такое утверждение звучит абсурдно. В конце концов, он сам путешествовал на телетранспортере десятки раз и сейчас не чувствует себя умершим. Как вообще истец может всерьез утверждать, что его убили, если он явно в состоянии довести дело до суда?</p>
-		<p>И все же, когда Стелиос в очередной раз вошел в кабину телетранспортера и приготовился нажатием кнопки начать свое сканирование, он на секунду задумался над тем, а не собирается ли он и в самом деле совершить самоубийство…</p>
-		<p><i>Источник:</i> Глава 10 книги Дерека Парфита «Доводы и люди» (Оксфорд Юниверсити Пресс, 1984).</p>
-		
+			});
+
+			$(submit_button).find('span.submit-label').text(choice_hero_btn_label);
+			$(submit_button).show();
+
+		}
+
+		function create_step_2(){
+			$("#step_1").hide();
+			$(submit_button).hide();
+			$("#step_2").show()
+			var modifications_list = [];
+			var hero_class_title;
+
+			$(submit_button).find('span.submit-label').text(choice_modify_btn_label);
+
+			heroes.filter(function(elem){return elem.class == user_hero.hero_class;}).forEach(function(element) {
+				hero_class_title = element.class_title;
+				modifications_list = modifications_list.concat(element.theses);
+			});
+
+			modifications_list = modifications_list.sort(function(a,b){
+				return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
+			});
+
+			$("#modifications_choice").html('');
+			var modifications_block = $('<div/>',{
+				class: "modifications_block",
+				id: "modification_block_" + user_hero.hero_class,
+			});
+			modifications_block.append("<p>Ваш выбранный герой: <strong>" + hero_class_title + ".</strong> </p> <p>Теперь необходимо выбрать модификацию вашего героя.</p>");
+
+			modifications_list.forEach(function(modification_element) {
+				var mod_wrap = $('<div/>',{});
+				var mod_input = $('<input/>',{
+					type: "checkbox",
+					id: modification_element.letter + "_modification_" + user_hero.hero_class,
+					value: modification_element.letter,
+					name: "modification_" + user_hero.hero_class,
+				}).appendTo(mod_wrap);
+				var mod_label = $('<label />', {
+					for:  modification_element.letter + "_modification_" + user_hero.hero_class,
+					html: " " + modification_element.text // не отрисовывать букву
+					// html: " " + modification_element.letter + ") " + modification_element.text
+				}).appendTo(mod_wrap);
+				modifications_block.append(mod_wrap);
+			});
+			var no_such_modifications = $('<div />', {
+				id: "no_such_modifications",
+				html: "К сожалению, вы не попали в модификацию. Меняйте галочки!"
+			}).appendTo(modifications_block);
+
+			$("#modifications_choice").append(modifications_block);
+
+
+			user_hero.user_selected.forEach(function(sel){
+				$("#" + sel + "_modification_"+user_hero.hero_class).prop('checked', true);
+			});
+
+			$("#modification_block_"+user_hero.hero_class+" input[name='modification_"+user_hero.hero_class+"']").each(function(index, element) {
+				$(element).change(function() {
+					$("#no_such_modifications").hide();
+					if ($(element).is(':checked')) {
+						user_hero.user_selected.push($(element).val());
+					}
+					else{
+						var index = user_hero.user_selected.indexOf($(element).val());
+						if (index !== -1) { user_hero.user_selected.splice(index, 1)}
+					}
+					get_heroes_by_class(user_hero.hero_class)
+
+					var candidate_1 = get_heroes_by_class(user_hero.hero_class)[0];
+					var candidate_2 = get_heroes_by_class(user_hero.hero_class)[1];
+
+					if (arraysEqual(user_hero.user_selected, candidate_1.theses.map(function(name) {return name.letter;}))){
+						user_hero.hero = candidate_1;
+						user_hero.current_step = 1;
+						answer.setJSON({answer: user_hero});
+					}
+					else if (arraysEqual(user_hero.user_selected, candidate_2.theses.map(function(name) {return name.letter;}))){
+						user_hero.hero = candidate_2;
+						user_hero.current_step = 1;
+						answer.setJSON({answer: user_hero});
+					}
+					answer.setJSON({answer: user_hero});
+				});
+			});
+
+			$(submit_button).show();
+
+			if(user_hero.user_selected_attempts != 0){
+				$("#no_such_modifications").show()
+			}
+			user_hero.user_selected_attempts += 1;
+			answer.setJSON({answer: user_hero});
+
+		}
+
+
+
+		function create_step_3_1(){
+			$("#step_1").hide();
+			$("#step_2").hide();
+			$("#step_3").show();
+
+			// $(submit_button).hide();
+			$("#step_3_experiment_1 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
+
+			var theses_block = $('<ul/>',{});
+			user_hero.hero.theses.forEach(function(thesis){
+				var thesis_block = $('<li/>', {
+					// html: thesis.letter + ") " + thesis.text
+					html: thesis.text // не отрисовывать букву
+				}).appendTo(theses_block)
+			});
+
+			$("#step_3_experiment_1 .you-hero-theses").append(theses_block);
+			$('#step_3_experiment_1 span.attempts-label').html(user_hero.attempts["experiment_1"]);
+			$("#step_3_experiment_1_task .hero-input-wrap").click(function(e) {
+				if (!$('input', $(e.target)).is(':checked')){
+
+					$("#step_3_experiment_1_task .hero-input-wrap").each(function(index, element) {
+
+						$(element).removeClass("correct-answer").removeClass("incorrect-answer");
+						$("#step_3_experiment_1 .incorrect-message").hide();
+					});
+				}
+				user_hero.student_answer["experiment_1"] = $('input', $(e.target)).val();
+				var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
+				$('input', $(e.target)).prop('checked', true);
+				answer.setJSON({answer: user_hero});
+			});
+
+			$(submit_button).unbind("click.heroNamespace_1");
+
+			$(submit_button).on("click.heroNamespace_1", function() {
+				user_hero.attempts["experiment_1"] += 1;
+				answer.setJSON({answer: user_hero});
+			});
+
+			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).prop('checked', true);
+			var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
+			answer.setJSON({answer: user_hero});
+
+			$(submit_button).show();
+			if (user_hero.attempts["experiment_1"] == 0 ){
+				scrollToElement($(".heroes-task #step_3"));
+				$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+				$(submit_button).show();
+			}
+
+			else if ([1,2,3].includes(user_hero.attempts["experiment_1"]) ){
+				var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
+
+				if (result.correctness){
+					$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("correct-answer");
+					user_hero.current_step = 2;
+					$("#step_3_experiment_1 .experiment-explanation").show();
+					$(submit_button).unbind("click.heroNamespace_1");
+					$(submit_button).find('span.submit-label').text(next_exp_label);
+				}
+				else{
+					$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
+					$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
+					$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+				}
+				answer.setJSON({answer: user_hero});
+				$(submit_button).show();
+			}
+
+			else if (user_hero.attempts["experiment_1"] == 4 ){
+				var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
+				if (result.correctness){
+					$("#step_3_experiment_1 .experiment-explanation").show();
+					$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("correct-answer");
+				}
+				else{
+					$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
+					$("#step_3_experiment_1 .experiment-explanation").show();
+					// scrollToElement($("#step_3_experiment_1 .incorrect-message"));
+					console.log("!!!!!!!!");
+					$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
+				}
+				user_hero.current_step = 2;
+				$(submit_button).unbind("click.heroNamespace_1");
+				$(submit_button).find('span.submit-label').text(next_exp_label);
+				$(submit_button).show();
+				answer.setJSON({answer: user_hero});
+			}
+
+		}
+
+		function create_step_3_2(){
+			$("#step_1").hide();
+			$("#step_2").hide();
+			$("#step_3_experiment_1").hide();
+			$("#step_3").show();
+			$("#step_3_experiment_2").show();
+
+			// $(submit_button).hide();
+			$("#step_3_experiment_2 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
+
+			var theses_block = $('<ul/>',{});
+			user_hero.hero.theses.forEach(function(thesis){
+				var thesis_block = $('<li/>', {
+					// html: thesis.letter + ") " + thesis.text
+					html: thesis.text // не отрисовывать букву
+				}).appendTo(theses_block)
+			});
+
+			$("#step_3_experiment_2 .you-hero-theses").append(theses_block);
+			$('#step_3_experiment_2 span.attempts-label').html(user_hero.attempts["experiment_2"]);
+			$("#step_3_experiment_2_task .hero-input-wrap").click(function(e) {
+				if (!$('input', $(e.target)).is(':checked')){
+					$("#step_3_experiment_2_task .hero-input-wrap").each(function(index, element) {
+
+						$(element).removeClass("correct-answer").removeClass("incorrect-answer");
+						$("#step_3_experiment_2 .incorrect-message").hide();
+					});
+				}
+				user_hero.student_answer["experiment_2"] = $('input', $(e.target)).val();
+				var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
+				$('input', $(e.target)).prop('checked', true);
+				answer.setJSON({answer: user_hero});
+			});
+
+			$(submit_button).unbind("click.heroNamespace_2");
+
+			$(submit_button).on("click.heroNamespace_2", function() {
+				user_hero.attempts["experiment_2"] += 1;
+				answer.setJSON({answer: user_hero});
+			});
+
+			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).prop('checked', true);
+			var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
+			answer.setJSON({answer: user_hero});
+
+			$(submit_button).show();
+			if (user_hero.attempts["experiment_2"] == 0 ){
+				scrollToElement($(".heroes-task #step_3"));
+				$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+				$(submit_button).show();
+			}
+			else if ([1,2,3].includes(user_hero.attempts["experiment_2"]) ){
+				var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
+
+				if (result.correctness){
+					$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("correct-answer");
+					user_hero.current_step = 3;
+					$("#step_3_experiment_2 .experiment-explanation").show();
+					$(submit_button).unbind("click.heroNamespace_2");
+					$(submit_button).find('span.submit-label').text(next_exp_label);
+				}
+				else{
+					$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("incorrect-answer");
+					$("#step_3_experiment_2 .incorrect-message").html(result.comment).show();
+					$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+				}
+				answer.setJSON({answer: user_hero});
+				$(submit_button).show();
+			}
+
+			else if (user_hero.attempts["experiment_2"] == 4 ){
+				var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
+				if (result.correctness){
+					$("#step_3_experiment_2 .experiment-explanation").show();
+					$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("correct-answer");
+				}
+				else{
+					$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("incorrect-answer");
+					$("#step_3_experiment_2 .experiment-explanation").show();
+					// scrollToElement($("#step_3_experiment_2 .incorrect-message"));
+					console.log("!!!!!!!!");
+					$("#step_3_experiment_2 .incorrect-message").html(result.comment).show();
+				}
+				user_hero.current_step = 3;
+				$(submit_button).unbind("click.heroNamespace_2");
+				//
+				$(submit_button).find('span.submit-label').text(next_exp_label);
+				$(submit_button).show();
+				answer.setJSON({answer: user_hero});
+			}
+
+
+		}
+
+		function create_step_3_3(){
+			$("#step_1").hide();
+			$("#step_2").hide();
+			$("#step_3").show();
+			$("#step_3_experiment_1").hide();
+			$("#step_3_experiment_2").hide();
+			$("#step_3_experiment_3").show();
+
+			$("#step_3_experiment_3 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
+
+			var theses_block = $('<ul/>',{});
+			user_hero.hero.theses.forEach(function(thesis){
+				var thesis_block = $('<li/>', {
+					html: thesis.text // не отрисовывать букву
+					// html: thesis.letter + ") " + thesis.text
+				}).appendTo(theses_block)
+			});
+
+			$("#step_3_experiment_3 .you-hero-theses").append(theses_block);
+			$('#step_3_experiment_3 span.attempts-label').html(user_hero.attempts["experiment_3"]);
+			$("#step_3_experiment_3_task .hero-input-wrap").click(function(e) {
+				if (!$('input', $(e.target)).is(':checked')){
+					$("#step_3_experiment_3_task .hero-input-wrap").each(function(index, element) {
+
+						$(element).removeClass("correct-answer").removeClass("incorrect-answer");
+						$("#step_3_experiment_3 .incorrect-message").hide();
+					});
+				}
+				user_hero.student_answer["experiment_3"] = $('input', $(e.target)).val();
+				var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
+				$('input', $(e.target)).prop('checked', true);
+				answer.setJSON({answer: user_hero});
+			});
+
+			$(submit_button).unbind("click.heroNamespace_3");
+
+			$(submit_button).on("click.heroNamespace_3", function() {
+				user_hero.attempts["experiment_3"] += 1;
+				answer.setJSON({answer: user_hero});
+			});
+
+			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).prop('checked', true);
+			var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
+			answer.setJSON({answer: user_hero});
+
+			$(submit_button).hide();
+			if (user_hero.attempts["experiment_3"] == 0 ){
+				scrollToElement($(".heroes-task #step_3"));
+				$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+				$(submit_button).show();
+			}
+			else if ([1,2,3].includes(user_hero.attempts["experiment_3"]) ){
+				var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
+
+				if (result.correctness){
+					$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
+					$(submit_button).unbind("click.heroNamespace_3");
+					$("#step_3_experiment_3 .experiment-explanation").show();
+					$(submit_button).hide();
+					$(notification).show();
+				}
+				else{
+					$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
+					$("#step_3_experiment_3 .incorrect-message").html(result.comment).show();
+					$(submit_button).find('span.submit-label').text(check_ans_btn_label);
+					$(submit_button).show();
+				}
+				answer.setJSON({answer: user_hero});
+			}
+
+			else if (user_hero.attempts["experiment_3"] == 4 ){
+				var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
+				if (result.correctness){
+					$("#step_3_experiment_3 .experiment-explanation").show();
+					$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
+				}
+				else{
+					$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
+					$("#step_3_experiment_3 .experiment-explanation").show();
+					// scrollToElement($("#step_3_experiment_3 .incorrect-message"));
+					console.log("!!!!!!!!");
+					$("#step_3_experiment_3 .incorrect-message").html(result.comment).show();
+				}
+				$(submit_button).unbind("click.heroNamespace_3");
+				$(submit_button).hide();
+				$(notification).show();
+			}
+
+		}
+
+	</script>
+
+
+	<div class="heroes-task">
+
+		<div id="step_1">
+			<div>
+				<p><strong>Задание:</strong> выберите героя и его модификацию, ответьте на вопросы мысленных экспериментов в соответствии со сделанным выбором.</p>
+			</div>
+			<h2>Шаг 1.</h2>
+			<p>Выберите героя:</p>
+			<div id="hero_class_choice"></div>
 		</div>
-		<div class="you-hero-modification"></div>
-		<div class="you-hero-theses"></div>
-		<div id="step_3_experiment_1_task">
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a1" value="a1" /> Главное, чтобы макияж не пострадал</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a2" value="a2" /> Давайте дождемся решения суда</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a3" value="a3" /> Рано или поздно доберемся до нирваны</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a4" value="a4" /> Вся система нуждается в изменении</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a5" value="a5" /> Кого-то разберут на мемасики</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a6" value="a6" /> Главное – быть верным себе!</div>
-			<div class="incorrect-message"></div>
-			<div class="answer-button-wrap">
-				<div>
-					Использовано попыток: <span class="attempts-label">0</span> из 4 
+
+		<div id="step_2">
+			<h2>Шаг 2.</h2>
+			<div id="modifications_choice"></div>
+		</div>
+
+		<div id="step_3">
+			<h2>Шаг 3.</h2>
+
+			<div id="step_3_experiment_1">
+				<div class="you-hero-modification"></div>
+				<div class="you-hero-theses"></div>
+				<p>Задание: прочтите мысленный эксперимент, как вы думаете, что бы сказал ваш герой по этому поводу.</p>
+				<div class="step_3_task_text">
+					<p>Мысленный эксперимент № 1: <strong>Отправьте меня</strong></p>
+					<p>Стелиос может путешествовать только на телетранспортере. Раньше на полет с Земли до Марса уходили месяцы. Летать приходилось в тесном и далеко не безопасном космическом корабле. Компания «Телетранспортный экспресс Стелиоса» изменила эту ситуацию. Теперь такой полет продолжается всего несколько минут и проходит абсолютно безопасно.</p>
+					<p>Тем не менее в настоящий момент компания судится с одним недовольным клиентом, обвиняющим ее в том, что она фактически убила его. Аргумент этого клиента прост: работа телетранспортера заключается в том, чтобы сканировать мозг и тело человека, клетка за клеткой, разрушая их, отправляя сканированную информацию на Марс и там восстанавливая человека. Несмотря на то что человек, оказавшийся на Марсе, выглядит, мыслит и ощущает себя точно так же, как и тот человек, которого усыпили и переместили в космосе, истец считает, что на самом деле в телетранспортере человека убивают и заменяют клоном.</p>
+					<p>Для Стелиоса такое утверждение звучит абсурдно. В конце концов, он сам путешествовал на телетранспортере десятки раз и сейчас не чувствует себя умершим. Как вообще истец может всерьез утверждать, что его убили, если он явно в состоянии довести дело до суда?</p>
+					<p>И все же, когда Стелиос в очередной раз вошел в кабину телетранспортера и приготовился нажатием кнопки начать свое сканирование, он на секунду задумался над тем, а не собирается ли он и в самом деле совершить самоубийство…</p>
+					<p><i>Источник:</i> Глава 10 книги Дерека Парфита «Доводы и люди» (Оксфорд Юниверсити Пресс, 1984).</p>
+
+				</div>
+
+				<div id="step_3_experiment_1_task">
+
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a2" value="a2" /> Давайте дождемся решения суда</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a6" value="a6" /> Главное – быть верным себе!</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a3" value="a3" /> Рано или поздно доберемся до нирваны</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a1" value="a1" /> Главное, чтобы макияж не пострадал</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a4" value="a4" /> Вся система нуждается в изменении</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_1_choice" id="step_3_experiment_1_a5" value="a5" /> Кого-то разберут на мемасики</div>
+
+					<div class="incorrect-message"></div>
+					<div class="answer-button-wrap">
+						<div>
+							Использовано попыток: <span class="attempts-label">0</span> из 4
+						</div>
+					</div>
+				</div>
+				<div class="experiment-explanation">
+					<p><strong>Пояснение к эксперименту:</strong></p>
+					<p>От чего зависит наше непрерывное существование? В нормальных условиях мы бы сказали «непрерывное функционирование нашего тела». Поскольку в данном случае ни одна часть тела не заменяется явно чем-то синтетическим, возможно, это не совсем верно. Может быть, мы продолжаем существовать ровно столько, сколько существует наше сознание? День, в который человек пробуждается, не осознавая себя, свои мысли, планы и состояния, является днем его смерти.</p>
+					<p>Теория «психологической непрерывности» личности интуитивно привлекательна. Именно из-за того, что она отражает нашу фундаментальную интуицию, мы в состоянии понять истории, подобные «Метаморфозам» Кафки, в которой человек просыпается в теле жука. Мы моментально узнаем, что этот человек стал жуком, так как его разум вселился в последнего. Ментальная, а не физическая непрерывность выделяет его как того же самого человека.</p>
+					<p>Но в случае телетранспортации хотя у нас и есть психологическая непрерывность, такая же полная, как и в обычной жизни, тем не менее то, что создается в ее ходе, является копией, клоном. Однако клон не является тем человеком, которого клонировали. Они похожи как две статуи, вылепленные из одной и той же литейной формы: такие статуи идентичны в каждой детали, но все же являются разными объектами. Если вы отколете кусок от одной статуи, другая останется невредимой.</p>
+					<p>Не то чтобы Стелиос не знал, как работает его телетранспортер. Он просто не видит, почему тот факт, что машина «клонирует» человека, должен иметь какое-то значение. Насколько он понимает, для него важно то, что человек входит в кабину телетранспортера, а просыпается уже на другой планете. Физический механизм здесь не важен.</p>
+					<p>Если это звучит смело, тогда представьте на минуту, что однажды ночью, несколько лет назад, когда вы спали, вас похитили, обработали на телетранспортере и обработанного возвратили, без вашего ведома, в постель.</p>
+					<p>Вы не сможете определить, произошло ли это на самом деле, потому что ваше восприятие своей жизни и самого себя как непрерывно существующей личности будет таким же, как и в случае, если бы этого не произошло. Факт телетранспортации в некотором смысле оставит вашу жизнь и ваш мир такими же, какими они были раньше.</p>
+					<p>В этом случае спрашивать о том, является ли Стелиос клоном или «тем же самым» человеком, — неправильно. Вероятно, вместо этого мы должны спросить себя о том, что для нас важно в нашем прошлом или в будущем. Возможно, будет важна психологическая непрерывность, достигаемая любыми необходимыми средствами.</p>
 				</div>
 			</div>
-		</div>
-			 <div class="experiment-explanation">
-				<p><strong>Пояснение к эксперименту:</strong></p>
-				<p>От чего зависит наше непрерывное существование? В нормальных условиях мы бы сказали «непрерывное функционирование нашего тела». Поскольку в данном случае ни одна часть тела не заменяется явно чем-то синтетическим, возможно, это не совсем верно. Может быть, мы продолжаем существовать ровно столько, сколько существует наше сознание? День, в который человек пробуждается, не осознавая себя, свои мысли, планы и состояния, является днем его смерти.</p>
-				<p>Теория «психологической непрерывности» личности интуитивно привлекательна. Именно из-за того, что она отражает нашу фундаментальную интуицию, мы в состоянии понять истории, подобные «Метаморфозам» Кафки, в которой человек просыпается в теле жука. Мы моментально узнаем, что этот человек стал жуком, так как его разум вселился в последнего. Ментальная, а не физическая непрерывность выделяет его как того же самого человека.</p>
-				<p>Но в случае телетранспортации хотя у нас и есть психологическая непрерывность, такая же полная, как и в обычной жизни, тем не менее то, что создается в ее ходе, является копией, клоном. Однако клон не является тем человеком, которого клонировали. Они похожи как две статуи, вылепленные из одной и той же литейной формы: такие статуи идентичны в каждой детали, но все же являются разными объектами. Если вы отколете кусок от одной статуи, другая останется невредимой.</p>
-				<p>Не то чтобы Стелиос не знал, как работает его телетранспортер. Он просто не видит, почему тот факт, что машина «клонирует» человека, должен иметь какое-то значение. Насколько он понимает, для него важно то, что человек входит в кабину телетранспортера, а просыпается уже на другой планете. Физический механизм здесь не важен.</p>
-				<p>Если это звучит смело, тогда представьте на минуту, что однажды ночью, несколько лет назад, когда вы спали, вас похитили, обработали на телетранспортере и обработанного возвратили, без вашего ведома, в постель.</p>
-				<p>Вы не сможете определить, произошло ли это на самом деле, потому что ваше восприятие своей жизни и самого себя как непрерывно существующей личности будет таким же, как и в случае, если бы этого не произошло. Факт телетранспортации в некотором смысле оставит вашу жизнь и ваш мир такими же, какими они были раньше.</p>
-				<p>В этом случае спрашивать о том, является ли Стелиос клоном или «тем же самым» человеком, — неправильно. Вероятно, вместо этого мы должны спросить себя о том, что для нас важно в нашем прошлом или в будущем. Возможно, будет важна психологическая непрерывность, достигаемая любыми необходимыми средствами.</p>
-			</div>
-	</div>
 
 
-	<div id="step_3_experiment_2">
-		<div class="step_3_task_text">
-			<p>Мысленный эксперимент № 2: <strong>Киберсекс</strong></p>
-			<p>Как и многим людям, женатым несколько лет, Дику наскучили его отношения с женой. Между ними уже не было прежней страсти. Сейчас они практически уже и не спали вместе. Но Дик вовсе не собирался уходить от жены. Он любил ее, и она была отличной матерью для их детей.</p>
-			<p>Он прекрасно знал, что обычное решение этой проблемы было таким: завести роман на стороне. Ты просто признаешь, что твоя жена удовлетворяет одну часть твоих потребностей, а любовница другую. Но Дик действительно не хотел флиртовать за спиной жены, кроме того, он знал, что, даже если бы он и смог это делать, его жена не смирилась бы с такого рода свободными отношениями.</p>
-			<p>Поэтому, когда Дик услышал о компании «Байт на стороне» («Лучше, чем в натуре!»), ему пришлось отнестись к ней серьезно. Эта компания предлагала возможность завести виртуальный роман. Не какой-то однорукий кибернетический секс с реальным человеком на другом конце компьютерной линии, а виртуальную реальность, в которой ты «спишь» с самым что ни на есть искусственным человеком. Это похоже на настоящий секс, но, фактически, все твои ощущения вызваны компьютерами, стимулирующими твой разум, для того чтобы тебе казалось, что ты занимаешься реальным сексом. Те же захватывающие ощущения, как и при настоящем флирте, но без третьего человека и, следовательно, без реальной измены. </p>
-		</div>
-		<div class="you-hero-modification"></div>
-		<div class="you-hero-theses"></div>
-		<div id="step_3_experiment_2_task">
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b1" value="b1" checked="checked" /> А дисконтную карту выдадут?</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b2" value="b2" /> Клиент всегда прав! И семья в порядке.</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b3" value="b3" /> Измена – это всегда измена.</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b4" value="b4" /> Семья – это пережиток прошлого.</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b5" value="b5" /> Ко всему стоит относиться философски.</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b6" value="b6" /> Вы слишком все усложняете.</div>
-			<div class="incorrect-message"></div>
-			<div class="answer-button-wrap">
-				<div>Использовано попыток: <span class="attempts-label">0</span> из 4 
+			<div id="step_3_experiment_2">
+				<div class="you-hero-modification"></div>
+				<div class="you-hero-theses"></div>
+				<p>Задание: прочтите мысленный эксперимент, как вы думаете, что бы сказал ваш герой по этому поводу.</p>
+				<div class="step_3_task_text">
+					<p>Мысленный эксперимент № 2: <strong>Киберсекс</strong></p>
+					<p>Как и многим людям, женатым несколько лет, Дику наскучили его отношения с женой. Между ними уже не было прежней страсти. Сейчас они практически уже и не спали вместе. Но Дик вовсе не собирался уходить от жены. Он любил ее, и она была отличной матерью для их детей.</p>
+					<p>Он прекрасно знал, что обычное решение этой проблемы было таким: завести роман на стороне. Ты просто признаешь, что твоя жена удовлетворяет одну часть твоих потребностей, а любовница другую. Но Дик действительно не хотел флиртовать за спиной жены, кроме того, он знал, что, даже если бы он и смог это делать, его жена не смирилась бы с такого рода свободными отношениями.</p>
+					<p>Поэтому, когда Дик услышал о компании «Байт на стороне» («Лучше, чем в натуре!»), ему пришлось отнестись к ней серьезно. Эта компания предлагала возможность завести виртуальный роман. Не какой-то однорукий кибернетический секс с реальным человеком на другом конце компьютерной линии, а виртуальную реальность, в которой ты «спишь» с самым что ни на есть искусственным человеком. Это похоже на настоящий секс, но, фактически, все твои ощущения вызваны компьютерами, стимулирующими твой разум, для того чтобы тебе казалось, что ты занимаешься реальным сексом. Те же захватывающие ощущения, как и при настоящем флирте, но без третьего человека и, следовательно, без реальной измены. </p>
+				</div>
+
+				<div id="step_3_experiment_2_task">
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b2" value="b2" checked="checked"/> Клиент всегда прав! И семья в порядке.</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b1" value="b1"/> А дисконтную карту выдадут?</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b3" value="b3" /> Измена – это всегда измена.</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b4" value="b4" /> Семья – это пережиток прошлого.</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b6" value="b6" /> Вы слишком все усложняете.</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_2_choice" id="step_3_experiment_2_b5" value="b5" /> Ко всему стоит относиться философски.</div>
+
+					<div class="incorrect-message"></div>
+					<div class="answer-button-wrap">
+						<div>Использовано попыток: <span class="attempts-label">0</span> из 4
+						</div>
+					</div>
+				</div>
+				<div class="experiment-explanation">
+					<p><strong>Пояснение к эксперименту:</strong></p>
+					<p>Почему нас беспокоят супружеские измены? Некоторые люди говорят, что они не должны волновать нас и что мы переживаем по этому поводу исключительно из-за того, что общество внушило нам нереальные ожидания от моногамного брака.</p>
+					<p>Секс и любовь — это не одно и то же, и мы глупцы, если позволяем биологически управляемому акту совокупления разрушить любовную привязанность.</p>
+					<p>Если желание моногамных отношений представляет собой культурный артефакт, то это глубоко укоренившийся артефакт. Многие из тех, кто входит в общины свободной любви или пробуют «свингерство», чувствуют, что они просто не могут удержаться от ревности, видя, как другие спят с тем, кого они любят. «Привязанности», от которых нам беспечно советуют избавиться, являются, похоже, чем-то большим, чем просто психологическими отклонениями, с которыми нужно справиться.</p>
+					<p>Итак, если супружеская неверность остается проблемой для большинства, что в ней нас беспокоит? Представьте себе, каким образом вероятное обращение нашего партнера к услугам «Байта на стороне» могло бы помочь в решении этого вопроса. Если бы мы не возражали против кибернетического секса, это означало бы, что ключевым фактором для нас является вовлеченность в отношения третьего человека. Наши наиболее интимные отношения должны проходить тет-а-тет и быть эксклюзивными. Мы хотим, чтобы отношения оставались моногамными.</p>
+					<p>Но если мы выступаем против виртуальных романов, это, похоже, означает, что роль третьей стороны в отношениях для нас несущественна. Обиду вызывает не обращение к кому-то еще, а уход от уже существующих отношений. В этой связи, когда Дик включает компьютер, для того чтобы возбудить себя, тем самым он показывает, что уже не считает свою жену человеком, в общении с которым он хотел бы проявить (выразить) свою сексуальность.</p>
+					<p>Связь на стороне, как правило, является симптомом проблем, имеющихся в отношениях, а не их первопричиной. Это помогает понять источник беспокойства, связанный с виртуальной любовницей Дика. Ибо очевидно, что еще до того, как Дик впервые приступил к своей искусственной стимуляции, он уже перестал воспринимать свою жену в сексуальном плане, так, как это было раньше. И в этом смысле виртуальный роман является способом уйти от ключевой проблемы, а не способом ее решения.</p>
+					<p>В реальном мире причины того, почему нас беспокоят измены, сложны, и человек, возражающий против виртуального байта на стороне, может еще сильнее противиться плотскому роману. Случай с Диком позволяет сконцентрироваться всего на одном аспекте супружеской неверности: а именно на том, в какой степени такая неверность является уходом от наиболее значимых для нас отношений.</p>
 				</div>
 			</div>
-		</div>
-		<div class="experiment-explanation">
-			<p><strong>Пояснение к эксперименту:</strong></p>
-			<p>Почему нас беспокоят супружеские измены? Некоторые люди говорят, что они не должны волновать нас и что мы переживаем по этому поводу исключительно из-за того, что общество внушило нам нереальные ожидания от моногамного брака.</p>
-			<p>Секс и любовь — это не одно и то же, и мы глупцы, если позволяем биологически управляемому акту совокупления разрушить любовную привязанность.</p>
-			<p>Если желание моногамных отношений представляет собой культурный артефакт, то это глубоко укоренившийся артефакт. Многие из тех, кто входит в общины свободной любви или пробуют «свингерство», чувствуют, что они просто не могут удержаться от ревности, видя, как другие спят с тем, кого они любят. «Привязанности», от которых нам беспечно советуют избавиться, являются, похоже, чем-то большим, чем просто психологическими отклонениями, с которыми нужно справиться.</p>
-			<p>Итак, если супружеская неверность остается проблемой для большинства, что в ней нас беспокоит? Представьте себе, каким образом вероятное обращение нашего партнера к услугам «Байта на стороне» могло бы помочь в решении этого вопроса. Если бы мы не возражали против кибернетического секса, это означало бы, что ключевым фактором для нас является вовлеченность в отношения третьего человека. Наши наиболее интимные отношения должны проходить тет-а-тет и быть эксклюзивными. Мы хотим, чтобы отношения оставались моногамными.</p>
-			<p>Но если мы выступаем против виртуальных романов, это, похоже, означает, что роль третьей стороны в отношениях для нас несущественна. Обиду вызывает не обращение к кому-то еще, а уход от уже существующих отношений. В этой связи, когда Дик включает компьютер, для того чтобы возбудить себя, тем самым он показывает, что уже не считает свою жену человеком, в общении с которым он хотел бы проявить (выразить) свою сексуальность.</p>
-			<p>Связь на стороне, как правило, является симптомом проблем, имеющихся в отношениях, а не их первопричиной. Это помогает понять источник беспокойства, связанный с виртуальной любовницей Дика. Ибо очевидно, что еще до того, как Дик впервые приступил к своей искусственной стимуляции, он уже перестал воспринимать свою жену в сексуальном плане, так, как это было раньше. И в этом смысле виртуальный роман является способом уйти от ключевой проблемы, а не способом ее решения.</p>
-			<p>В реальном мире причины того, почему нас беспокоят измены, сложны, и человек, возражающий против виртуального байта на стороне, может еще сильнее противиться плотскому роману. Случай с Диком позволяет сконцентрироваться всего на одном аспекте супружеской неверности: а именно на том, в какой степени такая неверность является уходом от наиболее значимых для нас отношений.</p>
-		</div>
-	</div>
 
 
-	<div id="step_3_experiment_3">
-		<div class="step_3_task_text">
-			<p>Мысленный эксперимент № 3: <strong>Выдумка</strong></p>
-			<p>«Нет ни одного аспекта человеческого поведения, которого нельзя было бы объяснить с точки зрения нашей эволюции как вида, — сказал доктор Киплинг своей восторженной аудитории (слушателям). — Возможно, кто-то хочет подвергнуть сомнению эту гипотезу?»</p>
-			<p>Поднялась одна рука. «Почему сегодняшние дети носят бейсбольные кепки задом наперед?» — спросил кто-то в кепке, надетой козырьком вперед.</p>
-			<p>«Это объясняется двумя причинами, — ответил Киплинг уверенно и быстро. — Во-первых, вы должны задаться вопросом, какие сигналы самец должен послать потенциальной партнерше, чтобы подчеркнуть для нее свою пригодность в качестве источника здорового генетического материала, который обладает большей привлекательностью, чем генетический материал его конкурентов. Одним из ответов будет грубая физическая сила. А теперь давайте посмотрим на бейсбольную кепку. Носимая традиционно, она обеспечивает защиту от солнца, а также от взглядов агрессивных конкурентов. Надевая кепку козырьком назад, самец показывает, что он не нуждается в этой защите: он достаточно силен, чтобы противостоять стихиям и взглядам любого, кто мог бы ему угрожать.</p>
-			<p>Во-вторых, надевание кепки козырьком назад является жестом нон-конформизма. Приматы живут в крайне упорядоченной социальной системе. Игра по правилам считается необходимостью. Переворачивание кепки задом наперед говорит о том, что самец находится выше правил, которые сдерживают его конкурентов, и опять-таки показывает его превосходство в физической силе.</p>
-			<p>Следующий вопрос?»</p>
-		</div>
-		<div class="you-hero-modification"></div>
-		<div class="you-hero-theses"></div>
-		<div id="step_3_experiment_3_task">
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c1" value="c1" checked="checked" /> А как же девочки?</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c2" value="c2" /> Вот она животная природа самца!</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c3" value="c3" /> Объяснение мне нравится, но пример никуда не годится.</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c4" value="c4" /> Выборка не достаточно репрезентативна.</div>
-			<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c5" value="c5" /> Не думаю, что в основе поступков такая сложная мотивация.</div>
-			<div class="incorrect-message"></div>
-			<div class="answer-button-wrap">
-				<div>
-					Использовано попыток: <span class="attempts-label">0</span> из 4 
+			<div id="step_3_experiment_3">
+				<div class="you-hero-modification"></div>
+				<div class="you-hero-theses"></div>
+				<p>Задание: прочтите мысленный эксперимент, как вы думаете, что бы сказал ваш герой по этому поводу.</p>
+				<div class="step_3_task_text">
+					<p>Мысленный эксперимент № 3: <strong>Выдумка</strong></p>
+					<p>«Нет ни одного аспекта человеческого поведения, которого нельзя было бы объяснить с точки зрения нашей эволюции как вида, — сказал доктор Киплинг своей восторженной аудитории (слушателям). — Возможно, кто-то хочет подвергнуть сомнению эту гипотезу?»</p>
+					<p>Поднялась одна рука. «Почему сегодняшние дети носят бейсбольные кепки задом наперед?» — спросил кто-то в кепке, надетой козырьком вперед.</p>
+					<p>«Это объясняется двумя причинами, — ответил Киплинг уверенно и быстро. — Во-первых, вы должны задаться вопросом, какие сигналы самец должен послать потенциальной партнерше, чтобы подчеркнуть для нее свою пригодность в качестве источника здорового генетического материала, который обладает большей привлекательностью, чем генетический материал его конкурентов. Одним из ответов будет грубая физическая сила. А теперь давайте посмотрим на бейсбольную кепку. Носимая традиционно, она обеспечивает защиту от солнца, а также от взглядов агрессивных конкурентов. Надевая кепку козырьком назад, самец показывает, что он не нуждается в этой защите: он достаточно силен, чтобы противостоять стихиям и взглядам любого, кто мог бы ему угрожать.</p>
+					<p>Во-вторых, надевание кепки козырьком назад является жестом нон-конформизма. Приматы живут в крайне упорядоченной социальной системе. Игра по правилам считается необходимостью. Переворачивание кепки задом наперед говорит о том, что самец находится выше правил, которые сдерживают его конкурентов, и опять-таки показывает его превосходство в физической силе.</p>
+					<p>Следующий вопрос?»</p>
+				</div>
+
+				<div id="step_3_experiment_3_task">
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c1" value="c1" checked="checked" /> А как же девочки?</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c2" value="c2" /> Вот она животная природа самца!</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c4" value="c4" /> Выборка не достаточно репрезентативна.</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c3" value="c3" /> Объяснение мне нравится, но пример никуда не годится.</div>
+					<div class="hero-input-wrap"><input type="radio" name="step_3_experiment_3_choice" id="step_3_experiment_3_c5" value="c5" /> Не думаю, что в основе поступков такая сложная мотивация.</div>
+					<div class="incorrect-message"></div>
+					<div class="answer-button-wrap">
+						<div>
+							Использовано попыток: <span class="attempts-label">0</span> из 4
+						</div>
+					</div>
+				</div>
+				<div class="experiment-explanation">
+					<p><strong>Пояснение к эксперименту:</strong></p>
+					<p>Эволюционная психология является одним из наиболее успешных и противоречивых течений в области мышления за последние несколько десятилетий. Это течение одинаково сильно любят и ненавидят. Его исходная предпосылка, разумеется, не является противоречивой: человеческие существа являются творениями эволюции, и подобно тому, как наши тела в ходе естественного отбора приняли форму, необходимую для того, чтобы мы выжили в саванне, и наш разум тоже сформировался благодаря тем же самым потребностям.</p>
+					<p>Противоречие касается лишь того, насколько далеко вы заходите с такими взглядами. Психологи, наиболее рьяно придерживающиеся теории эволюции, утверждают, что практически любой аспект человеческого поведения можно объяснить с точки зрения тех преимуществ, которые он дал нашим предкам в их дарвинистской борьбе за выживание.</p>
+					<p>Если вы соглашаетесь с этим, тогда нетрудно придумать правдоподобно звучащее эволюционное объяснение любого поведения. Эксперимент, приведенный в истории доктора Киплинга, должен был показать, могу ли я — автор истории Киплинга — придумать эволюционное объяснение взятого наугад элемента человеческого поведения. В реальной жизни, чтобы сделать это, мне понадобилось лишь немного больше времени, чем Киплингу в его воображаемом разговоре.</p>
+					<p>Проблема в том, что такой подход предполагает, что эти объяснения не являются истинными, но всего лишь «выдумками». Эволюционные психологи просто выдумывают «объяснения», основываясь лишь на предварительных теоретических утверждениях. Но это не дает нам повода поверить в предлагаемые ими рассказы больше, чем в любые другие предположения. То, что они говорят, с равной степенью может быть как правдой, так и ложью. Откуда мы можем знать, например, сигнализирует ли надетая задом наперед бейсбольная кепка о силе, а не, скажем, о боязни противостояв явному давлению?</p>
+					<p>Эволюционные психологи, конечно же, знают о такой критике. Они утверждают, что их рассказы представляют собой нечто большее, чем «выдумки». Разумеется, они могут генерировать гипотезы, предаваясь спекулятивным размышлениям, примером которых может служить импровизированное объяснение Киплинга. Но ведь эти гипотезы впоследствии будут подвергаться проверке.</p>
+					<p>Однако похоже, что существуют серьезные ограничения относительно того, насколько далеко могут зайти эти проверки. Вы можете проверять лишь предсказания, касающиеся человеческого поведения, которые порождены эволюционистскими гипотезами.</p>
+					<p>Поэтому, например, психологические и антропологические исследования могут показать, действительно ли мужчины в различных культурах публично демонстрируют свою силу так, как это предсказывают психологи-эволюционисты. Однако вы не можете проверять, является ли определенное поведение, такое, например, как надевание задом наперед бейсбольной кепки, проявлением этой тенденции демонстрировать силу или она есть результат чего-то совершенно другого. Таким образом, основной спор между психологами-эволюционистами и их оппонентами касается главным образом того, все ли можно объяснить с помощью нашего эволюционного прошлого. Критики говорят, что существуют более приемлемые объяснения большей части нашего поведения. Сторонники же эволюционистов утверждают, что мы просто не хотим признать того, что, по большому счету, мы являемся продуктом эволюции нашего животного мира.</p>
 				</div>
 			</div>
+
 		</div>
-		<div class="experiment-explanation">
-			<p><strong>Пояснение к эксперименту:</strong></p>
-			<p>Эволюционная психология является одним из наиболее успешных и противоречивых течений в области мышления за последние несколько десятилетий. Это течение одинаково сильно любят и ненавидят. Его исходная предпосылка, разумеется, не является противоречивой: человеческие существа являются творениями эволюции, и подобно тому, как наши тела в ходе естественного отбора приняли форму, необходимую для того, чтобы мы выжили в саванне, и наш разум тоже сформировался благодаря тем же самым потребностям.</p>
-			<p>Противоречие касается лишь того, насколько далеко вы заходите с такими взглядами. Психологи, наиболее рьяно придерживающиеся теории эволюции, утверждают, что практически любой аспект человеческого поведения можно объяснить с точки зрения тех преимуществ, которые он дал нашим предкам в их дарвинистской борьбе за выживание.</p>
-			<p>Если вы соглашаетесь с этим, тогда нетрудно придумать правдоподобно звучащее эволюционное объяснение любого поведения. Эксперимент, приведенный в истории доктора Киплинга, должен был показать, могу ли я — автор истории Киплинга — придумать эволюционное объяснение взятого наугад элемента человеческого поведения. В реальной жизни, чтобы сделать это, мне понадобилось лишь немного больше времени, чем Киплингу в его воображаемом разговоре.</p>
-			<p>Проблема в том, что такой подход предполагает, что эти объяснения не являются истинными, но всего лишь «выдумками». Эволюционные психологи просто выдумывают «объяснения», основываясь лишь на предварительных теоретических утверждениях. Но это не дает нам повода поверить в предлагаемые ими рассказы больше, чем в любые другие предположения. То, что они говорят, с равной степенью может быть как правдой, так и ложью. Откуда мы можем знать, например, сигнализирует ли надетая задом наперед бейсбольная кепка о силе, а не, скажем, о боязни противостояв явному давлению?</p>
-			<p>Эволюционные психологи, конечно же, знают о такой критике. Они утверждают, что их рассказы представляют собой нечто большее, чем «выдумки». Разумеется, они могут генерировать гипотезы, предаваясь спекулятивным размышлениям, примером которых может служить импровизированное объяснение Киплинга. Но ведь эти гипотезы впоследствии будут подвергаться проверке.</p>
-			<p>Однако похоже, что существуют серьезные ограничения относительно того, насколько далеко могут зайти эти проверки. Вы можете проверять лишь предсказания, касающиеся человеческого поведения, которые порождены эволюционистскими гипотезами.</p>
-			<p>Поэтому, например, психологические и антропологические исследования могут показать, действительно ли мужчины в различных культурах публично демонстрируют свою силу так, как это предсказывают психологи-эволюционисты. Однако вы не можете проверять, является ли определенное поведение, такое, например, как надевание задом наперед бейсбольной кепки, проявлением этой тенденции демонстрировать силу или она есть результат чего-то совершенно другого. Таким образом, основной спор между психологами-эволюционистами и их оппонентами касается главным образом того, все ли можно объяснить с помощью нашего эволюционного прошлого. Критики говорят, что существуют более приемлемые объяснения большей части нашего поведения. Сторонники же эволюционистов утверждают, что мы просто не хотим признать того, что, по большому счету, мы являемся продуктом эволюции нашего животного мира.</p>
+
+
+		<div id="hero_task_input">
+			<customresponse cfn="check_answer">
+				<textline size="40" value="$unique_id" />
+				<br/>
+			</customresponse>
+			<!-- <div class="message-about-grade"></div> -->
 		</div>
+
 	</div>
-
-</div>
-
-
-  <div id="hero_task_input">
-    <customresponse cfn="check_answer">
-      <textline size="40" value="$unique_id" />
-      <br/>
-    </customresponse>
-   <!-- <div class="message-about-grade"></div> -->
-  </div>
-
-</div>
 
 </problem>

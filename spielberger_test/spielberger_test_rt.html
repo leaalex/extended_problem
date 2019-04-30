@@ -1,0 +1,536 @@
+<style>
+
+    .answer-table td {
+        border: 1px solid;
+    }
+
+    .radio-td {
+        text-align: center;
+        position: relative;
+    }
+
+    /*.radio-td:hover {*/
+    /*    background: #ebf0ff;*/
+    /*}*/
+
+    .title-td {
+        padding: 6px !important;
+    }
+
+    .radio-label {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .heading-td {
+        width: 80px;
+        text-align: center;
+    }
+
+    .answer-table td, .answer-table th {
+        word-break: initial;
+
+    }
+
+    .table-block tr:hover {
+        background: #d5f0fd;
+    }
+
+
+    #rt_block, #lt_block {
+        padding: 20px 0px;
+    }
+
+
+</style>
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        const language = 'ru'; // ru or en
+        const translations = {
+            en: {
+                start_btn_label: "Начать",
+                reset_btn_label: "Начать заново",
+                check_btn_label: "Проверить",
+                instruction_label: "Инструкция",
+                instruction_general_1: "Данный текст является надежным и информативным способом самооценки уровня тревожности в данный момент (реактивная тревожность как состояние) и личностной тревожности (как устойчивая характеристика человека).",
+                instruction_general_2: "Личностная тревожность характеризует устойчивую склонность воспринимать большой круг ситуаций как угрожающие, реагировать на такие ситуации состоянием тревоги. Реактивная тревожность характеризуется напряжением, беспокойством, нервозностью. Очень высокая реактивная тревожность вызывает нарушения внимания, иногда нарушение тонкой координации. Очень высокая личностная тревожность прямо коррелирует с наличием невротического конфликта, с эмоциональными и невротическими срывами и с психосоматическими заболеваниями.",
+                instruction_general_3: "Но тревожность не является изначально негативной чертой. Определенный уровень тревожности — естественная и обязательная особенность активной личности. При этом существует оптимальный индивидуальный уровень «полезной тревоги».",
+                rt_label: "Реактивная тревожность",
+                lt_label: "Личностная тревожность",
+                rt_low: "низкая тревожность",
+                rt_medium: "умеренная тревожность",
+                rt_high: "высокая тревожность",
+                lt_low: "низкая тревожность",
+                lt_medium: "умеренная тревожность",
+                lt_high: "высокая тревожность",
+                instruction_rt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ В ДАННЫЙ МОМЕНТ. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
+                instruction_lt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ ОБЫЧНО. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
+                result_label: "Результаты"
+            },
+            ru: {
+                start_btn_label: "Начать",
+                reset_btn_label: "Начать заново",
+                check_btn_label: "Проверить",
+                instruction_label: "Инструкция",
+                instruction_general_1: "Данный текст является надежным и информативным способом самооценки уровня тревожности в данный момент (реактивная тревожность как состояние) и личностной тревожности (как устойчивая характеристика человека).",
+                instruction_general_2: "Личностная тревожность характеризует устойчивую склонность воспринимать большой круг ситуаций как угрожающие, реагировать на такие ситуации состоянием тревоги. Реактивная тревожность характеризуется напряжением, беспокойством, нервозностью. Очень высокая реактивная тревожность вызывает нарушения внимания, иногда нарушение тонкой координации. Очень высокая личностная тревожность прямо коррелирует с наличием невротического конфликта, с эмоциональными и невротическими срывами и с психосоматическими заболеваниями.",
+                instruction_general_3: "Но тревожность не является изначально негативной чертой. Определенный уровень тревожности — естественная и обязательная особенность активной личности. При этом существует оптимальный индивидуальный уровень «полезной тревоги».",
+                rt_label: "Реактивная тревожность",
+                lt_label: "Личностная тревожность",
+                rt_low: "низкая тревожность",
+                rt_medium: "умеренная тревожность",
+                rt_high: "высокая тревожность",
+                lt_low: "низкая тревожность",
+                lt_medium: "умеренная тревожность",
+                lt_high: "высокая тревожность",
+                instruction_rt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ В ДАННЫЙ МОМЕНТ. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
+                instruction_lt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ ОБЫЧНО. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
+                result_label: "Результаты"
+            }
+        };
+
+        const user_labels = translations[language];
+
+        var spielberger_test_block = document.getElementById("spielberger_test_block");
+
+
+        var SpielbergerTest = function (html_element) {
+
+            var user_answers = {
+                RT: {},
+                LT: {}
+            };
+
+
+            $(html_element).append("<p>" + user_labels.instruction_general_1 + "</p>");
+            $(html_element).append("<p>" + user_labels.instruction_general_2 + "</p>");
+            $(html_element).append("<p>" + user_labels.instruction_general_3 + "</p>");
+
+            var rt_block = $("<div>", {id: "rt_block", class: "table-block"}).appendTo(html_element);
+            var lt_block = $("<div>", {id: "lt_block", class: "table-block"}).appendTo(html_element);
+
+            let RT_questions = {
+                question_1: {
+                    text: "Я спокоен"
+                },
+                question_2: {
+                    text: "Мне ничто не угрожает"
+                },
+                question_3: {
+                    text: "Я нахожусь в напряжении"
+                },
+                question_4: {
+                    text: "Я испытываю сожаление"
+                },
+                question_5: {
+                    text: "Я чувствую себя свободно"
+                },
+                question_6: {
+                    text: "Я расстроен"
+                },
+                question_7: {
+                    text: "Меня волнуют возможные неудачи"
+                },
+                question_8: {
+                    text: "Я чувствую себя отдохнувшим"
+                },
+                question_9: {
+                    text: "Я встревожен"
+                },
+                question_10: {
+                    text: "Я испытываю чувство внутреннего удовлетворения"
+                },
+                question_11: {
+                    text: "Я уверен в себе"
+                },
+                question_12: {
+                    text: "Я нервничаю"
+                },
+                question_13: {
+                    text: "Я не нахожу себе места"
+                },
+                question_14: {
+                    text: "Я взвинчен"
+                },
+                question_15: {
+                    text: "Я не чувствую скованности, напряженности"
+                },
+                question_16: {
+                    text: "Я доволен"
+                },
+                question_17: {
+                    text: "Я озабочен"
+                },
+                question_18: {
+                    text: "Я слишком возбужден и мне не по себе"
+                },
+                question_19: {
+                    text: "Мне радостно"
+                },
+                question_20: {
+                    text: "Мне приятно"
+                }
+            };
+            let LT_questions = {
+                question_21: {
+                    text: "Я испытываю удовольствие"
+                },
+                question_22: {
+                    text: "Я очень быстро устаю"
+                },
+                question_23: {
+                    text: "Я легко могу заплакать"
+                },
+                question_24: {
+                    text: "Я хотел бы быть таким же счастливым, как и другие"
+                },
+                question_25: {
+                    text: "Нередко я проигрываю из-за того, что недостаточно быстро принимаю решения."
+                },
+                question_26: {
+                    text: "Обычно я чувствую себя бодрым  "
+                },
+                question_27: {
+                    text: "Я спокоен, хладнокровен и собран"
+                },
+                question_28: {
+                    text: "Ожидаемые трудности обычно очень тревожат меня"
+                },
+                question_29: {
+                    text: "Я слишком переживаю из-за пустяков "
+                },
+                question_30: {
+                    text: "Я вполне счастлив"
+                },
+                question_31: {
+                    text: "Я принимаю все слишком близко к сердцу..."
+                },
+                question_32: {
+                    text: "Мне не хватает уверенности в себе"
+                },
+                question_33: {
+                    text: "Обычно я чувствую себя в безопасности .."
+                },
+                question_34: {
+                    text: "Я стараюсь избегать критических ситуаций и трудностей"
+                },
+                question_35: {
+                    text: "У меня бывает хандра"
+                },
+                question_36: {
+                    text: "Я доволен"
+                },
+                question_37: {
+                    text: "Всякие пустяки отвлекают и волнуют меня.."
+                },
+                question_38: {
+                    text: "Я так сильно переживаю свои разочарования, что потом долго не могу о них за­быть"
+                },
+                question_39: {
+                    text: "Я уравновешенный человек "
+                },
+                question_40: {
+                    text: "Меня охватывает сильное беспокойство, когда я думаю о своих делах и заботах ..."
+                }
+            };
+
+            let RT_choices = {
+                a: {
+                    text: "Нет, это не так",
+                    value: 1
+                },
+                b: {
+                    text: "Пожалуй, так",
+                    value: 2
+                },
+                c: {
+                    text: "Верно",
+                    value: 3
+                },
+                d: {
+                    text: "Совершенно верно",
+                    value: 4
+                }
+            };
+            let LT_choices = {
+                a: {
+                    text: "Почти никогда",
+                    value: 1
+                },
+                b: {
+                    text: "Иногда",
+                    value: 2
+                },
+                c: {
+                    text: "Часто",
+                    value: 3
+                },
+                d: {
+                    text: "Почти всегда",
+                    value: 4
+                }
+            };
+
+            create_RT_aswer_table();
+            create_LT_aswer_table();
+
+            function calculate_results_rt() {
+                let results = {
+                    E1: 0,
+                    E2: 0,
+                    result: 0,
+                };
+
+                let for_E1 = [3, 4, 6, 7, 9, 12, 13, 14, 17, 18];
+                let for_E2 = [1, 2, 5, 8, 10, 11, 15, 16, 19, 20];
+
+                Object.keys(user_answers.RT).forEach(function (item, idx) {
+                    let num_question = parseInt(item.replace("question_", ""));
+                    if (Object.keys(RT_choices).includes(user_answers.RT[item])) {
+                        if (for_E1.includes(num_question)) {
+                            results.E1 += RT_choices[user_answers.RT[item]].value;
+                        } else if (for_E2.includes(num_question)) {
+                            results.E2 += RT_choices[user_answers.RT[item]].value;
+                        } else {
+                            console.error("RT: Undefined question.");
+                        }
+                    }
+                });
+                results.result = results.E1 - results.E2 + 50;
+                return results;
+            }
+
+            function calculate_results_lt() {
+                let results = {
+                    E1: 0,
+                    E2: 0,
+                    result: 0,
+                };
+
+                let for_E1 = [22, 23, 24, 25, 28, 29, 31, 32, 34, 35, 37, 38, 40];
+                let for_E2 = [21, 26, 27, 30, 33, 36, 39];
+
+                Object.keys(user_answers.LT).forEach(function (item, idx) {
+                    let num_question = parseInt(item.replace("question_", ""));
+                    if (Object.keys(LT_choices).includes(user_answers.LT[item])) {
+                        if (for_E1.includes(num_question)) {
+                            results.E1 += RT_choices[user_answers.LT[item]].value;
+                        } else if (for_E2.includes(num_question)) {
+                            results.E2 += RT_choices[user_answers.LT[item]].value;
+                        } else {
+                            console.error("LT: Undefined question.");
+                        }
+                    }
+                });
+                results.result = results.E1 - results.E2 + 35;
+                return results;
+            }
+
+            function createResultBlockRT() {
+                var result = calculate_results_rt();
+                console.log(result);
+                var result_block = $("<div>", {
+                    id: "rt_result_block",
+                    class: "result-block",
+                    html: "<h2>" + user_labels.result_label + ": </h2>"
+                });
+
+                result_block.append("<p><strong>" + user_labels.rt_label + "</strong></p>");
+                if (result.result <= 30) {
+                    result_block.append("<p>" + user_labels.rt_low + "</p>");
+                } else if (result.result > 30 && result.result < 46) {
+                    result_block.append("<p>" + user_labels.rt_medium + "</p>");
+                } else {
+                    result_block.append("<p>" + user_labels.rt_high + "</p>");
+                }
+
+                $(rt_block).html(result_block);
+                // $('body').scrollTo(rt_block);
+                $('html, body').animate({
+                    scrollTop: $(rt_block).offset().top
+                }, 500);
+            }
+
+            function createResultBlockLT() {
+                var result = calculate_results_lt();
+                console.log(result);
+                var result_block = $("<div>", {
+                    id: "lt_result_block",
+                    class: "result-block",
+                    html: "<h2>" + user_labels.result_label + ": </h2>"
+                    // JSON.stringify(calculate_results_lt())
+                });
+                result_block.append("<p><strong>" + user_labels.rt_label + "</strong></p>");
+                if (result.result <= 30) {
+                    result_block.append("<p>" + user_labels.rt_low + "</p>");
+                } else if (result.result > 30 && result.result < 46) {
+                    result_block.append("<p>" + user_labels.rt_medium + "</p>");
+                } else {
+                    result_block.append("<p>" + user_labels.rt_high + "</p>");
+                }
+                $(lt_block).html(result_block);
+                $('html, body').animate({
+                    scrollTop: $(lt_block).offset().top
+                }, 500);
+            }
+
+            function create_RT_aswer_table() {
+
+                var answer_table = $("<table>", {
+                    class: "answer-table RT-table"
+                });
+
+                var table_heading = $("<tr>", {html: "<th></th>"}).appendTo(answer_table);
+
+                Object.keys(RT_choices).forEach(function (item) {
+                    table_heading.append("<th class='heading-td'>" + RT_choices[item].text + "</th>");
+                });
+
+                Object.keys(RT_questions).forEach(function (item) {
+                    var table_tr = $("<tr>", {html: "<td class='title-td'>" + RT_questions[item].text + "</td>"});
+
+                    // user_answers.RT[item] = "c";
+                    user_answers.RT[item] = "";
+
+                    Object.keys(RT_choices).forEach(function (choice) {
+                        let radio_label = $("<label>", {
+                            class: "radio-label",
+                        });
+                        let radio_input = $("<input>", {
+                            type: "radio",
+                            class: "radio-input",
+                            value: choice,
+                            name: item
+                        });
+
+                        radio_label.prepend(radio_input);
+                        // if (user_answers.RT[item] == choice){
+                        //     radio_input.prop('checked', true);
+                        // }
+                        let choice_td = $("<td>", {class: "radio-td", html: radio_label});
+                        table_tr.append(choice_td)
+                    });
+                    answer_table.append(table_tr)
+                });
+
+
+                $(rt_block).append("<h2>" + user_labels.instruction_label + "</h2>");
+                $(rt_block).append("<p>" + user_labels.instruction_rt_text + "</p>");
+                $(rt_block).append(answer_table);
+
+                var check_button_wrap = $("<div>", {
+                    class: "check-button-wrap"
+                });
+
+                var check_button = $("<button>", {
+                    html: user_labels.check_btn_label,
+                    class: "check-button",
+                    disabled: "disabled"
+                }).appendTo(check_button_wrap);
+
+                check_button.click(function () {
+                    createResultBlockRT();
+                });
+
+                $(rt_block).append(check_button_wrap);
+
+
+                $(".RT-table .radio-input").change(function () {
+                    user_answers.RT[this.name] = this.value;
+                    if (Object.keys(user_answers.RT).map(item => user_answers.RT[item]).every(element => element.length > 0)) {
+                        $(check_button).removeAttr("disabled");
+                    }
+                });
+            }
+
+            function create_LT_aswer_table() {
+
+                var answer_table = $("<table>", {
+                    class: "answer-table LT-table"
+                });
+
+                var table_heading = $("<tr>", {html: "<th></th>"}).appendTo(answer_table);
+
+                Object.keys(LT_choices).forEach(function (item) {
+                    table_heading.append("<th class='heading-td'>" + LT_choices[item].text + "</th>");
+                });
+
+                Object.keys(LT_questions).forEach(function (item) {
+                    var table_tr = $("<tr>", {html: "<td class='title-td'>" + LT_questions[item].text + "</td>"});
+
+                    // user_answers.LT[item] = "c";
+                    user_answers.LT[item] = "";
+
+                    Object.keys(LT_choices).forEach(function (choice) {
+                        let radio_label = $("<label>", {
+                            class: "radio-label",
+                        });
+                        let radio_input = $("<input>", {
+                            type: "radio",
+                            class: "radio-input",
+                            value: choice,
+                            name: item
+                        });
+
+                        radio_label.prepend(radio_input);
+                        // if (user_answers.LT[item] == choice) {
+                        //     radio_input.prop('checked', true);
+                        // }
+                        let choice_td = $("<td>", {class: "radio-td", html: radio_label});
+                        table_tr.append(choice_td)
+                    });
+                    answer_table.append(table_tr)
+                });
+
+                $(lt_block).append("<h2>" + user_labels.instruction_label + ": </h2>");
+                $(lt_block).append("<p>" + user_labels.instruction_lt_text + "</p>");
+                $(lt_block).append(answer_table);
+
+                var check_button_wrap = $("<div>", {
+                    class: "check-button-wrap"
+                });
+
+                var check_button = $("<button>", {
+                    html: user_labels.check_btn_label,
+                    class: "check-button",
+                    disabled: "disabled"
+                }).appendTo(check_button_wrap);
+
+                check_button.click(function () {
+                    createResultBlockLT();
+                });
+
+                $(lt_block).append(check_button_wrap);
+
+
+                $(".LT-table .radio-input").change(function () {
+                    console.log(user_answers);
+                    user_answers.LT[this.name] = this.value;
+                    if (Object.keys(user_answers.LT).map(item => user_answers.LT[item]).every(element => element.length > 0)) {
+                        $(check_button).removeAttr("disabled");
+                    }
+                });
+            }
+        };
+
+
+        var spielberger_test = new SpielbergerTest(spielberger_test_block);
+
+        console.log(spielberger_test);
+    });
+</script>
+
+<div id="spielberger_test_block"></div>
