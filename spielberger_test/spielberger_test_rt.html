@@ -373,13 +373,13 @@
                     html: "<h2>" + user_labels.result_label + ": </h2>"
                     // JSON.stringify(calculate_results_lt())
                 });
-                result_block.append("<p><strong>" + user_labels.rt_label + "</strong></p>");
+                result_block.append("<p><strong>" + user_labels.lt_label + "</strong></p>");
                 if (result.result <= 30) {
-                    result_block.append("<p>" + user_labels.rt_low + "</p>");
+                    result_block.append("<p>" + user_labels.lt_low + "</p>");
                 } else if (result.result > 30 && result.result < 46) {
-                    result_block.append("<p>" + user_labels.rt_medium + "</p>");
+                    result_block.append("<p>" + user_labels.lt_medium + "</p>");
                 } else {
-                    result_block.append("<p>" + user_labels.rt_high + "</p>");
+                    result_block.append("<p>" + user_labels.lt_high + "</p>");
                 }
                 $(lt_block).html(result_block);
                 $('html, body').animate({

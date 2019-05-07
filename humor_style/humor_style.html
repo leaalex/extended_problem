@@ -57,7 +57,28 @@
     box-shadow: none !important;
 }
 
+#radar-chart{
+    padding: 20px 0px;
+}
+
 </style>
+
+<script>
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+
+<script id="chart_js" src="/static/Chart.js"> </script>
+
+<script>
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+
 
 <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
 
@@ -72,7 +93,7 @@
                 check_btn_label: "Проверить",
                 result_label: "Результаты:",
                 start_instruction: "тут наверно надо что-то написать?",
-                result_instruction: "Здесь описаны присущие Вам тип(ы) юмора",
+                result_instruction: "Здесь описаны присущие Вам типы юмора",
 
                 affiliated_label: "Аффилиативный юмор",
                 self_sustaining_label: "Самоподдерживающий",
@@ -89,13 +110,19 @@
                 reset_btn_label: "Начать заново",
                 check_btn_label: "Проверить",
                 result_label: "Результаты:",
+                points_label: "баллов",
                 start_instruction: "тут наверно надо что-то написать? теоретически студент может набирать везде по нулям (даже ответив на все вопросы)",
-                result_instruction: "Здесь описаны присущие Вам тип(ы) юмора",
+                result_instruction: "Присущие Вам типы юмора",
 
                 affiliated_label: "Аффилиативный юмор",
-                self_sustaining_label: "Самоподдерживающий",
+                self_sustaining_label: "Самоподдерживающий юмор",
                 aggressive_label: "Агрессивный юмор",
-                self_deprecating_label: "Самоуничижительный стиль",
+                self_deprecating_label: "Самоуничижительный юмор",
+
+                affiliated_1_label: "Аффилиативный юмор",
+                self_sustaining_1_label: "Самоподдерживающий юмор",
+                aggressive_1_label: "Агрессивный юмор",
+                self_deprecating_1_label: "Самоуничижительный юмор",
 
                 affiliated_description: "(поддерживающий, направленный на других) связывается с экстраверсией, открытостью новому опыту, оптимизмом, жизнерадостностью, самопринятием и самоценностью, с успешностью установления и поддержания межличностных отношений, удовлетворенностью качеством жизни, преобладанием положительных эмоций и хорошего настроения. Люди c аффилиативным чувством юмора часто шутят, спонтанно вовлекаются в добродушный обмен шутливыми замечаниями. Этот мягкий, доброжелательный и толерантный стиль юмора способствует укреплению межличностных отношений и росту взаимной привлекательности.",
                 self_sustaining_description: "(поддерживающий, направленный на себя) стиль юмора подразумевает оптимистичный взгляд на жизнь, умение сохранять чувство юмора перед лицом трудностей и проблем, то есть является регулятором эмоций и механизмом совладания со стрессом. По сравнению с аффилиативным, самоподдерживающий юмор выполняет, в первую очередь, интрапсихическую функцию и потому не так сильно связан с экстраверсией. Он имеет отрицательную связь с нейротизмом и положительно коррелирует с оптимизмом, открытостью новому опыту, самоценностью и удовлетворенностью качеством жизни, с успешностью установления и поддержания межличностных отношений.",
@@ -295,9 +322,9 @@
 
             });
 
-            var humors_result_array = Object.keys(humors_result).map(item=>{return {'name': item, 'value': humors_result[item]}});
-            humors_result_array = humors_result_array.filter(item=>item.value==humors_result_array.reduce(function (prev, current) {return (prev.value > current.value) ? prev : current}).value);
-            return humors_result_array;
+            // var humors_result_array = Object.keys(humors_result).map(item=>{return {'name': item, 'value': humors_result[item]}});
+            // humors_result_array = humors_result_array.filter(item=>item.value==humors_result_array.reduce(function (prev, current) {return (prev.value > current.value) ? prev : current}).value);
+            return humors_result;
         }
 
         function createResultBlock() {
@@ -307,10 +334,76 @@
                class: ""
             });
 
-            $(result_block).append("<p>" + user_labels.result_instruction + "</p>");
+            $(result_block).append("<p>" + user_labels.result_instruction + ": </p>");
 
-            set_result().forEach(function (item) {
-                $(result_block).append("<p><strong>" + user_labels[item.name+"_label"] + "</strong> "  + user_labels[item.name+"_description"] +  "<p>");
+
+            var result =  set_result();
+            var chart = $("<canvas>", {id:"radar-chart", width:"100%", height:"600"});
+
+            // console.log(result);
+
+
+
+            new Chart(chart, {
+                type: 'radar',
+                data: {
+                    labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
+                    datasets: [
+                        {
+                            // label: "2050",
+                            fill: true,
+                            borderColor: "#046b99",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "#046b99",
+                            backgroundColor: "#046b9908",
+                            pointBorderColor: "#fff",
+                            data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining]
+                        }
+                    ]
+                },
+                options: {
+                    legend:{
+                        display: false
+                    },
+                    responsive:true,
+                    // maintainAspectRatio: false,
+                    scale: {
+                        ticks: {
+                            beginAtZero: true,
+                            max: 10,
+                            fontSize: 16,
+                        },
+                        angleLines: {
+                            display: true,
+                            color: "#046b99",
+                        },
+                        pointLabels: {
+                            callback: function(value, index, values) {
+                                // console.log(value);
+                                return value;
+                            },
+                            // fontColor: "gray",
+                            fontSize: 16,
+                        },
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var label = user_labels.points_label + ': ';
+                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                return label;
+                            }
+                        },
+                        fontSize: 16,
+                    },
+
+
+                }
+            });
+            $(result_block).append(chart);
+
+            Object.keys(result).forEach(function (item) {
+                $(result_block).append("<p><strong>" + user_labels[item+"_1_label"] + " (" + user_labels.points_label + ": " + result[item] + ")</strong> "  + user_labels[item+"_description"] +  "<p>");
             });
 
             $(html_element).html(result_block);
@@ -365,9 +458,11 @@
                 question_wrap.append(radio_wrap);
                 $(html_element).append(question_wrap);
 
-                // let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
-                // $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
-                // user_answers[item] = value;
+                //
+                let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
+                $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
+                user_answers[item] = value;
+                //
             });
 
             $(".radio-input").change(function () {

@@ -381,7 +381,7 @@ def check_answer(expect, ans):
 				"fashionable": "А Вы точно об этом думали?",
 				"modern_socrat": "Вы не можете ставить под сомнение уникальность другого человека."
 			}
-		}
+		};
 
 		var heroes = [
 			{
@@ -742,14 +742,27 @@ def check_answer(expect, ans):
 			modifications_list = modifications_list.sort(function(a,b){
 				return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
 			});
+			// heroes.filter(function(item){item.class==user_hero.hero_class}
+			console.log(user_hero.hero_class);
+			console.log();
+
+
 
 			$("#modifications_choice").html('');
 			var modifications_block = $('<div/>',{
 				class: "modifications_block",
 				id: "modification_block_" + user_hero.hero_class,
 			});
-			modifications_block.append("<p>Ваш выбранный герой: <strong>" + hero_class_title + ".</strong> </p> <p>Теперь необходимо выбрать модификацию вашего героя.</p>");
+			modifications_block.append("<p>Ваш выбранный герой: <strong>" + hero_class_title + ".</strong> </p>");
+			modifications_block.append("<p>Возможные модификации: </p>");
+			// " <p>Теперь необходимо выбрать модификацию вашего героя.</p>");
 
+			heroes.filter(function(item){return item.class==user_hero.hero_class}).forEach(function(tmp_hero){
+				modifications_block.append("<p><strong> - " + tmp_hero.title + "</strong> (характеристик: " + tmp_hero.theses.length  + ")</p>");
+			});
+
+			modifications_block.append("<p>Теперь необходимо выбрать модификацию вашего героя.</p>");
+			
 			modifications_list.forEach(function(modification_element) {
 				var mod_wrap = $('<div/>',{});
 				var mod_input = $('<input/>',{
@@ -919,6 +932,8 @@ def check_answer(expect, ans):
 
 			// $(submit_button).hide();
 			$("#step_3_experiment_2 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
+
+
 
 			var theses_block = $('<ul/>',{});
 			user_hero.hero.theses.forEach(function(thesis){
