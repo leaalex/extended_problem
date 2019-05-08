@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript" src="./presentation_v01.js"></script>
+</head>
+
+<style>
+    .sequence-nav-button {
+        min-width: 100px;
+    }
+
+
+    .presentation-block .download-block {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+        padding-top: 8px;
+        font-size: 1.1em !important;
+        text-align: right
+    }
+
+    .presentation-block .download-link {
+        background: #f3f3f2;
+        padding: 4px 6px;
+        border-radius: 5px;
+        margin: 0px 4px;
+    }
+
+    .presentation-block .download-link:hover {
+        background: #dcdcdc;
+    }
+
+    .presentation-block .presentation-wrap {
+        background: white;
+    }
+
+    .presentation-block .presentation-wrap canvas {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+        min-height: 200px;
+    }
+
+    .presentation-block .buttons-block {
+        margin: 0 auto;
+        height: 45px;
+        display: flex;
+        background: #e9e9e9;
+        padding: 6px 0px;
+        width: 100%;
+        bottom: 0px;
+        justify-content: center;
+    }
+
+    .presentation-block {
+        position: relative;
+        margin: 10px 0;
+        max-width: 500px;
+    }
+
+    .presentation-block .presentation-n-buttons {
+        border: 2px solid #e9e9e9;
+    }
+
+    .presentation-block .sequence-nav-button {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+        margin: 0px 10px !important;
+    }
+
+    .presentation-block .page-input {
+        text-align: center;
+        width: 26px;
+        padding: 2px;
+        font-size: 1.3em;
+        margin: 4px 0px;
+        border-radius: 5px;
+        border: 1px solid #c9c8c8;
+    }
+
+    .presentation-block .page-count {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+        font-size: 1.3em;
+        display: inline-flex;
+        align-items: center;
+        padding-left: 3px;
+        margin-bottom: 0px;
+        font-family: sans-serif;
+        word-break: normal;
+    }
+
+    .presentation-block .presentation-error {
+        height: 220px;
+        background: #f9f9f9;
+        font-size: 1.16em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px dashed #e9e9e9;
+        text-align: center;
+    }
+
+    .presentation-block.a4 .buttons-block{
+        background: #e9e9e9eb;
+        border-radius: 8px;
+        position: sticky;
+        position: -webkit-sticky;
+        box-shadow: 0 2px 6px #7b7b7b;
+        bottom: 10px;
+        width: calc(100% - 12px);
+    }
+
+    .presentation-block.a4 .presentation-n-buttons{
+        padding-bottom: 8px;
+    }
+
+
+</style>
+
+<body>
+
+<div class="presentation-block" data-lang="ru" data-size="a5" data-src="./test_present.pdf"></div>
+</body>
+</html>
