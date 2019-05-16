@@ -1,11 +1,15 @@
 <problem>
     <style type="text/css">
-    </style>
-
-    <style>
 
         .answer-table td {
             border: 1px solid;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #c8c8c8;
+            /*font-size: 14px;*/
+        }
+        .answer-table th {
+            background: white;
         }
 
         .radio-td {
@@ -35,18 +39,38 @@
             justify-content: center;
         }
 
+        .radio-label input{
+            width: 15px !important;
+            height: 15px !important;
+        }
+
         .radio-input:hover{
             cursor: pointer;
         }
 
         .heading-td {
-            width: 80px;
-            text-align: center;
+
+            width: 80px !important;
+            text-align: center !important;
+
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #c8c8c8;
+            /*font-size: 14px;*/
+            background: #eee !important;
         }
 
         .answer-table td, .answer-table th {
-            word-break: initial;
+            word-break: initial !important;
 
+        }
+
+        .table-block tr:hover {
+            background: #d5f0fd;
+        }
+
+        td.empty-td{
+            min-width: 30px;
         }
 
     </style>
@@ -102,10 +126,10 @@
 
             var ConstructiveMotivation = function (html_element) {
 
-                var user_answers = {
-                    RT: {},
-                    LT: {}
-                };
+                // var user_answers = {
+                //     RT: {},
+                //     LT: {}
+                // };
 
                 $(html_element).append("<p>" + user_labels.instruction_general_1 + "</p>");
                 $(html_element).append("<p>" + user_labels.instruction_general_2 + "</p>");
@@ -113,113 +137,110 @@
 
                 var rt_block = $("<div/>", {id: "rt_block", class: "table-block"}).appendTo(html_element);
 
-                // Первый блин всегда комом
-                // Чья земля - того и хлеб
-                // Когда мягко стелят - жестко спать
-                // Ум хорошо, а два лучше
-                // Руби дерево по себе
-                // Худую траву из поля вон
-                // Не подмажешь - не поедешь
-                // На вкус, да на цвет - товарища нет
-                // Чужая душа потемки
-                // Загнанных лошадей следует пристреливать
-                // Лучше поздно, чем никогда
-                // Ни у кого нет полного ответа, но у каждого есть, чтто добавить
-                // На языке мед, а на сердце лед
-                // Кто смел, тот и съел
-                // Цыплят по осени считают
-                // Правда в огне не горит и в воде не тонет
-                // Выше головы не прыгнешь, выше лба уши не растут
-                // Волка бояться - в лес не ходить
-                // Лучший способ разрешать споры - вовсе избегать их
-                // Выноси заботы на свет, да держи с друзьями совет
-                // Ласковое телятко двух маток сосет, а упрямое - ни одной
-                // Всяк сверчок знай свой шесток: в чужие сани не садись
-                // На свете нет ничего, что заслуживало бы спора
-                // Дружно - не грузно: согласного стада и волк не берет
-                // И мутную воду пьют в невзгоду
-                // Не зря, что Фоме огороды копать, а Ереме над ним воеводой стоять
-                // Дружба дружбой, а служба - службой
-                // В конечном счете справедливость торжествует, а зло наказывается
-                let RT_questions = {
+
+                let questions = {
                     question_1: {
-                        text: "Я спокоен"
+                        text: "Первый блин всегда комом"
                     },
                     question_2: {
-                        text: "Мне ничто не угрожает"
+                        text: "Чья земля - того и хлеб"
                     },
                     question_3: {
-                        text: "Я нахожусь в напряжении"
+                        text: "Когда мягко стелят - жестко спать"
                     },
                     question_4: {
-                        text: "Я испытываю сожаление"
+                        text: "Ум хорошо, а два лучше"
                     },
                     question_5: {
-                        text: "Я чувствую себя свободно"
+                        text: "Руби дерево по себе"
                     },
                     question_6: {
-                        text: "Я расстроен"
+                        text: "Худую траву из поля вон"
                     },
                     question_7: {
-                        text: "Меня волнуют возможные неудачи"
+                        text: "Не подмажешь - не поедешь"
                     },
                     question_8: {
-                        text: "Я чувствую себя отдохнувшим"
+                        text: "На вкус, да на цвет - товарища нет"
                     },
                     question_9: {
-                        text: "Я встревожен"
+                        text: "Чужая душа потемки"
                     },
                     question_10: {
-                        text: "Я испытываю чувство внутреннего удовлетворения"
+                        text: "Загнанных лошадей следует пристреливать"
                     },
                     question_11: {
-                        text: "Я уверен в себе"
+                        text: "Лучше поздно, чем никогда"
                     },
                     question_12: {
-                        text: "Я нервничаю"
+                        text: "Ни у кого нет полного ответа, но у каждого есть, что добавить"
                     },
                     question_13: {
-                        text: "Я не нахожу себе места"
+                        text: "На языке мед, а на сердце лед"
                     },
                     question_14: {
-                        text: "Я взвинчен"
+                        text: "Кто смел, тот и съел"
                     },
                     question_15: {
-                        text: "Я не чувствую скованности, напряженности"
+                        text: "Цыплят по осени считают"
                     },
                     question_16: {
-                        text: "Я доволен"
+                        text: "Правда в огне не горит и в воде не тонет"
                     },
                     question_17: {
-                        text: "Я озабочен"
+                        text: "Выше головы не прыгнешь, выше лба уши не растут"
                     },
                     question_18: {
-                        text: "Я слишком возбужден и мне не по себе"
+                        text: "Волка бояться - в лес не ходить"
                     },
                     question_19: {
-                        text: "Мне радостно"
+                        text: "Лучший способ разрешать споры - вовсе избегать их"
                     },
                     question_20: {
-                        text: "Мне приятно"
+                        text: "Выноси заботы на свет, да держи с друзьями совет"
+                    },
+                    question_21: {
+                        text: "Ласковое телятко двух маток сосет, а упрямое - ни одной"
+                    },
+                    question_22: {
+                        text: "Всяк сверчок знай свой шесток: в чужие сани не садись"
+                    },
+                    question_23: {
+                        text: "На свете нет ничего, что заслуживало бы спора"
+                    },
+                    question_24: {
+                        text: "Дружно - не грузно: согласного стада и волк не берет"
+                    },
+                    question_25: {
+                        text: "И мутную воду пьют в невзгоду"
+                    },
+                    question_26: {
+                        text: "Не зря, что Фоме огороды копать, а Ереме над ним воеводой стоять"
+                    },
+                    question_27: {
+                        text: "Дружба дружбой, а служба - службой"
+                    },
+                    question_28: {
+                        text: "В конечном счете справедливость торжествует, а зло наказывается"
                     }
                 };
 
-                let RT_choices = {
+                let answer_choices = {
                     a: {
-                        text: "Нет, это не так",
+                        text: "1 балл",
                         value: 1
                     },
                     b: {
-                        text: "Пожалуй, так",
+                        text: "2 балла",
                         value: 2
                     },
                     c: {
-                        text: "Верно",
-                        value: 3
+                        text: "4 балла",
+                        value: 4
                     },
                     d: {
-                        text: "Совершенно верно",
-                        value: 4
+                        text: "5 баллов",
+                        value: 5
                     }
                 };
 
@@ -227,27 +248,38 @@
 
                 function calculate_results_rt() {
                     let results = {
-                        E1: 0,
-                        E2: 0,
-                        result: 0,
+                        M: 0,
+                        T: 0,
+                        P: 0,
+                        L: 0
                     };
 
-                    let for_E1 = [3, 4, 6, 7, 9, 12, 13, 14, 17, 18];
-                    let for_E2 = [1, 2, 5, 8, 10, 11, 15, 16, 19, 20];
+                    // let for_E1 = [3, 4, 6, 7, 9, 12, 13, 14, 17, 18];
+                    // let for_E2 = [1, 2, 5, 8, 10, 11, 15, 16, 19, 20];
 
-                    Object.keys(user_answers.RT).forEach(function (item, idx) {
+                    let for_M = [1, 5, 9, 13, 17, 21, 25];
+                    let for_T = [2, 6, 10, 14, 18, 22, 26];
+                    let for_P = [3, 7, 11, 15, 19, 23, 27];
+                    let for_L = [4, 8, 12, 16, 20, 24, 28];
+
+                    Object.keys(state.result.user_answers).forEach(function (item, idx) {
                         let num_question = parseInt(item.replace("question_", ""));
-                        if (Object.keys(RT_choices).includes(user_answers.RT[item])) {
-                            if (for_E1.includes(num_question)) {
-                                results.E1 += RT_choices[user_answers.RT[item]].value;
-                            } else if (for_E2.includes(num_question)) {
-                                results.E2 += RT_choices[user_answers.RT[item]].value;
-                            } else {
-                                console.error("RT: Undefined question.");
+                        if (Object.keys(answer_choices).includes(state.result.user_answers[item])) {
+                            if (for_M.includes(num_question)) {
+                                results.M += answer_choices[state.result.user_answers[item]].value;
+                            } else if (for_T.includes(num_question)) {
+                                results.T += answer_choices[state.result.user_answers[item]].value;
+                            } else if (for_P.includes(num_question)) {
+                                results.P += answer_choices[state.result.user_answers[item]].value;
+                            } else if (for_L.includes(num_question)) {
+                                results.L += answer_choices[state.result.user_answers[item]].value;
+                            }
+
+                            else {
+                                console.error("Undefined question.");
                             }
                         }
                     });
-                    results.result = results.E1 - results.E2 + 50;
                     return results;
                 }
 
@@ -262,8 +294,7 @@
                     });
 
                     result_block.append("<p><strong>" + user_labels.rt_label + "</strong></p>");
-
-                        result_block.append("<p>" + user_labels.rt_low + "</p>");
+                    result_block.append("<p>" + user_labels.rt_low + "</p>");
 
 
                     $(rt_block).html(result_block);
@@ -282,16 +313,23 @@
 
                     var table_heading = $("<tr/>", {html: "<th></th>"}).appendTo(answer_table);
 
-                    Object.keys(RT_choices).forEach(function (item) {
-                        table_heading.append("<th>" + RT_choices[item].text + "</th>");
-                        // class=heading-td
+                    Object.keys(answer_choices).forEach(function (item, index) {
+                        table_heading.append( $("<th/>", {html:answer_choices[item].text, class:"heading-td"}));
+                        if (index == 1){
+                            table_heading.append("<th>" + "</th>");
+                        }
+
                     });
 
-                    Object.keys(RT_questions).forEach(function (item) {
-                        var table_tr = $("<tr/>", {html: "<td>" + RT_questions[item].text + "</td>"});
+                    Object.keys(questions).forEach(function (item) {
+                        var table_tr = $("<tr/>", {});
+
+                        var table_td = $("<td/>", {html: questions[item].text}).appendTo(table_tr);
+
+                        table_td.addClass("title-td");
                         // class=title-td
-                        user_answers.RT[item] = "";
-                        Object.keys(RT_choices).forEach(function (choice) {
+                        state.result.user_answers[item] = "";
+                        Object.keys(answer_choices).forEach(function (choice, index) {
                             let radio_label = $("<label/>", {
                                 class: "radio-label",
                             });
@@ -305,6 +343,14 @@
                             radio_label.prepend(radio_input);
                             let choice_td = $("<td/>", {class: "radio-td", html: radio_label});
                             table_tr.append(choice_td)
+
+                            if (index == 1) {
+                                let empty_td = $("<td/>", {class: "empty-td", html: ""});
+                                table_tr.append(empty_td)
+                            }
+
+                            console.log(index);
+
                         });
                         answer_table.append(table_tr)
                     });
@@ -332,10 +378,11 @@
 
 
                     $(".RT-table .radio-input").change(function () {
-                        user_answers.RT[this.name] = this.value;
-                        if (Object.keys(user_answers.RT).map(function (item) { return user_answers.RT[item] }).every(function (element) { return element.length != 0})) {
+                        state.result.user_answers[this.name] = this.value;
+                        if (Object.keys(state.result.user_answers).map(function (item) { return state.result.user_answers[item] }).every(function (element) { return element.length != 0})) {
                             $(check_button).removeAttr("disabled");
                         }
+                        console.log(state.result.user_answers, calculate_results_rt());
                     });
                 }
 
@@ -345,9 +392,10 @@
                 completed: false,
                 result: {
                     types: [],
+                    user_answers: {},
                     // user_type
                 },
-                user_answers: {}
+
             };
 
             let constructive_motivation_block = document.getElementById("constructive_motivation_block");
