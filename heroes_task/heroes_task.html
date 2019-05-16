@@ -743,8 +743,8 @@ def check_answer(expect, ans):
 				return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
 			});
 			// heroes.filter(function(item){item.class==user_hero.hero_class}
-			console.log(user_hero.hero_class);
-			console.log();
+			// console.log(user_hero.hero_class);
+			// console.log();
 
 
 
@@ -805,16 +805,27 @@ def check_answer(expect, ans):
 					var candidate_1 = get_heroes_by_class(user_hero.hero_class)[0];
 					var candidate_2 = get_heroes_by_class(user_hero.hero_class)[1];
 
+
+
 					if (arraysEqual(user_hero.user_selected, candidate_1.theses.map(function(name) {return name.letter;}))){
 						user_hero.hero = candidate_1;
 						user_hero.current_step = 1;
+						console.log("1: ", user_hero.user_selected);
 						answer.setJSON({answer: user_hero});
 					}
 					else if (arraysEqual(user_hero.user_selected, candidate_2.theses.map(function(name) {return name.letter;}))){
 						user_hero.hero = candidate_2;
 						user_hero.current_step = 1;
+						console.log("2: ", user_hero.user_selected);
+
 						answer.setJSON({answer: user_hero});
 					}
+					else{
+						user_hero.hero = undefined;
+					}
+					// console.log(user_hero);
+					console.log("3: ", user_hero.user_selected);
+
 					answer.setJSON({answer: user_hero});
 				});
 			});
@@ -838,6 +849,8 @@ def check_answer(expect, ans):
 
 			// $(submit_button).hide();
 			$("#step_3_experiment_1 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
+
+			// console.log(user_hero);
 
 			var theses_block = $('<ul/>',{});
 			user_hero.hero.theses.forEach(function(thesis){
@@ -870,7 +883,9 @@ def check_answer(expect, ans):
 				user_hero.attempts["experiment_1"] += 1;
 				answer.setJSON({answer: user_hero});
 			});
-
+			if (user_hero.student_answer["experiment_1"] == undefined){
+				user_hero.student_answer["experiment_1"] = "a2";
+			}
 			$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).prop('checked', true);
 			var result = check_answer("experiment_1", user_hero.student_answer["experiment_1"]);
 			answer.setJSON({answer: user_hero});
@@ -911,7 +926,7 @@ def check_answer(expect, ans):
 					$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 					$("#step_3_experiment_1 .experiment-explanation").show();
 					// scrollToElement($("#step_3_experiment_1 .incorrect-message"));
-					console.log("!!!!!!!!");
+					// console.log("!!!!!!!!");
 					$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
 				}
 				user_hero.current_step = 2;
@@ -965,7 +980,9 @@ def check_answer(expect, ans):
 				user_hero.attempts["experiment_2"] += 1;
 				answer.setJSON({answer: user_hero});
 			});
-
+			if (user_hero.student_answer["experiment_2"] == undefined){
+				user_hero.student_answer["experiment_2"] = "b2";
+			}
 			$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).prop('checked', true);
 			var result = check_answer("experiment_2", user_hero.student_answer["experiment_2"]);
 			answer.setJSON({answer: user_hero});
@@ -1059,7 +1076,9 @@ def check_answer(expect, ans):
 				user_hero.attempts["experiment_3"] += 1;
 				answer.setJSON({answer: user_hero});
 			});
-
+			if (user_hero.student_answer["experiment_3"] == undefined){
+				user_hero.student_answer["experiment_3"] = "c1";
+			}
 			$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).prop('checked', true);
 			var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
 			answer.setJSON({answer: user_hero});

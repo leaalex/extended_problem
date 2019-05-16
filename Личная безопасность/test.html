@@ -1,0 +1,579 @@
+<problem>
+    <style type="text/css">
+        .flex-container {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: row;
+            justify-content: space-around;
+            line-height:30px;
+        }
+
+        .flex-item {
+            cursor: pointer;
+            background: white; /* tomato */
+            margin: -2px;
+            /* color: grey;*/ /* white */
+            border: 4px solid #046b99;
+            /* font-weight: bold; */
+            font-size: 4em;
+            text-align: center;
+            flex: 1 0 0px;
+            min-width: 1.5em;
+            word-break: initial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
+
+        }
+
+        .flex-item:hover{
+            background: #b3efff80;
+            font-weight: 600;
+        }
+
+        .flex-item:before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+            float: left;
+        }
+
+        .table-wrap{
+            /*width: 600px;*/
+            /*padding: 50px;*/
+            margin: 0 auto;
+        }
+
+        .start-window{
+            height: 500px;
+            /*background: #f6f6f6;*/
+            border: 6px double #046b99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .start-button{
+            font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+            width: 200px;
+            /* height: 50px; */
+            background: #046b99;
+            color: #ffffff;
+            font-size: 1.8em;
+            font-weight: normal;
+            border: none;
+        }
+
+        .start-button:hover{
+            /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+            width: 200px;*/
+            /* height: 50px; */
+            background: #035c83 !important;
+            border: none;
+        }
+
+
+        .timer-block{
+            font-size: 1.5em;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .delay-label{
+            padding: 14px;
+            /*background: #bdb9b2;*/
+            font-size: 2.0em;
+        }
+
+        .last-selected-num{
+            background: #b3efff;
+        }
+
+        .result-block{
+            margin: 0 1em;
+        }
+
+        #restart_task{
+            display: none;
+        }
+
+
+        @media screen and (max-width: 600px) {
+            .flex-item{
+                font-size: 2.5em;
+            }
+            .timer-block{
+                font-size: 1em;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .flex-item{
+                font-size: 2em;
+            }
+            .timer-block{
+                font-size: 1em;
+            }
+            .delay-label{
+                font-size: 1.5em;
+            }
+        }
+
+        span.submit-label{
+            text-transform: initial !important;
+        }
+
+    </style>
+
+<script type="loncapa/python">
+import math
+import json
+
+def check_answer(expect, ans):
+    return 1
+</script>
+
+    <script type="text/javascript" charset="utf-8">
+
+        // двухбуквенный код
+        const language = "ru";
+
+        let state = {
+          completed: false,
+          result: {
+              times: []
+          }
+        };
+
+        let answer = new Answer(document.querySelector("#schulte_table_input").querySelector("input[type='text']"));
+
+        function clearProblemSigns(element){
+            let problemXBlock = $(element).closest('.xblock');
+            $(".problem-progress", problemXBlock).hide();
+            $(".button.submit", problemXBlock).hide();
+            $(".notification", problemXBlock).hide();
+            $(".problem-action-buttons-wrapper", problemXBlock).hide();
+        }
+
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function() {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function(value) {
+                if (value == undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function() {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function(object) {
+                if (object == undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object))
+            };
+            this.isJsonString = function(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        function createElement(name, id, classList, attributes) {
+            let element = document.createElement(name);
+            if (id) element.id = id;
+            if (classList) element.classList = classList;
+            if (attributes) {
+                for (let attr in attributes) {
+                    element.setAttribute(attr, attributes[attr])
+                }
+            }
+            return element;
+        }
+
+        let translations = {
+            "en": {
+                "start_btn_label": "Start",
+                "reset_btn_label": "Restart",
+                "delay_label": "We start in",
+                "table_label": "Table",
+                "time_label": "Time",
+                "time_sec_label": "Time (sec.)",
+                "graphic_label": "Гафик времени выполнения таблиц",
+                "test_results_label": "Результаты теста",
+                "result_label_1": '<p>Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая устойчивость внимания и работоспособность в динамике.</p>',
+                "VR_label": "Степень врабатываемости",
+                "PU_label": "Психическая устойчивость",
+                "VR_label_more_1":"Ваш результат больше единицы, что указывает на слабую врабатываемость. Вам требуется дополнительная подготовка перед началом работы.",
+                "VR_label_less_1":"Ваш результат меньше единицы, что указывает на хорошую врабатываемость. Вы быстро понимаете задания и незамедлительно включаетесь в работу.",
+                "PU_label_more_1":"Результат больше единицы указывает на слабую психическую устойчивость. Вам сложно долго концентрироваться на какой-либо деятельности. Помните, что регулярные тренировки концентрации внимания позволят вам улучшить показатели психической устойчивости.",
+                "PU_label_less_1":"Результат меньше единицы говорит о хорошей психической устойчивости. Вы можете долго концентрироваться на конкретной задаче и не отвлекаться на внешние помехи.",
+                "text_task_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет поочередно предложено пять таблиц, на которых в произвольном порядке расположены числа от 1 до 25.</p><p>Ваша задача заключается в том, чтобы нажимать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Важно делать это как можно быстрее и без ошибок. Секундомер фиксирует время выполнения каждой таблицы. Прохождение каждой последующей таблицы начинается через 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p></p>",
+            },
+            "ru": {
+                "start_btn_label": "Начать",
+                "reset_btn_label": "Начать заново",
+                "delay_label": "Начинаем через",
+                "table_label": "Таблица",
+                "time_label": "Время",
+                "time_sec_label": "Время (сек.)",
+                "graphic_label": "Гафик времени выполнения таблиц",
+                "test_results_label": "Результаты теста",
+                "result_label_1": '<p>Основной показатель – время выполнения отдельно по каждой таблице. По результатам выполнения каждой таблицы  построена "кривая истощаемости (утомляемости)", отражающая устойчивость внимания и работоспособность в динамике.</p>',
+                "VR_label": "Степень врабатываемости",
+                "PU_label": "Психическая устойчивость",
+                "VR_label_more_1": "Ваш результат больше единицы, что указывает на слабую врабатываемость. Вам требуется дополнительная подготовка перед началом работы.",
+                "VR_label_less_1": "Ваш результат меньше единицы, что указывает на хорошую врабатываемость. Вы быстро понимаете задания и незамедлительно включаетесь в работу.",
+                "PU_label_more_1": "Результат больше единицы указывает на слабую психическую устойчивость. Вам сложно долго концентрироваться на какой-либо деятельности. Помните, что регулярные тренировки концентрации внимания позволят вам улучшить показатели психической устойчивости.",
+                "PU_label_less_1": "Результат меньше единицы говорит о хорошей психической устойчивости. Вы можете долго концентрироваться на конкретной задаче и не отвлекаться на внешние помехи.",
+                "text_task_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет поочередно предложено пять таблиц, на которых в произвольном порядке расположены числа от 1 до 25.</p><p>Ваша задача заключается в том, чтобы нажимать на числа в ПОРЯДКЕ их ВОЗРАСТАНИЯ от 1 до 25 соответственно. Важно делать это как можно быстрее и без ошибок. Секундомер фиксирует время выполнения каждой таблицы. Прохождение каждой последующей таблицы начинается через 7 секунд.</p><p>Тренажер предназначен для определения устойчивости внимания и динамики работоспособности.</p><p></p>",
+            },
+        };
+        translations = JSON.parse(JSON.stringify(translations));
+        var user_labels = translations[language];
+        var tables = [
+            [17, 9, 24, 25, 12, 8, 6, 1, 15, 7, 23, 21, 19, 3, 11, 20, 13, 4, 16, 5, 2, 14, 10, 18, 22], // 1
+            [20, 11, 16, 1, 18, 2, 21, 4, 14, 8, 13, 9, 19, 24, 5, 25, 15, 6, 23, 17, 10, 7, 22, 12, 3], // 2
+            [8, 14, 11, 3, 15, 21, 4, 25, 6, 13, 2, 23, 19, 24, 22, 20, 10, 9, 17, 5, 7, 12, 1, 18, 16], // 3
+            [21, 22, 9, 19, 14, 2, 5, 18, 25, 12, 23, 15, 6, 13, 8, 24, 11, 3, 17, 1, 4, 7, 16, 20, 10], // 4
+            [21, 20, 5, 23, 2, 14, 10, 19, 15, 25, 12, 3, 7, 13, 9, 24, 22, 8, 18, 11, 4, 17, 6, 16, 1], // 5
+            [23, 22, 1, 11, 9, 12, 25, 6, 14, 8, 21, 3, 17, 4, 19, 7, 2, 20, 13, 10, 16, 5, 24, 15, 18], // 6
+            [3, 21, 13, 4, 20, 8, 5, 1, 15, 11, 19, 12, 23, 7, 22, 10, 6, 14, 24, 18, 25, 17, 2, 16, 9], // 7
+            [25, 22, 14, 21, 15, 10, 5, 20, 1, 19, 4, 17, 12, 11, 24, 6, 13, 3, 18, 2, 23, 9, 7, 16, 8], // 8
+            [11, 25, 20, 24, 3, 23, 12, 21, 6, 16, 19, 10, 15, 2, 7, 9, 1, 13, 14, 22, 17, 18, 8, 5, 4], // 9
+            [8, 1, 5, 16, 6, 10, 25, 3, 11, 24, 2, 15, 4, 13, 23, 20, 9, 22, 19, 17, 14, 18, 12, 21, 7], // 10
+            [20, 9, 5, 21, 8, 11, 18, 1, 22, 7, 4, 15, 14, 2, 25, 13, 6, 17, 10, 23, 12, 3, 19, 16, 24], // 11
+            [11, 24, 8, 13, 2, 15, 20, 5, 22, 10, 17, 14, 1, 18, 4, 23, 7, 6, 19, 12, 9, 3, 25, 21, 16], // 12
+            [1, 25, 11, 3, 16, 14, 10, 15, 13, 4, 6, 19, 20, 21, 8, 18, 24, 17, 7, 12, 5, 23, 9, 22, 2], // 13
+            [16, 1, 8, 21, 25, 13, 24, 17, 20, 12, 2, 9, 22, 11, 18, 7, 19, 5, 4, 6, 3, 15, 10, 23, 14], // 14
+            [14, 22, 25, 19, 7, 6, 11, 3, 15, 4, 24, 23, 20, 8, 21, 13, 18, 2, 12, 16, 5, 9, 10, 17, 1], // 15
+            [21, 20, 6, 1, 12, 8, 25, 14, 17, 19, 22, 9, 24, 10, 7, 18, 15, 2, 4, 16, 3, 11, 23, 13, 5], // 16
+            [21, 10, 17, 8, 2, 19, 25, 16, 15, 23, 1, 7, 9, 12, 3, 11, 6, 13, 18, 5, 4, 14, 24, 22, 20], // 17
+            [14, 19, 9, 2, 16, 20, 3, 23, 6, 25, 13, 11, 22, 4, 1, 8, 18, 10, 7, 24, 12, 17, 5, 21, 15], // 18
+            [6, 15, 2, 13, 10, 21, 12, 11, 7, 8, 23, 9, 18, 4, 20, 1, 17, 22, 25, 5, 24, 14, 19, 3, 16], // 19
+            [14, 2, 17, 6, 12, 9, 22, 13, 1, 8, 23, 11, 21, 18, 25, 15, 19, 5, 4, 20, 3, 24, 10, 16, 7], // 20
+            [20, 25, 1, 12, 23, 14, 9, 18, 5, 15, 4, 10, 22, 24, 3, 19, 8, 2, 11, 16, 21, 13, 7, 6, 17], // 21
+            [6, 11, 1, 23, 2, 25, 21, 15, 7, 19, 24, 5, 18, 14, 8, 13, 22, 9, 20, 16, 10, 12, 4, 17, 3], // 22
+            [3, 18, 16, 12, 5, 6, 11, 4, 19, 10, 8, 22, 21, 7, 15, 23, 14, 25, 1, 17, 24, 13, 20, 9, 2], // 23
+            [3, 21, 11, 16, 4, 20, 8, 15, 18, 9, 7, 2, 6, 24, 17, 25, 13, 19, 5, 23, 12, 10, 1, 14, 22], // 24
+            [12, 6, 4, 21, 25, 1, 11, 23, 5, 15, 14, 17, 20, 9, 18, 10, 22, 2, 24, 7, 13, 3, 19, 8, 16], // 25
+            [10, 16, 22, 14, 5, 24, 6, 2, 18, 23, 17, 12, 4, 11, 1, 9, 25, 15, 13, 7, 19, 8, 20, 3, 21], // 26
+            [9, 13, 5, 12, 3, 16, 22, 10, 19, 18, 15, 4, 2, 11, 8, 17, 23, 25, 21, 1, 6, 14, 24, 7, 20], // 27
+            [15, 13, 14, 10, 5, 11, 8, 2, 18, 21, 6, 25, 24, 20, 12, 17, 23, 7, 9, 3, 16, 4, 19, 1, 22], // 28
+            [12, 2, 25, 24, 6, 15, 18, 20, 8, 1, 4, 21, 10, 7, 14, 13, 16, 3, 17, 19, 11, 22, 5, 23, 9], // 29
+            [3, 21, 12, 2, 25, 17, 20, 5, 16, 6, 7, 23, 22, 14, 11, 18, 8, 13, 24, 15, 4, 9, 19, 10, 1]  // 30
+        ];
+
+        function sec2time(timeInSeconds) {
+            var pad = function (num, size) {
+                    return ('000' + num).slice(size * -1);
+                },
+                time = parseFloat(timeInSeconds).toFixed(3),
+                hours = Math.floor(time / 60 / 60),
+                minutes = Math.floor(time / 60) % 60,
+                seconds = Math.floor(time - minutes * 60),
+                milliseconds = time.slice(-3);
+
+            return pad(minutes, 2) + ':' + pad(seconds, 2)
+            // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+        }
+
+        function timer(seconds, tick, result) {
+            if (seconds != 0) {
+                tick(seconds);
+                seconds -= 1;
+                setTimeout(function () {
+                    timer(seconds, tick, result);
+                }, 1000);
+            } else {
+                result();
+            }
+        }
+
+        var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
+
+            var table;
+            var table_width = table_width || "100%";
+            var stage = stage;
+            var delay_sec = delay_sec || 7;
+
+            let wrap = createElement("div", null, "table-wrap", {style: "max-width: " + table_width + "px"});
+
+            let stopwatch_wrap = document.createElement('div');
+            let stopwatch = new Stopwatch(stopwatch_wrap, {
+                delay: 10
+            });
+
+            let required_num = 24;
+
+            function createStartWindow() {
+                var start_window_wrap = document.createElement('div');
+                start_window_wrap.className = "start-window";
+                $(elem).html(start_window_wrap);
+                var start_button = document.createElement('button');
+                start_button.className = "start-button";
+                start_button.innerHTML = user_labels.start_btn_label;
+                start_window_wrap.appendChild(start_button);
+                start_button.onclick = function () {
+                    createTable();
+                };
+            }
+
+            function createDelayWindow(delay) {
+                var delay_window_wrap = document.createElement('div');
+                delay_window_wrap.className = "start-window";
+                $(elem).html(delay_window_wrap);
+                var delay_time = document.createElement('div');
+                delay_time.className = "delay-label";
+                delay_window_wrap.appendChild(delay_time);
+                timer(delay, function (s) {
+                    delay_time.innerHTML = user_labels.delay_label + " " + s;
+                }, function () {
+                    createTable();
+                });
+            }
+
+            function showResultWindow() {
+                var result_window_wrap = document.createElement('div');
+                // result_window_wrap.className = "start-window";
+                var result_wrap = document.createElement('div');
+
+                state.result.times = state.result.times.map(function(v) { return Math.round(v) });
+
+                var ER = Number(state.result.times.reduce(function(a, b){ return a + b}, 0)/state.result.times.length).toFixed(1); // эффективность работы
+                var VR =  Number(state.result.times[0]/ER).toFixed(2); // степень вырабатываемости
+                // var PU = Number(times[3]/ER).toFixed(2); // психологическая устойчивость
+                var PU = Number(1/ER).toFixed(2); // психологическая устойчивость
+
+                $(result_wrap).append("<h2>" + user_labels.test_results_label + "</h2>");
+                $(result_wrap).append('<p>' + user_labels.result_label_1 +  '</p>');
+
+                state.result.times.forEach(function (item, i, arr) {
+                    var result_block = document.createElement('div');
+                    result_block.innerHTML = user_labels.table_label + " " + (i + 1) + ": " +  "<strong>" + sec2time(item) + "</strong>";
+                    result_wrap.appendChild(result_block);
+                });
+
+                $(result_wrap).append("<p></p>");
+
+                var VR_result_str = "<p><strong>" + user_labels.VR_label + " : " + VR + "</strong>. "
+
+                VR_result_str += user_labels.VR_label_less_1 + "</p>";
+                $(result_wrap).append(VR_result_str);
+
+                var PU_result_str = "<p><strong>" + user_labels.PU_label + " : " + PU + "</strong>. "
+
+                PU_result_str += user_labels.PU_label_less_1 + "</p>";
+                $(result_wrap).append(PU_result_str);
+
+                result_window_wrap.appendChild(result_wrap);
+                $(elem).html(result_window_wrap);
+                state.completed = true;
+                answer.setJSON({answer: state});
+                $( ".submit.btn-brand", $(elem).closest(".xblock") ).trigger( "click" );
+            }
+
+            function createTable() {
+                wrap.append(stopwatch_wrap);
+                var table_container = $("<div></div>", {
+                    "style": 'padding: 5px;border: 4px solid #046b99;'
+                });
+                [0, 1, 2, 3, 4].forEach(function (container, i) {
+                    var flex_container = $("<div></div>", {
+                        "class": 'flex-container'
+                    });
+                    [0, 1, 2, 3, 4].forEach(function (item, j) {
+                        var num = numbers_arr[5 * i + (j + 1) - 1];
+                        var item = $('<div></div>', {
+                            "class": 'flex-item',
+                            "html": num,
+                            "data-number": num
+                        }).appendTo(flex_container);
+
+                        $(item).click(function (e) {
+                            var clicked_num = parseInt(e.target.dataset.number);
+                            if (clicked_num == required_num) {
+                                required_num += 1;
+                                $('.flex-item').removeClass("last-selected-num");
+                                $(e.target).addClass("last-selected-num");
+                                // css({"visibility": "hidden"})
+                                if (required_num == 26) {
+                                    stage = stage + 1;
+                                    stopwatch.stop();
+                                    state.result.times.push(stopwatch.current_time());
+                                    if (stage !== stages_count) {
+                                        table = new SchulteTable(elem, user_tables[stage], stage, table_width, delay_sec);
+                                        table.start(use_delay=true);
+                                    } else {
+                                        showResultWindow();
+                                    }
+                                }
+                            }
+                        });
+                    });
+                    $(table_container).append(flex_container);
+                    //
+
+                });
+                $(wrap).append(table_container);
+
+                $(elem).html(wrap);
+                $(elem).append('' + user_labels.table_label + " " + (stage + 1) + '/' + stages_count);
+                stopwatch.start();
+            }
+
+            function start(use_delay = false) {
+                if (use_delay) {
+                    createDelayWindow(delay_sec);
+                } else {
+                    createStartWindow();
+                }
+            }
+
+            this.start = start;
+            this.showResultWindow = showResultWindow;
+        };
+
+        var Stopwatch = function (elem, options) {
+
+            var timer = createTimer(),
+                offset,
+                clock,
+                interval;
+
+            options = options || {};
+            options.delay = options.delay || 1;
+
+            elem.appendChild(timer);
+
+            reset();
+
+            // private functions
+            function createTimer() {
+                var timer_div = document.createElement("div");
+                timer_div.className = "timer-block";
+                return timer_div;
+            }
+
+
+            function start() {
+                if (!interval) {
+                    offset = Date.now();
+                    interval = setInterval(update, options.delay);
+                }
+            }
+
+            function stop() {
+                if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
+            }
+
+            function reset() {
+                clock = 0;
+                render();
+            }
+
+            function update() {
+                clock += delta();
+                render();
+            }
+
+            function current_time() {
+                return clock / 1000;
+            }
+
+            function render() {
+                timer.innerHTML = user_labels.time_label + ": " + sec2time(clock / 1000) + " ";
+            }
+
+            function delta() {
+                var now = Date.now(),
+                    d = now - offset;
+
+                offset = now;
+                return d;
+            }
+
+            // public API
+            this.current_time = current_time;
+            this.start = start;
+            this.stop = stop;
+            this.reset = reset;
+        };
+
+        const table_width = 550;
+        const delay_sec = 2; // default 7
+        const stages_count = 2;
+
+        let user_tables = tables.sort(function () {
+            return .5 - Math.random()
+        }).slice(0, stages_count);
+
+        $(document).ready(function () {
+
+            let html_element = document.getElementById("schulte_table");
+            let task_text = createElement("div", null, "task_text", null);
+            task_text.innerHTML = user_labels.text_task_label;
+            html_element.parentNode.prepend(task_text);
+
+            let submit_button = $(html_element).closest(".problem").find('button.submit');
+            submit_button.hide();
+
+            clearProblemSigns(html_element);
+
+            let table = new SchulteTable(html_element, user_tables[0], 0, table_width, delay_sec);
+
+            if(answer.get()) {
+                state = answer.getJSON()["answer"];
+                if(state.completed == true){
+                    table.showResultWindow();
+                    $('span.submit-label', submit_button).html(user_labels.reset_btn_label);
+                    submit_button.show();
+                }
+                else{
+                    table.start();
+                }
+                state.result.times = [];
+                state.completed = false;
+                answer.setJSON({answer: state});
+            }
+            else{
+                table.start();
+            }
+        });
+
+    </script>
+
+
+    <div>
+<!--        <div id="task_text"></div>-->
+        <div id="schulte_table"></div>
+    </div>
+
+    <div id="schulte_table_input" style="display: none;">
+        <customresponse cfn="check_answer">
+            <textline />
+        </customresponse>
+    </div>
+
+</problem>
