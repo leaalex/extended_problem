@@ -1,4 +1,10 @@
 <problem>
+<script type="loncapa/python">
+more_sign = ">"
+def check_answer(expect, ans):
+    return 1
+</script>
+
     <style type="text/css">
 
         .answer-table td {
@@ -6,8 +12,9 @@
             margin: 20px 0;
             padding: 10px;
             border: 1px solid #c8c8c8;
-            /*font-size: 14px;*/
+            font-size: 14px;
         }
+
         .answer-table th {
             background: white;
         }
@@ -17,7 +24,7 @@
             position: relative;
         }
 
-        .radio-td:hover{
+        .radio-td:hover {
             background: #ebf0ff;
         }
 
@@ -39,12 +46,12 @@
             justify-content: center;
         }
 
-        .radio-label input{
+        .radio-label input {
             width: 15px !important;
             height: 15px !important;
         }
 
-        .radio-input:hover{
+        .radio-input:hover {
             cursor: pointer;
         }
 
@@ -69,9 +76,14 @@
             background: #d5f0fd;
         }
 
-        td.empty-td{
+        td.empty-td {
             min-width: 30px;
         }
+
+        span.submit-label {
+            text-transform: initial !important;
+        }
+
 
     </style>
 
@@ -83,60 +95,107 @@
                 en: {
                     start_btn_label: "Начать",
                     reset_btn_label: "Начать заново",
-                    check_btn_label: "Проверить",
+                    change_answers_btn_label: "Исправить ответы",
                     instruction_label: "Инструкция",
-                    instruction_general_1: "Данный текст является надежным и информативным способом самооценки уровня тревожности в данный момент (реактивная тревожность как состояние) и личностной тревожности (как устойчивая характеристика человека).",
-                    instruction_general_2: "Личностная тревожность характеризует устойчивую склонность воспринимать большой круг ситуаций как угрожающие, реагировать на такие ситуации состоянием тревоги. Реактивная тревожность характеризуется напряжением, беспокойством, нервозностью. Очень высокая реактивная тревожность вызывает нарушения внимания, иногда нарушение тонкой координации. Очень высокая личностная тревожность прямо коррелирует с наличием невротического конфликта, с эмоциональными и невротическими срывами и с психосоматическими заболеваниями.",
-                    instruction_general_3: "Но тревожность не является изначально негативной чертой. Определенный уровень тревожности — естественная и обязательная особенность активной личности. При этом существует оптимальный индивидуальный уровень «полезной тревоги».",
-                    rt_label: "Реактивная тревожность",
-                    lt_label: "Личностная тревожность",
-                    rt_low: "низкая тревожность",
-                    rt_medium: "умеренная тревожность",
-                    rt_high: "высокая тревожность",
-                    lt_low: "низкая тревожность",
-                    lt_medium: "умеренная тревожность",
-                    lt_high: "высокая тревожность",
-                    instruction_rt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ В ДАННЫЙ МОМЕНТ. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
-                    instruction_lt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ ОБЫЧНО. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
-                    result_label: "Результаты"
+                    instruction_text: "<p>Представьте себе, что вы – экзаменатор, оценивающий предлагаемые ниже суждения так, что:</p><ul><li>неудовлетворяющие из них лично вас оцениваются <em>единицей</em> или <em>двойкой</em>;</li><li>совпадающие с вашим личным мнением или близкие к нему – <em>четверкой</em> или <em>пятеркой</em>;</li><li>оценка «3» не должна использоваться вовсе.</li></ul><p>Оценивается каждое суждение без особенно долгих раздумий, чтобы не затягивать процедуру экзамена.</p><p>За советами, будучи в положении экзаменатора, вам обращаться не рекомендуется – оценки ставятся по первому ясному впечатлению напротив номеров суждений</p>",
+                    result_label: "Результаты",
+                    result_text: "<p>Ваша мотивационная стратегия:</p>",
+                    some_result_alert_text: "<p>Рекомендуем вам вновь обратиться к вопросам соответствующих столбцов, по которым вы, как экзаменатор, проявили избыточную доброжелательность и тем самым невольно уравняли различное. Исправить достаточно две-три оценки. </p>",
+                    points_label: "балла",
+                    points_1_label: "баллов",
+                    point_label: "балл",
                 },
                 ru: {
                     start_btn_label: "Начать",
                     reset_btn_label: "Начать заново",
-                    check_btn_label: "Проверить",
+                    change_answers_btn_label: "Исправить ответы",
                     instruction_label: "Инструкция",
-                    instruction_general_1: "Данный текст является надежным и информативным способом самооценки уровня тревожности в данный момент (реактивная тревожность как состояние) и личностной тревожности (как устойчивая характеристика человека).",
-                    instruction_general_2: "Личностная тревожность характеризует устойчивую склонность воспринимать большой круг ситуаций как угрожающие, реагировать на такие ситуации состоянием тревоги. Реактивная тревожность характеризуется напряжением, беспокойством, нервозностью. Очень высокая реактивная тревожность вызывает нарушения внимания, иногда нарушение тонкой координации. Очень высокая личностная тревожность прямо коррелирует с наличием невротического конфликта, с эмоциональными и невротическими срывами и с психосоматическими заболеваниями.",
-                    instruction_general_3: "Но тревожность не является изначально негативной чертой. Определенный уровень тревожности — естественная и обязательная особенность активной личности. При этом существует оптимальный индивидуальный уровень «полезной тревоги».",
-                    rt_label: "Реактивная тревожность",
-                    lt_label: "Личностная тревожность",
-                    rt_low: "низкая тревожность",
-                    rt_medium: "умеренная тревожность",
-                    rt_high: "высокая тревожность",
-                    lt_low: "низкая тревожность",
-                    lt_medium: "умеренная тревожность",
-                    lt_high: "высокая тревожность",
-                    instruction_rt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ В ДАННЫЙ МОМЕНТ. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
-                    instruction_lt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ ОБЫЧНО. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
-                    result_label: "Результаты"
+                    instruction_text: "<p>Представьте себе, что вы – экзаменатор, оценивающий предлагаемые ниже суждения так, что:</p><ul><li>неудовлетворяющие из них лично вас оцениваются <em>единицей</em> или <em>двойкой</em>;</li><li>совпадающие с вашим личным мнением или близкие к нему – <em>четверкой</em> или <em>пятеркой</em>;</li><li>оценка «3» не должна использоваться вовсе.</li></ul><p>Оценивается каждое суждение без особенно долгих раздумий, чтобы не затягивать процедуру экзамена.</p><p>За советами, будучи в положении экзаменатора, вам обращаться не рекомендуется – оценки ставятся по первому ясному впечатлению напротив номеров суждений</p>",
+                    result_label: "Результаты",
+                    result_text: "<p>Ваша мотивационная стратегия:</p>",
+                    some_result_alert_text: "<p>Рекомендуем вам вновь обратиться к вопросам соответствующих столбцов, по которым вы, как экзаменатор, проявили избыточную доброжелательность и тем самым невольно уравняли различное. Исправить достаточно две-три оценки. </p>",
+                    points_label: "балла",
+                    points_1_label: "баллов",
+                    point_label: "балл",
                 }
             };
 
+
+            const types_description = {
+                L: `
+                <p><strong>«Лев».</strong> Основной способ (мотив) взаимодействия – «<em>да-да</em>», то есть мотив взаимного принятия внутреннего и внешнего, их взаимного положительного отрицания, обусловливающего возможность саморазвития личности. Конструктивное единство мотивации достижения и мотивации отношения, результатом которого является стремление к сотрудничеству. Уравновешенность внутреннего и внешнего во взаимодействии является основой баланса целей и отношений как во внешнем, так и во внутреннем планах личности. В идеале «Лев» на основе интернальности и экстравертности устремлен к совместному творчеству во всех основных видах деятельности и в преодолении разногласий (по К.Томасу – <em>стремление к сотрудничеству</em>).</p>
+                <p>Может быть Учителем (с большой буквы), (ди)ректором, основателем (научной) школы, собирателем, пастырем, духовным наставником, мастером на все руки. Пассионарность его имеет чрезвычайное общественное значение. Но при нетребовательном к себе отношении и общественной невостребованности «вырождается» в безобидного весельчака, мечтателя, болельщика в общественных явлениях, завсегдатая компаний, «своего парня».</p>
+                <p><em>В случаях крайнего напряжения</em> душевных и физических сил обнаруживается по параметру личностной реактивности в темпераменте холерика, в то время как обычное личностное состояние по параметру его конструктивной активности – сангвиния. Это следует понимать так, что «львом» не рождаются, им становятся. Причем, скорее всего это происходит либо в сфере общения, либо в познавательной деятельности, где для этого имеются специфические, собственно человеческие, родовые для человека разумного «тепличные» условия.</p>
+                <p>Особенно часто тип «льва» диагностируется в научной среде, в выборках школьников и студентов, в благополучных семьях и производственных объединениях. В то же время вне оптимальных условий деятельности или вне специального воспитания «лев» при той же самой мотивационной стратегии проявляет себя, согласно нашей модели типологического единства личности, именно своим естественно-реактивным образом, как холерик, со всеми вытекающими из этого следствиями. В различной мере эффект самовоспитания демонстрируют такие, например, «львы», как Сергий Радонежский, Д.И.Менделеев, В.И.Вернадский, И.П.Павлов.</p>
+                `,
+                P: `<p><strong>«Пантера»</strong>. Основной способ (мотив) взаимодействия – «да – нет», то есть мотив реконструктивного единства мотивации достижения и мотивации отношения, когда самоактуализация личности осуществляется в общении скорее от ума, нежели от сердца.</p>
+                <p>Результатом этой реконструктивной мотивации чаще всего является «<em>избегание</em>» сложных ситуаций, где вновь возникают острые вопросы взаимодействия внутреннего и внешнего. Духовная работа над собою, обостренная рефлексия в самосовершенствовании в целом представляют «пантеру» как интернала, но обращенного более вовнутрь,- то есть интроверта. Мотивация отношения к самому себе доминирует над мотивацией достижения; самоотношения доминируют над целями – более важным становится постижение себя или какой-либо абстрактной истины и только затем уже, через себя, принимается внешний мир. Отсюда общая направленность на виды деятельности, предполагающие уединенность труда: ученый, писатель, композитор, мудрец, отшельник.</p>
+                <p>Обычное личностное состояние по параметру активности – меланхолия, причем именно воспитанная, приобретенная, и не обязательно в благоприятных обстоятельствах жизни.</p>
+                <p>Отсюда понятно, что <em>в случаях стрессовых ситуаций</em>, а еще вероятнее – в благоприятных обстоятельствах, проявляется не меланхолия, а естественно-реактивное состояние человека, в данном варианте мотивации по нашей модели личности – состояние, выраженное темпераментом сангвиника.</p>
+                <p>В положительном смысле <em>проявления реактивности</em> «пантера» приобретает необходимое ей чувство творческой независимости и возможность сотрудничества, а при отрицательном смысле самоосвобождения резко падает самодисциплина и человек стремительно «снижается», избавившись от присущего интерналам чувства ответственности за себя и других.</p>
+                <p>Примеры воспитанной меланхолии являли собою А.П.Чехов, Н.В.Гоголь, А.А.Ухтомский, Г.В.Ф.Гегель и Л.С.Выготский.</p>
+                `,
+                T: `<p><strong>«Тигр»</strong>. Основной способ (мотив) взаимодействия, противоположный мотиву «пантеры» – «нет-да», означающий отрицание внутреннего по отношению к внешнему. Это проявление мотивации относится не только к себе, но и к другим: все должны следовать какой-либо внешне определенной идее, правилу-норме, цели и т.д. – как инструкции.</p>
+                <p>Деструктивное единство мотивации отношения и мотивации достижения обнаруживается в стремлении к «<em>соперничеству</em>», на основе которого осуществляется самовоспитание и самоутверждение личности во внешнем.</p>
+                <p><em>Цели и отношения личности</em> при этом находятся в дисбалансе: доминируют цели, достижение которых, по экстернальным представлениям «тигра», мало зависит от рационального и, в частности, психологического стечения обстоятельств. Психологическое при этом понимается как инструментальное, а не как духовное достоинство человека.</p>
+                <p>Показательно, что Наполеон, являющий собою «тигра», именно инструментально определяет талант полководца как квадрат, одна сторона которого – ум, а другая – мужество. В противоположность духовной пассионарности «льва» выступает, таким образом, пассионарность конкретно материализуемая. Этот пример показывает, что в экстернально-экстравертной (объектной) стратегии поведения «тигров» доминирует экстернальность, облегчающая переход от личностного, воспитанного состояния холерии к естественно-реактивному состоянию флегматика, когда возникает реальная ситуация опасности, или, наоборот, ситуация наибольшего благоприятствования, славы и почета: тогда нет вокруг более спокойного, флегматичного человека, чем только что организовавший конфликт безудержный «тигр». Его мужество при этом как раз и есть свойственная его темпераменту выдержка, инертность активности на индивидно-индивидуальном уровне личности.</p>
+                <p>Неукротимость, бьющая через край энергия личностной холерии «тигров» позволяет им достигнуть в своей самоотверженности очень многого в общественном служении, в том числе и на поприще искусств. «Тигры» часто являются, благодаря своему основному мотиву, полководцами, горящими на работе или на алтаре семьи «воинами», «поэтами». В отрицательном плане они являют собою типы вроде Хлестакова или Ноздрева. Им необходимо в принципе более дорожить своим здоровьем, поскольку по своему темпераменту флегматика они реактивны, то есть достаточно чувствительны и потому действительно «сгорают» в переживаниях от собственного пламени холерии.</p>
+                <p>«Воспитанными» в той или иной мере «тиграми» можно назвать Наполеона, А.С.Пушкина, А.С.Суворова, Э.В.Ильенкова.</p>
+                `,
+                M: `<p><strong>«Медведь»</strong>. Основной способ взаимодействия и его мотив – «нет-нет», то есть мотив взаимного отрицания внутреннего и внешнего, отрицательного отрицания, обусловливающего известную стабильность и равновесность обстоятельного, неспешного развития личности.</p>
+                <p>В принципе инструктивное, это единство мотивации отношения и мотивации достижения в реальности выражается в двух взаимодополняющих формах «<em>приспособления</em>». Первая из них – это форма подавления, властвования над другими и над собою во взаимном отрицании внутреннего мира – как своего, так и мира других людей. Вторая форма – приспособление к нравам других людей и к собственным привычкам, обеспечивающее известную стабильность существования.</p>
+                <p>Вопросы взаимодействия внутреннего и внешнего решаются преимущественно волевым, произвольным образом,- иногда в буквальном смысле последнего – совершенно непредсказуемо.</p>
+                <p>«Медведь» одновременно и экстернал и интроверт, и его поведение может варьировать от «спячки» и покорности, уповающей на счастливый случай, шанс или судьбу, до жестокого подавления своей природы и природы других людей, отношений и вещей. Поэтому «медведь» либо <em>проявляет себя</em> как гедонистически настроенный благодушный художник, музыкант, ученый или писатель, весьма умелый мастер, либо как властелин, царь, законодатель, судья, менеджер, чиновник, практик в лучшем смысле слова, реально и несколько пессимистически представляющий жизнь. Его флегматия, однако, является личностным состоянием, плодом отношения к нему в семье или в ближайшем окружении.</p>
+                <p>В стрессовых ситуациях обнаруживаются проявления значительно большей реактивности, так как по параметру реактивности личности «медведь» – меланхолик. Вследствие этого <em>в решительные моменты жизни</em> «медведь» поступает совершенно экстернально: полагается на других людей, на свой гороскоп, не отстаивает ни целей, ни отношений, уходит в отпуск, в болезнь, под «панцирь». Его спасает обычно достаточно хорошая репутация надежного, постоянного человека, так что этот «панцирь» можно понимать и как авторитет, как обладание властью или мастерством.</p>
+                `
+            };
+
+
             const user_labels = translations[language];
+
+            let answer = new Answer(document.querySelector("#constructive_motivation_input").querySelector("input[type='text']"));
+
+            function clearProblemSigns(element) {
+                let problemXBlock = $(element).closest('.xblock');
+                $(".problem-progress", problemXBlock).hide();
+                $(".button.submit", problemXBlock).hide();
+                $(".notification", problemXBlock).hide();
+                $(".problem-action-buttons-wrapper", problemXBlock).hide();
+            }
+
+            function Answer(elementField) {
+                this.elementField = elementField;
+                this.fieldValue = "";
+                this.fieldObject = {};
+                this.get = function () {
+                    this.fieldValue = elementField.value;
+                    return this.fieldValue;
+                };
+                this.set = function (value) {
+                    if (value == undefined) value = this.fieldValue;
+                    elementField.value = value;
+                };
+                this.getJSON = function () {
+                    if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                    return this.fieldObject;
+                };
+                this.setJSON = function (object) {
+                    if (object == undefined) object = this.fieldObject;
+                    this.set(JSON.stringify(object))
+                };
+                this.isJsonString = function (str) {
+                    try {
+                        JSON.parse(str);
+                    } catch (e) {
+                        return false;
+                    }
+                    return true;
+                };
+            };
 
             var ConstructiveMotivation = function (html_element) {
 
-                // var user_answers = {
-                //     RT: {},
-                //     LT: {}
-                // };
-
-                $(html_element).append("<p>" + user_labels.instruction_general_1 + "</p>");
-                $(html_element).append("<p>" + user_labels.instruction_general_2 + "</p>");
-                $(html_element).append("<p>" + user_labels.instruction_general_3 + "</p>");
-
-                var rt_block = $("<div/>", {id: "rt_block", class: "table-block"}).appendTo(html_element);
-
+                var block = $("<div/>", {class: "table-block"}).appendTo(html_element);
 
                 let questions = {
                     question_1: {
@@ -227,35 +286,34 @@
 
                 let answer_choices = {
                     a: {
-                        text: "1 балл",
+                        text: "1 " + user_labels.point_label,
                         value: 1
                     },
                     b: {
-                        text: "2 балла",
+                        text: "2 " + user_labels.points_label,
                         value: 2
                     },
                     c: {
-                        text: "4 балла",
+                        text: "4 " + user_labels.points_label,
                         value: 4
                     },
                     d: {
-                        text: "5 баллов",
+                        text: "5 " + user_labels.points_1_label,
                         value: 5
                     }
                 };
 
-                create_RT_aswer_table();
-
-                function calculate_results_rt() {
+                function calculate_results() {
                     let results = {
-                        M: 0,
-                        T: 0,
-                        P: 0,
-                        L: 0
+                        points:
+                            {
+                                M: 0,
+                                T: 0,
+                                P: 0,
+                                L: 0,
+                            },
+                        user_types: []
                     };
-
-                    // let for_E1 = [3, 4, 6, 7, 9, 12, 13, 14, 17, 18];
-                    // let for_E2 = [1, 2, 5, 8, 10, 11, 15, 16, 19, 20];
 
                     let for_M = [1, 5, 9, 13, 17, 21, 25];
                     let for_T = [2, 6, 10, 14, 18, 22, 26];
@@ -266,56 +324,65 @@
                         let num_question = parseInt(item.replace("question_", ""));
                         if (Object.keys(answer_choices).includes(state.result.user_answers[item])) {
                             if (for_M.includes(num_question)) {
-                                results.M += answer_choices[state.result.user_answers[item]].value;
+                                results.points.M += answer_choices[state.result.user_answers[item]].value;
                             } else if (for_T.includes(num_question)) {
-                                results.T += answer_choices[state.result.user_answers[item]].value;
+                                results.points.T += answer_choices[state.result.user_answers[item]].value;
                             } else if (for_P.includes(num_question)) {
-                                results.P += answer_choices[state.result.user_answers[item]].value;
+                                results.points.P += answer_choices[state.result.user_answers[item]].value;
                             } else if (for_L.includes(num_question)) {
-                                results.L += answer_choices[state.result.user_answers[item]].value;
-                            }
-
-                            else {
+                                results.points.L += answer_choices[state.result.user_answers[item]].value;
+                            } else {
                                 console.error("Undefined question.");
                             }
                         }
                     });
+
+                    var result_array = Object.keys(results.points).map(function (item) {return {'name': item, 'value': results.points[item]}});
+
+                    let max_points = Math.max.apply(Math, result_array.map(function(item){return item.value}));
+                    results.user_types = result_array.filter(function (item) { return item.value == max_points;});
+
                     return results;
                 }
 
-
-                function createResultBlockRT() {
-                    var result = calculate_results_rt();
-                    console.log(result);
+                function create_result_block() {
                     var result_block = $("<div/>", {
-                        id: "rt_result_block",
                         class: "result-block",
                         html: "<h2>" + user_labels.result_label + ": </h2>"
                     });
 
-                    result_block.append("<p><strong>" + user_labels.rt_label + "</strong></p>");
-                    result_block.append("<p>" + user_labels.rt_low + "</p>");
+                    if (state.result.calculated.user_types.length $more_sign 1){
+                        result_block.append(user_labels.some_result_alert_text);
+                    }
+                    else {
+                        result_block.append(user_labels.result_text);
+                        state.result.calculated.user_types.forEach(function(item){
+                            result_block.append(types_description[item.name]);
+                        });
+                    }
 
+                    $('span.submit-label', submit_button).html(user_labels.change_answers_btn_label);
+                    state.completed = false;
+                    answer.setJSON({answer: state});
+                    $(block).html(result_block);
 
-                    $(rt_block).html(result_block);
-                    // $('body').scrollTo(rt_block);
                     $('html, body').animate({
-                        scrollTop: $(rt_block).offset().top
+                        scrollTop: $(block).offset().top
                     }, 500);
+
                 }
 
-
-                function create_RT_aswer_table() {
+                function create_answer_table() {
 
                     var answer_table = $("<table/>", {
-                        class: "answer-table RT-table"
+                        class: "answer-table ConstructiveMotivation-table"
                     });
 
                     var table_heading = $("<tr/>", {html: "<th></th>"}).appendTo(answer_table);
 
                     Object.keys(answer_choices).forEach(function (item, index) {
-                        table_heading.append( $("<th/>", {html:answer_choices[item].text, class:"heading-td"}));
-                        if (index == 1){
+                        table_heading.append($("<th/>", {html: answer_choices[item].text, class: "heading-td"}));
+                        if (index == 1) {
                             table_heading.append("<th>" + "</th>");
                         }
 
@@ -323,12 +390,10 @@
 
                     Object.keys(questions).forEach(function (item) {
                         var table_tr = $("<tr/>", {});
-
-                        var table_td = $("<td/>", {html: questions[item].text}).appendTo(table_tr);
-
-                        table_td.addClass("title-td");
-                        // class=title-td
-                        state.result.user_answers[item] = "";
+                        var table_td = $("<td/>", {html: questions[item].text, class: "title-td"}).appendTo(table_tr);
+                        if (!state.result.user_answers[item]) {
+                            state.result.user_answers[item] = "";
+                        }
                         Object.keys(answer_choices).forEach(function (choice, index) {
                             let radio_label = $("<label/>", {
                                 class: "radio-label",
@@ -340,72 +405,100 @@
                                 name: item
                             });
 
+                            if (state.result.user_answers[item]) {
+                                if (state.result.user_answers[item] == choice) {
+                                    radio_input.prop('checked', true);
+                                }
+                            }
+
                             radio_label.prepend(radio_input);
                             let choice_td = $("<td/>", {class: "radio-td", html: radio_label});
-                            table_tr.append(choice_td)
+                            table_tr.append(choice_td);
 
                             if (index == 1) {
                                 let empty_td = $("<td/>", {class: "empty-td", html: ""});
                                 table_tr.append(empty_td)
                             }
 
-                            console.log(index);
-
                         });
                         answer_table.append(table_tr)
                     });
 
 
-                    $(rt_block).append("<h2>" + user_labels.instruction_label + "</h2>");
-                    $(rt_block).append("<p>" + user_labels.instruction_rt_text + "</p>");
-                    $(rt_block).append(answer_table);
+                    $(block).append("<h2>" + user_labels.instruction_label + "</h2>");
+                    $(block).append("<p>" + user_labels.instruction_text + "</p>");
+                    $(block).append(answer_table);
 
-                    var check_button_wrap = $("<div/>", {
-                        class: "check-button-wrap"
-                    });
-
-                    var check_button = $("<button/>", {
-                        html: user_labels.check_btn_label,
-                        class: "check-button",
-                        disabled: "disabled"
-                    }).appendTo(check_button_wrap);
-
-                    check_button.click(function () {
-                        createResultBlockRT();
-                    });
-
-                    $(rt_block).append(check_button_wrap);
-
-
-                    $(".RT-table .radio-input").change(function () {
+                    $(".ConstructiveMotivation-table .radio-input").change(function () {
                         state.result.user_answers[this.name] = this.value;
-                        if (Object.keys(state.result.user_answers).map(function (item) { return state.result.user_answers[item] }).every(function (element) { return element.length != 0})) {
-                            $(check_button).removeAttr("disabled");
+                        if (Object.keys(state.result.user_answers).map(function (item) {
+                            return state.result.user_answers[item]
+                        }).every(function (element) {
+                            return element.length != 0
+                        })) {
+                            submit_button.removeAttr("disabled");
+                            state.completed = true;
                         }
-                        console.log(state.result.user_answers, calculate_results_rt());
+                        state.result.calculated = calculate_results();
+                        answer.setJSON({answer: state});
                     });
                 }
 
+                this.create_answer_table = create_answer_table;
+                this.create_result_block = create_result_block;
             };
 
             let state = {
                 completed: false,
                 result: {
-                    types: [],
+                    calculated: {},
                     user_answers: {},
-                    // user_type
                 },
 
             };
 
             let constructive_motivation_block = document.getElementById("constructive_motivation_block");
+            clearProblemSigns(constructive_motivation_block);
+
+            let submit_button = $(constructive_motivation_block).closest(".problem").find('button.submit');
+            submit_button.attr("disabled", "disabled");
+
             let constructive_motivation = new ConstructiveMotivation(constructive_motivation_block);
 
-            console.log(constructive_motivation);
+            if (answer.get()) {
+                state = answer.getJSON()["answer"];
+                console.log(state);
+
+                // $.post("http://statedu.info/", {
+                //     action: 'test_connection',
+                //     key1: 'state'
+                // }, function (result) {
+                //     console.log(result)
+                // });
+
+                if (state.completed == true) {
+                    submit_button.removeAttr("disabled");
+                    constructive_motivation.create_result_block();
+                } else {
+                    state.completed = true;
+                    answer.setJSON({answer: state});
+                    submit_button.removeAttr("disabled");
+                    constructive_motivation.create_answer_table();
+                }
+
+            } else {
+                constructive_motivation.create_answer_table();
+            }
+
+
         });
     </script>
     <div id="constructive_motivation_block"></div>
-
+    <div id="constructive_motivation_input" style="display: none !important;">
+        <customresponse cfn="check_answer">
+            <textline/>
+        </customresponse>
+    </div>
 
 
 </problem>

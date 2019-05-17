@@ -138,9 +138,6 @@
     </style>
 
 <script type="loncapa/python">
-import math
-import json
-
 def check_answer(expect, ans):
     return 1
 </script>
@@ -570,7 +567,7 @@ def check_answer(expect, ans):
         <div id="schulte_table"></div>
     </div>
 
-    <div id="schulte_table_input" style="display: none;">
+    <div id="schulte_table_input" style="display: none !important;">
         <customresponse cfn="check_answer">
             <textline />
         </customresponse>
