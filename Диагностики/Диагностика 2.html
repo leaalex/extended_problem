@@ -49,7 +49,7 @@ def check_answer(expect, ans):
         height: 15px !important;
     }
 
-    .radio-label:hover {
+    .radio-label:hover, .radio-input:hover {
         cursor: pointer;
     }
 
@@ -58,6 +58,10 @@ def check_answer(expect, ans):
         padding: 20px !important;
         border: 1px solid #c8c8c8;
         font-size: 14px;
+    }
+
+    span.submit-label {
+        text-transform: initial !important;
     }
 
 </style>
@@ -107,8 +111,6 @@ def check_answer(expect, ans):
 
 
         function reset_answer(){
-            // state.result.calculated = {};
-            // state.result.user_answers = {};
             state.completed = false;
             answer.setJSON({answer: state});
         }
@@ -383,7 +385,6 @@ def check_answer(expect, ans):
                 },
             ];
 
-
             let fear_block = $("<div/>", {class: "fear-block"}).appendTo(html_element);
 
             function find_types(_types, _points){
@@ -392,11 +393,9 @@ def check_answer(expect, ans):
                         .apply(null, Array((k - j) + 1))
                         .map(function(_, n){ return n + j; });
                 }
-                let ret_item = 'Ошибка при рассчете!';
+                let ret_item = 'Ошибка при расчете результата!';
                 _types.forEach(function (item) {
-                    // console.log(range(item.start,item.end).includes(_points));
                     if(range(item.start,item.end).includes(_points)){
-                        // console.log(item);
                         ret_item = item.text;
                     }
                 });
@@ -404,12 +403,7 @@ def check_answer(expect, ans):
             }
 
             function create_result_block() {
-
                 fear_block.append($("<h2/>", {html: "Расшифровка"}));
-
-
-                console.log(state.result);
-
                 fear_block.append($("<div/>", {html: find_types(types, state.result.calculated.points)}));
             }
 
@@ -448,7 +442,7 @@ def check_answer(expect, ans):
                     let question_answer_table_head = $("<tr/>", { });
                     let question_answer_table_input = $("<tr/>", { });
 
-                    state.result.user_answers[item] = "d";
+                    state.result.user_answers[item] = "";
 
                     Object.keys(answer_choices).forEach(function (answer) {
                         let head_td = $("<th/>", {class: "heading-td", html: answer_choices[answer].text});
@@ -493,6 +487,9 @@ def check_answer(expect, ans):
                             submit_button.removeAttr("disabled");
                             state.completed = true;
                         }
+                        // else{
+                        //         console.log(Object.keys(state.result.user_answers).filter(function (item) {return state.result.user_answers[item] == ""}));
+                        // }
                         state.result.calculated = calculate_result();
                         answer.setJSON({answer: state});
 
@@ -518,7 +515,7 @@ def check_answer(expect, ans):
         clearProblemSigns(fear_diagnostic_block);
 
         let submit_button = $(fear_diagnostic_block).closest(".problem").find('button.submit');
-        // submit_button.attr("disabled", "disabled");
+        submit_button.attr("disabled", "disabled");
 
         let fear_diagnostic = new FearDiagnostic(fear_diagnostic_block);
 
@@ -526,8 +523,9 @@ def check_answer(expect, ans):
             state = answer.getJSON()["answer"];
             if(state.completed){
                 fear_diagnostic.create_result_block();
+                $('span.submit-label', submit_button).html("Пройти еще раз");
+                submit_button.removeAttr("disabled");
                 reset_answer();
-                // state.completed = false;
             }
             else{
                 fear_diagnostic.create_answer_block()
@@ -546,7 +544,7 @@ def check_answer(expect, ans):
 
 
     <div id="fear_diagnostic_block"></div>
-    <div id="fear_diagnostic_input" style="/*display: none !important;*/">
+    <div id="fear_diagnostic_input" style="display: none !important;">
         <customresponse cfn="check_answer">
             <textline/>
         </customresponse>
