@@ -454,7 +454,6 @@ def check_answer(expect, ans):
                     calculated: {},
                     user_answers: {},
                 },
-
             };
 
             let constructive_motivation_block = document.getElementById("constructive_motivation_block");
@@ -469,12 +468,12 @@ def check_answer(expect, ans):
                 state = answer.getJSON()["answer"];
                 console.log(state);
 
-                // $.post("http://statedu.info/", {
-                //     action: 'test_connection',
-                //     key1: 'state'
-                // }, function (result) {
-                //     console.log(result)
-                // });
+                $.post("https://statedu.info/", {
+                    action: 'test_connection',
+                    key1: state
+                }, function (result) {
+                    console.log(result)
+                });
 
                 if (state.completed == true) {
                     submit_button.removeAttr("disabled");

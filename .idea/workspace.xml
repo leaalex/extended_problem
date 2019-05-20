@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="sdf">
+      <change afterPath="$PROJECT_DIR$/Диагностики/Диагностика 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/test1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test1.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
@@ -24,31 +27,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="238" column="41" lean-forward="true" selection-start-line="238" selection-start-column="41" selection-end-line="238" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="325" column="14" selection-start-line="324" selection-start-column="12" selection-end-line="326" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13185">
-              <caret line="1085" column="45" selection-start-line="1085" selection-start-column="42" selection-end-line="1085" selection-end-column="45" />
-              <folding>
-                <element signature="n#style#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="557">
+              <caret line="454" column="54" lean-forward="true" selection-start-line="453" selection-start-column="20" selection-end-line="454" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -65,17 +47,31 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="84" column="2" selection-start-line="84" selection-start-column="2" selection-end-line="84" selection-end-column="2" />
+            <state relative-caret-position="251">
+              <caret line="466" selection-start-line="466" selection-end-line="468" selection-end-column="35" />
               <folding>
+                <element signature="e#1840#7113#0" />
                 <element signature="e#7258#16598#0" />
-                <element signature="e#17039#18193#0" />
+                <element signature="e#16658#16995#0" />
                 <element signature="e#18404#21989#0" />
-                <element signature="e#22029#22535#0" />
-                <element signature="e#22813#25389#0" />
+                <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+              <folding>
+                <element signature="e#1752#2794#0" />
+                <element signature="e#2883#12686#0" />
+                <element signature="e#14258#14290#0" />
                 <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -94,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/heroes_task/heroes_task.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9270">
+            <state relative-caret-position="745">
               <caret line="618" column="8" selection-start-line="618" selection-start-column="8" selection-end-line="618" selection-end-column="88" />
             </state>
           </provider>
@@ -142,17 +138,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>v&gt;</find>
-      <find>&quot;&lt;input&gt;&quot;</find>
-      <find>&quot;&lt;button&gt;&quot;</find>
-      <find>$(&quot;&lt;</find>
-      <find>questions</find>
-      <find>calculate_results_rt</find>
       <find>result</find>
       <find>RT_choices</find>
       <find>answer-table</find>
-      <find>heading-td</find>
-      <find>user_answers</find>
       <find>user_answers.</find>
       <find>rt_label</find>
       <find>check</find>
@@ -161,9 +149,7 @@
       <find>state</find>
       <find>swer_table</find>
       <find>resta</find>
-      <find>reset</find>
       <find>createResultBlock</find>
-      <find>calculate_results</find>
       <find>check_btn_label</find>
       <find>create_answer_table</find>
       <find>RT-table</find>
@@ -172,6 +158,16 @@
       <find>rt_block</find>
       <find>rt</find>
       <find>console.log</find>
+      <find>исправить</find>
+      <find>info</find>
+      <find>reset</find>
+      <find>clearProblemSigns</find>
+      <find>block</find>
+      <find>radio-td</find>
+      <find>heading-td</find>
+      <find>calculate_results</find>
+      <find>user_answers</find>
+      <find>console.lo</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -209,15 +205,17 @@
         <option value="$PROJECT_DIR$/presentations/test_pres.html" />
         <option value="$PROJECT_DIR$/heroes_task/heroes_task.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/test.html" />
+        <option value="$PROJECT_DIR$/Диагностики/Диагностика 1.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/test1.html" />
+        <option value="$PROJECT_DIR$/Диагностики/Диагностика 2.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-22" />
-    <option name="y" value="115" />
-    <option name="width" value="2159" />
-    <option name="height" value="1290" />
+    <option name="x" value="416" />
+    <option name="y" value="79" />
+    <option name="width" value="1458" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -239,22 +237,12 @@
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="heroes_task" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="humor_style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="spielberger_test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="tables_training_apparatus" type="462c0819:PsiDirectoryNode" />
+              <item name="Диагностики" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
@@ -463,7 +451,7 @@
       <workItem from="1557735598355" duration="1812000" />
       <workItem from="1557740358159" duration="26200000" />
       <workItem from="1558011044709" duration="12032000" />
-      <workItem from="1558082024887" duration="7138000" />
+      <workItem from="1558082024887" duration="21765000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -476,13 +464,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="362086000" />
+    <option name="totallyTimeSpent" value="376713000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-22" y="115" width="2159" height="1290" extended-state="0" />
+    <frame x="416" y="79" width="1458" height="1043" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16807117" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25017422" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -805,20 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" selection-start-line="43" selection-end-line="45" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/heroes_task/heroes_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9270">
-          <caret line="618" column="8" selection-start-line="618" selection-start-column="8" selection-end-line="618" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/presentator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -861,21 +835,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="325" column="14" selection-start-line="324" selection-start-column="12" selection-end-line="326" selection-end-column="12" />
+        <state relative-caret-position="557">
+          <caret line="454" column="54" lean-forward="true" selection-start-line="453" selection-start-column="20" selection-end-line="454" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" selection-start-line="43" selection-end-line="45" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="299" selection-start-line="299" selection-end-line="299" />
+          <folding>
+            <element signature="e#270#10163#0" />
+            <element signature="e#10358#10695#0" />
+            <element signature="e#10739#11893#0" />
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/heroes_task/heroes_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="745">
+          <caret line="618" column="8" selection-start-line="618" selection-start-column="8" selection-end-line="618" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="84" column="2" selection-start-line="84" selection-start-column="2" selection-end-line="84" selection-end-column="2" />
+        <state relative-caret-position="251">
+          <caret line="466" selection-start-line="466" selection-end-line="468" selection-end-column="35" />
           <folding>
+            <element signature="e#1840#7113#0" />
             <element signature="e#7258#16598#0" />
-            <element signature="e#17039#18193#0" />
+            <element signature="e#16658#16995#0" />
             <element signature="e#18404#21989#0" />
-            <element signature="e#22029#22535#0" />
-            <element signature="e#22813#25389#0" />
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+          <folding>
+            <element signature="e#1752#2794#0" />
+            <element signature="e#2883#12686#0" />
+            <element signature="e#14258#14290#0" />
             <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
           </folding>
         </state>

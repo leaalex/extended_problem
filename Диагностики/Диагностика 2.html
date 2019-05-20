@@ -1,0 +1,556 @@
+<problem>
+
+<script type="loncapa/python">
+more_sign = ">"
+def check_answer(expect, ans):
+    return 1
+</script>
+
+<style type="text/css">
+
+    .question-block{
+        margin: 10px 0px;
+        padding: 10px;
+        border-bottom: 2px solid #c7c7c9;
+    }
+
+    .radio-td {
+        text-align: center !important;
+        position: relative;
+    }
+
+    .heading-td {
+
+        width: 70px !important;
+        text-align: center !important;
+
+        margin: 20px 0 !important;
+        padding: 2px !important;
+        border: 1px solid #c8c8c8;
+        /*font-size: 14px;*/
+        background: #eee !important;
+    }
+
+    .radio-label {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .radio-label input {
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+    .radio-label:hover {
+        cursor: pointer;
+    }
+
+
+    .question-answer-table td {
+        padding: 20px !important;
+        border: 1px solid #c8c8c8;
+        font-size: 14px;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        let answer = new Answer(document.querySelector("#fear_diagnostic_input").querySelector("input[type='text']"));
+
+        function clearProblemSigns(element) {
+            let problemXBlock = $(element).closest('.xblock');
+            $(".problem-progress", problemXBlock).hide();
+            $(".button.submit", problemXBlock).hide();
+            $(".notification", problemXBlock).hide();
+            $(".problem-action-buttons-wrapper", problemXBlock).hide();
+        }
+
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function () {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function (value) {
+                if (value == undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function () {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function (object) {
+                if (object == undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object))
+            };
+            this.isJsonString = function (str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+
+        function reset_answer(){
+            // state.result.calculated = {};
+            // state.result.user_answers = {};
+            state.completed = false;
+            answer.setJSON({answer: state});
+        }
+
+
+
+        let FearDiagnostic = function (html_element) {
+
+            const questions = {
+                question_1: {
+                    text: "С утра я часто чувствую себя не вполне уверенно."
+                },
+                question_2: {
+                    text: "По большей части чувствую себя скованно, зажато, дискомфортно, стесненно."
+                },
+                question_3: {
+                    text: "При волнении у меня бывает учащенное сердцебиение, стесненное дыхание, дрожь, потливость, скованность, другие неприятные ощущения... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_4: {
+                    text: "При разговоре с людьми легко смущаюсь."
+                },
+                question_5: {
+                    text: "Обычно стараюсь не рисковать."
+                },
+                question_6: {
+                    text: "Мне трудно начинать новые дела из-за опасения неудач."
+                },
+                question_7: {
+                    text: "Люди в основном не заслуживают доверия."
+                },
+                question_8: {
+                    text: "Некоторые люди действуют на меня подавляюще."
+                },
+                question_9: {
+                    text: "Волнуюсь перед экзаменами, перед публичными выступлениями, перед важными встречами... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_10: {
+                    text: "Боюсь своей смерти."
+                },
+                question_11: {
+                    text: "Постоянно испытываю беспокойство за жизнь и здоровье своих близких (родителей, ребенка...)."
+                },
+                question_12: {
+                    text: "Иногда на меня накатывает беспричинная тревога."
+                },
+                question_13: {
+                    text: "Иногда кажется, что вот-вот сойду с ума."
+                },
+                question_14: {
+                    text: "Мне случалось испытывать состояние бесконтрольной паники."
+                },
+                question_15: {
+                    text: "Жизнь для меня так же страшна, как и смерть."
+                },
+                question_16: {
+                    text: "Избегаю с кем-то или с чем-то связываться надолго. Избегаю положений, не имеющих запасного выхода."
+                },
+                question_17: {
+                    text: "Боюсь летать в самолетах, ездить в метро, автобусе, автомобиле, находиться в лифте... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_18: {
+                    text: "Боюсь темноты, избегаю неосвещенных пространств, предпочитаю не спускаться в подвалы, пещеры."
+                },
+                question_19: {
+                    text: "Некоторые животные (пауки, змеи, тараканы, собаки, кошки...) вызывают у меня неодолимый ужас и\или отвращение. Некоторые люди тоже."
+                },
+                question_20: {
+                    text: "Боюсь разлук с близкими, любимыми, даже недолгих."
+                },
+                question_21: {
+                    text: "В полном одиночестве чувствую себя некомфортно."
+                },
+                question_22: {
+                    text: "Если возвращаюсь домой после 11 вечера, всегда прошу меня встретить или проводить (для женщин)."
+                },
+                question_23: {
+                    text: "При нахождении на улице у меня часто возникает боязнь попасть в драку, подвергнуться нападению, ограблению или насилию."
+                },
+                question_24: {
+                    text: "Когда иду с девушкой, стараюсь обходить места, где на нас могут напасть (для мужчин)."
+                },
+                question_25: {
+                    text: "Мне случалось оставаться в бездействии, когда при мне кого-то незаслуженно избивали и унижали."
+                },
+                question_26: {
+                    text: "Неприятно вспоминать о том, что мне случалось оставлять без ответа явное хамство, грубость, агрессию."
+                },
+                question_27: {
+                    text: "Мне случалось испытывать страх перед начальником, учителем, врачом, собственными родителями, милиционером... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_28: {
+                    text: "Если захожу в подъезд, а там сидит компания незнакомых мне парней, предпочитаю дождаться, пока в подъезд войдет кто-нибудь, и идти вместе с ним."
+                },
+                question_29: {
+                    text: "Не переношу вида крови, открытых ран."
+                },
+                question_30: {
+                    text: "Боюсь уколов, зубоврачебных процедур, медицинских манипуляций в ухе, глазу, других органах... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_31: {
+                    text: "Мне случалось (случается) испытывать страх перед половыми контактами."
+                },
+                question_32: {
+                    text: "Чтобы снять беспокойство, начинаю больше есть, больше пить, принимать лекарства... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_33: {
+                    text: "Состояние моего здоровья часто внушает мне опасения."
+                },
+                question_34: {
+                    text: "Боюсь заболеть раком, СПИДОМ, инфарктом, инсультом, чем-то еще... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_35: {
+                    text: "Опасаюсь остаться в условиях, когда невозможна экстренная медицинская помощь."
+                },
+                question_36: {
+                    text: "Оставаясь в полном одиночестве, сплю тревожно, испытываю дискомфорт."
+                },
+                question_37: {
+                    text: "Случается, по несколько раз проверяю, закрыта ли дверь, выключен ли газ, свет, взято ли с собой нужное... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_38: {
+                    text: "Чтобы все было как надо, приходится иногда совершать действия, кажущиеся другим излишними."
+                },
+                question_39: {
+                    text: "Если со мной что-то случается, я потом старательно избегаю похожих ситуаций, похожих людей и всего, что может напоминать случившееся."
+                },
+                question_40: {
+                    text: "Снятся кошмары, дурные сны (иногда...часто...)"
+                },
+                question_41: {
+                    text: "Стараюсь откладывать про запас, «на черный день» деньги, провизию, вещи, материалы... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_42: {
+                    text: "Тревожит перспектива остаться без средств, неохотно трачу свои деньги, даже если их у меня достаточно."
+                },
+                question_43: {
+                    text: "Испытываю сильную тревогу, когда заканчиваются запасы (денег, еды, сигарет, вина...) (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_44: {
+                    text: "Боюсь грозы, урагана, землетрясения, войны, воды, пожара... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_45: {
+                    text: "Боюсь колдовства, порчи, сглаза, нечистой силы, гипноза... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_46: {
+                    text: "Есть что-то (кто-то) в моей жизни, чего (кого) я, в отличие от других людей, боюсь, казалось бы, совершенно необоснованно, по непонятной причине (любой предмет, человек, событие, существо...)"
+                },
+                question_47: {
+                    text: "Боюсь головокружения, потери равновесия, потери сознания, наркоза при операции... (Если верно хотя бы одно, ставьте баллы)."
+                },
+                question_48: {
+                    text: "В делах для меня мучителен выбор и риск решений, надежней задания, определенность."
+                },
+                question_49: {
+                    text: "Иногда я боюсь своих собственных мыслей."
+                },
+                question_50: {
+                    text: "Боюсь уронить себя в глазах людей, быть предметом насмешек для меня унизительно и ужасно."
+                },
+                question_51: {
+                    text: "Иногда ощущаю беспричинное или мало обоснованное чувство вины или стыда."
+                },
+                question_52: {
+                    text: "Предпочитаю общаться только с хорошо знакомыми, близкими людьми."
+                },
+                question_53: {
+                    text: "Чувствую себя в полной безопасности только в одиночестве у себя дома."
+                },
+                question_54: {
+                    text: "Мне кажется, что на окружающих я произвожу, в основном, неблагоприятное впечатление."
+                },
+                question_55: {
+                    text: "Общения с представителями (представительницами) противоположного пола, по возможности, избегаю."
+                },
+                question_56: {
+                    text: "Я очень зависим(а) от мнения окружающих."
+                },
+                question_57: {
+                    text: "В транспорте перед своей остановкой стараюсь встать возле выхода заблаговременно."
+                },
+                question_58: {
+                    text: "Мне не нравится, когда на меня пристально смотрят."
+                },
+                question_59: {
+                    text: "Я боюсь любить или быть любимым (любимой)."
+                },
+                question_60: {
+                    text: "Я боюсь бояться, боюсь состояния страха"
+                }
+            }
+            const answer_choices = {
+                a: {
+                    text: "0",
+                    value: 0
+                },
+                b: {
+                    text: "1",
+                    value: 1
+                },
+                c: {
+                    text: "2",
+                    value: 2
+                },
+                d: {
+                    text: "3",
+                    value: 3
+                },
+                e: {
+                    text: "4",
+                    value: 4
+                },
+                f: {
+                    text: "5",
+                    value: 5
+                },
+                g: {
+                    text: "6",
+                    value: 6
+                },
+                h: {
+                    text: "7",
+                    value: 7
+                },
+                i: {
+                    text: "8",
+                    value: 8
+                },
+                j: {
+                    text: "9",
+                    value: 9
+                },
+                k: {
+                    text: "10",
+                    value: 10
+                }
+            };
+            const types = [
+                {
+                    start: 0,
+                    end: 3,
+                    text: "Запредел ГиперАльфа. Вы уникум, совершенно лишенный страха: инстинкт самосохранения у вас практически отсутствует. Это ненормально. Вам опасно жить: вся ваша жизнь сплошной неосознаваемый риск. Вы нуждаетесь в постоянной заботе, в опеке кого-то предусмотрительного."
+                },
+                {
+                    start: 4,
+                    end: 40,
+                    text: "Альфа Смелый. Вы весьма уверенный и уравновешенный человек с низким уровнем тревожности. Не расположены ни к каким страхам, всегда смелы и, когда ваши интересы и обстоятельства требуют, способны пойти на большой риск. Чтобы испугать вас, надо очень постараться, и это будет лишь ненадолго. Вместе с тем вы хорошо чувствуете опасность и умеете на нее отвечать. Вы прирожденный лидер."
+                },
+                {
+                    start: 41,
+                    end: 120,
+                    text: "Бета Уверенный. Вы человек довольно уверенный, со средним уровнем тревожности, с сильной психикой, но не очень устойчивой. Страх у вас возникает обычно в соответствии с реальными угрозами, но иногда может и превышать их масштаб. А когда угрозы минуют, может оставаться как следовая реакция и переноситься на ситуации, где угроз уже нет. По большей части вы это легко отслеживаете и исправляете. Но иногда скрытая неуверенность может помешать вам достичь максимума возможного. А в целом по отношению к тревоге и страху вы представляете собой завидную норму. Вы способны сами и значительно улучшить свои показатели, и помочь другим."
+                },
+                {
+                    start: 121,
+                    end: 220,
+                    text: "Гамма Колеблющийся. Наверное, вы производите впечатление человека достаточно уверенного. Но внутри не совсем таковы, хотя вам, может быть, так не кажется. Уровень тревожности, в общем, в норме, но в некоторых сферах и\\или в некие времена выходит за ее пределы: бывают состояния мнительности и тревоги, не вполне оправданные обстоятельствами. Свое беспокойство вы можете искусно скрывать напускной беспечностью или бравадой. Иногда становитесь чересчур суетливы, а когда хотите скрыть страх от себя самих, появляется агрессивность. Подсознательные страхи ограничивают ваши достижения в тех областях, где у вас хорошие способности. Хотя таких, как вы, - большинство, вам стоило бы поработать со своим чувством страха."
+                },
+                {
+                    start: 221,
+                    end: 350,
+                    text: "Тета Тревожный. Вы тоже можете производить впечатление человека уравновешенного, но на самом деле расположены к страхам. Уровень тревожности в целом выше нормы. От окружающих вы это можете скрывать, но от себя скрыть не можете. Корни многих ваших недомоганий - именно в страхах. Свою жизнь вы можете строить либо по принципу наименьшего риска, либо, наоборот, по принципу наибольшего, чтобы компенсировать внутреннеизбыточное присутствие страха. При реальных угрозах можете проявлять несоразмерное неистовство, а иногда - отступать... Возможны неадекватные панические реакции. На почве страхов могут возникать срывы. Желательна квалифицированная помощь."
+                },
+                {
+                    start: 351,
+                    end: 550,
+                    text: "Омега Трепещущий. Страх - господин вашей жизни, вы воспринимаете ее как сплошную угрозу. Часто не отличаете реальных угроз от мнимых; возможны неоправданные боязни - фобии, имеющие навязчивый характер. Страх побуждает вас предельно сузить границы вашего существования. Лишь иногда решаетесь выходить за пределы своих привычных ограничений и в эти моменты чувствуете, что возможна совсем иная жизнь. Это действительно так! Придется только как следует собою заняться, хорошо бы с помощью умелого психотерапевта."
+                },
+                {
+                    start: 550,
+                    end: 601,
+                    text: "Запредел ГиперОмега. Ваша жизнь - сплошной ад боязней, страхов и ужасов. Живете в непрерывном ожидании катастрофы, жизнь и смерть для вас равно страшны. Без лечебной поддержки не обойтись."
+                },
+            ];
+
+
+            let fear_block = $("<div/>", {class: "fear-block"}).appendTo(html_element);
+
+            function find_types(_types, _points){
+                function range(j, k) {
+                    return Array
+                        .apply(null, Array((k - j) + 1))
+                        .map(function(_, n){ return n + j; });
+                }
+                let ret_item = 'Ошибка при рассчете!';
+                _types.forEach(function (item) {
+                    // console.log(range(item.start,item.end).includes(_points));
+                    if(range(item.start,item.end).includes(_points)){
+                        // console.log(item);
+                        ret_item = item.text;
+                    }
+                });
+                return ret_item;
+            }
+
+            function create_result_block() {
+
+                fear_block.append($("<h2/>", {html: "Расшифровка"}));
+
+
+                console.log(state.result);
+
+                fear_block.append($("<div/>", {html: find_types(types, state.result.calculated.points)}));
+            }
+
+            function calculate_result(){
+                let points = 0;
+                Object.keys(state.result.user_answers).forEach(function (item, idx) {
+                    if(answer_choices[state.result.user_answers[item]]){
+                        points += answer_choices[state.result.user_answers[item]].value;
+                    }
+
+                });
+                return {points: points}
+            }
+
+
+            function create_answer_block() {
+
+                let task_text = `
+                                <p>Вы увидите 60 утверждений. Это сводный обзор главнейших человеческих страхов. И это же - зеркало для вашей самооценки: поглядевшись в него, вы сможете определить у себя и общее "количество" страха, и его уровень в той или иной жизненной сфере, в конкретной направленности. Учитывается при этом, что есть страхи осознаваемые и есть неосознаваемые.</p>
+                                <p>Пожалуйста, внимательно прочитайте все утверждения. Каждое из них может иметь к вам какое-то отношение, может быть до какой-то степени справедливым для вас. Но может быть и не так - может к вам вовсе не относиться. Если вы согласитесь с утверждением полностью, на 100%, поставьте 10 баллов - значит, оно справедливо для вас вполне. Если не согласны совсем, если к вам утверждение ни в какой степени не относится - ставьте 0. Если согласны наполовину, ставьте 5 баллов. Если более чем наполовину - соответственно, 6, 7, 8 или 9 баллов. Если менее, чем наполовину - от 4 до 1 балла.</p>
+                                <p>Для облегчения попробуйте вспомнить 5 или 10 ситуаций или случаев, о которых идет речь в утверждении, и определить, сколько раз из 5 или 10 ваше поведение (самочувствие) соответствовало утверждению. Например: из 10 разговоров с людьми в среднем в 5 я испытываю смущение; из 10 дел в 3 рискую; за десяток ночей раз-другой может присниться кошмар...</p>
+                                <p>Когда каждое утверждение получит ваш самооценочный балл, нажмите кнопку «Отправить» и обратитесь к далее следующей расшифровке результата.</p>
+                                `
+
+                fear_block.append(task_text);
+
+                state.result.calculated = {};
+
+                Object.keys(questions).forEach(function (item) {
+                    let question_num = item.replace("question_", "");
+                    let question_block = $("<div/>", {class: "question-block", });
+                    let question_title_block = $("<div/>", {class: "question-title-block", html: "<strong>" + question_num + ". </strong>" + questions[item].text});
+
+                    let question_answer_table = $("<table/>", {class: "question-answer-table" });
+
+                    let question_answer_table_head = $("<tr/>", { });
+                    let question_answer_table_input = $("<tr/>", { });
+
+                    state.result.user_answers[item] = "d";
+
+                    Object.keys(answer_choices).forEach(function (answer) {
+                        let head_td = $("<th/>", {class: "heading-td", html: answer_choices[answer].text});
+                        question_answer_table_head.append(head_td);
+
+                        let answer_td = $("<td/>", {class: "radio-td"});
+
+                        let radio_label = $("<label/>", {
+                            class: "radio-label",
+                        });
+                        let radio_input = $("<input/>", {
+                            type: "radio",
+                            class: "radio-input",
+                            value: answer,
+                            name: item
+                        });
+
+                        radio_label.prepend(radio_input);
+
+                        answer_td.append(radio_label);
+
+                        question_answer_table_input.append(answer_td);
+
+                    });
+
+                    question_answer_table.append(question_answer_table_head);
+                    question_answer_table.append(question_answer_table_input);
+
+                    question_block.append(question_title_block);
+                    question_block.append(question_answer_table);
+
+                    fear_block.append(question_block);
+
+
+                    $(".radio-input", fear_block).change(function () {
+                        state.result.user_answers[this.name] = this.value;
+                        if (Object.keys(state.result.user_answers).map(function (item) {
+                            return state.result.user_answers[item]
+                        }).every(function (element) {
+                            return element.length != 0
+                        })) {
+                            submit_button.removeAttr("disabled");
+                            state.completed = true;
+                        }
+                        state.result.calculated = calculate_result();
+                        answer.setJSON({answer: state});
+
+                    });
+
+                });
+            }
+
+            this.create_answer_block = create_answer_block;
+            this.create_result_block = create_result_block;
+
+        };
+
+        let state = {
+            completed: false,
+            result: {
+                calculated: {},
+                user_answers: {},
+            },
+        };
+
+        let fear_diagnostic_block = document.getElementById("fear_diagnostic_block");
+        clearProblemSigns(fear_diagnostic_block);
+
+        let submit_button = $(fear_diagnostic_block).closest(".problem").find('button.submit');
+        // submit_button.attr("disabled", "disabled");
+
+        let fear_diagnostic = new FearDiagnostic(fear_diagnostic_block);
+
+        if (answer.get()) {
+            state = answer.getJSON()["answer"];
+            if(state.completed){
+                fear_diagnostic.create_result_block();
+                reset_answer();
+                // state.completed = false;
+            }
+            else{
+                fear_diagnostic.create_answer_block()
+            }
+        }
+        else{
+            fear_diagnostic.create_answer_block()
+        }
+
+
+
+    });
+
+
+</script>
+
+
+    <div id="fear_diagnostic_block"></div>
+    <div id="fear_diagnostic_input" style="/*display: none !important;*/">
+        <customresponse cfn="check_answer">
+            <textline/>
+        </customresponse>
+    </div>
+
+
+</problem>

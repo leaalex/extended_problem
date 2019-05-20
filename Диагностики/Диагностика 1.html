@@ -1,0 +1,382 @@
+<problem>
+    <script type="loncapa/python">
+more_sign = ">"
+def check_answer(expect, ans):
+    return 1
+
+    </script>
+
+    <style type="text/css">
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            const questions = {
+                question_1: {
+                    A: {
+                        text: "Иногда я представляю право решать проблему другим."
+                    },
+                    B: {
+                        text: "Я стараюсь подчеркнуть общее в наших позициях, а не обсуждать спорные моменты."
+                    }
+                },
+                question_2: {
+                    A: {
+                        text: "Я пытаюсь найти компромиссное решение."
+                    },
+                    B: {
+                        text: "Я пытаюсь учесть все интересы, как свои, так и оппонента."
+                    }
+                },
+                question_3: {
+                    A: {
+                        text: "Обычно я твердо стою на своем."
+                    },
+                    B: {
+                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения."
+                    }
+                },
+                question_4: {
+                    A: {
+                        text: "Я пытаюсь найти компромиссное решение."
+                    },
+                    B: {
+                        text: "Иногда я жертвую собственными интересами ради интересов противоположной стороны."
+                    }
+                },
+                question_5: {
+                    A: {
+                        text: "При выработке решения ищу помощи со стороны других."
+                    },
+                    B: {
+                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях."
+                    }
+                },
+                question_6: {
+                    A: {
+                        text: "Я пытаюсь не создавать себе репутацию неприятного человека."
+                    },
+                    B: {
+                        text: "Я пытаюсь навязать другим свою позицию."
+                    }
+                },
+                question_7: {
+                    A: {
+                        text: "Я пытаюсь отложить решение вопроса, чтобы иметь время тщательно его обдумать."
+                    },
+                    B: {
+                        text: "Я жертвую одними выгодами, чтобы получить взамен другие."
+                    }
+                },
+                question_8: {
+                    A: {
+                        text: "Обычно я твердо настаиваю на своем."
+                    },
+                    B: {
+                        text: "Я пытаюсь сразу же открыто обсудить все интересы и спорные вопросы."
+                    }
+                },
+                question_9: {
+                    A: {
+                        text: "Я чувствую, что различия в позициях не всегда стоят того, чтобы о них беспокоиться."
+                    },
+                    B: {
+                        text: "Я прилагаю некоторые усилия, чтобы повернуть дело на свой лад."
+                    }
+                },
+                question_10: {
+                    A: {
+                        text: "Я твердо настаиваю на своем."
+                    },
+                    B: {
+                        text: "Я пытаюсь найти компромиссное решение."
+                    }
+                },
+                question_11: {
+                    A: {
+                        text: "Я пытаюсь сразу же открыто обсудить все интересы и спорные вопросы."
+                    },
+                    B: {
+                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения."
+                    }
+                },
+                question_12: {
+                    A: {
+                        text: "Иногда я избегаю занимать позицию, ведущую к конфронтации."
+                    },
+                    B: {
+                        text: "Я готов кое в чем уступить оппоненту, если он тоже мне уступит."
+                    }
+                },
+                question_13: {
+                    A: {
+                        text: "Я предлагаю вариант «ни вам, ни нам»."
+                    },
+                    B: {
+                        text: "Я настаиваю на принятии моих условий."
+                    }
+                },
+                question_14: {
+                    A: {
+                        text: "Я излагаю оппоненту мои соображения и интересуюсь его идеями."
+                    },
+                    B: {
+                        text: "Я пытаюсь продемонстрировать оппоненту логичность и выгоду принятия моих условий."
+                    }
+                },
+                question_15: {
+                    A: {
+                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения."
+                    },
+                    B: {
+                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях."
+                    }
+                },
+                question_16: {
+                    A: {
+                        text: "Я стараюсь щадить чувства других."
+                    },
+                    B: {
+                        text: "Я пытаюсь убедить оппонента в выгодности принятия моих условий."
+                    }
+                },
+                question_17: {
+                    A: {
+                        text: "Обычно я твердо настаиваю на своем."
+                    },
+                    B: {
+                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях."
+                    }
+                },
+                question_18: {
+                    A: {
+                        text: "Я позволяю оппоненту придерживаться своего мнения, если ему от этого лучше."
+                    },
+                    B: {
+                        text: "Я согласен кое в чем уступить оппоненту, если он тоже кое в чем мне уступит."
+                    }
+                },
+                question_19: {
+                    A: {
+                        text: "Я пытаюсь сразу же, открыто, обсудить все интересы и спорные вопросы."
+                    },
+                    B: {
+                        text: "Я пытаюсь отложить принятие решения, чтобы иметь время тщательно его обдумать."
+                    }
+                },
+                question_20: {
+                    A: {
+                        text: "Я пытаюсь сразу же обсудить противоречия."
+                    },
+                    B: {
+                        text: "Я пытаюсь найти справедливое сочетание из выгод и уступок для каждого из нас."
+                    }
+                },
+                question_21: {
+                    A: {
+                        text: "При подготовке к переговорам я стараюсь учитывать интересы оппонента."
+                    },
+                    B: {
+                        text: "Я больше склонен к непосредственному и открытому обсуждению проблемы."
+                    }
+                },
+                question_22: {
+                    A: {
+                        text: "Я стараюсь найти позицию, находящуюся между позицией оппонента и моей."
+                    },
+                    B: {
+                        text: "Я настаиваю на своих интересах."
+                    }
+                },
+                question_23: {
+                    A: {
+                        text: "Очень часто я стараюсь удовлетворить все интересы, свои и оппонента."
+                    },
+                    B: {
+                        text: "Иногда я предоставляю право решать проблему другим."
+                    }
+                },
+                question_24: {
+                    A: {
+                        text: "Я стараюсь пойти навстречу оппоненту, если его условия слишком для него много значат."
+                    },
+                    B: {
+                        text: "Я пытаюсь склонить оппонента к компромиссу."
+                    }
+                },
+                question_25: {
+                    A: {
+                        text: "Я пытаюсь продемонстрировать оппоненту логичность и выгоду принятия моих условий."
+                    },
+                    B: {
+                        text: "При подготовке к переговорам я пытаюсь учитывать интересы оппонента."
+                    }
+                },
+                question_26: {
+                    A: {
+                        text: "Я предлагаю вариант «ни вам, ни нам»."
+                    },
+                    B: {
+                        text: "Я почти всегда пытаюсь удовлетворить все пожелания, как свои, так и оппонента."
+                    }
+                },
+                question_27: {
+                    A: {
+                        text: "Иногда я избегаю занимать позицию, ведущую к конфронтации."
+                    },
+                    B: {
+                        text: "Я позволяю оппоненту придерживаться своего мнения, если ему от этого лучше."
+                    }
+                },
+                question_28: {
+                    A: {
+                        text: "Обычно я твердо стою на своем."
+                    },
+                    B: {
+                        text: "При выработке решения я постоянно ищу помощи со стороны других."
+                    }
+                },
+                question_29: {
+                    A: {
+                        text: "Я предлагаю вариант «ни вам, ни нам»."
+                    },
+                    B: {
+                        text: "Я чувствую, что различия в позициях не всегда стоят того, чтобы о них беспокоиться."
+                    }
+                },
+                question_30: {
+                    A: {
+                        text: "Я стараюсь щадить чувства других."
+                    },
+                    B: {
+                        text: "Я всегда стараюсь найти решение проблемы совместно с оппонентом."
+                    }
+                },
+            }
+
+            let answer = new Answer(document.querySelector("#thomas_kilmann_diagnostic_input").querySelector("input[type='text']"));
+
+            function clearProblemSigns(element) {
+                let problemXBlock = $(element).closest('.xblock');
+                $(".problem-progress", problemXBlock).hide();
+                $(".button.submit", problemXBlock).hide();
+                $(".notification", problemXBlock).hide();
+                $(".problem-action-buttons-wrapper", problemXBlock).hide();
+            }
+
+            function Answer(elementField) {
+                this.elementField = elementField;
+                this.fieldValue = "";
+                this.fieldObject = {};
+                this.get = function () {
+                    this.fieldValue = elementField.value;
+                    return this.fieldValue;
+                };
+                this.set = function (value) {
+                    if (value == undefined) value = this.fieldValue;
+                    elementField.value = value;
+                };
+                this.getJSON = function () {
+                    if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                    return this.fieldObject;
+                };
+                this.setJSON = function (object) {
+                    if (object == undefined) object = this.fieldObject;
+                    this.set(JSON.stringify(object))
+                };
+                this.isJsonString = function (str) {
+                    try {
+                        JSON.parse(str);
+                    } catch (e) {
+                        return false;
+                    }
+                    return true;
+                };
+            };
+
+
+            let ThomasKilmannDiagnostic = function (html_element) {
+
+                let block = $("<div/>", {class: "ThomasKilmannDiagnostic-block"}).appendTo(html_element);
+
+                function create_answer_block() {
+
+                    Object.keys(questions).forEach(function (item) {
+
+                        let question_block = $('<div/>', {class: 'question-block'});
+                        let question_num_block = $('<div/>', {class: 'question-num-block', html: item.replace("question_", "")});
+                        question_block.append(question_num_block);
+
+                        Object.keys(questions[item]).forEach(function (answer) {
+                            let answer_block = $('<div/>', {class: 'answer-block'});
+
+                            let radio_label = $("<label/>", {
+                                html: questions[item][answer].text,
+                                class: "radio-label",
+                            });
+                            let radio_input = $("<input/>", {
+                                type: "radio",
+                                class: "radio-input",
+                                value: answer,
+                                name: item
+                            });
+
+                            radio_label.prepend(radio_input);
+                            $(answer_block).append(radio_label);
+                            $(question_block).append(answer_block);
+                        });
+
+
+                        // question_block.append(questions[item].A.text + "/n" + questions[item].B.text);
+                        // question_block.append();
+
+                        $(block).append(question_block);
+
+
+                    })
+
+
+                }
+
+                function create_result_block() {
+
+                }
+
+                this.create_answer_block = create_answer_block;
+                this.create_result_block = create_result_block;
+            };
+
+            let state = {
+                completed: false,
+                result: {
+                    calculated: {},
+                    user_answers: {},
+                },
+            };
+
+            let thomas_kilmann_diagnostic_block = document.getElementById("thomas_kilmann_diagnostic_block");
+            clearProblemSigns(thomas_kilmann_diagnostic_block);
+
+            let submit_button = $(thomas_kilmann_diagnostic_block).closest(".problem").find('button.submit');
+            submit_button.attr("disabled", "disabled");
+
+            let thomas_kilmann_diagnostic = new ThomasKilmannDiagnostic(thomas_kilmann_diagnostic_block);
+
+            thomas_kilmann_diagnostic.create_answer_block()
+
+        });
+
+
+    </script>
+
+
+    <div id="thomas_kilmann_diagnostic_block"></div>
+    <div id="thomas_kilmann_diagnostic_input" style="/*display: none !important;*/">
+        <customresponse cfn="check_answer">
+            <textline/>
+        </customresponse>
+    </div>
+
+
+</problem>
