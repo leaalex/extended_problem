@@ -1,0 +1,268 @@
+<problem>
+    <script type="loncapa/python">
+more_sign = ">"
+def check_answer(expect, ans):
+    return 1
+
+
+    </script>
+    <style type="text/css">
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            let answer = new Answer(document.querySelector("#role_positions_block_input").querySelector("input[type='text']"));
+
+            function clearProblemSigns(element) {
+                let problemXBlock = $(element).closest('.xblock');
+                $(".problem-progress", problemXBlock).hide();
+                $(".button.submit", problemXBlock).hide();
+                $(".notification", problemXBlock).hide();
+                $(".problem-action-buttons-wrapper", problemXBlock).hide();
+            }
+
+            function Answer(elementField) {
+                this.elementField = elementField;
+                this.fieldValue = "";
+                this.fieldObject = {};
+                this.get = function () {
+                    this.fieldValue = elementField.value;
+                    return this.fieldValue;
+                };
+                this.set = function (value) {
+                    if (value == undefined) value = this.fieldValue;
+                    elementField.value = value;
+                };
+                this.getJSON = function () {
+                    if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                    return this.fieldObject;
+                };
+                this.setJSON = function (object) {
+                    if (object == undefined) object = this.fieldObject;
+                    this.set(JSON.stringify(object))
+                };
+                this.isJsonString = function (str) {
+                    try {
+                        JSON.parse(str);
+                    } catch (e) {
+                        return false;
+                    }
+                    return true;
+                };
+            };
+
+            function reset_answer() {
+                state.completed = false;
+                answer.setJSON({answer: state});
+            }
+
+            let RolePositionsDiagnostic = function (html_element) {
+                let role_positions_block = $("<div/>", {class: "role-positions-block"});
+                html_element.append(role_positions_block);
+
+                const questions = {
+                    question_1:
+                        {
+                            text: "Мне порой не хватает выдержки."
+                        },
+                    question_2:
+                        {
+                            text: "Если мои желания мешают мне, то я умею их подавлять."
+                        },
+                    question_3:
+                        {
+                            text: "Родители как более взрослые люди должны устраивать семейную жизнь сво­их детей."
+                        },
+                    question_4:
+                        {
+                            text: "Я иногда преувеличиваю свою роль в каких-либо событиях."
+                        },
+                    question_5:
+                        {
+                            text: "Меня провести нелегко."
+                        },
+                    question_6:
+                        {
+                            text: "Мне бы понравилось быть воспитателем."
+                        },
+                    question_7:
+                        {
+                            text: "Бывает, мне хочется подурачиться, как маленькому."
+                        },
+                    question_8:
+                        {
+                            text: "Думаю, что правильно понимаю все происходящие события."
+                        },
+                    question_9:
+                        {
+                            text: "Каждый должен выполнять свой долг."
+                        },
+                    question_10:
+                        {
+                            text: "Нередко я поступаю не как надо, а как хочется."
+                        },
+                    question_11:
+                        {
+                            text: "Принимая решение, я стараюсь продумать его последствия."
+                        },
+                    question_12:
+                        {
+                            text: "Младшее поколение должно учиться у старших, как ему следует жить."
+                        },
+                    question_13:
+                        {
+                            text: "Я, как и многие люди, бываю обидчив."
+                        },
+                    question_14:
+                        {
+                            text: "Мне удается видеть в людях больше, чем они говорят о себе."
+                        },
+                    question_15:
+                        {
+                            text: "Дети должны безусловно следовать указаниям родителей."
+                        },
+                    question_16:
+                        {
+                            text: "Я — увлекающийся человек."
+                        },
+                    question_17:
+                        {
+                            text: "Мой основной критерий оценки человека — объективность."
+                        },
+                    question_18:
+                        {
+                            text: "Мои взгляды непоколебимы."
+                        },
+                    question_19:
+                        {
+                            text: "Бывает, что я не уступаю в споре лишь потому, что не хочу уступать."
+                        },
+                    question_20:
+                        {
+                            text: "Правила оправданны лишь до тех пор, пока они полезны."
+                        },
+                    question_21:
+                        {
+                            text: "Люди должны соблюдать все правила независимо от обстоятельств."
+                        }
+                }
+                const answer_choices = {
+                    a: {
+                        text: "0",
+                        value: 0
+                    },
+                    b: {
+                        text: "1",
+                        value: 1
+                    },
+                    c: {
+                        text: "2",
+                        value: 2
+                    },
+                    d: {
+                        text: "3",
+                        value: 3
+                    },
+                    e: {
+                        text: "4",
+                        value: 4
+                    },
+                    f: {
+                        text: "5",
+                        value: 5
+                    },
+                    g: {
+                        text: "6",
+                        value: 6
+                    },
+                    h: {
+                        text: "7",
+                        value: 7
+                    },
+                    i: {
+                        text: "8",
+                        value: 8
+                    },
+                    j: {
+                        text: "9",
+                        value: 9
+                    },
+                    k: {
+                        text: "10",
+                        value: 10
+                    }
+                };
+                const types = {
+                    child: [1, 4, 7, 10, 13, 16, 19],
+                    adult: [2, 5, 8, 11, 14, 17, 20],
+                    parent:[3, 6, 9, 12, 15, 18, 21]
+                };
+
+                function calculate_result() {
+                    let result = {
+                        child: 0,
+                        adult: 0,
+                        parent: 0
+                    };
+                }
+
+
+                function create_answer_block() {
+
+                }
+
+                function create_result_block() {
+
+                }
+
+
+                this.create_answer_block = create_answer_block;
+                this.create_result_block = create_result_block;
+
+            };
+
+
+            let state = {
+                completed: false,
+                result: {
+                    calculated: {},
+                    user_answers: {},
+                },
+            };
+
+            let role_positions_block = document.getElementById("role_positions_block");
+            clearProblemSigns(role_positions_block);
+
+            let submit_button = $(role_positions_block).closest(".problem").find('button.submit');
+            submit_button.attr("disabled", "disabled");
+
+            let role_positions_diagnostic = new RolePositionsDiagnostic(role_positions_block);
+
+            // if (answer.get()) {
+            //     state = answer.getJSON()["answer"];
+            //     if(state.completed){
+            //         role_positions_diagnostic.create_result_block();
+            //         $('span.submit-label', submit_button).html("Пройти еще раз");
+            //         submit_button.removeAttr("disabled");
+            //         reset_answer();
+            //     }
+            //     else{
+            //         role_positions_diagnostic.create_answer_block()
+            //     }
+            // }
+            // else{
+            role_positions_diagnostic.create_answer_block()
+            // }
+
+        });
+    </script>
+
+
+    <div id="role_positions_block"></div>
+    <div id="role_positions_block_input" style="display: none !important;">
+        <customresponse cfn="check_answer">
+            <textline/>
+        </customresponse>
+    </div>
+</problem>
