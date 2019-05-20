@@ -8,12 +8,79 @@ def check_answer(expect, ans):
     </script>
 
     <style type="text/css">
+
+        .answer-table td {
+            border: 1px solid;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #c8c8c8;
+            font-size: 14px;
+        }
+
+        .answer-table th {
+            background: white;
+        }
+
+        .radio-td {
+            text-align: center;
+            position: relative;
+            height: 30px;
+        }
+
+        .title-td {
+            padding: 6px !important;
+
+        }
+
+        .radio-label {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radio-label input {
+            width: 15px !important;
+            height: 15px !important;
+        }
+
+        .radio-input:hover {
+            cursor: pointer;
+        }
+
+        .answer-table tr:hover {
+            background: #d5f0fd;
+        }
+
+        th.heading-td {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 80px !important;
+            text-align: center !important;
+
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #c8c8c8;
+            /*font-size: 14px;*/
+            background: #eee !important;
+        }
+        span.submit-label {
+            text-transform: initial !important;
+        }
+
     </style>
 
     <script type="text/javascript">
         $(document).ready(function () {
 
-            let answer = new Answer(document.querySelector("#fear_diagnostic_input").querySelector("input[type='text']"));
+            let answer = new Answer(document.querySelector("#temperament_diagnostic_input").querySelector("input[type='text']"));
 
             function clearProblemSigns(element) {
                 let problemXBlock = $(element).closest('.xblock');
@@ -57,8 +124,6 @@ def check_answer(expect, ans):
                 state.completed = false;
                 answer.setJSON({answer: state});
             }
-
-
 
             let TemperamentDiagnostic = function (html_element) {
 
@@ -258,33 +323,140 @@ def check_answer(expect, ans):
                         y: [2, 4, 7, 9, 11, 14, 16, 19, 21, 23, 26, 28, 31, 33, 35, 38, 40, 43, 45, 47, 50, 52, 55, 57],
                         n: []
                     },
-                    Lying: {
-                        n: [6, 24, 36],
-                        y: [12, 18, 30, 42, 48, 54]
+                    lying: {
+                        y: [6, 24, 36],
+                        n: [12, 18, 30, 42, 48, 54]
                     }
                 };
 
+                function calculate_result(){
+                    let result = {
+                        extraversion: 0,
+                        neuroticism: 0,
+                        lying: 0
+                    };
+
+                    Object.keys(state.result.user_answers).forEach(function (item, idx) {
+                        let num_question = parseInt(item.replace("question_", ""));
+
+                        if (Object.keys(answer_choices).includes(state.result.user_answers[item])) {
+                            if(types.extraversion.y.includes(num_question)){
+                                if (state.result.user_answers[item] === 'y'){
+                                    result.extraversion += 1;
+                                }
+                            }
+                            else if(types.extraversion.n.includes(num_question)){
+                                if (state.result.user_answers[item] === 'n'){
+                                    result.extraversion += 1;
+                                }
+                            }
+                            if(types.neuroticism.y.includes(num_question)){
+                                if (state.result.user_answers[item] === 'y'){
+                                    result.neuroticism += 1;
+                                }
+                            }
+                            else if(types.neuroticism.n.includes(num_question)){
+                                if (state.result.user_answers[item] === 'n'){
+                                    result.neuroticism += 1;
+                                }
+                            }
+                            if(types.lying.y.includes(num_question)){
+                                console.log(state.result.user_answers[item]);
+                                if (state.result.user_answers[item] === 'y'){
+                                    result.lying += 1;
+                                }
+                            }
+                            else if(types.lying.n.includes(num_question)){
+                                if (state.result.user_answers[item] === 'n'){
+                                    result.lying += 1;
+                                }
+                            }
+                            else{
+                                // console.error("Undefined question.");
+                            }
+                        }
+                        else{
+                            // console.error("Undefined answer.");
+                        }
+                    });
+
+                    return result;
+                }
 
                 function create_answer_block() {
 
-                    var answer_table = $("<table/>", {
+                    let answer_table = $("<table/>", {
                         class: "answer-table"
                     });
+                    state.result.calculated = {};
 
-                    var table_heading = $("<tr/>", {html: "<th></th>"}).appendTo(answer_table);
+                    let thead = $("<thead/>").appendTo(answer_table);
 
-                    Object.keys(answer_choices).forEach(function (item, index) {
+                    var table_heading = $("<tr/>", {html: $("<th/>", {html: "Вопрос",class: "heading-td" } )}).appendTo(thead);
+
+                    Object.keys(answer_choices).forEach(function (item) {
                         table_heading.append($("<th/>", {html: answer_choices[item].text, class: "heading-td"}));
-                        if (index == 1) {
-                            table_heading.append("<th>" + "</th>");
-                        }
+                    });
 
+                    let tbody = $("<tbody/>",{});
+                    answer_table.append(tbody);
+
+
+
+                    Object.keys(questions).forEach(function (item) {
+
+                        let question_num = item.replace("question_", "");
+                        state.result.user_answers[item] = "";
+
+                        var table_tr = $("<tr/>", {});
+                        var table_td = $("<td/>", {html:question_num + ". " + questions[item].text, class: "title-td"});
+                        table_tr.append(table_td);
+
+                        Object.keys(answer_choices).forEach(function (choice, index) {
+                            let radio_label = $("<label/>", {
+                                class: "radio-label",
+                            });
+                            let radio_input = $("<input/>", {
+                                type: "radio",
+                                class: "radio-input",
+                                value: choice,
+                                name: item
+                            });
+
+                            radio_label.prepend(radio_input);
+                            let choice_td = $("<td/>", {class: "radio-td", html: radio_label});
+                            table_tr.append(choice_td);
+                        });
+                        answer_table.append(table_tr)
+                    });
+
+                    $(temperament_block).append(answer_table);
+
+
+                    $(".answer-table .radio-input").change(function () {
+                        state.result.user_answers[this.name] = this.value;
+                        if (Object.keys(state.result.user_answers).map(function (item) {
+                            return state.result.user_answers[item]
+                        }).every(function (element) {
+                            return element.length != 0
+                        })) {
+                            submit_button.removeAttr("disabled");
+                            state.completed = true;
+                        }
+                        state.result.calculated = calculate_result();
+
+                        console.log(state);
+                        answer.setJSON({answer: state});
                     });
 
                 }
 
                 function create_result_block() {
-
+                    temperament_block.append($("<h2/>", {html: "Расшифровка"}));
+                    // temperament_block.append($("<div/>", {}));
+                    temperament_block.append("<p>" + "Экстраверсия: " + state.result.calculated.extraversion + "</p>");
+                    temperament_block.append("<p>" + "Нейротизм: " + state.result.calculated.neuroticism + "</p>");
+                    temperament_block.append("<p>" + "Ложь: " + state.result.calculated.lying + "</p>");
                 }
 
                 this.create_answer_block = create_answer_block;
@@ -304,25 +476,25 @@ def check_answer(expect, ans):
             clearProblemSigns(temperament_diagnostic_block);
 
             let submit_button = $(temperament_diagnostic_block).closest(".problem").find('button.submit');
-            // submit_button.attr("disabled", "disabled");
+            submit_button.attr("disabled", "disabled");
 
             let temperament_diagnostic = new TemperamentDiagnostic(temperament_diagnostic_block);
 
-            // if (answer.get()) {
-            //     state = answer.getJSON()["answer"];
-            //     if(state.completed){
-            //         temperament_diagnostic.create_result_block();
-            //         $('span.submit-label', submit_button).html("Пройти еще раз");
-            //         submit_button.removeAttr("disabled");
-            //         reset_answer();
-            //     }
-            //     else{
-            //         temperament_diagnostic.create_answer_block()
-            //     }
-            // }
-            // else{
+            if (answer.get()) {
+                state = answer.getJSON()["answer"];
+                if(state.completed){
+                    temperament_diagnostic.create_result_block();
+                    $('span.submit-label', submit_button).html("Пройти еще раз");
+                    submit_button.removeAttr("disabled");
+                    reset_answer();
+                }
+                else{
+                    temperament_diagnostic.create_answer_block()
+                }
+            }
+            else{
             temperament_diagnostic.create_answer_block()
-            // }
+            }
 
 
         });
@@ -330,7 +502,7 @@ def check_answer(expect, ans):
 
 
     <div id="temperament_diagnostic_block"></div>
-    <div id="fear_diagnostic_input" style="display: none !important;">
+    <div id="temperament_diagnostic_input" style="display: none !important;">
         <customresponse cfn="check_answer">
             <textline/>
         </customresponse>
