@@ -7,6 +7,63 @@ def check_answer(expect, ans):
 
     </script>
     <style type="text/css">
+
+        .question-block{
+            margin: 10px 0px;
+            padding: 10px;
+            border-bottom: 2px solid #c7c7c9;
+        }
+
+        .radio-td {
+            text-align: center !important;
+            position: relative;
+        }
+
+        .heading-td {
+
+            width: 70px !important;
+            text-align: center !important;
+
+            margin: 20px 0 !important;
+            padding: 2px !important;
+            border: 1px solid #c8c8c8;
+            /*font-size: 14px;*/
+            background: #eee !important;
+        }
+
+        .radio-label {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radio-label input {
+            width: 15px !important;
+            height: 15px !important;
+        }
+
+        .radio-label:hover, .radio-input:hover {
+            cursor: pointer;
+        }
+
+
+        .question-answer-table td {
+            padding: 20px !important;
+            border: 1px solid #c8c8c8;
+            font-size: 14px;
+        }
+
+        span.submit-label {
+            text-transform: initial !important;
+        }
+
     </style>
 
     <script type="text/javascript">
@@ -58,8 +115,7 @@ def check_answer(expect, ans):
             }
 
             let RolePositionsDiagnostic = function (html_element) {
-                let role_positions_block = $("<div/>", {class: "role-positions-block"});
-                html_element.append(role_positions_block);
+                let role_positions_block = $("<div/>", {class: "role-positions-block"}).appendTo(html_element);
 
                 const questions = {
                     question_1:
@@ -194,9 +250,18 @@ def check_answer(expect, ans):
                     }
                 };
                 const types = {
-                    child: [1, 4, 7, 10, 13, 16, 19],
-                    adult: [2, 5, 8, 11, 14, 17, 20],
-                    parent:[3, 6, 9, 12, 15, 18, 21]
+                    child: {
+                        values: [1, 4, 7, 10, 13, 16, 19],
+                        text: "<p><em>Детское состояние Я</em> следует жизненному принципу чувств. На поведение в настоящем влияют чувства из детства. Детское Я также выполняет свои, особые функции, не свойственные двум другим составляющими личности. Оно ''отвечает'' за творчество, оригинальность, разрядку напряжения, получение приятных, иногда ''острых'', необходимых в определенной степени для нормальной жизнедеятельности впечатлений. Кроме того, Детское Я выступает на сцену, когда человек не чувствует достаточно сил для самостоятельного решения проблем: не способен преодолеть трудности или/и противостоять давлению другого человека. Это Я подразделяется на: естественное детское Я (спонтанные реакции типа радости, печали и т.д.), приспосабливающееся детское Я (приспосабливающийся, прислуживающийся, боязливый, виноватый, колеблющийся и т.п.), возражающее детское Я.</p>"
+                    },
+                    adult: {
+                        values: [2, 5, 8, 11, 14, 17, 20],
+                        text: "<p><em>Взрослое состояние Я</em> воспринимает и перерабатывает логическую составляющую информации, принимает решения преимущественно обдуманно и без эмоций, проверяя их реальность. Взрослое Я, в отличии от Родительского, способствует адаптации не в стандартных, однозначных ситуациях, а уникальных, требующих размышлений, дающих свободу выбора и, вместе с этим, необходимость осознания последствий и ответственного принятия решений.</p>"
+                    },
+                    parent: {
+                        values: [3, 6, 9, 12, 15, 18, 21],
+                        text: "<p><em>Родительское состояние Я</em> подразделяется на заботливое родительское состояние Я, критическое родительское состояние Я. Родительское Я, состоящее из правил поведения, норм, позволяет индивиду успешно ориентироваться в стандартных ситуациях, «запускает» полезные, проверенные стереотипы поведения, освобождая сознание от загруженности простыми, обыденными задачами. Кроме того, Родительское Я обеспечивает с большой вероятностью успеха поведение в ситуациях дефицита времени на размышления, анализ, поочередное рассмотрение возможностей поведения.</p>"
+                    }
                 };
 
                 function calculate_result() {
@@ -205,14 +270,126 @@ def check_answer(expect, ans):
                         adult: 0,
                         parent: 0
                     };
+
+                    Object.keys(state.result.user_answers).forEach(function (item, idx) {
+                        let num_question = parseInt(item.replace("question_", ""));
+                        console.log("num_question: ", num_question );
+                        if(answer_choices[state.result.user_answers[item]]){
+                            if (types.child.values.includes(num_question)){
+                                result.child += answer_choices[state.result.user_answers[item]].value;
+                            }else if (types.adult.values.includes(num_question)){
+                                result.adult += answer_choices[state.result.user_answers[item]].value;
+                            }else if (types.parent.values.includes(num_question)){
+                                result.parent += answer_choices[state.result.user_answers[item]].value;
+                            }else{
+                                // console.log("Undefined question");
+                            }
+                        }
+                        else{
+                            // console.log("Undefined/empty answer field");
+                        }
+
+                    });
+                    return result;
                 }
 
 
                 function create_answer_block() {
 
+                    let task_text = `
+                        <p>Основоположником трансактного (транзактного) анализа общения является Эрик Берн.</p>
+                    <p>Теория трансактного анализа Э. Берна исходит из того, что транзакция — единица акта общения, в течение которой собеседники находятся в одном из трех состояний ''Я".</p>
+                    <p>В процессе взаимодействия могут в большей или меньшей мере проявляться такие состояния человека: состояние "родителя", "взрослого", "ребенка". Эти три состояния сопровождают человека всю жизнь.</p>
+                    <p>Зрелый человек умело использует разные формы поведения, гибко проявляя себя в том или ином состоянии в зависимости от его целей и жизненных обстоятельств.</p>
+                    <p><em>Инструкция к тесту: </em></p>
+                    <p>Попробуйте оценить, как сочетаются эти три "Я" в вашем поведении. Для этого оцените приведенные высказывания в баллах от 0 до 10.</p>
+                    `
+
+                    role_positions_block.append(task_text);
+
+                    state.result.calculated = {};
+
+                    Object.keys(questions).forEach(function (item) {
+                        let question_num = item.replace("question_", "");
+                        let question_block = $("<div/>", {class: "question-block", });
+                        let question_title_block = $("<div/>", {class: "question-title-block", html: "<strong>" + question_num + ". </strong>" + questions[item].text});
+
+                        let question_answer_table = $("<table/>", {class: "question-answer-table" });
+
+                        let question_answer_table_head = $("<tr/>", { });
+                        let question_answer_table_input = $("<tr/>", { });
+
+                        state.result.user_answers[item] = "";
+
+                        Object.keys(answer_choices).forEach(function (answer) {
+                            let head_td = $("<th/>", {class: "heading-td", html: answer_choices[answer].text});
+                            question_answer_table_head.append(head_td);
+
+                            let answer_td = $("<td/>", {class: "radio-td"});
+
+                            let radio_label = $("<label/>", {
+                                class: "radio-label",
+                            });
+                            let radio_input = $("<input/>", {
+                                type: "radio",
+                                class: "radio-input",
+                                value: answer,
+                                name: item
+                            });
+
+                            radio_label.prepend(radio_input);
+
+                            answer_td.append(radio_label);
+
+                            question_answer_table_input.append(answer_td);
+
+                        });
+
+                        question_answer_table.append(question_answer_table_head);
+                        question_answer_table.append(question_answer_table_input);
+
+                        question_block.append(question_title_block);
+                        question_block.append(question_answer_table);
+
+                        role_positions_block.append(question_block);
+
+                        answer.setJSON({answer: state});
+                    });
+
+                    $(".radio-input", role_positions_block).change(function () {
+                        state.result.user_answers[this.name] = this.value;
+                        if (Object.keys(state.result.user_answers).map(function (item) {
+                            return state.result.user_answers[item]
+                        }).every(function (element) {
+                            return element.length != 0
+                        })) {
+                            submit_button.removeAttr("disabled");
+                            state.completed = true;
+                        }
+                        else{
+                            submit_button.attr("disabled", "disabled");
+                        }
+                        // else{
+                        //         console.log(Object.keys(state.result.user_answers).filter(function (item) {return state.result.user_answers[item] == ""}));
+                        // }
+                        state.result.calculated = calculate_result();
+                        answer.setJSON({answer: state});
+
+                    });
                 }
 
                 function create_result_block() {
+                    role_positions_block.append($("<h2/>", {html: "Расшифровка"}));
+
+                    let result_array = Object.keys(state.result.calculated).map(function (item) {return {'name': item, 'value': state.result.calculated[item]}});
+                    let max_points = Math.max.apply(Math, result_array.map(function(item){return item.value}));
+                    let user_types = result_array.filter(function (item) { return item.value == max_points;});
+
+                    user_types.forEach(function (item) {
+                        role_positions_block.append($("<p/>", {html: types[item.name].text}));
+                    });
+
+                    console.log(user_types);
 
                 }
 
@@ -221,7 +398,6 @@ def check_answer(expect, ans):
                 this.create_result_block = create_result_block;
 
             };
-
 
             let state = {
                 completed: false,
@@ -239,21 +415,21 @@ def check_answer(expect, ans):
 
             let role_positions_diagnostic = new RolePositionsDiagnostic(role_positions_block);
 
-            // if (answer.get()) {
-            //     state = answer.getJSON()["answer"];
-            //     if(state.completed){
-            //         role_positions_diagnostic.create_result_block();
-            //         $('span.submit-label', submit_button).html("Пройти еще раз");
-            //         submit_button.removeAttr("disabled");
-            //         reset_answer();
-            //     }
-            //     else{
-            //         role_positions_diagnostic.create_answer_block()
-            //     }
-            // }
-            // else{
+            if (answer.get()) {
+                state = answer.getJSON()["answer"];
+                if(state.completed){
+                    role_positions_diagnostic.create_result_block();
+                    $('span.submit-label', submit_button).html("Пройти еще раз");
+                    submit_button.removeAttr("disabled");
+                    reset_answer();
+                }
+                else{
+                    role_positions_diagnostic.create_answer_block()
+                }
+            }
+            else{
             role_positions_diagnostic.create_answer_block()
-            // }
+            }
 
         });
     </script>

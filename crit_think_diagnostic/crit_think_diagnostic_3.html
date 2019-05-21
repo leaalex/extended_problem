@@ -1,0 +1,1014 @@
+
+<problem>
+
+    <style type="text/css">
+
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+
+        .question-input-wrap input{
+            margin-top: -1px;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+
+        .question-input-wrap label{
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .question-input-wrap{
+            padding: 10px 10px;
+            margin: 6px 0px;
+            border: 2px solid #e5e5e5;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .question-input-wrap:hover{
+            border: 2px solid #009fe6;
+        }
+
+
+        #crit_think_diagnostic_input{
+            /*display: none !important;*/
+        }
+
+        #crit_think_diagnostic_result{
+            display: none;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+
+    <script type="text/javascript" id="chart_js" src="/static/Chart.js"> </script>
+
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
+
+    <script type="loncapa/python">
+import json
+
+next_btn_label = "Дальше"
+
+correct_answers = {
+    "question_1": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "interpreting_information_sources", "logics", "evaluation", "recognition_contradictions"]
+    },
+    "question_2": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "interpreting_information_sources", "logics", "evaluation", "recognition_contradictions"]
+    },
+    "question_3": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "interpreting_information_sources", "logics", "evaluation", "problem_solving", "generating_evaluating_decisions", "building_sound_conclusions"]
+    },
+    "question_4": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "interpreting_information_sources", "logics", "evaluation", "problem_solving", "generating_evaluating_decisions", "building_sound_conclusions"]
+    },
+    "question_5": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "logics", "evaluation", "generating_evaluating_decisions"]
+    },
+    "question_6": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "interpreting_information_sources", "evaluation", "building_sound_conclusions"]
+    },
+    "question_7": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "logics", "evaluation", "generating_evaluating_decisions", "building_sound_conclusions", "interpreting_information_sources"]
+    },
+    "question_8": {
+        "answer": "a",
+        "progress": ["logics", "building_sound_conclusions", "selection_significant_similarities"]
+    },
+    "question_9": {
+        "answer": "a",
+        "progress": ["logics", "building_sound_conclusions", "generating_evaluating_decisions", "emotions_control"]
+    },
+    "question_10": {
+        "answer": "a",
+        "progress": ["logics", "building_sound_conclusions", "evaluation", "selection_significant_similarities", "recognition_contradictions"]
+    },
+    "question_11": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "emotions_control", "building_sound_conclusions"]
+    },
+    "question_12": {
+        "answer": "a",
+        "progress": ["logics", "building_sound_conclusions", "selection_significant_similarities"]
+    },
+    "question_13": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "interpreting_information_sources", "building_sound_conclusions", "evaluation"]
+    },
+    "question_14": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "logics", "evaluation", "interpreting_information_sources", "building_sound_conclusions", "recognition_contradictions"]
+    },
+    "question_15": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "logics", "building_sound_conclusions", "recognition_contradictions", "selection_significant_similarities", "problem_solving", "generating_evaluating_decisions"]
+    },
+    "question_16": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "logics", "building_sound_conclusions", "recognition_contradictions", "selection_significant_similarities"]
+    },
+    "question_17": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "logics", "building_sound_conclusions", "recognition_contradictions", "selection_significant_similarities"]
+    },
+    "question_18": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "building_sound_conclusions", "recognition_contradictions", "generating_evaluating_decisions", "problem_solving", "emotions_control"]
+    },
+    "question_19": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "building_sound_conclusions", "recognition_contradictions", "interpreting_information_sources"]
+    },
+    "question_20": {
+        "answer": "a",
+        "progress": ["building_sound_conclusions", "selection_significant_similarities", "generating_evaluating_decisions"]
+    },
+    "question_21": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "building_sound_conclusions", "recognition_contradictions", "evaluation", "emotions_control"]
+    },
+    "question_22": {
+        "answer": "a",
+        "progress": ["building_sound_conclusions", "recognition_contradictions", "generating_evaluating_decisions", "interpreting_information_sources"]
+    },
+    "question_23": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "building_sound_conclusions", "interpreting_information_sources", "recognition_contradictions", "generating_evaluating_decisions", "problem_solving", "evaluation"]
+    },
+    "question_24": {
+        "answer": "a",
+        "progress": ["analysis_and_synthesis", "building_sound_conclusions", "recognition_contradictions", "generating_evaluating_decisions", "evaluation", "interpreting_information_sources"]
+    }
+}
+
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    student_answers = student_answer["answers"]
+
+    response = {
+        "points": 0,
+        "progress": {
+            "analysis_and_synthesis": 0,
+            "logics": 0,
+            "interpreting_information_sources": 0,
+            "problem_solving": 0,
+            "selection_significant_similarities": 0,
+            "building_sound_conclusions": 0,
+            "evaluation": 0,
+            "recognition_contradictions": 0,
+            "generating_evaluating_decisions": 0,
+            "emotions_control": 0
+        }
+    }
+    progress = 0
+    max_grade = len(correct_answers.keys())
+    grade = 0
+
+    for question_num in range(1, len(correct_answers.keys())):
+        question_id = "question_" + str(question_num)
+        if student_answers[question_id] == correct_answers[question_id]["answer"]:
+            grade += 1
+            for item in correct_answers[question_id]["progress"]:
+                response["progress"][item] += 1
+
+    response["points"] = str(grade)
+
+
+    return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': grade/max_grade}, ]}
+
+</script>
+
+    <script type="text/javascript">
+
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function() {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function(value) {
+                if (value == undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function() {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function(object) {
+                if (object == undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object))
+            };
+            this.isJsonString = function(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        var next_btn_label = '$next_btn_label'
+
+        // $("#crit_think_diagnostic").closest(".problem").parent().find(".problem-progress").hide();
+        // var notification = $(".problem .notification.notification-submit").hide();
+
+        var submit_button = $("#crit_think_diagnostic").closest(".problem").find('button.submit');
+        $(submit_button).css('text-transform','none');
+
+        $(submit_button).attr("disabled", "disabled");
+        $(submit_button).addClass("disabled");
+
+        function build_result(){
+            console.log("i'm result i'm result!", user_state);
+            // $(submit_button).hide();
+            // $("#crit_think_diagnostic_result").append("<p><strong>Результат:</strong></p>");
+            //
+            // var res_msg = user_state.progress.msg;
+            //
+            // $("#crit_think_diagnostic_result").append("<p>" + res_msg + "</p>");
+            //
+            // $("#crit_think_diagnostic_result").show();
+
+            var result_block = $("<div/>", {
+                html: "<h2>Результаты диагностики</h2>",
+                class: ""
+            });
+
+
+
+            var chart = $("<canvas/>", {id:"radar-chart", width:"100%", height:"600"});
+
+            // console.log(result);
+
+
+
+            new Chart(chart, {
+                type: 'radar',
+                data: {
+                    labels: ["user_labels.self_deprecating_label", "user_labels.aggressive_label", "user_labels.affiliated_label", "user_labels.self_sustaining_label"],
+                    datasets: [
+                        {
+                            // label: "2050",
+                            fill: true,
+                            borderColor: "#046b99",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "#046b99",
+                            backgroundColor: "#046b9908",
+                            pointBorderColor: "#fff",
+                            data: [1,2,3,4]
+                        }
+                    ]
+                },
+                options: {
+                    legend:{
+                        display: false
+                    },
+                    responsive:true,
+                    // maintainAspectRatio: false,
+                    scale: {
+                        ticks: {
+                            beginAtZero: true,
+                            max: 10,
+                            fontSize: 16,
+                        },
+                        angleLines: {
+                            display: true,
+                            color: "#046b99",
+                        },
+                        pointLabels: {
+                            callback: function(value, index, values) {
+                                // console.log(value);
+                                return value;
+                            },
+                            // fontColor: "gray",
+                            fontSize: 16,
+                        },
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var label = "Баллов" + ': ';
+                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                return label;
+                            }
+                        },
+                        fontSize: 16,
+                    },
+
+
+                }
+            });
+            $(result_block).append(chart);
+
+
+            $("#crit_think_diagnostic_result").html(result_block);
+            $("#crit_think_diagnostic_result").show();
+        }
+
+        function enableSubmitButton(){
+            $(submit_button).removeClass("disabled");
+            $(submit_button).removeAttr("disabled");
+        }
+
+        function setSubmitText(text){
+            $(submit_button).find('span.submit-label').text(text);
+        }
+
+        var answer = new Answer(document.querySelector("#crit_think_diagnostic_input").querySelector("input[type='text']"));
+
+        var questions = {
+            question_1 :{
+                html: "Согласно результатам исследования, проводившегося в течение 10 лет с участием 17350 государственных служащих Великобритании, количество смертей среди простых работников управленческого аппарата в 1,6 раза больше, чем среди управленцев высшего звена. Значит ли это, что профессиональный статус (должность) является причиной, а продолжительность жизни – следствием?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Между этими двумя фактами нет причинно-следственной связи"
+                    },
+                    {
+                        let: "b",
+                        text: "Да, верно. Более высокая зарплата открывает перед человеком большие возможности – комфортный отдых, качественные продукты питания, квалифицированные медицинские услуги"
+                    },
+                    {
+                        let: "c",
+                        text: "Нет, неверно. Продолжительность жизни  - это причина. Они потому и стали управленцами высшего звена, потому что обладают хорошим здоровьем"
+                    }
+                ]
+            },
+            question_2 :{
+                html: "Дети с развитым чувством собственного достоинства обычно учатся лучше, чем дети с низким самоуважением. Значит ли это, что чувство собственного достоинства является причиной, а хорошая успеваемость - следствием?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Между этими двумя фактами нет причинно-следственной связи"
+                    },
+                    {
+                        let: "b",
+                        text: "Да, верно. Дети с развитым чувством собственного достоинства понимают, что хорошая успеваемость – залог их будущего профессионального успеха"
+                    },
+                    {
+                        let: "c",
+                        text: "Нет, не верно. Напротив, гордость за свои хорошие оценки формирует чувство собственного достоинства"
+                    }
+                ]
+            },
+            question_3 :{
+                html: "Кто изучал логику? На вопрос, кто из трех учащихся – Антон, Борис или Виктор – изучал логику, учитель, преподававший логику, ответил: «Если логику изучал Антон, то изучал и Боря, но неверно, что если изучал Витя, то изучал и Боря». Кто же изучал, а кто не изучал логику?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "логику изучал Виктор, а Антон и Борис логику не изучали"
+                    },
+                    {
+                        let: "b",
+                        text: "логику изучали Виктор и Борис, а Антон логику не изучал"
+                    },
+                    {
+                        let: "c",
+                        text: "логику изучал Антон, а Виктор и Борис логику не изучали"
+                    },
+                    {
+                        let: "d",
+                        text: "логику изучали Антон и Борис, а Виктор логику не изучал"
+                    }
+                ]
+            },
+            question_4 :{
+                html: "В одном селе живут 5 друзей:  Иванов, Петров, Сидоров, Григорьев и Алексеев. Один из них – маляр, другой - мельник, третий - плотник, четвертый - почтальон, пятый - парикмахер. Петров и Григорьев никогда не держали в руках малярных кистей. Иванов и Григорьев собираются посетить мельницу, на которой работает их друг. Петров и Иванов – соседи почтальона. Иванов и Сидоров каждое воскресенье играют в футбол с плотником и маляром. Петров покупал билеты в кино для себя и для мельника. Определите профессию каждого из друзей.",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Иванов – парикмахер, Петров – плотник, Сидоров – мельник, Григорьев – почтальон, Алексеев – маляр"
+                    },
+                    {
+                        let: "b",
+                        text: "Иванов – почтальон, Петров – маляр, Сидоров – мельник, Григорьев – парикмахер, Алексеев – плотник"
+                    },
+                    {
+                        let: "c",
+                        text: "Иванов – парикмахер, Петров – плотник, Сидоров – маляр, Григорьев – мельник, Алексеев – почтальон"
+                    },
+                    {
+                        let: "d",
+                        text: "Иванов – маляр, Петров – парикмахер, Сидоров – мельник, Григорьев – почтальон, Алексеев – плотник"
+                    }
+                ]
+            },
+            question_5 :{
+                html: "Чашка кофе с кубиком сахара стоит 1 доллар 10 центов. Известно, что кофе дороже кубика сахара на 1 доллар. Сколько стоит сам кофе?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "1 доллар 5 центов"
+                    },
+                    {
+                        let: "b",
+                        text: "1 доллар"
+                    },
+                    {
+                        let: "c",
+                        text: "65 центов"
+                    }
+                ]
+            },
+            question_6 :{
+                html: "Известный ведущий на ТВ заверяет зрителей, что мировое правительство тщательно конспирируется. «Если кто-то скрывается, значит, ему есть, что скрывать, – поясняет он, – а уж мировому правительству точно есть, что скрывать». Это убедительный довод?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Нет. Вывод ведущего не следует из его аргумента"
+                    },
+                    {
+                        let: "b",
+                        text: "Да. Этот ведущий еще ни разу меня не обманул!"
+                    },
+                    {
+                        let: "c",
+                        text: "Да. В словах ведущего все логично"
+                    },
+                    {
+                        let: "d",
+                        text: "Нет. По телевизору одно враньё!"
+                    }
+                ]
+            },
+            question_7 :{
+                html: "Прочитайте высказывание: «Если тебе не нравится власть в России, вали в другую страну!». Какая ошибка в этом суждении?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Высказывание предлагает всего два варианта: либо власть должна нравиться, и я могу остаться; либо мне власть не нравится, и я должен уехать. Но есть и другие варианты"
+                    },
+                    {
+                        let: "b",
+                        text: "Все правильно! Не нравится – надо уезжать!"
+                    },
+                    {
+                        let: "c",
+                        text: "Высказывание некорректно, так как не понятно, в какую именно другую страну валить"
+                    },
+                    {
+                        let: "d",
+                        text: "Высказывание некорректно, так как не показывает, что необходимо сделать, чтобы продемонстрировать то, что власть мне нравится"
+                    }
+                ]
+            },
+            question_8 :{
+                html: "«Математика – наука». Какая из предложенных пар понятий логически подходит больше всего?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Тыква – овощ"
+                    },
+                    {
+                        let: "b",
+                        text: "Гроза – гром"
+                    },
+                    {
+                        let: "c",
+                        text: "Враг – неприятель"
+                    },
+                    {
+                        let: "d",
+                        text: "Испуг – бегство"
+                    }
+                ]
+            },
+            question_9 :{
+                html: "У вас в руках кувшин с водой. Перед вами три двери. За первой – убийца. За второй – лев, который не ел два года. За третьей – пожар. Какую дверь выбрать, чтобы выжить?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Вторую"
+                    },
+                    {
+                        let: "b",
+                        text: "Первую"
+                    },
+                    {
+                        let: "c",
+                        text: "Третью"
+                    },
+                    {
+                        let: "d",
+                        text: "Любую, результат будет одинаковый"
+                    }
+                ]
+            },
+            question_10 :{
+                html: "Посмотрите на умозаключение: «А, потому что В». Где причина, а где следствие?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "А – следствие, а В – причина"
+                    },
+                    {
+                        let: "b",
+                        text: "А – причина, а В – следствие"
+                    },
+                    {
+                        let: "c",
+                        text: "В данном умозаключении не может быть причины"
+                    },
+                    {
+                        let: "d",
+                        text: "В данном умозаключении не может быть следствия"
+                    }
+                ]
+            },
+            question_11 :{
+                html: "В каком варианте решение принято под влиянием эмоций?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Учитель поставил плохую оценку. Просто перестану учить его предмет. А зачем? Все равно не оценит"
+                    },
+                    {
+                        let: "b",
+                        text: "Мы вынуждены прекратить воздушное сообщение с Египтом, так как велик риск повторного террористического акта"
+                    },
+                    {
+                        let: "c",
+                        text: "Я откажусь от похода в ночной клуб накануне важного экзамена, чтобы еще раз повторить материал"
+                    },
+                    {
+                        let: "d",
+                        text: "Мне нужен новый телефон, поэтому я регулярно слежу за акциями в магазинах: не планируются ли там распродажи"
+                    }
+                ]
+            },
+            question_12 :{
+                html: "«БВ» относится в «ДГ», как «ПР» к …",
+                answers: [
+                    {
+                        let: "a",
+                        text: "«ТС»"
+                    },
+                    {
+                        let: "b",
+                        text: "«СТ»"
+                    },
+                    {
+                        let: "c",
+                        text: "«НО»"
+                    },
+                    {
+                        let: "d",
+                        text: "«УФ»"
+                    }
+                ]
+            },
+            question_13 :{
+                html: "Какое высказывание не является примером стереотипа?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Все львы – хищники"
+                    },
+                    {
+                        let: "b",
+                        text: "Место женщины – на кухне"
+                    },
+                    {
+                        let: "c",
+                        text: "Все дети шалуны и непоседы"
+                    },
+                    {
+                        let: "d",
+                        text: "Ребенок должен слушаться родителей"
+                    },
+                    {
+                        let: "e",
+                        text: "Я не хочу ехать в Турцию, потому что вечные пьянки в отелях меня не устраивают"
+                    },
+                    {
+                        let: "f",
+                        text: "Мужчина должен зарабатывать больше женщины"
+                    }
+                ]
+            },
+            question_14 :{
+                html: "Прочитайте диалог: • Почему вы считаете, что единственный мотив преступления – это месть? • А других и быть не могло: ведь ни драки, ни грабежа, ни любовной ревности не было! Что с этим рассуждением не так?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Перечисленные варианты мотивов не единственные"
+                    },
+                    {
+                        let: "b",
+                        text: "Драка на самом деле может быть по мотивам мести"
+                    },
+                    {
+                        let: "c",
+                        text: "Любовная ревность – это тоже месть"
+                    },
+                    {
+                        let: "d",
+                        text: "С чего он взял, что перечисленных мотивов быть не могло? Это же не доказано!"
+                    }
+                ]
+            },
+            question_15 :{
+                html: "В школе 60 ребят. Все любят лимонад или конфеты. Половина детей любит лимонад, а 24 человека – лимонад и конфеты. Сколько детей любят конфеты?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "54"
+                    },
+                    {
+                        let: "b",
+                        text: "60"
+                    },
+                    {
+                        let: "c",
+                        text: "24"
+                    },
+                    {
+                        let: "d",
+                        text: "36"
+                    }
+                ]
+            },
+            question_16 :{
+                html: "Найдите понятия, отношения между которыми удовлетворяли бы приведенной схеме: РИСУНОК!!!!!!",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Стихийное бедствие (А), землетрясение (В), явление природы (С), наводнение (D), гроза (Е)"
+                    },
+                    {
+                        let: "b",
+                        text: "Футболист (А), спортсмен (В), баскетболист (С), человек (D), китаец (Е)"
+                    },
+                    {
+                        let: "c",
+                        text: "Юрист (А), прокурор (В), преступник (С), адвокат (D), судья (Е)"
+                    },
+                    {
+                        let: "d",
+                        text: "Человек (А), мужчина (В), женщина (С), пенсионер (D), ребенок (Е)"
+                    }
+                ]
+            },
+            question_17 :{
+                html: "Какая схема соответствует отношениям между следующими понятиями: Пожар (А), молния (В), явление природы (С), стихийное бедствие (D)?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "РИСУНОК!!!!!!"
+                    },
+                    {
+                        let: "b",
+                        text: "РИСУНОК!!!!!!"
+                    },
+                    {
+                        let: "c",
+                        text: "РИСУНОК!!!!!!"
+                    },
+                    {
+                        let: "d",
+                        text: "РИСУНОК!!!!!!"
+                    }
+                ]
+            },
+            question_18 :{
+                html: "Прочитайте: «Фалес, величайший математик и философ древности, был известен также тем, что вел прибыльную торговлю солью. Этот ценный продукт перевозили караваны вьючных мулов. Однажды один из мулов, переходя с поклажей вброд ручей, поскользнулся на камне и вместе с тюком соли завалился в воду. Часть соли растворилась в воде, поклажа заметно полегчала. На очередной переправе смышленый мул нарочно улегся в воду и вдоволь повалялся в ней. Эту уловку животное повторяло до тех пор, пока весь груз не растворился в воде. Не менее мудрый Фалес придумал, как отучить изобретательное животное от дурной привычки, которая приносила одни убытки». Что предложили бы вы?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Наполнить тюки тряпками или другим пористым материалом"
+                    },
+                    {
+                        let: "b",
+                        text: "Наполнить мешки камнями, пусть на своей шкуре прочувствует, что значит хитрить"
+                    },
+                    {
+                        let: "c",
+                        text: "Не использовать этого мула для перевозки соли"
+                    },
+                    {
+                        let: "d",
+                        text: "Приставить к мулу надсмотрщика"
+                    },
+                    {
+                        let: "e",
+                        text: "Наказать мула – не кормить его"
+                    },
+                    {
+                        let: "f",
+                        text: "Прибегнуть к физическим наказаниям"
+                    },
+                    {
+                        let: "g",
+                        text: "Пустить мула на мясо, так как горбатого только могила исправит"
+                    }
+                ]
+            },
+            question_19 :{
+                html: "Посмотрите на умозаключение: «Бога нет, потому что он ни разу не приходил ко мне во время молитвы». Что не так с этим умозаключением?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Из того, что Бог ни разу не приходил к человеку во время  молитвы, не следует, что Бога нет"
+                    },
+                    {
+                        let: "b",
+                        text: "Все верно. Бога нет!"
+                    },
+                    {
+                        let: "c",
+                        text: "Во время молитвы Бог не обязательно должен являться человеку"
+                    },
+                    {
+                        let: "d",
+                        text: "Из того, что Бога нет, не следует, что он ни разу не приходил к говорящему"
+                    }
+                ]
+            },
+            question_20 :{
+                html: "Даны три слова: «каша», «выбросить», «посыпать». Какое из предложенных слов подходит к ним больше всего?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Голова"
+                    },
+                    {
+                        let: "b",
+                        text: "Зерно"
+                    },
+                    {
+                        let: "c",
+                        text: "Земля"
+                    },
+                    {
+                        let: "d",
+                        text: "Хлам"
+                    }
+                ]
+            },
+            question_21 :{
+                html: "Какой из этих выводов является обоснованным?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Я регулярно опаздывал на тренировки и один раз пропустил сборы. В результате на соревнованиях я получал низкие оценки. Если я хочу получать более высокие оценки, я не должен пропускать тренировки"
+                    },
+                    {
+                        let: "b",
+                        text: "Я получил высокие баллы на соревновании. Это все потому, что мне дал ценные советы олимпийский чемпион. Если он мне и впредь будет давать советы, я тоже буду побеждать на соревнованиях"
+                    },
+                    {
+                        let: "c",
+                        text: "Я проиграл на соревнованиях. Не так давно я узнал, что одному из членов жюри не нравится желтый цвет. Моя спортивная форма – желтого цвета. Думаю, что моя неудача именно из-за этого"
+                    },
+                    {
+                        let: "d",
+                        text: "Все, кто стартовал по третьей дорожке, показывали высокие результаты. Если мне тоже достанется третья дорожка, то я тоже одержу победу"
+                    }
+                ]
+            },
+            question_22 :{
+                html: "Прочитайте текст: «Мой подзащитный не совершал мошенничества, так как он является человеком настолько добропорядочным, что никак не позволил бы себе такого проступка». Какая главная ошибка в этом умозаключении?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Адвокат не доказывает, почему его подзащитный не позволил бы себе такого проступка"
+                    },
+                    {
+                        let: "b",
+                        text: "Адвокат не доказывает, что его подзащитный не совершил мошенничества"
+                    },
+                    {
+                        let: "c",
+                        text: "Адвокат не доказывает, что его подзащитный – добропорядочный человек"
+                    },
+                    {
+                        let: "d",
+                        text: "Адвокат ошибочно называет мошенничество проступком"
+                    }
+                ]
+            },
+            question_23 :{
+                html: "В одном популярном паблике вы прочитали, что использование иностранного программного обеспечения и социальных сетей не только пагубно влияет на психологическое состояние пользователей, но и ухудшает криминальную ситуацию в стране. В подтверждение своих слов автор поста привел график, согласно которому, с каждым годом в течение последнего десятилетия увеличивается как доля пользователей иностранного контента, как и количество убийств. Что с этим рассуждением не так? РИСУНОК!!!!!!!!!!!!!!",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Эти данные отражают две тенденции. Связь между ними крайне сомнительна. Тезис нельзя обосновать таким образом"
+                    },
+                    {
+                        let: "b",
+                        text: "Данные собраны за 10 лет, тенденция очевидна. Чем меньше люди будут пользоваться иностранным программным обеспечением и контентом, тем меньше убийств будет происходить"
+                    },
+                    {
+                        let: "c",
+                        text: "Не думаю, что это совпадение. Два набора данных явно связаны, но для полной уверенности нужно посмотреть на аналогичную статистику в других странах"
+                    },
+                    {
+                        let: "d",
+                        text: "На эти данные нельзя опираться, потому что неизвестно, кто и как их собирал"
+                    }
+                ]
+            },
+            question_24 :{
+                html: "Читая статью о перспективах демократии в России, вы наткнулись на интересное рассуждение. По мнению автора статьи, демократия, как форма правления, не способствует развитию политических свобод в обществе. Автор утверждает, что многие демократии в конечном итоге переродились в политические режимы с низким уровнем свободы и привели к тоталитарному режиму. Автор, напротив, указывает, что есть просвещенные деспотии и олигархии, которые воплотили достаточно высокий уровень политической свободы для своих подданных. В чем заключается основная ошибка в этом рассуждении?",
+                answers: [
+                    {
+                        let: "a",
+                        text: "Из того, что некоторые демократические режимы привели к тоталитарному режиму, вовсе не следует, что другие демократические режимы приведут к тому же"
+                    },
+                    {
+                        let: "b",
+                        text: "Автор дает личную оценку историческим фактам"
+                    },
+                    {
+                        let: "c",
+                        text: "Автор не учитывает, что увеличение уровня"
+                    },
+                    {
+                        let: "d",
+                        text: "Автор не приводит, какие именно демократические режимы привели к тоталитарному режиму"
+                    },
+                    {
+                        let: "e",
+                        text: "Автор перевел разговор на другую тему"
+                    }
+                ]
+            },
+            // question_25 :{
+            //     html: "",
+            //     answers: [
+            //         {
+            //             let: "a",
+            //             text: ""
+            //         },
+            //         {
+            //             let: "b",
+            //             text: ""
+            //         },
+            //         {
+            //             let: "c",
+            //             text: ""
+            //         },
+            //         {
+            //             let: "d",
+            //             text: ""
+            //         }
+            //     ]
+            // },
+            // question_26 :{
+            //     html: "",
+            //     answers: [
+            //         {
+            //             let: "a",
+            //             text: ""
+            //         },
+            //         {
+            //             let: "b",
+            //             text: ""
+            //         },
+            //         {
+            //             let: "c",
+            //             text: ""
+            //         },
+            //         {
+            //             let: "d",
+            //             text: ""
+            //         }
+            //     ]
+            // }
+        };
+
+        let user_state = {
+            step: 1,
+            answers: {},
+            progress: {}
+        };
+
+        Object.keys(questions).forEach(function (item) {
+           user_state.answers[item] = "";
+        });
+
+        if(answer.get()){
+            user_state = answer.getJSON()["answer"];
+            user_state.progress = JSON.parse($("#crit_think_diagnostic_input .message").html());
+            console.log(user_state.step, Object.keys(questions).length);
+            if(user_state.step == Object.keys(questions).length+1){
+                build_result();
+            }
+            else{
+                createQuestion();
+            }
+        }
+        else{
+            createQuestion();
+        }
+
+        function createQuestion(){
+            setSubmitText(next_btn_label);
+            $("#crit_think_diagnostic_question").html("");
+            $("#crit_think_diagnostic_question").append("<p>Выберите один из вариантов ответов на каждый из предлагаемых ниже вопросов.</p>");
+            $("#crit_think_diagnostic_question").append("<h2> Вопрос " + (user_state.step).toString() + " из " + Object.keys(questions).length + "</h2>");
+            var current_question_id = "question_" + user_state.step.toString();
+            var current_step = user_state.step;
+
+            var current_question = questions[current_question_id];
+            var question_text = $("<div/>", {
+                class: "question-text",
+                html: "<p>" + current_question.html + "</p>"
+            });
+
+            var inputs_block = $("<div/>", {
+                class: "inputs-block"
+            });
+
+            current_question["answers"].forEach(function(element, index) {
+                var input_wrap = $("<div/>", {
+                    class: "question-input-wrap"
+                });
+                var input = $("<input/>",{
+                    type: "radio",
+                    name: "question_choice",
+                    value: element["let"],
+                });
+                input_wrap.append(input);
+                input_wrap.append(element["text"]);
+                inputs_block.append(input_wrap);
+
+                input_wrap.click(function(e) {
+                    $('input', $(e.target)).prop('checked', true);
+                    var val = $("input[name='question_choice']:checked").val();
+                    user_state.answers[current_question_id] = val;
+                    enableSubmitButton();
+                    user_state.step = current_step + 1;
+                    answer.setJSON({answer: user_state});
+                });
+            });
+
+            $("#crit_think_diagnostic_question").append(question_text);
+            $("#crit_think_diagnostic_question").append(inputs_block);
+            answer.setJSON({answer: user_state});
+
+        }
+
+    </script>
+
+    <div id="crit_think_diagnostic">
+
+        <div id="crit_think_diagnostic_question">
+
+        </div>
+
+        <div id="crit_think_diagnostic_result">
+        </div>
+
+        <div id="crit_think_diagnostic_input">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$unique_id" />
+                <br/>
+            </customresponse>
+        </div>
+
+    </div>
+
+
+<!--
+
+analysis_and_synthesis: Анализ и синтез
+logics: Логика
+interpreting_information_sources: Интерпретация и оценка достоверности источников информации
+problem_solving: Решение проблем
+selection_significant_similarities: Выделение значимых сходств и различий
+building_sound_conclusions: Построение обоснованных выводов и доказательств
+evaluation: Оценка
+recognition_contradictions: Распознавание противоречий
+generating_evaluating_decisions: Генерирование и оценивание решений
+emotions_control: Контроль над эмоциями
+
+-->
+
+
+</problem>
