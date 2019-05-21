@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="диагностики">
-      <change afterPath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnotic_2.html" beforeDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="908" column="8" lean-forward="true" selection-start-line="908" selection-start-column="8" selection-end-line="908" selection-end-column="8" />
+            <state relative-caret-position="174">
+              <caret line="907" column="24" lean-forward="true" selection-start-line="907" selection-start-column="24" selection-end-line="907" selection-end-column="24" />
               <folding>
                 <element signature="e#9942#12221#0" />
                 <element signature="e#22338#48206#0" />
@@ -206,9 +201,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="164" />
-    <option name="y" value="304" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="813" />
+    <option name="y" value="222" />
     <option name="width" value="1878" />
     <option name="height" value="1275" />
   </component>
@@ -451,7 +446,7 @@
       <workItem from="1557735598355" duration="1812000" />
       <workItem from="1557740358159" duration="26200000" />
       <workItem from="1558011044709" duration="12032000" />
-      <workItem from="1558082024887" duration="58041000" />
+      <workItem from="1558082024887" duration="58124000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -464,7 +459,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="412989000" />
+    <option name="totallyTimeSpent" value="413072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="164" y="304" width="1878" height="1275" extended-state="0" />
@@ -844,7 +839,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnotic_2.html">
+    <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
@@ -926,8 +921,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="908" column="8" lean-forward="true" selection-start-line="908" selection-start-column="8" selection-end-line="908" selection-end-column="8" />
+        <state relative-caret-position="174">
+          <caret line="907" column="24" lean-forward="true" selection-start-line="907" selection-start-column="24" selection-end-line="907" selection-end-column="24" />
           <folding>
             <element signature="e#9942#12221#0" />
             <element signature="e#22338#48206#0" />
