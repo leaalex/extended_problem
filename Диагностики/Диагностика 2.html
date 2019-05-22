@@ -68,6 +68,10 @@ def check_answer(expect, ans):
         padding-top: 30px;
     }
 
+    .sex-choice-block-title{
+        padding: 10px 0px;
+         font-weight: 700;
+    }
 </style>
 
 <script type="text/javascript">
@@ -179,7 +183,7 @@ def check_answer(expect, ans):
                     text: "Боюсь темноты, избегаю неосвещенных пространств, предпочитаю не спускаться в подвалы, пещеры."
                 },
                 question_19: {
-                    text: "Некоторые животные (пауки, змеи, тараканы, собаки, кошки...) вызывают у меня неодолимый ужас и\или отвращение. Некоторые люди тоже."
+                    text: "Некоторые животные (пауки, змеи, тараканы, собаки, кошки...) вызывают у меня неодолимый ужас и\\или отвращение. Некоторые люди тоже."
                 },
                 question_20: {
                     text: "Боюсь разлук с близкими, любимыми, даже недолгих."
@@ -188,14 +192,14 @@ def check_answer(expect, ans):
                     text: "В полном одиночестве чувствую себя некомфортно."
                 },
                 question_22: {
-                    text: "Если возвращаюсь домой после 11 вечера, всегда прошу меня встретить или проводить (для женщин)."
+                    text: ""
                 },
                 question_23: {
                     text: "При нахождении на улице у меня часто возникает боязнь попасть в драку, подвергнуться нападению, ограблению или насилию."
                 },
-                question_24: {
-                    text: "Когда иду с девушкой, стараюсь обходить места, где на нас могут напасть (для мужчин)."
-                },
+                // question_24: {
+                //     text: "Когда иду с девушкой, стараюсь обходить места, где на нас могут напасть (для мужчин)."
+                // },
                 question_25: {
                     text: "Мне случалось оставаться в бездействии, когда при мне кого-то незаслуженно избивали и унижали."
                 },
@@ -304,7 +308,7 @@ def check_answer(expect, ans):
                 question_60: {
                     text: "Я боюсь бояться, боюсь состояния страха"
                 }
-            }
+            };
             const answer_choices = {
                 a: {
                     text: "0",
@@ -390,41 +394,61 @@ def check_answer(expect, ans):
             ];
             const phobias = {
                 tanatophobia_1: {
-                    text: "Танатофобия: страхи смерти, боли, болезней.",
+                    text: "Страхи смерти, боли, болезней.",
                     values: [3, 12, 14, 29, 30, 31, 34, 35, 36, 47, 60]
                 },
                 tanatophobia_2: {
-                    text: "Танатофобия: страхи пространств: открытых, закрытых.",
+                    text: "Страхи пространств: открытых, закрытых.",
                     values: [10, 14, 16, 17, 18, 21, 33, 35, 36, 39, 47, 53, 57]
                 },
                 tocialphobia_1: {
-                    text: "Социофобия: социально-оценочные страхи.",
+                    text: "Социально-оценочные страхи.",
                     values: [2, 4, 8, 9, 27, 50, 52, 54, 55, 56, 58, 60]
                 },
                 tocialphobia_2: {
-                    text: "Социофобия: боязнь выступлений, экзаменов, встреч.",
+                    text: "Боязнь выступлений, экзаменов, встреч.",
                     values: [3, 9, 27, 50, 55, 56, 60]
                 },
                 agressophobia_1: {
-                    text: "Агрессофобия: страхи перед агрессией",
-                    values: [3, 18, 22, 23, 24, 25, 26, 28, 39, 53, 58]
+                    text: "Страхи перед агрессией.",
+                    values: [3, 18, 22, 23, 25, 26, 28, 39, 53, 58]
                 },
                 agressophobia_2: {
-                    text: "Агрессофобия: зависимостные страхи",
+                    text: "Зависимостные страхи.",
                     values: [11, 12, 16, 20, 32, 35, 36, 41, 42, 43]
                 },
                 panphobia: {
-                    text: "Панфобия: общебытийные страхи",
+                    text: "Общебытийные страхи.",
                     values: [1, 11, 12, 14, 15, 19, 20, 36, 37, 38, 40, 42, 44]
                 },
                 esophobia: {
-                    text: "Эзофобия: мистические страхи",
+                    text: "Мистические страхи.",
                     values: [10, 12, 13, 14, 19, 21, 36, 37, 40, 45, 46, 49]
                 },
                 fortunophobia: {
-                    text: "Фортунофобия: страхи перед судьбой:",
+                    text: "Страхи перед судьбой.",
                     values: [1, 5, 6, 15, 16, 38, 40, 46, 48, 59]
                 }
+            };
+            const sexes = {
+              m: {
+                  text: "Мужской",
+                  questions: {
+                      question_22: {
+                          id: "question_22",
+                          text: "Когда иду с девушкой, стараюсь обходить места, где на нас могут напасть"
+                      }
+                  }
+              },
+              f: {
+                  text: "Женский",
+                  questions: {
+                      question_22: {
+                        id: "question_22",
+                        text: "Если возвращаюсь домой после 11 вечера, всегда прошу меня встретить или проводить."
+                      }
+                }
+              }
             };
 
             let fear_block = $("<div/>", {class: "fear-block"}).appendTo(html_element);
@@ -449,7 +473,7 @@ def check_answer(expect, ans):
                 fear_block.append($("<div/>", {html: find_types(types, state.result.calculated.points)}));
 
 
-                console.log(state.result);
+                // console.log(state.result);
 
                 let user_phobias = {
                     confidence: [],
@@ -462,6 +486,9 @@ def check_answer(expect, ans):
                         // console.log("item: ", question_num);
                         if(answer_choices[state.result.user_answers["question_"+question_num]]){
                             phobia_points += answer_choices[state.result.user_answers["question_"+question_num]].value;
+                        }
+                        else{
+                            console.error(question_num)
                         }
                     });
                     if((phobia_points/phobias[item].values.length) $more_sign 5){
@@ -491,22 +518,7 @@ def check_answer(expect, ans):
 
                 }
 
-
-
-
-
-
                 console.log(user_phobias);
-
-                // let f1 = 0;
-                //
-                //
-                //
-                // [3, 12, 14, 29, 30, 31, 34, 35, 36, 47, 60].forEach(function(item){
-                //     f1 += answer_choices[state.result.user_answers["question_"+item]].value;
-                // });
-                // console.log(f1);
-
 
             }
 
@@ -522,10 +534,11 @@ def check_answer(expect, ans):
             }
 
 
+
             function create_answer_block() {
 
                 let task_text = `
-                                <p>Вы увидите 60 утверждений. Это сводный обзор главнейших человеческих страхов. И это же - зеркало для вашей самооценки: поглядевшись в него, вы сможете определить у себя и общее "количество" страха, и его уровень в той или иной жизненной сфере, в конкретной направленности. Учитывается при этом, что есть страхи осознаваемые и есть неосознаваемые.</p>
+                                <p>Вы увидите 59 утверждений. Это сводный обзор главнейших человеческих страхов. И это же - зеркало для вашей самооценки: поглядевшись в него, вы сможете определить у себя и общее "количество" страха, и его уровень в той или иной жизненной сфере, в конкретной направленности. Учитывается при этом, что есть страхи осознаваемые и есть неосознаваемые.</p>
                                 <p>Пожалуйста, внимательно прочитайте все утверждения. Каждое из них может иметь к вам какое-то отношение, может быть до какой-то степени справедливым для вас. Но может быть и не так - может к вам вовсе не относиться. Если вы согласитесь с утверждением полностью, на 100%, поставьте 10 баллов - значит, оно справедливо для вас вполне. Если не согласны совсем, если к вам утверждение ни в какой степени не относится - ставьте 0. Если согласны наполовину, ставьте 5 баллов. Если более чем наполовину - соответственно, 6, 7, 8 или 9 баллов. Если менее, чем наполовину - от 4 до 1 балла.</p>
                                 <p>Для облегчения попробуйте вспомнить 5 или 10 ситуаций или случаев, о которых идет речь в утверждении, и определить, сколько раз из 5 или 10 ваше поведение (самочувствие) соответствовало утверждению. Например: из 10 разговоров с людьми в среднем в 5 я испытываю смущение; из 10 дел в 3 рискую; за десяток ночей раз-другой может присниться кошмар...</p>
                                 <p>Когда каждое утверждение получит ваш самооценочный балл, нажмите кнопку «Отправить» и обратитесь к далее следующей расшифровке результата.</p>
@@ -534,11 +547,69 @@ def check_answer(expect, ans):
                 fear_block.append(task_text);
 
                 state.result.calculated = {};
+                state.result.sex = Object.keys(sexes)[0];
 
-                Object.keys(questions).forEach(function (item) {
+                let sex_choice_block = $("<div/>", {class: "question-block",});
+
+                $("<div/>", {html:"Пожалуйста, укажите ваш пол:", class:"sex-choice-block-title"}).appendTo(sex_choice_block);
+
+                Object.keys(sexes).forEach(function (p, index) {
+                    let answer_block = $('<div/>', {class: 'sex-answer-block'});
+
+                    let radio_label = $("<label/>", {
+                        html: " " + sexes[p].text,
+                        // class: "radio-label",
+                    });
+                    let radio_input = $("<input/>", {
+                        type: "radio",
+                        class: "sex-radio-input",
+                        value: p,
+                        name: "choice-sex-answer-block"
+                    });
+
+                    if (index == 0){
+                        $(radio_input).attr('checked', true);
+                    }
+
+                    radio_label.prepend(radio_input);
+                    $(answer_block).append(radio_label);
+                    $(sex_choice_block).append(answer_block);
+                });
+                fear_block.append(sex_choice_block);
+
+                $(".sex-radio-input").change(function () {
+                    // console.log($(".sex-radio-input"));
+                    state.result.sex =  this.value;
+                    answer.setJSON({answer: state});
+
+                    Object.keys(sexes[state.result.sex].questions).forEach(function (item) {
+                        let question_num = item.replace("question_", "");
+                        // cons
+                        $("#question_block_" + question_num + " .question-title-block-text").html(sexes[state.result.sex].questions[item].text)
+                    })
+
+
+                });
+
+
+
+
+
+
+                Object.keys(questions).forEach(function (item, idx) {
                     let question_num = item.replace("question_", "");
-                    let question_block = $("<div/>", {class: "question-block", });
-                    let question_title_block = $("<div/>", {class: "question-title-block", html: "<strong>" + question_num + ". </strong>" + questions[item].text});
+                    let question_block = $("<div/>", {class: "question-block", id:"question_block_"+question_num});
+                    let question_title_block = $("<div/>", {class: "question-title-block", html: "<strong>" + (idx + 1) + ". </strong>"});
+
+                    let question_title_block_text = $("<span/>", {html: questions[item].text, class: "question-title-block-text"});
+                    if (Object.keys(sexes[Object.keys(sexes)[0]].questions).includes(item)){
+                        // console.log(item);
+                        question_title_block_text.html(sexes[Object.keys(sexes)[0]].questions[item].text);
+                    }
+
+
+
+                    question_title_block.append(question_title_block_text);
 
                     let question_answer_table = $("<table/>", {class: "question-answer-table" });
 
@@ -613,6 +684,7 @@ def check_answer(expect, ans):
         let state = {
             completed: false,
             result: {
+                sex: "",
                 calculated: {},
                 user_answers: {},
             },
