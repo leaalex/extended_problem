@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="диагностики">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 4.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
@@ -98,8 +95,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="23" selection-end-line="476" />
+            <state relative-caret-position="172">
+              <caret line="419" selection-start-line="419" selection-end-line="419" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
               </folding>
@@ -216,7 +213,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="249" />
+    <option name="x" value="247" />
     <option name="y" value="256" />
     <option name="width" value="1818" />
     <option name="height" value="1114" />
@@ -461,7 +458,7 @@
       <workItem from="1557740358159" duration="26200000" />
       <workItem from="1558011044709" duration="12032000" />
       <workItem from="1558082024887" duration="74542000" />
-      <workItem from="1558523761191" duration="10687000" />
+      <workItem from="1558523761191" duration="12266000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -474,10 +471,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440177000" />
+    <option name="totallyTimeSpent" value="441756000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="249" y="256" width="1818" height="1114" extended-state="0" />
+    <frame x="247" y="256" width="1818" height="1114" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2" />
@@ -924,8 +921,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 4.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="23" selection-end-line="476" />
+        <state relative-caret-position="172">
+          <caret line="419" selection-start-line="419" selection-end-line="419" />
           <folding>
             <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
           </folding>

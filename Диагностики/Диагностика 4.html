@@ -429,7 +429,7 @@ def check_answer(expect, ans):
                 }
                 else{
                     role_positions_diagnostic.create_answer_block()
-                    answer.set("");
+                    // answer.set("");
                     // $( document ).ready(function() {
                     //     // console.log("А документ реди случается?")
                     //     submit_button.attr("disabled", "disabled");
@@ -448,14 +448,15 @@ def check_answer(expect, ans):
             // var observer = new MutationObserver(function(mutations) {
             //     mutations.forEach(function(mutation) {
             //         if (mutation.type == "attributes") {
-            //             console.log("attributes changed");
-            //             submit_button.attr("disabled", "disabled");
+            //             console.log("attributes changed:", mutation);
+            //             // submit_button.attr("disabled", "disabled");
             //         }
             //     });
             // });
             //
             // observer.observe(element, {
             //     attributes: true,
+            //     attributeOldValue : true,
             // });
 
 
