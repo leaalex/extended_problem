@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="диагностики">
-      <change beforePath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnotic_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,20 +28,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="408" column="47" lean-forward="true" selection-start-line="331" selection-start-column="12" selection-end-line="408" selection-end-column="47" />
+            <state relative-caret-position="451">
+              <caret line="349" column="40" selection-start-line="349" selection-start-column="29" selection-end-line="349" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="907" column="24" lean-forward="true" selection-start-line="907" selection-start-column="24" selection-end-line="907" selection-end-column="24" />
+            <state relative-caret-position="122">
+              <caret line="1044" column="57" lean-forward="true" selection-start-line="1044" selection-start-column="57" selection-end-line="1044" selection-end-column="57" />
               <folding>
-                <element signature="e#9942#12221#0" />
-                <element signature="e#22338#48206#0" />
+                <element signature="e#6985#8022#0" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#475#502#0" expanded="true" />
+                <element signature="e#508#533#0" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#problem#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
+            <state relative-caret-position="970">
               <caret line="569" column="29" selection-start-line="569" selection-start-column="29" selection-end-line="569" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
@@ -73,19 +78,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="334" column="34" lean-forward="true" selection-start-line="334" selection-start-column="34" selection-end-line="334" selection-end-column="34" />
+            <state relative-caret-position="356">
+              <caret line="477" lean-forward="true" selection-start-line="477" selection-end-line="477" />
               <folding>
-                <element signature="e#420#733#0" />
-                <element signature="e#2305#10973#0" />
                 <element signature="e#11014#11247#0" />
                 <element signature="e#13418#14579#0" />
-                <element signature="e#13292#15105#0" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -95,11 +95,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+            <state relative-caret-position="167">
+              <caret line="119" column="9" lean-forward="true" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
               <folding>
                 <element signature="e#3115#12918#0" />
-                <element signature="e#12954#14070#0" />
                 <element signature="e#14098#18344#0" />
                 <element signature="e#18373#20116#0" />
                 <element signature="e#19716#24518#0" />
@@ -122,17 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>radio-td</find>
-      <find>calculate_results</find>
-      <find>user_answers</find>
-      <find>table_td</find>
-      <find>tbody</find>
-      <find>answer_table</find>
-      <find>heading-td</find>
-      <find>console.log(&quot;type</find>
-      <find>console.lo</find>
-      <find>Экстраверсия</find>
-      <find>reset_answer</find>
       <find>hover</find>
       <find>reset</find>
       <find>stat</find>
@@ -145,13 +133,24 @@
       <find>build_result</find>
       <find>crit_think_diagnostic_question</find>
       <find>create_answer_block</find>
-      <find>info</find>
       <find>rang</find>
-      <find>console</find>
       <find>fobia</find>
       <find>radar</find>
-      <find>fobie</find>
       <find>result</find>
+      <find>xScale</find>
+      <find>interpreting_information_sources_text</find>
+      <find>building_sound_conclusions_text</find>
+      <find>recognition_contradictions_text</find>
+      <find>generating_evaluating_decisions_text</find>
+      <find>selection_significant_similarities_text</find>
+      <find>inputs_block</find>
+      <find>info</find>
+      <find>analysis_and_synthesis_max</find>
+      <find>РИСУНОК</find>
+      <find>автор не учит</find>
+      <find>console</find>
+      <find>click</find>
+      <find>fobie</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -195,17 +194,17 @@
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 4.html" />
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 1.html" />
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html" />
-        <option value="$PROJECT_DIR$/Диагностики/Диагностика 3.html" />
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 2.html" />
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" />
+        <option value="$PROJECT_DIR$/Диагностики/Диагностика 3.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="813" />
-    <option name="y" value="222" />
-    <option name="width" value="1878" />
-    <option name="height" value="1275" />
+    <option name="x" value="243" />
+    <option name="y" value="141" />
+    <option name="width" value="1896" />
+    <option name="height" value="1163" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -446,7 +445,7 @@
       <workItem from="1557735598355" duration="1812000" />
       <workItem from="1557740358159" duration="26200000" />
       <workItem from="1558011044709" duration="12032000" />
-      <workItem from="1558082024887" duration="58124000" />
+      <workItem from="1558082024887" duration="73223000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -459,13 +458,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="413072000" />
+    <option name="totallyTimeSpent" value="428171000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="164" y="304" width="1878" height="1275" extended-state="0" />
+    <frame x="243" y="141" width="1896" height="1163" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19353099" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19167112" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -816,16 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="569" column="29" selection-start-line="569" selection-start-column="29" selection-end-line="569" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -880,30 +869,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
+    <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="334" column="34" lean-forward="true" selection-start-line="334" selection-start-column="34" selection-end-line="334" selection-end-column="34" />
+        <state relative-caret-position="451">
+          <caret line="349" column="40" selection-start-line="349" selection-start-column="29" selection-end-line="349" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="970">
+          <caret line="569" column="29" selection-start-line="569" selection-start-column="29" selection-end-line="569" selection-end-column="29" />
           <folding>
-            <element signature="e#420#733#0" />
-            <element signature="e#2305#10973#0" />
-            <element signature="e#11014#11247#0" />
-            <element signature="e#13418#14579#0" />
-            <element signature="e#13292#15105#0" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="1044" column="57" lean-forward="true" selection-start-line="1044" selection-start-column="57" selection-end-line="1044" selection-end-column="57" />
+          <folding>
+            <element signature="e#6985#8022#0" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#475#502#0" expanded="true" />
+            <element signature="e#508#533#0" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#problem#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+        <state relative-caret-position="167">
+          <caret line="119" column="9" lean-forward="true" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
           <folding>
             <element signature="e#3115#12918#0" />
-            <element signature="e#12954#14070#0" />
             <element signature="e#14098#18344#0" />
             <element signature="e#18373#20116#0" />
             <element signature="e#19716#24518#0" />
@@ -912,20 +914,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
+    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="408" column="47" lean-forward="true" selection-start-line="331" selection-start-column="12" selection-end-line="408" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="907" column="24" lean-forward="true" selection-start-line="907" selection-start-column="24" selection-end-line="907" selection-end-column="24" />
+        <state relative-caret-position="356">
+          <caret line="477" lean-forward="true" selection-start-line="477" selection-end-line="477" />
           <folding>
-            <element signature="e#9942#12221#0" />
-            <element signature="e#22338#48206#0" />
+            <element signature="e#11014#11247#0" />
+            <element signature="e#13418#14579#0" />
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

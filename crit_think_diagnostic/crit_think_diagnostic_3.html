@@ -161,7 +161,34 @@ correct_answers = {
     }
 }
 
+analysis_and_synthesis_max = sum([correct_answers[item]["progress"].count("analysis_and_synthesis") for item in correct_answers])
+logics_max = sum([correct_answers[item]["progress"].count("logics") for item in correct_answers])
+interpreting_information_sources_max = sum([correct_answers[item]["progress"].count("interpreting_information_sources") for item in correct_answers])
+problem_solving_max = sum([correct_answers[item]["progress"].count("problem_solving") for item in correct_answers])
+selection_significant_similarities_max = sum([correct_answers[item]["progress"].count("selection_significant_similarities") for item in correct_answers])
+building_sound_conclusions_max = sum([correct_answers[item]["progress"].count("building_sound_conclusions") for item in correct_answers])
+evaluation_max = sum([correct_answers[item]["progress"].count("evaluation") for item in correct_answers])
+recognition_contradictions_max = sum([correct_answers[item]["progress"].count("recognition_contradictions") for item in correct_answers])
+generating_evaluating_decisions_max = sum([correct_answers[item]["progress"].count("generating_evaluating_decisions") for item in correct_answers])
+emotions_control_max = sum([correct_answers[item]["progress"].count("emotions_control") for item in correct_answers])
 
+analysis_and_synthesis_text = "Анализ и синтез"
+logics_text = "Логика"
+interpreting_information_sources_text = "Интерпретация "
+interpreting_information_sources_text_1 =  "источников информации"
+problem_solving_text = "Решение проблем"
+selection_significant_similarities_text = "Выделение значимых"
+selection_significant_similarities_text_1 = "сходств и различий"
+building_sound_conclusions_text = "Построение обоснованных"
+building_sound_conclusions_text_1 = "выводов и доказательств"
+evaluation_text = "Оценка"
+recognition_contradictions_text = "Распознавание"
+recognition_contradictions_text_1 = "противоречий"
+generating_evaluating_decisions_text = "Генерирование и"
+generating_evaluating_decisions_text_1 = "оценивание решений"
+emotions_control_text = "Контроль над эмоциями"
+
+points_label = "Баллов"
 
 def check_answer(expect, ans):
     student_answer = json.loads(ans)["answer"]
@@ -202,6 +229,16 @@ def check_answer(expect, ans):
 
     <script type="text/javascript">
 
+        $.fn.randomize = function(selector){
+            (selector ? this.find(selector) : this).parent().each(function(){
+                $(this).children(selector).sort(function(){
+                    return Math.random() - 0.5;
+                }).detach().appendTo(this);
+            });
+
+            return this;
+        };
+
         function Answer(elementField) {
             this.elementField = elementField;
             this.fieldValue = "";
@@ -232,10 +269,21 @@ def check_answer(expect, ans):
             };
         };
 
+        let analysis_and_synthesis_max = parseInt("$analysis_and_synthesis_max")
+        let logics_max = parseInt("$logics_max")
+        let interpreting_information_sources_max = parseInt("$interpreting_information_sources_max")
+        let problem_solving_max = parseInt("$problem_solving_max")
+        let selection_significant_similarities_max = parseInt("$selection_significant_similarities_max")
+        let building_sound_conclusions_max = parseInt("$building_sound_conclusions_max")
+        let evaluation_max = parseInt("$evaluation_max")
+        let recognition_contradictions_max = parseInt("$recognition_contradictions_max")
+        let generating_evaluating_decisions_max = parseInt("$generating_evaluating_decisions_max")
+        let emotions_control_max = parseInt("$emotions_control_max")
+
         var next_btn_label = '$next_btn_label'
 
         // $("#crit_think_diagnostic").closest(".problem").parent().find(".problem-progress").hide();
-        // var notification = $(".problem .notification.notification-submit").hide();
+        var notification = $(".problem .notification.notification-submit").hide();
 
         var submit_button = $("#crit_think_diagnostic").closest(".problem").find('button.submit');
         $(submit_button).css('text-transform','none');
@@ -245,32 +293,31 @@ def check_answer(expect, ans):
 
         function build_result(){
             console.log("i'm result i'm result!", user_state);
-            // $(submit_button).hide();
-            // $("#crit_think_diagnostic_result").append("<p><strong>Результат:</strong></p>");
-            //
-            // var res_msg = user_state.progress.msg;
-            //
-            // $("#crit_think_diagnostic_result").append("<p>" + res_msg + "</p>");
-            //
-            // $("#crit_think_diagnostic_result").show();
+            $(submit_button).hide();
 
             var result_block = $("<div/>", {
                 html: "<h2>Результаты диагностики</h2>",
                 class: ""
             });
-
-
-
             var chart = $("<canvas/>", {id:"radar-chart", width:"100%", height:"600"});
 
-            // console.log(result);
-
-
+            console.log(user_state);
 
             new Chart(chart, {
                 type: 'radar',
                 data: {
-                    labels: ["user_labels.self_deprecating_label", "user_labels.aggressive_label", "user_labels.affiliated_label", "user_labels.self_sustaining_label"],
+                    labels: [
+                        "$analysis_and_synthesis_text",
+                        "$logics_text",
+                        ["$interpreting_information_sources_text", "$interpreting_information_sources_text_1"],
+                        "$problem_solving_text",
+                        ["$selection_significant_similarities_text", "$selection_significant_similarities_text_1"],
+                        ["$building_sound_conclusions_text", "$building_sound_conclusions_text_1"],
+                        "$evaluation_text",
+                        ["$recognition_contradictions_text", "$recognition_contradictions_text_1"],
+                        ["$generating_evaluating_decisions_text", "$generating_evaluating_decisions_text_1"],
+                        "$emotions_control_text",
+                    ],
                     datasets: [
                         {
                             // label: "2050",
@@ -280,7 +327,19 @@ def check_answer(expect, ans):
                             pointBackgroundColor: "#046b99",
                             backgroundColor: "#046b9908",
                             pointBorderColor: "#fff",
-                            data: [1,2,3,4]
+                            data: [
+                                // 1,2,3,4,5
+                                Math.round(user_state.progress.progress.analysis_and_synthesis/analysis_and_synthesis_max*100),
+                                Math.round(user_state.progress.progress.logics/logics_max*100),
+                                Math.round(user_state.progress.progress.interpreting_information_sources/interpreting_information_sources_max*100),
+                                Math.round(user_state.progress.progress.problem_solving/problem_solving_max*100),
+                                Math.round(user_state.progress.progress.selection_significant_similarities/selection_significant_similarities_max*100),
+                                Math.round(user_state.progress.progress.building_sound_conclusions/building_sound_conclusions_max*100),
+                                Math.round(user_state.progress.progress.evaluation/evaluation_max*100),
+                                Math.round(user_state.progress.progress.recognition_contradictions/recognition_contradictions_max*100),
+                                Math.round(user_state.progress.progress.generating_evaluating_decisions/generating_evaluating_decisions_max*100),
+                                Math.round(user_state.progress.progress.emotions_control/emotions_control_max*100)
+                            ]
                         }
                     ]
                 },
@@ -293,8 +352,9 @@ def check_answer(expect, ans):
                     scale: {
                         ticks: {
                             beginAtZero: true,
-                            max: 10,
+                            max: 100,
                             fontSize: 16,
+                            display: false,
                         },
                         angleLines: {
                             display: true,
@@ -312,8 +372,7 @@ def check_answer(expect, ans):
                     tooltips: {
                         callbacks: {
                             label: function(tooltipItem, data) {
-                                var label = "Баллов" + ': ';
-                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                var label = Math.round(tooltipItem.yLabel * 100) / 100 + ' %';
                                 return label;
                             }
                         },
@@ -324,6 +383,19 @@ def check_answer(expect, ans):
                 }
             });
             $(result_block).append(chart);
+
+            $(result_block).append("<p><strong>Оценка каждого вектора:</strong></p>");
+
+            $(result_block).append("<p>Анализ и синтез: " + user_state.progress.progress.analysis_and_synthesis + " из " + "$analysis_and_synthesis_max" + "</p>")
+            $(result_block).append("<p>Логика: " + user_state.progress.progress.logics + " из " + "$logics_max" + "</p>")
+            $(result_block).append("<p>Интерпретация и оценка достоверности источников информации: " + user_state.progress.progress.interpreting_information_sources + " из " + "$interpreting_information_sources_max" + "</p>")
+            $(result_block).append("<p>Решение проблем: " + user_state.progress.progress.problem_solving + " из " + "$problem_solving_max" + "</p>")
+            $(result_block).append("<p>Выделение значимых сходств и различий: " + user_state.progress.progress.selection_significant_similarities + " из " + "$selection_significant_similarities_max" + "</p>")
+            $(result_block).append("<p>Построение обоснованных выводов и доказательств: " + user_state.progress.progress.building_sound_conclusions + " из " + "$building_sound_conclusions_max" + "</p>")
+            $(result_block).append("<p>Оценка: " + user_state.progress.progress.evaluation + " из " + "$evaluation_max" + "</p>")
+            $(result_block).append("<p>Распознавание противоречий: " + user_state.progress.progress.recognition_contradictions + " из " + "$recognition_contradictions_max" + "</p>")
+            $(result_block).append("<p>Генерирование и оценивание решений: " + user_state.progress.progress.generating_evaluating_decisions + " из " + "$generating_evaluating_decisions_max" + "</p>")
+            $(result_block).append("<p>Контроль над эмоциями: " + user_state.progress.progress.emotions_control + " из " + "$emotions_control_max" + "</p>")
 
 
             $("#crit_think_diagnostic_result").html(result_block);
@@ -654,7 +726,7 @@ def check_answer(expect, ans):
                 ]
             },
             question_16 :{
-                html: "Найдите понятия, отношения между которыми удовлетворяли бы приведенной схеме: РИСУНОК!!!!!!",
+                html: 'Найдите понятия, отношения между которыми удовлетворяли бы приведенной схеме: <div style="text-align: center;"><img src="/static/diagnostic_03_img_01.png"></img></div>',
                 answers: [
                     {
                         let: "a",
@@ -679,19 +751,19 @@ def check_answer(expect, ans):
                 answers: [
                     {
                         let: "a",
-                        text: "РИСУНОК!!!!!!"
+                        text: '<img src="/static/diagnostic_03_img_02.png"></img>'
                     },
                     {
                         let: "b",
-                        text: "РИСУНОК!!!!!!"
+                        text: '<img src="/static/diagnostic_03_img_03.png"></img>'
                     },
                     {
                         let: "c",
-                        text: "РИСУНОК!!!!!!"
+                        text: '<img src="/static/diagnostic_03_img_04.png"></img>'
                     },
                     {
                         let: "d",
-                        text: "РИСУНОК!!!!!!"
+                        text: '<img src="/static/diagnostic_03_img_05.png"></img>'
                     }
                 ]
             },
@@ -813,7 +885,7 @@ def check_answer(expect, ans):
                 ]
             },
             question_23 :{
-                html: "В одном популярном паблике вы прочитали, что использование иностранного программного обеспечения и социальных сетей не только пагубно влияет на психологическое состояние пользователей, но и ухудшает криминальную ситуацию в стране. В подтверждение своих слов автор поста привел график, согласно которому, с каждым годом в течение последнего десятилетия увеличивается как доля пользователей иностранного контента, как и количество убийств. Что с этим рассуждением не так? РИСУНОК!!!!!!!!!!!!!!",
+                html: 'В одном популярном паблике вы прочитали, что использование иностранного программного обеспечения и социальных сетей не только пагубно влияет на психологическое состояние пользователей, но и ухудшает криминальную ситуацию в стране. В подтверждение своих слов автор поста привел график, согласно которому, с каждым годом в течение последнего десятилетия увеличивается как доля пользователей иностранного контента, как и количество убийств. Что с этим рассуждением не так? <div style="text-align: center;"><img style="max-width: 500px;" src="/static/diagnostic_03_img_06.png"></img></div>',
                 answers: [
                     {
                         let: "a",
@@ -846,14 +918,10 @@ def check_answer(expect, ans):
                     },
                     {
                         let: "c",
-                        text: "Автор не учитывает, что увеличение уровня"
-                    },
-                    {
-                        let: "d",
                         text: "Автор не приводит, какие именно демократические режимы привели к тоталитарному режиму"
                     },
                     {
-                        let: "e",
+                        let: "d",
                         text: "Автор перевел разговор на другую тему"
                     }
                 ]
@@ -960,7 +1028,17 @@ def check_answer(expect, ans):
 
                 input_wrap.click(function(e) {
                     $('input', $(e.target)).prop('checked', true);
+                    let target = $(e.target);
+                    if (!$(e.target).hasClass('question-input-wrap')){
+                        target = $(e.target).closest('.question-input-wrap');
+                        // console.log(target);
+                        $("input[name='question_choice']", target).prop('checked', true);
+                    }
+
                     var val = $("input[name='question_choice']:checked").val();
+
+                    // console.log(val);
+                    // console.log($(e.target).class);
                     user_state.answers[current_question_id] = val;
                     enableSubmitButton();
                     user_state.step = current_step + 1;
@@ -968,10 +1046,13 @@ def check_answer(expect, ans):
                 });
             });
 
+            // $(inputs_block).shuffleChildren();
+
             $("#crit_think_diagnostic_question").append(question_text);
             $("#crit_think_diagnostic_question").append(inputs_block);
             answer.setJSON({answer: user_state});
 
+            $(".question-input-wrap").randomize();
         }
 
     </script>
@@ -985,7 +1066,7 @@ def check_answer(expect, ans):
         <div id="crit_think_diagnostic_result">
         </div>
 
-        <div id="crit_think_diagnostic_input">
+        <div id="crit_think_diagnostic_input" style="display: none !important;">
             <customresponse cfn="check_answer">
                 <textline size="40" value="$unique_id" />
                 <br/>

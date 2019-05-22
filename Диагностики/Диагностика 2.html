@@ -464,7 +464,7 @@ def check_answer(expect, ans):
                             phobia_points += answer_choices[state.result.user_answers["question_"+question_num]].value;
                         }
                     });
-                    if((phobia_points/5) $more_sign 5){
+                    if((phobia_points/phobias[item].values.length) $more_sign 5){
                         user_phobias.fear.push(phobias[item]);
                     }
                     else{
