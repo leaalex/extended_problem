@@ -15,253 +15,366 @@ def check_answer(expect, ans):
             border-bottom: 2px solid #c7c7c9;
         }
 
+        .radio-input{
+            margin-top: -1px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        span.submit-label {
+            text-transform: initial !important;
+        }
+
     </style>
+
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+
+    <script type="text/javascript" id="chart_js" src="/static/Chart.js"> </script>
+
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $.fn.enableButton = function() {
+                this.removeClass("disabled");
+                this.removeAttr("disabled");
+            };
+            $.fn.disableButton = function() {
+                this.addClass("disabled");
+                this.removeAttr("disabled");
+            };
+
             const questions = {
                 question_1: {
-                    A: {
-                        text: "Иногда я представляю право решать проблему другим."
+                    a: {
+                        text: "Иногда я представляю право решать проблему другим.",
+                        prop: "avoiding"
                     },
-                    B: {
-                        text: "Я стараюсь подчеркнуть общее в наших позициях, а не обсуждать спорные моменты."
+                    b: {
+                        text: "Я стараюсь подчеркнуть общее в наших позициях, а не обсуждать спорные моменты.",
+                        prop: "apologetic"
                     }
                 },
                 question_2: {
-                    A: {
-                        text: "Я пытаюсь найти компромиссное решение."
+                    a: {
+                        text: "Я пытаюсь найти компромиссное решение.",
+                        prop: "compromise"
                     },
-                    B: {
-                        text: "Я пытаюсь учесть все интересы, как свои, так и оппонента."
+                    b: {
+                        text: "Я пытаюсь учесть все интересы, как свои, так и оппонента.",
+                        prop: "affiliate"
                     }
                 },
                 question_3: {
-                    A: {
-                        text: "Обычно я твердо стою на своем."
+                    a: {
+                        text: "Обычно я твердо стою на своем.",
+                        prop: "competitive"
                     },
-                    B: {
-                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения."
+                    b: {
+                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения.",
+                        prop: "apologetic"
                     }
                 },
                 question_4: {
-                    A: {
-                        text: "Я пытаюсь найти компромиссное решение."
+                    a: {
+                        text: "Я пытаюсь найти компромиссное решение.",
+                        prop: "compromise"
                     },
-                    B: {
-                        text: "Иногда я жертвую собственными интересами ради интересов противоположной стороны."
+                    b: {
+                        text: "Иногда я жертвую собственными интересами ради интересов противоположной стороны.",
+                        prop: "apologetic"
                     }
                 },
                 question_5: {
-                    A: {
-                        text: "При выработке решения ищу помощи со стороны других."
+                    a: {
+                        text: "При выработке решения ищу помощи со стороны других.",
+                        prop: "affiliate"
                     },
-                    B: {
-                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях."
+                    b: {
+                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях.",
+                        prop: "avoiding"
                     }
                 },
                 question_6: {
-                    A: {
-                        text: "Я пытаюсь не создавать себе репутацию неприятного человека."
+                    a: {
+                        text: "Я пытаюсь не создавать себе репутацию неприятного человека.",
+                        prop: "avoiding"
                     },
-                    B: {
-                        text: "Я пытаюсь навязать другим свою позицию."
+                    b: {
+                        text: "Я пытаюсь навязать другим свою позицию.",
+                        prop: "competitive"
                     }
                 },
                 question_7: {
-                    A: {
-                        text: "Я пытаюсь отложить решение вопроса, чтобы иметь время тщательно его обдумать."
+                    a: {
+                        text: "Я пытаюсь отложить решение вопроса, чтобы иметь время тщательно его обдумать.",
+                        prop: "avoiding"
                     },
-                    B: {
-                        text: "Я жертвую одними выгодами, чтобы получить взамен другие."
+                    b: {
+                        text: "Я жертвую одними выгодами, чтобы получить взамен другие.",
+                        prop: "compromise"
                     }
                 },
                 question_8: {
-                    A: {
-                        text: "Обычно я твердо настаиваю на своем."
+                    a: {
+                        text: "Обычно я твердо настаиваю на своем.",
+                        prop: "competitive"
                     },
-                    B: {
-                        text: "Я пытаюсь сразу же открыто обсудить все интересы и спорные вопросы."
+                    b: {
+                        text: "Я пытаюсь сразу же открыто обсудить все интересы и спорные вопросы.",
+                        prop: "affiliate"
                     }
                 },
                 question_9: {
-                    A: {
-                        text: "Я чувствую, что различия в позициях не всегда стоят того, чтобы о них беспокоиться."
+                    a: {
+                        text: "Я чувствую, что различия в позициях не всегда стоят того, чтобы о них беспокоиться.",
+                        prop: "avoiding"
                     },
-                    B: {
-                        text: "Я прилагаю некоторые усилия, чтобы повернуть дело на свой лад."
+                    b: {
+                        text: "Я прилагаю некоторые усилия, чтобы повернуть дело на свой лад.",
+                        prop: "competitive"
                     }
                 },
                 question_10: {
-                    A: {
-                        text: "Я твердо настаиваю на своем."
+                    a: {
+                        text: "Я твердо настаиваю на своем.",
+                        prop: "competitive"
                     },
-                    B: {
-                        text: "Я пытаюсь найти компромиссное решение."
+                    b: {
+                        text: "Я пытаюсь найти компромиссное решение.",
+                        prop: "compromise"
                     }
                 },
                 question_11: {
-                    A: {
-                        text: "Я пытаюсь сразу же открыто обсудить все интересы и спорные вопросы."
+                    a: {
+                        text: "Я пытаюсь сразу же открыто обсудить все интересы и спорные вопросы.",
+                        prop: "affiliate"
                     },
-                    B: {
-                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения."
+                    b: {
+                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения.",
+                        prop: "apologetic"
                     }
                 },
                 question_12: {
-                    A: {
-                        text: "Иногда я избегаю занимать позицию, ведущую к конфронтации."
+                    a: {
+                        text: "Иногда я избегаю занимать позицию, ведущую к конфронтации.",
+                        prop: "avoiding"
                     },
-                    B: {
-                        text: "Я готов кое в чем уступить оппоненту, если он тоже мне уступит."
+                    b: {
+                        text: "Я готов кое в чем уступить оппоненту, если он тоже мне уступит.",
+                        prop: "compromise"
                     }
                 },
                 question_13: {
-                    A: {
-                        text: "Я предлагаю вариант «ни вам, ни нам»."
+                    a: {
+                        text: "Я предлагаю вариант «ни вам, ни нам».",
+                        prop: "compromise"
                     },
-                    B: {
-                        text: "Я настаиваю на принятии моих условий."
+                    b: {
+                        text: "Я настаиваю на принятии моих условий.",
+                        prop: "competitive"
                     }
                 },
                 question_14: {
-                    A: {
-                        text: "Я излагаю оппоненту мои соображения и интересуюсь его идеями."
+                    a: {
+                        text: "Я излагаю оппоненту мои соображения и интересуюсь его идеями.",
+                        prop: "affiliate"
                     },
-                    B: {
-                        text: "Я пытаюсь продемонстрировать оппоненту логичность и выгоду принятия моих условий."
+                    b: {
+                        text: "Я пытаюсь продемонстрировать оппоненту логичность и выгоду принятия моих условий.",
+                        prop: "competitive"
                     }
                 },
                 question_15: {
-                    A: {
-                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения."
+                    a: {
+                        text: "Иногда я могу утешать других и пытаться сохранить с ними отношения.",
+                        prop: "apologetic"
                     },
-                    B: {
-                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях."
+                    b: {
+                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях.",
+                        prop: "avoiding"
                     }
                 },
                 question_16: {
-                    A: {
-                        text: "Я стараюсь щадить чувства других."
+                    a: {
+                        text: "Я стараюсь щадить чувства других.",
+                        prop: "apologetic"
                     },
-                    B: {
-                        text: "Я пытаюсь убедить оппонента в выгодности принятия моих условий."
+                    b: {
+                        text: "Я пытаюсь убедить оппонента в выгодности принятия моих условий.",
+                        prop: "competitive"
                     }
                 },
                 question_17: {
-                    A: {
-                        text: "Обычно я твердо настаиваю на своем."
+                    a: {
+                        text: "Обычно я твердо настаиваю на своем.",
+                        prop: "competitive"
                     },
-                    B: {
-                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях."
+                    b: {
+                        text: "Я пытаюсь сделать все возможное, чтобы избежать ненужного обострения в отношениях.",
+                        prop: "avoiding"
                     }
                 },
                 question_18: {
-                    A: {
-                        text: "Я позволяю оппоненту придерживаться своего мнения, если ему от этого лучше."
+                    a: {
+                        text: "Я позволяю оппоненту придерживаться своего мнения, если ему от этого лучше.",
+                        prop: "apologetic"
                     },
-                    B: {
-                        text: "Я согласен кое в чем уступить оппоненту, если он тоже кое в чем мне уступит."
+                    b: {
+                        text: "Я согласен кое в чем уступить оппоненту, если он тоже кое в чем мне уступит.",
+                        prop: "compromise"
                     }
                 },
                 question_19: {
-                    A: {
-                        text: "Я пытаюсь сразу же, открыто, обсудить все интересы и спорные вопросы."
+                    a: {
+                        text: "Я пытаюсь сразу же, открыто, обсудить все интересы и спорные вопросы.",
+                        prop: "affiliate"
                     },
-                    B: {
-                        text: "Я пытаюсь отложить принятие решения, чтобы иметь время тщательно его обдумать."
+                    b: {
+                        text: "Я пытаюсь отложить принятие решения, чтобы иметь время тщательно его обдумать.",
+                        prop: "avoiding"
                     }
                 },
                 question_20: {
-                    A: {
-                        text: "Я пытаюсь сразу же обсудить противоречия."
+                    a: {
+                        text: "Я пытаюсь сразу же обсудить противоречия.",
+                        prop: "affiliate"
                     },
-                    B: {
-                        text: "Я пытаюсь найти справедливое сочетание из выгод и уступок для каждого из нас."
+                    b: {
+                        text: "Я пытаюсь найти справедливое сочетание из выгод и уступок для каждого из нас.",
+                        prop: "compromise"
                     }
                 },
                 question_21: {
-                    A: {
-                        text: "При подготовке к переговорам я стараюсь учитывать интересы оппонента."
+                    a: {
+                        text: "При подготовке к переговорам я стараюсь учитывать интересы оппонента.",
+                        prop: "apologetic"
                     },
-                    B: {
-                        text: "Я больше склонен к непосредственному и открытому обсуждению проблемы."
+                    b: {
+                        text: "Я больше склонен к непосредственному и открытому обсуждению проблемы.",
+                        prop: "affiliate"
                     }
                 },
                 question_22: {
-                    A: {
-                        text: "Я стараюсь найти позицию, находящуюся между позицией оппонента и моей."
+                    a: {
+                        text: "Я стараюсь найти позицию, находящуюся между позицией оппонента и моей.",
+                        prop: "compromise"
                     },
-                    B: {
-                        text: "Я настаиваю на своих интересах."
+                    b: {
+                        text: "Я настаиваю на своих интересах.",
+                        prop: "competitive"
                     }
                 },
                 question_23: {
-                    A: {
-                        text: "Очень часто я стараюсь удовлетворить все интересы, свои и оппонента."
+                    a: {
+                        text: "Очень часто я стараюсь удовлетворить все интересы, свои и оппонента.",
+                        prop: "affiliate"
                     },
-                    B: {
-                        text: "Иногда я предоставляю право решать проблему другим."
+                    b: {
+                        text: "Иногда я предоставляю право решать проблему другим.",
+                        prop: "avoiding"
                     }
                 },
                 question_24: {
-                    A: {
-                        text: "Я стараюсь пойти навстречу оппоненту, если его условия слишком для него много значат."
+                    a: {
+                        text: "Я стараюсь пойти навстречу оппоненту, если его условия слишком для него много значат.",
+                        prop: "apologetic"
                     },
-                    B: {
-                        text: "Я пытаюсь склонить оппонента к компромиссу."
+                    b: {
+                        text: "Я пытаюсь склонить оппонента к компромиссу.",
+                        prop: "compromise"
                     }
                 },
                 question_25: {
-                    A: {
-                        text: "Я пытаюсь продемонстрировать оппоненту логичность и выгоду принятия моих условий."
+                    a: {
+                        text: "Я пытаюсь продемонстрировать оппоненту логичность и выгоду принятия моих условий.",
+                        prop: "competitive"
                     },
-                    B: {
-                        text: "При подготовке к переговорам я пытаюсь учитывать интересы оппонента."
+                    b: {
+                        text: "При подготовке к переговорам я пытаюсь учитывать интересы оппонента.",
+                        prop: "apologetic"
                     }
                 },
                 question_26: {
-                    A: {
-                        text: "Я предлагаю вариант «ни вам, ни нам»."
+                    a: {
+                        text: "Я предлагаю вариант «ни вам, ни нам».",
+                        prop: "compromise"
                     },
-                    B: {
-                        text: "Я почти всегда пытаюсь удовлетворить все пожелания, как свои, так и оппонента."
+                    b: {
+                        text: "Я почти всегда пытаюсь удовлетворить все пожелания, как свои, так и оппонента.",
+                        prop: "affiliate"
                     }
                 },
                 question_27: {
-                    A: {
-                        text: "Иногда я избегаю занимать позицию, ведущую к конфронтации."
+                    a: {
+                        text: "Иногда я избегаю занимать позицию, ведущую к конфронтации.",
+                        prop: "avoiding"
                     },
-                    B: {
-                        text: "Я позволяю оппоненту придерживаться своего мнения, если ему от этого лучше."
+                    b: {
+                        text: "Я позволяю оппоненту придерживаться своего мнения, если ему от этого лучше.",
+                        prop: "apologetic"
                     }
                 },
                 question_28: {
-                    A: {
-                        text: "Обычно я твердо стою на своем."
+                    a: {
+                        text: "Обычно я твердо стою на своем.",
+                        prop: "competitive"
                     },
-                    B: {
-                        text: "При выработке решения я постоянно ищу помощи со стороны других."
+                    b: {
+                        text: "При выработке решения я постоянно ищу помощи со стороны других.",
+                        prop: "affiliate"
                     }
                 },
                 question_29: {
-                    A: {
-                        text: "Я предлагаю вариант «ни вам, ни нам»."
+                    a: {
+                        text: "Я предлагаю вариант «ни вам, ни нам».",
+                        prop: "compromise"
                     },
-                    B: {
-                        text: "Я чувствую, что различия в позициях не всегда стоят того, чтобы о них беспокоиться."
+                    b: {
+                        text: "Я чувствую, что различия в позициях не всегда стоят того, чтобы о них беспокоиться.",
+                        prop: "avoiding"
                     }
                 },
                 question_30: {
-                    A: {
-                        text: "Я стараюсь щадить чувства других."
+                    a: {
+                        text: "Я стараюсь щадить чувства других.",
+                        prop: "apologetic"
                     },
-                    B: {
-                        text: "Я всегда стараюсь найти решение проблемы совместно с оппонентом."
+                    b: {
+                        text: "Я всегда стараюсь найти решение проблемы совместно с оппонентом.",
+                        prop: "affiliate"
                     }
+                }
+            };
+
+            const types = {
+                competitive: {
+                    title: "\u041a\u043e\u043d\u043a\u0443\u0440\u0435\u043d\u0442\u043d\u044b\u0439"
                 },
-            }
+                affiliate: {
+                    title: "\u041f\u0430\u0440\u0442\u043d\u0435\u0440\u0441\u043a\u0438\u0439"
+                },
+                compromise: {
+                    title: "\u041a\u043e\u043c\u043f\u0440\u043e\u043c\u0438\u0441\u0441\u043d\u044b\u0439"
+                },
+                avoiding: {
+                    title: "\u0418\u0437\u0431\u0435\u0433\u0430\u044e\u0449\u0438\u0439"
+                },
+                apologetic: {
+                    title: "\u041f\u0440\u0438\u043c\u0438\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439"
+                }
+            };
 
             let answer = new Answer(document.querySelector("#thomas_kilmann_diagnostic_input").querySelector("input[type='text']"));
 
@@ -303,18 +416,54 @@ def check_answer(expect, ans):
                 };
             };
 
+            function reset_answer() {
+                state.completed = false;
+                answer.setJSON({answer: state});
+            }
 
             let ThomasKilmannDiagnostic = function (html_element) {
 
                 let block = $("<div/>", {class: "ThomasKilmannDiagnostic-block"}).appendTo(html_element);
 
+                function calculate_result(){
+                    let result = {
+                        competitive: 0,
+                        affiliate: 0,
+                        compromise: 0,
+                        avoiding: 0,
+                        apologetic: 0
+                    };
+
+                    Object.keys(state.result.user_answers).forEach(function (item, idx) {
+                        // let num_question = parseInt(item.replace("question_", ""));
+                        if (['a','b'].includes(state.result.user_answers[item].toLowerCase())){
+                            result[questions[item][state.result.user_answers[item]].prop] += 1;
+                        }
+                    });
+
+                    return result;
+
+                }
+
                 function create_answer_block() {
+
+                    let task_text = `
+                                <p>Подумайте о ситуациях, в которых Ваши желания отличаются от желаний другого человека. Как Вы обычно ведете себя в таких ситуациях?</p>
+                                <p>Ниже приведены 30 пар высказываний, описывающих варианты возможного поведения в конфликтных ситуациях. В каждой из пар выберите вариант, более характерный для Вашего поведения.</p>
+                                <p>Во многих случаях оба из предложенных вариантов могут оказаться для Вас нетипичными; если это так, выберите тот из них, которым бы Вы воспользовались с большей вероятностью.</p>
+                                `
+
+                    block.append(task_text);
+
+                    state.result.user_answers = {};
 
                     Object.keys(questions).forEach(function (item) {
 
                         let question_block = $('<div/>', {class: 'question-block'});
-                        let question_num_block = $('<div/>', {class: 'question-num-block', html: item.replace("question_", "")});
+                        let question_num_block = $('<div/>', {class: 'question-num-block', html: $("<strong/>", {html:"Вопрос " + item.replace("question_", "")})});
                         question_block.append(question_num_block);
+
+                        state.result.user_answers[item] = "";
 
                         Object.keys(questions[item]).forEach(function (answer) {
                             let answer_block = $('<div/>', {class: 'answer-block'});
@@ -326,7 +475,7 @@ def check_answer(expect, ans):
                             let radio_input = $("<input/>", {
                                 type: "radio",
                                 class: "radio-input",
-                                value: answer,
+                                value: answer.toLocaleLowerCase(),
                                 name: item
                             });
 
@@ -335,19 +484,127 @@ def check_answer(expect, ans):
                             $(question_block).append(answer_block);
                         });
 
-
-                        // question_block.append(questions[item].A.text + "/n" + questions[item].B.text);
-                        // question_block.append();
-
                         $(block).append(question_block);
+                    });
 
 
-                    })
+                    $(".ThomasKilmannDiagnostic-block .radio-input").change(function () {
+                        state.result.user_answers[this.name] = this.value;
+                        if (Object.keys(state.result.user_answers).map(function (item) {
+                            return state.result.user_answers[item]
+                        }).every(function (element) {
+                            return element.length != 0
+                        })) {
+                            submit_button.enableButton();
+                            state.completed = true;
+                        }
+                        else{
+                            submit_button.disableButton();
+                        }
+                        state.result.calculated = calculate_result();
+
+                        answer.setJSON({answer: state});
+                    });
 
 
                 }
 
                 function create_result_block() {
+                    block.append($("<h2/>", {html: "Ваши результаты"}));
+
+                    $('body').scrollTo("#thomas_kilmann_diagnostic_block");
+
+                    function range(j, k) {
+                        return Array
+                            .apply(null, Array((k - j) + 1))
+                            .map(function(_, n){ return n + j; });
+                    }
+
+
+                    let titles = [];
+                    let points = [];
+                    let colors = [];
+
+
+                    console.log(state.result)
+
+                    Object.keys(state.result.calculated).forEach(function (item) {
+                        titles.push(types[item].title);
+                        points.push(state.result.calculated[item]);
+                        if (range(0,4).includes(state.result.calculated[item])){
+                                colors.push("#bb1131");
+                        }
+                        else if (range(5,7).includes(state.result.calculated[item])){
+                            colors.push("#399a39");
+
+                        }
+                        else
+                            // (range(8,12).includes(state.result.calculated[item]))
+                        {
+                            colors.push("#3b3bf7");
+                        }
+                    });
+
+
+
+                    let chart = $("<canvas/>", {id:"radar-chart", style: "margin: 0 auto;max-width:700px", width:"100%", height:"600"});
+
+                    new Chart(chart,  {
+                        type: "horizontalBar",
+                        data: {
+                            labels: titles,
+                            datasets: [{
+                                "data": points,
+                                "fill": false,
+                                "backgroundColor": colors,
+                                "borderWidth": 1
+                            }]
+                        },
+                        "options": {
+                            legend: {
+                                display: false
+                            },
+
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        fontSize: 16
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        stepSize: 1,
+                                        max: 12,
+                                        fontSize: 16
+                                    }
+                                }]
+                            },
+                            tooltips: {
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        let label = '\u0411\u0430\u043b\u043b\u043e\u0432' + ': ';
+                                        label += Math.round(tooltipItem.xLabel * 100) / 100;
+                                        return label;
+                                    }
+                                },
+                            },
+                        }
+                    });
+                    block.append(chart);
+
+                    block.append($("<p/>", {style: "text-align:center;", html: '<span style="color: crimson">слабо выраженное (0-4) </span> \u2192 <span style="color: green">оптимальное (5-7)</span> \u2192 <span style="color: darkblue">ярко выраженное использование стратегии (8-12)</span>'}));
+
+                    let end_text = `
+                            <p>Количество баллов, набранных по каждой шкале, дает представление о выраженности тенденции к проявлению соответствующих форм поведения в конфликтных ситуациях. Доминирующим считается тип (типы) набравшие максимальное количество баллов.</p>
+                            <p><strong>Соперничество</strong> заключается в навязывании другой стороне предпочтительного для себя решения. Соперничество оправдано в случаях: явной конструктивности предлагаемого решения; выгодности результата для всей группы, организации, а не для отдельной личности или микрогруппы; важности исхода борьбы для проводящего данную стратегию; отсутствии времени на уговоры оппонента. Соперничество целесообразно в экстремальных и принципиальных ситуациях, при дефиците времени и высокой вероятности опасных последствий.</p>
+                            <p><strong>Сотрудничество</strong> считается наиболее эффективной стратегией поведения в конфликте. Оно предполагает направленность оппонентов на конструктивное обсуждение проблемы, рассмотрение другой стороны не как противника, а как союзника в поиске решения. Сотрудничество эффективно в ситуациях: сильной взаимозависимости оппонентов; склонности обоих игнорировать различие во власти; важности решения для обеих сторон; непредубежденности участников. Сочетание стратегий определяет, каким способом разрешится противоречие, лежащее в основе конфликта.</p>
+                            <p><strong>Компромисс</strong> состоит в желании оппонентов завершить конфликт частичными уступками. Он характеризуется отказом от части ранее выдвигавшихся требований, готовностью признать претензии другой стороны частично обоснованными, готовностью простить. Компромисс эффективен в случаях: понимания оппонентом, что он и соперник обладают равными возможностями; наличия взаимоисключающих интересов; удовлетворения временным решением; угрозы потерять все. Сегодня компромисс - наиболее часто используемая стратегия завершения конфликтов.</p>
+                            <p><strong>Уход от решения проблемы</strong>, или <strong>избегание</strong>, является попыткой уйти из конфликта при минимуме затрат. Отличается от аналогичной стратегии поведения в ходе конфликта тем, что оппонент переходит к ней после неудачных попыток реализовать свои интересы с помощью активных стратегий. Собственно, разговор идет не о разрешении, а о затухании конфликта. Уход может быть вполне конструктивной реакцией на затянувшийся конфликт. Избегание применяется при отсутствии сил и времени для решения противоречия, стремлении выиграть время, наличии трудностей в определении линии своего поведения, нежелании решать проблему вообще.</p>
+                            <p><strong>Приспособление</strong>, или уступка, рассматривается как вынужденный или добровольный отказ от борьбы и сдача своих позиций. Принять такую стратегию оппонента вынуждают разные мотивы: осознание своей неправоты, необходимость сохранения хороших отношений с оппонентом, сильная зависимость от него; незначительность проблемы. Кроме того, к такому выходу из конфликта приводит значительный ущерб, полученный в ходе борьбы, угроза еще более серьезных негативных последствий, отсутствие шансов на другой исход, давление третьей стороны. В некоторых ситуациях с помощью уступки реализуется принцип «Три Д»: Дай Дорогу Дураку.</p>
+                    `
+                    block.append(end_text)
+
 
                 }
 
@@ -367,12 +624,26 @@ def check_answer(expect, ans):
             clearProblemSigns(thomas_kilmann_diagnostic_block);
 
             let submit_button = $(thomas_kilmann_diagnostic_block).closest(".problem").find('button.submit');
-            submit_button.attr("disabled", "disabled");
+            submit_button.disableButton();
 
             let thomas_kilmann_diagnostic = new ThomasKilmannDiagnostic(thomas_kilmann_diagnostic_block);
 
-            thomas_kilmann_diagnostic.create_answer_block()
-
+            if (answer.get()) {
+                state = answer.getJSON()["answer"];
+                if(state.completed){
+                    thomas_kilmann_diagnostic.create_result_block();
+                    $('span.submit-label', submit_button).html("Пройти еще раз");
+                    submit_button.enableButton();
+                    reset_answer();
+                }
+                else{
+                    thomas_kilmann_diagnostic.create_answer_block();
+                    submit_button.disableButton();
+                }
+            }
+            else{
+                thomas_kilmann_diagnostic.create_answer_block()
+            }
         });
 
 
@@ -380,7 +651,7 @@ def check_answer(expect, ans):
 
 
     <div id="thomas_kilmann_diagnostic_block"></div>
-    <div id="thomas_kilmann_diagnostic_input" style="/*display: none !important;*/">
+    <div id="thomas_kilmann_diagnostic_input" style="display: none !important;">
         <customresponse cfn="check_answer">
             <textline/>
         </customresponse>
@@ -388,3 +659,14 @@ def check_answer(expect, ans):
 
 
 </problem>
+
+
+<!--
+
+Конкурентный: competitive
+Партнерский: affiliate
+Компромиссный: compromise
+Избегающий: avoiding
+Примирительный: apologetic
+
+-->

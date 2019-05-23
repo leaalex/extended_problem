@@ -69,6 +69,15 @@ def check_answer(expect, ans):
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $.fn.enableButton = function() {
+                this.removeClass("disabled");
+                this.removeAttr("disabled");
+            };
+            $.fn.disableButton = function() {
+                this.addClass("disabled");
+                this.removeAttr("disabled");
+            };
+
             let answer = new Answer(document.querySelector("#role_positions_block_input").querySelector("input[type='text']"));
 
             function clearProblemSigns(element) {
@@ -130,79 +139,79 @@ def check_answer(expect, ans):
                         {
                             text: "Родители как более взрослые люди должны устраивать семейную жизнь сво­их детей."
                         },
-                    // question_4:
-                    //     {
-                    //         text: "Я иногда преувеличиваю свою роль в каких-либо событиях."
-                    //     },
-                    // question_5:
-                    //     {
-                    //         text: "Меня провести нелегко."
-                    //     },
-                    // question_6:
-                    //     {
-                    //         text: "Мне бы понравилось быть воспитателем."
-                    //     },
-                    // question_7:
-                    //     {
-                    //         text: "Бывает, мне хочется подурачиться, как маленькому."
-                    //     },
-                    // question_8:
-                    //     {
-                    //         text: "Думаю, что правильно понимаю все происходящие события."
-                    //     },
-                    // question_9:
-                    //     {
-                    //         text: "Каждый должен выполнять свой долг."
-                    //     },
-                    // question_10:
-                    //     {
-                    //         text: "Нередко я поступаю не как надо, а как хочется."
-                    //     },
-                    // question_11:
-                    //     {
-                    //         text: "Принимая решение, я стараюсь продумать его последствия."
-                    //     },
-                    // question_12:
-                    //     {
-                    //         text: "Младшее поколение должно учиться у старших, как ему следует жить."
-                    //     },
-                    // question_13:
-                    //     {
-                    //         text: "Я, как и многие люди, бываю обидчив."
-                    //     },
-                    // question_14:
-                    //     {
-                    //         text: "Мне удается видеть в людях больше, чем они говорят о себе."
-                    //     },
-                    // question_15:
-                    //     {
-                    //         text: "Дети должны безусловно следовать указаниям родителей."
-                    //     },
-                    // question_16:
-                    //     {
-                    //         text: "Я — увлекающийся человек."
-                    //     },
-                    // question_17:
-                    //     {
-                    //         text: "Мой основной критерий оценки человека — объективность."
-                    //     },
-                    // question_18:
-                    //     {
-                    //         text: "Мои взгляды непоколебимы."
-                    //     },
-                    // question_19:
-                    //     {
-                    //         text: "Бывает, что я не уступаю в споре лишь потому, что не хочу уступать."
-                    //     },
-                    // question_20:
-                    //     {
-                    //         text: "Правила оправданны лишь до тех пор, пока они полезны."
-                    //     },
-                    // question_21:
-                    //     {
-                    //         text: "Люди должны соблюдать все правила независимо от обстоятельств."
-                    //     }
-                }
+                    question_4:
+                        {
+                            text: "Я иногда преувеличиваю свою роль в каких-либо событиях."
+                        },
+                    question_5:
+                        {
+                            text: "Меня провести нелегко."
+                        },
+                    question_6:
+                        {
+                            text: "Мне бы понравилось быть воспитателем."
+                        },
+                    question_7:
+                        {
+                            text: "Бывает, мне хочется подурачиться, как маленькому."
+                        },
+                    question_8:
+                        {
+                            text: "Думаю, что правильно понимаю все происходящие события."
+                        },
+                    question_9:
+                        {
+                            text: "Каждый должен выполнять свой долг."
+                        },
+                    question_10:
+                        {
+                            text: "Нередко я поступаю не как надо, а как хочется."
+                        },
+                    question_11:
+                        {
+                            text: "Принимая решение, я стараюсь продумать его последствия."
+                        },
+                    question_12:
+                        {
+                            text: "Младшее поколение должно учиться у старших, как ему следует жить."
+                        },
+                    question_13:
+                        {
+                            text: "Я, как и многие люди, бываю обидчив."
+                        },
+                    question_14:
+                        {
+                            text: "Мне удается видеть в людях больше, чем они говорят о себе."
+                        },
+                    question_15:
+                        {
+                            text: "Дети должны безусловно следовать указаниям родителей."
+                        },
+                    question_16:
+                        {
+                            text: "Я — увлекающийся человек."
+                        },
+                    question_17:
+                        {
+                            text: "Мой основной критерий оценки человека — объективность."
+                        },
+                    question_18:
+                        {
+                            text: "Мои взгляды непоколебимы."
+                        },
+                    question_19:
+                        {
+                            text: "Бывает, что я не уступаю в споре лишь потому, что не хочу уступать."
+                        },
+                    question_20:
+                        {
+                            text: "Правила оправданны лишь до тех пор, пока они полезны."
+                        },
+                    question_21:
+                        {
+                            text: "Люди должны соблюдать все правила независимо от обстоятельств."
+                        }
+                };
                 const answer_choices = {
                     a: {
                         text: "0",
@@ -273,7 +282,7 @@ def check_answer(expect, ans):
 
                     Object.keys(state.result.user_answers).forEach(function (item, idx) {
                         let num_question = parseInt(item.replace("question_", ""));
-                        console.log("num_question: ", num_question );
+                        // console.log("num_question: ", num_question );
                         if(answer_choices[state.result.user_answers[item]]){
                             if (types.child.values.includes(num_question)){
                                 result.child += answer_choices[state.result.user_answers[item]].value;
@@ -297,17 +306,13 @@ def check_answer(expect, ans):
                 function create_answer_block() {
 
                     let task_text = `
-                        <p>Основоположником трансактного (транзактного) анализа общения является Эрик Берн.</p>
-                    <p>Теория трансактного анализа Э. Берна исходит из того, что транзакция — единица акта общения, в течение которой собеседники находятся в одном из трех состояний ''Я".</p>
-                    <p>В процессе взаимодействия могут в большей или меньшей мере проявляться такие состояния человека: состояние "родителя", "взрослого", "ребенка". Эти три состояния сопровождают человека всю жизнь.</p>
-                    <p>Зрелый человек умело использует разные формы поведения, гибко проявляя себя в том или ином состоянии в зависимости от его целей и жизненных обстоятельств.</p>
-                    <p><em>Инструкция к тесту: </em></p>
-                    <p>Попробуйте оценить, как сочетаются эти три "Я" в вашем поведении. Для этого оцените приведенные высказывания в баллах от 0 до 10.</p>
+                        <p>Оцените приведенные высказывания в баллах от 0 до 10, где 0 - совершенно не подходит, 10 - 100 % подходит.</p>
                     `
 
                     role_positions_block.append(task_text);
 
                     state.result.calculated = {};
+                    state.result.user_answers = {};
 
                     Object.keys(questions).forEach(function (item) {
                         let question_num = item.replace("question_", "");
@@ -363,11 +368,11 @@ def check_answer(expect, ans):
                         }).every(function (element) {
                             return element.length != 0
                         })) {
-                            submit_button.removeAttr("disabled");
+                            submit_button.enableButton();
                             state.completed = true;
                         }
                         else{
-                            submit_button.attr("disabled", "disabled");
+                            submit_button.disableButton();
                         }
                         // else{
                         //         console.log(Object.keys(state.result.user_answers).filter(function (item) {return state.result.user_answers[item] == ""}));
@@ -379,17 +384,25 @@ def check_answer(expect, ans):
                 }
 
                 function create_result_block() {
-                    role_positions_block.append($("<h2/>", {html: "Расшифровка"}));
+                    role_positions_block.append($("<h2/>", {html: "Результат"}));
 
                     let result_array = Object.keys(state.result.calculated).map(function (item) {return {'name': item, 'value': state.result.calculated[item]}});
                     let max_points = Math.max.apply(Math, result_array.map(function(item){return item.value}));
                     let user_types = result_array.filter(function (item) { return item.value == max_points;});
 
-                    user_types.forEach(function (item) {
-                        role_positions_block.append($("<p/>", {html: types[item.name].text}));
-                    });
+                    if (user_types.length == 1){
+                        role_positions_block.append($("<p/>", {html: types[user_types[0].name].text}));
+                    }
+                    else{
+                        role_positions_block.append($("<p/>", {html: "У вас интересный результат и в равной степени присутствуют следующие роли:"}));
+                        user_types.forEach(function (item) {
+                            role_positions_block.append($("<p/>", {html: types[item.name].text}));
+                        });
+                    }
 
-                    console.log(user_types);
+
+
+                    // console.log(user_types);
 
                 }
 
@@ -411,55 +424,28 @@ def check_answer(expect, ans):
             clearProblemSigns(role_positions_block);
 
             let submit_button = $(role_positions_block).closest(".problem").find('button.submit');
-            submit_button.attr("disabled", "disabled");
-            console.log("add attr");
-
+            submit_button.disableButton();
 
             let role_positions_diagnostic = new RolePositionsDiagnostic(role_positions_block);
 
             if (answer.get()) {
                 state = answer.getJSON()["answer"];
-                console.log(JSON.stringify(state));
+                // console.log(JSON.stringify(state));
                 if(state.completed){
                     role_positions_diagnostic.create_result_block();
                     $('span.submit-label', submit_button).html("Пройти еще раз");
-                    submit_button.removeAttr("disabled");
-                    submit_button.removeClass("disabled");
+                    submit_button.enableButton();
                     reset_answer();
                 }
                 else{
-                    role_positions_diagnostic.create_answer_block()
-                    // answer.set("");
-                    // $( document ).ready(function() {
-                    //     // console.log("А документ реди случается?")
-                    //     submit_button.attr("disabled", "disabled");
-                    // });
+                    role_positions_diagnostic.create_answer_block();
+                    submit_button.disableButton();
 
                 }
             }
             else{
             role_positions_diagnostic.create_answer_block()
             }
-
-            // var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-            //
-            // var element = document.querySelector('.submit.btn-brand');
-            //
-            // var observer = new MutationObserver(function(mutations) {
-            //     mutations.forEach(function(mutation) {
-            //         if (mutation.type == "attributes") {
-            //             console.log("attributes changed:", mutation);
-            //             // submit_button.attr("disabled", "disabled");
-            //         }
-            //     });
-            // });
-            //
-            // observer.observe(element, {
-            //     attributes: true,
-            //     attributeOldValue : true,
-            // });
-
-
 
         });
 
@@ -469,7 +455,7 @@ def check_answer(expect, ans):
 
 
     <div id="role_positions_block"></div>
-    <div id="role_positions_block_input" style="/*display: none !important;*/">
+    <div id="role_positions_block_input" style="display: none !important;">
         <customresponse cfn="check_answer">
             <textline/>
         </customresponse>
