@@ -1,0 +1,415 @@
+<problem>
+    <style type="text/css">
+        .flex-container {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: row;
+            justify-content: space-around;
+            line-height: 30px;
+        }
+
+        .flex-item {
+            cursor: pointer;
+            /*background: white; !* tomato *!*/
+            margin: -2px;
+
+             color: white;
+            border: 4px solid #046b99;
+            /* font-weight: bold; */
+            font-size: 4em;
+            text-align: center;
+            flex: 1 0 0px;
+            min-width: 1.5em;
+            word-break: initial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
+        }
+
+        .last-selected-num {
+            color: green
+        }
+
+        /*.flex-item.red{*/
+        /* background: red;*/
+        /*}*/
+
+        /*.flex-item.black{*/
+        /*    background: black;*/
+        /*}*/
+
+        /*.flex-item:hover {*/
+        /*    background: #b3efff80;*/
+        /*    font-weight: 600;*/
+        /*}*/
+
+        .flex-item:before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+            float: left;
+        }
+
+        .table-wrap {
+            margin: 0 auto;
+        }
+
+        /*.start-window {*/
+        /*    height: 500px;*/
+        /*    !*background: #f6f6f6;*!*/
+        /*    border: 6px double #046b99;*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*}*/
+
+        /*.start-button {*/
+        /*    font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;*/
+        /*    width: 200px;*/
+        /*    !* height: 50px; *!*/
+        /*    background: #046b99;*/
+        /*    color: #ffffff;*/
+        /*    font-size: 1.8em;*/
+        /*    font-weight: normal;*/
+        /*    border: none;*/
+        /*}*/
+
+        /*.start-button:hover {*/
+        /*    !*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;*/
+        /*    width: 200px;*!*/
+        /*    !* height: 50px; *!*/
+        /*    background: #035c83 !important;*/
+        /*    border: none;*/
+        /*}*/
+
+
+        /*.timer-block {*/
+        /*    font-size: 1.5em;*/
+        /*    text-align: center;*/
+        /*    padding: 5px;*/
+        /*}*/
+
+        /*.delay-label {*/
+        /*    padding: 14px;*/
+        /*    !*background: #bdb9b2;*!*/
+        /*    font-size: 2.0em;*/
+        /*}*/
+
+
+
+        /*.result-block {*/
+        /*    margin: 0 1em;*/
+        /*}*/
+
+        /*#restart_task {*/
+        /*    display: none;*/
+        /*}*/
+
+
+        @media screen and (max-width: 600px) {
+            .flex-item {
+                font-size: 2.5em;
+            }
+
+            .timer-block {
+                font-size: 1em;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .flex-item {
+                font-size: 2em;
+            }
+
+            .timer-block {
+                font-size: 1em;
+            }
+
+            .delay-label {
+                font-size: 1.5em;
+            }
+        }
+
+        span.submit-label {
+            text-transform: initial !important;
+        }
+
+    </style>
+
+    <script type="loncapa/python">
+def check_answer(expect, ans):
+    return 1
+
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+
+        function range(j, k) {
+            return Array
+                .apply(null, Array((k - j) + 1))
+                .map(function (_, n) {
+                    return n + j;
+                });
+        }
+
+
+
+        function createElement(name, id, classList, attributes) {
+            let element = document.createElement(name);
+            if (id) element.id = id;
+            if (classList) element.classList = classList;
+            if (attributes) {
+                for (let attr in attributes) {
+                    element.setAttribute(attr, attributes[attr])
+                }
+            }
+            return element;
+        }
+
+        function clearProblemSigns(element) {
+            let problemXBlock = $(element).closest('.xblock');
+            $(".problem-progress", problemXBlock).hide();
+            $(".button.submit", problemXBlock).hide();
+            $(".notification", problemXBlock).hide();
+            $(".problem-action-buttons-wrapper", problemXBlock).hide();
+        }
+
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function () {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function (value) {
+                if (value == undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function () {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function (object) {
+                if (object == undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object))
+            };
+            this.isJsonString = function (str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        function reset_answer(){
+            state.completed = false;
+            answer.setJSON({answer: state});
+        }
+
+        function Cell(num, color) {
+            this.num = num;
+            this.color = color;
+            this.html = undefined;
+            this.isLast = function (first_cell, count) {
+                if (this.num === (count + 1)){
+                    if (this.color === first_cell.color) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            this.createHtml = function () {
+                let cell_div = createElement("div", null, "flex-item", {'data-number': this.num});
+                cell_div.innerHTML = this.num;
+                cell_div.style.background = this.color;
+                cell_div.classList.add(this.color);
+                this.html = cell_div;
+                return cell_div;
+            };
+
+            this.isRequired = function (required){
+                if(this.num === required.num){
+                    if(this.color === required.color){
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            this.nextCell = function(required_cell, first_cell, cells_count){
+                let next_cell = {
+                    color: settings.colors.color_1,
+                    num: 1
+                };
+                if (this.color === first_cell.color) {
+                    next_cell.color = first_cell.color === settings.colors.color_2 ? settings.colors.color_1: settings.colors.color_2;
+                    next_cell.num = (cells_count + 1) - this.num;
+                } else {
+                    next_cell.num = (cells_count + 2) - this.num;
+                }
+                if (this.num === cells_count + 1) {
+                    if (this.color === first_cell.color) {
+                        return undefined;
+                    }
+                }
+                required_cell.color = next_cell.color;
+                required_cell.num = next_cell.num;
+            }
+
+        }
+
+        var SchulteTable = function (elem) {
+
+            this.wrap = createElement("div", null, "table-wrap", {style: "max-width: 700px"});
+            this.size = 7; // 3
+            this.count = 24; // 4
+
+            this.createTask = function() {
+                let cells_arr = [];
+                let count = this.count;
+                // first color cells
+                range(1, this.count + 1).forEach(function (item) {
+                    cells_arr.push(new Cell(item, settings.colors.color_1));
+                });
+                // second color cells
+                range(1, this.count).forEach(function (item) {
+                    cells_arr.push(new Cell(item, settings.colors.color_2));
+                });
+
+                cells_arr = cells_arr.sort(function () {
+                    return .5 - Math.random()
+                });
+
+                let table_container = createElement("div", null, null, {});
+
+                let first_cell = new Cell(1, settings.colors.color_1);
+                let required_cell = new Cell(1, settings.colors.color_1);
+                range(1, this.size).forEach(function (container, i, arr1) {
+                    let flex_container = createElement("div", null, 'flex-container', {});
+                    range(1, arr1.length).forEach(function (item, j, arr) {
+                        // console.log(arr)
+                        let current_cell = cells_arr[arr.length * i + (j + 1) - 1];
+                        flex_container.append(current_cell.createHtml());
+
+                        current_cell.html.onclick = function() {
+                            if(current_cell.isRequired(required_cell)){
+                                cells_arr.forEach(function(cell){cell.html.classList.remove("last-selected-num")}); // remove class 'last-selected-num' from all elements
+                                current_cell.html.classList.add("last-selected-num");
+                                current_cell.nextCell(required_cell,first_cell,count);
+                                console.log(required_cell);
+                                if(!current_cell.isLast(first_cell, count)){
+                                    /*
+                                    * if cell is not last
+                                    * */
+                                }
+                                else{
+                                    /*
+                                    * if cell is last
+                                    * */
+                                    state.completed = true;
+                                    state.result.time = "12:04:"+ Math.random().toString();
+                                    answer.setJSON({answer: state});
+                                    console.log("Hi! I'm last cell: ", current_cell);
+                                    $(submit_button).trigger( "click" );
+                                }
+                            }
+                            else{
+                                /*
+                                * not required cell
+                                * */
+                            }
+                        };
+                    });
+                    table_container.append(flex_container);
+                });
+                this.wrap.append(table_container);
+                $(elem).html(this.wrap);
+            };
+
+            this.createResult = function(){
+                $(elem).html("<p>Время выполнения: " + state.result.time + "</p>")
+            }
+            // this.createTask = createTask;
+        };
+
+
+        let state = {
+            completed: false,
+            result: {
+                time: ""
+            },
+        };
+
+        let settings = {
+          colors: {
+              color_1: 'black',
+              color_2: 'red'
+          }
+        };
+
+        let answer = new Answer(document.querySelector("#schulte_table_input").querySelector("input[type='text']"));
+        let html_element = document.getElementById("schulte_table");
+        clearProblemSigns(html_element);
+        let submit_button = $(html_element).closest(".problem").find('button.submit');
+        submit_button.hide();
+        let table = new SchulteTable(html_element);
+
+
+
+        if (answer.get()) {
+            state = answer.getJSON()["answer"];
+            if(state.completed){
+                $('span.submit-label', submit_button).html("Пройти еще раз");
+                submit_button.show();
+                table.createResult();
+                // submit_button.removeAttr("disabled");
+                reset_answer();
+            }
+            else{
+                table.createTask();
+                // fear_diagnostic.create_answer_block();
+                // submit_button.attr("disabled", "disabled");
+            }
+        }
+        else{
+            table.createTask();
+            // fear_diagnostic.create_answer_block()
+        }
+
+        // console.log(getNextCell(cell(24,'red'),first_cell, cells_count))
+
+
+    </script>
+
+    <div>
+        <div id="schulte_table"></div>
+        <div id="schulte_table_input" style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline/>
+            </customresponse>
+        </div>
+    </div>
+
+    <!--
+
+     Начиниаем с 1 черное
+
+     -->
+
+</problem>

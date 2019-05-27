@@ -389,10 +389,13 @@ def check_answer(expect, ans):
             }
 
             function createTable() {
+
                 wrap.append(stopwatch_wrap);
+
                 var table_container = $("<div></div>", {
                     "style": 'padding: 5px;border: 4px solid #046b99;'
                 });
+
                 [0, 1, 2, 3, 4].forEach(function (container, i) {
                     var flex_container = $("<div></div>", {
                         "class": 'flex-container'
