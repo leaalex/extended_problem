@@ -16,12 +16,8 @@
 
         .flex-item {
             cursor: pointer;
-            /*background: white; !* tomato *!*/
             margin: -2px;
-
-             /*color: white;*/
             border: 4px solid;
-            /* font-weight: bold; */
             font-size: 4em;
             text-align: center;
             flex: 1 0 0px;
@@ -30,12 +26,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently*/
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .item-font.last-selected-num {
@@ -141,11 +137,10 @@
 
     </style>
 
-    <script type="loncapa/python">
+<script type="loncapa/python">
 def check_answer(expect, ans):
     return 1
-
-    </script>
+</script>
 
     <script type="text/javascript" charset="utf-8">
 
@@ -191,7 +186,7 @@ def check_answer(expect, ans):
         };
 
         function clearProblemSigns(element) {
-            let problemXBlock = $(element).closest('.xblock');
+            let problemXBlock = $(element).closest(".xblock");
             $(".problem-progress", problemXBlock).hide();
             $(".button.submit", problemXBlock).hide();
             $(".notification", problemXBlock).hide();
@@ -226,7 +221,7 @@ def check_answer(expect, ans):
                 }
                 return true;
             };
-        };
+        }
 
         function reset_answer(){
             state.completed = false;
@@ -235,7 +230,7 @@ def check_answer(expect, ans):
 
         function sec2time(timeInSeconds) {
             let pad = function (num, size) {
-                    return ('000' + num).slice(size * -1);
+                    return ("000" + num).slice(size * -1);
                 };
             let time = parseFloat(timeInSeconds).toFixed(3);
             // let hours = Math.floor(time / 60 / 60);
@@ -243,13 +238,13 @@ def check_answer(expect, ans):
             let seconds = Math.floor(time - minutes * 60);
             // let milliseconds = time.slice(-3);
 
-            return pad(minutes, 2) + ':' + pad(seconds, 2)
-            // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+            return pad(minutes, 2) + ":" + pad(seconds, 2)
+            // return pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "," + pad(milliseconds, 3);
         }
 
         let Stopwatch = function (elem, options) {
 
-            var timer = createTimer(),
+            let timer = createTimer(),
                 offset,
                 clock,
                 interval;
@@ -262,7 +257,7 @@ def check_answer(expect, ans):
             reset();
 
             function createTimer() {
-                var timer_div = document.createElement("div");
+                let timer_div = document.createElement("div");
                 timer_div.className = "timer-block";
                 return timer_div;
             }
@@ -341,20 +336,20 @@ def check_answer(expect, ans):
             };
 
             this.createHtml = function () {
-                let cell_div = createElement("div", null, "flex-item", {'data-number': this.num});
+                let cell_div = createElement("div", null, "flex-item", {"data-number": this.num});
                 cell_div.innerHTML = this.num;
-                if(this.mode === 'font'){
+                if(this.mode === "font"){
                     cell_div.style.color = this.color;
-                    cell_div.style.background = 'white';
+                    cell_div.style.background = "white";
                     cell_div.style.borderColor = "#7b7b7b";
                 }
                 else { // background
-                    cell_div.style.color = 'white';
+                    cell_div.style.color = "white";
                     cell_div.style.background = this.color;
                     cell_div.style.borderColor = "white";
                 }
                 cell_div.classList.add(this.color);
-                cell_div.classList.add('item-' + this.mode);
+                cell_div.classList.add("item-" + this.mode);
                 this.html = cell_div;
                 return cell_div;
             };
@@ -410,7 +405,7 @@ def check_answer(expect, ans):
                     let start_button = createElement("button", null, "start-button", {});
                     start_button.innerHTML = labels.start_label;
                     start_window.append(start_button);
-                    start_button.addEventListener('click', function () {
+                    start_button.addEventListener("click", function () {
                         that.createTask();
                     });
                 }
@@ -431,6 +426,7 @@ def check_answer(expect, ans):
                 let count = this.count;
                 elem.innerHTML = "";
                 if(stage === 1) state.result.times = {};
+
                 // first color cells
                 range(1, this.count + 1).forEach(function (item) {
                     cells_arr.push(new Cell(item, settings.colors.color_1, settings.mode));
@@ -452,10 +448,10 @@ def check_answer(expect, ans):
                 let required_cell = new Cell(1, settings.colors.color_1, settings.mode);
 
                 let required_cell_block = createElement("div", null, "table-counter", {});
-                required_cell_block.innerHTML = labels.next_required_label + ': "' + required_cell.num.toString() + " " + required_cell.color + '"';
+                required_cell_block.innerHTML = labels.next_required_label + ": " + required_cell.num.toString() + " " + required_cell.color;
 
                 range(1, this.size).forEach(function (container, i, arr1) {
-                    let flex_container = createElement("div", null, 'flex-container', {});
+                    let flex_container = createElement("div", null, "flex-container", {});
                     range(1, arr1.length).forEach(function (item, j, arr) {
 
                         let current_cell = cells_arr[arr.length * i + (j + 1) - 1];
@@ -465,23 +461,22 @@ def check_answer(expect, ans):
                             if(current_cell.isRequired(required_cell)){
                                 /*
                                 * if cell is required
-                                * */
-                                cells_arr.forEach(function(cell){cell.html.classList.remove("last-selected-num")}); // remove class 'last-selected-num' from all elements
+                                */
+                                cells_arr.forEach(function(cell){cell.html.classList.remove("last-selected-num")}); // remove class "last-selected-num" from all elements
                                 current_cell.html.classList.add("last-selected-num");
                                 current_cell.nextCell(required_cell,first_cell,count);
 
                                 if(current_cell.isLast(first_cell, count)){
                                     /*
                                     * if cell is last
-                                    * */
+                                    */
                                     stopwatch.stop();
 
-                                    state.result.times['table_' + stage.toString()] = stopwatch.current_time();
+                                    state.result.times["table_" + stage.toString()] = stopwatch.current_time();
 
                                     if (stage === settings.stages_count){
                                         state.completed = true;
                                         answer.setJSON({answer: state});
-                                        // console.log("Hi! I'm last cell: ", current_cell);
                                         $(submit_button).trigger( "click" );
                                     }
                                     else {
@@ -492,14 +487,14 @@ def check_answer(expect, ans):
                                 else{
                                     /*
                                     * if cell is not last
-                                    * */
+                                    */
                                 }
-                                required_cell_block.innerHTML = labels.next_required_label + ': "' + required_cell.num.toString() + " " + required_cell.color + '"';
+                                required_cell_block.innerHTML = labels.next_required_label + ": " + required_cell.num.toString() + " " + required_cell.color;
                             }
                             else{
                                 /*
                                 * if cell is not required
-                                * */
+                                */
                             }
                         };
                     });
@@ -511,7 +506,7 @@ def check_answer(expect, ans):
                 this.wrap.append(table_container);
 
                 let table_counter = createElement("div", null, "table-counter", {});
-                table_counter.innerHTML = labels.table_label + " " + stage.toString() + '/' + settings.stages_count.toString()
+                table_counter.innerHTML = labels.table_label + " " + stage.toString() + "/" + settings.stages_count.toString()
                 this.wrap.append(table_counter);
                 if (settings.debug) this.wrap.append(required_cell_block);
                 elem.append(this.wrap);
@@ -526,7 +521,7 @@ def check_answer(expect, ans):
                     i++;
                 }
             }
-        };
+        }
 
 
         let state = {
@@ -538,10 +533,10 @@ def check_answer(expect, ans):
 
         let settings = {
           colors: {
-              color_1: 'black',
-              color_2: 'red'
+              color_1: "black",
+              color_2: "red"
           },
-          mode: 'background', // 'background' or 'font'
+          mode: "background", // "background" or "font"
           stages_count: 1,
           lang: "ru",
           debug: false,
@@ -551,14 +546,14 @@ def check_answer(expect, ans):
         let answer = new Answer(document.querySelector("#schulte_hard_table_input").querySelector("input[type='text']"));
         let html_element = document.getElementById("schulte_hard_table");
         clearProblemSigns(html_element);
-        let submit_button = $(html_element).closest(".problem").find('button.submit');
+        let submit_button = $(html_element).closest(".problem").find("button.submit");
         submit_button.hide();
         let table = new SchulteHardTable(html_element, 1);
 
         if (answer.get()) {
             state = answer.getJSON()["answer"];
             if(state.completed){
-                $('span.submit-label', submit_button).html(labels.restart_label);
+                $("span.submit-label", submit_button).html(labels.restart_label);
                 submit_button.show();
                 table.createResult();
                 reset_answer();
@@ -587,13 +582,12 @@ def check_answer(expect, ans):
 
      Настройки "settings":
          colors: // Два цвета, фон ячейки красится в указанный цвет
-                color_1: 'black' // первый цвет
-                color_2: 'red' // второй цвет
-         mode: 'background', // 'background' - красит фон ячейки / 'font' - красит текст ячейки
+                color_1: "black" // первый цвет
+                color_2: "red" // второй цвет
+         mode: "background", // "background" - красит фон ячейки / "font" - красит текст ячейки
          stages_count: 2 // Количество таблиц
          lang: "ru" // Язык ("ru" или "en")
          debug: true // Режим дебага (например, в режиме включенного дебага показывать следующую требуемую ячейку)
-
 
      -->
 

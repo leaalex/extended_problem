@@ -59,7 +59,7 @@
         }
 
         .start-window {
-            height: 700px;
+            height: 500px;
             background: whitesmoke;
             display: flex;
             justify-content: center;
@@ -182,7 +182,7 @@ def check_answer(expect, ans):
         };
 
         function clearProblemSigns(element) {
-            let problemXBlock = $(element).closest('.xblock');
+            let problemXBlock = $(element).closest(".xblock");
             $(".problem-progress", problemXBlock).hide();
             $(".button.submit", problemXBlock).hide();
             $(".notification", problemXBlock).hide();
@@ -226,7 +226,7 @@ def check_answer(expect, ans):
 
         function sec2time(timeInSeconds) {
             let pad = function (num, size) {
-                return ('000' + num).slice(size * -1);
+                return ("000" + num).slice(size * -1);
             };
             let time = parseFloat(timeInSeconds).toFixed(3);
             // let hours = Math.floor(time / 60 / 60);
@@ -234,8 +234,8 @@ def check_answer(expect, ans):
             let seconds = Math.floor(time - minutes * 60);
             // let milliseconds = time.slice(-3);
 
-            return pad(minutes, 2) + ':' + pad(seconds, 2)
-            // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
+            return pad(minutes, 2) + ":" + pad(seconds, 2)
+            // return pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "," + pad(milliseconds, 3);
         }
 
         let Stopwatch = function (elem, options) {
@@ -325,7 +325,7 @@ def check_answer(expect, ans):
             };
 
             this.createHtml = function () {
-                let cell_div = createElement("div", null, "flex-item", {'data-number': this.num});
+                let cell_div = createElement("div", null, "flex-item", {"data-number": this.num});
                 cell_div.innerHTML = this.num;
                 this.html = cell_div;
                 return cell_div;
@@ -346,7 +346,7 @@ def check_answer(expect, ans):
 
         function SchulteTable (elem, stage) {
 
-            this.wrap = createElement("div", null, "table-wrap", {style: "max-width: 700px"});
+            this.wrap = createElement("div", null, "table-wrap", {style: "max-width: 500px"});
             this.size = settings.size || 5; // 7
 
             let stopwatch_wrap = createElement("div", null, null, {});
@@ -363,7 +363,7 @@ def check_answer(expect, ans):
                     let start_button = createElement("button", null, "start-button", {});
                     start_button.innerHTML = labels.start_label;
                     start_window.append(start_button);
-                    start_button.addEventListener('click', function () {
+                    start_button.addEventListener("click", function () {
                         that.createTask();
                     });
                 }
@@ -399,7 +399,7 @@ def check_answer(expect, ans):
                 required_cell_block.innerHTML = labels.next_required_label + ": " + required_cell.num.toString() ;
 
                 range(1, size).forEach(function (container, i) {
-                    let flex_container = createElement("div", null, 'flex-container', {});
+                    let flex_container = createElement("div", null, "flex-container", {});
                     range(1, size).forEach(function (item, j) {
 
                         let current_cell = cells_arr[size * i + (j + 1) - 1];
@@ -410,7 +410,7 @@ def check_answer(expect, ans):
                                 /*
                                 * if cell is required
                                 * */
-                                cells_arr.forEach(function(cell){cell.html.classList.remove("last-selected-num")}); // remove class 'last-selected-num' from all elements
+                                cells_arr.forEach(function(cell){cell.html.classList.remove("last-selected-num")}); // remove class "last-selected-num" from all elements
                                 current_cell.html.classList.add("last-selected-num");
                                 current_cell.nextCell(required_cell, size);
 
@@ -420,7 +420,7 @@ def check_answer(expect, ans):
                                     * */
                                     stopwatch.stop();
 
-                                    state.result.times['table_' + stage.toString()] = stopwatch.current_time();
+                                    state.result.times["table_" + stage.toString()] = stopwatch.current_time();
 
                                     if (stage === settings.stages_count){
                                         state.completed = true;
@@ -455,7 +455,7 @@ def check_answer(expect, ans):
                 this.wrap.append(table_container);
 
                 let table_counter = createElement("div", null, "table-counter", {});
-                table_counter.innerHTML = labels.table_label + " " + stage.toString() + '/' + settings.stages_count.toString()
+                table_counter.innerHTML = labels.table_label + " " + stage.toString() + "/" + settings.stages_count.toString();
                 this.wrap.append(table_counter);
                 if (settings.debug) this.wrap.append(required_cell_block);
                 elem.append(this.wrap);
@@ -490,14 +490,14 @@ def check_answer(expect, ans):
         let answer = new Answer(document.querySelector("#schulte_table_input").querySelector("input[type='text']"));
         let html_element = document.getElementById("schulte_table");
         clearProblemSigns(html_element);
-        let submit_button = $(html_element).closest(".problem").find('button.submit');
+        let submit_button = $(html_element).closest(".problem").find("button.submit");
         submit_button.hide();
         let table = new SchulteTable(html_element, 1);
 
         if (answer.get()) {
             state = answer.getJSON()["answer"];
             if(state.completed){
-                $('span.submit-label', submit_button).html(labels.restart_label);
+                $("span.submit-label", submit_button).html(labels.restart_label);
                 submit_button.show();
                 table.createResult();
                 reset_answer();
@@ -529,7 +529,6 @@ def check_answer(expect, ans):
          stages_count: 2 // Количество таблиц
          lang: "ru" // Язык ("ru" или "en")
          debug: true // Режим дебага (например, в режиме включенного дебага показывать следующую требуемую ячейку)
-
 
      -->
 
