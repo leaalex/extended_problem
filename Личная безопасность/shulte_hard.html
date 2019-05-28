@@ -19,8 +19,8 @@
             /*background: white; !* tomato *!*/
             margin: -2px;
 
-             color: white;
-            border: 4px solid white;
+             /*color: white;*/
+            border: 4px solid;
             /* font-weight: bold; */
             font-size: 4em;
             text-align: center;
@@ -38,9 +38,22 @@
             user-select: none; /* Non-prefixed version, currently*/
         }
 
-        .last-selected-num {
-            color: green;
+        .item-font.last-selected-num {
+            background: #008000b0 !important;
             font-weight: bold;
+        }
+
+        .item-font.flex-item:not(.last-selected-num):hover {
+            background: #e2e2e2 !important;
+        }
+
+        .item-background.last-selected-num {
+            color: green !important;
+            font-weight: bold;
+        }
+
+        .item-background.flex-item:not(.last-selected-num):hover {
+            color: #7b7b7b !important;
         }
 
         .flex-item:before {
@@ -313,9 +326,10 @@ def check_answer(expect, ans):
             }
         }
 
-        function Cell(num, color) {
+        function Cell(num, color, mode) {
             this.num = num;
             this.color = color;
+            this.mode = mode;
             this.html = undefined;
             this.isLast = function (first_cell, count) {
                 if (this.num === (count + 1)){
@@ -329,8 +343,18 @@ def check_answer(expect, ans):
             this.createHtml = function () {
                 let cell_div = createElement("div", null, "flex-item", {'data-number': this.num});
                 cell_div.innerHTML = this.num;
-                cell_div.style.background = this.color;
+                if(this.mode === 'font'){
+                    cell_div.style.color = this.color;
+                    cell_div.style.background = 'white';
+                    cell_div.style.borderColor = "#7b7b7b";
+                }
+                else { // background
+                    cell_div.style.color = 'white';
+                    cell_div.style.background = this.color;
+                    cell_div.style.borderColor = "white";
+                }
                 cell_div.classList.add(this.color);
+                cell_div.classList.add('item-' + this.mode);
                 this.html = cell_div;
                 return cell_div;
             };
@@ -409,11 +433,11 @@ def check_answer(expect, ans):
                 if(stage === 1) state.result.times = {};
                 // first color cells
                 range(1, this.count + 1).forEach(function (item) {
-                    cells_arr.push(new Cell(item, settings.colors.color_1));
+                    cells_arr.push(new Cell(item, settings.colors.color_1, settings.mode));
                 });
                 // second color cells
                 range(1, this.count).forEach(function (item) {
-                    cells_arr.push(new Cell(item, settings.colors.color_2));
+                    cells_arr.push(new Cell(item, settings.colors.color_2, settings.mode));
                 });
 
                 if (!settings.debug){
@@ -424,8 +448,8 @@ def check_answer(expect, ans):
 
                 let table_container = createElement("div", null, null, {});
 
-                let first_cell = new Cell(1, settings.colors.color_1);
-                let required_cell = new Cell(1, settings.colors.color_1);
+                let first_cell = new Cell(1, settings.colors.color_1, settings.mode);
+                let required_cell = new Cell(1, settings.colors.color_1, settings.mode);
 
                 let required_cell_block = createElement("div", null, "table-counter", {});
                 required_cell_block.innerHTML = labels.next_required_label + ': "' + required_cell.num.toString() + " " + required_cell.color + '"';
@@ -517,6 +541,7 @@ def check_answer(expect, ans):
               color_1: 'black',
               color_2: 'red'
           },
+          mode: 'background', // 'background' or 'font'
           stages_count: 1,
           lang: "ru",
           debug: false,
@@ -564,6 +589,7 @@ def check_answer(expect, ans):
          colors: // Два цвета, фон ячейки красится в указанный цвет
                 color_1: 'black' // первый цвет
                 color_2: 'red' // второй цвет
+         mode: 'background', // 'background' - красит фон ячейки / 'font' - красит текст ячейки
          stages_count: 2 // Количество таблиц
          lang: "ru" // Язык ("ru" или "en")
          debug: true // Режим дебага (например, в режиме включенного дебага показывать следующую требуемую ячейку)

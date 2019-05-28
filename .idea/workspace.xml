@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="диагностики">
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/shulte.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/shulte_hard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/shulte_hard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/test1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test1.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,12 +98,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="213" column="51" lean-forward="true" selection-start-line="213" selection-start-column="51" selection-end-line="213" selection-end-column="51" />
+            <state relative-caret-position="593">
+              <caret line="478" column="57" lean-forward="true" selection-start-line="478" selection-start-column="57" selection-end-line="478" selection-end-column="57" />
               <folding>
+                <element signature="e#16215#19800#0" />
+                <element signature="e#19840#20435#0" />
+                <element signature="e#23858#27217#0" />
                 <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -115,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte_hard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="454" column="61" selection-start-line="454" selection-start-column="61" selection-end-line="454" selection-end-column="61" />
+            <state relative-caret-position="247">
+              <caret line="536" column="10" lean-forward="true" selection-start-line="536" selection-start-column="10" selection-end-line="536" selection-end-column="10" />
               <folding>
                 <element signature="e#3892#4070#0" />
                 <element signature="e#4278#4642#0" />
@@ -126,7 +127,6 @@
                 <element signature="e#6136#6723#0" />
                 <element signature="e#6153#7826#0" />
                 <element signature="e#8914#9196#0" />
-                <element signature="e#6130#8067#0" />
                 <element signature="e#11651#11754#0" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
               </folding>
@@ -134,10 +134,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
+            <state relative-caret-position="97">
               <caret line="432" column="37" lean-forward="true" selection-start-line="432" selection-start-column="37" selection-end-line="432" selection-end-column="37" />
               <folding>
                 <element signature="e#3405#3583#0" />
@@ -168,8 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start</find>
-      <find>state</find>
       <find>createStartWindow</find>
       <find>createTable</find>
       <find>stopwatch_wrap</find>
@@ -198,6 +196,8 @@
       <find>schulte</find>
       <find>timer</find>
       <find>time_</find>
+      <find>Cell</find>
+      <find>item-</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -235,7 +235,6 @@
         <option value="$PROJECT_DIR$/presentations/presentation_v01.js" />
         <option value="$PROJECT_DIR$/presentations/test_pres.html" />
         <option value="$PROJECT_DIR$/heroes_task/heroes_task.html" />
-        <option value="$PROJECT_DIR$/Личная безопасность/test1.html" />
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html" />
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" />
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 2.html" />
@@ -246,12 +245,13 @@
         <option value="$PROJECT_DIR$/Личная безопасность/test.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/shulte.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/shulte_hard.html" />
+        <option value="$PROJECT_DIR$/Личная безопасность/test1.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="105" />
-    <option name="y" value="141" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="109" />
+    <option name="y" value="143" />
     <option name="width" value="1885" />
     <option name="height" value="1268" />
   </component>
@@ -506,7 +506,7 @@
       <workItem from="1558011044709" duration="12032000" />
       <workItem from="1558082024887" duration="74542000" />
       <workItem from="1558523761191" duration="50164000" />
-      <workItem from="1558969926750" duration="15449000" />
+      <workItem from="1558969926750" duration="17068000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -519,10 +519,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="495103000" />
+    <option name="totallyTimeSpent" value="496722000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="105" y="141" width="1885" height="1268" extended-state="0" />
+    <frame x="109" y="143" width="1885" height="1268" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19280344" />
@@ -964,16 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="213" column="51" lean-forward="true" selection-start-line="213" selection-start-column="51" selection-end-line="213" selection-end-column="51" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1372">
@@ -984,29 +974,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte_hard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="454" column="61" selection-start-line="454" selection-start-column="61" selection-end-line="454" selection-end-column="61" />
-          <folding>
-            <element signature="e#3892#4070#0" />
-            <element signature="e#4278#4642#0" />
-            <element signature="e#4680#4993#0" />
-            <element signature="e#5019#6061#0" />
-            <element signature="e#6009#6102#0" />
-            <element signature="e#6136#6723#0" />
-            <element signature="e#6153#7826#0" />
-            <element signature="e#8914#9196#0" />
-            <element signature="e#6130#8067#0" />
-            <element signature="e#11651#11754#0" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
+        <state relative-caret-position="97">
           <caret line="432" column="37" lean-forward="true" selection-start-line="432" selection-start-column="37" selection-end-line="432" selection-end-column="37" />
           <folding>
             <element signature="e#3405#3583#0" />
@@ -1019,6 +989,38 @@
             <element signature="e#8699#8981#0" />
             <element signature="e#17476#17580#0" />
             <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte_hard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="536" column="10" lean-forward="true" selection-start-line="536" selection-start-column="10" selection-end-line="536" selection-end-column="10" />
+          <folding>
+            <element signature="e#3892#4070#0" />
+            <element signature="e#4278#4642#0" />
+            <element signature="e#4680#4993#0" />
+            <element signature="e#5019#6061#0" />
+            <element signature="e#6009#6102#0" />
+            <element signature="e#6136#6723#0" />
+            <element signature="e#6153#7826#0" />
+            <element signature="e#8914#9196#0" />
+            <element signature="e#11651#11754#0" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="478" column="57" lean-forward="true" selection-start-line="478" selection-start-column="57" selection-end-line="478" selection-end-column="57" />
+          <folding>
+            <element signature="e#16215#19800#0" />
+            <element signature="e#19840#20435#0" />
+            <element signature="e#23858#27217#0" />
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
