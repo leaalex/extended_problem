@@ -16,11 +16,11 @@
 
         .flex-item {
             cursor: pointer;
-            /*background: white; !* tomato *!*/
+            background: #f9f9f9;
             margin: -2px;
 
-             color: white;
-            border: 4px solid white;
+            color: #333;
+            border: 4px solid #cccccc;
             /* font-weight: bold; */
             font-size: 4em;
             text-align: center;
@@ -36,6 +36,10 @@
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently*/
+        }
+
+        .flex-item:hover{
+            background: #e6e6e6;
         }
 
         .last-selected-num {
@@ -222,8 +226,8 @@ def check_answer(expect, ans):
 
         function sec2time(timeInSeconds) {
             let pad = function (num, size) {
-                    return ('000' + num).slice(size * -1);
-                };
+                return ('000' + num).slice(size * -1);
+            };
             let time = parseFloat(timeInSeconds).toFixed(3);
             // let hours = Math.floor(time / 60 / 60);
             let minutes = Math.floor(time / 60) % 60;
@@ -313,64 +317,37 @@ def check_answer(expect, ans):
             }
         }
 
-        function Cell(num, color) {
+        function Cell(num) {
             this.num = num;
-            this.color = color;
             this.html = undefined;
-            this.isLast = function (first_cell, count) {
-                if (this.num === (count + 1)){
-                    if (this.color === first_cell.color) {
-                        return true;
-                    }
-                }
-                return false;
+            this.isLast = function (size) {
+                return (size * size) === this.num;
             };
 
             this.createHtml = function () {
                 let cell_div = createElement("div", null, "flex-item", {'data-number': this.num});
                 cell_div.innerHTML = this.num;
-                cell_div.style.background = this.color;
-                cell_div.classList.add(this.color);
                 this.html = cell_div;
                 return cell_div;
             };
 
             this.isRequired = function (required){
-                if(this.num === required.num){
-                    if(this.color === required.color){
-                        return true;
-                    }
-                }
-                return false;
+                return this.num === required.num;
             };
 
-            this.nextCell = function(required_cell, first_cell, cells_count){
-                let next_cell = {
-                    color: settings.colors.color_1,
-                    num: 1
-                };
-                if (this.color === first_cell.color) {
-                    next_cell.color = first_cell.color === settings.colors.color_2 ? settings.colors.color_1: settings.colors.color_2;
-                    next_cell.num = (cells_count + 1) - this.num;
-                } else {
-                    next_cell.num = (cells_count + 2) - this.num;
-                }
-                if (this.num === cells_count + 1) {
-                    if (this.color === first_cell.color) {
+            this.nextCell = function(required_cell, size){
+                if (this.num === (size * size)) {
                         return undefined;
-                    }
                 }
-                required_cell.color = next_cell.color;
-                required_cell.num = next_cell.num;
+                required_cell.num = this.num + 1;
             }
 
         }
 
-        function SchulteHardTable (elem, stage) {
+        function SchulteTable (elem, stage) {
 
             this.wrap = createElement("div", null, "table-wrap", {style: "max-width: 700px"});
-            this.size = 7; // 3
-            this.count = 24; // 4
+            this.size = settings.size || 5; // 7
 
             let stopwatch_wrap = createElement("div", null, null, {});
             let stopwatch = new Stopwatch(stopwatch_wrap, {
@@ -404,37 +381,28 @@ def check_answer(expect, ans):
 
             this.createTask = function() {
                 let cells_arr = [];
-                let count = this.count;
+                let size = this.size;
                 elem.innerHTML = "";
                 if(stage === 1) state.result.times = {};
-                // first color cells
-                range(1, this.count + 1).forEach(function (item) {
-                    cells_arr.push(new Cell(item, settings.colors.color_1));
-                });
-                // second color cells
-                range(1, this.count).forEach(function (item) {
-                    cells_arr.push(new Cell(item, settings.colors.color_2));
+
+                range(1, (size * size)).forEach(function (item) {
+                    cells_arr.push(new Cell(item));
                 });
 
-                if (!settings.debug){
-                    cells_arr = cells_arr.sort(function () {
-                        return .5 - Math.random()
-                    });
-                }
+                cells_arr = cells_arr.sort(function () {
+                    return .5 - Math.random()
+                });
 
                 let table_container = createElement("div", null, null, {});
-
-                let first_cell = new Cell(1, settings.colors.color_1);
-                let required_cell = new Cell(1, settings.colors.color_1);
-
+                let required_cell = new Cell(1);
                 let required_cell_block = createElement("div", null, "table-counter", {});
-                required_cell_block.innerHTML = labels.next_required_label + ': "' + required_cell.num.toString() + " " + required_cell.color + '"';
+                required_cell_block.innerHTML = labels.next_required_label + ": " + required_cell.num.toString() ;
 
-                range(1, this.size).forEach(function (container, i, arr1) {
+                range(1, size).forEach(function (container, i) {
                     let flex_container = createElement("div", null, 'flex-container', {});
-                    range(1, arr1.length).forEach(function (item, j, arr) {
+                    range(1, size).forEach(function (item, j) {
 
-                        let current_cell = cells_arr[arr.length * i + (j + 1) - 1];
+                        let current_cell = cells_arr[size * i + (j + 1) - 1];
                         flex_container.append(current_cell.createHtml());
 
                         current_cell.html.onclick = function() {
@@ -444,9 +412,9 @@ def check_answer(expect, ans):
                                 * */
                                 cells_arr.forEach(function(cell){cell.html.classList.remove("last-selected-num")}); // remove class 'last-selected-num' from all elements
                                 current_cell.html.classList.add("last-selected-num");
-                                current_cell.nextCell(required_cell,first_cell,count);
+                                current_cell.nextCell(required_cell, size);
 
-                                if(current_cell.isLast(first_cell, count)){
+                                if(current_cell.isLast(size)){
                                     /*
                                     * if cell is last
                                     * */
@@ -457,11 +425,10 @@ def check_answer(expect, ans):
                                     if (stage === settings.stages_count){
                                         state.completed = true;
                                         answer.setJSON({answer: state});
-                                        // console.log("Hi! I'm last cell: ", current_cell);
                                         $(submit_button).trigger( "click" );
                                     }
                                     else {
-                                        table = new SchulteHardTable(html_element, (stage + 1));
+                                        table = new SchulteTable(html_element, (stage + 1));
                                         table.createStart();
                                     }
                                 }
@@ -470,7 +437,7 @@ def check_answer(expect, ans):
                                     * if cell is not last
                                     * */
                                 }
-                                required_cell_block.innerHTML = labels.next_required_label + ': "' + required_cell.num.toString() + " " + required_cell.color + '"';
+                                required_cell_block.innerHTML = labels.next_required_label + ": " + required_cell.num.toString();
                             }
                             else{
                                 /*
@@ -481,6 +448,7 @@ def check_answer(expect, ans):
                     });
                     table_container.append(flex_container);
                 });
+
                 answer.setJSON({answer: state});
                 this.wrap.append(stopwatch_wrap);
                 stopwatch.start();
@@ -504,7 +472,6 @@ def check_answer(expect, ans):
             }
         };
 
-
         let state = {
             completed: false,
             result: {
@@ -513,22 +480,19 @@ def check_answer(expect, ans):
         };
 
         let settings = {
-          colors: {
-              color_1: 'black',
-              color_2: 'red'
-          },
-          stages_count: 1,
-          lang: "ru",
-          debug: false,
+            size: 5,
+            stages_count: 2,
+            lang: "ru",
+            debug: false,
         };
 
         let labels = translations[settings.lang];
-        let answer = new Answer(document.querySelector("#schulte_hard_table_input").querySelector("input[type='text']"));
-        let html_element = document.getElementById("schulte_hard_table");
+        let answer = new Answer(document.querySelector("#schulte_table_input").querySelector("input[type='text']"));
+        let html_element = document.getElementById("schulte_table");
         clearProblemSigns(html_element);
         let submit_button = $(html_element).closest(".problem").find('button.submit');
         submit_button.hide();
-        let table = new SchulteHardTable(html_element, 1);
+        let table = new SchulteTable(html_element, 1);
 
         if (answer.get()) {
             state = answer.getJSON()["answer"];
@@ -550,20 +514,18 @@ def check_answer(expect, ans):
     </script>
 
     <div>
-        <div id="schulte_hard_table"></div>
-        <div id="schulte_hard_table_input" style="display: none !important;">
+        <div id="schulte_table"></div>
+        <div id="schulte_table_input" style="display: none !important;">
             <customresponse cfn="check_answer"><textline/></customresponse>
         </div>
     </div>
 
     <!--
 
-     Начиниаем с единицы первого цвета
+     Начиниаем с единицы
 
      Настройки "settings":
-         colors: // Два цвета, фон ячейки красится в указанный цвет
-                color_1: 'black' // первый цвет
-                color_2: 'red' // второй цвет
+         size: 5 // сторона квадрата
          stages_count: 2 // Количество таблиц
          lang: "ru" // Язык ("ru" или "en")
          debug: true // Режим дебага (например, в режиме включенного дебага показывать следующую требуемую ячейку)
