@@ -356,7 +356,7 @@ def check_answer(expect, ans):
                     let for_L = [4, 8, 12, 16, 20, 24, 28];
                     for (let user_answer in state.result.user_answers){
                         let num_question = parseInt(user_answer.replace("question_", ""));
-                        // console.log(this.answer_choices);
+
                         if (Object.keys(this.answer_choices).includes(state.result.user_answers[user_answer])) {
                             if (for_M.includes(num_question)) {
                                 results.points.M += this.answer_choices[state.result.user_answers[user_answer]].value;
@@ -410,9 +410,7 @@ def check_answer(expect, ans):
 
                             let that = this;
                             radio_input.addEventListener("change", function() {
-                                console.log(this.name, this.value);
                                 state.result.user_answers[this.name] = this.value;
-
                                     if (Object.keys(state.result.user_answers).map(function (item) {
                                         return state.result.user_answers[item]
                                     }).every(function (element) {
@@ -423,7 +421,6 @@ def check_answer(expect, ans):
                                     }else{
                                         submit_button.disableButton()
                                     }
-
                                     state.result.calculated = that.calculateResults();
                                     answer.setJSON({answer: state});
                             });

@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="диагностики">
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/test1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/test1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/constructive_motivation.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,10 +99,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
+        <entry file="file://$PROJECT_DIR$/Личная безопасность/constructive_motivation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="493" column="25" lean-forward="true" selection-start-line="493" selection-start-column="25" selection-end-line="493" selection-end-column="25" />
+            <state relative-caret-position="637">
+              <caret line="498" column="50" lean-forward="true" selection-start-line="498" selection-start-column="50" selection-end-line="498" selection-end-column="50" />
               <folding>
                 <element signature="e#14276#14640#0" />
                 <element signature="e#14488#14825#0" />
@@ -169,7 +170,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>required_cell_block</find>
       <find>console.log</find>
       <find>isRequired</find>
       <find>nextCell</find>
@@ -199,6 +199,7 @@
       <find>submit_button</find>
       <find>instruction_text</find>
       <find>'</find>
+      <find>console</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -507,7 +508,7 @@
       <workItem from="1558011044709" duration="12032000" />
       <workItem from="1558082024887" duration="74542000" />
       <workItem from="1558523761191" duration="50164000" />
-      <workItem from="1558969926750" duration="27573000" />
+      <workItem from="1558969926750" duration="28246000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -520,7 +521,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507227000" />
+    <option name="totallyTimeSpent" value="507900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="119" y="116" width="2160" height="1268" extended-state="0" />
@@ -1012,10 +1013,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/test1.html">
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/constructive_motivation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="493" column="25" lean-forward="true" selection-start-line="493" selection-start-column="25" selection-end-line="493" selection-end-column="25" />
+        <state relative-caret-position="637">
+          <caret line="498" column="50" lean-forward="true" selection-start-line="498" selection-start-column="50" selection-end-line="498" selection-end-column="50" />
           <folding>
             <element signature="e#14276#14640#0" />
             <element signature="e#14488#14825#0" />
