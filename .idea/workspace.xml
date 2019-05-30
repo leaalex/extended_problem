@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="диагностики">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/test1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/constructive_motivation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6540">
-              <caret line="659" column="43" selection-start-line="659" selection-start-column="39" selection-end-line="659" selection-end-column="43" />
+            <state relative-caret-position="953">
+              <caret line="679" column="18" lean-forward="true" selection-start-line="679" selection-start-column="18" selection-end-line="679" selection-end-column="18" />
               <folding>
                 <element signature="e#3898#12570#0" />
                 <element signature="e#13518#16001#0" />
@@ -77,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="71" selection-start-line="71" selection-end-line="79" />
+            <state relative-caret-position="180">
+              <caret line="92" column="37" lean-forward="true" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
               </folding>
@@ -98,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/constructive_motivation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
-              <caret line="498" column="50" lean-forward="true" selection-start-line="498" selection-start-column="50" selection-end-line="498" selection-end-column="50" />
+            <state relative-caret-position="343">
+              <caret line="507" column="107" lean-forward="true" selection-start-line="507" selection-start-column="107" selection-end-line="507" selection-end-column="107" />
               <folding>
                 <element signature="e#14276#14640#0" />
                 <element signature="e#14488#14825#0" />
@@ -188,7 +187,6 @@
       <find>block</find>
       <find>item</find>
       <find>this.wrap</find>
-      <find>enableButton</find>
       <find>user_answers</find>
       <find>answer_choices</find>
       <find>result_block</find>
@@ -200,6 +198,7 @@
       <find>instruction_text</find>
       <find>'</find>
       <find>console</find>
+      <find>enableButton</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -240,7 +239,6 @@
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html" />
         <option value="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" />
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 2.html" />
-        <option value="$PROJECT_DIR$/Диагностики/Диагностика 3.html" />
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 1.html" />
         <option value="$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/test.html" />
@@ -248,6 +246,7 @@
         <option value="$PROJECT_DIR$/Личная безопасность/shulte_hard.html" />
         <option value="$PROJECT_DIR$/Диагностики/Диагностика 4.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/test1.html" />
+        <option value="$PROJECT_DIR$/Диагностики/Диагностика 3.html" />
       </list>
     </option>
   </component>
@@ -508,7 +507,7 @@
       <workItem from="1558011044709" duration="12032000" />
       <workItem from="1558082024887" duration="74542000" />
       <workItem from="1558523761191" duration="50164000" />
-      <workItem from="1558969926750" duration="28246000" />
+      <workItem from="1558969926750" duration="29727000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -521,7 +520,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507900000" />
+    <option name="totallyTimeSpent" value="509381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="119" y="116" width="2160" height="1268" extended-state="0" />
@@ -934,32 +933,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6540">
-          <caret line="659" column="43" selection-start-line="659" selection-start-column="39" selection-end-line="659" selection-end-column="43" />
-          <folding>
-            <element signature="e#3898#12570#0" />
-            <element signature="e#13518#16001#0" />
-            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1372">
           <caret line="432" column="22" lean-forward="true" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="71" selection-start-line="71" selection-end-line="79" />
           <folding>
             <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
           </folding>
@@ -1015,8 +992,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/constructive_motivation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="498" column="50" lean-forward="true" selection-start-line="498" selection-start-column="50" selection-end-line="498" selection-end-column="50" />
+        <state relative-caret-position="343">
+          <caret line="507" column="107" lean-forward="true" selection-start-line="507" selection-start-column="107" selection-end-line="507" selection-end-column="107" />
           <folding>
             <element signature="e#14276#14640#0" />
             <element signature="e#14488#14825#0" />
@@ -1024,6 +1001,28 @@
             <element signature="e#16215#19800#0" />
             <element signature="e#19840#20435#0" />
             <element signature="e#28671#30602#0" />
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="92" column="37" lean-forward="true" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="953">
+          <caret line="679" column="18" lean-forward="true" selection-start-line="679" selection-start-column="18" selection-end-line="679" selection-end-column="18" />
+          <folding>
+            <element signature="e#3898#12570#0" />
+            <element signature="e#13518#16001#0" />
             <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
           </folding>
         </state>
