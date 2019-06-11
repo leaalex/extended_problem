@@ -1,0 +1,801 @@
+<hmtl>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Entire bundle -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.2/lib/draggable.min.js"></script>
+<!-- legacy bundle for older browsers (IE11) -->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.legacy.js"></script>-->
+<!--&lt;!&ndash; Draggable only &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.js"></script>-->
+<!--&lt;!&ndash; Sortable only &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/sortable.js"></script>-->
+<!--&lt;!&ndash; Droppable only &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/droppable.js"></script>-->
+<!--&lt;!&ndash; Swappable only &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/swappable.js"></script>-->
+<!--&lt;!&ndash; Plugins only &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/plugins.js"></script>-->
+<!---->
+
+    <style>
+        html {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -moz-osx-font-smoothing: subpixel-antialiased;
+        }
+        html body {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+            line-height: 1.5;
+            overflow: hidden;
+            -webkit-transition: none;
+            -moz-transition: none;
+            -o-transition: none;
+            transition: none;
+        }
+        html #app {
+            position: relative;
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            flex-flow: row wrap;
+            font-size: 0;
+            overflow: auto;
+            z-index: 1;
+            justify-content: center;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+            background: none;
+            border: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+            -moz-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+            -o-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+            transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+        }
+        .grid {
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .grid.cards > *,
+        .grid.spacebetween > * {
+            margin: 1rem;
+        }
+        .grid.row-wrap {
+            flex-flow: row wrap;
+        }
+        .grid.row-nowarp {
+            flex-flow: row nowrap;
+        }
+        .grid.column-wrap {
+            flex-flow: column wrap;
+        }
+        .grid.column-nowrap {
+            flex-flow: column nowrap;
+        }
+        .grid.reverse-row-wrap {
+            flex-flow: row wrap;
+        }
+        .grid.reverse-row-nowarp {
+            flex-flow: row nowrap;
+        }
+        .grid.reverse-column-wrap {
+            flex-flow: column wrap;
+        }
+        .grid.reverse-column-nowrap {
+            flex-flow: column nowrap;
+        }
+        .grid.adapt {
+            flex-grow: 1;
+        }
+        .grid.adapt-items > * {
+            flex-grow: 1;
+        }
+        .grid.decrease {
+            flex-shrink: 1;
+        }
+        .grid.decrease-items > * {
+            flex-shrink: 1;
+        }
+        .grid.dont-adapt {
+            flex-grow: 0;
+        }
+        .grid.dont-adapt-items > * {
+            flex-grow: 0;
+        }
+        .grid.dont-decrease {
+            flex-shrink: 0;
+        }
+        .grid.dont-decrease-items > * {
+            flex-shrink: 0;
+        }
+        .grid.flex-start-content {
+            justify-content: flex-start;
+            align-content: flex-start;
+            align-items: flex-start;
+        }
+        .grid.flex-start-content-self {
+            justify-content: flex-start;
+            align-content: flex-start;
+            align-self: flex-start;
+        }
+        .grid.center-content {
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .grid.center-content-self {
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .grid.stretch-items {
+            align-items: stretch;
+        }
+        .single > *,
+        .single {
+            flex: 1 0 100%;
+        }
+        .halfs > *,
+        .half {
+            flex-basis: calc(100% / 2);
+        }
+        .thirds > *,
+        .third {
+            flex-basis: calc(100% / 3);
+        }
+        .fourths > *,
+        .fourth {
+            flex-basis: calc(100% / 4);
+        }
+        .fifths > *,
+        .fifth {
+            flex-basis: calc(100% / 5);
+        }
+        .sixths > *,
+        .sixth {
+            flex-basis: calc(100% / 6);
+        }
+        .sevenths > *,
+        .seventh {
+            flex-basis: calc(100% / 7);
+        }
+        .eigths > *,
+        .eigth {
+            flex-basis: calc(100% / 8);
+        }
+        .disable-marker {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        span,
+        input,
+        button,
+        a,
+        q,
+        p,
+        b,
+        pre,
+        code,
+        i,
+        textarea,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 400;
+        }
+        span,
+        input,
+        button,
+        a,
+        q,
+        p,
+        b,
+        pre,
+        code,
+        i,
+        textarea,
+        label {
+            font-size: 1rem;
+        }
+        span,
+        input,
+        q,
+        p,
+        b,
+        pre,
+        code,
+        i,
+        label {
+            -webkit-transition: none;
+            -moz-transition: none;
+            -o-transition: none;
+            transition: none;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        h2 {
+            font-size: 2rem;
+        }
+        h3 {
+            font-size: 1.75rem;
+        }
+        h4 {
+            font-size: 1.5rem;
+        }
+        h5 {
+            font-size: 1.25rem;
+        }
+        h6 {
+            font-size: 1.15rem;
+        }
+        .subtitle {
+            position: relative;
+            color: rgba(0,0,0,0.25);
+            line-height: 1;
+        }
+        .subtitle-h1 {
+            font-size: 2.1rem;
+            top: -0.21rem;
+        }
+        .subtitle-h2 {
+            font-size: 1.2rem;
+            top: -0.12rem;
+        }
+        .subtitle-h3 {
+            font-size: 0.875rem;
+            top: -0.0875rem;
+        }
+        .subtitle-h4 {
+            font-size: 0.6rem;
+            top: -0.06rem;
+        }
+        .subtitle-h5 {
+            font-size: 0.5rem;
+            top: -0.05rem;
+        }
+        .subtitle-h6 {
+            font-size: 0.46rem;
+            top: -0.046rem;
+        }
+        hr {
+            width: calc(100% - 2rem);
+            margin: 2rem 1rem;
+            border: none;
+            border-bottom: solid 1px;
+        }
+        .card,
+        .cards > * {
+            padding: 1rem;
+            flex: 0 0 auto;
+            box-shadow: 0 0.1rem 1rem rgba(0,0,0,0.1), 0 0 0.5rem rgba(0,0,0,0.1);
+            z-index: 2;
+            overflow: auto;
+            border-radius: 0.2rem;
+            background-color: #fff;
+        }
+        .card.hoverable:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .card.clickable {
+            cursor: pointer;
+        }
+        .card.clickable:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .card.clickable:active,
+        .card.clickable:focus {
+            transform: scale(1.06);
+            box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+        .cards.hoverable > *:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .cards.clickable > * {
+            cursor: pointer;
+        }
+        .cards.clickable > *:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .cards.clickable > *:active,
+        .cards.clickable > *:focus {
+            transform: scale(1.06);
+            box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+        .cards.fixed-height > * {
+            position: relative;
+            overflow: auto;
+        }
+        .cards.halfs > *,
+        .cards .half {
+            flex-basis: calc(100% / 2 - 2rem);
+        }
+        .cards.thirds > *,
+        .cards .third {
+            flex-basis: calc(100% / 3 - 2rem);
+        }
+        .cards.fourths > *,
+        .cards .fourth {
+            flex-basis: calc(100% / 4 - 2rem);
+        }
+        .cards.fifths > *,
+        .cards .fifth {
+            flex-basis: calc(100% / 5 - 2rem);
+        }
+        .cards.sixths > *,
+        .cards .sixth {
+            flex-basis: calc(100% / 6 - 2rem);
+        }
+        .cards.sevenths > *,
+        .cards .seventh {
+            flex-basis: calc(100% / 7 - 2rem);
+        }
+        .cards.eigths > *,
+        .cards .eigth {
+            flex-basis: calc(100% / 8 - 2rem);
+        }
+        .topic {
+            position: relative;
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            margin: 1rem;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .topic > * {
+            flex: 1 0 100%;
+        }
+        .topic h3 {
+            font-weight: 100;
+            text-transform: uppercase;
+        }
+        .checkpoint {
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            margin: 1rem;
+            flex: 1 1 100%;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .checkpoint:before,
+        .checkpoint:after {
+            content: '';
+            margin: 0 1rem;
+            flex: 1 1 auto;
+            border-bottom: solid 0.1rem;
+        }
+        .weekly-todos {
+            flex-flow: row nowrap;
+            flex: 1 1 100%;
+        }
+        .weekly-todos > * {
+            height: 100%;
+            flex: 1 0 calc(100% / 7 - 2rem);
+        }
+        .weekly-todos > * > * {
+            margin: 0.5rem !important;
+            flex: 1 1 auto;
+        }
+        .sortable-animation > * {
+            transform: translate3d(0, 0, 0);
+        }
+        .sortableCards-move {
+            -webkit-transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            -moz-transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            -o-transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            background-color: #f00;
+        }
+        .sortableCards-enter,
+        .sortableCards-leave-to {
+            transition: 5s;
+            opacity: 0;
+        }
+        .draggable-source--is-dragging {
+            opacity: 0.3;
+        }
+        .draggable-container--over {
+            animation: draggablePulseBg cubic-bezier(0.22, 0.61, 0.36, 1) 1500ms infinite;
+        }
+        .draggable-mirror {
+            position: absolute;
+            padding: 1rem;
+            background-color: #fff;
+            -webkit-transition: all 0ms;
+            -moz-transition: all 0ms;
+            -o-transition: all 0ms;
+            transition: all 0ms;
+            overflow: auto;
+            box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            border-radius: 0.2rem;
+            z-index: 10;
+            cursor: move;
+            -webkit-transition: top 0ms left 0ms;
+            -moz-transition: top 0ms left 0ms;
+            -o-transition: top 0ms left 0ms;
+            transition: top 0ms left 0ms;
+        }
+        .draggable-source--placed {
+            animation: placedItem cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s;
+        }
+        .sortableCards-enter-active,
+        .sortableCards-leave-to {
+            opacity: 0;
+        }
+        .sortableCards-leave-active {
+            position: absolute;
+        }
+        @-moz-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @-webkit-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @-o-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @-moz-keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+        @-webkit-keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+        @-o-keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+        @keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+
+    </style>
+
+    <div id="app">
+        <div class="topic">
+            <h1>Shopify draggable example</h1>
+            <h3>I'm not longer supporting this pen</h3>
+        </div>
+
+        <h2 class="checkpoint">Swappable</h2>
+        <div class="grid single flex-start-content halfs">
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              swappable>
+                <div
+                        v-for="(card, index) in 3"
+                        :key="index"
+                        swapItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              swappable>
+                <div
+                        v-for="(card, index) in coloredCards"
+                        :key="index"
+                        :style="{ backgroundColor: card.color }"
+                        swapItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+        </div>
+
+        <h2 class="checkpoint">Sortable</h2>
+        <div class="grid single flex-start-content halfs">
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <div
+                        v-for="(_, index) in 7"
+                        :key="index"
+                        sortItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fifths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <div
+                        v-for="(card, index) in coloredCards"
+                        :key="index"
+                        :style="{ backgroundColor: card.color }"
+                        sortItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+        </div>
+
+        <h2 class="checkpoint">Weekly todos</h2>
+        <div class="grid flex-start-content weekly-todos">
+            <transition-group tag="div"
+                              v-for="(weekDay, weekIndex) in weeklyTodos"
+                              name="sortableCards"
+                              class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <p>Test</p>
+                <div
+                        v-for="(todo, todoIndex) in weekDay"
+                        :key="todoIndex"
+                        :style="{ backgroundColor: todo.color }"
+                        sortItem>
+                    <p>{{ todo.todo }}</p>
+                </div>
+            </transition-group>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        // $(function() {
+
+        let myVue = new Vue({
+            el: '#app',
+            data: {
+                coloredCards: [
+                    'rgb(0,175,100)',
+                    'rgb(0,175,125)',
+                    'rgb(0,175,150)',
+                    'rgb(0,175,175)',
+                    'rgb(0,175,200)',
+                    'rgb(0,175,225)',
+                    'rgb(0,175,250)',
+                ],
+                weeklyTodos: {
+                    "monday": [{
+                        todo: 'Clean bedroom',
+                        color: '#ef9a9a',
+                    },{
+                        todo: 'clean living room',
+                        color: '#f48fb1',
+                    }],
+                    "tuesday": [{
+                        todo: 'Clean kitchen',
+                        color: '#ce93d8',
+                    },{
+                        todo: 'Take out trash',
+                        color: '#90caf9',
+                    },{
+                        todo: 'Try out cake recipe',
+                        color: '#80deea',
+                    }],
+                    "wednesday": [
+                    ],
+                    "thursday": [{
+                        todo: 'Get done homework',
+                        color: '#80cbc4',
+                    }],
+                    "friday": [{
+                        todo: 'Learn for maths',
+                        color: '#a5d6a7',
+                    },{
+                        todo: 'Learn for chemistry',
+                        color: '#c5e1a5',
+                    }],
+                    "saturday": [{
+                        todo: 'Do this',
+                        color: '#e6ee9c',
+                    },{
+                        todo: 'Do that',
+                        color: '#ffe082',
+                    },{
+                        todo: 'Do whatever you said',
+                        color: '#ffcc80',
+                    }],
+                    "sunday": [{
+                        todo: 'Do nothing!',
+                        color: '#ffab91',
+                    }],
+                }
+            }
+        });
+
+        const swappable = new Draggable.Swappable(
+            document.querySelectorAll('[swappable]'), {
+                draggable: '[swapItem]',
+                delay: 0,
+            }
+        );
+        swappable.on('drag:start', () => {
+            console.log('drag:start')
+        });
+        swappable.on('swappable:swapped', () => {
+            console.log('drag:swapped')
+        });
+        swappable.on('drag:stop', () => {
+            console.log('drag:stop')
+        });
+        swappable.on('drag:move', () => {
+            console.log('drag:move')
+        });
+
+        const sortable = new Draggable.Sortable(
+            document.querySelectorAll('[sortable]'), {
+                draggable: '[sortItem]',
+                delay: 0,
+            }
+        );
+
+        sortable.on('drag:start', () => {
+            console.log('drag:start')
+        });
+        sortable.on('drag:stop', () => {
+            console.log('drag:stop')
+        })
+
+        // });
+
+
+    </script>
+
+</hmtl>
+
+
+

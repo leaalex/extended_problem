@@ -1,0 +1,281 @@
+<style>
+
+    .msg-class.success-false{
+        background: red;
+        color:white;
+    }
+
+    .msg-class.success-true{
+        background: green;
+    }
+
+    .msg-class{
+        background: #e2e2e2;
+        /*font-size: 130%;*/
+        border: 1px solid;
+        padding: 8px;
+        margin: 8px 0px;
+        max-width: 800px;
+        cursor: pointer;
+    }
+
+    .choice-container{
+        margin: 10px 0px;
+        /*font-size: 130%;*/
+    }
+    .choice-container button{
+        padding: 5px;
+        margin: 8px;
+        font-size: 90%;
+        cursor: pointer;
+    }
+
+
+    </style>
+<div id="text">
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+    let messages = {
+        msg_1: {
+            type: "text",
+            text: "Осознание, что потерялся",
+            next_id: "msg_2",
+            final: false,
+        },
+        msg_2: {
+            type: "choice",
+            text: "Внезапно сильное чувство страха. Судорожная мысль: Что делать?",
+            final: false,
+            choices: [
+                {
+                    text: "Выбирайся сам",
+                    next_id: "msg_3"
+                },
+                {
+                    text: "Позвони маме",
+                    next_id: "msg_4"
+                },
+                {
+                    text: "Жди спасателей",
+                    next_id: "msg_5"
+                }
+            ],
+        },
+        msg_3: {
+            type: "text",
+            text: "Немедленно остановиться. Не делать ни шагу. Лучше сразу смириться с мыслью, что можешь пробыть здесь долго.",
+            next_id: "msg_6",
+        },
+        msg_4: {
+            type: "text",
+            text: "ПАНИКА. Судорожно звонишь маме. Неразборчиво, несвязно говоришь, что заблудился.",
+            next_id: "msg_12",
+        },
+        msg_5: {
+            type: "text",
+            text: "Рано или поздно меня найдут. Буду ждать. Переложи ответственность за свою жизнь на других людей",
+            next_id: "msg_15",
+        },
+        msg_6: {
+            type: "text",
+            text: "Постарайся успокоиться. Чтобы прийти в себя: визуализируй свой страх, представь его и как бы отойди на шаг, посмотреть  на него со стороны.",
+            next_id: "msg_7",
+        },
+        msg_7: {
+            type: "choice",
+            text: "Позвонить сообщить о случившимся?",
+            choices: [
+                {
+                    text: "Нет, береги зарядку.",
+                    next_id: "msg_8"
+                },
+                {
+                    text: "Да, другу",
+                    next_id: "msg_11"
+                },
+                {
+                    text: "Да, в МЧС",
+                    next_id: "msg_11"
+                },
+                {
+                    text: "Да, маме",
+                    next_id: "msg_12"
+                }
+            ]
+        },
+        msg_8: {
+            type: "choice",
+            text: "Выключи телефон, береги зарядку.",
+            choices: [
+                {
+                    text: "Быстро начни искать дорогу. Бегай, осматривая местность. Скоро стемнеет",
+                    next_id: "msg_10"
+                },
+                {
+                    text: "Остановись. Послушай внимательно. Где-то совсем недалеко слышны шум моторов.",
+                    next_id: "msg_16"
+                }
+            ],
+        },
+        msg_9: {
+            // id: "msg_9",
+            type: "text",
+            text: "Быстро начни искать дорогу. Бегай, осматривая местность. Скоро стемнеет.",
+            next_id: "msg_10",
+        },
+        msg_10: {
+            type: "text",
+            text: "Иссякнут силы.",
+            final: true,
+            success: false,
+        },
+        msg_11: {
+            type: "text",
+            text: "Сообщи: во сколько ты вышел из населенного пункта, что у тебя есть (еда, вода, лекарства), особые приметы одежды",
+            next_id: "msg_5",
+        },
+        msg_12: {
+            type: "text",
+            text: "Мама в панике, звонит тебе каждые 5 мин",
+            next_id: "msg_13",
+        },
+        msg_13: {
+            type: "text",
+            text: "Села батарея в  телефоне",
+            final: true,
+            success: false,
+        },
+        msg_15: {
+            type: "text",
+            text: "Никто не пришел. Ты умер.",
+            final: true,
+            success: false,
+        },
+        msg_16: {
+            type: "text",
+            text: "Иди спокойно на шум",
+            next_id: "msg_17",
+        },
+        msg_17: {
+            type: "text",
+            text: "Останови машину. Доберись  до населенного пункта",
+            next_id: "msg_18",
+        },
+        msg_18: {
+            type: "text",
+            text: "Позвони сообщить о случившимся",
+            next_id: "msg_19",
+        },
+        msg_19: {
+            type: "text",
+            text: "Назови название населенного пункта, где находишься.",
+            next_id: "msg_20",
+        },
+        msg_20: {
+            // id: "msg_20",
+            type: "text",
+            text: "Ура! Я выбрался! бестолковое создание",
+            final: true,
+            success: true,
+        }
+    };
+
+    function createElement(name, id, classList, attributes) {
+        let element = document.createElement(name);
+        if (id) element.id = id;
+        if (classList) element.classList = classList;
+        if (attributes) {
+            for (let attr in attributes) {
+                element.setAttribute(attr, attributes[attr])
+            }
+        }
+        return element;
+    }
+
+    function Choice(msg_id, id, choice, html_element) {
+        this.id = id;
+        this.next_id = choice.next_id;
+        this.text = choice.text;
+        this.html = createElement('button', '', '', {type: "radio", value: id, name: "before_" + this.next_id});
+        this.html.innerHTML = this.text;
+
+        this.html.onclick = function () {
+            if (Message.curr_msg_id == msg_id){
+                Message.curr_msg_id = this.next_id;
+                new Message(this.next_id, messages[this.next_id], html_element);
+            }
+        }.bind(this);
+    }
+
+    function Message(id, settings, html_element) {
+        var id = id;
+        this.id = id;
+        this.type = settings.type || "text";
+        this.final = settings.final || false;
+        this.text = settings.text;
+        this.next_id = this.final ? undefined : settings.next_id;
+        this.show_delay = settings.show_delay || 1000;
+
+        Object.defineProperty(this, "is_choice", {
+            get: function() {
+                return this.type === 'choice';
+            }
+        });
+        Object.defineProperty(this, "is_text", {
+            get: function() {
+                return this.type === 'text';
+            }
+        });
+        let success_class = (settings.success !== undefined) ? "success-"+settings.success: "";
+        if (settings.choices) {
+            this.choices = settings.choices.map(function (ch, index) {
+                return new Choice(id, id + "_choice_" + index, ch, html_element)
+            })
+        }
+
+        this.html = createElement('div', id, 'msg-class '+ this.type + ' ' + success_class, {});
+        this.html.innerHTML = this.text;
+
+        if(this.is_choice){
+            let choice_container = createElement('div', null, 'choice-container', {})
+            this.choices.forEach(function (item) {
+                choice_container.append(item.html)
+            });
+            this.html.append(choice_container);
+
+        }
+        else if(this.is_text){
+            if (!this.final) {
+                this.html.onclick = function () {
+                    if (Message.curr_msg_id != this.next_id) {
+                        Message.curr_msg_id = this.next_id;
+                        new Message(this.next_id, messages[this.next_id], html_element);
+                    }
+                }.bind(this);
+            }
+        }
+        else{}
+        html_element.append(this.html);
+    }
+
+    function Task(html_element){
+        let first_msg_id = "msg_1";
+        Message.curr_msg_id = first_msg_id;
+
+        this.html_element = html_element;
+        new Message(first_msg_id, messages[first_msg_id], html_element);
+    }
+
+
+    let task = new Task(document.querySelector("#text"));
+    // task.start();
+
+
+</script>
