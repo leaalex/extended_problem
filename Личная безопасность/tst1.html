@@ -1,0 +1,151 @@
+<problem>
+    <style>
+        #$unique_id .text-fixed-width{
+            width: 260px !important;
+        }
+        #$unique_id .text-fixed-height{
+              height: 66px;
+          }
+    </style>
+    <script type="loncapa/python">
+import math
+from os import urandom
+import hashlib
+import json
+
+def key():
+    key = hashlib.md5(urandom(128)).hexdigest()[:8]
+    return "id" + str(key)
+unique_id = key()
+
+correct_answer = {"a1":["b1",{"b4","b11"},"b10","b12"],"a2":["b2","b3","b9"],"a3":[{"b4","b11"},"b5", "b6","b7","b8"]}
+
+# types:
+#     all_items
+#     correct_order
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    response = {}
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    wrong_cells = list(set(wrong_cells))
+    if show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    print("grade: ",grade," / ","max_grade: ",max_grade)
+    grade_decimal = round(float(grade) / float(max_grade), 2)
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Задание выполнено верно!'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Задание выполнено неверно!'
+    else:
+        ok = 'Partial'
+        message = 'Задание выполнено частично!'
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    final_grade = 0
+    response = {}
+    ok = False
+    message = 'Задание выполнено неверно!'
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        final_grade = 1
+        ok = True
+        message = 'Задание выполнено верно!'
+    response["grade"] = final_grade
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+
+    return {'input_list': [{ 'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal':response['grade']},]}
+
+</script>
+    <script  type="text/javascript" src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/jquery.ui.touch-punch.min.js">
+    </script>
+
+    <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/matching_table_mobile.js">
+    </script>
+
+    <div class="matching_table" id="$unique_id">
+        <table class="conf-table">
+            <tr>
+                <td class="conf-text text-fixed-width"><div class="table-header">Уровни результатов обучения</div></td>
+                <td class="conf-text"><div class="table-header">Виды учебных заданий</div></td>
+            </tr>
+            <tr>
+                <td class="conf-text text-fixed-width text-fixed-height">Воспроизведение знаний</td>
+                <td id="a1" class="conf-answers-place"></td>
+            </tr>
+
+            <tr>
+                <td class="conf-text text-fixed-width text-fixed-height">Решение учебных типовых задач</td>
+                <td id="a2" class="conf-answers-place"></td>
+            </tr>
+            <tr>
+                <td class="conf-text text-fixed-width text-fixed-height">Перенос знаний и умений на другие объекты</td>
+                <td id="a3" class="conf-answers-place"></td>
+            </tr>
+        </table>
+
+        <div id="conf-id" class= "conf-answers-place conf-all-answers">
+            <div id="b1" class="conf-item">задания на изучение нового учебного материала</div>
+            <div id="b2" class="conf-item">задания на структурирование нового учебного материала</div>
+            <div id="b3" class="conf-item">задания на выполнение расчетных процедур, операций по определенному алгоритму</div>
+            <div id="b4" class="conf-item">задания на анализ информации и формулировку выводов</div>
+            <div id="b5" class="conf-item">написание рефератов, эссе и других подобных работ</div>
+            <div id="b6" class="conf-item">задания на анализ сложных объектов и ситуаций</div>
+            <div id="b7" class="conf-item">задания на оценку объектов, процессов и их аргументацию</div>
+            <div id="b8" class="conf-item">задания на диагностику реальных объектов и процессов</div>
+            <div id="b9" class="conf-item">задание на решение учебных задач разной сложности</div>
+            <div id="b10" class="conf-item">составление глоссария на изучаемую тематику</div>
+            <div id="b11" class="conf-item">задания на анализ информации и формулировку выводов</div>
+            <div id="b12" class="conf-item">задания на поиск и выявление ошибок и недостатков</div>
+
+        </div>
+        <div id="matching_table_input">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$taskId" />
+                <br/>
+            </customresponse>
+            <!-- <div class="message-about-grade"></div> -->
+        </div>
+    </div>
+</problem>

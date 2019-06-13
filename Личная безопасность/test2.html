@@ -1,0 +1,151 @@
+
+<html>
+<script type="loncapa/python">
+import math
+from os import urandom
+import hashlib
+import json
+
+def key():
+    key = hashlib.md5(urandom(128)).hexdigest()[:8]
+    return "id" + str(key)
+unique_id = key()
+
+correct_answer = {"a1":["b1"],"a2":["b2"],"a3":["b3"],"a4":["b4"]}
+
+# types:
+#     all_items
+#     correct_order
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    response = {}
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    wrong_cells = list(set(wrong_cells))
+    if show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    print("grade: ",grade," / ","max_grade: ",max_grade)
+    grade_decimal = round(float(grade) / float(max_grade), 2)
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Задание выполнено верно!'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Задание выполнено неверно!'
+    else:
+        ok = 'Partial'
+        message = 'Задание выполнено частично!'
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    final_grade = 0
+    response = {}
+    ok = False
+    message = 'Задание выполнено неверно!'
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        final_grade = 1
+        ok = True
+        message = 'Задание выполнено верно!'
+    response["grade"] = final_grade
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+
+    return {'input_list': [{ 'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal':response['grade']},]}
+
+</script>
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+<script type="text/javascript" src="/static/sortable.js"></script>
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+<script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/matching_table_mobile.js"></script>
+
+<div class="matching_table" id="$unique_id">
+    <table class="conf-table">
+        <tr>
+            <td class="conf-text text-fixed-width" style="padding: 7px !important;">
+                <i>Визитная карточка</i>
+            </td>
+            <td class="conf-text" style="padding: 7px !important;">
+                <i>Элемент</i>
+            </td>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-width text-fixed-height">ЛОЛОКЕК</td>
+            <td id="a1" class="conf-answers-place"/>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-width text-fixed-height">ЧЕЛОВЕК</td>
+            <td id="a2" class="conf-answers-place"/>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-width text-fixed-height">ЧеБуРеК</td>
+            <td id="a3" class="conf-answers-place"/>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-width text-fixed-height">БУРЯТ</td>
+            <td id="a4" class="conf-answers-place"/>
+        </tr>
+
+    </table>
+
+    <div id="conf-id" style="flex-wrap: wrap;display: flex;" class="conf-answers-place conf-all-answers">
+        <div id="b1" class="conf-item">яркий образ</div>
+        <div id="b2" class="conf-item">разбиение пространства на асимметричные части</div>
+        <div id="b3" class="conf-item">контраст, мешающий считыванию информации</div>
+        <div id="b4" class="conf-item">«выворотка» - белый текст</div>
+    </div>
+    <div id="matching_table_input">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+        <!-- <div class="message-about-grade"></div> -->
+    </div>
+</div>
+</html>
