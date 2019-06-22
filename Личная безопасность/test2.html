@@ -2,29 +2,56 @@
 <html>
 <script type="loncapa/python">
 import math
-from os import urandom
-import hashlib
 import json
 
-def key():
-    key = hashlib.md5(urandom(128)).hexdigest()[:8]
-    return "id" + str(key)
-unique_id = key()
+unique_id = "task_dsd24Jsdg"
 
-correct_answer = {"a1":["b1"],"a2":["b2"],"a3":["b3"],"a4":["b4"]}
+correct_answer = {"a1":["b1", "b2", "b3", "b4"], "a2":["b5", "b6", "b7"], "a3":["b8", "b9", "b10"]}
 
 # types:
 #     all_items
 #     correct_order
+#     check_or
 
 check_type = 'all_items'
 show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(round(grade_decimal, 2))
+    return response
 
 def check_all_items(CA, SA):
     max_grade = 0
     grade = 0
     wrong_cells = []
-    response = {}
     for key in CA.keys():
         max_grade = max_grade + len(CA[key])
         for item in CA[key]:
@@ -41,43 +68,23 @@ def check_all_items(CA, SA):
                     grade = grade + 1
                 else:
                     wrong_cells.append(key)
-    wrong_cells = list(set(wrong_cells))
-    if show_wrong_cells:
-        response["wrong_cells"] = wrong_cells
-    print("grade: ",grade," / ","max_grade: ",max_grade)
     grade_decimal = round(float(grade) / float(max_grade), 2)
-    response["grade"] = grade_decimal
-    if grade_decimal == 1:
-        ok = True
-        message = 'Задание выполнено верно!'
-    elif grade_decimal == 0:
-        ok = False
-        message = 'Задание выполнено неверно!'
-    else:
-        ok = 'Partial'
-        message = 'Задание выполнено частично!'
-    response["ok"] = ok
-    response["message"] = message
+    response = get_response(grade_decimal, wrong_cells)
     return response
+
 
 def check_correct_order(CA, SA):
     grade = 0
     max_grade = len(CA.keys())
-    final_grade = 0
-    response = {}
-    ok = False
-    message = 'Задание выполнено неверно!'
+    grade_decimal = 0
     for key in CA.keys():
         if (set(CA[key]) == set(SA[key])):
             grade = grade + 1
     if grade == max_grade:
-        final_grade = 1
-        ok = True
-        message = 'Задание выполнено верно!'
-    response["grade"] = final_grade
-    response["ok"] = ok
-    response["message"] = message
+        grade_decimal = 1
+    response = get_response(grade_decimal)
     return response
+
 
 def check_answer(expect, ans):
     student_answer = json.loads(ans)
@@ -86,9 +93,10 @@ def check_answer(expect, ans):
         response = check_all_items(correct_answer, student_answer)
     elif check_type == 'correct_order':
         response = check_correct_order(correct_answer, student_answer)
-
-    return {'input_list': [{ 'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal':response['grade']},]}
-
+    elif check_type == 'check_or':
+        response = check_or(correct_answer, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
 </script>
 
 <script type="text/javascript">
@@ -120,27 +128,28 @@ def check_answer(expect, ans):
 <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/matching_table_mobile.js"></script>
 
 <div class="matching_table disable-marker" id="$unique_id">
-    <table class="conf-table">
-
+    <table class="conf-table top-items">
         <tr>
-            <th class="conf-text text-fixed-width">
+            <th class="conf-text conf-header text-fixed-width">
                 Тактики уговаривания
             </th>
-            <th class="conf-text text-fixed-width">
+            <th class="conf-text conf-header text-fixed-width">
                 Тактики дискредитации
             </th>
-            <th class="conf-text">
+            <th class="conf-text conf-header">
                 Эмоционально-настраивающие тактики
             </th>
         </tr>
 
         <tr>
-            <td id="a1" capacity="10" class="conf-answers-place conf-inputable text-fixed-height input-place"></td>
-            <td id="a2" capacity="10" class="conf-answers-place conf-inputable input-place"></td>
-            <td id="a3" capacity="10" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a1" capacity="5" class="conf-answers-place conf-inputable text-fixed-height input-place"></td>
+            <td id="a2" capacity="5" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a3" capacity="5" class="conf-answers-place conf-inputable input-place"></td>
         </tr>
 
     </table>
+
+    <p>Коммуникативные ходы:</p>
 
     <div id="conf-id" class="conf-answers-place conf-inputable conf-all-answers halfs ">
 
@@ -170,20 +179,20 @@ def check_answer(expect, ans):
 
     <solution>
         <div class="detailed-solution">
-            <p>Решение</p>
-            <p>Решение задачи</p>
 
-<!--
+            <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
+
+
             <table class="conf-table">
 
                 <tr>
-                    <th class="conf-text text-fixed-width">
+                    <th class="conf-text conf-header text-fixed-width">
                         Тактики уговаривания
                     </th>
-                    <th class="conf-text text-fixed-width">
+                    <th class="conf-text conf-header text-fixed-width">
                         Тактики дискредитации
                     </th>
-                    <th class="conf-text">
+                    <th class="conf-text conf-header">
                         Эмоционально-настраивающие тактики
                     </th>
                 </tr>
@@ -195,12 +204,20 @@ def check_answer(expect, ans):
                         <div class="conf-item">Апелляция к авторитету («посмотри какой Миша хороший»)</div>
                         <div class="conf-item">Апелляция к разуму («сам-то подумай, неужели не понимаешь»)</div>
                     </td>
-                    <td id="a2" capacity="10" class="conf-answers-place input-place"> </td>
-                    <td id="a3" capacity="10" class="conf-answers-place input-place"> </td>
+                    <td class="conf-answers-place input-place">
+                        <div class="conf-item">Навешивание ярлыков («он выглядит как сумасшедший»)</div>
+                        <div class="conf-item">Косвенное оскорбление («он похож на сумасшедшего»)</div>
+                        <div class="conf-item">Прямое оскорбление («он сумасшедший»)</div>
+                    </td>
+                    <td class="conf-answers-place input-place">
+                        <div class="conf-item">Антикомлимент («мой самый лучший глупец»), комплимент-сравнение («твоя кожа как шелк»)</div>
+                        <div class="conf-item">Дедуктивный комплимент («от гениальных родителей часто рождаются умные детки»)</div>
+                        <div class="conf-item">Незатейливый комплимент («такие красивые руки»)</div>
+                    </td>
                 </tr>
 
             </table>
--->
+
         </div>
     </solution>
 

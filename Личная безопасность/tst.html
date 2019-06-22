@@ -7,7 +7,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.8/sortable.js"></script>
-
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.8/swappable.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.8/draggable.js"></script>
 
     <style>
         html {
@@ -670,25 +673,114 @@
     </style>
 
     <div id="app">
-        <div class="topic"><h1>Shopify draggable example</h1>
-            <h3>I'm not longer supporting this pen</h3></div>
+        <div class="topic">
+            <h1>Shopify draggable example</h1>
+            <h3>I'm not longer supporting this pen</h3>
+        </div>
+
+        <h2 class="checkpoint">Swappable</h2>
+        <div class="grid single flex-start-content halfs">
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              swappable>
+                <div
+                        v-for="(card, index) in 3"
+                        :key="index"
+                        swapItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              swappable>
+                <div
+                        v-for="(card, index) in coloredCards"
+                        :key="index"
+                        :style="{ backgroundColor: card.color }"
+                        swapItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+        </div>
+
         <h2 class="checkpoint">Sortable</h2>
         <div class="grid single flex-start-content halfs">
-            <div sortable="sortable" style="width: 50%!important;height: 400px!important;" class="grid single fourths disable-marker cards clickable sortable-animation">
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <div
+                        v-for="(_, index) in 7"
+                        :key="index"
+                        sortItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fifths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <div
+                        v-for="(card, index) in coloredCards"
+                        :key="index"
+                        :style="{ backgroundColor: card.color }"
+                        sortItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+        </div>
 
-            </div>
-            <div sortable="sortable"
-                 class="grid single fifths flex-start-content disable-marker cards clickable sortable-animation"
-                 tabindex="0">
-                <div sortitem="" tabindex="0" class="" style=""><h3>5</h3></div>
-                <div sortitem="" tabindex="0" class=""><h3>3</h3></div>
-                <div sortitem="" tabindex="0" class="" style=""><h3>2</h3></div>
-                <div sortitem="" tabindex="0" class="" style=""><h3>4</h3></div>
-                <div sortitem="" tabindex="0" class=""><h3>7</h3></div>
-                <div sortitem="" tabindex="0" class="" style=""><h3>6</h3></div>
-            </div>
+        <h2 class="checkpoint">Weekly todos</h2>
+        <div class="grid flex-start-content weekly-todos">
+            <transition-group tag="div"
+                              v-for="(weekDay, weekIndex) in weeklyTodos"
+                              name="sortableCards"
+                              class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <p>Test</p>
+                <div
+                        v-for="(todo, todoIndex) in weekDay"
+                        :key="todoIndex"
+                        :style="{ backgroundColor: todo.color }"
+                        sortItem>
+                    <p>{{ todo.todo }}</p>
+                </div>
+            </transition-group>
         </div>
     </div>
+
 
 
     <script type="text/javascript">
@@ -706,27 +798,88 @@
                     'rgb(0,175,200)',
                     'rgb(0,175,225)',
                     'rgb(0,175,250)',
-                ]
+                ],
+                weeklyTodos: {
+                    "monday": [{
+                        todo: 'Clean bedroom',
+                        color: '#ef9a9a',
+                    },{
+                        todo: 'clean living room',
+                        color: '#f48fb1',
+                    }],
+                    "tuesday": [{
+                        todo: 'Clean kitchen',
+                        color: '#ce93d8',
+                    },{
+                        todo: 'Take out trash',
+                        color: '#90caf9',
+                    },{
+                        todo: 'Try out cake recipe',
+                        color: '#80deea',
+                    }],
+                    "wednesday": [
+                    ],
+                    "thursday": [{
+                        todo: 'Get done homework',
+                        color: '#80cbc4',
+                    }],
+                    "friday": [{
+                        todo: 'Learn for maths',
+                        color: '#a5d6a7',
+                    },{
+                        todo: 'Learn for chemistry',
+                        color: '#c5e1a5',
+                    }],
+                    "saturday": [{
+                        todo: 'Do this',
+                        color: '#e6ee9c',
+                    },{
+                        todo: 'Do that',
+                        color: '#ffe082',
+                    },{
+                        todo: 'Do whatever you said',
+                        color: '#ffcc80',
+                    }],
+                    "sunday": [{
+                        todo: 'Do nothing!',
+                        color: '#ffab91',
+                    }],
+                }
             }
-        });
+        })
 
-        // console.log(Dra)
+        const swappable = new Swappable.default(
+            document.querySelectorAll('[swappable]'), {
+                draggable: '[swapItem]',
+                delay: 0,
+            }
+        )
+        swappable.on('drag:start', () => {
+            console.log('drag:start')
+        })
+        swappable.on('swappable:swapped', () => {
+            console.log('drag:swapped')
+        })
+        swappable.on('drag:stop', () => {
+            console.log('drag:stop')
+        })
+        swappable.on('drag:move', () => {
+            console.log('drag:move')
+        })
 
-        const sortable = new Sortable.default(
+        const sortable = new Draggable.default(
             document.querySelectorAll('[sortable]'), {
                 draggable: '[sortItem]',
                 delay: 0,
             }
-        );
-
-        sortable.on('drag:start', function () {
-            console.log('drag:start')
-        });
-        sortable.on('drag:stop', function () {
-            console.log('drag:stop')
+        )
+        sortable.on('drag:start', () => {
+            console.log('drag:start kek')
+        })
+        sortable.on('drag:stop', () => {
+            console.log('drag:stop kek')
         })
 
-        // });
 
 
     </script>

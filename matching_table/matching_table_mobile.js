@@ -59,16 +59,17 @@ $.fn.shuffleChildren = function() {
 function MatchingTableObjects(element, data){
 
     //Перемешать незадействованные элементы
-    //$("#conf-id",element).shuffleChildren();
+    $("#conf-id", element).shuffleChildren();
     $(".matching_table").hide().fadeIn(500);
 
     this.element = element;
 
     var answer = new Answer(element.querySelector("#matching_table_input").querySelector("input[type='text']"));
-    console.log(document.querySelectorAll('.conf-answers-place'))
+
+
     const sortable = new Sortable.default(
-        document.querySelectorAll('.conf-answers-place'), {
-            draggable: '.conf-item',
+        this.element.querySelectorAll('.conf-answers-place.conf-inputable'), {
+            draggable: '.conf-item.conf-draggable',
             delay: 0,
             mirror: {
                 constrainDimensions: true,
@@ -76,68 +77,35 @@ function MatchingTableObjects(element, data){
         }
     )
 
-    sortable.on('drag:start', (evt) => {
-        console.log(sortable.getDraggableElementsForContainer(sortable.containers[1]).length);
-        console.log('drag:start');
-    })
-    sortable.on('drag:over', (evt) => {
-        // console.log('drag:over');
-    })
-    sortable.on('drag:out', (evt) => {
-        // console.log('drag:out');
-    })
-    sortable.on('drag:move', (evt) => {
-//         console.log('drag:move', evt);
-    })
-    sortable.on('drag:over:container', (evt) => {
-        // $(evt.data.overContainer).css("border","2px dashed #b2b2b2");
-    })
-    sortable.on('drag:out:container', (evt) => {
-        // $(evt.data.overContainer).css("border","");
-    })
-    sortable.on('drag:pressure', (evt) => {
-        // console.log('drag:pressure');
-    })
+    // sortable.on('drag:start', (evt) => {
+    // })
+    // sortable.on('drag:over', (evt) => {
+    // })
+    // sortable.on('drag:out', (evt) => {
+    // })
+    // sortable.on('drag:move', (evt) => {
+    // })
+    // sortable.on('drag:over:container', (evt) => {
+    // })
+    // sortable.on('drag:out:container', (evt) => {
+    // })
+    // sortable.on('drag:pressure', (evt) => {
+    // })
     sortable.on('drag:stop', (evt) => {
-        console.log('drag:stop');
-        // $(evt.data.source.parentNode).css("border","");
-        /*
-            Здесь присваиваем ответ
-        */
-
         setAnswer();
+        $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
     })
     sortable.on('sortable:sort', (evt) => {
         var capacity = evt.data.dragEvent.data.overContainer.getAttribute("capacity");
         var count = sortable.getDraggableElementsForContainer(evt.data.dragEvent.data.overContainer).length;
-        console.log(count, " ", capacity);
         if (!isNaN(capacity)){
             capacity = parseInt(capacity)
             if(capacity == count){
                 evt.cancel();
             }
         }
-        // console.log('drag:sort', );
     })
-    /*
-        $(".conf-answers-place",element).sortable({
-            connectWith: "#" + element.id + " .conf-answers-place",
-            stop: function() {
-                  setAnswer();
-            },
 
-            sort: function() {
-                $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
-            },
-            opacity: 0.8,
-            over: function(event) {
-                $("#" + event.target.id, element).css("border","2px dashed #b2b2b2");
-            },
-            out: function(event) {
-                $("#" + event.target.id, element).css("border","");
-            }
-        }).disableSelection();
-    */
     function setAnswer(){
         var problem =  $("#" + element.id).closest(".problem");
         var checkButton = $("button.submit", problem);
@@ -146,13 +114,25 @@ function MatchingTableObjects(element, data){
         $(checkButton).removeAttr("disabled");
 
         var student_answer = {};
-        $(".conf-table td.conf-answers-place", element).map(function(indx, item){
+
+        $(".input-place.conf-answers-place", element).map(function(indx, item){
             item_id = $(item).attr("id");
-            student_answer[item_id] = $(item).find(".conf-item").map(function(index, sub_item){
-                return $(sub_item).attr("id")
+            student_answer[item_id] = $(item).find(".conf-item.conf-draggable").map(function(index, sub_item){
+                console.log(sub_item.classList);
+                if(sub_item.classList.contains('draggable--original') || sub_item.classList.contains('draggable--mirror') ){
+
+                }else{
+                    return $(sub_item).attr("id")
+                }
+
             }).get();
+
+            student_answer[item_id] = student_answer[item_id].filter((el, i, a) => i === a.indexOf(el))
+
         }).get();
+
         answer.setJSON({answer: student_answer});
+
     }
 
     if(answer.get()){
@@ -173,13 +153,10 @@ function MatchingTableObjects(element, data){
                 // $(".message-about-grade", element).html(message);
             }
         }
-        console.log($("input[type=text]", element));
-        console.log($("span.message", element));
 
-        // $(document).ready(function(){$("input[type=text]", element).hide()});
-        // $(document).ready(function(){$("span.message", element).hide()});
+        $(document).ready(function(){$("input[type=text]", element).hide()});
+        $(document).ready(function(){$("span.message", element).hide()});
     }
-
 
     var css = `
     .conf-text{
@@ -189,28 +166,39 @@ function MatchingTableObjects(element, data){
     }
 
     .conf-all-answers{
-        min-height: 60px;
+        min-width: 250px;
+        min-height: 80px;
         justify-content: flex-start;
         align-content: flex-start;
-        align-items: flex-start;
+        align-items: initial;
         display: flex;
         flex-flow: row wrap;
+        border: 1px solid #b2b2b2;
     }
 
-    .conf-table td{
+    .conf-table td, .conf-table th{
         border: 1px solid #b2b2b2;
+    }
+    
+    .conf-header{
+        font-style: italic !important;
+        /* font-weight: bold !important; */
+        background: #ececec;
     }
 
     .conf-table{
         width:100%;
     }
 
-    .conf-answers-place{
-        min-width: 250px;
+     .conf-answers-place{
         padding: 0px 0px !important;
-        background: #9a9a9a23;
-        }
+        /*background: #9a9a9a23;*/
+        /* vertical-align: baseline !important;*/
+     }
 
+    .top-items td.conf-answers-place{
+        vertical-align: baseline !important;
+    }
 
     .conf-item{
         max-height: 120px;
@@ -218,7 +206,7 @@ function MatchingTableObjects(element, data){
         border: 1px solid #b2b2b2;;
         margin: 2px;
         text-align: center;
-        cursor: move;
+
         padding: .6rem;
         flex: 0 0 auto;
         box-shadow: 0 0.1rem 1rem rgba(0,0,0,0.1), 0 0 0.5rem rgba(0,0,0,0.1);
@@ -228,6 +216,29 @@ function MatchingTableObjects(element, data){
         background-color: #fff;
         box-sizing: border-box;
         margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+    
+    .conf-item.conf-draggable{
+            cursor: pointer;
+    }
+    
+    .disable-marker {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+        
+    .conf-item.conf-draggable:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.25), 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
+            z-index: 3;
     }
 
     .conf-all-answers.ones > * {
@@ -265,6 +276,15 @@ function MatchingTableObjects(element, data){
     .draggable-source--is-dragging {
         opacity: 0.3;
     }
+    
+    
+    .detailed-solution-header{
+        border-left: 5px solid #009b01;
+        padding: 10px;
+        color: #009b01;
+        background: whitesmoke;
+        border-radius: 4px;
+    }
 
     .draggable-container--over {
         animation: none;
@@ -294,23 +314,80 @@ function MatchingTableObjects(element, data){
         animation: none;
                 /*placedItem cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s;*/
     }
+    
+    
+        .draggable-container--over {
+            animation: draggablePulseBg cubic-bezier(0.22, 0.61, 0.36, 1) 1500ms infinite;
+        }
+        
+        @-moz-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0, 0, 0, 0.05);
+                outline: solid 0.1rem rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+
+        @-webkit-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0, 0, 0, 0.05);
+                outline: solid 0.1rem rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+
+        @-o-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0, 0, 0, 0.05);
+                outline: solid 0.1rem rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+
+        @keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0, 0, 0, 0.05);
+                outline: solid 0.1rem rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        
+        .conf-wrong-cell{
+            border: 2px solid rgb(178, 6, 16) !important;
+        }
 `;
 
-    /*var css = "#" + element.id + " .capa_inputtype{text-align: center !important;}";
-    css += ".conf-text{text-align: center !important;padding: 5px !important;font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;}";
-    css += ".conf-wrong-cell{border: 2px solid rgb(178, 6, 16) !important;}";
-    css += ".conf-all-answers{min-height: 60px}";
-    css += ".conf-table td{border: 1px solid #b2b2b2;}";
-    css += ".conf-table{width:100%}";
-    css += "td.conf-answers-place{min-width: 250px; padding: 0px 0px !important;}";
-    css += ".conf-item{max-height: 120px;vertical-align: middle;background: #f3f3f3;border: 1px solid #b2b2b2;;margin: 2px;padding: 3px;text-align: center;cursor: move;}";
-    css += ".conf-answers-place{background: #f9f9f9;}";
-	css += "#" + element.id + " .conf-table td { padding: 5px 0px !important;}";
-	css += "#" + element.id + " div.table-header{padding: 5px;}";
-    // css +=".message-about-grade{text-align: center;font-size: 1.2em;}";
-    css += "#" + element.id + " input[type=text]{display:none}";
-    css += "#" + element.id + " span.message{display:none}";
-    */
+
+
+    css += "#" + element.id + " .capa_inputtype{text-align: center !important;}";
     var style = document.createElement("style")
     style.id = "matching_table";
     if (style.styleSheet) {
