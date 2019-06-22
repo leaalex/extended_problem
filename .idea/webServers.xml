@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d1d3df5c-f943-4932-9da8-f323a0d4146b" name="openedu.urfu.ru/files" url="http://openedu.urfu.ru">
+        <fileTransfer host="openedu.urfu.ru" port="22" rootFolder="/usr/local/edx/files/mengine" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

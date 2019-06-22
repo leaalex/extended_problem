@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="openedu.urfu.ru/files" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="openedu.urfu.ru/files">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/usr/local/edx/files/mengine" local="$PROJECT_DIR$" web="http://openedu.urfu.ru" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

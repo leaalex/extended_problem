@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="tsts">
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/test2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/tst1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/matching_table/matching_table_mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/tmp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Задание 3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/tst.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/tst.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test2.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,57 +30,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1058">
-              <caret line="686" column="10" selection-start-line="686" selection-start-column="10" selection-end-line="686" selection-end-column="10" />
-              <folding>
-                <element signature="e#3898#12570#0" />
-                <element signature="e#13518#16001#0" />
-                <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matching_table/matching_table.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="98" column="9" lean-forward="true" selection-start-line="9" selection-end-line="98" selection-end-column="9" />
-              <folding>
-                <element signature="n#script#0;n#problem#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Личная безопасность/tst1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="142" selection-start-line="142" selection-end-line="148" selection-end-column="14" />
-              <folding>
-                <element signature="n#script#0;n#problem#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Личная безопасность/test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/tst.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="309">
+              <caret line="217" selection-start-line="217" selection-end-line="224" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#hmtl#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -87,16 +42,67 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1732">
+              <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="275" column="13" lean-forward="true" selection-start-line="275" selection-start-column="13" selection-end-line="275" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/test2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="60">
+              <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
               <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#script#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#solution#0;n#div#0;n#html#0;n#!!top" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="true" current-in-tab="false">
+        <entry file="remoteDeploymentFS://&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="206" column="22" lean-forward="true" selection-end-line="370" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MCS/faset_template.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="39" column="38" selection-end-line="65" />
+              <folding>
+                <element signature="n#style#0;n#problem#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Личная безопасность/tmp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="248" selection-start-line="248" selection-end-line="269" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -114,36 +120,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>700</find>
-      <find>/*</find>
-      <find>&quot;</find>
-      <find>table_label</find>
-      <find>createElement</find>
-      <find>block</find>
-      <find>item</find>
-      <find>this.wrap</find>
-      <find>user_answers</find>
-      <find>answer_choices</find>
-      <find>result_block</find>
-      <find>reset_answer</find>
-      <find>createTask</find>
-      <find>result_text</find>
-      <find>types_description</find>
-      <find>submit_button</find>
-      <find>instruction_text</find>
-      <find>'</find>
-      <find>console</find>
-      <find>enableButton</find>
-      <find>становись. Послуша</find>
-      <find>get_html</find>
-      <find>msg_12</find>
-      <find>is_first</find>
-      <find>Choice</find>
       <find>curr_msg_id</find>
       <find>transition-group</find>
       <find>&gt;</find>
       <find>shuff</find>
       <find>unique_id</find>
+      <find>овесил куртку на ручку  с обра</find>
+      <find>егулярно смачиваю одежду и шарф, через который дышу</find>
+      <find>max-height</find>
+      <find>вы подошли близко к машине. Что дальше?</find>
+      <find>msg_&quot;</find>
+      <find>msg_20</find>
+      <find>comment</find>
+      <find>align-content</find>
+      <find>displ</find>
+      <find>displa</find>
+      <find>hide</find>
+      <find>single</find>
+      <find>console.log(</find>
+      <find>hover</find>
+      <find>user</find>
+      <find>console.log(document.querySelectorAll('.conf-answers-place'))</find>
+      <find>min-height</find>
+      <find>align-items</find>
+      <find>ая на выявление причинно-следствен</find>
+      <find>.conf-answers-place</find>
+      <find>conf-item</find>
+      <find>draggabe</find>
+      <find>draggable</find>
+      <find>conf-answers-place</find>
+      <find>#9a9a9a23</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -196,15 +202,24 @@
         <option value="$PROJECT_DIR$/Личная безопасность/test.js" />
         <option value="$PROJECT_DIR$/Личная безопасность/tst1.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/tst.html" />
+        <option value="$PROJECT_DIR$/Личная безопасность/tmp.js" />
+        <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/les/Задание 3.html" />
+        <option value="$PROJECT_DIR$/matching_table/matching_table_mobile.js" />
+        <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/mengine/matching_table/matching_table_mobile.js" />
+        <option value="$PROJECT_DIR$/Личная безопасность/Задание 2.html" />
+        <option value="$PROJECT_DIR$/Личная безопасность/Задание 3.html" />
+        <option value="$PROJECT_DIR$/MCS/faset.html" />
+        <option value="$PROJECT_DIR$/MCS/faset_template.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/test2.html" />
+        <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="188" />
-    <option name="y" value="442" />
-    <option name="width" value="1926" />
-    <option name="height" value="980" />
+    <option name="x" value="187" />
+    <option name="y" value="124" />
+    <option name="width" value="2003" />
+    <option name="height" value="1334" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -241,6 +256,11 @@
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="matching_table" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="MCS" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
@@ -282,15 +302,21 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../openedu_Inclus_M1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Личная безопасность" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность" />
       <recent name="$PROJECT_DIR$/presentations" />
       <recent name="$PROJECT_DIR$/spielberger_test" />
       <recent name="$PROJECT_DIR$/munsterberg_test" />
@@ -478,7 +504,8 @@
       <workItem from="1558082024887" duration="74542000" />
       <workItem from="1558523761191" duration="50164000" />
       <workItem from="1558969926750" duration="30926000" />
-      <workItem from="1559562705091" duration="53362000" />
+      <workItem from="1559562705091" duration="56667000" />
+      <workItem from="1560513267916" duration="38810000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -498,15 +525,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="563942000" />
+    <option name="totallyTimeSpent" value="606057000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="188" y="442" width="1926" height="980" extended-state="0" />
+    <frame x="187" y="124" width="2003" height="1334" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1886495" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18344405" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="File Transfer" visible="true" weight="0.08796681" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
@@ -519,6 +547,7 @@
       <window_info anchor="bottom" id="Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.15727003" />
+      <window_info active="true" anchor="right" id="Remote Host" visible="true" weight="0.12059274" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -575,46 +604,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/electric-problem">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="956">
-          <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visual_organizer/untitled.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vizitki/vizitki.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="904">
-          <caret line="300" column="10" selection-start-line="300" selection-start-column="10" selection-end-line="300" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#tr#2;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#tr#3;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#tr#4;n#table#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#problem#0;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sum/sumScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5088" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sum/sum.problem.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -838,16 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6480">
-          <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3225">
@@ -910,19 +889,6 @@
         <state relative-caret-position="-1080" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="253" column="30" lean-forward="true" selection-start-line="253" selection-start-column="30" selection-end-line="253" selection-end-column="30" />
-          <folding>
-            <element signature="e#675#5155#0" />
-            <element signature="e#138#462#0" />
-            <element signature="e#1840#1942#0" />
-            <element signature="e#1993#2093#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/constructive_motivation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -942,16 +908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="50" column="96" lean-forward="true" selection-start-line="50" selection-start-column="96" selection-end-line="50" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte_hard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="389" column="42" selection-start-line="389" selection-start-column="42" selection-end-line="389" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -981,7 +937,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Диагностики/Диагностика 3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
+        <state relative-caret-position="6945">
           <caret line="686" column="10" selection-start-line="686" selection-start-column="10" selection-end-line="686" selection-end-column="10" />
           <folding>
             <element signature="e#3898#12570#0" />
@@ -991,20 +947,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/tst1.html">
+    <entry file="file://$PROJECT_DIR$/matching_table/matching_table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="142" selection-start-line="142" selection-end-line="148" selection-end-column="14" />
+        <state relative-caret-position="135">
+          <caret line="98" column="9" selection-start-line="9" selection-end-line="98" selection-end-column="9" />
           <folding>
             <element signature="n#script#0;n#problem#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2745">
+          <caret line="183" column="58" lean-forward="true" selection-end-line="281" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte_hard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="389" column="42" selection-start-line="389" selection-start-column="42" selection-end-line="389" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/tst1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="98" column="9" lean-forward="true" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+          <folding>
+            <element signature="n#script#0;n#problem#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matching_table/matching_table_mobile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="881">
+          <caret line="324" selection-start-line="324" selection-end-line="324" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1732">
+          <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/tmp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="248" selection-start-line="248" selection-end-line="269" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/tst.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="309">
+          <caret line="217" selection-start-line="217" selection-end-line="224" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#hmtl#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1012,31 +1026,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/test.js">
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        <state relative-caret-position="912">
+          <caret line="305" column="43" selection-start-line="305" selection-start-column="43" selection-end-line="305" selection-end-column="43" />
+          <folding>
+            <element signature="e#665#5999#0" />
+            <element signature="e#7350#7452#0" />
+            <element signature="e#7502#7602#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matching_table/matching_table.html">
+    <entry file="file://$PROJECT_DIR$/MCS/faset_template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="98" column="9" lean-forward="true" selection-start-line="9" selection-end-line="98" selection-end-column="9" />
+        <state relative-caret-position="525">
+          <caret line="39" column="38" selection-end-line="65" />
           <folding>
-            <element signature="n#script#0;n#problem#0;n#!!top" />
+            <element signature="n#style#0;n#problem#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="275" column="13" lean-forward="true" selection-start-line="275" selection-start-column="13" selection-end-line="275" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/test2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="60">
+          <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#script#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#solution#0;n#div#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>

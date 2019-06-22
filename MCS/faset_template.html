@@ -1,0 +1,65 @@
+<problem>
+<style>
+    .hint-label{
+        display: none !important;
+    }
+</style>
+<script type="loncapa/python">
+
+questions = [{
+    "text": "",
+    "answer": "",
+    "comment": "",
+},
+{
+    "text": "",
+    "answer": "",
+    "comment": "",
+},
+{
+    "text": "",
+    "answer": "",
+    "comment": "",
+},
+{
+    "text": "",
+    "answer": "",
+    "comment": "",
+}
+]
+
+num = random.randint(0, len(questions)-1)
+question_text = questions[num]["text"]
+
+correctness = [False for x in range(0, len(questions))]
+correctness[num] = True
+
+option_0_text = questions[0]["answer"]
+option_1_text = questions[1]["answer"]
+option_2_text = questions[2]["answer"]
+option_3_text = questions[3]["answer"]
+
+option_0_comment = questions[0]["comment"]
+option_1_comment = questions[1]["comment"]
+option_2_comment = questions[2]["comment"]
+option_3_comment = questions[3]["comment"]
+
+option_0_correctness = correctness[0]
+option_1_correctness = correctness[1]
+option_2_correctness = correctness[2]
+option_3_correctness = correctness[3]
+</script>
+
+    <div>
+        <label>$question_text</label>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="$option_0_correctness">$option_0_text <choicehint>$option_0_comment</choicehint> </choice>
+                <choice correct="$option_1_correctness">$option_1_text <choicehint>$option_1_comment</choicehint> </choice>
+                <choice correct="$option_2_correctness">$option_2_text <choicehint>$option_2_comment</choicehint> </choice>
+                <choice correct="$option_3_correctness">$option_3_text <choicehint>$option_3_comment</choicehint> </choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>
