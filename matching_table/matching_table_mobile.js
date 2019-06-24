@@ -1,3 +1,9 @@
+/*
+*
+* дать таблице класс top-items - перетаскивающиеся блоки будут прижиматься к верху
+*
+* */
+
 if (MatchingTableObjects == undefined) var MatchingTableObjects = {};
 
 function MatchingTableActivation(selector) {
@@ -58,8 +64,36 @@ $.fn.shuffleChildren = function() {
 
 function MatchingTableObjects(element, data){
 
+    this.lang = "ru";
+
+    this.translations = {
+        ru: {
+            correct_answers_label: "",
+        },
+        en:{
+            correct_answers_label: "",
+        }
+
+    }
+
+    if(data){
+        try {
+            a = JSON.parse(data);
+            if(a.lang){
+                this.lang = a.lang;
+            }
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
     //Перемешать незадействованные элементы
-    $("#conf-id", element).shuffleChildren();
+
+    //
+    $('.conf-all-answers', element).each(function(){
+        $(this).shuffleChildren();
+    });
+
     $(".matching_table").hide().fadeIn(500);
 
     this.element = element;
@@ -118,7 +152,7 @@ function MatchingTableObjects(element, data){
         $(".input-place.conf-answers-place", element).map(function(indx, item){
             item_id = $(item).attr("id");
             student_answer[item_id] = $(item).find(".conf-item.conf-draggable").map(function(index, sub_item){
-                console.log(sub_item.classList);
+
                 if(sub_item.classList.contains('draggable--original') || sub_item.classList.contains('draggable--mirror') ){
 
                 }else{
@@ -193,6 +227,7 @@ function MatchingTableObjects(element, data){
      .conf-answers-place{
         padding: 0px 0px !important;
         /*background: #9a9a9a23;*/
+        line-height: normal !important;
         /* vertical-align: baseline !important;*/
      }
 
@@ -201,7 +236,7 @@ function MatchingTableObjects(element, data){
     }
 
     .conf-item{
-        max-height: 120px;
+        max-height: 154px;
         vertical-align: middle;
         border: 1px solid #b2b2b2;;
         margin: 2px;
@@ -220,6 +255,7 @@ function MatchingTableObjects(element, data){
         justify-content: center;
         align-content: center;
         flex-direction: column;
+        line-height: normal !important;
     }
     
     .conf-item.conf-draggable{

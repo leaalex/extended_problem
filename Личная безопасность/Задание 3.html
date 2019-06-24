@@ -391,37 +391,45 @@
             }
         }
         else if (this.is_comment){
-            console.log("KEK", this)
+            // console.log("KEK", this)
             new Message(this.next_id, messages[this.next_id], html_element);
         }
         else{}
 
     }
 
-    function Task(html_element){
+
+
+    var things_list = [
+        {
+            name: "water_bottle",
+            html: "Бутыль с водой",
+
+        },
+        {
+            name: "candy_bar",
+            html: "Батончик"
+        },
+        {
+            name: "matches",
+            html: "Спички"
+        }
+    ];
+
+
+
+    function Task(html_element, messages, things_list, ){
+
+
+
         let first_msg_id = "msg_1";
-        Message.curr_msg_id = first_msg_id;
+        // Message.curr_msg_id = first_msg_id;
 
         this.html_element = html_element;
 
-        this.user_elements = [
-            {
-                title: "Бутыль с водой",
-                name: "water_bottle"
-            },
-            {
-                title: "Батончик",
-                name: "candy_bar"
-            },
-            {
-                title: "Спички",
-                name: "matches"
-            }
-        ];
-
-
         new Message(first_msg_id, messages[first_msg_id], html_element);
     }
+
 
 
     /*
