@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="tsts">
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/test3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/matching_table/matching_table_mobile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/tst.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/tst.html" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/test2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            <state relative-caret-position="550">
+              <caret line="176" column="48" lean-forward="true" selection-end-line="225" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -87,12 +83,34 @@
       <file pinned="true" current-in-tab="false">
         <entry file="remoteDeploymentFS://&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="169" column="25" lean-forward="true" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
+            <state relative-caret-position="290">
+              <caret line="287" column="28" selection-start-line="287" selection-start-column="22" selection-end-line="287" selection-end-column="28" />
               <folding>
+                <element signature="n#!!doc" expanded="true" />
                 <element signature="n#!!block;n#Answer#0" />
                 <element signature="e#1431#1684#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MCS/faset_template.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+              <folding>
+                <element signature="n#style#0;n#problem#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MCS/faset_template_1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -128,15 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>comment</find>
-      <find>align-content</find>
-      <find>displ</find>
-      <find>displa</find>
-      <find>hide</find>
-      <find>single</find>
-      <find>console.log(</find>
-      <find>hover</find>
-      <find>user</find>
       <find>console.log(document.querySelectorAll('.conf-answers-place'))</find>
       <find>min-height</find>
       <find>align-items</find>
@@ -155,9 +164,18 @@
       <find>matching_table</find>
       <find>baseline</find>
       <find>wrong</find>
-      <find>show_wrong_cells</find>
-      <find>draggablePulseBg</find>
       <find>cell</find>
+      <find>onf-answers-place</find>
+      <find>consol</find>
+      <find>input-place</find>
+      <find>data</find>
+      <find>а</find>
+      <find>shuffleChildren</find>
+      <find>conf-id</find>
+      <find>halfs</find>
+      <find>draggablePulseBg</find>
+      <find>show_wrong_cells</find>
+      <find>conf-header</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -218,17 +236,18 @@
         <option value="$PROJECT_DIR$/MCS/faset_template.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/tst.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/test3.html" />
-        <option value="$PROJECT_DIR$/Личная безопасность/test2.html" />
-        <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile.js" />
         <option value="$PROJECT_DIR$/matching_table/matching_table_mobile.js" />
+        <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile.js" />
+        <option value="$PROJECT_DIR$/Личная безопасность/test2.html" />
+        <option value="$PROJECT_DIR$/MCS/faset_template_1.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="247" />
-    <option name="y" value="100" />
-    <option name="width" value="1795" />
-    <option name="height" value="1519" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="667" />
+    <option name="y" value="186" />
+    <option name="width" value="1776" />
+    <option name="height" value="1137" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -250,6 +269,11 @@
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="matching_table" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="MCS" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
@@ -298,13 +322,14 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Личная безопасность" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MCS" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/MCS" />
       <recent name="$PROJECT_DIR$/Личная безопасность" />
       <recent name="$PROJECT_DIR$/presentations" />
       <recent name="$PROJECT_DIR$/spielberger_test" />
@@ -494,7 +519,7 @@
       <workItem from="1558523761191" duration="50164000" />
       <workItem from="1558969926750" duration="30926000" />
       <workItem from="1559562705091" duration="56667000" />
-      <workItem from="1560513267916" duration="43768000" />
+      <workItem from="1560513267916" duration="59434000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -514,16 +539,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="611015000" />
+    <option name="totallyTimeSpent" value="626681000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="247" y="100" width="1795" height="1519" extended-state="0" />
+    <frame x="667" y="186" width="1776" height="1137" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20526014" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20751445" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" visible="true" weight="0.076258995" />
+      <window_info anchor="bottom" id="File Transfer" visible="true" weight="0.10515873" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
@@ -536,7 +561,7 @@
       <window_info anchor="bottom" id="Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.15727003" />
-      <window_info anchor="right" id="Remote Host" visible="true" weight="0.13493425" />
+      <window_info anchor="right" id="Remote Host" visible="true" weight="0.13641618" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -593,13 +618,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/selected_task/untitled.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -933,16 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matching_table/matching_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="98" column="9" selection-start-line="9" selection-end-line="98" selection-end-column="9" />
-          <folding>
-            <element signature="n#script#0;n#problem#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/shulte_hard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -961,16 +969,6 @@
             <element signature="e#665#5999#0" />
             <element signature="e#7350#7452#0" />
             <element signature="e#7502#7602#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MCS/faset_template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="39" column="38" selection-end-line="65" />
-          <folding>
-            <element signature="n#style#0;n#problem#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -1006,33 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/tst1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding>
-            <element signature="n#script#0;n#problem#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/tst.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="532" selection-start-line="532" selection-end-line="534" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-342">
-          <caret line="183" column="58" lean-forward="true" selection-end-line="281" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/test3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1051,13 +1022,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="183" column="58" lean-forward="true" selection-end-line="281" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/tst1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+          <folding>
+            <element signature="n#script#0;n#problem#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matching_table/matching_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/tst.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="532" selection-start-line="532" selection-end-line="534" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/test2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+        <state relative-caret-position="550">
+          <caret line="176" column="48" lean-forward="true" selection-end-line="225" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MCS/faset_template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding>
+            <element signature="n#style#0;n#problem#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MCS/faset_template_1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
         </state>
       </provider>
     </entry>

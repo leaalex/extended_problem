@@ -1,0 +1,33 @@
+<problem>
+<style>
+    .hint-label{
+        display: none !important;
+    }
+</style>
+<script type="loncapa/python">
+
+options_0 = ["Бруно", "Галилей", "Ньютон", "Декарт", "Ремер", "Кассини", "Птолемей", "Браге", "Кеплер", "Коперник"]
+options_1 = ["Фалес", "Филолай", "Платон", "Демокрит", "Аристотель"]
+options_2 = ["Пифагор", "Анаксимандр", "Аристарх", "Гераклит"]
+options_3 = ["Гиппарх", "Левкипп", "Эмпендокл", "Эпикур"]
+
+option_0_text = options_0[random.randint(0, len(options_0)-1)]
+option_1_text = options_1[random.randint(0, len(options_1)-1)]
+option_2_text = options_2[random.randint(0, len(options_2)-1)]
+option_3_text = options_3[random.randint(0, len(options_3)-1)]
+
+</script>
+
+    <div>
+        <label>В список представителей натурфилософской картины мира НЕ входит:</label>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="true">$option_0_text <choicehint>$option_0_text - представитель Механической картины мира ‒ первой научной картина мира. Основной вклад в Механическую картину мира внесен первыми учеными (Бруно, Галилей, Ньютон, Декарт, Ремер, Кассини, Птолемей, Браге, Кеплер, Коперник).</choicehint> </choice>
+                <choice correct="false">$option_1_text <choicehint>$option_1_text - представитель Натурфилософской картины мира Основной вклад в Натурфилософскую картину мира внесли философы: Филолай, Платон, Демокрит, Аристотель, Фалес, Анаксимандр, Пифагор, Аристарх, Гераклит, Гиппарх, Левкипп, Эмпендокл, Эпикур.</choicehint> </choice>
+                <choice correct="false">$option_2_text <choicehint>$option_2_text - представитель Натурфилософской картины мира Основной вклад в Натурфилософскую картину мира внесли философы: Филолай, Платон, Демокрит, Аристотель, Фалес, Анаксимандр, Пифагор, Аристарх, Гераклит, Гиппарх, Левкипп, Эмпендокл, Эпикур.</choicehint> </choice>
+                <choice correct="false">$option_3_text <choicehint>$option_3_text - представитель Натурфилософской картины мира Основной вклад в Натурфилософскую картину мира внесли философы: Филолай, Платон, Демокрит, Аристотель, Фалес, Анаксимандр, Пифагор, Аристарх, Гераклит, Гиппарх, Левкипп, Эмпендокл, Эпикур.</choicehint> </choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

@@ -45,7 +45,7 @@ def check_or(CA, SA):
                 _grade += 1
 
     grade_decimal = _grade / _max_grade
-    response = get_response(round(grade_decimal, 2))
+    response = get_response(grade_decimal)
     return response
 
 def check_all_items(CA, SA):
@@ -68,7 +68,7 @@ def check_all_items(CA, SA):
                     grade = grade + 1
                 else:
                     wrong_cells.append(key)
-    grade_decimal = round(float(grade) / float(max_grade), 2)
+    grade_decimal = float(grade) / float(max_grade)
     response = get_response(grade_decimal, wrong_cells)
     return response
 
@@ -151,7 +151,7 @@ def check_answer(expect, ans):
 
     <p>Коммуникативные ходы:</p>
 
-    <div id="conf-id" class="conf-answers-place conf-inputable conf-all-answers halfs ">
+    <div class="conf-answers-place conf-inputable conf-all-answers halfs ">
 
         <div id="b1" class="conf-item conf-draggable">Апелляция к чувствам партнера («ты же такой хороший и добрый»)</div>
         <div id="b2" class="conf-item conf-draggable">Апелляция к хорошим отношениям («сделай это ради меня»)</div>
@@ -183,7 +183,7 @@ def check_answer(expect, ans):
             <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
 
 
-            <table class="conf-table">
+            <table class="conf-table top-items">
 
                 <tr>
                     <th class="conf-text conf-header text-fixed-width">
