@@ -1,0 +1,157 @@
+
+.simulator-container {
+    width: 800px;
+    margin: 0 auto;
+    /*background: #ff980030;*/
+    padding: 20px;
+    min-height: 800px;
+    -webkit-box-shadow: -2px 4px 20px 3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 4px 20px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: -2px 4px 20px 3px rgba(0, 0, 0, 0.75);
+    position: relative;
+}
+
+.user-things-container {
+    position: absolute;
+    background: #e3e3e3;
+    padding: 5px;
+    margin: 6px;
+    top: 0;
+    right: 0;
+}
+
+.user-things-container p {
+    margin: 2px;
+}
+
+.user-things-container-item {
+    padding: 5px 12px;
+    background: #f5f5f5;
+    margin: 6px 0px;
+    border-radius: 5px;
+}
+
+
+.start-button {
+    display: block;
+    font-size: 1.3em;
+    /* padding: 10px; */
+    padding: 0.46em 1.6em;
+    border: 0.1em solid #aeaeae;
+    margin: 3em auto;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #060063;
+    text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+    background-color: #77aed7;
+    text-align: center;
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+.start-button:hover {
+    text-shadow: 0 0 2em rgba(255, 255, 255, 1);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+
+.choice-container {
+    display: flex;
+    flex-flow: row wrap;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+}
+
+.thing-container {
+    margin: 0.5rem;
+}
+
+.thing-checkbox {
+    display: inline-block;
+    cursor: pointer;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+}
+
+.thing-checkbox .fa {
+    position: absolute;
+    color: #4A79A3;
+    padding: 6px;
+    font-size: 1.2em;
+    top: 0;
+    right: 0;
+}
+
+.thing-checkbox-checked {
+    border-color: #4783B0;
+}
+
+.thing-checkbox-checked .fa {
+    display: block !important;
+}
+
+.thing-checkbox p {
+    margin: 2px 0px;
+    text-align: center;
+    color: #184c72;
+}
+
+.thing-checkbox img {
+    pointer-events: none;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.thing-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.choice-container.ones > * {
+    flex-basis: calc(100% / 1 - 1rem);
+}
+
+.choice-container.halfs > * {
+    flex-basis: calc(100% / 2 - 1rem);
+}
+
+.choice-container.thirds > * {
+    flex-basis: calc(100% / 3 - 1rem);
+}
+
+.choice-container.fourths > * {
+    flex-basis: calc(100% / 4 - 1rem);
+}
+
+.choice-container.fifths > * {
+    flex-basis: calc(100% / 5 - 1rem);
+}
+
+.choice-container.sixths > * {
+    flex-basis: calc(100% / 6 - 1rem);
+}
+
+.choice-container.sevenths > * {
+    flex-basis: calc(100% / 7 - 1rem);
+}
+
+.choice-container.eigths > * {
+    flex-basis: calc(100% / 8 - 1rem);
+}
+
+.hidden {
+    display: none !important;
+}
