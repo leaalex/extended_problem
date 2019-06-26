@@ -167,20 +167,20 @@ var language = "ru";
 var translations = new Object();
 translations = {
 	"en": {
-		"start_btn_label": "Start",
-		"check_btn_label": "Check",
-		"restart_btn_label": "Restart",
-		"test_results_label": "Test results",
-		"numbers_exceeded_label": "Number of entered numbers exceeded",
-    "task_text_label": "Запишите все числа, которые Вы запомнили. Числа могут быть записаны в любой последовательности, как только Вы закончите нажмите кнопку «Проверить».",
-    "main_task_text_label": "<h2><strong>Инструкция:</strong></h2><p>Уважаемый студент, после нажатия кнопки «Начать» Вам будет предъявлена таблица с числами. Ваша задача заключается в том, чтобы за 20 секунд, запомнить как можно больше чисел. Когда таблица исчезнет, вам необходимо записать числа, которые вы запомнили, в открывшемся окне. Числа могут быть записаны в любой последовательности. Разделять числа следует любым удобным способом: через запятую, пробел или табуляцию. </p><p>Пожалуйста, не записывайте цифры, а только ЗАПОМИНАЙТЕ.</p><p>Тренажер предназначен для оценки кратковременной зрительной памяти, ее объема и точности.</p>",
-    "result_label_main_1": "По результатам данного упражнения у Вас верно воспроизведенных чисел:",
-    "result_label_main_2": "(они подсвечены зеленым цветом). Норма взрослого человека от пяти до девяти чисел.",
-    "result_label_less_4": "Показатель кратковременной зрительной памяти у вас ниже нормы, что указывает на необходимость регулярных тренировок. Практикуйтесь в прохождении этого тренажера каждый день в течение недели и вы заметите улучшение показателей.",
-    "result_label_5_8": "Показатель кратковременной зрительной памяти соответствует норме. Если вам для учебы или работы необходимо работать с большим объемом чисел, то практикуйтесь в прохождении этого тренажера несколько раз в неделю. ",
-    "result_label_more_8": "Поздравляем, Вы гений! Подобные результаты показали лишь 8 % опрошенных. ",
-    "result_label_restart": "Вы в любое время можете вернутся к данному тренажеру и потренировать свою зрительную кратковременную память, тем самым улучшить или закрепить Ваши результаты."
-	},
+    "start_btn_label": "Start",
+        "check_btn_label": "Check",
+        "restart_btn_label": "Start over",
+        "test_results_label": "Test results",
+        "numbers_exceeded_label": "Numbers input exceeded!",
+        "task_text_label": " Write down all the numbers you have remembered. Numbers can be written in any order, as soon as you finish, click the «Check» button.",
+        "main_task_text_label": "<h2><strong> How to use:</strong></h2><p> Dear student, after clicking the «Start» button you will see a table with numbers. Your task is to memorize as many numbers as possible in 20 seconds. When the table disappears, you need to write down the numbers you remember in a new window that will pop-up. Numbers can be written in any order. To separate numbers you can use either comma, space or tab. </p> <p> Please do not write down the numbers, but REMEMBER only. </p> <p> The simulator is designed to assess short-term visual memory, its volume and accuracy. </p>",
+        "result_label_main_1": "Your result is:",
+        "result_label_main_2": "(highlighted in green). The standard for an adult is five to nine correct numbers",
+        "result_label_less_4": "Your short-term visual memory performance is below normal, you need for regular training. Practice practicing this simulator every day for a week and you will notice improved performance. A week of everyday practice with this trainer will apparently improve your result.",
+        "result_label_5_8": "Your have a standard short-term visual memory. If your job or study requires working with a large volume of numbers, then practice this trainer several times a week.",
+        "result_label_more_8": "Congratulations, you’re a genius! Only 8% of respondents showed similar results",
+        "result_label_restart": "You may practice your short-term visual memory with this trainer any time to secure or reinforce your results."
+},
 	"ru": {
 		"start_btn_label": "Начать",
 		"check_btn_label": "Проверить",
@@ -362,7 +362,7 @@ function TwelveNumbers(element, time) {
 	  		$(result_num_table_wrap).append(result_num_table_item);
 	  	});
 
-	  	result_wrap.append("<div><h2>" +  user_labels.test_results_label + "</h2>" + "<p>" + user_labels.result_label_main_1 + " <strong>" + grade + "</strong> " + user_labels.result_label_main_2 + "</p></div>");
+	  	result_wrap.append("<div style='width: 100%'><h2>" +  user_labels.test_results_label + "</h2>" + "<p>" + user_labels.result_label_main_1 + " <strong>" + grade + "</strong> " + user_labels.result_label_main_2 + "</p></div>");
        
        if (grade <= 4){
           result_wrap.append("<div style='width: 100%;'><p>" + user_labels.result_label_less_4 + "</p></div>");

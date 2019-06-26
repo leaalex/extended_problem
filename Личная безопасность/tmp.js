@@ -246,7 +246,7 @@ let messages = {
 
 ```
 
-mgs_:{
+msg_:{
     type: "choice",
         text: "",
         choices: [
