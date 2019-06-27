@@ -111,9 +111,11 @@
                 check_btn_label: "Проверить",
                 result_label: "Результаты:",
                 points_label: "баллов",
-                start_instruction: "тут наверно надо что-то написать? теоретически студент может набирать везде по нулям (даже ответив на все вопросы)",
+                start_text: "Опросник стилей юмора Мартина (Humor Styles Questionnaire, HSQ) разработан Родом Мартином и Патришей Дорис (Rod A. Martin, Patricia Doris) в 2001 году. Методика предназначен для диагностики предпочтительного использования разных видов или стилей юмора, различающихся по своей адаптивности и направленности. Авторы опросника выделяют четыре стиля чувства юмора: аффилиативный, самоподдерживающий, агрессивный и самоуничижительный.",
+                start_text_1: "Русскоязычная адаптация опросника сделана в 2013 году группой авторов: Е. М. Иванова, О. В. Митина, А. С. Зайцева, Е. А. Стефаненко, С. Н. Ениколопов.",
+                instruction_label: "Инструкция",
+                start_instruction: "Люди выражают и воспринимают юмор различными способами. Ниже вы увидите список утверждений, описывающих различные пути выражения юмора. Пожалуйста, внимательно прочитайте каждое утверждение и укажите степень вашего согласия или несогласия с ним, используя семибальную шкалу.",
                 result_instruction: "Присущие Вам типы юмора",
-
                 affiliated_label: "Аффилиативный юмор",
                 self_sustaining_label: "Самоподдерживающий юмор",
                 aggressive_label: "Агрессивный юмор",
@@ -422,7 +424,9 @@
         }
 
         function create_questions_block() {
-            $(html_element).append("<p>" + user_labels.start_instruction + "</p>");
+            $(html_element).append("<p>" + user_labels.start_text + "</p>");
+            $(html_element).append("<p>" + user_labels.start_text_1 + "</p>");
+            $(html_element).append("<p><strong>"+ user_labels.instruction_label + ": </strong>" + user_labels.start_instruction + "</p>");
             Object.keys(questions_object).forEach(function (item, idx) {
 
                 user_answers[item] = 'd';
@@ -459,9 +463,9 @@
                 $(html_element).append(question_wrap);
 
                 //
-                let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
-                $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
-                user_answers[item] = value;
+                // let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
+                // $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
+                // user_answers[item] = value;
                 //
             });
 

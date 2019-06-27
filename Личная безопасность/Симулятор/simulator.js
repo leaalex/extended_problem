@@ -110,9 +110,6 @@ function Simulator(settings) {
 
         if(use_things) this.html_element.appendChild(this.createUserThingsBlock());
 
-
-
-
         let first_msg_id = "msg_1";
         Message.curr_msg_id = first_msg_id;
 
@@ -141,21 +138,19 @@ function Simulator(settings) {
         this.id = id;
         this.next_id = choice.next_id;
         this.text = choice.text;
-        this.comment = choice.comment;
+        // this.comment = choice.comment;
         this.html = create('button', {attr:{type: "radio", value: id, name: "before_" + this.next_id}});
         this.html.innerHTML = this.text;
 
         this.html.onclick = function () {
             if (Message.curr_msg_id == msg_id){
                 Message.curr_msg_id = this.next_id;
-                if(this.comment){
-                    new Message(undefined, {type: "comment", text: this.comment.text, comment: this.comment, next_id: this.next_id}, html_element);
-                }else{
-
-
-
+                console.log(this.next_id)
+                // if(this.comment){
+                //     new Message(undefined, {type: "comment", text: this.comment.text, comment: this.comment, next_id: this.next_id}, html_element);
+                // }else{
                     new Message(this.next_id, messages[this.next_id], html_element);
-                }
+                // }
             }
         }.bind(this);
     }
@@ -173,11 +168,11 @@ function Simulator(settings) {
         // typeof(settings.next_id) == "object" ? console.log(settings.next_id.condition, user_state.things)
         // condition
 
-        ;
+        // ;
 
         this.next_id = this.final ? undefined : settings.next_id;
         this.show_delay = settings.show_delay || 1000;
-        this.comment = settings.comment || undefined;
+        // this.comment = settings.comment || undefined;
         this.image = settings.image || undefined;
 
 
@@ -227,6 +222,8 @@ function Simulator(settings) {
         if(this.image){
             html_element.style.backgroundImage = "url('" + images_src + this.image + "')";
         }
+
+        console.log(this);
 
         if(this.is_choice){
             let choice_container = create('div',{className: 'msg-options-container'});

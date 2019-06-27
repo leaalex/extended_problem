@@ -240,7 +240,7 @@
             instruction_text: "Ход опыта. Испытуемым зачитывают слова. Они должны постараться запомнить их попарно. Затем экспериментатор прочитывает только первое слово каждой пары, а испытуемые записывают второе.",
             instruction_label: "Инструкция",
             delay_label: "Начинаем через",
-            check_block_instruction: "допишите второе слово:",
+            check_block_instruction: "Допишите второе слово:",
             result_label: "Результаты:",
             logical_memory_label: "Объем логической памяти",
             mechanical_memory_label: "Объем механической памяти",
@@ -863,7 +863,7 @@
 
             function startSeries() {
 
-                $("#test_div").html("");
+                // $("#test_div").html("");
                 task_wrap.html("");
                 start_wrap.hide();
                 task_wrap.hide();
@@ -899,7 +899,7 @@
 
             function showSeries(array, index, target, word_delay, word_pause) {
 
-                $("#test_div").append("<p> Задержка перед парой № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
+                // $("#test_div").append("<p> Задержка перед парой № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
                 stopwatch_timer.stop();
                 stopwatch_timer.reset();
 
@@ -912,7 +912,7 @@
                     stopwatch_timer.start();
                     setTimeout(function () {
                         $(target).fadeOut(slideTime);
-                        $("#test_div").append("<p>Показывали пару № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
+                        // $("#test_div").append("<p>Показывали пару № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
                         // $("#test_div").append("<p>Закончили</p>");
                         createAnswerBlock();
                         stopwatch_timer.stop();
@@ -924,7 +924,7 @@
                     stopwatch_timer.start();
                     setTimeout(function () {
                             $(target).fadeOut(slideTime);
-                            $("#test_div").append("<p>Показывали пару № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
+                            // $("#test_div").append("<p>Показывали пару № " + (index + 1).toString() + ": " + stopwatch_timer.current_time() + " сек. </p>");
                             stopwatch_timer.stop();
                             stopwatch_timer.reset();
                             setTimeout(function () {
