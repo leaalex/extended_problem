@@ -149,6 +149,7 @@
     background: white;
     position: absolute;
     color: #4A79A3;
+    border-radius: 0px 0px 0px 8px;
     padding: 6px;
     font-size: 1.2em;
     top: 0;
