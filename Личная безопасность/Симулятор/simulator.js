@@ -10,6 +10,13 @@ function Simulator(settings) {
     let use_things = things.length > 0;
     let images_src = settings.images_src || "";
     let max_things = this.options.max_things ? this.options.max_things : things.length;
+    let first_msg = settings.first_msg || "msg_1";
+    let choice_thing_text = this.options.choice_thing_text || "";
+    let things_grid_class = this.options.things_grid || "fifths";
+    let introduction_text = this.options.introduction_text || "";
+
+    let start_game_btn_label = "Начать симуляцию";
+    let next_btn_label = "Далее";
 
     let user_state = {
         things: [],
@@ -17,22 +24,20 @@ function Simulator(settings) {
 
 
     this.init = function () {
-        console.log(things);
-        if (use_things) {
-            this.createThingChoice();
-        } else {
-            this.createGame();
-        }
-
+        // console.log(things);
+        this.createIntroduction();
     };
 
     this.createThingChoice = function () {
+        this.clear_html();
+
+        let things_choice_container = create("div", {className: "things-choice-container"});
 
         let create_game_btn = addEvent(create('button', {
             className: "start-button",
-            html: 'я все выбрал, давайте дальше',
+            html: start_game_btn_label,
             style: {'display': 'none'}
-        }), 'click', this.createGame.bind(this))
+        }), 'click', this.createGame.bind(this));
 
         let things_count_label = create('span', {html: max_things});
         let things_count_msg = create('p', {
@@ -42,83 +47,117 @@ function Simulator(settings) {
 
         things_count_msg.appendChild(things_count_label);
 
-        let choice_container = create('div', {className: "choice-container " + "fifths"});
+        let choice_container_wrap = create('div', {className: ""});
+        let choice_container = create('div', {className: "choice-container " + things_grid_class});
 
         things.forEach(function (thing) {
             choice_container.appendChild(create('div', {className: "thing-container"},
                 create('label', {className: "thing-checkbox"},
-                    create("img", {className: 'thing-img', attr: {src: images_src + thing.image_src}}),
-                    addEvent(create('input', {
-                        id: "think_choice_" + thing.name,
-                        attr: {type: "checkbox", name: "think_choice", value: thing.name}
-                    }), 'click', (event) => {
-                        // console.log(event)
-                        // console.log(max_things, user_state.things.length)
+                    create('div', {},
+                        create("img", {className: 'thing-img', attr: {src: images_src + 'things/' + thing.image_src}}),
+                        addEvent(create('input', {
+                            id: "think_choice_" + thing.name,
+                            attr: {type: "checkbox", name: "think_choice", value: thing.name}
+                        }), 'click', (event) => {
 
-                        if (event.target.checked) {
-                            if (max_things > user_state.things.length) {
-                                event.target.parentNode.classList.add("thing-checkbox-checked");
-                                user_state.things.push(thing);
+                            if (event.target.checked) {
+                                if (max_things > user_state.things.length) {
+                                    event.target.parentNode.parentNode.classList.add("thing-checkbox-checked");
+                                    user_state.things.push(thing);
+                                } else {
+                                    event.target.checked = false;
+                                    alert("Можно взять вещей: " + max_things);
+                                }
                             } else {
-                                event.target.checked = false;
-                                alert("Можно взять вещей: " + max_things);
+                                let index = user_state.things.indexOf(thing);
+                                if (index > -1) {
+                                    user_state.things.splice(index, 1);
+                                    event.target.parentNode.parentNode.classList.remove("thing-checkbox-checked");
+                                }
                             }
-                        } else {
-                            let index = user_state.things.indexOf(thing);
-                            if (index > -1) {
-                                user_state.things.splice(index, 1);
-                                event.target.parentNode.classList.remove("thing-checkbox-checked");
+                            if (user_state.things.length > 0) {
+                                create_game_btn.style.display = "block";
+                            } else {
+                                create_game_btn.style.display = "none";
                             }
-                        }
-                        if (user_state.things.length > 0) {
-                            create_game_btn.style.display = "block";
-                        } else {
-                            create_game_btn.style.display = "none";
-                        }
 
-                        things_count_label.innerText = max_things - user_state.things.length;
-                        // console.log(user_state);
+                            things_count_label.innerText = max_things - user_state.things.length;
 
-                    }),
-                    create('i', {className: "fa fa-check hidden"}),
-                    create("p", {className: '', html: thing.html}),
+                        }),
+                        create('i', {className: "fa fa-check hidden"}),),
+                    create("div", {className: 'thing-title', html: thing.html}),
                 )
             ))
         });
 
-        this.html_element.appendChild(create('p', {html: "Наберите себе вещей"}));
+        if (choice_thing_text.length > 0) {
+            things_choice_container.appendChild(create('h2', {html: "Есть возможность взять вещей .."}));
+            things_choice_container.appendChild(create('div', {
+                className: "introduction-text",
+                html: choice_thing_text
+            }));
+        }
+
+        choice_container_wrap.appendChild(choice_container);
+
+        things_choice_container.appendChild(things_count_msg);
+        things_choice_container.appendChild(choice_container_wrap);
+        things_choice_container.appendChild(create_game_btn);
+
+        this.html_element.appendChild(things_choice_container);
+
+    };
 
 
+    this.createIntroduction = function () {
 
-        // things.forEach((item) => {
-        //     choice_container.appendChild(item);
-        // });
-        this.html_element.appendChild(things_count_msg);
-        this.html_element.appendChild(choice_container);
-        this.html_element.appendChild(create_game_btn);
+        this.clear_html();
+
+        let introduction_container = create("div", {className: "introduction-container"}, create("h2", {text: "Что случилось?"}), create("div", {
+            className: "introduction-text",
+            html: introduction_text
+        }));
+
+
+        let create_game_btn = addEvent(create('button', {
+                className: "start-button",
+                html: use_things ? next_btn_label : start_game_btn_label,
+                style: {'display': 'block'}
+            }), 'click',
+            () => {
+                if (use_things) {
+                    this.createThingChoice();
+                } else {
+                    this.createGame();
+                }
+            }
+        );
+
+        introduction_container.appendChild(create_game_btn);
+
+        this.html_element.appendChild(introduction_container);
+
 
     };
 
     this.createGame = function () {
-        // console.log("keke new game", this);
         this.clear_html();
-        // this.html_element.appendChild(create("p", {html: "я игра"}));
-        // this.html_element.appendChild(create("p", {html: ""}));
 
-        // console.log(user_state);
+        let game_container = create("div", {className: "game-container"});
         let game_wrapper = create("div", {className: "game-wrapper"});
 
-        if(use_things) this.html_element.appendChild(this.createUserThingsBlock());
+        if (use_things) setTimeout(() => {
+            game_container.appendChild(this.createUserThingsBlock())
+        }, 2000);
 
-        let first_msg_id = "msg_1";
-        Message.curr_msg_id = first_msg_id;
+        Message.curr_msg_id = first_msg;
+        Message.img = "";
+        game_container.appendChild(game_wrapper);
+        this.html_element.appendChild(game_container);
 
-        // this.html_element = html_element;
-
-        new Message(first_msg_id, messages[first_msg_id], game_wrapper);
-
-        this.html_element.appendChild(game_wrapper);
-
+        setTimeout(() => {
+            new Message(first_msg, messages[first_msg], game_wrapper)
+        }, 1000);
     };
 
 
@@ -127,7 +166,10 @@ function Simulator(settings) {
         list_container.appendChild(create("p", {html: "Ваши вещи:"}));
         user_state.things.forEach(function (thing) {
 
-            list_container.appendChild(create("div", {className:"user-things-container-item", html: thing.html }));
+            list_container.appendChild(create("div", {
+                className: "user-things-container-item",
+                html: "\u25CB " + thing.html
+            }));
 
         });
         return list_container;
@@ -139,102 +181,110 @@ function Simulator(settings) {
         this.next_id = choice.next_id;
         this.text = choice.text;
         // this.comment = choice.comment;
-        this.html = create('button', {attr:{type: "radio", value: id, name: "before_" + this.next_id}});
+        this.html = create('button', {attr: {type: "radio", value: id, name: "before_" + this.next_id}});
         this.html.innerHTML = this.text;
 
+        this.comment = choice.comment || undefined;
+
         this.html.onclick = function () {
-            if (Message.curr_msg_id == msg_id){
-                Message.curr_msg_id = this.next_id;
-                console.log(this.next_id)
-                // if(this.comment){
-                //     new Message(undefined, {type: "comment", text: this.comment.text, comment: this.comment, next_id: this.next_id}, html_element);
-                // }else{
+
+            if (Message.curr_msg_id === msg_id) {
+
+                if (this.comment) {
+                    new Message(msg_id, {
+                        type: "comment",
+                        text: this.comment,
+                        comment: this.comment,
+                        next_id: this.next_id
+                    }, html_element);
+                } else {
+                    Message.curr_msg_id = this.next_id;
                     new Message(this.next_id, messages[this.next_id], html_element);
-                // }
+                }
             }
         }.bind(this);
     }
 
     function Message(id, settings, html_element) {
         var id = id;
-        let message_block = create("div", {});
         this.id = id;
         this.type = settings.type || "text";
         this.final = settings.final || false;
         this.text = settings.text;
 
-        console.log(settings);
-
-        // typeof(settings.next_id) == "object" ? console.log(settings.next_id.condition, user_state.things)
-        // condition
-
-        // ;
-
         this.next_id = this.final ? undefined : settings.next_id;
-        this.show_delay = settings.show_delay || 1000;
-        // this.comment = settings.comment || undefined;
         this.image = settings.image || undefined;
-
+        this.choices = [];
 
         Object.defineProperty(this, "is_choice", {
-            get: function() {
+            get: function () {
                 return this.type === 'choice';
             }
         });
         Object.defineProperty(this, "is_text", {
-            get: function() {
+            get: function () {
                 return this.type === 'text';
             }
         });
+        Object.defineProperty(this, "is_comment", {
+            get: function () {
+                return this.type === 'comment';
+            }
+        });
 
-        let success_class = (settings.success !== undefined) ? "success-"+settings.success: "";
+        this.get_class_list = function () {
+            let class_list = "msg-block";
+            class_list += this.is_choice ? " choice" : "";
+            class_list += this.is_text ? " text" : "";
+            class_list += this.is_comment ? " comment" : "";
+
+            class_list += this.final ? (settings.success !== undefined) ? " msg-final success-" + settings.success : "msg-final" : "";
+
+            return class_list;
+        };
+
+        // let class_list = this.get_class_list();
+
+        // let success_class = (settings.success !== undefined) ? "success-"+settings.success: "";
+
         if (settings.choices) {
             this.choices = settings.choices.map(function (ch, index) {
 
-                if(typeof(ch.next_id) == "object"){
+                let choice_id = id + "_choice_" + index;
 
-                    // console.log(user_state.things.map((item)=>item.name), ch.next_id.condition)
+                if (typeof (ch.next_id) == "object") {
 
-                    if(user_state.things.map((item)=>item.name).some(r=> ch.next_id.condition.includes(r))){
-                        // console.log(true)
+                    if (user_state.things.map((item) => item.name).some(r => ch.next_id.condition.includes(r))) {
                         ch.next_id = ch.next_id["yes"];
-                    }
-                    else{
+                    } else {
                         ch.next_id = ch.next_id["no"];
-                        // console.log(false)
                     }
-                        // )
                 }
 
-                // ? console.log(settings.next_id.condition, user_state.things)
-                // console.log(ch)
-
-                return new Choice(id, id + "_choice_" + index, ch, html_element)
+                return new Choice(id, choice_id, ch, html_element)
             })
         }
 
-        this.html = create('div', {id:id, className: ' msg-block '+ this.type + ' ' + success_class} );
-        this.html.appendChild(create('div', {text: this.text, className: 'msg-text'}));
-            // .innerHTML = this.text;
+        this.html = create('div', {id: id, className: this.get_class_list()});
 
-        setTimeout(()=>{this.html.style.opacity = 1;}, 500);
+        let msg_controls = create("div", {className: "message-controls"});
 
-        if(this.image){
-            html_element.style.backgroundImage = "url('" + images_src + this.image + "')";
+        msg_controls.appendChild(create('div', {text: this.text, className: 'msg-text'}));
+
+        if (this.image) {
+            Message.img = images_src + this.image;
         }
 
-        console.log(this);
+        let msg_img = create("img", {className: "message-image", attr: {"src": Message.img}});
 
-        if(this.is_choice){
-            let choice_container = create('div',{className: 'msg-options-container'});
-            this.choices.forEach(function (item) {
-                // console.log()
-                choice_container.append(item.html)
-            });
-            this.html.append(choice_container);
+        if (this.is_choice) {
+            // let choice_container = create('div',{className: 'msg-options-container'});
+            // this.choices.forEach(function (item) {
+            //     choice_container.append(item.html)
+            // });
+            // this.html.append(choice_container);
 
-        }
-        else if(this.is_text){
+        } else if (this.is_text) {
             if (!this.final) {
                 this.html.onclick = function () {
                     if (Message.curr_msg_id != this.next_id) {
@@ -243,18 +293,43 @@ function Simulator(settings) {
                     }
                 }.bind(this);
             }
+        } else if (this.is_comment) {
+            this.choices = [new Choice(id, "", {text: next_btn_label, next_id: this.next_id}, html_element)];
+            msg_controls.appendChild(create('span', {className: 'tip tip-down'}));
+        } else {
         }
-        else{}
-        // message_block = this.html;
+
+        if (this.choices.length > 0) {
+
+            let count_class = "default";
+
+            if (this.choices.length === 1) count_class = "ones";
+            if (this.choices.length === 2) count_class = "halfs";
+            if (this.choices.length === 3) count_class = "thirds";
+            if (this.choices.length === 4) count_class = "fourths";
+            if (this.choices.length === 5) count_class = "fifths";
+
+            let choice_container = create('div', {className: 'msg-options-container ' + count_class});
+
+            this.choices.forEach(function (item) {
+
+                choice_container.append(item.html)
+            });
+            msg_controls.append(choice_container);
+        }
+
+        this.html.appendChild(msg_img);
+        this.html.appendChild(msg_controls);
+
         html_element.innerHTML = "";
-        // html_element.innerHTML = this.html;
-        html_element.append(this.html);
+        setTimeout(() => {
+            html_element.append(this.html);
+        }, 500);
     }
 
 
     this.clear_html = function () {
         this.html_element.innerHTML = "";
-        // .html("");
     };
 
     function create(tag, {id, className, text, html, attr, style, data}, ...array) {
@@ -286,13 +361,13 @@ function Simulator(settings) {
 
         element.toggle = function (name) {
             this.classList.toggle(name)
-        }
+        };
         element.add = function (name) {
             this.classList.add(name)
-        }
+        };
         element.remove = function (name) {
             this.classList.remove(name)
-        }
+        };
 
         return element
     }

@@ -1,61 +1,151 @@
 
 .simulator-container {
     width: 800px;
+    /*width: 100%;*/
     margin: 0 auto;
-    /*background: #ff980030;*/
-    padding: 20px;
-    /*min-height: 600px;*/
+    /*padding: 10px 20px;*/
+    min-height: 720px;
+    display: flex;
     -webkit-box-shadow: -2px 4px 20px 3px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -2px 4px 20px 3px rgba(0, 0, 0, 0.75);
     box-shadow: -2px 4px 20px 3px rgba(0, 0, 0, 0.75);
     position: relative;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.things-choice-container{
+    width: 100%;
+    margin: 10px 20px;
+    animation-duration: 2.5s;
+    animation-name: slidein;
+}
+
+.introduction-container{
+    width: 100%;
+    margin: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.introduction-text {
+    font-size: 1.2em;
+}
+
+.game-container{
+    width: 100%;
+    /*height: 100%;*/
+    background: #261f1d;
+    display: flex;
+    align-items: center;
+
+    animation-duration: 2s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }
 
 .game-wrapper{
     position: relative;
-    height: 500px;
+    /*height: 500px;*/
+    width: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    /*animation-duration: 3s;*/
-    -webkit-transition:all 0.5s ease-in;
-    -moz-transition:all 0.5s ease-in;
-    -o-transition:all 0.5s ease-in;
-    -ms-transition:all 0.5s ease-in;
-    transition:all 0.5s ease-in;
 }
 
-.msg-block.success-false{
+.msg-block.text.success-false .message-controls{
     background: red;
-    color:white;
+    color:black;
     top: 40%;
+    font-size: 1.2em;
     bottom: initial !important;
 }
 
-.msg-block.success-true{
+.msg-block.text.success-true .message-controls{
     background: green;
+    color:black;
     top: 40%;
+    font-size: 1.2em;
     bottom: initial !important;
 
+}
+
+.tip{
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    background: transparent;
+    border: 24px solid #ccc;
+}
+
+.tip-down{
+    bottom: -48px;
+    left: 8px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
 }
 
 .msg-block {
-    position: absolute;
     bottom: 0;
-    background: #ffffffe6;
-    padding: 10px;
-    margin: 6px;
-    border-radius: 10px;
+    /*color: white;*/
     left: 0;
     right: 0;
-    opacity: 0;
-    transition: 1s;
+    animation-duration: 2s;
+    animation-name: slidein;
 }
 
-.msg-text{
-    font-size: 1.1em;
-    font-weight: 700;
-    padding: 10px;
+.msg-block .message-image{
+    width: 100%;
 }
+
+.msg-block .message-controls{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+}
+
+
+.msg-block.comment .message-controls{
+    margin: 6px 6px 25px 6px;
+    border-radius: 10px 10px 10px 9px;
+    border: 5px solid #ccc;
+    background: #ccc;
+    /*color: black;*/
+}
+
+.msg-block.choice .message-controls{
+    margin: 6px 6px 6px 6px;
+}
+
+.msg-block.text .message-controls{
+    margin: 6px 6px 6px 6px;
+}
+
+.msg-block .message-controls .msg-text{
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+
+.msg-block.choice .message-controls .msg-text{
+    color: white;
+}
+.msg-block.comment .message-controls .msg-text{
+    color: black;
+}
+
 
 .msg-options-container{
     display: flex;
@@ -64,20 +154,57 @@
 }
 
 .msg-options-container button{
-    width: 25%;
+    font-size: 1.2em;
     cursor: pointer;
-    margin: 10px;
+    margin: 5px;
+    padding: 10px;
+    background: white;
+    border: none;
+    height: auto;
 }
 
 
+.msg-options-container.ones button {
+    width: calc(100% / 2 - 1rem);
+}
+
+.msg-options-container.halfs button {
+    width: calc(100% / 2 - 1rem);
+}
+
+.msg-options-container.thirds button {
+    width: calc(100% / 3 - 1rem);
+}
+
+.msg-options-container.fourths button {
+    width: calc(100% / 4 - 1rem);
+}
+
+.msg-options-container.fifths button {
+    width: calc(100% / 5 - 1rem);
+}
+
+
+
+.msg-options-container button:hover{
+    background: #b3b3b3;
+    -webkit-transition: background-color 400ms linear;
+    -ms-transition: background-color 400ms linear;
+    transition: background-color 400ms linear;
+}
+
 .user-things-container {
     position: absolute;
-    background: #e3e3e3;
+    background: rgba(0,0,0,.8);
     padding: 5px;
     margin: 6px;
     top: 0;
     right: 0;
     z-index: 2;
+    color: white;
+
+    animation-duration: 1s;
+    animation-name: slidein;
 }
 
 .user-things-container p {
@@ -86,26 +213,24 @@
 
 .user-things-container-item {
     padding: 5px 12px;
-    background: #f5f5f5;
-    margin: 6px 0px;
+    text-transform: lowercase;
     border-radius: 5px;
 }
 
 
 .start-button {
     display: block;
-    font-size: 1.3em;
-    /* padding: 10px; */
+    font-size: 1.2em;
     padding: 0.46em 1.6em;
-    border: 0.1em solid #aeaeae;
-    margin: 3em auto;
+    border: 0.1em solid #3c6684;
+    margin: 1em auto;
     border-radius: 0.12em;
     box-sizing: border-box;
     text-decoration: none;
     font-weight: 300;
-    color: #060063;
+    color: #ffffff;
     text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
-    background-color: #77aed7;
+    background-color: #4683b0;
     text-align: center;
     transition: all 0.15s;
     cursor: pointer;
@@ -113,8 +238,8 @@
 
 .start-button:hover {
     text-shadow: 0 0 2em rgba(255, 255, 255, 1);
-    color: #FFFFFF;
-    border-color: #FFFFFF;
+    background: #2e5d8a;
+    border-color: #4a78a3;
 }
 
 
@@ -129,29 +254,31 @@
 }
 
 .thing-container {
+    flex-wrap: wrap;
+    display: flex;
     margin: 0.4rem 0.5rem;
 }
 
 .thing-checkbox {
     display: inline-block;
     cursor: pointer;
-    max-width: 100%;
+    width: 100%;
     margin-bottom: 5px;
-    font-weight: 700;
     position: relative;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: 4px solid #00000014;
+    border-radius: 4px;
 }
 
 .thing-checkbox .fa {
-    background: white;
+    background: #4683b0;
     position: absolute;
-    color: #4A79A3;
-    border-radius: 0px 0px 0px 8px;
+    color: white;
+    border-radius: 0px 0px 0px 4px;
     padding: 6px;
-    font-size: 1.2em;
+    font-size: 1.12em;
     top: 0;
     right: 0;
 }
@@ -164,14 +291,21 @@
     display: block !important;
 }
 
-.thing-checkbox p {
-    margin: 2px 0px 0px;
+.thing-checkbox div.thing-title {
+    /* margin: 2px 0px 0px; */
     text-align: center;
     color: #184c72;
     position: absolute;
-    bottom: 0;
+    padding: 0px 0px 6px 0px;
     width: 100%;
+    bottom: 0;
+    /*font-weight: 700;*/
+    /* width: 100%; */
+    /* height: 50px; */
     background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .thing-checkbox img {
@@ -179,19 +313,13 @@
     display: block;
     max-width: 100%;
     height: auto;
+    top: -16px;
+    position: relative;
     vertical-align: middle;
 }
 
 .thing-checkbox input[type="checkbox"] {
     display: none;
-}
-
-.choice-container.ones > * {
-    flex-basis: calc(100% / 1 - 1rem);
-}
-
-.choice-container.halfs > * {
-    flex-basis: calc(100% / 2 - 1rem);
 }
 
 .choice-container.thirds > * {
@@ -204,19 +332,14 @@
 
 .choice-container.fifths > * {
     flex-basis: calc(100% / 5 - 1rem);
+    font-size: 14px;
 }
 
 .choice-container.sixths > * {
     flex-basis: calc(100% / 6 - 1rem);
+    font-size: 12px;
 }
 
-.choice-container.sevenths > * {
-    flex-basis: calc(100% / 7 - 1rem);
-}
-
-.choice-container.eigths > * {
-    flex-basis: calc(100% / 8 - 1rem);
-}
 
 .hidden {
     display: none !important;

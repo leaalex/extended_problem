@@ -13,7 +13,7 @@
 
         msg_1: {
             type: "choice",
-            text: "Конец сентября. Тыпошел в лес за грибами. Потерял ориентиры, заблудился. У тебя с собой пластиковая бутылка 0,5л., воды осталось на один глоток на дне бутылки. Еды нет. Есть мобильный телефон. Но нет денежных средств и отложенного платежа. От населенного пункта 3 км, но ты про это не знаешь. Недалеко(1 км.) находится автомобильная трасса. Слышно на расстоянии шум моторов. ",
+            text: "Конец сентября. Ты пошел в лес за грибами. Потерял ориентиры, заблудился. У тебя с собой пластиковая бутылка 0,5л., воды осталось на один глоток на дне бутылки. Еды нет. Есть мобильный телефон. Но нет денежных средств и отложенного платежа. От населенного пункта 3 км, но ты про это не знаешь. Недалеко(1 км.) находится автомобильная трасса. Слышно на расстоянии шум моторов. ",
             choices: [
                 {
                     text: "Для начала остановлюсь и соберусь с мыслями",
@@ -22,11 +22,13 @@
                             condition: ["water_bottle"],
                             yes: "msg_2",
                             no: "msg_3"
-                        }
+                        },
+                    comment: "КОММЕНТАРИЙ (Для начала остановлюсь и соберусь с мыслями)"
                 },
                 {
                     text: "Позвоню в МЧС",
-                    next_id: "msg_4"
+                    next_id: "msg_4",
+                    comment: "КОММЕНТАРИЙ (Позвоню в МЧС)"
                 },
             ],
             image:"msg_1.jpg"
@@ -375,71 +377,82 @@
         {
             name: "water_bottle",
             html: "Бутылка с водой",
-            image_src: "water_bottle.jpg",
+            image_src: "water_bottle.svg",
         },
         {
             name: "energy_bar",
             html: "Энергетический батончик",
-            image_src: "energy_bar.jpg",
+            image_src: "energy_bar.svg",
         },
         {
             name: "matches",
-            html: "Зажигалка/спички",
-            image_src: "matches.jpg",
+            html: "Зажигалка или спички",
+            image_src: "matches.svg",
         },
         {
             name: "mobile_phone",
             html: "Мобильный телефон",
-            image_src: "mobile_phone.jpg",
+            image_src: "mobile_phone.svg",
 
         },
         {
             name: "map",
             html: "Карта местности",
-            image_src: "map.jpg",
+            image_src: "map.svg",
 
         },
         {
             name: "motorist_vest",
             html: "Жилет автомобилиста",
-            image_src: "motorist_vest.jpg",
+            image_src: "motorist_vest.svg",
 
         },
         {
             name: "chocolate",
             html: "Шоколадка",
-            image_src: "chocolate.jpg",
+            image_src: "chocolate.svg",
 
         },
         {
             name: "pepsi",
             html: "Пепси кола 0,5 л.",
-            image_src: "pepsi.jpg",
+            image_src: "pepsi.svg",
 
-        },{
+        },
+        {
             name: "chips",
             html: "Чипсы",
-            image_src: "chips.jpg",
+            image_src: "chips.svg",
 
-        },{
+        },
+        {
             name: "meat_bucket",
-            html: "Ведерко с маринованным шашлыком",
-            image_src: "meat_bucket.jpg",
+            html: "Ведерко с шашлыком",
+            image_src: "meat_bucket.svg",
 
-        },{
+        },
+        {
             name: "energy_drink",
             html: "Энергетический напиток",
-            image_src: "energy_drink.jpg",
+            image_src: "energy_drink.svg",
 
-        },{
+        },
+        {
             name: "tea_thermos",
             html: "Термос с горячим чаем",
-            image_src: "tea_thermos.jpg",
+            image_src: "tea_thermos.svg",
 
-        },{
+        },
+        {
             name: "sneakers",
             html: "Модные кроссовки",
-            image_src: "sneakers.jpg",
+            image_src: "sneakers.svg",
+
+        },
+        {
+            name: "lollipops",
+            html: "Леденцы",
+            image_src: "lollipops.svg",
 
         },
 
@@ -451,11 +464,30 @@
         messages: messages,
         things: things_list,
         images_src: "images/",
+        first_msg: "msg_1",
+
         options: {
-            // max_things: 4,
+            max_things: 5,
+            introduction_text: "Конец сентября. Ты пошел в лес за грибами. Потерял ориентиры, заблудился. У тебя с собой пластиковая бутылка 0,5л., воды осталось на один глоток на дне бутылки. Еды нет. Есть мобильный телефон. Но нет денежных средств и отложенного платежа. От населенного пункта 3 км, но ты про это не знаешь. Недалеко(1 км.) находится автомобильная трасса. Слышно на расстоянии шум моторов.",
+            choice_thing_text: "Наберите себе вещей.",
+            things_grid: "fifths"
         }
-    }
-    );
+    });
+
+
+    /***
+     * things_grid:
+     *      thirds - три в ряд
+     *      fourths - четыре в ряд
+     *      fifths - пять в ряд
+     *      sixths - шесть в ряд
+     *
+     * first_msg - id первого сообщения
+     *
+     *
+     * ***/
+
+
 
 
 </script>
