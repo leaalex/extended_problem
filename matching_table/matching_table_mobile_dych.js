@@ -7,13 +7,13 @@
 if (MatchingTableObjects == undefined) var MatchingTableObjects = {};
 
 function MatchingTableActivation(selector) {
-    Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
+    Array.prototype.filter.call(document.querySelectorAll(selector), function (element) {
         return element.dataset.status == undefined
-    }).forEach(function(element, i, array) {
+    }).forEach(function (element, i, array) {
         MatchingTableObjects[element.id] = (new MatchingTableObjects(element, element.getAttribute("data")));
         element.dataset.status = "activate";
     });
-    setTimeout(function() {
+    setTimeout(function () {
         MatchingTableActivation(selector)
     }, 1000);
 }
@@ -22,23 +22,23 @@ function Answer(elementField) {
     this.elementField = elementField;
     this.fieldValue = "";
     this.fieldObject = {};
-    this.get = function() {
+    this.get = function () {
         this.fieldValue = elementField.value;
         return this.fieldValue;
     };
-    this.set = function(value) {
+    this.set = function (value) {
         if (value == undefined) value = this.fieldValue;
         elementField.value = value;
     };
-    this.getJSON = function() {
+    this.getJSON = function () {
         if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
         return this.fieldObject;
     };
-    this.setJSON = function(object) {
+    this.setJSON = function (object) {
         if (object == undefined) object = this.fieldObject;
         this.set(JSON.stringify(object))
     };
-    this.isJsonString = function(str) {
+    this.isJsonString = function (str) {
         try {
             JSON.parse(str);
         } catch (e) {
@@ -48,12 +48,12 @@ function Answer(elementField) {
     };
 };
 
-$.fn.shuffleChildren = function() {
-    $.each(this.get(), function(index, el) {
+$.fn.shuffleChildren = function () {
+    $.each(this.get(), function (index, el) {
         var $el = $(el);
         var $find = $el.children();
 
-        $find.sort(function() {
+        $find.sort(function () {
             return 0.5 - Math.random();
         });
 
@@ -62,7 +62,7 @@ $.fn.shuffleChildren = function() {
     });
 };
 
-function MatchingTableObjects(element, data){
+function MatchingTableObjects(element, data) {
 
     this.lang = "ru";
 
@@ -70,19 +70,19 @@ function MatchingTableObjects(element, data){
         ru: {
             correct_answers_label: "",
         },
-        en:{
+        en: {
             correct_answers_label: "",
         }
 
     }
 
-    if(data){
+    if (data) {
         try {
             a = JSON.parse(data);
-            if(a.lang){
+            if (a.lang) {
                 this.lang = a.lang;
             }
-        } catch(e) {
+        } catch (e) {
             console.log(e);
         }
     }
@@ -93,12 +93,23 @@ function MatchingTableObjects(element, data){
     $('.conf-all-answers', element).each(function(){
         $(this).shuffleChildren();
     });
+    //
 
     $(".matching_table").hide().fadeIn(500);
 
     this.element = element;
 
     var answer = new Answer(element.querySelector("#matching_table_input").querySelector("input[type='text']"));
+
+    $(element).closest('.problem').find('.submit.btn-brand').hide();
+
+    $(element).closest('.problem').find('.submit-attempt-container').css("text-align", "center");
+    $(element).closest('.problem').find('.submit.btn-brand').css("float", "none");
+    //
+
+    console.log($(element).closest('.problem').find('.submit.btn-brand'))
+
+    var current_step = 1;
 
 
     const sortable = new Sortable.default(
@@ -128,20 +139,29 @@ function MatchingTableObjects(element, data){
     sortable.on('drag:stop', (evt) => {
         setAnswer();
         $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
+        if ($("#tr-" + current_step + " .conf-inputable .conf-item", element).not(".draggable-mirror").not(".draggable--original").length > 0) {
+            $("#choiser-" + current_step + " button", element).removeAttr("disabled");
+        } else {
+            $("#choiser-" + current_step + " button", element).attr("disabled", "disabled");
+        }
+        // console.log()
+
+
     })
     sortable.on('sortable:sort', (evt) => {
         var capacity = evt.data.dragEvent.data.overContainer.getAttribute("capacity");
         var count = sortable.getDraggableElementsForContainer(evt.data.dragEvent.data.overContainer).length;
-        if (!isNaN(capacity)){
+
+        if (!isNaN(capacity)) {
             capacity = parseInt(capacity)
-            if(capacity == count){
+            if (capacity == count) {
                 evt.cancel();
             }
         }
     })
 
-    function setAnswer(){
-        var problem =  $("#" + element.id).closest(".problem");
+    function setAnswer() {
+        var problem = $("#" + element.id).closest(".problem");
         var checkButton = $("button.submit", problem);
         checkButton.removeClass("is-disabled");
         checkButton.disabled = false;
@@ -149,13 +169,15 @@ function MatchingTableObjects(element, data){
 
         var student_answer = {};
 
-        $(".input-place.conf-answers-place", element).map(function(indx, item){
+        $(".input-place.conf-answers-place", element).map(function (indx, item) {
             item_id = $(item).attr("id");
-            student_answer[item_id] = $(item).find(".conf-item.conf-draggable").map(function(index, sub_item){
+            student_answer[item_id] = $(item).find(".conf-item").map(function (index, sub_item) {
 
-                if(sub_item.classList.contains('draggable--original') || sub_item.classList.contains('draggable--mirror') ){
+                if (sub_item.classList.contains('draggable--original') || sub_item.classList.contains('draggable--mirror')) {
 
-                }else{
+                    console.log()
+
+                } else {
                     return $(sub_item).attr("id")
                 }
 
@@ -165,34 +187,103 @@ function MatchingTableObjects(element, data){
 
         }).get();
 
+        console.log(student_answer);
         answer.setJSON({answer: student_answer});
 
     }
 
-    if(answer.get()){
+    if (answer.get()) {
         var student_answer = answer.getJSON()["answer"];
         for (key in student_answer) {
-            for ( l in student_answer[key]) {
-                $("#"+key, element).append($("#"+student_answer[key][l], element));
+            for (l in student_answer[key]) {
+                $("#" + key, element).append($("#" + student_answer[key][l], element));
             }
         }
 
-        if($("span.message", element)){
-            if( $("span.message", element).text() != ""){
-                var wrongCells = JSON.parse($("span.message",element).text())["wrong_cells"];
-                var message = JSON.parse($("span.message",element).text())["message"];
-                for (cellId in wrongCells){
+        if ($("span.message", element)) {
+            if ($("span.message", element).text() != "") {
+                var wrongCells = JSON.parse($("span.message", element).text())["wrong_cells"];
+                var message = JSON.parse($("span.message", element).text())["message"];
+                for (cellId in wrongCells) {
                     $(".conf-table #" + wrongCells[cellId], element).addClass("conf-wrong-cell");
                 }
                 // $(".message-about-grade", element).html(message);
             }
         }
 
-        $(document).ready(function(){$("input[type=text]", element).hide()});
-        $(document).ready(function(){$("span.message", element).hide()});
+        $(document).ready(function () {
+            $("input[type=text]", element).hide()
+        });
+        $(document).ready(function () {
+            $("span.message", element).hide()
+        });
+
+        $('.trka', element).show();
+        $('.choiser', element).hide();
+
+        $(".conf-draggable", element).each(function (j, tr) {
+            $(tr).removeClass("conf-draggable");
+        });
+
+    }
+    else{
+
+        $(".conf-all-answers", element).each(function (i, item) {
+            var all_answers_item = item.closest(".choiser");
+
+            if (i + 1 != $(".conf-all-answers", element).length) {
+
+                var next_btn_wrap = $("<div>", {class: "next-btn-wrap"}).appendTo(all_answers_item);
+
+                var next_btn = $('<button/>', {
+                    id: '',
+                    "class": 'btn-brand',
+                    text: 'Далее',
+                    disabled: "disabled",
+                }).appendTo(next_btn_wrap);
+
+                next_btn.click(function () {
+                    var next_choiser_id = $(all_answers_item).attr('next-choiser');
+                    var next_tr_id = $(all_answers_item).attr('next-tr');
+                    var current_tr_id = $(all_answers_item).attr('current-tr');
+
+                    $("#" + current_tr_id + " .conf-inputable", element).attr("capacity", "0");
+                    $("#" + current_tr_id + " .conf-draggable", element).each(function (j, tr) {
+                        $(tr).removeClass("conf-draggable");
+                    });
+
+                    $(all_answers_item).hide(500);
+                    $("#" + next_choiser_id, element).show(500);
+
+                    if(next_tr_id == 'tr-5'){
+                        $('#lol_tr', element).show();
+                    }
+
+                    $("#" + next_tr_id, element).show(500);
+                    current_step += 1;
+
+                    //console.log();
+                    if (current_step == $(".conf-all-answers", element).length) {
+                        $(element).closest('.problem').find('.submit.btn-brand').css("display", "initial");
+                        $(element).closest('.problem').find('.submit.btn-brand').show();
+                    }
+                });
+            }
+            else{
+                //
+
+            }
+        });
+
     }
 
     var css = `
+    
+    .next-btn-wrap{
+        text-align: center;
+        padding: 20px;
+    }
+    
     .conf-text{
         text-align: center !important;
         padding: 5px !important;
@@ -236,12 +327,12 @@ function MatchingTableObjects(element, data){
     }
 
     .conf-item{
-        max-height: 154px;
+        max-height: 390px;
         vertical-align: middle;
         border: 1px solid #b2b2b2;;
         margin: 2px;
         text-align: center;
-
+        font-size: 80%;
         padding: .6rem;
         flex: 0 0 auto;
         box-shadow: 0 0.1rem 1rem rgba(0,0,0,0.1), 0 0 0.5rem rgba(0,0,0,0.1);
@@ -325,7 +416,7 @@ function MatchingTableObjects(element, data){
     .detailed-solution-header h1{
         margin-bottom: 0.11575em !important;
     }
-    
+
     .draggable-container--over {
         animation: none;
                 /*draggablePulseBg cubic-bezier(0.22, 0.61, 0.36, 1) 1500ms infinite;*/
@@ -424,7 +515,6 @@ function MatchingTableObjects(element, data){
             border: 2px solid rgb(178, 6, 16) !important;
         }
 `;
-
 
 
     css += "#" + element.id + " .capa_inputtype{text-align: center !important;}";
