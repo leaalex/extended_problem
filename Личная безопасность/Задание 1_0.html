@@ -1,3 +1,14 @@
+<problem>
+<script type="loncapa/python">
+import math
+import json
+import random
+from difflib import SequenceMatcher
+
+unique_id = "task_lb_task1_0"
+
+
+
 options = {
     "obj_1": {
         "memory": -1,
@@ -695,3 +706,522 @@ options = {
         "recommendation": ["Вам необходимо развивать способность оценивать реальность рисков. Иначе из-за собственных суперспособностей вы не заметите важной детали в экстремальной ситуации, что может привести к негативным последствиям.", "Например, включайте здравый смысл, когда все вокруг паникуют и не знают, что делать.", "Используйте свои способности, чтобы вселить уверенность в других"]
     }
 }
+
+def get_descriptions(all, current_id, count):
+    return_list = [current_id]
+    available_ids = list(all.keys())
+    available_ids.remove(current_id)
+
+    def get_random():
+        tmp_elem_id = random.choice(available_ids)
+        for item in return_list:
+            # print(item, ":", len(all[item]["description"]), " ",  tmp_elem_id, ":", len(all[tmp_elem_id]["description"]), SequenceMatcher(None, all[item]["description"], all[tmp_elem_id]["description"]).ratio())
+            # if len(all[item]["description"]) == len(all[tmp_elem_id]["description"]):
+            if SequenceMatcher(None, all[item]["description"], all[tmp_elem_id]["description"]).ratio() > 0.8:
+                available_ids.remove(tmp_elem_id)
+                return get_random()
+        return tmp_elem_id
+
+    while len(return_list) != count:
+        return_list.append(get_random())
+
+    return return_list
+
+def get_recommendations(all, current_id, count):
+    return_list = [current_id]
+    available_ids = list(all.keys())
+    available_ids.remove(current_id)
+
+    def get_random():
+        tmp_elem_id = random.choice(available_ids)
+        for item in return_list:
+            # print(item, ": ", len(), tmp_elem_id, ": ",  len())
+            if SequenceMatcher(None, ''.join(all[item]["recommendation"]), ''.join(all[tmp_elem_id]["recommendation"])).ratio() > 0.8:
+                available_ids.remove(tmp_elem_id)
+                return get_random()
+        return tmp_elem_id
+
+    while len(return_list) != count:
+        return_list.append(get_random())
+
+    return return_list
+
+
+student_opt_id = random.choice(list(options.keys()))
+
+opt = options[student_opt_id]
+
+
+desc_list = get_descriptions(options, student_opt_id, 5)
+recommend_list = get_descriptions(options, student_opt_id, 5)
+
+
+memory = opt["memory"]
+attention = opt["attention"]
+analysis = opt["analysis"]
+decision = opt["decision"]
+
+
+
+if memory == -1:
+    memory_3_text = "Помнишь наизусть номер телефона пожарной охраны и спасателей - 101. Точно знаешь, где посмотреть все номера"
+    memory_2_text = "Не можешь вспомнить наизусть номер телефона пожарной охраны и спасателей. Но можешь сориентироваться, где посмотреть все номера"
+    memory_1_text = "Сложно вспомнить вообще какой-либо номер телефона. Ты на столько растерян, что не понимаешь, где искать необходимый контакт."
+elif memory == 0:
+    memory_2_text = "Помнишь наизусть номер телефона пожарной охраны и спасателей - 101. Точно знаешь, где посмотреть все номера"
+    memory_1_text = "Не можешь вспомнить наизусть номер телефона пожарной охраны и спасателей. Но можешь сориентироваться, где посмотреть все номера"
+    memory_3_text = "Сложно вспомнить вообще какой-либо номер телефона. Ты на столько растерян, что не понимаешь, где искать необходимый контакт."
+else:
+    memory_1_text = "Помнишь наизусть номер телефона пожарной охраны и спасателей - 101. Точно знаешь, где посмотреть все номера"
+    memory_2_text = "Не можешь вспомнить наизусть номер телефона пожарной охраны и спасателей. Но можешь сориентироваться, где посмотреть все номера"
+    memory_3_text = "Сложно вспомнить вообще какой-либо номер телефона. Ты на столько растерян, что не понимаешь, где искать необходимый контакт."
+
+if attention == -1:
+    attention_3_text = "Одновременно вызываешь пожарных и ориентируешься в ТЦ, где конкретно ты находишься. Начинаешь двигаться к запасному выходу."
+    attention_2_text = "Вызываешь пожарную службу. Далее сориентировался, где ты находишься. Далее начинаешь двигаться к запасному выходу."
+    attention_1_text = "Трудно переключать внимание. Для того, чтобы перевести свой фокус с одного предмета на другой, необходимо некоторое время. В том числе для осознания, что происходит."
+elif attention == 0:
+    attention_2_text = "Одновременно вызываешь пожарных и ориентируешься в ТЦ, где конкретно ты находишься. Начинаешь двигаться к запасному выходу."
+    attention_1_text = "Вызываешь пожарную службу. Далее сориентировался, где ты находишься. Далее начинаешь двигаться к запасному выходу."
+    attention_3_text = "Трудно переключать внимание. Для того, чтобы перевести свой фокус с одного предмета на другой, необходимо некоторое время. В том числе для осознания, что происходит."
+else:
+    attention_1_text = "Одновременно вызываешь пожарных и ориентируешься в ТЦ, где конкретно ты находишься. Начинаешь двигаться к запасному выходу."
+    attention_3_text = "Вызываешь пожарную службу. Далее сориентировался, где ты находишься. Далее начинаешь двигаться к запасному выходу."
+    attention_2_text = "Трудно переключать внимание. Для того, чтобы перевести свой фокус с одного предмета на другой, необходимо некоторое время. В том числе для осознания, что происходит."
+
+
+if analysis == -1:
+    analysis_text_3 = "Оцениваешь риски воздействия угарного газа. Прогнозируешь время приезда пожарной службы. Знаешь сколько запасных выходов в ТЦ и где конкретно они находятся."
+    analysis_text_2 = "Чтобы проанализировать ситуацию тебе необходимо некоторое время. Понимаешь риск воздействия угарного газа. Также понимаешь, что должна приехать пожарная служба. Точно не помнишь сколько запасных выходов в ТЦ и где конкретно они находятся."
+    analysis_text_1 = "Практически не можешь достоверно оценить риски сложившейся ситуации. Не способен понять, нужно ли вызывать пожарную службу. Не знаешь сколько запасных выходов в ТЦ и где конкретно они находятся."
+elif analysis == 0:
+    analysis_text_2 = "Оцениваешь риски воздействия угарного газа. Прогнозируешь время приезда пожарной службы. Знаешь сколько запасных выходов в ТЦ и где конкретно они находятся."
+    analysis_text_1 = "Чтобы проанализировать ситуацию тебе необходимо некоторое время. Понимаешь риск воздействия угарного газа. Также понимаешь, что должна приехать пожарная служба. Точно не помнишь сколько запасных выходов в ТЦ и где конкретно они находятся."
+    analysis_text_3 = "Практически не можешь достоверно оценить риски сложившейся ситуации. Не способен понять, нужно ли вызывать пожарную службу. Не знаешь сколько запасных выходов в ТЦ и где конкретно они находятся."
+else:
+    analysis_text_1 = "Оцениваешь риски воздействия угарного газа. Прогнозируешь время приезда пожарной службы. Знаешь сколько запасных выходов в ТЦ и где конкретно они находятся."
+    analysis_text_2 = "Чтобы проанализировать ситуацию тебе необходимо некоторое время. Понимаешь риск воздействия угарного газа. Также понимаешь, что должна приехать пожарная служба. Точно не помнишь сколько запасных выходов в ТЦ и где конкретно они находятся."
+    analysis_text_3 = "Практически не можешь достоверно оценить риски сложившейся ситуации. Не способен понять, нужно ли вызывать пожарную службу. Не знаешь сколько запасных выходов в ТЦ и где конкретно они находятся."
+
+
+if decision == -1:
+    decision_text_3 = "Ты смочил водой из купленной бутылки шарф, приложил в область носа и рта. Это отличный барьер для угарного газа.  Рядом с тобой лифт, но ты в него не садишься, т.к. это опасно. Спокойно, без паники, сосредоточенно начинаешь двигаться к лестнице, которая ведет к запасному выходу."
+    decision_text_2 = "Ты некоторое время помедлил, чтобы понять, что необходимо смочить водой из купленной бутылки шарф, приложил в область носа и рта. Это нужно для создания барьера для угарного газа.  Ты решил воспользоваться лифтом, но через несколько минут отказался от этой идеи. Пошел в сторону лестницы, которая ведет к запасному выходу."
+    decision_text_1 = "Не понимаешь, какие действия будут эффективны именно сейчас. Мысли путаются и скачут. Кажется, что другие точно знают, что делать. Поддаешься «стадному инстинкту». Это не самая лучшая стратегия принятия решений и поведения в экстремальной ситуации."
+elif decision == 0:
+    decision_text_2 = "Ты смочил водой из купленной бутылки шарф, приложил в область носа и рта. Это отличный барьер для угарного газа.  Рядом с тобой лифт, но ты в него не садишься, т.к. это опасно. Спокойно, без паники, сосредоточенно начинаешь двигаться к лестнице, которая ведет к запасному выходу."
+    decision_text_1 = "Ты некоторое время помедлил, чтобы понять, что необходимо смочить водой из купленной бутылки шарф, приложил в область носа и рта. Это нужно для создания барьера для угарного газа.  Ты решил воспользоваться лифтом, но через несколько минут отказался от этой идеи. Пошел в сторону лестницы, которая ведет к запасному выходу."
+    decision_text_3 = "Не понимаешь, какие действия будут эффективны именно сейчас. Мысли путаются и скачут. Кажется, что другие точно знают, что делать. Поддаешься «стадному инстинкту». Это не самая лучшая стратегия принятия решений и поведения в экстремальной ситуации."
+else:
+    decision_text_1 = "Ты смочил водой из купленной бутылки шарф, приложил в область носа и рта. Это отличный барьер для угарного газа.  Рядом с тобой лифт, но ты в него не садишься, т.к. это опасно. Спокойно, без паники, сосредоточенно начинаешь двигаться к лестнице, которая ведет к запасному выходу."
+    decision_text_2 = "Ты некоторое время помедлил, чтобы понять, что необходимо смочить водой из купленной бутылки шарф, приложил в область носа и рта. Это нужно для создания барьера для угарного газа.  Ты решил воспользоваться лифтом, но через несколько минут отказался от этой идеи. Пошел в сторону лестницы, которая ведет к запасному выходу."
+    decision_text_3 = "Не понимаешь, какие действия будут эффективны именно сейчас. Мысли путаются и скачут. Кажется, что другие точно знают, что делать. Поддаешься «стадному инстинкту». Это не самая лучшая стратегия принятия решений и поведения в экстремальной ситуации."
+
+
+description_1_text = options[desc_list[0]]["description"]
+description_2_text = options[desc_list[1]]["description"]
+description_3_text = options[desc_list[2]]["description"]
+description_4_text = options[desc_list[3]]["description"]
+description_5_text = options[desc_list[4]]["description"]
+
+recommend_1_text = "\n".join(options[recommend_list[0]]["recommendation"])
+recommend_2_text = "\n".join(options[recommend_list[1]]["recommendation"])
+recommend_3_text = "\n".join(options[recommend_list[2]]["recommendation"])
+recommend_4_text = "\n".join(options[recommend_list[3]]["recommendation"])
+recommend_5_text = "\n".join(options[recommend_list[4]]["recommendation"])
+
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = True
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    st_memory = int(student_answer["params"]["memory"])
+    st_attention = int(student_answer["params"]["attention"])
+    st_analysis = int(student_answer["params"]["analysis"])
+    st_decision = int(student_answer["params"]["decision"])
+
+    correct_answer_test = {"a1":["b1"], "a2":["b2"], "a3":["b3"], "a4":["b4"], "a5":["b5"]}
+
+    if st_memory == 1:
+        correct_answer_test["a1"] = ["b1"]
+    elif st_memory == 0:
+        correct_answer_test["a1"] = ["b2"]
+    else:
+        correct_answer_test["a1"] = ["b3"]
+
+    if st_attention == 1:
+        correct_answer_test["a2"] = ["b4"]
+    elif st_attention == 0:
+        correct_answer_test["a2"] = ["b5"]
+    else:
+        correct_answer_test["a2"] = ["b6"]
+
+    if st_analysis == 1:
+        correct_answer_test["a3"] = ["b7"]
+    elif st_analysis == 0:
+        correct_answer_test["a3"] = ["b8"]
+    else:
+        correct_answer_test["a3"] = ["b9"]
+
+    if st_decision == 1:
+        correct_answer_test["a4"] = ["b10"]
+    elif st_decision == 0:
+        correct_answer_test["a4"] = ["b11"]
+    else:
+        correct_answer_test["a4"] = ["b12"]
+
+    correct_answer_test["a5"] = ["b13"]
+
+    student_answer = student_answer["answer"]
+
+    st_opt = list(options.keys())[0]
+
+    for x in list(options.keys()):
+        if options[x]["memory"] == st_memory and options[x]["attention"] == st_attention and options[x]["analysis"] == st_analysis and options[x]["decision"] == st_decision:
+            st_opt = x
+
+    desc_list = get_descriptions(options, st_opt, 5)
+    desc_list_text = [options[x]["description"] for x in desc_list]
+
+    st_recommend = options[st_opt]["recommendation"]
+
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer_test, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer_test, student_answer)
+    elif check_type == 'check_or':
+        response = check_or(correct_answer_test, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps({'st_opt':st_opt, 'response':response, 'desc_list_text':desc_list_text, 'st_recommend':st_recommend})), 'grade_decimal': response['grade']}, ]}
+
+
+</script>
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+<script type="text/javascript" src="/static/sortable.js"></script>
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+<style>
+    #$unique_id .text-fixed-width{
+        width: 10%;
+    }
+
+    #$unique_id .text-fixed-height{
+          height: 70px;
+      }
++
+    #$unique_id .conf-answers-place{
+          min-width: 200px !important;
+      }
+</style>
+    <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/matching_table_mobile_dych_0.js"></script>
+    <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/difflib-browser.js"></script>
+<div class="matching_table_dych_0 disable-marker" id="$unique_id">
+
+<p>Описание задания</p>
+
+    <div class="params-values"></div>
+
+    <div class="select-block">
+        <p>Память: <select name="memory">
+            <option value="-1">-1</option>
+            <option selected="selected" value="0">0</option>
+            <option value="1">1</option>
+        </select></p>
+
+        <p>Переключение внимания: <select name="attention">
+            <option value="-1">-1</option>
+            <option selected="selected" value="0">0</option>
+            <option value="1">1</option>
+        </select></p>
+
+        <p>Скорость анализа ситуации: <select name="analysis">
+            <option value="-1">-1</option>
+            <option selected="selected" value="0">0</option>
+            <option value="1">1</option>
+        </select></p>
+
+        <p>Скорость анализа ситуации: <select name="decision">
+            <option value="-1">-1</option>
+            <option selected="selected" value="0">0</option>
+            <option value="1">1</option>
+        </select></p>
+    </div>
+
+    <table class="conf-table">
+        <tr>
+            <th class="conf-text conf-header text-fixed-width">
+                Что это?
+            </th>
+            <th class="conf-text conf-header" style="width: 25%;">
+                А это?
+            </th>
+        </tr>
+
+        <tr id="tr-1" class="trka">
+            <td class="conf-text conf-header text-fixed-height">Память</td>
+            <td id="a1" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr >
+        <tr id="tr-2" class="trka" style="display: none;">
+            <td class="conf-text conf-header text-fixed-height">Переключение внимания</td>
+            <td id="a2" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr id="tr-3" class="trka" style="display: none;">
+            <td class="conf-text conf-header text-fixed-height">Скорость анализа ситуации</td>
+            <td id="a3" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr id="tr-4" class="trka" style="display: none;">
+            <td class="conf-text conf-header text-fixed-height">Скорость принятия решений и готовность действовать</td>
+            <td id="a4" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr style="height: 20px"></tr>
+        <tr id="lol_tr"  class="trka" style="display: none;">
+            <th class="conf-text conf-header">
+                Что это еще?
+            </th>
+            <th class="conf-text conf-header">
+                А это?
+            </th>
+        </tr>
+
+        <tr id="tr-5" class="trka" style="display: none;">
+            <td class="conf-text conf-header text-fixed-height">Описание</td>
+            <td id="a5" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+<!--        <tr id="tr-6" class="trka" style="display: none;">-->
+<!--            <td class="conf-text conf-header text-fixed-height">Рекомендация</td>-->
+<!--            <td id="a6" capacity="1" class="conf-answers-place conf-inputable input-place"></td>-->
+<!--        </tr>-->
+    </table>
+
+    <div>
+        <div class="choiser" next-choiser="choiser-2" next-tr="tr-2" current-tr="tr-1" id="choiser-1">
+            <p>Память</p>
+            <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+                <div id="b1" class="conf-item conf-draggable">Помнишь наизусть номер телефона пожарной охраны и спасателей - 101. Точно знаешь, где посмотреть все номера.</div>
+                <div id="b2" class="conf-item conf-draggable">Не можешь вспомнить наизусть номер телефона пожарной охраны и спасателей. Но можешь сориентироваться, где посмотреть все номера.</div>
+                <div id="b3" class="conf-item conf-draggable">Сложно вспомнить вообще какой-либо номер телефона. Ты на столько растерян, что не понимаешь, где искать необходимый контакт.</div>
+            </div>
+        </div>
+
+        <div class="choiser" next-choiser="choiser-3" next-tr="tr-3" current-tr="tr-2" id="choiser-2" style="display: none;">
+            <p>Переключение внимания</p>
+            <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+                <div id="b4" class="conf-item conf-draggable">Одновременно вызываешь пожарных и ориентируешься в ТЦ, где конкретно ты находишься. Начинаешь двигаться к запасному выходу.</div>
+                <div id="b5" class="conf-item conf-draggable">Вызываешь пожарную службу. Далее сориентировался, где ты находишься. Далее начинаешь двигаться к запасному выходу.</div>
+                <div id="b6" class="conf-item conf-draggable">Трудно переключать внимание. Для того, чтобы перевести свой фокус с одного предмета на другой, необходимо некоторое время. В том числе для осознания, что происходит.</div>
+            </div>
+            <!-- <button class="btn-brand" style="margin: 10px;" onclick="$('#choiser-2').hide(500);$('#tr-3').show(500);$('#choiser-3').show(500);">Далее</button> -->
+        </div>
+
+        <div class="choiser" next-choiser="choiser-4" next-tr="tr-4" current-tr="tr-3" id="choiser-3" style="display: none;">
+            <p>Скорость анализа ситуации</p>
+            <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+                <div id="b7" class="conf-item conf-draggable">Оцениваешь  риски воздействия угарного газа. Прогнозируешь время приезда пожарной службы. Знаешь сколько запасных выходов в ТЦ и где конкретно они находятся.</div>
+                <div id="b8" class="conf-item conf-draggable">Чтобы проанализировать ситуацию тебе необходимо некоторое время. Понимаешь  риск воздействия угарного газа. Также понимаешь, что должна приехать пожарная служба. Точно не помнишь сколько запасных выходов в ТЦ и где конкретно они находятся.</div>
+                <div id="b9" class="conf-item conf-draggable">Практически не можешь достоверно оценить  риски сложившейся ситуации. Не способен понять, нужно ли вызывать пожарную службу. Не знаешь сколько запасных выходов в ТЦ и где конкретно они находятся.</div>
+            </div>
+            <!-- <button class="btn-brand" style="margin: 10px;" onclick="$('#choiser-3').hide(500);$('#tr-4').show(500);$('#choiser-4').show(500);">Далее</button> -->
+        </div>
+
+        <div class="choiser" next-choiser="choiser-5" next-tr="tr-5" current-tr="tr-4" id="choiser-4" style="display: none;">
+            <p>Скорость принятия решений и готовность действовать</p>
+            <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+                <div id="b10" class="conf-item conf-draggable">Ты смочил водой из купленной бутылки шарф, приложил в область носа и рта. Это отличный барьер для угарного газа.  Рядом с тобой лифт, но ты в него не садишься, т.к. это опасно. Спокойно, без паники, сосредоточенно начинаешь двигаться к лестнице, которая ведет к запасному выходу.</div>
+                <div id="b11" class="conf-item conf-draggable">Ты некоторое время помедлил, чтобы понять, что необходимо смочить водой из купленной бутылки шарф, приложил в область носа и рта. Это нужно для создания барьера для угарного газа.  Ты решил воспользоваться лифтом, но через несколько минут отказался от этой идеи. Пошел в сторону лестницы, которая ведет к запасному выходу. </div>
+                <div id="b12" class="conf-item conf-draggable">Не понимаешь, какие действия будут эффективны именно сейчас. Мысли путаются и скачут. Кажется, что другие точно знают, что делать. Поддаешься «стадному инстинкту». Это не самая лучшая стратегия принятия решений и поведения в экстремальной ситуации.</div>
+            </div>
+            <!-- <button class="btn-brand" style="margin: 10px;" onclick="$('#choiser-4').hide(500);$('#tr-5').show(500);$('#choiser-5').show(500);">Далее</button> -->
+        </div>
+
+        <div class="choiser"  current-tr="tr-5" id="choiser-5" style="display: none;">
+            <p>Описания</p>
+            <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+                <div id="b13" class="conf-item conf-draggable"></div>
+                <div id="b14" class="conf-item conf-draggable"></div>
+                <div id="b15" class="conf-item conf-draggable"></div>
+                <div id="b16" class="conf-item conf-draggable"></div>
+                <div id="b17" class="conf-item conf-draggable"></div>
+            </div>
+            <!-- <button class="btn-brand" style="margin: 10px;" onclick="$('#choiser-5').hide(500);$('#tr-6').show(500);$('#choiser-6').show(500);">Далее</button> -->
+        </div>
+
+
+<!--        <div class="choiser" id="choiser-6" style="display: none;" current-tr="tr-6">-->
+<!--            <p>Рекомендации</p>-->
+<!--            <div class="conf-answers-place conf-inputable conf-all-answers ones ">-->
+
+<!--                <div id="b18" style="white-space: pre-line; text-align: left;" class="conf-item conf-draggable">$recommend_1_text</div>-->
+<!--                <div id="b19" style="white-space: pre-line; text-align: left;" class="conf-item conf-draggable">$recommend_2_text</div>-->
+<!--                <div id="b20" style="white-space: pre-line; text-align: left;" class="conf-item conf-draggable">$recommend_3_text</div>-->
+<!--                <div id="b21" style="white-space: pre-line; text-align: left;" class="conf-item conf-draggable">$recommend_4_text</div>-->
+<!--                <div id="b22" style="white-space: pre-line; text-align: left;" class="conf-item conf-draggable">$recommend_5_text</div>-->
+
+
+<!--            </div>-->
+
+<!--        </div>-->
+
+
+
+    </div>
+
+    <div class="recommend" style="display: none;">
+        <h2>Рекомендация</h2>
+        <div class="recommend-text">
+
+        </div>
+    </div>
+
+    <div id="matching_table_input" style="display: none !important;">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+
+
+
+        <div class="message-about-grade"></div>
+    </div>
+
+    <solution>
+        <div class="detailed-solution">
+
+            <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
+
+            <table class="conf-table">
+                <tr>
+                    <th class="conf-text conf-header text-fixed-width">
+                        Что это?
+                    </th>
+                    <th class="conf-text conf-header" style="width: 25%;">
+                        А это?
+                    </th>
+                </tr>
+
+                <tr>
+                    <td class="conf-text conf-header text-fixed-height">Память</td>
+                    <td class="conf-answers-place input-place"><div class="conf-item">$memory_1_text</div></td>
+                </tr >
+                <tr>
+                    <td class="conf-text conf-header text-fixed-height">Переключение внимания</td>
+                    <td class="conf-answers-place input-place"><div class="conf-item">$attention_1_text</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text conf-header text-fixed-height">Скорость анализа ситуации</td>
+                    <td class="conf-answers-place input-place"><div class="conf-item">$analysis_text_1</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text conf-header text-fixed-height">Скорость принятия решений и готовность действовать</td>
+                    <td class="conf-answers-place input-place"><div class="conf-item">$decision_text_1</div></td>
+                </tr>
+                <tr style="height: 20px"></tr>
+                <tr>
+                    <th class="conf-text conf-header">
+                        Что это еще?
+                    </th>
+                    <th class="conf-text conf-header">
+                        А это?
+                    </th>
+                </tr>
+
+                <tr>
+                    <td class="conf-text conf-header text-fixed-height">Описание</td>
+                    <td class="conf-answers-place input-place"><div class="conf-item">$description_1_text</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text conf-header text-fixed-height">Рекомендация</td>
+                    <td class="conf-answers-place input-place"><div style="white-space: pre-line; text-align: left;" class="conf-item">$recommend_1_text</div></td>
+                </tr>
+            </table>
+
+
+        </div>
+    </solution>
+
+</div>
+</problem>
