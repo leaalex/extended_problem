@@ -29,6 +29,10 @@ function Simulator(settings) {
     let next_btn_label = "Далее";
 
 
+    let answer = {};
+
+    let save_button = $(".save.problem-action-btn", $(this.html_element).closest(".xblock"));
+
     this.init = function () {
         // console.log(out_of_turn);
 
@@ -344,13 +348,18 @@ function Simulator(settings) {
         }, 500);
 
         console.log(html_element.closest(".simulator-container"));
+
+        answer.setJSON({answer: {"current_mgs": id}});
+
+        $(save_button).trigger('click');
     }
 
+
+    console.log(save_button)
 
     this.clear_html = function () {
         this.html_element.innerHTML = "";
     };
-
 
     function log(msg, type) {
         /*
@@ -455,7 +464,40 @@ function Simulator(settings) {
         return element
     }
 
-    this.init();
+    // this.init();
+    if(edx_mode){
+        answer = new Answer(document.querySelector("#simulator_input").querySelector("input[type='text']"));
+
+        if(answer.get()){
+            let curr_msg = answer.getJSON()["answer"]["current_mgs"];
+
+            first_msg = curr_msg;
+            // console.log(this);
+            this.createGame();
+            // this.init();
+            console.log(curr_msg);
+        }else{
+            this.init();
+        }
+
+    }
+    else{
+        this.init();
+    }
 
 };
+
+/*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* */
+
 

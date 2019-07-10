@@ -264,8 +264,8 @@ function MatchingTableObjects(element, data) {
             attention: 0,
             analysis: 1,
             decision: -1,
-            description: "Пустота",
-            recommendation: ["Пустота"]
+            description: "В экстремальной ситуации у тебя отлична развита скорость анализа ситуации, сохраняется достаточный уровень переключения внимания. Значительно затруднены память (важная способность для фиксации происходящего и запоминания конкретных предметов) и скорость принятия решений.",
+            recommendation: ["Вам необходимо развивать способность эффективного запоминания в искусственно созданных условиях, например, в дефиците времени.", "Регулярно тренируйте сам процесс принятия решений. Когда есть необходимость принимать какое-либо решение,  думайте спокойно, расслабленно, внимательно, не теряя времени, но не торопясь. Спокойно сомневайтесь, взвешивайте за и против. Один из интересных приемов: подумайте, какое решение принял бы на вашем месте хорошо знакомый вам человек с хорошей головой и сильным характером. Если вы понимаете, какое будет его решение, значит, это и будетвашим решением.", "Переключение внимания можно довести до более высокого уровня, чтобы в критических обстоятельствах у вас была более полная картина происходящего."]
         },
         obj_17: {
             memory: -1,
@@ -1025,7 +1025,7 @@ function MatchingTableObjects(element, data) {
 
         if (step == 0){
 
-            console.log("step === 0");
+            // console.log("step === 0");
 
 
             $(element).closest('.problem').find('.notification').hide();
@@ -1061,7 +1061,7 @@ function MatchingTableObjects(element, data) {
                         $("#" + next_choiser_id, element).show(500);
 
                         if(next_tr_id == 'tr-5'){
-                            $('#lol_tr', element).show();
+                            $('#second_tr', element).show();
                         }
 
                         $("#" + next_tr_id, element).show(500);
@@ -1123,11 +1123,11 @@ function MatchingTableObjects(element, data) {
 
         $(".choiser", element).hide();
         $(".conf-table", element).hide();
+        setAnswer();
     }
-
-    $(document).ready(function () {
-        $("input[type=text]", element).hide()
-    });
+    // $(document).ready(function () {
+    //     $("input[type=text]", element).hide()
+    // });
     $(document).ready(function () {
         $("span.message", element).hide()
     });
@@ -1140,8 +1140,8 @@ function MatchingTableObjects(element, data) {
     var css = `
     
     .next-btn-wrap{
-        text-align: center;
-        padding: 20px;
+        text-align: center !important;
+        padding: 20px !important;
     }
     
     .conf-text{
@@ -1378,7 +1378,7 @@ function MatchingTableObjects(element, data) {
 
 
     css += "#" + element.id + " .capa_inputtype{text-align: center !important;}";
-    var style = document.createElement("style")
+    var style = document.createElement("style");
     style.id = "matching_table";
     if (style.styleSheet) {
         style.styleSheet.cssText = css;
@@ -1388,4 +1388,4 @@ function MatchingTableObjects(element, data) {
     if (!document.querySelector("style#matching_table")) document.querySelector("head").appendChild(style);
 }
 
-MatchingTableActivation(".matching_table_dych_0")
+MatchingTableActivation(".matching_table_dych_0");

@@ -256,7 +256,7 @@ function MatchingTableObjects(element, data) {
                     $("#" + next_choiser_id, element).show(500);
 
                     if(next_tr_id == 'tr-5'){
-                        $('#lol_tr', element).show();
+                        $('#second_tr', element).show();
                     }
 
                     $("#" + next_tr_id, element).show(500);

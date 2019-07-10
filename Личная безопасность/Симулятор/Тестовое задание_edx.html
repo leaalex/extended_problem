@@ -1,6 +1,12 @@
-<!--<script type="text/javascript" src="simulator.js"></script>-->
-<link rel="stylesheet" type="text/css" href="./simulator.css">
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<problem>
+
+<link rel="stylesheet" type="text/css" href="/static/simulator.css"></link>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+<script type="loncapa/python">
+def check_answer(expect, ans):
+    return {'input_list': [{'ok': True, 'msg': 'Kek', 'grade_decimal': 1}, ]}
+</script>
 
 <script type="text/javascript">
     window.__define = window.define;
@@ -8,7 +14,7 @@
     window.define = undefined;
     window.require = undefined;
 </script>
-<script type="text/javascript" src="./simulator.js"></script>
+<script type="text/javascript" src="/static/simulator_edx.js"></script>
 <script type="text/javascript">
     window.define = window.__define;
     window.require = window.__require;
@@ -18,7 +24,16 @@
 
 
 
-<div id="task_container"></div>
+<div id="task_container">
+
+    <div id="simulator_input">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+        <!-- <div class="message-about-grade"></div> -->
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -475,9 +490,10 @@
         element: document.getElementById('task_container'),
         messages: messages,
         things: things_list,
-        images_src: "images/",
+        images_src: "https://courses.openedu.ru/asset-v1:urfu+MCS+fall_2019+type@asset+block@",
         first_msg: "msg_1",
         // out_of_turn: "msg_3",
+        edx_mode: true,
         debug: true,
 
         options: {
@@ -487,7 +503,6 @@
             things_grid: "fifths"
         }
     });
-
 
 
     /***
@@ -514,3 +529,5 @@
 
 
 </script>
+
+</problem>

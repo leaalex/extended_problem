@@ -134,7 +134,22 @@
 </style>
 
 
+
+
+<script type="text/javascript">
+  window.__define = window.define;
+  window.__require = window.require;
+  window.define = undefined;
+  window.require = undefined;
+</script>
 <script type="text/javascript" src="/static/Chart.js"></script>
+<script type="text/javascript">
+  window.define = window.__define;
+  window.require = window.__require;
+  window.__define = undefined;
+  window.__require = undefined;
+</script>
+
 <script type="text/javascript" charset="utf-8">
 
 // двухбуквенный код
@@ -315,7 +330,7 @@ var SchulteTable = function (elem, numbers_arr, stage, table_width, delay_sec) {
     });
 
     var chartJSContainer_wrap = $("<div/>",{ style: "padding: 10px"});
-    var chartJSContainer = $("<canvas>", {id:"chartJSContainer", width:"600", height:"400"}).appendTo(chartJSContainer_wrap)
+    var chartJSContainer = $("<canvas>", {id:"chartJSContainer", width:"600", height:"400"}).appendTo(chartJSContainer_wrap);
     chartJSContainer_wrap.appendTo(result_wrap);
 
     $(result_wrap).append("<p></p>");
