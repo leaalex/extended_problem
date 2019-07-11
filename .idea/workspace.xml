@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="tsts">
-      <change afterPath="$PROJECT_DIR$/tables_training_apparatus/Chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/matching_table/matching_table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych.js" beforeDir="false" afterPath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych_0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/humor_style/humor_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/humor_style/humor_style.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html" beforeDir="false" afterPath="$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Задание 1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twelve_numbers/twelve_numbers.html" beforeDir="false" afterPath="$PROJECT_DIR$/twelve_numbers/twelve_numbers.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" afterDir="false" />
     </list>
     <ignored path="extended_problem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,51 +29,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13980">
-              <caret line="932" selection-start-line="932" selection-end-line="944" selection-end-column="9" />
-              <folding>
-                <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#2;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#3;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#4;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#5;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#6;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#7;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#8;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#5;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#1;n#tr#8;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="347" column="16" lean-forward="true" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
+            <state relative-caret-position="195">
+              <caret line="349" column="66" lean-forward="true" selection-start-line="349" selection-start-column="66" selection-end-line="349" selection-end-column="66" />
               <folding>
-                <element signature="e#1405#1869#0" />
-                <element signature="e#1913#5583#0" />
-                <element signature="e#5628#6484#0" />
-                <element signature="e#6521#7197#0" />
-                <element signature="e#7245#7678#0" />
                 <element signature="n#!!block;n#Choice#0;n#!!block;n#Simulator#0" />
-                <element signature="e#13180#13229#0" />
                 <element signature="n#!!block;n#log#0;n#!!block;n#Simulator#0" />
                 <element signature="n#!!block;n#Answer#0;n#!!block;n#Simulator#0" />
                 <element signature="n#!!block;n#create#0;n#!!block;n#Simulator#0" />
@@ -90,37 +44,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-              <folding>
-                <element signature="e#718#14516#0" />
-                <element signature="e#14541#16382#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matching_table/matching_table_mobile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#1527#1780#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="211" column="28" selection-start-line="211" selection-start-column="28" selection-end-line="211" selection-end-column="28" />
+              <caret line="116" column="46" lean-forward="true" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -138,20 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>requ</find>
-      <find>chart</find>
-      <find>chartJSContainer</find>
-      <find>Chart</find>
-      <find>obj_16</find>
-      <find>= 24</find>
-      <find>next-btn-wrap</find>
-      <find>lol_tr</find>
-      <find>secon</find>
-      <find>lol</find>
-      <find>second</find>
-      <find>out_of_turn</find>
-      <find>Ваши вещи:</find>
-      <find>createUserThingsBlock</find>
       <find>Ваши вещи</find>
       <find>use_things</find>
       <find>this.html_element</find>
@@ -168,6 +91,20 @@
       <find>settings.ele</find>
       <find>answer</find>
       <find>this.init</find>
+      <find>req</find>
+      <find>current_mgs</find>
+      <find>createResultBlockRT</find>
+      <find>check_button_wrap</find>
+      <find>create_RT_aswer_table</find>
+      <find>check_button</find>
+      <find>instruction_general_2</find>
+      <find>.msg-block .message-image</find>
+      <find>instruction_label</find>
+      <find>result_label</find>
+      <find>result_instruction</find>
+      <find>chart</find>
+      <find>sort</find>
+      <find>console</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -211,38 +148,38 @@
         <option value="$PROJECT_DIR$/Личная безопасность/simulator.css" />
         <option value="$PROJECT_DIR$/Личная безопасность/Тестовое задание.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/simulator.js" />
-        <option value="$PROJECT_DIR$/twelve_numbers/twelve_numbers.html" />
         <option value="$PROJECT_DIR$/numerical_series/numerical_series.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/лес один.js" />
         <option value="$PROJECT_DIR$/test.html" />
-        <option value="$PROJECT_DIR$/humor_style/humor_style.html" />
-        <option value="$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html" />
         <option value="$PROJECT_DIR$/semantic_memory/semantic_memory.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/Задание 3.html" />
         <option value="$PROJECT_DIR$/matching_table/matching_table_mobile.js" />
         <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile.js" />
         <option value="$PROJECT_DIR$/Личная безопасность/tmp.js" />
-        <option value="$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html" />
         <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile_dych.js" />
         <option value="$PROJECT_DIR$/matching_table/matching_table_mobile_dych.js" />
         <option value="$PROJECT_DIR$/Личная безопасность/Задание 1.html" />
         <option value="&lt;d1d3df5c-f943-4932-9da8-f323a0d4146b&gt;/matching_table/matching_table_mobile_dych_0.js" />
         <option value="$PROJECT_DIR$/matching_table/matching_table_mobile_dych_0.js" />
         <option value="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" />
-        <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css" />
         <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" />
         <option value="$PROJECT_DIR$/matching_table/matching_table.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.js" />
         <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" />
+        <option value="$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html" />
+        <option value="$PROJECT_DIR$/twelve_numbers/twelve_numbers.html" />
         <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" />
+        <option value="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css" />
+        <option value="$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html" />
+        <option value="$PROJECT_DIR$/humor_style/humor_style.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="184" />
-    <option name="y" value="328" />
+    <option name="x" value="154" />
+    <option name="y" value="179" />
     <option name="width" value="2055" />
-    <option name="height" value="882" />
+    <option name="height" value="1191" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -264,26 +201,6 @@
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
               <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
               <item name="humor_style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="matching_table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="munsterberg_test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="numerical_series" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="extended_problem" type="462c0819:PsiDirectoryNode" />
-              <item name="semantic_memory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="extended_problem" type="b2602c69:ProjectViewProjectNode" />
@@ -535,7 +452,7 @@
       <workItem from="1559562705091" duration="56667000" />
       <workItem from="1560513267916" duration="156173000" />
       <workItem from="1562320039492" duration="3514000" />
-      <workItem from="1562326500210" duration="45008000" />
+      <workItem from="1562326500210" duration="53699000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -555,10 +472,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="771942000" />
+    <option name="totallyTimeSpent" value="780633000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="184" y="328" width="2055" height="882" extended-state="0" />
+    <frame x="154" y="179" width="2055" height="1191" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18317571" />
@@ -576,7 +493,7 @@
       <window_info anchor="bottom" id="Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.15727003" />
-      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.11288181" />
+      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.08003767" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -830,13 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-706">
-          <caret line="416" column="24" selection-start-line="416" selection-start-column="24" selection-end-line="416" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/numerical_series/numerical_series.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4786">
@@ -860,29 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="329" column="19" lean-forward="true" selection-end-line="366" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="399" column="41" lean-forward="true" selection-end-line="555" />
-          <folding>
-            <element signature="e#1123#3424#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="363" lean-forward="true" selection-start-line="363" selection-end-line="363" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -923,16 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="281" lean-forward="true" selection-start-line="281" selection-end-line="281" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/semantic_memory/semantic_memory.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8132">
@@ -968,51 +845,6 @@
             <element signature="n#style#0;n#tr#7;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#0;n#problem#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#div#0;n#problem#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="211" column="28" selection-start-line="211" selection-start-column="28" selection-end-line="211" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13980">
-          <caret line="932" selection-start-line="932" selection-end-line="944" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#2;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#3;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#4;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#5;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#6;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#7;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#8;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#5;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#1;n#tr#8;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1059,23 +891,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Задание 1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13980">
+          <caret line="932" selection-start-line="932" selection-end-line="944" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#2;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#3;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#4;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#5;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#6;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#7;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#8;n#table#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#5;n#div#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#5;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#1;n#tr#8;n#table#0;n#div#0;n#solution#0;n#div#0;n#problem#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tables_training_apparatus/tables_training_apparatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="284" column="49" lean-forward="true" selection-end-line="578" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twelve_numbers/twelve_numbers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="175" column="139" lean-forward="true" selection-start-line="175" selection-start-column="139" selection-end-line="175" selection-end-column="139" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="347" column="16" lean-forward="true" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
+        <state relative-caret-position="195">
+          <caret line="349" column="66" lean-forward="true" selection-start-line="349" selection-start-column="66" selection-end-line="349" selection-end-column="66" />
           <folding>
-            <element signature="e#1405#1869#0" />
-            <element signature="e#1913#5583#0" />
-            <element signature="e#5628#6484#0" />
-            <element signature="e#6521#7197#0" />
-            <element signature="e#7245#7678#0" />
             <element signature="n#!!block;n#Choice#0;n#!!block;n#Simulator#0" />
-            <element signature="e#13180#13229#0" />
             <element signature="n#!!block;n#log#0;n#!!block;n#Simulator#0" />
             <element signature="n#!!block;n#Answer#0;n#!!block;n#Simulator#0" />
             <element signature="n#!!block;n#create#0;n#!!block;n#Simulator#0" />
             <element signature="n#!!block;n#addEvent#0;n#!!block;n#Simulator#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spielberger_test/spielberger_test_rt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="63" selection-start-line="63" selection-end-line="80" selection-end-column="45" />
+          <folding>
+            <element signature="e#8523#10508#0" />
+            <element signature="e#10541#12906#0" />
+            <element signature="e#12938#13396#0" />
+            <element signature="e#13427#13873#0" />
+            <element signature="e#13995#15081#0" />
+            <element signature="e#15127#16222#0" />
+            <element signature="e#16267#17652#0" />
+            <element signature="e#17697#19093#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="116" column="46" lean-forward="true" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/humor_style/humor_style.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="450" column="30" lean-forward="true" selection-start-line="450" selection-start-column="30" selection-end-line="450" selection-end-column="30" />
+          <folding>
+            <element signature="e#18343#18364#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
         </state>
       </provider>
     </entry>

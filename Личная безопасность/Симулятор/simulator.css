@@ -106,6 +106,7 @@
 
 .msg-block .message-image{
     width: 100%;
+    min-height: 500px;
 }
 
 .msg-block .message-controls{

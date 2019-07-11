@@ -115,7 +115,7 @@
                 start_text_1: "Русскоязычная адаптация опросника сделана в 2013 году группой авторов: Е. М. Иванова, О. В. Митина, А. С. Зайцева, Е. А. Стефаненко, С. Н. Ениколопов.",
                 instruction_label: "Инструкция",
                 start_instruction: "Люди выражают и воспринимают юмор различными способами. Ниже вы увидите список утверждений, описывающих различные пути выражения юмора. Пожалуйста, внимательно прочитайте каждое утверждение и укажите степень вашего согласия или несогласия с ним, используя семибальную шкалу.",
-                result_instruction: "Присущие Вам типы юмора",
+                result_instruction: "Ваш индивидуальный профиль стилей чувства юмора",
                 affiliated_label: "Аффилиативный юмор",
                 self_sustaining_label: "Самоподдерживающий юмор",
                 aggressive_label: "Агрессивный юмор",
@@ -332,11 +332,12 @@
         function createResultBlock() {
 
             var result_block = $("<div>", {
-               html: "<h2>" + user_labels.result_label + "</h2>",
+               html: "",
+                   // "<h2>" + user_labels.result_label + "</h2>",
                class: ""
             });
 
-            $(result_block).append("<p>" + user_labels.result_instruction + ": </p>");
+            $(result_block).append("<h2>" + user_labels.result_instruction + "</h2>");
 
 
             var result =  set_result();
@@ -346,39 +347,103 @@
 
 
 
-            new Chart(chart, {
-                type: 'radar',
+            // new Chart(chart, {
+            //     type: 'radar',
+            //     data: {
+            //         labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
+            //         datasets: [
+            //             {
+            //                 fill: true,
+            //                 borderColor: "#046b99",
+            //                 pointBorderColor: "#fff",
+            //                 pointBackgroundColor: "#046b99",
+            //                 backgroundColor: "#046b9908",
+            //                 pointBorderColor: "#fff",
+            //                 data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining]
+            //             }
+            //         ]
+            //     },
+            //     options: {
+            //         legend:{
+            //             display: false
+            //         },
+            //         responsive:true,
+            //         // maintainAspectRatio: false,
+            //         scale: {
+            //             ticks: {
+            //                 beginAtZero: true,
+            //                 max: 10,
+            //                 fontSize: 16,
+            //             },
+            //             angleLines: {
+            //                 display: true,
+            //                 color: "#046b99",
+            //             },
+            //             pointLabels: {
+            //                 callback: function(value, index, values) {
+            //                     // console.log(value);
+            //                     return value;
+            //                 },
+            //                 // fontColor: "gray",
+            //                 fontSize: 16,
+            //             },
+            //         },
+            //         tooltips: {
+            //             callbacks: {
+            //                 label: function(tooltipItem, data) {
+            //                     var label = user_labels.points_label + ': ';
+            //                     label += Math.round(tooltipItem.yLabel * 100) / 100;
+            //                     return label;
+            //                 }
+            //             },
+            //             fontSize: 16,
+            //         },
+            //
+            //
+            //     }
+            // });
+
+            var color = Chart.helpers.color;
+            new Chart.PolarArea(chart, {
+                // type: 'radar',
                 data: {
                     labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
                     datasets: [
                         {
-                            // label: "2050",
-                            fill: true,
-                            borderColor: "#046b99",
-                            pointBorderColor: "#fff",
-                            pointBackgroundColor: "#046b99",
-                            backgroundColor: "#046b9908",
-                            pointBorderColor: "#fff",
-                            data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining]
+                            data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining],
+                            // data: [3,5,7,2], // test data
+                            backgroundColor: [
+                                color("rgb(255, 99, 132)").alpha(0.5).rgbString(), // red
+                                color("rgb(255, 159, 64)").alpha(0.5).rgbString(), // orange
+                                color("rgb(255, 205, 86)").alpha(0.5).rgbString(), // yellow
+                                color("rgb(54, 162, 235)").alpha(0.5).rgbString(), // blue
+                            ],
                         }
                     ]
                 },
                 options: {
                     legend:{
-                        display: false
+                        display: true,
+                        position: 'right',
+                        labels: {
+                            fontSize: 16,
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
                     },
                     responsive:true,
                     // maintainAspectRatio: false,
                     scale: {
                         ticks: {
                             beginAtZero: true,
-                            max: 10,
+                            max: 8,
                             fontSize: 16,
                         },
-                        angleLines: {
-                            display: true,
-                            color: "#046b99",
-                        },
+                        // angleLines: {
+                        //     display: true,
+                        //     color: "#046b99",
+                        // },
                         pointLabels: {
                             callback: function(value, index, values) {
                                 // console.log(value);
@@ -391,20 +456,30 @@
                     tooltips: {
                         callbacks: {
                             label: function(tooltipItem, data) {
-                                var label = user_labels.points_label + ': ';
+                                // console.log(tooltipItem, data, this.data.datasets.labels[tooltipItem.index]);
+                                // console.log(data.labels[tooltipItem.index]);
+                                var label = data.labels[tooltipItem.index] + ": ";
+                                    // user_labels.points_label + ': ';
                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
                                 return label;
                             }
                         },
                         fontSize: 16,
                     },
+                    animation: {
+                        animateRotate: false,
+                        animateScale: true
+                    },
 
 
                 }
             });
+
             $(result_block).append(chart);
 
-            Object.keys(result).forEach(function (item) {
+            // console.log(result);
+
+            Object.keys(result).sort(function(a,b){return result[b]-result[a]}).forEach(function (item) {
                 $(result_block).append("<p><strong>" + user_labels[item+"_1_label"] + " (" + user_labels.points_label + ": " + result[item] + ")</strong> "  + user_labels[item+"_description"] +  "<p>");
             });
 
@@ -497,7 +572,7 @@
 
     var humor_style = new HumorStyle(humor_style_block);
 
-    console.log(humor_style)
+    // console.log(humor_style)
 
 
     });

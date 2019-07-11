@@ -349,13 +349,13 @@ function Simulator(settings) {
 
         console.log(html_element.closest(".simulator-container"));
 
-        answer.setJSON({answer: {"current_mgs": id}});
+        answer.setJSON({answer: {"current_msg": id}});
 
         $(save_button).trigger('click');
     }
 
 
-    console.log(save_button)
+    console.log(save_button);
 
     this.clear_html = function () {
         this.html_element.innerHTML = "";
@@ -469,7 +469,7 @@ function Simulator(settings) {
         answer = new Answer(document.querySelector("#simulator_input").querySelector("input[type='text']"));
 
         if(answer.get()){
-            let curr_msg = answer.getJSON()["answer"]["current_mgs"];
+            let curr_msg = answer.getJSON()["answer"]["current_msg"];
 
             first_msg = curr_msg;
             // console.log(this);
