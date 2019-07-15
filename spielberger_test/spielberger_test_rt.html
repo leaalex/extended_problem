@@ -61,24 +61,30 @@
         const language = 'ru'; // ru or en
         const translations = {
             en: {
-                // start_btn_label: "Начать",
-                // reset_btn_label: "Начать заново",
-                // check_btn_label: "Проверить",
-                // instruction_label: "Инструкция",
-                // instruction_general_1: "Данный текст является надежным и информативным способом самооценки уровня тревожности в данный момент (реактивная тревожность как состояние) и личностной тревожности (как устойчивая характеристика человека).",
-                // instruction_general_2: "Личностная тревожность характеризует устойчивую склонность воспринимать большой круг ситуаций как угрожающие, реагировать на такие ситуации состоянием тревоги. Реактивная тревожность характеризуется напряжением, беспокойством, нервозностью. Очень высокая реактивная тревожность вызывает нарушения внимания, иногда нарушение тонкой координации. Очень высокая личностная тревожность прямо коррелирует с наличием невротического конфликта, с эмоциональными и невротическими срывами и с психосоматическими заболеваниями.",
-                // instruction_general_3: "Но тревожность не является изначально негативной чертой. Определенный уровень тревожности — естественная и обязательная особенность активной личности. При этом существует оптимальный индивидуальный уровень «полезной тревоги».",
-                // rt_label: "Реактивная тревожность",
-                // lt_label: "Личностная тревожность",
-                // rt_low: "низкая тревожность",
-                // rt_medium: "умеренная тревожность",
-                // rt_high: "высокая тревожность",
-                // lt_low: "низкая тревожность",
-                // lt_medium: "умеренная тревожность",
-                // lt_high: "высокая тревожность",
-                // instruction_rt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ В ДАННЫЙ МОМЕНТ. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
-                // instruction_lt_text: "Прочитайте внимательно каждое из приведенных ниже предложений и зачеркните соответствующую цифру справа в зависимости от того, КАК ВЫ СЕБЯ ЧУВСТВУЕТЕ ОБЫЧНО. Над вопросами долго не задумывайтесь, поскольку правильных или неправильных ответов нет.",
-                // result_label: "Результаты"
+                start_btn_label: "Start test now",
+                reset_btn_label: "Restart",
+                check_btn_label: "Check",
+                instruction_label: "Instruction",
+                instruction_general_1: "The State-Trait Anxiety Inventory (STAI) has been used extensively in research and clinical practice. It comprises separate self-report scales for measuring state and trait anxiety. The S-Anxiety scale (STAI Form Y-1) consists of twenty statements that evaluate how respondents feel “right now, at this moment.” The T-Anxiety scale (STAI Form Y-2) consists of twenty statements that assess how people generally feel. A test developed by C.D. Spielberger.",
+                rt_label: "State anxiety (S-Anxiety) reactions",
+                rt_description_text: "The essential qualities evaluated by the STAI S-Anxiety scale are feelings of apprehension, tension, nervousness, and worry. In addition to assessing how people feel “right now,” the STAI S-Anxiety scale may also be used to evaluate how they felt at a particular time in the recent past and how they anticipate they will feel either in a specific situation that is likely to be encountered in the future or in a variety of hypothetical situations. Scores on the S-Anxiety scale increase in response to physical danger and psychological stress and decrease as a result of relaxation training.",
+                lt_label: "Trait anxiety (T-Anxiety)",
+                lt_description_text: "refers to relatively stable individual differences in anxietyproneness, that is, to differences between people in the tendency to perceive stressful situation as dangerous or threatening and to respond to such situations with elevations in the intensity of their state anxiety (S-Anxiety) reactions. T-Anxiety may also reflect individual differences in the frequency and intensity with which anxiety states have been manifested in the past, and in the probability that S-Anxiety will be experienced in the future. The stronger the anxiety trait, the more probable that the individual will experience more intense elevations in S-Anxiety in a threatening situation.",
+                rt_low: "low anxiety",
+                rt_low_desc: "Low anxiety implies insufficient attention or unstable motivation to perform tasks. A person remains calm and sometimes does not notice certain risks. Experts recommend that you pay increased attention to the motives of activity and increase the sense of responsibility.",
+                rt_medium: "Medium anxiety",
+                rt_medium_desc: " Medium anxiety implies an adequate response without undue anxiety and insufficient attention to the situation.",
+                rt_high: "High anxiety",
+                rt_high_desc: " High anxiety suggests a tendency to anxiety in a certain situation. Experts recommend that you reduce the subjective significance of the situation and shift the focus to understanding the activities and creating a sense of confidence in success.",
+                lt_low: "Low anxiety",
+                lt_low_desc: "Low anxiety involves excessive serenity and lack of attention to the risks. In problematic situations, you can not take into account the prerequisites to negative consequences, which can lead to a worsening of the situation.",
+                lt_medium: "Medium anxiety",
+                lt_medium_desc: "Medium anxiety suggests a lack of anxiety and anxiety.",
+                lt_high: "High anxiety",
+                lt_high_desc: "High anxiety implies an increased tendency to anxiety and disturbing feelings for no particular reason. You have noted the emotional reaction of waiting for danger from the possible consequences of events, a premonition of possible failure, an imaginary threat.",
+                instruction_rt_text: "A number of statements which people have used to describe themselves are given below. Read each statement and then blacken the appropriate circle to the right of the statement to indicate how you feel right now, that is, at this moment. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best.",
+                instruction_lt_text: "A number of statements which people have used to describe themselves are given below. Read each statement and then blacken in the appropriate circle to the right of the statement to indicate you generally feel. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best.",
+                result_label: "Results"
             },
             ru: {
                 start_btn_label: "Начать",
@@ -128,167 +134,341 @@
             var rt_block = $("<div>", {id: "rt_block", class: "table-block"}).appendTo(html_element);
             var lt_block = $("<div>", {id: "lt_block", class: "table-block"}).appendTo(html_element);
 
-            let RT_questions = {
-                question_1: {
-                    text: "Я спокоен"
+            let RT_questions_translations = {
+                ru: {
+                    question_1: {
+                        text: "Я спокоен"
+                    },
+                    question_2: {
+                        text: "Мне ничто не угрожает"
+                    },
+                    question_3: {
+                        text: "Я нахожусь в напряжении"
+                    },
+                    question_4: {
+                        text: "Я испытываю сожаление"
+                    },
+                    question_5: {
+                        text: "Я чувствую себя свободно"
+                    },
+                    question_6: {
+                        text: "Я расстроен"
+                    },
+                    question_7: {
+                        text: "Меня волнуют возможные неудачи"
+                    },
+                    question_8: {
+                        text: "Я чувствую себя отдохнувшим"
+                    },
+                    question_9: {
+                        text: "Я встревожен"
+                    },
+                    question_10: {
+                        text: "Я испытываю чувство внутреннего удовлетворения"
+                    },
+                    question_11: {
+                        text: "Я уверен в себе"
+                    },
+                    question_12: {
+                        text: "Я нервничаю"
+                    },
+                    question_13: {
+                        text: "Я не нахожу себе места"
+                    },
+                    question_14: {
+                        text: "Я взвинчен"
+                    },
+                    question_15: {
+                        text: "Я не чувствую скованности, напряженности"
+                    },
+                    question_16: {
+                        text: "Я доволен"
+                    },
+                    question_17: {
+                        text: "Я озабочен"
+                    },
+                    question_18: {
+                        text: "Я слишком возбужден и мне не по себе"
+                    },
+                    question_19: {
+                        text: "Мне радостно"
+                    },
+                    question_20: {
+                        text: "Мне приятно"
+                    }
                 },
-                question_2: {
-                    text: "Мне ничто не угрожает"
-                },
-                question_3: {
-                    text: "Я нахожусь в напряжении"
-                },
-                question_4: {
-                    text: "Я испытываю сожаление"
-                },
-                question_5: {
-                    text: "Я чувствую себя свободно"
-                },
-                question_6: {
-                    text: "Я расстроен"
-                },
-                question_7: {
-                    text: "Меня волнуют возможные неудачи"
-                },
-                question_8: {
-                    text: "Я чувствую себя отдохнувшим"
-                },
-                question_9: {
-                    text: "Я встревожен"
-                },
-                question_10: {
-                    text: "Я испытываю чувство внутреннего удовлетворения"
-                },
-                question_11: {
-                    text: "Я уверен в себе"
-                },
-                question_12: {
-                    text: "Я нервничаю"
-                },
-                question_13: {
-                    text: "Я не нахожу себе места"
-                },
-                question_14: {
-                    text: "Я взвинчен"
-                },
-                question_15: {
-                    text: "Я не чувствую скованности, напряженности"
-                },
-                question_16: {
-                    text: "Я доволен"
-                },
-                question_17: {
-                    text: "Я озабочен"
-                },
-                question_18: {
-                    text: "Я слишком возбужден и мне не по себе"
-                },
-                question_19: {
-                    text: "Мне радостно"
-                },
-                question_20: {
-                    text: "Мне приятно"
-                }
-            };
-            let LT_questions = {
-                question_21: {
-                    text: "Я испытываю удовольствие"
-                },
-                question_22: {
-                    text: "Я очень быстро устаю"
-                },
-                question_23: {
-                    text: "Я легко могу заплакать"
-                },
-                question_24: {
-                    text: "Я хотел бы быть таким же счастливым, как и другие"
-                },
-                question_25: {
-                    text: "Нередко я проигрываю из-за того, что недостаточно быстро принимаю решения."
-                },
-                question_26: {
-                    text: "Обычно я чувствую себя бодрым  "
-                },
-                question_27: {
-                    text: "Я спокоен, хладнокровен и собран"
-                },
-                question_28: {
-                    text: "Ожидаемые трудности обычно очень тревожат меня"
-                },
-                question_29: {
-                    text: "Я слишком переживаю из-за пустяков "
-                },
-                question_30: {
-                    text: "Я вполне счастлив"
-                },
-                question_31: {
-                    text: "Я принимаю все слишком близко к сердцу..."
-                },
-                question_32: {
-                    text: "Мне не хватает уверенности в себе"
-                },
-                question_33: {
-                    text: "Обычно я чувствую себя в безопасности .."
-                },
-                question_34: {
-                    text: "Я стараюсь избегать критических ситуаций и трудностей"
-                },
-                question_35: {
-                    text: "У меня бывает хандра"
-                },
-                question_36: {
-                    text: "Я доволен"
-                },
-                question_37: {
-                    text: "Всякие пустяки отвлекают и волнуют меня.."
-                },
-                question_38: {
-                    text: "Я так сильно переживаю свои разочарования, что потом долго не могу о них за­быть"
-                },
-                question_39: {
-                    text: "Я уравновешенный человек "
-                },
-                question_40: {
-                    text: "Меня охватывает сильное беспокойство, когда я думаю о своих делах и заботах ..."
+                en: {
+                    question_1: {
+                        text: "I feel calm"
+                    },
+                    question_2: {
+                        text: "I feel secure"
+                    },
+                    question_3: {
+                        text: "I am tense"
+                    },
+                    question_4: {
+                        text: "I feel strained"
+                    },
+                    question_5: {
+                        text: "I feel at ease"
+                    },
+                    question_6: {
+                        text: "feel upset"
+                    },
+                    question_7: {
+                        text: "I am presently worrying over possible misfortunes"
+                    },
+                    question_8: {
+                        text: "I feel satisfied"
+                    },
+                    question_9: {
+                        text: "I feel frightened"
+                    },
+                    question_10: {
+                        text: "I feel comfortable"
+                    },
+                    question_11: {
+                        text: "I feel self-confident"
+                    },
+                    question_12: {
+                        text: "I feel nervous"
+                    },
+                    question_13: {
+                        text: "I am jittery"
+                    },
+                    question_14: {
+                        text: "I feel indecisive"
+                    },
+                    question_15: {
+                        text: "I am relaxed"
+                    },
+                    question_16: {
+                        text: "I feel content"
+                    },
+                    question_17: {
+                        text: "I am worried"
+                    },
+                    question_18: {
+                        text: "I feel confused"
+                    },
+                    question_19: {
+                        text: "I feel steady"
+                    },
+                    question_20: {
+                        text: "I feel pleasant"
+                    }
                 }
             };
 
-            let RT_choices = {
-                a: {
-                    text: "Нет, это не так",
-                    value: 1
+            let LT_questions_translations = {
+                ru: {
+                    question_21: {
+                        text: "Я испытываю удовольствие"
+                    },
+                    question_22: {
+                        text: "Я очень быстро устаю"
+                    },
+                    question_23: {
+                        text: "Я легко могу заплакать"
+                    },
+                    question_24: {
+                        text: "Я хотел бы быть таким же счастливым, как и другие"
+                    },
+                    question_25: {
+                        text: "Нередко я проигрываю из-за того, что недостаточно быстро принимаю решения."
+                    },
+                    question_26: {
+                        text: "Обычно я чувствую себя бодрым  "
+                    },
+                    question_27: {
+                        text: "Я спокоен, хладнокровен и собран"
+                    },
+                    question_28: {
+                        text: "Ожидаемые трудности обычно очень тревожат меня"
+                    },
+                    question_29: {
+                        text: "Я слишком переживаю из-за пустяков "
+                    },
+                    question_30: {
+                        text: "Я вполне счастлив"
+                    },
+                    question_31: {
+                        text: "Я принимаю все слишком близко к сердцу..."
+                    },
+                    question_32: {
+                        text: "Мне не хватает уверенности в себе"
+                    },
+                    question_33: {
+                        text: "Обычно я чувствую себя в безопасности .."
+                    },
+                    question_34: {
+                        text: "Я стараюсь избегать критических ситуаций и трудностей"
+                    },
+                    question_35: {
+                        text: "У меня бывает хандра"
+                    },
+                    question_36: {
+                        text: "Я доволен"
+                    },
+                    question_37: {
+                        text: "Всякие пустяки отвлекают и волнуют меня.."
+                    },
+                    question_38: {
+                        text: "Я так сильно переживаю свои разочарования, что потом долго не могу о них за­быть"
+                    },
+                    question_39: {
+                        text: "Я уравновешенный человек "
+                    },
+                    question_40: {
+                        text: "Меня охватывает сильное беспокойство, когда я думаю о своих делах и заботах ..."
+                    }
                 },
-                b: {
-                    text: "Пожалуй, так",
-                    value: 2
+                en: {
+                    question_21: {
+                        text: "I feel pleasant"
+                    },
+                    question_22: {
+                        text: "I feel nervous and restless"
+                    },
+                    question_23: {
+                        text: "I feel satisfied with myself"
+                    },
+                    question_24: {
+                        text: "I wish I could be as happy as others seem to be"
+                    },
+                    question_25: {
+                        text: "I feel like a failure."
+                    },
+                    question_26: {
+                        text: "I feel rested"
+                    },
+                    question_27: {
+                        text: "I am “calm, cool, and collected”"
+                    },
+                    question_28: {
+                        text: "I feel that difficulties are piling up so that I cannot overcome them"
+                    },
+                    question_29: {
+                        text: "I worry too much over something that really doesn’t matter"
+                    },
+                    question_30: {
+                        text: "I am happy"
+                    },
+                    question_31: {
+                        text: "I have disturbing thoughts..."
+                    },
+                    question_32: {
+                        text: "I lack self-confidence"
+                    },
+                    question_33: {
+                        text: "I feel secure.."
+                    },
+                    question_34: {
+                        text: "I make decisions easily"
+                    },
+                    question_35: {
+                        text: "I feel inadequate"
+                    },
+                    question_36: {
+                        text: "I am content"
+                    },
+                    question_37: {
+                        text: "Some unimportant thought runs through my mind and bothers me.."
+                    },
+                    question_38: {
+                        text: "I take disappointments so keenly that I can’t put them out of my mind"
+                    },
+                    question_39: {
+                        text: "I am a steady person"
+                    },
+                    question_40: {
+                        text: "I get in a state of tension or turmoil as I think over my recent concerns and interests..."
+                    }
                 },
-                c: {
-                    text: "Верно",
-                    value: 3
+            };
+
+            let RT_questions = RT_questions_translations[language];
+            let LT_questions = LT_questions_translations[language];
+
+            let RT_choices_translations = {
+                ru: {
+                    a: {
+                        text: "Нет, это не так",
+                        value: 1
+                    },
+                    b: {
+                        text: "Пожалуй, так",
+                        value: 2
+                    },
+                    c: {
+                        text: "Верно",
+                        value: 3
+                    },
+                    d: {
+                        text: "Совершенно верно",
+                        value: 4
+                    }
                 },
-                d: {
-                    text: "Совершенно верно",
-                    value: 4
+                en: {
+                    a: {
+                        text: "Not at all",
+                        value: 1
+                    },
+                    b: {
+                        text: "Somewhat",
+                        value: 2
+                    },
+                    c: {
+                        text: "Moderately so",
+                        value: 3
+                    },
+                    d: {
+                        text: "Very much so",
+                        value: 4
+                    }
                 }
             };
-            let LT_choices = {
-                a: {
-                    text: "Почти никогда",
-                    value: 1
+            let LT_choices_translations = {
+                ru: {
+                    a: {
+                        text: "Почти никогда",
+                        value: 1
+                    },
+                    b: {
+                        text: "Иногда",
+                        value: 2
+                    },
+                    c: {
+                        text: "Часто",
+                        value: 3
+                    },
+                    d: {
+                        text: "Почти всегда",
+                        value: 4
+                    }
                 },
-                b: {
-                    text: "Иногда",
-                    value: 2
-                },
-                c: {
-                    text: "Часто",
-                    value: 3
-                },
-                d: {
-                    text: "Почти всегда",
-                    value: 4
+                en: {
+                    a: {
+                        text: "Almost never",
+                        value: 1
+                    },
+                    b: {
+                        text: "Sometimes",
+                        value: 2
+                    },
+                    c: {
+                        text: "Often",
+                        value: 3
+                    },
+                    d: {
+                        text: "Almost always",
+                        value: 4
+                    }
                 }
             };
+            let RT_choices = RT_choices_translations[language];
+            let LT_choices = LT_choices_translations[language];
 
             create_RT_aswer_table();
             create_LT_aswer_table();

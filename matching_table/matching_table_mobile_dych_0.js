@@ -902,9 +902,6 @@ function MatchingTableObjects(element, data) {
         }
     })
 
-
-    console.log(difflib)
-
     $(".select-block select", element).change(function () {
         // console.log(this);
         setAnswer();

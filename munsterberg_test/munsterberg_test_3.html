@@ -175,7 +175,7 @@
         return Array(end - start + 1).fill().map((_, idx) => start + idx);
     }
 
-    const language = "ru";
+    const language = "en";
     const id_prefix = "let_num_";
     const id_preview = "preview_let_num_";
 
@@ -184,35 +184,34 @@
     // var translations = new Object();
     var translations = {
         en: {
-            start_btn_label: "Начать",
-            reset_btn_label: "Начать заново",
-            check_btn_label: "Проверить",
-            correct_count_label: "Правильно выбранных слов:",
-            correct_words: "Правильно выбранные слова (окрашены зеленым цветом)",
-            not_selected_words: "Невыбранные слова (выделены зеленой рамкой)",
-            incorrect_words: "Неверно выбранные слова (окрашены красным)",
-            selected_count_label: "Выделено слов:",
-            no_correct_label: "Нет правильно выбранных слов!",
-            all_correct_label: "Все слова выбраны правильно!",
-            selected_words_label: "Выделенные слова",
-            time_is_over_label: "Время вышло!",
-            instruction_label: "Инструкция",
-            instruction_wording: "В предложенном Вам наборе букв скрыты слова. Ваша задача – найти и выделить эти слова как можно быстрее. Перед началом выполнения теста Вам необходимо познакомится с интерфейсом. Для того, чтобы выделить выбранное слово необходимо навести курсор на первую букву того слова, которое хотите выбрать и кликнуть на нее. После чего довести до последней буквы в выбранном слове (выбранное слово будет динамически подчёркиваться), когда подчёркнутое слово будет соответствовать желаемому для выбора, кликните по последней букве в этом слове. Выбранное вами слово перечеркнется. В случае, если слово было выбрано с ошибкой наведите курсор на то слово, которое необходимо удалить (слово подсветится красным), последующее нажатие (на слово подсвеченное красным) удалит выбранное слово.",
-            of: "из", // применимо для "12 верных ответов __из__ 30"
-            example_wording: "Потренируйтесь работать с данным тренажером. В качестве примера Вам задан короткий буквенный текст, внутри которого спрятано слово «ПАМЯТЬ».",
-            example_label: "Пример",
-            before_start_wording: "Как только вы будет готовы к выполнению методики, нажмите на кнопку «НАЧАТЬ» и приступите к выполнению.",
-            time_wording: "Время выполнения задания",
-            time_value: " 2 минуты",
-            decoding_results_label: "Расшифровка результатов",
-            decoding_results_msg: "В данном тренажере оценивается количество выделенных слов и количество ошибок (пропущенные и неправильно выделенные слова).",
-            text_contain_label: "В тексте содержится", // 25 слов
-            words_label: "слов",
-            you_found_label: "Вы обнаружили",
-            words_10_15: "Вам следует уделять больше времени тренировке внимания. Фиксируйте свое внимание на деталях и мелочах. Используйте тренажеры данного раздела.",
-            words_16_20: "Ваше внимание близко к норме, но порой случаются сбои. Для развития концентрации внимания используйте тренажеры данного раздела.",
-            words_21_25: "Ваше внимание в полном порядке. Высокий уровень избирательности и концентрации внимания помогает вам продуктивно учиться и работать, фиксировать нужную информацию и своевременно ее воспроизводить.",
-        },
+            start_btn_label: "Start test now",
+            reset_btn_label: "Restart",
+            check_btn_label: "Check",
+            correct_count_label: "Correctly selected words:",
+            correct_words: "Correctly selected words (colored green)",
+            not_selected_words: "Unselected words (highlighted in green)",
+            incorrect_words: "Incorrectly selected words (colored red)",
+            selected_count_label: "Highlighted words:",
+            no_correct_label: "There are no correctly selected words!",
+            all_correct_label: "All words are selected correctly!",
+            selected_words_label: "Highlighted words",
+            time_is_over_label: "Time is over!",
+            instruction_label: "Instruction",
+            instruction_wording: "In the set of letters offered to you hidden words. Your task is to find and highlight these words as quickly as possible. Before starting the test, you need to get acquainted with the interface. In order to select the selected word, you must hover the cursor on the first letter of the word that you want to select and click on it. After that, bring to the last letter in the selected word (the selected word will be dynamically underlined), when the underlined word matches the desired one for selection, click on the last letter in this word. The selected word will be crossed out. If the word was chosen with an error, move the cursor to the word that needs to be deleted (the word will be highlighted in red), then pressing (on the word highlighted in red) will delete the selected word.",
+            of: "of", // применимо для "12 верных ответов __из__ 30"
+            example_wording: "Practice working with this simulator. As an example, you are given a short letter text within which the word “MEMORY” is hidden.",
+            example_label: "Example",
+            before_start_wording: "As soon as you are ready to carry out the procedure, click on the “Start test now” button and proceed to execution.",
+            time_wording: "Task time",
+            time_value: " 2 minutes",
+            decoding_results_label: "Results",
+            decoding_results_msg: "This simulator estimates the number of highlighted words and the number of errors (missing and incorrectly selected words).",
+            text_contain_label: "The text contains", // 25 words
+            words_label: "words",
+            you_found_label: "You discovered",
+            words_10_15: "You should spend more time training attention. Fix your attention on details and trifles. Use the simulators in this section.",
+            words_16_20: "Your attention is close to normal, but sometimes fails. To develop attention, use the simulators in this section.",
+            words_21_25: "Your attention is in order. A high level of selectivity and concentration helps you learn and work productively, record the necessary information and reproduce it in a timely manner.",        },
         ru: {
             start_btn_label: "Начать",
             reset_btn_label: "Начать заново",
@@ -410,16 +409,33 @@
             }).appendTo(start_wrap);
 
 
-            var correct_strings = ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"];
+            // console.log(language);
 
-            var src_str = "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт"
+            var correct_strings_translations = {
+                ru: ["солнце", "район", "новость", "факт", "экзамен", "прокурор", "теория", "хоккей", "телевизор", "память", "восприятие", "любовь", "спектакль", "радость", "народ", "гиена", "репортаж", "конкурс", "личность", "плавание", "комедия", "отчаяние", "лаборатория", "основание", "психиатрия"],
+                en: ["sun", "district", "news", "fact", "exam", "prosecutor", "theory", "hockey", "television", "memory", "perception", "love", "performance", "joy", "people", "hyena", "reportage", "competition", "personality", "swimming", "comedy", "despair", "laboratory", "foundation", "psychiatry"],
+            };
+
+            var correct_strings = correct_strings_translations[language];
+
+            var src_str_translations = {
+                ru: "бсолнцевтргщоцрайонзгучновостьхэьгчяфактуекэкзаментрочягшгцкпрокуроргурстабюетеорияентсджэбьамхоккейтрсицыфцуйгзхтелевизорсолджщзхюэлгщьбапамятьшогхеюжпждргщхэнздвосприятиейцукенгшщзхъвафыапролдблюбовьавфырплослдспектакльячсмитьбюжюерадостьвуфцпэждлорпкнародшлджьхэшщгиенакуыфйшрепортажэждорлафывюефбьконкурсйфячыцувскапрличностьзхжэьеюдшщглоджэпрплаваниедтлжэзбьтрдщшжнпркывкомедияшлдкцуйфотчаяниейфоячвтлджэхьфтасенлабораториягщдщнруцтргшщтлроснованиезщдэркэнтаопрукгвсмтрпсихиатриябплмстчьйсмтзацэъагнтэхт",
+                en: "bsunvrngschjtsdistrictzgucznewshkefgchyafacteukexamvezntroyagshgtskprosecutorguhrstabnyuetheoryentsdzhebydyimhockeytrsftsuigzhtelevisionsozdzhshzhkhyuhelgshbamemorysghobzheyuzhzhzhanzperceptionytsukengshshzhzhvavaaprildbloveavfirplosldperformanceyachsmitybyuzhuyujoyvuftspqedzhlorpkpeoplewljeshschschhyenakuyfyshreportageezhdorzlafyyufbcompetitionyfyachytsuvskabbzrpersonalityzhzheyyuyshgglodzheprswimmingdtlzhezbtrschshzhshnprkyvcomedyschizldkuyufdespairyfoyachvtldzhehftasenlaboratoryzhdderkefoundationdozlafyyufbdorzlafyyufbntaoprukgvsmtrpsychiatrybplmstscddsmtstzaatsezqagneeht"
+            };
+
+            var src_str = src_str_translations[language];
 
             var task_timer = new countdownTimer(timer_display[0], task_time + 1, {}, createResult);
 
             createPreview(instruction_block);
 
             function createPreview(block) {
-                var preview_str = "лгщьбапамятьшогхеюжп";
+                var preview_str_translations={
+                    ru: "лгщьбапамятьшогхеюжп",
+                    en: "bsunvrngschjtsdistri"
+                };
+
+                var preview_str = preview_str_translations[language];
                 var preview_task_block = $("<div>", {
                     class: "preview-task-block"
                 });
@@ -854,7 +870,7 @@
         };
 
 
-        var task_time =  2 * 60; // в секундах
+        var task_time = 2 * 60; // в секундах
         var munsterberg_test = new MunsterbergTest($("#munsterberg_test"), task_time);
 
         // $("#munsterberg_test_wrap").append(start_button);

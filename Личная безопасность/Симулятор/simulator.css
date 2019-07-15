@@ -1,4 +1,8 @@
 
+.xmodule_display.xmodule_CapaModule div.problem .notification{
+    display: none !important;
+}
+
 .simulator-container {
     width: 800px;
     /*width: 100%;*/
@@ -220,8 +224,12 @@
 }
 
 
-.start-button {
+button.start-button {
     display: block;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     font-size: 1.2em;
     padding: 0.46em 1.6em;
     border: 0.1em solid #3c6684 !important;
@@ -240,12 +248,18 @@
     cursor: pointer;
 }
 
-.start-button:hover {
+button.start-button:hover {
     text-shadow: 0 0 2em rgba(255, 255, 255, 1);
     background: #2e5d8a !important;
     border-color: #4a78a3 !important;
     background-image: none !important;
     box-shadow: none !important;
+}
+
+button.start-button:disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
 }
 
 

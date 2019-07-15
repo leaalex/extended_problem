@@ -7,10 +7,10 @@ document.head.appendChild(script);
 const presentationSelectorClass = "presentation-block";
 
 function PresentationActivation(selector) {
-    // console.log(document.querySelectorAll("PresentationActivation"));
     Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
         return element.dataset.status == undefined
     }).forEach(function(element) {
+        element.innerHTML = "";
         PresentationObjects[element.id] = (new PresentationObjects(element));
         element.dataset.status = "activate";
     });
@@ -20,10 +20,10 @@ function PresentationActivation(selector) {
 }
 
 function PresentationDefaulfViewerActivation(selector) {
-    // console.log(document.querySelectorAll(selector));
     Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
         return element.dataset.status == undefined
     }).forEach(function(element) {
+        element.innerHTML = "";
         PresentationObjects[element.id] = (new PresentationDefaulfViewerObjects(element));
         element.dataset.status = "activate";
     });
@@ -47,18 +47,13 @@ function createElement(name, id, classList, attributes) {
 
 
 script.onload = function(){
-    // script.onload = function () {
-    // console.log(window.onload);
+
     if (typeof pdfjsLib !== 'undefined'){
         PresentationActivation("." + presentationSelectorClass);
     }
     else{
         console.warn("Activate default pdf viewer.");
-
-        // $(function() {
-            // console.log($(".presentation-block"));
         PresentationDefaulfViewerActivation("." + presentationSelectorClass);
-        // });
     }
 
 };
@@ -95,6 +90,7 @@ const translation = {
       download_as_label: "Скачать в формате",
       value_range_msg: "Значение должно быть в диапазоне от 1 до ",
       default_view_warn: "Отображение pdf по умолчанию используется только на стороне Studio!",
+      presentation_error_msg: "Произошла ошибка загрузки презентации, попробуйте перезагрузить страницу. Если ошибка сохраняется, обратитесь в техническую поддержку."
   },
   en: {
       next_btn_label: "Next",
@@ -102,13 +98,13 @@ const translation = {
       download_as_label: "Download as",
       value_range_msg: "Value must be in the range 1 - ",
       default_view_warn: "Default pdf viewer used only for OpenEdx Studio!",
+      presentation_error_msg: "There was an error loading the presentation, try reloading the page. If the error persists, contact technical support."
 
   }
 };
 
 function PresentationObjects(element){
     this.element = element;
-    console.log($(this.element).closest(".xblock"));
     console.log($(element));
 
     $(this.element).closest(".xblock").css("overflow-x", "initial");
@@ -152,7 +148,6 @@ function PresentationObjects(element){
 
     page_input.onchange = function() {
         var page_candidate = Number(page_input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));
-        console.log(page_candidate);
 
         if (page_candidate >= 1 && presentation.pdfDoc.numPages >= page_candidate){
             presentation.current_page = page_candidate;
@@ -188,7 +183,6 @@ function PresentationObjects(element){
 
     function renderPage(num) {
         pageRendering = true;
-        console.log(presentation);
         presentation.pdfDoc.getPage(num).then(function(page) {
             var viewport = page.getViewport(scale);
             canvas_block.height = viewport.height;
@@ -251,7 +245,6 @@ function PresentationObjects(element){
         queueRenderPage();
     }
     function onNextPage() {
-        console.log(pdfjsLib);
         if (presentation.current_page >= presentation.pdfDoc.numPages) {
             return;
         }
@@ -262,13 +255,12 @@ function PresentationObjects(element){
     pdfjsLib.getDocument(presentation.url).then(function(pdfDoc_) {
         // console.log(presentation);
         presentation.pdfDoc = pdfDoc_;
-        // console.log(pageNum);
+        console.log("kek");
         // $('.page-count', element).text(" / "+presentation.pdfDoc.numPages);
         page_count.innerHTML = " / " + presentation.pdfDoc.numPages;
         renderPage(presentation.current_page);
     }).catch(function(e) {
-        console.log(e);
-        $(element).html('<div class="presentation-error">Произошла ошибка загрузки презентации, попробуйте перезагрузить страницу.<br>Если ошибка сохраняется, обратитесь в техническую поддержку.</div>');
+        $(element).html('<div class="presentation-error">' + labels.presentation_error_msg + '</div>');
     });
 
     var css = `
@@ -280,6 +272,7 @@ function PresentationObjects(element){
     
     .presentation-block .presentation-n-buttons {
         border: 2px solid #e9e9e9;
+        margin: 0 auto;
     }
     
     .presentation-block .presentation-n-buttons .presentation-wrap {
@@ -378,6 +371,7 @@ function PresentationObjects(element){
     }
     
     .presentation-block.a4 .presentation-n-buttons {
+        max-width: 830px;
         padding-bottom: 8px;
     }
     

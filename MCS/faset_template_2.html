@@ -1,0 +1,84 @@
+<problem>
+    <style>
+        .hint-label{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+
+questions = [{
+            "text": "Изучением очень большого занимается",
+            "answers":[
+            {
+                "answer": "Астрономия",
+                "comment": "Астрономия – область естествознания, наука о Вселенной, изучающая расположение, движение, структуру, происхождение и развитие небесных тел.",
+            },
+            {
+                "answer": "Космология",
+                "comment": "Космология – наука, изучающая исключительно Вселенную ее происхождение и эволюцию.",
+            },
+            {
+                "answer": "Космогония",
+                "comment": "Космогония – наука, изучающая космические тела и их системы (звезды, галактики, планеты и их спутники, астероиды, кометы и метеориты).",
+            }]
+        },{
+            "text": "Изучением очень малого занимается",
+            "answers":[
+            {
+                "answer": "Физика",
+                "comment": "Очень малое представляет собой мир атомов, из которых состоим мы сами и все вокруг. Атомы, их строение, взаимодействие и более мелкие структурные единицы материи изучает физика.",
+            },
+            {
+                "answer": "Химия",
+                "comment": "Химия – наука, изучающая строение, структуру, свойства и превращение веществ. Вещества состоят из атомов и молекул это мельчайшие частицы материи недоступные невооруженным глазом.",
+            }]
+        },{
+            "text": "Изучением очень сложного занимается",
+            "answers":[
+            {
+                "answer": "Биология",
+                "comment": "Биология – область естествознания, наука, изучающая строение, функционирование и разнообразие живых организмов. В сравнении с неживой природой живые организмы представляют очень сложные системы.",
+            },
+            {
+                "answer": "Психология",
+                "comment": "Психология – наука, изучающая развитие и функционирование психики (ощущения, восприятия, эмоции, память, интеллект и др. процессы высшей нервной деятельности) человека и групп людей. Поведение человека, построенное на сознательном и бессознательном –  очень сложное явление даже в сравнении с поведением других живых организмов.",
+            }]
+        }]
+
+
+num = random.randint(0, len(questions)-1)
+question_text = questions[num]["text"]
+
+correctness = [False for x in range(0, len(questions))]
+correctness[num] = True
+
+rand_option_0 = random.randint(0, len(questions[0]["answers"])-1)
+rand_option_1 = random.randint(0, len(questions[1]["answers"])-1)
+rand_option_2 = random.randint(0, len(questions[2]["answers"])-1)
+
+option_0_text = questions[0]["answers"][rand_option_0]["answer"]
+option_1_text = questions[1]["answers"][rand_option_1]["answer"]
+option_2_text = questions[2]["answers"][rand_option_2]["answer"]
+
+option_0_comment = questions[0]["answers"][rand_option_0]["comment"]
+option_1_comment = questions[1]["answers"][rand_option_1]["comment"]
+option_2_comment = questions[2]["answers"][rand_option_2]["comment"]
+
+option_0_correctness = correctness[0]
+option_1_correctness = correctness[1]
+option_2_correctness = correctness[2]
+
+</script>
+
+    <div>
+        <div style="font-size:1.2em;"><p>$question_text</p></div>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="$option_0_correctness">$option_0_text <choicehint>$option_0_comment</choicehint> </choice>
+                <choice correct="$option_1_correctness">$option_1_text <choicehint>$option_1_comment</choicehint> </choice>
+                <choice correct="$option_2_correctness">$option_2_text <choicehint>$option_2_comment</choicehint> </choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

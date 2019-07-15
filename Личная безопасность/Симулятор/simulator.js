@@ -54,7 +54,7 @@ function Simulator(settings) {
         let create_game_btn = addEvent(create('button', {
             className: "start-button",
             html: start_game_btn_label,
-            style: {'display': 'none'}
+            attr: {'disabled':'disabled'}
         }), 'click', this.createGame.bind(this));
 
         let things_count_label = create('span', {html: max_things});
@@ -94,9 +94,9 @@ function Simulator(settings) {
                                 }
                             }
                             if (user_state.things.length > 0) {
-                                create_game_btn.style.display = "block";
+                                create_game_btn.removeAttribute("disabled");
                             } else {
-                                create_game_btn.style.display = "none";
+                                create_game_btn.setAttribute("disabled", "disabled");
                             }
 
                             things_count_label.innerText = max_things - user_state.things.length;

@@ -144,7 +144,8 @@
         /*vertical-align: -75%;*/
     }
 
-    .result-words-block {}
+    .result-words-block {
+    }
 
     .result-wrap-words {
         max-width: 100%;
@@ -184,7 +185,7 @@
         background-color: #24b3f033;
     }
 
-    .transcript-result-block{
+    .transcript-result-block {
         padding: 10px;
     }
 
@@ -193,13 +194,13 @@
             width: auto;
         }
 
-        .result-wrap-words-tr{
+        .result-wrap-words-tr {
 
             flex-direction: column;
             padding: 8px 10px;
         }
 
-        .result-wrap-words-td-first{
+        .result-wrap-words-td-first {
             text-align: center;
             width: 100%;
         }
@@ -214,25 +215,42 @@
 
     var translations = {
         en: {
-            start_btn_label: "start_btn_label",
-            reset_btn_label: "reset_btn_label",
-            check_btn_label: "check_btn_label",
-            series_a_label: "series_a_label",
-            series_b_label: "series_b_label",
-            instruction_text: "instruction_text",
-            instruction_label: "instruction_label",
-            delay_label: "delay_label",
-            check_block_instruction: "check_block_instruction",
-            result_label: "result_label",
-            logical_memory_label: "logical_memory_label",
-            mechanical_memory_label: "mechanical_memory_label",
-            coeff_logical_memory_label: "coeff_logical_memory_label",
-            coeff_mechanical_memory_label: "coeff_mechanical_memory_label",
-            true_reproduced_words_label: "true_reproduced_words_label", // Верно воспроизведенных слов: 10
-            start_second_btn_label: "start_second_btn_label",
+            start_btn_label: "Start test now",
+            start_series_label: "Начать серию",
+            reset_btn_label: "Restart",
+            check_btn_label: "Check",
+            series_a_label: "Series A",
+            series_a_start_text: "Series А.  You will be presented with a list of a couple of words that have a logical connection. Try to memorize them in pairs. ",
+            series_b_start_text: "Series B. You will be presented with a list of a couple of words that have no logical connection.",
+            series_start_text_1: "During playback, memorize the words, but do NOT record. Your task is to reproduce the second word, upon presentation of the first.",
+            series_start_text_2: "The correct answer is only verbatim reproduction, and NOT synonyms or words of similar meaning.",
+
+            series_b_label: "Series B",
+            instruction_text: "The “Semantic Memory” technique is aimed at diagnosing the amount of logical and mechanical memory. You will be presented a list with two series of words. In the A series of words, the words have a logical connection. And in series B, words may not be related to each other. Your task is to memorize as many pairs of words as possible. Each pair will appear on the screen for a few seconds and then disappear. After you memorize all the pairs of words, you will be asked to play the second word with the first known. Then you continue the exercise with the second set of words. Memorize the words, and then reproduce the second word of the pair with the first known.",
+            instruction_label: "Instruction",
+            delay_label: "You start through",
+            check_block_instruction: "Add the second word:",
+            result_label: "Results:",
+            logical_memory_label: "The volume of the logical memory",
+            mechanical_memory_label: "The volume of mechanical memory",
+            coeff_logical_memory_label: "Logical memory ratio",
+            your_result_label: "Your result",
+            coeff_mechanical_memory_label: "Mechanical memory ratio",
+            true_reproduced_words_label: "True reproduced words",
+            start_second_btn_label: "Go to the second series",
+
+            series_a_low: "Low index of logical memory volume. It is difficult for you to memorize logically related texts. To improve performance requires constant training. Start reading and retelling texts, and also learn poems.",
+            series_a_medium: "The average index of logical memory volume. If there is an initial associative link, then it is easier for you to memorize the material. When you strive to form strong associative materials: remembering the new material, associate it with the previously saved.",
+            series_a_high: "High index of logical memory volume. You easily remember logically related materials and have strong associative links.",
+
+            series_b_low: "Low index of mechanical memory volume. It is difficult for you to memorize logically related texts. To improve performance, constant training is needed to memorize logically unrelated materials.",
+            series_b_medium: "The average index of the volume of mechanical memory.",
+            series_b_high: "High index of mechanical memory. You can easily remember and accurately reproduce logically unrelated information!",
+
         },
         ru: {
             start_btn_label: "Начать",
+            start_series_label: "Начать серию",
             reset_btn_label: "Начать заново",
             check_btn_label: "Проверить",
             series_a_label: "Серия А",
@@ -268,341 +286,683 @@
 
     var user_labels = translations[language];
 
-    const series_A_lib = {
-        a_word_0: {
-            w1: "машина",
-            w2: "ехать",
-            required: "w2"
+    let series_A_lib_translations = {
+        ru: {
+            a_word_0: {
+                w1: "машина",
+                w2: "ехать",
+                required: "w2"
+            },
+            a_word_1: {
+                w1: "кружка",
+                w2: "пить",
+                required: "w2"
+            },
+            a_word_2: {
+                w1: "ручка",
+                w2: "писать",
+                required: "w2"
+            },
+            a_word_3: {
+                w1: "ботинки",
+                w2: "шнурки",
+                required: "w2"
+            },
+            a_word_4: {
+                w1: "кот",
+                w2: "молоко",
+                required: "w2"
+            },
+            a_word_5: {
+                w1: "зима",
+                w2: "снеговик",
+                required: "w2"
+            },
+            a_word_6: {
+                w1: "свеча",
+                w2: "гореть",
+                required: "w2"
+            },
+            a_word_7: {
+                w1: "очки",
+                w2: "видеть",
+                required: "w2"
+            },
+            a_word_8: {
+                w1: "утюг",
+                w2: "гладить",
+                required: "w2"
+            },
+            a_word_9: {
+                w1: "дерево",
+                w2: "лист",
+                required: "w2"
+            },
+            a_word_10: {
+                w1: "помидор",
+                w2: "овощ",
+                required: "w2"
+            },
+            a_word_11: {
+                w1: "рыцарь",
+                w2: "защищать",
+                required: "w2"
+            },
+            a_word_12: {
+                w1: "армия",
+                w2: "солдат",
+                required: "w2"
+            },
+            a_word_13: {
+                w1: "кирпич",
+                w2: "строить",
+                required: "w2"
+            },
+            a_word_14: {
+                w1: "кастрюля",
+                w2: "варить",
+                required: "w2"
+            },
+            a_word_15: {
+                w1: "стул",
+                w2: "сидеть",
+                required: "w2"
+            },
+            a_word_16: {
+                w1: "лопата",
+                w2: "яма",
+                required: "w2"
+            },
+            a_word_17: {
+                w1: "утро",
+                w2: "рассвет",
+                required: "w2"
+            },
+            a_word_18: {
+                w1: "время",
+                w2: "часы",
+                required: "w2"
+            },
+            a_word_19: {
+                w1: "телефон",
+                w2: "звонок",
+                required: "w2"
+            },
+            a_word_20: {
+                w1: "газ",
+                w2: "тормоз",
+                required: "w2"
+            },
+            a_word_21: {
+                w1: "свинья",
+                w2: "поросенок",
+                required: "w2"
+            },
+            a_word_22: {
+                w1: "гитара",
+                w2: "струна",
+                required: "w2"
+            },
+            a_word_23: {
+                w1: "страна",
+                w2: "город",
+                required: "w2"
+            },
+            a_word_24: {
+                w1: "собака",
+                w2: "щенок",
+                required: "w2"
+            },
+            a_word_25: {
+                w1: "рука",
+                w2: "локоть",
+                required: "w2"
+            },
+            a_word_26: {
+                w1: "ключ",
+                w2: "замок",
+                required: "w2"
+            },
+            a_word_27: {
+                w1: "соль",
+                w2: "перец",
+                required: "w2"
+            },
+            a_word_28: {
+                w1: "галстук",
+                w2: "бабочка",
+                required: "w2"
+            },
+            a_word_29: {
+                w1: "врач",
+                w2: "халат",
+                required: "w2"
+            },
+            a_word_30: {
+                w1: "зачет",
+                w2: "экзамен",
+                required: "w2"
+            },
+            a_word_31: {
+                w1: "лето",
+                w2: "море",
+                required: "w2"
+            },
+            a_word_32: {
+                w1: "карта",
+                w2: "искать",
+                required: "w2"
+            }
         },
-        a_word_1: {
-            w1: "кружка",
-            w2: "пить",
-            required: "w2"
+        en: {
+            a_word_0: {
+                w1: "car",
+                w2: "drive",
+                required: "w2"
+            },
+            a_word_1: {
+                w1: "Cup",
+                w2: "drink",
+                required: "w2"
+            },
+            a_word_2: {
+                w1: "pen",
+                w2: "write",
+                required: "w2"
+            },
+            a_word_3: {
+                w1: "boots",
+                w2: "bootlace",
+                required: "w2"
+            },
+            a_word_4: {
+                w1: "cat",
+                w2: "milk",
+                required: "w2"
+            },
+            a_word_5: {
+                w1: "winter",
+                w2: "snowman",
+                required: "w2"
+            },
+            a_word_6: {
+                w1: "candle",
+                w2: "burn",
+                required: "w2"
+            },
+            a_word_7: {
+                w1: "glasses",
+                w2: "see",
+                required: "w2"
+            },
+            a_word_8: {
+                w1: "clothes",
+                w2: "ironing",
+                required: "w2"
+            },
+            a_word_9: {
+                w1: "tree",
+                w2: "leaf",
+                required: "w2"
+            },
+            a_word_10: {
+                w1: "tomato",
+                w2: "vegetable",
+                required: "w2"
+            },
+            a_word_11: {
+                w1: "knight",
+                w2: "defend",
+                required: "w2"
+            },
+            a_word_12: {
+                w1: "army",
+                w2: "soldier",
+                required: "w2"
+            },
+            a_word_13: {
+                w1: "brick",
+                w2: "build",
+                required: "w2"
+            },
+            a_word_14: {
+                w1: "casserole",
+                w2: "cook",
+                required: "w2"
+            },
+            a_word_15: {
+                w1: "chair",
+                w2: "sit",
+                required: "w2"
+            },
+            a_word_16: {
+                w1: "shovel",
+                w2: "pit",
+                required: "w2"
+            },
+            a_word_17: {
+                w1: "morning",
+                w2: "sunrise",
+                required: "w2"
+            },
+            a_word_18: {
+                w1: "time",
+                w2: "clock",
+                required: "w2"
+            },
+            a_word_19: {
+                w1: "phone",
+                w2: "ring",
+                required: "w2"
+            },
+            a_word_20: {
+                w1: "gas",
+                w2: "brake",
+                required: "w2"
+            },
+            a_word_21: {
+                w1: "pig",
+                w2: "boar",
+                required: "w2"
+            },
+            a_word_22: {
+                w1: "guitar",
+                w2: "string",
+                required: "w2"
+            },
+            a_word_23: {
+                w1: "country",
+                w2: "city",
+                required: "w2"
+            },
+            a_word_24: {
+                w1: "dog",
+                w2: "puppy",
+                required: "w2"
+            },
+            a_word_25: {
+                w1: "arm",
+                w2: "elbow",
+                required: "w2"
+            },
+            a_word_26: {
+                w1: "key",
+                w2: "lock",
+                required: "w2"
+            },
+            a_word_27: {
+                w1: "salt",
+                w2: "pepper",
+                required: "w2"
+            },
+            a_word_28: {
+                w1: "tie",
+                w2: "bow",
+                required: "w2"
+            },
+            a_word_29: {
+                w1: "doctor",
+                w2: "gown",
+                required: "w2"
+            },
+            a_word_30: {
+                w1: "test",
+                w2: "exam",
+                required: "w2"
+            },
+            a_word_31: {
+                w1: "summer",
+                w2: "sea",
+                required: "w2"
+            },
+            a_word_32: {
+                w1: "map",
+                w2: "search",
+                required: "w2"
+            }
+        }
+
+    };
+
+    let series_B_lib_translations = {
+        ru: {
+            b_word_0: {
+                w1: "слон",
+                w2: "автобус",
+                required: "w2"
+            },
+            b_word_1: {
+                w1: "брюки",
+                w2: "небо",
+                required: "w2"
+            },
+            b_word_2: {
+                w1: "ключи",
+                w2: "город",
+                required: "w2"
+            },
+            b_word_3: {
+                w1: "вилка",
+                w2: "провод",
+                required: "w2"
+            },
+            b_word_4: {
+                w1: "сестра",
+                w2: "дуб",
+                required: "w2"
+            },
+            b_word_5: {
+                w1: "бег",
+                w2: "огурец",
+                required: "w2"
+            },
+            b_word_6: {
+                w1: "остров",
+                w2: "пчела",
+                required: "w2"
+            },
+            b_word_7: {
+                w1: "гроза",
+                w2: "отец",
+                required: "w2"
+            },
+            b_word_8: {
+                w1: "химия",
+                w2: "матрас",
+                required: "w2"
+            },
+            b_word_9: {
+                w1: "корабль",
+                w2: "свинья",
+                required: "w2"
+            },
+            b_word_10: {
+                w1: "железо",
+                w2: "голова",
+                required: "w2"
+            },
+            b_word_11: {
+                w1: "часы",
+                w2: "звезда",
+                required: "w2"
+            },
+            b_word_12: {
+                w1: "краска",
+                w2: "водопад",
+                required: "w2"
+            },
+            b_word_13: {
+                w1: "осанка",
+                w2: "корона",
+                required: "w2"
+            },
+            b_word_14: {
+                w1: "самолет",
+                w2: "камень",
+                required: "w2"
+            },
+            b_word_15: {
+                w1: "десерт",
+                w2: "собор",
+                required: "w2"
+            },
+            b_word_16: {
+                w1: "спорт",
+                w2: "мороз",
+                required: "w2"
+            },
+            b_word_17: {
+                w1: "мамонт",
+                w2: "круг",
+                required: "w2"
+            },
+            b_word_18: {
+                w1: "горох",
+                w2: "брат",
+                required: "w2"
+            },
+            b_word_19: {
+                w1: "лампа",
+                w2: "круг",
+                required: "w2"
+            },
+            b_word_20: {
+                w1: "мышь",
+                w2: "кулак",
+                required: "w2"
+            },
+            b_word_21: {
+                w1: "щука",
+                w2: "ботинок",
+                required: "w2"
+            },
+            b_word_22: {
+                w1: "крот",
+                w2: "поезд",
+                required: "w2"
+            },
+            b_word_23: {
+                w1: "зеркало",
+                w2: "краб",
+                required: "w2"
+            },
+            b_word_24: {
+                w1: "карман",
+                w2: "крыша",
+                required: "w2"
+            },
+            b_word_25: {
+                w1: "капуста",
+                w2: "пояс",
+                required: "w2"
+            },
+            b_word_26: {
+                w1: "шапка",
+                w2: "март",
+                required: "w2"
+            },
+            b_word_27: {
+                w1: "враг",
+                w2: "кот",
+                required: "w2"
+            },
+            b_word_28: {
+                w1: "алмаз",
+                w2: "книга",
+                required: "w2"
+            },
+            b_word_29: {
+                w1: "стрела",
+                w2: "люстра",
+                required: "w2"
+            },
+            b_word_30: {
+                w1: "жаба",
+                w2: "носок",
+                required: "w2"
+            },
+            b_word_31: {
+                w1: "зуб",
+                w2: "дом",
+                required: "w2"
+            },
+            b_word_32: {
+                w1: "завтрак",
+                w2: "теннис",
+                required: "w2"
+            }
         },
-        a_word_2: {
-            w1: "ручка",
-            w2: "писать",
-            required: "w2"
-        },
-        a_word_3: {
-            w1: "ботинки",
-            w2: "шнурки",
-            required: "w2"
-        },
-        a_word_4: {
-            w1: "собака",
-            w2: "лаять",
-            required: "w2"
-        },
-        a_word_5: {
-            w1: "зима",
-            w2: "снеговик",
-            required: "w2"
-        },
-        a_word_6: {
-            w1: "свеча",
-            w2: "гореть",
-            required: "w2"
-        },
-        a_word_7: {
-            w1: "очки",
-            w2: "видеть",
-            required: "w2"
-        },
-        a_word_8: {
-            w1: "утюг",
-            w2: "гладить",
-            required: "w2"
-        },
-        a_word_9: {
-            w1: "дерево",
-            w2: "лист",
-            required: "w2"
-        },
-        a_word_10: {
-            w1: "помидор",
-            w2: "овощ",
-            required: "w2"
-        },
-        a_word_11: {
-            w1: "рыцарь",
-            w2: "защищать",
-            required: "w2"
-        },
-        a_word_12: {
-            w1: "армия",
-            w2: "солдат",
-            required: "w2"
-        },
-        a_word_13: {
-            w1: "кирпич",
-            w2: "строить",
-            required: "w2"
-        },
-        a_word_14: {
-            w1: "кастрюля",
-            w2: "варить",
-            required: "w2"
-        },
-        a_word_15: {
-            w1: "стул",
-            w2: "сидеть",
-            required: "w2"
-        },
-        a_word_16: {
-            w1: "лопата",
-            w2: "яма",
-            required: "w2"
-        },
-        a_word_17: {
-            w1: "утро",
-            w2: "рассвет",
-            required: "w2"
-        },
-        a_word_18: {
-            w1: "время",
-            w2: "часы",
-            required: "w2"
-        },
-        a_word_19: {
-            w1: "телефон",
-            w2: "звонок",
-            required: "w2"
-        },
-        a_word_20: {
-            w1: "газ",
-            w2: "тормоз",
-            required: "w2"
-        },
-        a_word_21: {
-            w1: "свинья",
-            w2: "поросенок",
-            required: "w2"
-        },
-        a_word_22: {
-            w1: "гитара",
-            w2: "струна",
-            required: "w2"
-        },
-        a_word_23: {
-            w1: "страна",
-            w2: "город",
-            required: "w2"
-        },
-        a_word_24: {
-            w1: "собака",
-            w2: "щенок",
-            required: "w2"
-        },
-        a_word_25: {
-            w1: "рука",
-            w2: "локоть",
-            required: "w2"
-        },
-        a_word_26: {
-            w1: "ключ",
-            w2: "замок",
-            required: "w2"
-        },
-        a_word_27: {
-            w1: "соль",
-            w2: "перец",
-            required: "w2"
-        },
-        a_word_28: {
-            w1: "галстук",
-            w2: "бабочка",
-            required: "w2"
-        },
-        a_word_29: {
-            w1: "врач",
-            w2: "халат",
-            required: "w2"
-        },
-        a_word_30: {
-            w1: "зачет",
-            w2: "экзамен",
-            required: "w2"
-        },
-        a_word_31: {
-            w1: "лето",
-            w2: "море",
-            required: "w2"
-        },
-        a_word_32: {
-            w1: "карта",
-            w2: "искать",
-            required: "w2"
+        en: {
+            b_word_0: {
+                w1: "elephant",
+                w2: "bus",
+                required: "w2"
+            },
+            b_word_1: {
+                w1: "pants",
+                w2: "sky",
+                required: "w2"
+            },
+            b_word_2: {
+                w1: "keys",
+                w2: "town",
+                required: "w2"
+            },
+            b_word_3: {
+                w1: "fork",
+                w2: "wire",
+                required: "w2"
+            },
+            b_word_4: {
+                w1: "sister",
+                w2: "oak",
+                required: "w2"
+            },
+            b_word_5: {
+                w1: "run",
+                w2: "cucumber",
+                required: "w2"
+            },
+            b_word_6: {
+                w1: "island",
+                w2: "bee",
+                required: "w2"
+            },
+            b_word_7: {
+                w1: "storm",
+                w2: "father",
+                required: "w2"
+            },
+            b_word_8: {
+                w1: "chemistry",
+                w2: "mattress",
+                required: "w2"
+            },
+            b_word_9: {
+                w1: "boat",
+                w2: "pig",
+                required: "w2"
+            },
+            b_word_10: {
+                w1: "iron",
+                w2: "head",
+                required: "w2"
+            },
+            b_word_11: {
+                w1: "clock",
+                w2: "star",
+                required: "w2"
+            },
+            b_word_12: {
+                w1: "paint",
+                w2: "waterfall",
+                required: "w2"
+            },
+            b_word_13: {
+                w1: "posture",
+                w2: "crown",
+                required: "w2"
+            },
+            b_word_14: {
+                w1: "plane",
+                w2: "stone",
+                required: "w2"
+            },
+            b_word_15: {
+                w1: "dessert",
+                w2: "cathedral",
+                required: "w2"
+            },
+            b_word_16: {
+                w1: "sport",
+                w2: "frost",
+                required: "w2"
+            },
+            b_word_17: {
+                w1: "mammoth",
+                w2: "circle",
+                required: "w2"
+            },
+            b_word_18: {
+                w1: "peas",
+                w2: "brother",
+                required: "w2"
+            },
+            b_word_19: {
+                w1: "lamp",
+                w2: "round",
+                required: "w2"
+            },
+            b_word_20: {
+                w1: "mouse",
+                w2: "fist",
+                required: "w2"
+            },
+            b_word_21: {
+                w1: "pike",
+                w2: "shoe",
+                required: "w2"
+            },
+            b_word_22: {
+                w1: "mole",
+                w2: "train",
+                required: "w2"
+            },
+            b_word_23: {
+                w1: "mirror",
+                w2: "crab",
+                required: "w2"
+            },
+            b_word_24: {
+                w1: "pocket",
+                w2: "roof",
+                required: "w2"
+            },
+            b_word_25: {
+                w1: "cabbage",
+                w2: "belt",
+                required: "w2"
+            },
+            b_word_26: {
+                w1: "hat",
+                w2: "March",
+                required: "w2"
+            },
+            b_word_27: {
+                w1: "enemy",
+                w2: "cat",
+                required: "w2"
+            },
+            b_word_28: {
+                w1: "diamond",
+                w2: "book",
+                required: "w2"
+            },
+            b_word_29: {
+                w1: "arrow",
+                w2: "chandelier",
+                required: "w2"
+            },
+            b_word_30: {
+                w1: "toad",
+                w2: "sock",
+                required: "w2"
+            },
+            b_word_31: {
+                w1: "tooth",
+                w2: "house",
+                required: "w2"
+            },
+            b_word_32: {
+                w1: "breakfast",
+                w2: "tennis",
+                required: "w2"
+            }
         }
     };
 
-    const series_B_lib = {
-        b_word_0: {
-            w1: "слон",
-            w2: "автобус",
-            required: "w2"
-        },
-        b_word_1: {
-            w1: "брюки",
-            w2: "небо",
-            required: "w2"
-        },
-        b_word_2: {
-            w1: "ключи",
-            w2: "город",
-            required: "w2"
-        },
-        b_word_3: {
-            w1: "вилка",
-            w2: "провод",
-            required: "w2"
-        },
-        b_word_4: {
-            w1: "сестра",
-            w2: "дуб",
-            required: "w2"
-        },
-        b_word_5: {
-            w1: "бег",
-            w2: "огурец",
-            required: "w2"
-        },
-        b_word_6: {
-            w1: "остров",
-            w2: "пчела",
-            required: "w2"
-        },
-        b_word_7: {
-            w1: "гроза",
-            w2: "отец",
-            required: "w2"
-        },
-        b_word_8: {
-            w1: "химия",
-            w2: "матрас",
-            required: "w2"
-        },
-        b_word_9: {
-            w1: "корабль",
-            w2: "свинья",
-            required: "w2"
-        },
-        b_word_10: {
-            w1: "железо",
-            w2: "голова",
-            required: "w2"
-        },
-        b_word_11: {
-            w1: "часы",
-            w2: "звезда",
-            required: "w2"
-        },
-        b_word_12: {
-            w1: "краска",
-            w2: "водопад",
-            required: "w2"
-        },
-        b_word_13: {
-            w1: "осанка",
-            w2: "корона",
-            required: "w2"
-        },
-        b_word_14: {
-            w1: "самолет",
-            w2: "камень",
-            required: "w2"
-        },
-        b_word_15: {
-            w1: "десерт",
-            w2: "собор",
-            required: "w2"
-        },
-        b_word_16: {
-            w1: "спорт",
-            w2: "мороз",
-            required: "w2"
-        },
-        b_word_17: {
-            w1: "мамонт",
-            w2: "круг",
-            required: "w2"
-        },
-        b_word_18: {
-            w1: "горох",
-            w2: "брат",
-            required: "w2"
-        },
-        b_word_19: {
-            w1: "лампа",
-            w2: "круг",
-            required: "w2"
-        },
-        b_word_20: {
-            w1: "мышь",
-            w2: "кулак",
-            required: "w2"
-        },
-        b_word_21: {
-            w1: "щука",
-            w2: "ботинок",
-            required: "w2"
-        },
-        b_word_22: {
-            w1: "крот",
-            w2: "поезд",
-            required: "w2"
-        },
-        b_word_23: {
-            w1: "зеркало",
-            w2: "краб",
-            required: "w2"
-        },
-        b_word_24: {
-            w1: "карман",
-            w2: "крыша",
-            required: "w2"
-        },
-        b_word_25: {
-            w1: "капуста",
-            w2: "пояс",
-            required: "w2"
-        },
-        b_word_26: {
-            w1: "шапка",
-            w2: "март",
-            required: "w2"
-        },
-        b_word_27: {
-            w1: "враг",
-            w2: "кот",
-            required: "w2"
-        },
-        b_word_28: {
-            w1: "алмаз",
-            w2: "книга",
-            required: "w2"
-        },
-        b_word_29: {
-            w1: "стрела",
-            w2: "люстра",
-            required: "w2"
-        },
-        b_word_30: {
-            w1: "жаба",
-            w2: "носок",
-            required: "w2"
-        },
-        b_word_31: {
-            w1: "зуб",
-            w2: "дом",
-            required: "w2"
-        },
-        b_word_32: {
-            w1: "завтрак",
-            w2: "теннис",
-            required: "w2"
-        }
-    };
+    let series_A_lib = series_A_lib_translations[language];
+    let series_B_lib = series_B_lib_translations[language];
 
     var word_pairs_count = 15; //series_A_lib.length;
     var word_display_time = 1700; // millisec
@@ -885,8 +1245,7 @@
 
                 if (current_series_let == "A") {
                     before_seria_wrap.append("<p>" + user_labels.series_a_start_text + "</p>");
-                }
-                else{
+                } else {
                     before_seria_wrap.append("<p>" + user_labels.series_b_start_text + "</p>");
                 }
 
@@ -904,7 +1263,6 @@
 
                 before_seria_wrap.slideDown();
                 instruction_div.slideUp();
-
 
 
                 start_seria_btn.click(function () {
@@ -938,7 +1296,6 @@
                     countdown_timer.start();
 
                 });
-
 
 
             }
@@ -1043,7 +1400,9 @@
                 var grade = 0;
                 var max_grade = Object.keys(current_series).length;
 
-                function compare_words(c_w, s_w) { return c_w.toLowerCase() == s_w.replace(" ", "").toLowerCase(); }
+                function compare_words(c_w, s_w) {
+                    return c_w.toLowerCase() == s_w.replace(" ", "").toLowerCase();
+                }
 
                 var result_words_block = $("<div>", {class: "result-words-block"});
                 var result_wrap_words = $("<div>", {class: "result-wrap-words"}).appendTo(result_words_block);
@@ -1059,7 +1418,7 @@
                     var result_wrap_words_tr = $("<div>", {class: "result-wrap-words-tr"});
                     var result_wrap_words_td_first = $("<div>", {
                         class: "result-wrap-words-td-first",
-                        html:  current_series[value].w1 + " – " + (student_word.length > 0 ? student_word : "...")
+                        html: current_series[value].w1 + " – " + (student_word.length > 0 ? student_word : "...")
                     }).appendTo(result_wrap_words_tr);
 
                     var result_wrap_words_td_status = $("<span>", {
@@ -1090,11 +1449,9 @@
 
                     if (memory_volume <= 0.29) {
                         transcript_div.append("<p>" + user_labels.series_a_low + "</p>");
-                    }
-                    else if(memory_volume > 0.29 && memory_volume < 0.6){
+                    } else if (memory_volume > 0.29 && memory_volume < 0.6) {
                         transcript_div.append("<p>" + user_labels.series_a_medium + "</p>");
-                    }
-                    else{
+                    } else {
                         transcript_div.append("<p>" + user_labels.series_a_high + "</p>");
                     }
 
@@ -1127,11 +1484,9 @@
 
                     if (memory_volume <= 0.29) {
                         transcript_div.append("<p>" + user_labels.series_b_low + "</p>");
-                    }
-                    else if(memory_volume > 0.29 && memory_volume < 0.6){
+                    } else if (memory_volume > 0.29 && memory_volume < 0.6) {
                         transcript_div.append("<p>" + user_labels.series_b_medium + "</p>");
-                    }
-                    else{
+                    } else {
                         transcript_div.append("<p>" + user_labels.series_b_high + "</p>");
                     }
 

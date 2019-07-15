@@ -1,65 +1,65 @@
 <style>
 
-.question-wrap{
-    /*margin: 10px 0px;*/
-    padding: 10px;
-    border-bottom: 1px solid #c9c9c9;
-}
+    .question-wrap {
+        /*margin: 10px 0px;*/
+        padding: 10px;
+        border-bottom: 1px solid #c9c9c9;
+    }
 
-.question-wrap-text{
-    margin: 5px 0px;
-}
+    .question-wrap-text {
+        margin: 5px 0px;
+    }
 
-.question-wrap-radio{
-    padding: 5px 10px;
-}
+    .question-wrap-radio {
+        padding: 5px 10px;
+    }
 
-.radio-input{
-    margin-top: -1px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
+    .radio-input {
+        margin-top: -1px;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
 
-.radio-label{
-    width: fit-content;
-    display: block;
-}
-
-
-.check-button-wrap {
-    padding: 1.5em 0;
-    text-align: center;
-}
+    .radio-label {
+        width: fit-content;
+        display: block;
+    }
 
 
-.check-button {
-    font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;
-    /*width: 6em;*/
-    text-shadow: none !important;
-    background: #046b99;
-    color: #ffffff;
-    font-size: 1.5em;
-    font-weight: normal;
-    border: none;
-}
+    .check-button-wrap {
+        padding: 1.5em 0;
+        text-align: center;
+    }
 
-.check-button:hover {
-    /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
-    width: 200px;*/
-    /* height: 50px; */
-    background: #035c83 !important;
-    border: none;
-    cursor: pointer;
-}
 
-.check-button:focus {
-    border: none !important;
-    box-shadow: none !important;
-}
+    .check-button {
+        font-family: "Open Sans", Verdana, Geneva, sans-serif, sans-serif;
+        /*width: 6em;*/
+        text-shadow: none !important;
+        background: #046b99;
+        color: #ffffff;
+        font-size: 1.5em;
+        font-weight: normal;
+        border: none;
+    }
 
-#radar-chart{
-    padding: 20px 0px;
-}
+    .check-button:hover {
+        /*font-family: "Open Sans",Verdana,Geneva,sans-serif,sans-serif;
+        width: 200px;*/
+        /* height: 50px; */
+        background: #035c83 !important;
+        border: none;
+        cursor: pointer;
+    }
+
+    .check-button:focus {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    #radar-chart {
+        padding: 20px 0px;
+    }
 
 </style>
 
@@ -70,7 +70,7 @@
     window.require = undefined;
 </script>
 
-<script id="chart_js" src="/static/Chart.js"> </script>
+<script id="chart_js" src="/static/Chart.js"></script>
 
 <script>
     window.define = window.__define;
@@ -88,23 +88,32 @@
         const language = 'ru'; // ru or en
         const translations = {
             en: {
-                start_btn_label: "Начать",
-                reset_btn_label: "Начать заново",
-                check_btn_label: "Проверить",
-                result_label: "Результаты:",
-                start_instruction: "тут наверно надо что-то написать?",
-                result_instruction: "Здесь описаны присущие Вам типы юмора",
+            start_btn_label: "Start test now",
+            reset_btn_label: "Restart",
+            check_btn_label: "Check",
+            result_label: "Results:",
+            points_label: "points",
+            start_text: "The Humor Styles Questionnaire (HSQ) was developed by Rod Martin and Patricia Doris (2003) to measure individual differences in styles of humor. The Humor Styles Questionnaire was developed to identify the ways in which individuals differ in humor styles and how these differences influence health, well-being, relationships, and other outcomes. The questionnaire measures two main factors in humor. The first factor measures whether humor is used to enhance the self or enhance one's relationships with others. The second factor measures whether the humor is relatively benevolent or potentially detrimental and destructive. The combination of these factors creates four distinct humor styles: affiliative, self-enhancing, aggressive, and self-defeating.",
+            start_text_1: "The HSQ received cross-cultural validation among European (Saroglou & Scariot, 2002), Chinese (Chen & Martin, 2007), American (Cassaretto & Martínez, 2009; Erickson & Feldstein, 2007), and Arabic samples (Kazarian & Martin, 2004, 2006; Taher, Kazarian, & Martin, 2008)",
+            instruction_label: "Instruction",
+            start_instruction: "People experience and express humor in many different ways. Below is a list of statements describing different ways in which humor might be experienced. Please read each statement carefully, and indicate the degree to which you agree or disagree with it. Please respond as honestly and objectively as you can. Answer by clicking one of the option buttons beside each item, using the following scale:",
+            result_instruction: "Your individual profile styles of sense of humor",
+            affiliated_label: "Affiliative Humor",
+            self_sustaining_label: "Self-enhancing Humor",
+            aggressive_label: "Aggressive Humor",
+            self_deprecating_label: "Self-defeating Humor",
 
-                affiliated_label: "Аффилиативный юмор",
-                self_sustaining_label: "Самоподдерживающий",
-                aggressive_label: "Агрессивный юмор",
-                self_deprecating_label: "Самоуничижительный стиль",
+            affiliated_1_label: "Affiliative Humor",
+            self_sustaining_1_label: "Self-enhancing Humor",
+            aggressive_1_label: "Aggressive Humor",
+            self_deprecating_1_label: "Self-defeating Humor",
 
-                affiliated_description: "(поддерживающий, направленный на других) связывается с экстраверсией, открытостью новому опыту, оптимизмом, жизнерадостностью, самопринятием и самоценностью, с успешностью установления и поддержания межличностных отношений, удовлетворенностью качеством жизни, преобладанием положительных эмоций и хорошего настроения. Люди c аффилиативным чувством юмора часто шутят, спонтанно вовлекаются в добродушный обмен шутливыми замечаниями. Этот мягкий, доброжелательный и толерантный стиль юмора способствует укреплению межличностных отношений и росту взаимной привлекательности.",
-                self_sustaining_description: "(поддерживающий, направленный на себя) стиль юмора подразумевает оптимистичный взгляд на жизнь, умение сохранять чувство юмора перед лицом трудностей и проблем, то есть является регулятором эмоций и механизмом совладания со стрессом. По сравнению с аффилиативным, самоподдерживающий юмор выполняет, в первую очередь, интрапсихическую функцию и потому не так сильно связан с экстраверсией. Он имеет отрицательную связь с нейротизмом и положительно коррелирует с оптимизмом, открытостью новому опыту, самоценностью и удовлетворенностью качеством жизни, с успешностью установления и поддержания межличностных отношений.",
-                aggressive_description: "(деструктивный, направленный на других) включает в себя сарказм, насмешку, подтрунивание, он может быть использован в целях манипуляции другим. Люди с агрессивным стилем юмора часто не могут справиться с желанием сострить, даже если шутка может кого-то обидеть. Этот стиль юмора положительно связан с нейротизмом, враждебностью, гневом и агрессией и отрицательно – с удовлетворенностью межличностными отношениями, дружелюбием и совестливостью, социальной компетентностью, способностью оказывать эмоциональную поддержку другому человеку и эффективностью юмора как копинг-стратегии.",
-                self_deprecating_description: "(деструктивный, направленный на себя) означает использование юмора, направленного против самого себя, с целью снискания расположения значимых других. Такие люди, заискивая перед окружающими, позволяют им делать себя объектом шуток и готовы разделить с ними этот смех. Хотя они могут восприниматься как остроумные и веселые, за этим стоят низкая самооценка и обостренная потребность в принятии. Они испытывают трудности в отстаивании своих прав. Самоуничижительный стиль юмора положительно связывается с нейротизмом, депрессией, тревогой и отрицательно – с удовлетворенностью межличностными отношениями, качеством жизни, психологическим благополучием, самоценностью.",
-            },
+            affiliated_description: "People who are high on Affiliative Humor enjoy sharing humor with other people. They often tell jokes and funny stories to amuse others and make them laugh, and they enjoy laughing along with others. They do not take themselves too seriously, and can laugh about their mistakes without feeling too badly about them. Research shows that those who are high on affiliative humor tend to be cheerful, outgoing and friendly, and tend to have enjoyable relationships with others.",
+            self_sustaining_description: "People who are high on Self-enhancing Humor are usually able to maintain their humorous outlook on life even during times of stress and adversity. They always look on the funny side of things and use humor to cheer themselves up. Even when they are alone, they are often amused by the absurdities of life. Research indicates that those who are high on self-enhancing humor tend to be emotionally well-adjusted, and do not easily become discouraged, anxious, or depressed. They cope well with stress and tend to be optimistic.",
+            aggressive_description: "People who are high on Aggressive Humor often use humor to tease, put down, or manipulate other people. Although they may be very witty, their humor tends to involve ridicule or sarcasm. They like to tell racist or sexist jokes, and are not concerned about how their humor might be hurtful to others. Making fun of others is a way they try to enhance their own self-esteem. Research indicates that people who are high in this humor style tend to be generally aggressive and insensitive to others. Their levels of self-esteem and emotional well-being are no higher or lower than the average person. Those who are low on this humor style tend to have more satisfactory relationships. ",
+            self_deprecating_description: "People who are high on Self-defeating Humor can be quite funny, but they often go too far in making jokes at their own expense and putting themselves down in an amusing way. They tend to laugh along with others when being ridiculed or made fun of. They try to make other people accept them more by allowing themselves to be the butt of others' humor. They also tend to use humor to hide their true feelings from others, putting on a happy face even when feeling unhappy inside. According to research findings, people who are high in this style of humor tend to have low self-esteem, and are often unhappy and anxious. They are often dissatisfied with their relationships. ",
+
+    },
             ru: {
                 start_btn_label: "Начать",
                 reset_btn_label: "Начать заново",
@@ -135,444 +144,552 @@
 
         const user_labels = translations[language];
 
-    var HumorStyle = function (html_element) {
-        $(html_element).html("");
-        var questions_object = {
-            question_1: {
-                text: "Я не склонен постоянно шутить и смеяться с другими людьми."
-            },
-            question_2: {
-                text: "Обычно, когда я один и чувствую себя подавленным, юмор поднимает мне настроение."
-            },
-            question_3: {
-                text: "Если кто-то допускает ошибку, я часто подшучиваю над этим."
-            },
-            question_4: {
-                text: "Я позволяю людям смеяться, подшучивать над собой больше, чем следовало бы."
-            },
-            question_5: {
-                text: "Мне нетрудно рассмешить других — мне кажется, у меня от природы хорошее чувство юмора."
-            },
-            question_6: {
-                text: "Когда я подавлен, меня не смешат нелепости жизни."
-            },
-            question_7: {
-                text: "Мой юмор никогда не обижает и не задевает других людей."
-            },
-            question_8: {
-                text: "Я могу увлечься самокритикой или принижением самого себя, если это смешит мою семью или друзей."
-            },
-            question_9: {
-                text: "Мне редко удается рассмешить людей, когда я рассказываю смешные истории."
-            },
-            question_10: {
-                text: "Если я расстроен или чувствую себя несчастным, я стараюсь найти нечто смешное в ситуации, чтобы почувствовать себя лучше."
-            },
-            question_11: {
-                text: "Когда я шучу или рассказываю нечто смешное, меня мало волнует, обидит ли это кого-то."
-            },
-            question_12: {
-                text: "Я часто стараюсь расположить к себе людей, понравиться им, рассказывая что-нибудь смешное о своих слабостях, промахах или неудачах."
-            },
-            question_13: {
-                text: "Близкие друзья считают, что я много шучу и смеюсь."
-            },
-            question_14: {
-                text: "Если я расстроен чем-то, мое чувство юмора помогает мне не впадать в отчаяние."
-            },
-            question_15: {
-                text: "Мне не нравится, когда кто-то использует юмор с целью критики или унижения других."
-            },
-            question_16: {
-                text: "Я не склонен шутить над собой, делая себя объектом юмора."
-            },
-            question_17: {
-                text: "Обычно мне не нравится рассказывать анекдоты и развлекать людей."
-            },
-            question_18: {
-                text: "Если я один и чувствую себя несчастным, я стараюсь подумать о чем-нибудь смешном, чтобы поднять себе настроение."
-            },
-            question_19: {
-                text: "Если мне приходит в голову нечто остроумное, я не могу сдержаться и не рассказать, даже если это кого-то обидит."
-            },
-            question_20: {
-                text: "Я часто перегибаю палку, иронизируя над собой, чтобы рассмешить окружающих."
-            },
-            question_21: {
-                text: "Мне доставляет удовольствие веселить других."
-            },
-            question_22: {
-                text: "Мне трудно сохранять чувство юмора, если я расстроен или мне грустно."
-            },
-            question_23: {
-                text: "Я никогда не смеюсь над другими, даже если все мои друзья делают это."
-            },
-            question_24: {
-                text: "В компании друзей или в кругу семьи надо мной часто подшучивают."
-            },
-            question_25: {
-                text: "В компании друзей я шучу реже, чем другие."
-            },
-            question_26: {
-                text: "Даже если найти нечто смешное в ситуации, от трудностей это не избавит."
-            },
-            question_27: {
-                text: "Если мне кто-то не нравится, я часто шучу или подтруниваю над этим человеком."
-            },
-            question_28: {
-                text: "Я использую свои жизненные проблемы и слабости для того, чтобы повеселить других."
-            },
-            question_29: {
-                text: "Обычно в присутствии других людей я могу придумать гораздо более остроумные вещи, чем другие."
-            },
-            question_30: {
-                text: "Мне не всегда нужна компания для того, чтобы развеселиться – я найду над чем посмеяться, даже будучи в одиночестве."
-            },
-            question_31: {
-                text: "Даже если что-то кажется мне очень смешным, я не буду смеяться или шутить по этому поводу, если это кого-то обидит."
-            },
-            question_32: {
-                text: "Позволять другим смеяться надо мной – мой способ поддерживать друзей и семью в хорошем расположении духа."
-            }
-        };
+        var HumorStyle = function (html_element) {
+            $(html_element).html("");
 
-        var answer_choices = {
-            a: "Полностью не согласен",
-            b: "Не согласен",
-            c: "Скорее не согласен",
-            d: "Не могу определиться",
-            e: "Скорее согласен",
-            f: "Согласен",
-            g: "Полностью согласен"
-        };
-        var user_answers = {};
-        let statements = {
-            direct: ["e", "f", "g"],
-            inverse: ["a", "b", "c"]
-        };
-        let humors = {
-            affiliated: {
-                direct: [1, 5, 9, 13, 21, 25, 29],
-                inverse: [17]
-            },
-            self_sustaining:{
-                direct: [2, 10, 14, 18, 30],
-                inverse: [6, 22, 26]
-            },
-            aggressive: {
-                direct: [3, 11, 19, 27],
-                inverse: [7, 15, 23, 31]
-            },
-            self_deprecating:{
-                direct: [4, 8, 12, 20, 24, 28, 32],
-                inverse: [16]
-            }
-        };
-
-        create_questions_block();
-
-        function set_result(){
-            let humors_result = {
-                affiliated: 0,
-                self_sustaining:0,
-                aggressive: 0,
-                self_deprecating:0
+            let questions_object_translations = {
+                ru: {
+                    question_1: {
+                        text: "Я не склонен постоянно шутить и смеяться с другими людьми."
+                    },
+                    question_2: {
+                        text: "Обычно, когда я один и чувствую себя подавленным, юмор поднимает мне настроение."
+                    },
+                    question_3: {
+                        text: "Если кто-то допускает ошибку, я часто подшучиваю над этим."
+                    },
+                    question_4: {
+                        text: "Я позволяю людям смеяться, подшучивать над собой больше, чем следовало бы."
+                    },
+                    question_5: {
+                        text: "Мне нетрудно рассмешить других — мне кажется, у меня от природы хорошее чувство юмора."
+                    },
+                    question_6: {
+                        text: "Когда я подавлен, меня не смешат нелепости жизни."
+                    },
+                    question_7: {
+                        text: "Мой юмор никогда не обижает и не задевает других людей."
+                    },
+                    question_8: {
+                        text: "Я могу увлечься самокритикой или принижением самого себя, если это смешит мою семью или друзей."
+                    },
+                    question_9: {
+                        text: "Мне редко удается рассмешить людей, когда я рассказываю смешные истории."
+                    },
+                    question_10: {
+                        text: "Если я расстроен или чувствую себя несчастным, я стараюсь найти нечто смешное в ситуации, чтобы почувствовать себя лучше."
+                    },
+                    question_11: {
+                        text: "Когда я шучу или рассказываю нечто смешное, меня мало волнует, обидит ли это кого-то."
+                    },
+                    question_12: {
+                        text: "Я часто стараюсь расположить к себе людей, понравиться им, рассказывая что-нибудь смешное о своих слабостях, промахах или неудачах."
+                    },
+                    question_13: {
+                        text: "Близкие друзья считают, что я много шучу и смеюсь."
+                    },
+                    question_14: {
+                        text: "Если я расстроен чем-то, мое чувство юмора помогает мне не впадать в отчаяние."
+                    },
+                    question_15: {
+                        text: "Мне не нравится, когда кто-то использует юмор с целью критики или унижения других."
+                    },
+                    question_16: {
+                        text: "Я не склонен шутить над собой, делая себя объектом юмора."
+                    },
+                    question_17: {
+                        text: "Обычно мне не нравится рассказывать анекдоты и развлекать людей."
+                    },
+                    question_18: {
+                        text: "Если я один и чувствую себя несчастным, я стараюсь подумать о чем-нибудь смешном, чтобы поднять себе настроение."
+                    },
+                    question_19: {
+                        text: "Если мне приходит в голову нечто остроумное, я не могу сдержаться и не рассказать, даже если это кого-то обидит."
+                    },
+                    question_20: {
+                        text: "Я часто перегибаю палку, иронизируя над собой, чтобы рассмешить окружающих."
+                    },
+                    question_21: {
+                        text: "Мне доставляет удовольствие веселить других."
+                    },
+                    question_22: {
+                        text: "Мне трудно сохранять чувство юмора, если я расстроен или мне грустно."
+                    },
+                    question_23: {
+                        text: "Я никогда не смеюсь над другими, даже если все мои друзья делают это."
+                    },
+                    question_24: {
+                        text: "В компании друзей или в кругу семьи надо мной часто подшучивают."
+                    },
+                    question_25: {
+                        text: "В компании друзей я шучу реже, чем другие."
+                    },
+                    question_26: {
+                        text: "Даже если найти нечто смешное в ситуации, от трудностей это не избавит."
+                    },
+                    question_27: {
+                        text: "Если мне кто-то не нравится, я часто шучу или подтруниваю над этим человеком."
+                    },
+                    question_28: {
+                        text: "Я использую свои жизненные проблемы и слабости для того, чтобы повеселить других."
+                    },
+                    question_29: {
+                        text: "Обычно в присутствии других людей я могу придумать гораздо более остроумные вещи, чем другие."
+                    },
+                    question_30: {
+                        text: "Мне не всегда нужна компания для того, чтобы развеселиться – я найду над чем посмеяться, даже будучи в одиночестве."
+                    },
+                    question_31: {
+                        text: "Даже если что-то кажется мне очень смешным, я не буду смеяться или шутить по этому поводу, если это кого-то обидит."
+                    },
+                    question_32: {
+                        text: "Позволять другим смеяться надо мной – мой способ поддерживать друзей и семью в хорошем расположении духа."
+                    }
+                },
+                en: {
+                    question_1: {
+                        text: " I usually don't laugh or joke around much with other people.."
+                    },
+                    question_2: {
+                        text: " If I am feeling depressed, I can usually cheer myself up with humor."
+                    },
+                    question_3: {
+                        text: " If someone makes a mistake, I will often tease them about it. "
+                    },
+                    question_4: {
+                        text: " I let people laugh at me or make fun at my expense more than I should."
+                    },
+                    question_5: {
+                        text: " I don't have to work very hard at making other people laugh -- I seem to be a naturally humorous person."
+                    },
+                    question_6: {
+                        text: " Even when I'm by myself, I'm often amused by the absurdities of life."
+                    },
+                    question_7: {
+                        text: " People are never offended or hurt by my sense of humor."
+                    },
+                    question_8: {
+                        text: " I will often get carried away in putting myself down if it makes my family or friends laugh."
+                    },
+                    question_9: {
+                        text: " I rarely make other people laugh by telling funny stories about myself."
+                    },
+                    question_10: {
+                        text: " If I am feeling upset or unhappy I usually try to think of something funny about the situation to make myself feel better."
+                    },
+                    question_11: {
+                        text: " When telling jokes or saying funny things, I am usually not very concerned about how other people are taking it."
+                    },
+                    question_12: {
+                        text: " I often try to make people like or accept me more by saying something funny about my own weaknesses, blunders, or faultsv."
+                    },
+                    question_13: {
+                        text: " I laugh and joke a lot with my friends."
+                    },
+                    question_14: {
+                        text: " My humorous outlook on life keeps me from getting overly upset or depressed about things."
+                    },
+                    question_15: {
+                        text: " I do not like it when people use humor as a way of criticizing or putting someone down."
+                    },
+                    question_16: {
+                        text: " I don't often say funny things to put myself down."
+                    },
+                    question_17: {
+                        text: " I usually don't like to tell jokes or amuse people."
+                    },
+                    question_18: {
+                        text: " If I'm by myself and I'm feeling unhappy, I make an effort to think of something funny to cheer myself up."
+                    },
+                    question_19: {
+                        text: " Sometimes I think of something that is so funny that I can't stop myself from saying it, even if it is not appropriate for the situation."
+                    },
+                    question_20: {
+                        text: " I often go overboard in putting myself down when I am making jokes or trying to be funny."
+                    },
+                    question_21: {
+                        text: " I enjoy making people laugh."
+                    },
+                    question_22: {
+                        text: " If I am feeling sad or upset, I usually lose my sense of humor."
+                    },
+                    question_23: {
+                        text: " I never participate in laughing at others even if all my friends are doing it."
+                    },
+                    question_24: {
+                        text: " When I am with friends or family, I often seem to be the one that other people make fun of or joke about."
+                    },
+                    question_25: {
+                        text: " I don't often joke around with my friends."
+                    },
+                    question_26: {
+                        text: " It is my experience that thinking about some amusing aspect of a situation is often a very effective way of coping with problems."
+                    },
+                    question_27: {
+                        text: " If I don't like someone, I often use humor or teasing to put them down."
+                    },
+                    question_28: {
+                        text: " If I am having problems or feeling unhappy, I often cover it up by joking around, so that even my closest friends don't know how I really feel."
+                    },
+                    question_29: {
+                        text: " I usually can't think of witty things to say when I'm with other people."
+                    },
+                    question_30: {
+                        text: " I don't need to be with other people to feel amused -- I can usually find things to laugh about even when I'm by myself."
+                    },
+                    question_31: {
+                        text: " Even if something is really funny to me, I will not laugh or joke about it if someone will be offended."
+                    },
+                    question_32: {
+                        text: " Letting others laugh at me is my way of keeping my friends and family in good spirits."
+                    }
+                }
             };
 
-            Object.keys(user_answers).forEach(function(item, idx){
-                let num_question = parseInt(item.replace('question_',''));
+            var questions_object = questions_object_translations[language];
 
-                if(statements.direct.includes(user_answers[item])){
-                    if (humors.affiliated.direct.includes(num_question)){
-                        humors_result.affiliated += 1;
-                    }
-                    else if (humors.self_sustaining.direct.includes(num_question)){
-                        humors_result.self_sustaining += 1;
-                    }
-                    else if (humors.aggressive.direct.includes(num_question)){
-                        humors_result.aggressive += 1;
-                    }
-                    else if (humors.self_deprecating.direct.includes(num_question)){
-                        humors_result.self_deprecating += 1;
-                    }
-                    else {
-                        // console.error("Неизвестный вопрос", num_question);
-                    }
-                }
-                else if (statements.inverse.includes(user_answers[item])) {
-                    if (humors.affiliated.inverse.includes(num_question)){
-                        humors_result.affiliated += 1;
-                    }
-                    else if (humors.self_sustaining.inverse.includes(num_question)){
-                        humors_result.self_sustaining += 1;
-                    }
-                    else if (humors.aggressive.inverse.includes(num_question)){
-                        humors_result.aggressive += 1;
-                    }
-                    else if (humors.self_deprecating.inverse.includes(num_question)){
-                        humors_result.self_deprecating += 1;
-                    }
-                    else {
-                        // console.error("Неизвестный вопрос", num_question);
-                    }
-                }
-                else{
-                     // выбран вариант 'Не могу определиться'
-                     // console.log('Не могу определиться')
-                }
-
-
-            });
-
-            // var humors_result_array = Object.keys(humors_result).map(item=>{return {'name': item, 'value': humors_result[item]}});
-            // humors_result_array = humors_result_array.filter(item=>item.value==humors_result_array.reduce(function (prev, current) {return (prev.value > current.value) ? prev : current}).value);
-            return humors_result;
-        }
-
-        function createResultBlock() {
-
-            var result_block = $("<div>", {
-               html: "",
-                   // "<h2>" + user_labels.result_label + "</h2>",
-               class: ""
-            });
-
-            $(result_block).append("<h2>" + user_labels.result_instruction + "</h2>");
-
-
-            var result =  set_result();
-            var chart = $("<canvas>", {id:"radar-chart", width:"100%", height:"600"});
-
-            // console.log(result);
-
-
-
-            // new Chart(chart, {
-            //     type: 'radar',
-            //     data: {
-            //         labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
-            //         datasets: [
-            //             {
-            //                 fill: true,
-            //                 borderColor: "#046b99",
-            //                 pointBorderColor: "#fff",
-            //                 pointBackgroundColor: "#046b99",
-            //                 backgroundColor: "#046b9908",
-            //                 pointBorderColor: "#fff",
-            //                 data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining]
-            //             }
-            //         ]
-            //     },
-            //     options: {
-            //         legend:{
-            //             display: false
-            //         },
-            //         responsive:true,
-            //         // maintainAspectRatio: false,
-            //         scale: {
-            //             ticks: {
-            //                 beginAtZero: true,
-            //                 max: 10,
-            //                 fontSize: 16,
-            //             },
-            //             angleLines: {
-            //                 display: true,
-            //                 color: "#046b99",
-            //             },
-            //             pointLabels: {
-            //                 callback: function(value, index, values) {
-            //                     // console.log(value);
-            //                     return value;
-            //                 },
-            //                 // fontColor: "gray",
-            //                 fontSize: 16,
-            //             },
-            //         },
-            //         tooltips: {
-            //             callbacks: {
-            //                 label: function(tooltipItem, data) {
-            //                     var label = user_labels.points_label + ': ';
-            //                     label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                     return label;
-            //                 }
-            //             },
-            //             fontSize: 16,
-            //         },
-            //
-            //
-            //     }
-            // });
-
-            var color = Chart.helpers.color;
-            new Chart.PolarArea(chart, {
-                // type: 'radar',
-                data: {
-                    labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
-                    datasets: [
-                        {
-                            data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining],
-                            // data: [3,5,7,2], // test data
-                            backgroundColor: [
-                                color("rgb(255, 99, 132)").alpha(0.5).rgbString(), // red
-                                color("rgb(255, 159, 64)").alpha(0.5).rgbString(), // orange
-                                color("rgb(255, 205, 86)").alpha(0.5).rgbString(), // yellow
-                                color("rgb(54, 162, 235)").alpha(0.5).rgbString(), // blue
-                            ],
-                        }
-                    ]
+            var answer_choices_translations = {
+                ru: {
+                    a: "Полностью не согласен",
+                    b: "Не согласен",
+                    c: "Скорее не согласен",
+                    d: "Не могу определиться",
+                    e: "Скорее согласен",
+                    f: "Согласен",
+                    g: "Полностью согласен"
                 },
-                options: {
-                    legend:{
-                        display: true,
-                        position: 'right',
-                        labels: {
-                            fontSize: 16,
-                        },
-                        onClick: function (e) {
-                            e.stopPropagation();
+                en: {
+                    a: "Totally disagree",
+                    b: "Moderately disagree",
+                    c: "Slightly disagree",
+                    d: "Neither agree nor disagree",
+                    e: "Slightly agree",
+                    f: "Moderately agree",
+                    g: "Totally agree"
+            }
+            };
+
+            var answer_choices = answer_choices_translations[language];
+
+            var user_answers = {};
+            let statements = {
+                direct: ["e", "f", "g"],
+                inverse: ["a", "b", "c"]
+            };
+            let humors = {
+                affiliated: {
+                    direct: [1, 5, 9, 13, 21, 25, 29],
+                    inverse: [17]
+                },
+                self_sustaining: {
+                    direct: [2, 10, 14, 18, 30],
+                    inverse: [6, 22, 26]
+                },
+                aggressive: {
+                    direct: [3, 11, 19, 27],
+                    inverse: [7, 15, 23, 31]
+                },
+                self_deprecating: {
+                    direct: [4, 8, 12, 20, 24, 28, 32],
+                    inverse: [16]
+                }
+            };
+
+            create_questions_block();
+
+            function set_result() {
+                let humors_result = {
+                    affiliated: 0,
+                    self_sustaining: 0,
+                    aggressive: 0,
+                    self_deprecating: 0
+                };
+
+                Object.keys(user_answers).forEach(function (item, idx) {
+                    let num_question = parseInt(item.replace('question_', ''));
+
+                    if (statements.direct.includes(user_answers[item])) {
+                        if (humors.affiliated.direct.includes(num_question)) {
+                            humors_result.affiliated += 1;
+                        } else if (humors.self_sustaining.direct.includes(num_question)) {
+                            humors_result.self_sustaining += 1;
+                        } else if (humors.aggressive.direct.includes(num_question)) {
+                            humors_result.aggressive += 1;
+                        } else if (humors.self_deprecating.direct.includes(num_question)) {
+                            humors_result.self_deprecating += 1;
+                        } else {
+                            // console.error("Неизвестный вопрос", num_question);
                         }
+                    } else if (statements.inverse.includes(user_answers[item])) {
+                        if (humors.affiliated.inverse.includes(num_question)) {
+                            humors_result.affiliated += 1;
+                        } else if (humors.self_sustaining.inverse.includes(num_question)) {
+                            humors_result.self_sustaining += 1;
+                        } else if (humors.aggressive.inverse.includes(num_question)) {
+                            humors_result.aggressive += 1;
+                        } else if (humors.self_deprecating.inverse.includes(num_question)) {
+                            humors_result.self_deprecating += 1;
+                        } else {
+                            // console.error("Неизвестный вопрос", num_question);
+                        }
+                    } else {
+                        // выбран вариант 'Не могу определиться'
+                        // console.log('Не могу определиться')
+                    }
+
+
+                });
+
+                // var humors_result_array = Object.keys(humors_result).map(item=>{return {'name': item, 'value': humors_result[item]}});
+                // humors_result_array = humors_result_array.filter(item=>item.value==humors_result_array.reduce(function (prev, current) {return (prev.value > current.value) ? prev : current}).value);
+                return humors_result;
+            }
+
+            function createResultBlock() {
+
+                var result_block = $("<div>", {
+                    html: "",
+                    // "<h2>" + user_labels.result_label + "</h2>",
+                    class: ""
+                });
+
+                $(result_block).append("<h2>" + user_labels.result_instruction + "</h2>");
+
+
+                var result = set_result();
+                var chart = $("<canvas>", {id: "radar-chart", width: "100%", height: "600"});
+
+                // console.log(result);
+
+
+                // new Chart(chart, {
+                //     type: 'radar',
+                //     data: {
+                //         labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
+                //         datasets: [
+                //             {
+                //                 fill: true,
+                //                 borderColor: "#046b99",
+                //                 pointBorderColor: "#fff",
+                //                 pointBackgroundColor: "#046b99",
+                //                 backgroundColor: "#046b9908",
+                //                 pointBorderColor: "#fff",
+                //                 data: [result.self_deprecating,result.aggressive,result.affiliated,result.self_sustaining]
+                //             }
+                //         ]
+                //     },
+                //     options: {
+                //         legend:{
+                //             display: false
+                //         },
+                //         responsive:true,
+                //         // maintainAspectRatio: false,
+                //         scale: {
+                //             ticks: {
+                //                 beginAtZero: true,
+                //                 max: 10,
+                //                 fontSize: 16,
+                //             },
+                //             angleLines: {
+                //                 display: true,
+                //                 color: "#046b99",
+                //             },
+                //             pointLabels: {
+                //                 callback: function(value, index, values) {
+                //                     // console.log(value);
+                //                     return value;
+                //                 },
+                //                 // fontColor: "gray",
+                //                 fontSize: 16,
+                //             },
+                //         },
+                //         tooltips: {
+                //             callbacks: {
+                //                 label: function(tooltipItem, data) {
+                //                     var label = user_labels.points_label + ': ';
+                //                     label += Math.round(tooltipItem.yLabel * 100) / 100;
+                //                     return label;
+                //                 }
+                //             },
+                //             fontSize: 16,
+                //         },
+                //
+                //
+                //     }
+                // });
+
+                var color = Chart.helpers.color;
+                new Chart.PolarArea(chart, {
+                    // type: 'radar',
+                    data: {
+                        labels: [user_labels.self_deprecating_label, user_labels.aggressive_label, user_labels.affiliated_label, user_labels.self_sustaining_label],
+                        datasets: [
+                            {
+                                data: [result.self_deprecating, result.aggressive, result.affiliated, result.self_sustaining],
+                                // data: [3,5,7,2], // test data
+                                backgroundColor: [
+                                    color("rgb(255, 99, 132)").alpha(0.5).rgbString(), // red
+                                    color("rgb(255, 159, 64)").alpha(0.5).rgbString(), // orange
+                                    color("rgb(255, 205, 86)").alpha(0.5).rgbString(), // yellow
+                                    color("rgb(54, 162, 235)").alpha(0.5).rgbString(), // blue
+                                ],
+                            }
+                        ]
                     },
-                    responsive:true,
-                    // maintainAspectRatio: false,
-                    scale: {
-                        ticks: {
-                            beginAtZero: true,
-                            max: 8,
-                            fontSize: 16,
-                        },
-                        // angleLines: {
-                        //     display: true,
-                        //     color: "#046b99",
-                        // },
-                        pointLabels: {
-                            callback: function(value, index, values) {
-                                // console.log(value);
-                                return value;
+                    options: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                fontSize: 16,
                             },
-                            // fontColor: "gray",
-                            fontSize: 16,
-                        },
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                // console.log(tooltipItem, data, this.data.datasets.labels[tooltipItem.index]);
-                                // console.log(data.labels[tooltipItem.index]);
-                                var label = data.labels[tooltipItem.index] + ": ";
-                                    // user_labels.points_label + ': ';
-                                label += Math.round(tooltipItem.yLabel * 100) / 100;
-                                return label;
+                            onClick: function (e) {
+                                e.stopPropagation();
                             }
                         },
-                        fontSize: 16,
-                    },
-                    animation: {
-                        animateRotate: false,
-                        animateScale: true
-                    },
+                        responsive: true,
+                        // maintainAspectRatio: false,
+                        scale: {
+                            ticks: {
+                                beginAtZero: true,
+                                max: 8,
+                                fontSize: 16,
+                            },
+                            // angleLines: {
+                            //     display: true,
+                            //     color: "#046b99",
+                            // },
+                            pointLabels: {
+                                callback: function (value, index, values) {
+                                    // console.log(value);
+                                    return value;
+                                },
+                                // fontColor: "gray",
+                                fontSize: 16,
+                            },
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    // console.log(tooltipItem, data, this.data.datasets.labels[tooltipItem.index]);
+                                    // console.log(data.labels[tooltipItem.index]);
+                                    var label = data.labels[tooltipItem.index] + ": ";
+                                    // user_labels.points_label + ': ';
+                                    label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                    return label;
+                                }
+                            },
+                            fontSize: 16,
+                        },
+                        animation: {
+                            animateRotate: false,
+                            animateScale: true
+                        },
 
 
-                }
-            });
-
-            $(result_block).append(chart);
-
-            // console.log(result);
-
-            Object.keys(result).sort(function(a,b){return result[b]-result[a]}).forEach(function (item) {
-                $(result_block).append("<p><strong>" + user_labels[item+"_1_label"] + " (" + user_labels.points_label + ": " + result[item] + ")</strong> "  + user_labels[item+"_description"] +  "<p>");
-            });
-
-            $(html_element).html(result_block);
-
-            // console.log(set_result());
-
-            $("<button>", {
-                html: user_labels.reset_btn_label,
-                click: function () {
-                    humor_style = new HumorStyle(humor_style_block);
-                }
-            }).appendTo(html_element);
-
-            $('body').scrollTo(html_element, 300, {offset: -100});
-
-        }
-
-        function create_questions_block() {
-            $(html_element).append("<p>" + user_labels.start_text + "</p>");
-            $(html_element).append("<p>" + user_labels.start_text_1 + "</p>");
-            $(html_element).append("<p><strong>"+ user_labels.instruction_label + ": </strong>" + user_labels.start_instruction + "</p>");
-            Object.keys(questions_object).forEach(function (item, idx) {
-
-                user_answers[item] = 'd';
-                let question_wrap = $("<div>", {
-                    class: "question-wrap",
-                    html: `<div class="question-wrap-text"><b>${idx + 1}.</b> ${questions_object[item].text}</div>`
-                });
-
-                let radio_wrap = $("<div>", {
-                    class: "question-wrap-radio"
-                });
-
-                Object.keys(answer_choices).forEach(function (answer) {
-                    let radio_label = $("<label>", {
-                        html: answer_choices[answer],
-                        class: "radio-label",
-                    });
-                    let radio_input = $("<input>", {
-                        type: "radio",
-                        class: "radio-input",
-                        value: answer,
-                        name: item
-                    });
-
-                    if (user_answers[item] == answer){
-                        radio_input.prop('checked', true);
                     }
-
-                    radio_label.prepend(radio_input);
-                    $(radio_wrap).append(radio_label);
-
                 });
-                question_wrap.append(radio_wrap);
-                $(html_element).append(question_wrap);
 
-                //
-                // let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
-                // $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
-                // user_answers[item] = value;
-                //
-            });
+                $(result_block).append(chart);
 
-            $(".radio-input").change(function () {
-                user_answers[this.name] = this.value;
-                // set_result()
-            });
+                // console.log(result);
 
-            var check_button_wrap = $("<div>", {
-                class: "check-button-wrap"
-            });
+                Object.keys(result).sort(function (a, b) {
+                    return result[b] - result[a]
+                }).forEach(function (item) {
+                    $(result_block).append("<p><strong>" + user_labels[item + "_1_label"] + " (" + user_labels.points_label + ": " + result[item] + ")</strong> " + user_labels[item + "_description"] + "<p>");
+                });
 
-            var check_button = $("<button>", {
-                html: user_labels.check_btn_label,
-                class: "check-button"
-            }).appendTo(check_button_wrap);
+                $(html_element).html(result_block);
 
-            check_button.click(function () {
-                createResultBlock();
-            });
+                // console.log(set_result());
 
-            $(html_element).append(check_button_wrap);
+                $("<button>", {
+                    html: user_labels.reset_btn_label,
+                    click: function () {
+                        humor_style = new HumorStyle(humor_style_block);
+                    }
+                }).appendTo(html_element);
 
-        }
-    };
+                $('body').scrollTo(html_element, 300, {offset: -100});
+
+            }
+
+            function create_questions_block() {
+                $(html_element).append("<p>" + user_labels.start_text + "</p>");
+                $(html_element).append("<p>" + user_labels.start_text_1 + "</p>");
+                $(html_element).append("<p><strong>" + user_labels.instruction_label + ": </strong>" + user_labels.start_instruction + "</p>");
+                Object.keys(questions_object).forEach(function (item, idx) {
+
+                    user_answers[item] = 'd';
+                    let question_wrap = $("<div>", {
+                        class: "question-wrap",
+                        html: `<div class="question-wrap-text"><b>${idx + 1}.</b> ${questions_object[item].text}</div>`
+                    });
+
+                    let radio_wrap = $("<div>", {
+                        class: "question-wrap-radio"
+                    });
+
+                    Object.keys(answer_choices).forEach(function (answer) {
+                        let radio_label = $("<label>", {
+                            html: answer_choices[answer],
+                            class: "radio-label",
+                        });
+                        let radio_input = $("<input>", {
+                            type: "radio",
+                            class: "radio-input",
+                            value: answer,
+                            name: item
+                        });
+
+                        if (user_answers[item] == answer) {
+                            radio_input.prop('checked', true);
+                        }
+
+                        radio_label.prepend(radio_input);
+                        $(radio_wrap).append(radio_label);
+
+                    });
+                    question_wrap.append(radio_wrap);
+                    $(html_element).append(question_wrap);
+
+                    //
+                    // let value = ["a", "b", "c", "d", "e", "f", "g"][Math.floor(Math.random() * ["a", "b", "c", "d", "e", "f", "g"].length)];
+                    // $("input[name=" + item + "][value='" + value + "']").prop('checked', true);
+                    // user_answers[item] = value;
+                    //
+                });
+
+                $(".radio-input").change(function () {
+                    user_answers[this.name] = this.value;
+                    // set_result()
+                });
+
+                var check_button_wrap = $("<div>", {
+                    class: "check-button-wrap"
+                });
+
+                var check_button = $("<button>", {
+                    html: user_labels.check_btn_label,
+                    class: "check-button"
+                }).appendTo(check_button_wrap);
+
+                check_button.click(function () {
+                    createResultBlock();
+                });
+
+                $(html_element).append(check_button_wrap);
+
+            }
+        };
 
 
-    var humor_style_block = document.getElementById("humor_style_block");
+        var humor_style_block = document.getElementById("humor_style_block");
 
-    var humor_style = new HumorStyle(humor_style_block);
+        var humor_style = new HumorStyle(humor_style_block);
 
-    // console.log(humor_style)
+        // console.log(humor_style)
 
 
     });
