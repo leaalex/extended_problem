@@ -179,7 +179,7 @@ let messages = {
             },
             {
                 text: "Пойду на шум машин",
-                next_id: "msg_"
+                next_id: "msg_9"
             },
         ]
     },

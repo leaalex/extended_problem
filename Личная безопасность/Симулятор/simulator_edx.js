@@ -32,8 +32,10 @@ function Simulator(settings) {
     let answer = {};
 
     let save_button = $(".save.problem-action-btn", $(this.html_element).closest(".xblock"));
-    $(".action", $(this.html_element).closest(".xblock")).hide();
-    $(".notification", $(this.html_element).closest(".xblock")).css("display","none !important;");
+    let submit_button = $(".submit.btn-brand", $(this.html_element).closest(".xblock"));
+    $(submit_button).removeAttr("disabled");
+    // $(".action", $(this.html_element).closest(".xblock")).hide();
+    // $(".notification", $(this.html_element).closest(".xblock")).css("display","none !important;");
     this.init = function () {
         // console.log(out_of_turn);
 
@@ -348,11 +350,18 @@ function Simulator(settings) {
             html_element.append(this.html);
         }, 500);
 
-        console.log(html_element.closest(".simulator-container"));
+        // console.log(html_element.closest(".simulator-container"));
 
-        answer.setJSON({answer: {"current_msg": id}});
+        answer.setJSON({answer: {"current_msg": id, "final": this.final, "success": (settings.success !== undefined) ? settings.success : false }});
 
-        $(save_button).trigger('click');
+        console.log(this.final,  $(submit_button));
+
+        if(this.final){
+            console.log("click submit");
+            // $(submit_button).trigger('click');
+        }else{
+            $(save_button).trigger('click');
+        }
     }
 
 

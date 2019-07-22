@@ -3,9 +3,21 @@
 <link rel="stylesheet" type="text/css" href="/static/simulator.css"></link>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
-<script type="loncapa/python">
-def check_answer(expect, ans):
-    return {'input_list': [{'ok': True, 'msg': 'Kek', 'grade_decimal': 1}, ]}
+<script type="loncapa/python" system_path="python_lib">
+
+kekes = {"a":"aa","b":"bb","c":"cc"}
+
+def check_answer(exp, ans):
+    return { 'overall_message': 'Overall message', 'input_list': [{'ok':'Partial','grade_decimal':1}]}
+
+def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
+  aid = answer_ids[0]
+  ans = str(student_answers[aid]).lower()
+  print 'hint_fn called, ans=', ans
+  hint = ''
+  hint = 'hint for incorrect answer 1'
+  new_cmap.set_hint_and_mode(aid, hint, 'always')
+
 </script>
 
 <script type="text/javascript">
@@ -29,6 +41,7 @@ def check_answer(expect, ans):
     <div id="simulator_input">
         <customresponse cfn="check_answer">
             <textline size="40" value="$taskId" />
+            <hintgroup hintfn="hint_fn"/>
             <br/>
         </customresponse>
         <!-- <div class="message-about-grade"></div> -->
@@ -38,7 +51,6 @@ def check_answer(expect, ans):
 <script type="text/javascript">
 
     let messages = {
-
         msg_1: {
             type: "choice",
             text: "Конец сентября. Ты пошел в лес за грибами. Потерял ориентиры, заблудился. У тебя с собой пластиковая бутылка 0,5л., воды осталось на один глоток на дне бутылки. Еды нет. Есть мобильный телефон. Но нет денежных средств и отложенного платежа. От населенного пункта 3 км, но ты про это не знаешь. Недалеко(1 км.) находится автомобильная трасса. Слышно на расстоянии шум моторов. ",
@@ -134,7 +146,7 @@ def check_answer(expect, ans):
             success: false,
             image:"msg_7.jpg"
         },
-        msg_8:{
+        msg_8: {
             type: "choice",
             text: "Окей, вы потратили драгоценные силы и время на хаотичные метания. Что будете делать дальше?",
             choices: [
@@ -154,8 +166,7 @@ def check_answer(expect, ans):
             ],
             image:"msg_8.jpg"
         },
-
-        msg_9:{
+        msg_9: {
             type: "choice",
             text: "Вы вышли на дорогу. Будете ли вы останавливать машину?",
             choices: [
@@ -231,7 +242,7 @@ def check_answer(expect, ans):
                 },
                 {
                     text: "Пойду на шум машин",
-                    next_id: "msg_"
+                    next_id: "msg_9"
                 },
             ],
             image:"msg_14.jpg"
@@ -287,7 +298,6 @@ def check_answer(expect, ans):
             final: true,
             success: true,
         },
-
         msg_19:{
             type: "choice",
             text: "Здорово! Но вот вы видите, что водитель не сильно приветлив, даже немного агрессивен. Сядете в автомобиль??",
@@ -303,7 +313,6 @@ def check_answer(expect, ans):
             ],
             image:"msg_19_24.jpg",
         },
-
         msg_20:{
             type: "choice",
             text: "Всё-таки стоило потратить время и оценить адекватность водителя. Вы понимаете, что едете куда-то не туда. Ваши действия?",
@@ -371,7 +380,6 @@ def check_answer(expect, ans):
             success: false,
             image:"msg_25_26.jpg",
         },
-
         msg_27:{
             type: "choice",
             text: "Подкрепились. Что  дальше?",
@@ -394,9 +402,6 @@ def check_answer(expect, ans):
             success: false,
             image:"msg_10_28.jpg"
         },
-
-
-
     };
 
     var things_list = [

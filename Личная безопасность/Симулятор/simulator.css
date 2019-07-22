@@ -1,6 +1,6 @@
 
 .xmodule_display.xmodule_CapaModule div.problem .notification{
-    display: none !important;
+    /*display: none !important;*/
 }
 
 .simulator-container {
@@ -10,9 +10,10 @@
     /*padding: 10px 20px;*/
     min-height: 720px;
     display: flex;
-    -webkit-box-shadow: 0px 4px 10px 6px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 4px 10px 6px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 4px 10px 6px rgba(0, 0, 0, 0.75);
+    border: 1px solid #c7c7c9;
+    /*-webkit-box-shadow: 0px 4px 10px 6px rgba(0, 0, 0, 0.75);*/
+    /*-moz-box-shadow: 0px 4px 10px 6px rgba(0, 0, 0, 0.75);*/
+    /*box-shadow: 0px 4px 10px 6px rgba(0, 0, 0, 0.75);*/
     position: relative;
     font-family: Tahoma, Geneva, sans-serif;
 }
@@ -83,7 +84,7 @@
 
 }
 
-.tip{
+.message-controls .tip{
     width: 0px;
     height: 0px;
     position: absolute;
@@ -91,7 +92,7 @@
     border: 24px solid #ccc;
 }
 
-.tip-down{
+.tip.tip-down{
     bottom: -48px;
     left: 8px;
     border-right-color: transparent;
