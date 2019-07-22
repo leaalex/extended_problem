@@ -3,21 +3,29 @@
 <link rel="stylesheet" type="text/css" href="/static/simulator.css"></link>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
-<script type="loncapa/python" system_path="python_lib">
-
-kekes = {"a":"aa","b":"bb","c":"cc"}
+<script type="loncapa/python">
+import json
+import hashlib
 
 def check_answer(exp, ans):
     return { 'overall_message': 'Overall message', 'input_list': [{'ok':'Partial','grade_decimal':1}]}
 
-def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
-  aid = answer_ids[0]
-  ans = str(student_answers[aid]).lower()
-  print 'hint_fn called, ans=', ans
-  hint = ''
-  hint = 'hint for incorrect answer 1'
-  new_cmap.set_hint_and_mode(aid, hint, 'always')
+source_obj = {'msg_1': {'type': 'choice', 'text': 'Конец сентября. Ты пошел в лес за грибами. Потерял ориентиры, заблудился. У тебя с собой пластиковая бутылка 0,5л., воды осталось на один глоток на дне бутылки. Еды нет. Есть мобильный телефон. Но нет денежных средств и отложенного платежа. От населенного пункта 3 км, но ты про это не знаешь. Недалеко(1 км.) находится автомобильная трасса. Слышно на расстоянии шум моторов. ', 'choices': [{'text': 'Для начала остановлюсь и соберусь с мыслями', 'next_id': {'condition': ['water_bottle'], 'yes': {'next_id': 'msg_2'}, 'no': {'next_id': 'msg_3'}}, 'comment': 'КОММЕНТАРИЙ (Для начала остановлюсь и соберусь с мыслями)'}, {'text': 'Позвоню в МЧС', 'next_id': 'msg_4', 'comment': 'КОММЕНТАРИЙ (Позвоню в МЧС)'}], 'image': 'msg_1.jpg'}, 'msg_2': {'type': 'choice', 'text': 'У вас есть с собой вода! Сделайте пару глотков, подышите глубоко. Чтобы прийти в себя: визуализируйте свой страх, представьте его и как бы отойдите на шаг, посмотреть  на него со стороны. Однако скоро стемнеет, но вы услышали шум машин. Пойдете на звук?', 'choices': [{'text': 'Начну бегать по лесу, осматриваясь.', 'next_id': 'msg_8'}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}]}, 'msg_3': {'type': 'choice', 'text': 'Постарайтесь успокоиться. Чтобы прийти в себя: визуализируйте свой страх, представьте его и как бы отойдите на шаг, посмотреть  на него со стороны. Однако скоро стемнеет, но вы услышали шум машин. Пойдете на звук?', 'choices': [{'text': 'Начну бегать по лесу, осматриваясь.', 'next_id': 'msg_8'}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}]}, 'msg_4': {'type': 'choice', 'text': 'Сотрудники МЧС сказали вам, что нужно делать, но через обозначенное время они не вышли на вас. Ваши действия?', 'choices': [{'text': 'Всё равно останусь ждать сотрудников МЧС. Я знаю, что мой звонок принят ими. Я с ними говорил, и они обещали найти меня', 'next_id': {'condition': ['energy_bar'], 'yes': {'next_id': 'msg_5'}, 'no': {'next_id': 'msg_6'}}}, {'text': 'Начну бегать по лесу, осматриваясь', 'next_id': 'msg_8'}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}], 'image': 'msg_4.jpg'}, 'msg_5': {'type': 'text', 'text': 'Это хороший вариант. Сотрудники МЧС найдут вас в самое ближайшее время. Можете во время ожидания развести огонь для тепла, сделать настил из веток, чтобы отдохнуть. Ни в коем случае не сидите на холодной земле, она быстро заберет тепло вашего тела. У вас к тому же есть энергетический батончик. Подкрепитесь!', 'final': True, 'success': True, 'image': 'msg_5_6.jpg'}, 'msg_6': {'type': 'text', 'text': 'Это хороший вариант. Сотрудники МЧС найдут вас в самое ближайшее время. Можете во время ожидания развести огонь для тепла, сделать настил из веток, чтобы отдохнуть. Ни в коем случае не сидите на холодной земле, она быстро заберет тепло вашего тела', 'final': True, 'success': True, 'image': 'msg_5_6.jpg'}, 'msg_7': {'type': 'text', 'text': 'Плохой вариант. Если только вы слышите хоть какие-то звуки, двигайтесь на шум. Не можете идти ,ползите на шум. В случае, если вы съели смертельно-ядовитую ягоду, двигаться на шум - единственный шанс выйти на людей, которые помогут с оказанием квалифицированной медицинской помощи. Пройдите тренажер заново!', 'final': True, 'success': False, 'image': 'msg_7.jpg'}, 'msg_8': {'type': 'choice', 'text': 'Окей, вы потратили драгоценные силы и время на хаотичные метания. Что будете делать дальше?', 'choices': [{'text': 'У меня есть энергетический батончик! Я подкреплюсь!', 'next_id': 'msg_27', 'condition': ['energy_bar']}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}, {'text': 'Пойду добывать себе еду', 'next_id': 'msg_13'}], 'image': 'msg_8.jpg'}, 'msg_9': {'type': 'choice', 'text': 'Вы вышли на дорогу. Будете ли вы останавливать машину?', 'choices': [{'text': 'Да', 'next_id': 'msg_17'}, {'text': 'Нет, это очень опасно. Пойду пешком вдоль дороги', 'next_id': 'msg_16'}], 'image': 'msg_9.jpg'}, 'msg_10': {'type': 'choice', 'text': 'Верно! Нельзя тратить световой день на поиск еды. Надо действовать! Что дальше?', 'choices': [{'text': 'Сделаю настил из веток, чтоб было мягче лежать. Отдохну', 'next_id': 'msg_11'}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}], 'image': 'msg_10_28.jpg'}, 'msg_11': {'type': 'text', 'text': 'Плохой вариант. Нельзя тратить световой день на отдых. Вы потеряете драгоценное время и силы. Пройдите тренажер заново!', 'final': True, 'success': False}, 'msg_12': {'type': 'choice', 'text': 'Молодец! Но если знакомых ягод не находится, как долго ты планируешь искать еду?', 'choices': [{'text': 'Пока не найду', 'next_id': 'msg_28'}, {'text': 'Не более 30 минут', 'next_id': 'msg_10'}], 'image': 'msg_12.jpg'}, 'msg_13': {'type': 'choice', 'text': 'Вы встретили куст с привлекательными ягодами (Описать их) Скушаете или нет?', 'choices': [{'text': 'Съем, я очень голоден.', 'next_id': 'msg_14'}, {'text': 'Не съем. Пойду искать знакомые ягоды', 'next_id': 'msg_12'}], 'image': 'msg_13.jpg'}, 'msg_14': {'type': 'choice', 'text': 'Не стоит есть незнакомые ягоды. Вас стало подташнивать и начала кружиться голова. Вы слышите шум машин. Что будете делать?', 'choices': [{'text': 'Присяду отдохнуть. Меня же тошнит', 'next_id': 'msg_7'}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}], 'image': 'msg_14.jpg'}, 'msg_15': {'type': 'choice', 'text': 'Вы взяли с собой энергетический батончик. Подкрепитесь! Машина остановилась. У вас есть шанс оценить водителя и салон на предмет подозрительности. Вы будете тратить на это время?', 'choices': [{'text': 'Нет, я выбрался из леса! Что плохого со мной может случиться на людях?)', 'next_id': 'msg_20'}, {'text': 'Да, безопасность - превыше всего', 'next_id': 'msg_19'}], 'image': 'msg_15_17.jpg'}, 'msg_16': {'type': 'choice', 'text': 'И долго будете идти?', 'choices': [{'text': 'Пока не устану. Тогда начну останавливать проезжающие машины', 'next_id': 'msg_17'}, {'text': 'До ближайшего населенного пункта', 'next_id': 'msg_22'}], 'image': 'msg_16.jpg'}, 'msg_17': {'type': 'choice', 'text': 'Машина остановилась. У вас есть шанс оценить водителя и салон на предмет подозрительности. Вы будете тратить на это время?', 'choices': [{'text': 'Да, безопасность - превыше всего', 'next_id': 'msg_19'}, {'text': 'Нет, я выбрался из леса! Что плохого со мной может случиться на людях?)', 'next_id': 'msg_20'}], 'image': 'msg_15_17.jpg'}, 'msg_18': {'type': 'text', 'text': 'Водитель оказался отличным парнем и довез вас до самого дома', 'final': True, 'success': True}, 'msg_19': {'type': 'choice', 'text': 'Здорово! Но вот вы видите, что водитель не сильно приветлив, даже немного агрессивен. Сядете в автомобиль??', 'choices': [{'text': 'Да, я выбрался из леса! Что плохого со мной может случиться на людях?)', 'next_id': 'msg_20'}, {'text': 'Нет, это очень опасно. Пойду пешком вдоль дороги', 'next_id': 'msg_16'}], 'image': 'msg_19_24.jpg'}, 'msg_20': {'type': 'choice', 'text': 'Всё-таки стоило потратить время и оценить адекватность водителя. Вы понимаете, что едете куда-то не туда. Ваши действия?', 'choices': [{'text': 'Начну кричать на водителя, размахивать руками и пытаться выйти на ходу', 'next_id': 'msg_23'}, {'text': 'Звоню другу: 1.Сообщаю номер авто, место, куда еду', 'next_id': 'msg_21'}]}, 'msg_21': {'type': 'text', 'text': 'Это должно сработать. Явки/пароли вы сообщили. Будьте аккуратны и бдительны. Постарайтесь понять искренность намерений водителя помочь вам', 'final': True, 'success': True, 'image': 'msg_21.jpg'}, 'msg_22': {'type': 'text', 'text': 'Это хороший вариант. Главное, чтобы вам хватило сил и светового дня дойти до населенного пункта', 'final': True, 'success': True, 'image': 'msg_22.jpg'}, 'msg_23': {'type': 'choice', 'text': 'Это не помогает. Что же делать?', 'choices': [{'text': 'НИЧЕГО', 'next_id': 'msg_24'}]}, 'msg_24': {'type': 'choice', 'text': 'Водитель дает вам шанс «убраться» из машины прямо сейчас. Вы выйдете?', 'choices': [{'text': 'Конечно, так будет безопаснее', 'next_id': 'msg_25'}, {'text': 'Нет, упрошу водителя всё-таки подбросить меня', 'next_id': 'msg_26'}], 'image': 'msg_19_24.jpg'}, 'msg_25': {'type': 'text', 'text': 'Бегите, как только появится такая возможность. Вы можете узнать у водителей проезжающих машин или людей, которых встретите, далеко ли до ближайшего населенного пункта, из которого вы сможете на автобусе доехать до своего дома', 'final': True, 'success': True, 'image': 'msg_25_26.jpg'}, 'msg_26': {'type': 'text', 'text': 'Вы очень сильно рискуете попасть в руки опасного человека. Бегите, как только появится такая возможность. И пройдите тренажер заново.', 'final': True, 'success': False, 'image': 'msg_25_26.jpg'}, 'msg_27': {'type': 'choice', 'text': 'Подкрепились. Что  дальше?', 'choices': [{'text': 'Сделаю настил из веток, чтоб было мягче лежать. Отдохну', 'next_id': 'msg_11'}, {'text': 'Пойду на шум машин', 'next_id': 'msg_9'}], 'image': 'msg_27.jpg'}, 'msg_28': {'type': 'text', 'text': 'Плохой вариант. Нельзя тратить световой день на поиск еды. Вы потеряете драгоценное время и силы. Пройдите тренажер заново!', 'final': True, 'success': False, 'image': 'msg_10_28.jpg'}}
+source_obj_str = json.dumps(source_obj)
+first_msg = "msg_1"
 
+student_salt = "salt"
+
+for key in source_obj.keys():
+    hash_msg = hashlib.md5(str(key + student_salt).encode('utf-8')).hexdigest()
+    source_obj_str = source_obj_str.replace('"' + key + '"', '"' + hash_msg + '"')
+source_obj = json.loads(source_obj_str)
+
+
+first_msg = hashlib.md5(str(first_msg + student_salt).encode('utf-8')).hexdigest()
+first_msg = json.dumps(first_msg, ensure_ascii=False).replace("\"", "'")
+source_obj = json.dumps(source_obj, ensure_ascii=False).replace("\"", "'")
+images_src =json.dumps("/static/_", ensure_ascii=False).replace("\"", "'")
 </script>
 
 <script type="text/javascript">
@@ -41,7 +49,6 @@ def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
     <div id="simulator_input">
         <customresponse cfn="check_answer">
             <textline size="40" value="$taskId" />
-            <hintgroup hintfn="hint_fn"/>
             <br/>
         </customresponse>
         <!-- <div class="message-about-grade"></div> -->
@@ -49,6 +56,13 @@ def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
 </div>
 
 <script type="text/javascript">
+
+    // let source_obj = $source_obj;
+    // let first_msg = $first_msg;
+    // let messages = source_obj;
+    let images_src = $images_src;
+    images_src = images_src.slice(0, -2);
+    console.log(images_src);
 
     let messages = {
         msg_1: {
@@ -60,8 +74,12 @@ def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
                     next_id:
                         {
                             condition: ["water_bottle"],
-                            yes: "msg_2",
-                            no: "msg_3"
+                            yes: {
+                                next_id: "msg_2"
+                            },
+                            no: {
+                                next_id: "msg_3"
+                            }
                         },
                     comment: "КОММЕНТАРИЙ (Для начала остановлюсь и соберусь с мыслями)"
                 },
@@ -111,8 +129,12 @@ def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
                     next_id:
                         {
                             condition: ["energy_bar"],
-                            yes: "msg_5",
-                            no: "msg_6"
+                            yes: {
+                                next_id: "msg_5"
+                            },
+                            no: {
+                                next_id: "msg_6"
+                            }
                         }
                 },
                 {
@@ -403,8 +425,11 @@ def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
             image:"msg_10_28.jpg"
         },
     };
+    let first_msg = "msg_1";
 
-    var things_list = [
+
+
+    let things_list = [
         {
             name: "water_bottle",
             html: "Бутылка с водой",
@@ -489,14 +514,12 @@ def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
 
     ];
 
-
-
     var simulator = new Simulator({
         element: document.getElementById('task_container'),
         messages: messages,
         things: things_list,
-        images_src: "https://courses.openedu.ru/asset-v1:urfu+MCS+fall_2019+type@asset+block@",
-        first_msg: "msg_1",
+        images_src: "https://courses.openedu.ru" + images_src + "@",
+        first_msg: first_msg,
         // out_of_turn: "msg_3",
         edx_mode: true,
         debug: true,

@@ -8,11 +8,12 @@ function Simulator(settings) {
 
     let user_state = {
         things: [],
+        path: [],
     };
 
     let things = settings.things || [];
 
-    console.log(things);
+    // console.log(things);
 
     let use_things = things.length > 0;
     let images_src = settings.images_src || "";
@@ -230,6 +231,7 @@ function Simulator(settings) {
     }
 
     function Message(id, settings, html_element) {
+        console.log("id: ", id)
         var id = id;
         this.id = id;
         this.type = settings.type || "text";
@@ -279,9 +281,9 @@ function Simulator(settings) {
                 if (typeof (ch.next_id) == "object") {
 
                     if (user_state.things.map((item) => item.name).some(r => ch.next_id.condition.includes(r))) {
-                        ch.next_id = ch.next_id["yes"];
+                        ch.next_id = ch.next_id["yes"]["next_id"];
                     } else {
-                        ch.next_id = ch.next_id["no"];
+                        ch.next_id = ch.next_id["no"]["next_id"];
                     }
                 }
 
@@ -350,11 +352,16 @@ function Simulator(settings) {
             html_element.append(this.html);
         }, 500);
 
+        if(!this.is_comment){
+            user_state.path.push(this.id);
+        }
+        // console.log(user_state.path)
         // console.log(html_element.closest(".simulator-container"));
 
-        answer.setJSON({answer: {"current_msg": id, "final": this.final, "success": (settings.success !== undefined) ? settings.success : false }});
+        answer.setJSON({answer: {"user_state": user_state, "current_msg": id}});
 
-        console.log(this.final,  $(submit_button));
+
+        console.log(user_state);
 
         if(this.final){
             console.log("click submit");
@@ -364,8 +371,7 @@ function Simulator(settings) {
         }
     }
 
-
-    console.log(save_button);
+    // console.log(save_button);
 
     this.clear_html = function () {
         this.html_element.innerHTML = "";
@@ -482,16 +488,26 @@ function Simulator(settings) {
             let curr_msg = answer.getJSON()["answer"]["current_msg"];
 
             first_msg = curr_msg;
+            user_state = answer.getJSON()["answer"]["user_state"];
+            user_state.path = user_state.path.slice(0, -1);
+
             // console.log(this);
             this.createGame();
+
             // this.init();
-            console.log(curr_msg);
+
+
+
+            // user_state.path = answer.getJSON()["answer"]["user_state"]["path"].slice(0, -1);
+            // user_state.things = answer.getJSON()["answer"]["user_state"]["path"];
+            // console.log(curr_msg);
         }else{
             this.init();
         }
 
     }
     else{
+        images_src = "images/";
         this.init();
     }
 
