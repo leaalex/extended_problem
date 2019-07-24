@@ -188,18 +188,18 @@
             reset_btn_label: "Restart",
             check_btn_label: "Check",
             correct_count_label: "Correctly selected words:",
-            correct_words: "Correctly selected words (colored green)",
-            not_selected_words: "Unselected words (highlighted in green)",
-            incorrect_words: "Incorrectly selected words (colored red)",
+            correct_words: "Highlighted in green",
+            not_selected_words: "Not selected; in a green box",
+            incorrect_words: "Incorrectly selected words (highlighted in red)",
             selected_count_label: "Highlighted words:",
             no_correct_label: "There are no correctly selected words!",
             all_correct_label: "All words are selected correctly!",
             selected_words_label: "Highlighted words",
             time_is_over_label: "Time is over!",
             instruction_label: "Instruction",
-            instruction_wording: "In the set of letters offered to you hidden words. Your task is to find and highlight these words as quickly as possible. Before starting the test, you need to get acquainted with the interface. In order to select the selected word, you must hover the cursor on the first letter of the word that you want to select and click on it. After that, bring to the last letter in the selected word (the selected word will be dynamically underlined), when the underlined word matches the desired one for selection, click on the last letter in this word. The selected word will be crossed out. If the word was chosen with an error, move the cursor to the word that needs to be deleted (the word will be highlighted in red), then pressing (on the word highlighted in red) will delete the selected word.",
+            instruction_wording: "You will see a string of letters with some words hidden in it. Your task is to find and highlight these words as quickly as possible. Before starting the test, you need to get acquainted with the interface. In order to select a word, you must hover the cursor on the first letter of the word that you want to select and click on it. After that, bring to the last letter in the selected word (the selected word will be dynamically underlined). The selected word will be crossed out. If the word chosen has got an error, move the cursor to the word that needs to be deleted (the word will be highlighted in red), then clicking on the highlighted word will delete it.",
             of: "of", // применимо для "12 верных ответов __из__ 30"
-            example_wording: "Practice working with this simulator. As an example, you are given a short letter text within which the word “MEMORY” is hidden.",
+            example_wording: "Practice working with this simulator. As an example, you are given a short string of letters in which a word “MEMORY” is hidden.",
             example_label: "Example",
             before_start_wording: "As soon as you are ready to carry out the procedure, click on the “Start test now” button and proceed to execution.",
             time_wording: "Task time",
@@ -208,7 +208,7 @@
             decoding_results_msg: "This simulator estimates the number of highlighted words and the number of errors (missing and incorrectly selected words).",
             text_contain_label: "The text contains", // 25 words
             words_label: "words",
-            you_found_label: "You discovered",
+            you_found_label: "You have found",
             words_10_15: "You should spend more time training attention. Fix your attention on details and trifles. Use the simulators in this section.",
             words_16_20: "Your attention is close to normal, but sometimes fails. To develop attention, use the simulators in this section.",
             words_21_25: "Your attention is in order. A high level of selectivity and concentration helps you learn and work productively, record the necessary information and reproduce it in a timely manner.",        },
@@ -432,7 +432,7 @@
             function createPreview(block) {
                 var preview_str_translations={
                     ru: "лгщьбапамятьшогхеюжп",
-                    en: "bsunvrngschjtsdistri"
+                    en: "bsvrnmemorygsfchjtsi"
                 };
 
                 var preview_str = preview_str_translations[language];

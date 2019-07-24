@@ -34,7 +34,10 @@ function Simulator(settings) {
 
     let save_button = $(".save.problem-action-btn", $(this.html_element).closest(".xblock"));
     let submit_button = $(".submit.btn-brand", $(this.html_element).closest(".xblock"));
+
     $(submit_button).removeAttr("disabled");
+
+    console.log(submit_button);
     // $(".action", $(this.html_element).closest(".xblock")).hide();
     // $(".notification", $(this.html_element).closest(".xblock")).css("display","none !important;");
     this.init = function () {
@@ -196,7 +199,6 @@ function Simulator(settings) {
                 className: "user-things-container-item",
                 html: "\u25CB " + thing.html
             }));
-
         });
         return list_container;
     };
@@ -231,7 +233,9 @@ function Simulator(settings) {
     }
 
     function Message(id, settings, html_element) {
-        console.log("id: ", id)
+
+        console.log("Creating message with id: ", id);
+
         var id = id;
         this.id = id;
         this.type = settings.type || "text";
@@ -360,14 +364,14 @@ function Simulator(settings) {
 
         answer.setJSON({answer: {"user_state": user_state, "current_msg": id}});
 
-
         console.log(user_state);
 
         if(this.final){
-            console.log("click submit");
+            console.log("click submit trigger");
             // $(submit_button).trigger('click');
         }else{
-            $(save_button).trigger('click');
+            console.log("click save trigger");
+            // $(save_button).trigger('click');
         }
     }
 
@@ -495,8 +499,6 @@ function Simulator(settings) {
             this.createGame();
 
             // this.init();
-
-
 
             // user_state.path = answer.getJSON()["answer"]["user_state"]["path"].slice(0, -1);
             // user_state.things = answer.getJSON()["answer"]["user_state"]["path"];
