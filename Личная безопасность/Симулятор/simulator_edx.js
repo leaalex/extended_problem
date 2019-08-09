@@ -29,7 +29,6 @@ function Simulator(settings) {
     let start_game_btn_label = "Начать симуляцию";
     let next_btn_label = "Далее";
 
-
     let answer = {};
 
     let save_button = $(".save.problem-action-btn", $(this.html_element).closest(".xblock"));
@@ -146,7 +145,6 @@ function Simulator(settings) {
             html: introduction_text
         }));
 
-
         let create_game_btn = addEvent(create('button', {
                 className: "start-button",
                 html: use_things ? next_btn_label : start_game_btn_label,
@@ -230,6 +228,11 @@ function Simulator(settings) {
                 }
             }
         }.bind(this);
+
+        this.html.onmouseover = function () {
+            console.log(this)
+        }.bind(this)
+
     }
 
     function Message(id, settings, html_element) {
@@ -290,7 +293,6 @@ function Simulator(settings) {
                         ch.next_id = ch.next_id["no"]["next_id"];
                     }
                 }
-
                 return new Choice(id, choice_id, ch, html_element)
             })
         }

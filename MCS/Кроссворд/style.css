@@ -1,0 +1,26 @@
+#crossword_container {
+  display: flex;
+}
+#crossword_container .table-block td.cell {
+  width: 3.2em;
+  height: 3.2em;
+  border: 1px solid #cdcdcd;
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+  position: relative;
+}
+#crossword_container .table-block td.cell span {
+  position: absolute;
+  top: 2px;
+  font-size: 1.2em;
+  left: 2px;
+}
+#crossword_container .table-block td.cell.input {
+  background-color: white;
+}
+#crossword_container .clues-block {
+  margin-left: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */

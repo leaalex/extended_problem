@@ -1,0 +1,33 @@
+#crossword_container {
+  display: flex;
+
+  .table-block {
+
+    td.cell {
+      width: 3.2em;
+      height: 3.2em;
+      border: 1px solid #cdcdcd;
+      padding: 0;
+      margin: 0;
+      background-color: #333;
+      position: relative;
+
+      span{
+        position: absolute;
+        top: 2px;
+        font-size: 1.2em;
+        left: 2px;
+      }
+
+      &.input{
+        background-color: white;
+      }
+    }
+  }
+
+  .clues-block{
+    margin-left: 20px;
+  }
+
+}
+

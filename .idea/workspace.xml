@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="tsts">
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="`tsts`">
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.1 Смысловая память/semantic_memory.html" beforeDir="false" afterPath="$PROJECT_DIR$/M2 3.1 Смысловая память/semantic_memory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.2 Память на числа/twelve_numbers.html" beforeDir="false" afterPath="$PROJECT_DIR$/M2 3.2 Память на числа/twelve_numbers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.4 Таблицы Шульте/tables_training_apparatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/M2 3.4 Таблицы Шульте/tables_training_apparatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.5 Закономерности числового ряда/numerical_series.html" beforeDir="false" afterPath="$PROJECT_DIR$/M2 3.5 Закономерности числового ряда/numerical_series.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Методика диагностики самооценки Ч. Д. Спилбергера/spielberger_test_rt.html" beforeDir="false" afterPath="$PROJECT_DIR$/Методика диагностики самооценки Ч. Д. Спилбергера/spielberger_test_rt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Опросник стилей юмора/humor_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/Опросник стилей юмора/humor_style.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -57,21 +55,21 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/presentations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Симулятор ЛБ/safety_simulator" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/presentations" />
       <recent name="$PROJECT_DIR$/MCS" />
       <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
       <recent name="$PROJECT_DIR$/matching_table" />
       <recent name="$PROJECT_DIR$/Личная безопасность" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -263,7 +261,12 @@
       <workItem from="1563185011327" duration="25866000" />
       <workItem from="1563864998211" duration="660000" />
       <workItem from="1563865956144" duration="599000" />
-      <workItem from="1563873157302" duration="13002000" />
+      <workItem from="1563873157302" duration="14704000" />
+      <workItem from="1564055693224" duration="1253000" />
+      <workItem from="1564642574029" duration="591000" />
+      <workItem from="1565003616728" duration="599000" />
+      <workItem from="1565082930618" duration="4213000" />
+      <workItem from="1565327421021" duration="15529000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
