@@ -15,27 +15,32 @@ function Crossword(settings) {
     let element = settings.element;
     app_data.student_state = {};
     app_data.questions = settings.data;
+    app_data.state = {};
 
     let rowsCount = 0,
         colsCount = 0;
 
     let CrosswordInit = {
         init: function () {
-
             app_data.questions.sort(function (a, b) {
+                return b.orientation.localeCompare(a.orientation);
+            }).sort(function (a, b) {
                 return a.position - b.position;
             });
 
-            // console.log(utils.create("div", {}));
+            // app_data.questions
+            // console.log(app_data.questions);
             this.calcCoordinates();
             this.buildTable();
-            this.buildClues();
-            this.buildEntries();
+            this.buildEntriesAndClues();
+            utils.restoreState();
+            this.createHandlers();
         },
 
         calcCoordinates: function () {
             app_data.questions.forEach(function (item, i) {
                 app_data.questions[i].coords = [];
+                app_data.questions[i].unique_position = i;
                 app_data.questions[i].raw_coords = [];
                 let start_coords = {
                     x: parseInt(app_data.questions[i].start_x),
@@ -75,45 +80,86 @@ function Crossword(settings) {
             element.appendChild(table_block);
         },
 
-        buildEntries: function () {
+        buildEntriesAndClues: function () {
+            let clues_block = utils.create("div", {className: "clues-block"});
+            let clues_block_horizontal = utils.create("div", {className: "horizontal"}, utils.create("h3", {text: "По горизонтали"}));
+            let clues_block_horizontal_content = utils.create("div", {className: "content"});
+            let clues_block_vertical = utils.create("div", {className: "vertical"}, utils.create("h3", {text: "По вертикали"}));
+            let clues_block_vertical_content = utils.create("div", {className: "content"});
+
             app_data.questions.forEach(function (item) {
+                item.cells = [];
                 item.raw_coords.forEach(function (coord) {
                     let current_cell = element.querySelector('[data-coords="' + coord.x + ',' + coord.y + '"]');
-                    console.log(coord)
-                    current_cell.classList.add("word-" + item.position);
+                    current_cell.classList.add("entry-" + item.position);
+                    current_cell.classList.add("position-" + item.unique_position);
                     current_cell.classList.add("input");
+
+                    if (!Array.from(current_cell.children).map(c => c.tagName.toLowerCase()).includes("input")) {
+                        let current_cell_input = utils.create("input", {attr: {"maxlength": 1, type: "text"}});
+                        current_cell.appendChild(current_cell_input);
+                    }
+                    item.cells.push(current_cell);
                 });
+                let clue = utils.create("div", {
+                    // text: item.position + ". " + item.clue,
+                    // html: utils.create("span",{text:item.position}),
+                    attr: {"data-position": item.unique_position},
+                    className: "clue"
+                },
+                    utils.create("span",{text:item.position+". ", className:"clue-number"}),
+                    utils.create("span",{text:item.clue}),
+                    );
+                if (item.orientation === horizontal_sign) {
+                    clues_block_horizontal_content.appendChild(clue);
+                } else {
+                    clues_block_vertical_content.appendChild(clue);
+                }
+                item.html_clue = clue;
+
             });
             let unique_coords = utils.removeDuplicates(app_data.questions.map(function (item) {
                 return {x: item.start_x, y: item.start_y, pos: item.position}
             }));
             unique_coords.forEach(function (item) {
                 let current_cell = element.querySelector('[data-coords="' + item.x + ',' + item.y + '"]');
-                current_cell.appendChild(utils.create("span", {text: item.pos}))
+                // current_cell.querySelector("input").placeholder = item.pos; // Номер вопроса placeholder
+                current_cell.appendChild(utils.create("span", {text: item.pos})) // Номер вопроса span
             });
-            // console.log(unique_coords)
-        },
 
-        buildClues: function () {
-            let clues_block = utils.create("div", {className: "clues-block"});
-            let clues_block_horizontal = utils.create("div", {className: "horizontal"}, utils.create("h2", {text: "По горизонтали"}));
-            let clues_block_horizontal_content = utils.create("div", {className: "content"});
-            app_data.questions.filter(item=>item.orientation === horizontal_sign).forEach(function (item) {
-                let clue = utils.create("div", {text: item.position + ". " + item.clue});
-                clues_block_horizontal_content.appendChild(clue);
-            });
-            let clues_block_vertical = utils.create("div", {className: "vertical"}, utils.create("h2", {text: "По вертикали"}));
-            let clues_block_vertical_content = utils.create("div", {className: "content"});
-            app_data.questions.filter(item=>item.orientation === vertical_sign).forEach(function (item) {
-                let clue = utils.create("div", {text: item.position + ". " + item.clue});
-                clues_block_vertical_content.appendChild(clue);
-            });
             clues_block_horizontal.appendChild(clues_block_horizontal_content);
             clues_block.appendChild(clues_block_horizontal);
             clues_block_vertical.appendChild(clues_block_vertical_content);
             clues_block.appendChild(clues_block_vertical);
-            element.appendChild(clues_block)
+            element.appendChild(clues_block);
+
         },
+
+        createHandlers: function () {
+
+            app_data.questions.forEach(function (item) {
+                item.cells.forEach(function (html_cell) {
+                    html_cell.onclick = function () {
+                        utils.highlightEntryAndClue(item);
+                        if (!this.classList.contains("correct-cell")) {
+                            html_cell.querySelector("input").select();
+                        }
+                    };
+
+                    html_cell.onkeyup = function(){
+                        utils.checkAllWords();
+                        console.log("onkeyup");
+                    };
+
+                    item.html_clue.onclick = function (evt) {
+                        utils.highlightEntryAndClue(item)
+                    }
+
+                });
+            });
+
+        }
+
 
     };
 
@@ -160,50 +206,99 @@ function Crossword(settings) {
         },
         removeDuplicates: function (arr) {
 
-        const result = [];
-        const duplicatesIndices = [];
+            const result = [];
+            const duplicatesIndices = [];
 
-        // Loop through each item in the original array
-        arr.forEach((current, index) => {
+            // Loop through each item in the original array
+            arr.forEach((current, index) => {
 
-            if (duplicatesIndices.includes(index)) return;
+                if (duplicatesIndices.includes(index)) return;
 
-            result.push(current);
+                result.push(current);
 
-            // Loop through each other item on array after the current one
-            for (let comparisonIndex = index + 1; comparisonIndex < arr.length; comparisonIndex++) {
+                // Loop through each other item on array after the current one
+                for (let comparisonIndex = index + 1; comparisonIndex < arr.length; comparisonIndex++) {
 
-                const comparison = arr[comparisonIndex];
-                const currentKeys = Object.keys(current);
-                const comparisonKeys = Object.keys(comparison);
+                    const comparison = arr[comparisonIndex];
+                    const currentKeys = Object.keys(current);
+                    const comparisonKeys = Object.keys(comparison);
 
-                // Check number of keys in objects
-                if (currentKeys.length !== comparisonKeys.length) continue;
+                    // Check number of keys in objects
+                    if (currentKeys.length !== comparisonKeys.length) continue;
 
-                // Check key names
-                const currentKeysString = currentKeys.sort().join("").toLowerCase();
-                const comparisonKeysString = comparisonKeys.sort().join("").toLowerCase();
-                if (currentKeysString !== comparisonKeysString) continue;
+                    // Check key names
+                    const currentKeysString = currentKeys.sort().join("").toLowerCase();
+                    const comparisonKeysString = comparisonKeys.sort().join("").toLowerCase();
+                    if (currentKeysString !== comparisonKeysString) continue;
 
-                // Check values
-                let valuesEqual = true;
-                for (let i = 0; i < currentKeys.length; i++) {
-                    const key = currentKeys[i];
-                    if ( current[key] !== comparison[key] ) {
-                        valuesEqual = false;
-                        break;
+                    // Check values
+                    let valuesEqual = true;
+                    for (let i = 0; i < currentKeys.length; i++) {
+                        const key = currentKeys[i];
+                        if (current[key] !== comparison[key]) {
+                            valuesEqual = false;
+                            break;
+                        }
                     }
+                    if (valuesEqual) duplicatesIndices.push(comparisonIndex);
+
+                } // end for loop
+
+            }); // end arr.forEach()
+
+            return result;
+        },
+        highlightEntryAndClue: function (item) {
+            let question_id = item.unique_position;
+            app_data.questions.forEach((q) => {
+                q.html_clue.classList.remove("active-clue");
+                q.cells.forEach(cell => cell.classList.remove("active-cell"))
+            });
+            item.html_clue.classList.add("active-clue");
+            item.cells.forEach(cell => cell.classList.add("active-cell"));
+        },
+        toNextCell: function (e, override) {
+        },
+        checkAllWords: function () {
+            app_data.questions.forEach(function (item) {
+                let student_str = item.cells.map(cell => cell.querySelector("input").value).join('').toLowerCase();
+                if (item.answer.toLowerCase() === student_str) {
+                    item.cells.forEach(cell => {
+                        cell.classList.add("correct-cell");
+                        cell.querySelector("input").blur()
+                    });
+                    item.html_clue.classList.add("correct-clue");
                 }
-                if (valuesEqual) duplicatesIndices.push(comparisonIndex);
-
-            } // end for loop
-
-        }); // end arr.forEach()
-
-        return result;
-    },
+            });
+            this.buildState();
+        },
+        showHint: function (item) {
+            // console.log(item)
+        },
+        buildState: function () {
+            app_data.state = {};
+            app_data.questions.forEach(function (item) {
+                app_data.state["question_" + item.unique_position] = {};
+                item.cells.forEach(function (cell) {
+                    app_data.state["question_" + item.unique_position][cell.getAttribute("data-coords")] = cell.querySelector("input").value;
+                })
+            });
+            // console.log(app_data.state);
+            localStorage.setItem("crossword_student_state", JSON.stringify(app_data.state))
+        },
+        restoreState: function () {
+            if (localStorage.getItem("crossword_student_state")) {
+                app_data.state = JSON.parse(localStorage.getItem("crossword_student_state"));
+                Object.keys(app_data.state).forEach(function (item) {
+                    Object.keys(app_data.state[item]).forEach(function (sub_item) {
+                        element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item][sub_item];
+                    });
+                });
+                this.checkAllWords();
+            } else {
+                console.log("localStorage is empty");
+            }
+        },
     };
-
     CrosswordInit.init()
-
 };

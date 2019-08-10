@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="`tsts`">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.scss" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -266,7 +264,8 @@
       <workItem from="1564642574029" duration="591000" />
       <workItem from="1565003616728" duration="599000" />
       <workItem from="1565082930618" duration="4213000" />
-      <workItem from="1565327421021" duration="15529000" />
+      <workItem from="1565327421021" duration="28983000" />
+      <workItem from="1565438994782" duration="2722000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -315,7 +314,8 @@
     <MESSAGE value="sdf" />
     <MESSAGE value="диагностики" />
     <MESSAGE value="tsts" />
-    <option name="LAST_COMMIT_MESSAGE" value="tsts" />
+    <MESSAGE value="Кроссворд" />
+    <option name="LAST_COMMIT_MESSAGE" value="Кроссворд" />
   </component>
   <component name="masterDetails">
     <states>

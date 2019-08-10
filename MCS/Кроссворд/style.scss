@@ -1,32 +1,105 @@
+$border-color: #cdcdcd;
+
 #crossword_container {
-  display: flex;
+  //display: flex;
 
   .table-block {
-
+    table{
+      width: auto;
+    }
     td.cell {
-      width: 3.2em;
-      height: 3.2em;
-      border: 1px solid #cdcdcd;
+      width: 2em;
+      height: 2em;
+      border: 1px solid $border-color;
+      background-color: #333;
       padding: 0;
       margin: 0;
-      background-color: #333;
       position: relative;
 
-      span{
+      span {
         position: absolute;
-        top: 2px;
-        font-size: 1.2em;
-        left: 2px;
+        top: 0px;
+        font-size: 0.86em;
+        left: 1px;
+        user-select: none;
+        cursor: text;
+      }
+
+      &.input {
+        //background-color: white;
+        //border: 1px solid $border-color;
       }
 
       &.input{
         background-color: white;
       }
+
+      &.correct-cell{
+        user-select: none;
+        background-color: #15b615 !important;
+        input{
+          pointer-events:none;
+        }
+        &.active-cell{
+          background-color: #26a426 !important;
+        }
+
+      }
+
+      &.active-cell{
+        background-color: #c6c5cd;
+
+        span{
+          opacity: 0.5;
+        }
+      }
+
+
+
+      input{
+        text-transform: uppercase;
+        width: 100%;
+        height: 100%;
+        padding: 0em;
+        background-color: rgba(255, 255, 255, 0);
+        font-size: 1.2em;
+        border: none;
+        text-align: center;
+        color: #272727;
+      }
     }
   }
 
-  .clues-block{
+  .clues-block {
     margin-left: 20px;
+    max-width: 40%;
+
+
+      .clue {
+        user-select: none;
+        padding: 3px;
+        margin: 5px 0px;
+        border: 1px dashed #c3c3c3;
+        font-size: 80%;
+        .clue-number{
+          font-weight: bold;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.correct-clue{
+          background-color: #f5f5f5;
+          text-decoration: line-through;
+        }
+
+        &.active-clue {
+          background-color: #c6c5cd;
+        }
+
+      }
+
   }
 
 }

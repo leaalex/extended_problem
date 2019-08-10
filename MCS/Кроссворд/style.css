@@ -1,26 +1,76 @@
-#crossword_container {
-  display: flex;
+#crossword_container .table-block table {
+  width: auto;
 }
 #crossword_container .table-block td.cell {
-  width: 3.2em;
-  height: 3.2em;
+  width: 2em;
+  height: 2em;
   border: 1px solid #cdcdcd;
+  background-color: #333;
   padding: 0;
   margin: 0;
-  background-color: #333;
   position: relative;
 }
 #crossword_container .table-block td.cell span {
   position: absolute;
-  top: 2px;
-  font-size: 1.2em;
-  left: 2px;
+  top: 0px;
+  font-size: 0.86em;
+  left: 1px;
+  user-select: none;
+  cursor: text;
 }
 #crossword_container .table-block td.cell.input {
   background-color: white;
 }
+#crossword_container .table-block td.cell.correct-cell {
+  user-select: none;
+  background-color: #15b615 !important;
+}
+#crossword_container .table-block td.cell.correct-cell input {
+  pointer-events: none;
+}
+#crossword_container .table-block td.cell.correct-cell.active-cell {
+  background-color: #26a426 !important;
+}
+#crossword_container .table-block td.cell.active-cell {
+  background-color: #c6c5cd;
+}
+#crossword_container .table-block td.cell.active-cell span {
+  opacity: 0.5;
+}
+#crossword_container .table-block td.cell input {
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  padding: 0em;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 1.2em;
+  border: none;
+  text-align: center;
+  color: #272727;
+}
 #crossword_container .clues-block {
   margin-left: 20px;
+  max-width: 40%;
+}
+#crossword_container .clues-block .clue {
+  user-select: none;
+  padding: 3px;
+  margin: 5px 0px;
+  border: 1px dashed #c3c3c3;
+  font-size: 80%;
+}
+#crossword_container .clues-block .clue .clue-number {
+  font-weight: bold;
+}
+#crossword_container .clues-block .clue:hover {
+  cursor: pointer;
+}
+#crossword_container .clues-block .clue.correct-clue {
+  background-color: #f5f5f5;
+  text-decoration: line-through;
+}
+#crossword_container .clues-block .clue.active-clue {
+  background-color: #c6c5cd;
 }
 
 /*# sourceMappingURL=style.css.map */
