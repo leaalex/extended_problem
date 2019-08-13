@@ -1,63 +1,103 @@
-#crossword_container .table-block table {
-  width: auto;
+@charset "UTF-8";
+.hidden {
+  display: none;
+  z-index: -999;
 }
-#crossword_container .table-block td.cell {
-  width: 2em;
-  height: 2em;
+
+.hint-block {
+  max-width: 350px;
+  text-align: center;
+  position: absolute;
+  background: #e3f2fd;
+  color: #424242;
+  padding: 8px 0px;
+  z-index: 999;
+}
+.hint-block:before {
+  background: #e3f2fd;
+  content: "Подсказка";
+  color: #2f3d89;
+  display: block;
+  position: absolute;
+  padding: 0px 2px;
+  margin-left: 14px;
+  font-size: 90%;
+}
+.hint-block .hint-text {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #3F51B5;
+}
+
+#crossword_container .table-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#crossword_container .table-block .row {
+  display: flex;
+}
+#crossword_container .table-block .cell {
   border: 1px solid #cdcdcd;
   background-color: #333;
   padding: 0;
   margin: 0;
   position: relative;
+  display: inline-flex;
+  width: 2.05em;
+  height: 2.05em;
 }
-#crossword_container .table-block td.cell span {
+#crossword_container .table-block .cell span {
   position: absolute;
   top: 0px;
-  font-size: 0.86em;
+  font-size: 0.68em;
   left: 1px;
   user-select: none;
   cursor: text;
 }
-#crossword_container .table-block td.cell.input {
+#crossword_container .table-block .cell.input {
   background-color: white;
 }
-#crossword_container .table-block td.cell.correct-cell {
+#crossword_container .table-block .cell.correct-cell {
   user-select: none;
   background-color: #15b615 !important;
 }
-#crossword_container .table-block td.cell.correct-cell input {
+#crossword_container .table-block .cell.correct-cell input {
   pointer-events: none;
 }
-#crossword_container .table-block td.cell.correct-cell.active-cell {
+#crossword_container .table-block .cell.correct-cell.active-cell {
   background-color: #26a426 !important;
 }
-#crossword_container .table-block td.cell.active-cell {
-  background-color: #c6c5cd;
+#crossword_container .table-block .cell.active-cell {
+  background-color: #dfdfdf;
 }
-#crossword_container .table-block td.cell.active-cell span {
+#crossword_container .table-block .cell.active-cell span {
   opacity: 0.5;
 }
-#crossword_container .table-block td.cell input {
+#crossword_container .table-block .cell input {
   text-transform: uppercase;
   width: 100%;
   height: 100%;
   padding: 0em;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #ffffff00;
   font-size: 1.2em;
   border: none;
   text-align: center;
   color: #272727;
+  box-shadow: none;
+  border-radius: 0px;
+  background-image: none;
 }
 #crossword_container .clues-block {
-  margin-left: 20px;
-  max-width: 40%;
+  margin-top: 20px;
+  display: flex;
 }
 #crossword_container .clues-block .clue {
   user-select: none;
   padding: 3px;
   margin: 5px 0px;
-  border: 1px dashed #c3c3c3;
   font-size: 80%;
+  line-height: 1.4em;
 }
 #crossword_container .clues-block .clue .clue-number {
   font-weight: bold;

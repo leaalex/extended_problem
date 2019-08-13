@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/index.html" afterDir="false" />
@@ -25,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -53,21 +54,21 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Симулятор ЛБ/safety_simulator" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/presentations" />
       <recent name="$PROJECT_DIR$/MCS" />
       <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
       <recent name="$PROJECT_DIR$/matching_table" />
       <recent name="$PROJECT_DIR$/Личная безопасность" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -265,7 +266,8 @@
       <workItem from="1565003616728" duration="599000" />
       <workItem from="1565082930618" duration="4213000" />
       <workItem from="1565327421021" duration="28983000" />
-      <workItem from="1565438994782" duration="2722000" />
+      <workItem from="1565438994782" duration="2780000" />
+      <workItem from="1565682827494" duration="20701000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
