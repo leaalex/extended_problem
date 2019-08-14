@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/style.scss" afterDir="false" />
@@ -267,7 +266,7 @@
       <workItem from="1565082930618" duration="4213000" />
       <workItem from="1565327421021" duration="28983000" />
       <workItem from="1565438994782" duration="2780000" />
-      <workItem from="1565682827494" duration="20701000" />
+      <workItem from="1565682827494" duration="32509000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

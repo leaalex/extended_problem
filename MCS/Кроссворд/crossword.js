@@ -5,10 +5,7 @@ function Crossword(settings) {
     *   horizontal
     *   vertical
     *
-    *
     * */
-
-    //
 
     let data_1 = [
         {
@@ -369,10 +366,10 @@ function Crossword(settings) {
     app_data.state = {};
 
     let answer = undefined;
-    if(document.querySelector("#crossword_input")){
+    if (document.querySelector("#crossword_input")) {
         answer = new Answer(document.querySelector("#crossword_input").querySelector("input[type='text']"));
-        if(answer.get()){
-            app_data.state =  answer.getJSON()["answer"]["user_state"];
+        if (answer.get()) {
+            app_data.state = answer.getJSON()["answer"]["user_state"];
         }
     }
 
@@ -383,23 +380,23 @@ function Crossword(settings) {
         this.elementField = elementField;
         this.fieldValue = "";
         this.fieldObject = {};
-        this.get = function() {
+        this.get = function () {
             this.fieldValue = elementField.value;
             return this.fieldValue;
         };
-        this.set = function(value) {
+        this.set = function (value) {
             if (value == undefined) value = this.fieldValue;
             elementField.value = value;
         };
-        this.getJSON = function() {
+        this.getJSON = function () {
             if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
             return this.fieldObject;
         };
-        this.setJSON = function(object) {
+        this.setJSON = function (object) {
             if (object == undefined) object = this.fieldObject;
             this.set(JSON.stringify(object))
         };
-        this.isJsonString = function(str) {
+        this.isJsonString = function (str) {
             try {
                 JSON.parse(str);
             } catch (e) {
@@ -421,7 +418,7 @@ function Crossword(settings) {
             this.buildEntriesAndClues();
             this.createHandlers();
 
-            if(app_data.state){
+            if (app_data.state) {
                 utils.restoreState();
             }
         },
@@ -455,7 +452,7 @@ function Crossword(settings) {
 
             let table = utils.create("div", {className: ""});
             [...Array(rowsCount).keys()].forEach(function (row, i) {
-                let tr = utils.create("div", {className:"row"});
+                let tr = utils.create("div", {className: "row"});
                 [...Array(colsCount).keys()].forEach(function (cell, j) {
                     let td = utils.create("div", {className: "cell", attr: {"data-coords": (j + 1) + "," + (i + 1)}});
                     tr.appendChild(td);
@@ -490,14 +487,12 @@ function Crossword(settings) {
                     item.cells.push(current_cell);
                 });
                 let clue = utils.create("div", {
-                    // text: item.position + ". " + item.clue,
-                    // html: utils.create("span",{text:item.position}),
-                    attr: {"data-position": item.unique_position},
-                    className: "clue"
-                },
-                    utils.create("span",{text:item.position+". ", className:"clue-number"}),
-                    utils.create("span",{html:item.clue}),
-                    );
+                        attr: {"data-position": item.unique_position},
+                        className: "clue"
+                    },
+                    utils.create("span", {text: item.position + ". ", className: "clue-number"}),
+                    utils.create("span", {html: item.clue}),
+                );
                 if (item.orientation === horizontal_sign) {
                     clues_block_horizontal_content.appendChild(clue);
                 } else {
@@ -525,47 +520,75 @@ function Crossword(settings) {
 
         createHandlers: function () {
 
-            element.onkeyup = function(evt){
-                if ( evt.keyCode === 27 || evt.keyCode === 13) {
-                    hint.hide();
-                }
-            };
-
-
-            app_data.questions.forEach(function (item) {
+            app_data.questions.forEach(function (item, item_idx) {
                 item.cells.forEach(function (html_cell, idx, all_html_cell) {
                     html_cell.onclick = function () {
                         hint.hide();
-                        // last_hint_index = -1;
                         utils.highlightEntryAndClue(item);
                         if (!this.classList.contains("correct-cell")) {
                             html_cell.querySelector("input").select();
                         }
                         activePosition = item.unique_position;
                     };
+                    html_cell.onkeydown = function (evt) {
+                        let curr_item = app_data.questions.filter(c => c.unique_position === activePosition)[0];
+                        let curr_cells = curr_item.cells;
+                        let curr_ind = curr_cells.indexOf(html_cell);
+                        if (evt.keyCode === 9) {
+                            let next = app_data.questions.filter(x => x.unique_position === 0)[0];
+                            if (curr_item.unique_position < app_data.questions.length - 1) {
+                                next = app_data.questions.filter(x => x.unique_position === curr_item.unique_position + 1)[0];
+                            }
 
-                    html_cell.onkeyup = function(evt){
-                        utils.checkAllWords();
-                        if ( evt.keyCode === 16 || evt.keyCode === 17 || evt.keyCode === 18 || evt.keyCode === 9  || evt.keyCode === 20 ) {
+                            activePosition = next.unique_position;
+                            utils.highlightEntryAndClue(next);
+                            if (!next.cells[0].classList.contains("correct-cell")) {
+                                next.cells[0].querySelector("input").select();
+                            } else {
+                                curr_cells[0].querySelector("input").blur();
+                            }
 
                             return false;
                         }
+
+                    };
+
+                    html_cell.onkeyup = function (evt) {
+                        utils.checkAllWords();
                         hint.hide();
-                        let curr_cells = app_data.questions.filter(c=>c.unique_position === activePosition)[0].cells;
+                        let curr_item = app_data.questions.filter(c => c.unique_position === activePosition)[0];
+                        let curr_cells = curr_item.cells;
                         let curr_ind = curr_cells.indexOf(html_cell);
-                        if (curr_ind >=0 && curr_ind < curr_cells.length-1){
-                            if (!curr_cells[curr_ind+1].classList.contains("correct-cell")){
-                                curr_cells[curr_ind+1].querySelector("input").select();
+
+                        if (evt.keyCode === 16 || evt.keyCode === 17 || evt.keyCode === 18 || evt.keyCode === 9 || evt.keyCode === 20) {
+                            // console.log("keyCode: " + evt.keyCode);
+                            if (evt.keyCode === 9) {
                             }
-                            else {
-                                if ((curr_cells.length-1) >= curr_ind+2){
-                                    if (!curr_cells[curr_ind+2].classList.contains("correct-cell")) {
+                            return false;
+                        } else if (evt.keyCode === 8 || evt.keyCode === 46) {
+                            if (curr_ind > 0) {
+                                if (!curr_cells[curr_ind - 1].classList.contains("correct-cell")) {
+                                    curr_cells[curr_ind - 1].querySelector("input").select();
+                                } else {
+                                    if (curr_ind - 2 >= 0) {
+                                        curr_cells[curr_ind - 2].querySelector("input").select();
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                        if (curr_ind >= 0 && curr_ind < curr_cells.length - 1) {
+                            if (!curr_cells[curr_ind + 1].classList.contains("correct-cell")) {
+                                curr_cells[curr_ind + 1].querySelector("input").select();
+                            } else {
+                                if ((curr_cells.length - 1) >= curr_ind + 2) {
+                                    if (!curr_cells[curr_ind + 2].classList.contains("correct-cell")) {
                                         curr_cells[curr_ind + 2].querySelector("input").select();
                                     }
                                 }
                             }
                         }
-                        // utils.toNextCell();
+
                         utils.showHint(activePosition);
                         evt.preventDefault();
                         return false;
@@ -583,8 +606,11 @@ function Crossword(settings) {
                 });
             });
 
-
-
+            document.onkeyup = function (evt) {
+                if (evt.keyCode === 27 || evt.keyCode === 13) {
+                    hint.hide();
+                }
+            };
 
         }
 
@@ -593,25 +619,25 @@ function Crossword(settings) {
 
     let hint = {
 
-        // let dd="";
-
-        init: function(){
+        init: function () {
             let close_btn = utils.create("button", {text: "Скрыть"});
-            hint_block = utils.create("div", {className:"hint-block"},
-                utils.create("div", {className:"hint-text"}));
-            hint_block.appendChild(close_btn);
+
+            hint_block = utils.create("div", {className:"hint-wrapper"});
+            let hint_content = utils.create("div", {className: "hint-block"});
+            let hint_text = utils.create("div", {className: "hint-text"});
+            hint_content.appendChild(hint_text);
+            hint_content.appendChild(close_btn);
+            hint_block.appendChild(hint_content);
             let that = this;
-            close_btn.onclick = function(){
+            close_btn.onclick = function () {
                 that.hide();
             };
             this.hide();
-
-
         },
-        hide: function(){
+        hide: function () {
             hint_block.classList.add("hidden");
         },
-        show: function(){
+        show: function () {
             hint_block.classList.remove("hidden");
         },
 
@@ -621,13 +647,11 @@ function Crossword(settings) {
             // let hint_left = item.cells[item.cells.length-1].getBoundingClientRect().left + item.cells[item.cells.length-1].getBoundingClientRect().width;
             // hint_block.style.top = hint_top+"px";
             // hint_block.style.left = hint_left+"px";
-            if(last_hint_index != item.unique_position){
+            if (last_hint_index != item.unique_position) {
                 this.show();
                 last_hint_index = item.unique_position;
             }
         }
-
-
 
 
     };
@@ -700,21 +724,21 @@ function Crossword(settings) {
             return result;
         },
         highlightEntryAndClue: function (item) {
-
-            // let question_id = item.unique_position;
             app_data.questions.forEach((q) => {
                 q.html_clue.classList.remove("active-clue");
                 q.cells.forEach(cell => cell.classList.remove("active-cell"))
             });
-            if (item){
+            if (item) {
                 item.html_clue.classList.add("active-clue");
                 item.cells.forEach(cell => cell.classList.add("active-cell"));
+
+
             }
         },
         toNextCell: function (e, override) {
 
         },
-        checkAllWords: function (){
+        checkAllWords: function () {
             grade = 0;
             app_data.questions.forEach(function (item) {
                 let student_str = item.cells.map(cell => cell.querySelector("input").value).join('').toLowerCase();
@@ -727,24 +751,21 @@ function Crossword(settings) {
                     item.html_clue.classList.add("correct-clue");
                 }
             });
-            // console.log(last_hint_index);
             this.buildState();
         },
         showHint: function (pos) {
-            let item = app_data.questions.filter(c=>c.unique_position === pos)[0];
+            let item = app_data.questions.filter(c => c.unique_position === pos)[0];
             let student_str = item.cells.map(cell => cell.querySelector("input").value).join('').toLowerCase();
-            if (item.answer.length === student_str.length){
-                if(item.answer.toLowerCase() !== student_str){
-                    // console.log("show hint", );
+            if (item.answer.length === student_str.length) {
+                if (item.answer.toLowerCase() !== student_str) {
                     hint.setValue(item);
 
                 }
             }
-            // console.log(item);
         },
         buildState: function () {
             app_data.state = {};
-            // let grade = 0;
+
             let max_grade = app_data.questions.length;
             app_data.questions.forEach(function (item) {
                 app_data.state["question_" + item.unique_position] = {};
@@ -752,23 +773,20 @@ function Crossword(settings) {
                     app_data.state["question_" + item.unique_position][cell.getAttribute("data-coords")] = cell.querySelector("input").value;
                 })
             });
-            // localStorage.setItem("crossword_student_state", JSON.stringify(app_data.state))
-            if(answer){
-                answer.setJSON({answer: {"user_state": app_data.state, "grade": (grade/max_grade).toFixed(7)}});
+
+            if (answer) {
+                answer.setJSON({answer: {"user_state": app_data.state, "grade": (grade / max_grade).toFixed(7)}});
             }
         },
         restoreState: function () {
-            // if (localStorage.getItem("crossword_student_state")) {
-            //     app_data.state = JSON.parse(localStorage.getItem("crossword_student_state"));
-                Object.keys(app_data.state).forEach(function (item) {
-                    Object.keys(app_data.state[item]).forEach(function (sub_item) {
-                        element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item][sub_item];
-                    });
+
+            Object.keys(app_data.state).forEach(function (item) {
+                Object.keys(app_data.state[item]).forEach(function (sub_item) {
+                    element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item][sub_item];
                 });
-                this.checkAllWords();
-            // } else {
-            //     console.log("localStorage is empty");
-            // }
+            });
+            this.checkAllWords();
+
         },
     };
 
