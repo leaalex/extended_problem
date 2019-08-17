@@ -372,8 +372,8 @@ function Simulator(settings) {
             console.log("click submit trigger");
             // $(submit_button).trigger('click');
         }else{
-            console.log("click save trigger");
-            // $(save_button).trigger('click');
+            // console.log("click save trigger");
+            $(save_button).trigger('click');
         }
     }
 

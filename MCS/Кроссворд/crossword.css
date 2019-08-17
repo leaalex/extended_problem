@@ -21,7 +21,8 @@
   position: absolute;
   background: #f9f9f9;
   color: #424242;
-  padding: 8px 0px;
+  padding-top: 6px;
+  padding-bottom: 10px;
   z-index: 999;
   border-radius: 5px;
   box-shadow: 1px 2px 6px 2px #3f3f3f;
@@ -32,13 +33,16 @@
   color: #0375b4;
   display: block;
   position: absolute;
-  padding: 0px 2px;
+  padding: 1px 4px;
   margin-left: 14px;
   font-size: 90%;
 }
+.hint-wrapper .hint-block.en:before {
+  content: "Hint";
+}
 .hint-wrapper .hint-block .hint-text {
   padding: 12px 10px;
-  margin: 10px;
+  margin: 12px 12px;
   border: 2px dashed #0375b4;
 }
 
@@ -52,8 +56,8 @@
   display: flex;
 }
 #crossword_container .table-block .cell {
-  border: 1px solid #d9d9d9;
-  background-color: #6e6e6e;
+  border: 1px solid #dfdfdf;
+  background-color: #e4e4e4;
   padding: 0;
   margin: 0;
   position: relative;
@@ -63,11 +67,13 @@
 }
 #crossword_container .table-block .cell span {
   position: absolute;
-  top: 0px;
+  top: -1px;
   font-size: 0.68em;
   left: 1px;
   user-select: none;
   cursor: text;
+  color: #474747;
+  font-weight: 600;
 }
 #crossword_container .table-block .cell.input {
   background-color: white;
@@ -89,6 +95,8 @@
   opacity: 0.7;
 }
 #crossword_container .table-block .cell input {
+  color: #474747;
+  font-weight: 500;
   text-transform: uppercase;
   width: 100%;
   height: 100%;
@@ -145,4 +153,4 @@
   background-color: #bee8ff;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=crossword.css.map */

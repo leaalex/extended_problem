@@ -1,0 +1,33 @@
+<!--<problem>-->
+<!--<script type="loncapa/python">-->
+<!--import json-->
+<!--import random-->
+
+<!--data = list(range(10, 100))-->
+<!--random.shuffle(data)-->
+<!--data = data[:12]-->
+
+<!--</script>-->
+<html>
+<link rel="stylesheet" type="text/css" href="./memory_task.css" >
+<script type="text/javascript" src="./memory_task.js"></script>
+<body>
+<div style="width: 820px; background: #7fc0de; min-height: 800px" id="memory_container">
+</div>
+
+<script type="text/javascript">
+
+let data = [30, 67, 99, 49, 86, 88, 70, 83, 79, 81, 16, 93];
+
+let memory_task = new MemoryTask({
+    element: document.getElementById('memory_container'),
+    data: data,
+});
+
+
+
+</script>
+</body>
+</html>
+
+<!--</problem>-->

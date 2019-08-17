@@ -1,9 +1,10 @@
 function Crossword(settings) {
 
     /*
-    * Возможные ориентации слова:
-    *   horizontal
-    *   vertical
+    * settings:
+    *    - element - html-контейнер кроссворда
+    *    - language - язык: "ru" || "en"
+    *
     *
     * */
 
@@ -170,8 +171,7 @@ function Crossword(settings) {
             start_y: 9,
             hint: "Подсказка к вопросу 15"
         }
-    ]
-
+    ];
     let data = [
         {
             clue: "Польский ученый, создавший гелиоцентрическую модель строения Солнечной системы и достаточно точно определивший относительные расстояния от Солнца до планет",
@@ -346,21 +346,42 @@ function Crossword(settings) {
             start_y: 12,
             hint: "Посказка вертикаль 16"
         }
-    ]
+    ];
 
+    let language = "ru";
+    let labels = {
+        ru: {
+            hint_label: "Подсказка",
+            horizontal_label: "По горизонтали",
+            vertical_label: "По вертикали",
+            answer_label: "Ответ",
+            hide_label: "Скрыть",
+        },
+        en:{
+            hint_label: "Hint",
+            horizontal_label: "Across",
+            vertical_label: "Down",
+            answer_label: "Answer",
+            hide_label: "Hide",
+        }
+    };
     let horizontal_sign = "across";
     let vertical_sign = "down";
 
-    let app_data = {};
     let element = settings.element;
+    if (settings.language){
+        if(Object.keys(labels).includes(settings.language)){
+            language = settings.language;
+        }
+    }
+    let user_labels = labels[language];
     let activePosition = 0;
-    let currentOrientation = "across";
+    // let currentOrientation = "across";
     let last_hint_index = -1;
-
     let hint_block;
     let grade = 0;
 
-
+    let app_data = {};
     app_data.student_state = {};
     app_data.questions = data;
     app_data.state = {};
@@ -368,6 +389,8 @@ function Crossword(settings) {
     let answer = undefined;
     if (document.querySelector("#crossword_input")) {
         answer = new Answer(document.querySelector("#crossword_input").querySelector("input[type='text']"));
+        answer.elementField.classList.add("hidden");
+
         if (answer.get()) {
             app_data.state = answer.getJSON()["answer"]["user_state"];
         }
@@ -385,7 +408,7 @@ function Crossword(settings) {
             return this.fieldValue;
         };
         this.set = function (value) {
-            if (value == undefined) value = this.fieldValue;
+            if (value === undefined) value = this.fieldValue;
             elementField.value = value;
         };
         this.getJSON = function () {
@@ -393,7 +416,7 @@ function Crossword(settings) {
             return this.fieldObject;
         };
         this.setJSON = function (object) {
-            if (object == undefined) object = this.fieldObject;
+            if (object === undefined) object = this.fieldObject;
             this.set(JSON.stringify(object))
         };
         this.isJsonString = function (str) {
@@ -422,7 +445,6 @@ function Crossword(settings) {
                 utils.restoreState();
             }
         },
-
         calcCoordinates: function () {
             app_data.questions.forEach(function (item, i) {
                 app_data.questions[i].coords = [];
@@ -446,7 +468,6 @@ function Crossword(settings) {
                 });
             });
         },
-
         buildTable: function () {
             let table_block = utils.create("div", {className: "table-block"});
 
@@ -464,12 +485,11 @@ function Crossword(settings) {
             table_block.appendChild(hint_block);
             element.appendChild(table_block);
         },
-
         buildEntriesAndClues: function () {
             let clues_block = utils.create("div", {className: "clues-block"});
-            let clues_block_horizontal = utils.create("div", {className: "horizontal"}, utils.create("h3", {text: "По горизонтали"}));
+            let clues_block_horizontal = utils.create("div", {className: "horizontal"}, utils.create("h3", {text: user_labels.horizontal_label}));
             let clues_block_horizontal_content = utils.create("div", {className: "clue-content"});
-            let clues_block_vertical = utils.create("div", {className: "vertical"}, utils.create("h3", {text: "По вертикали"}));
+            let clues_block_vertical = utils.create("div", {className: "vertical"}, utils.create("h3", {text: user_labels.vertical_label}));
             let clues_block_vertical_content = utils.create("div", {className: "clue-content"});
 
             app_data.questions.forEach(function (item) {
@@ -517,9 +537,7 @@ function Crossword(settings) {
             element.appendChild(clues_block);
 
         },
-
         createHandlers: function () {
-
             app_data.questions.forEach(function (item, item_idx) {
                 item.cells.forEach(function (html_cell, idx, all_html_cell) {
                     html_cell.onclick = function () {
@@ -531,6 +549,7 @@ function Crossword(settings) {
                         activePosition = item.unique_position;
                     };
                     html_cell.onkeydown = function (evt) {
+                        if (hint.isShow()) return false;
                         let curr_item = app_data.questions.filter(c => c.unique_position === activePosition)[0];
                         let curr_cells = curr_item.cells;
                         let curr_ind = curr_cells.indexOf(html_cell);
@@ -555,7 +574,8 @@ function Crossword(settings) {
 
                     html_cell.onkeyup = function (evt) {
                         utils.checkAllWords();
-                        hint.hide();
+                        // hint.hide();
+                        if (hint.isShow()) return false;
                         let curr_item = app_data.questions.filter(c => c.unique_position === activePosition)[0];
                         let curr_cells = curr_item.cells;
                         let curr_ind = curr_cells.indexOf(html_cell);
@@ -607,23 +627,19 @@ function Crossword(settings) {
             });
 
             document.onkeyup = function (evt) {
-                if (evt.keyCode === 27 || evt.keyCode === 13) {
+                if (evt.keyCode === 27 || evt.keyCode === 13 || evt.keyCode === 8) {
                     hint.hide();
                 }
             };
 
         }
-
-
     };
 
     let hint = {
-
         init: function () {
-            let close_btn = utils.create("button", {text: "Скрыть"});
-
+            let close_btn = utils.create("button", {text: user_labels.hide_label});
             hint_block = utils.create("div", {className:"hint-wrapper"});
-            let hint_content = utils.create("div", {className: "hint-block"});
+            let hint_content = utils.create("div", {className: "hint-block " + language});
             let hint_text = utils.create("div", {className: "hint-text"});
             hint_content.appendChild(hint_text);
             hint_content.appendChild(close_btn);
@@ -640,20 +656,21 @@ function Crossword(settings) {
         show: function () {
             hint_block.classList.remove("hidden");
         },
-
         setValue: function (item) {
-            hint_block.querySelector(".hint-text").innerHTML = item.hint + ". " + item.clue;
+            let position_label = "<strong>" + item.position + " " + (item.orientation === horizontal_sign ? user_labels.horizontal_label : user_labels.vertical_label).toLowerCase() + "</strong></br>";
+            hint_block.querySelector(".hint-text").innerHTML = position_label + "<strong>" + user_labels.answer_label + "</strong>: " + utils.capitalizeFirstLetter(item.answer) + ". " + item.hint + ". " + item.clue + "";
             // let hint_top = item.cells[item.cells.length-1].getBoundingClientRect().top;
             // let hint_left = item.cells[item.cells.length-1].getBoundingClientRect().left + item.cells[item.cells.length-1].getBoundingClientRect().width;
             // hint_block.style.top = hint_top+"px";
             // hint_block.style.left = hint_left+"px";
-            if (last_hint_index != item.unique_position) {
+            if (last_hint_index !== item.unique_position) {
                 this.show();
                 last_hint_index = item.unique_position;
             }
+        },
+        isShow: function () {
+            return !hint_block.classList.contains("hidden");
         }
-
-
     };
 
     let utils = {
@@ -696,6 +713,9 @@ function Crossword(settings) {
 
             return element
         },
+        capitalizeFirstLetter: function(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+        },
         removeDuplicates: function (arr) {
             const result = [];
             const duplicatesIndices = [];
@@ -735,9 +755,6 @@ function Crossword(settings) {
 
             }
         },
-        toNextCell: function (e, override) {
-
-        },
         checkAllWords: function () {
             grade = 0;
             app_data.questions.forEach(function (item) {
@@ -775,20 +792,21 @@ function Crossword(settings) {
             });
 
             if (answer) {
-                answer.setJSON({answer: {"user_state": app_data.state, "grade": (grade / max_grade).toFixed(7)}});
+                answer.setJSON({answer: {"user_state": app_data.state, "grade": grade, "max_grade": max_grade}});
             }
         },
         restoreState: function () {
-
             Object.keys(app_data.state).forEach(function (item) {
                 Object.keys(app_data.state[item]).forEach(function (sub_item) {
-                    element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item][sub_item];
+                    if(element.querySelector('[data-coords="' + sub_item + '"] input')){
+                        element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item][sub_item];
+                    }
                 });
             });
             this.checkAllWords();
-
         },
     };
 
     CrosswordInit.init();
+
 };
