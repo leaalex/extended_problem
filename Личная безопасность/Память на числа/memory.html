@@ -1,33 +1,57 @@
-<!--<problem>-->
-<!--<script type="loncapa/python">-->
-<!--import json-->
-<!--import random-->
+<problem>
+<script type="loncapa/python">
+import json
+import random
 
-<!--data = list(range(10, 100))-->
-<!--random.shuffle(data)-->
-<!--data = data[:12]-->
+data = list(range(10, 100))
+random.shuffle(data)
+data = data[:12]
 
-<!--</script>-->
-<html>
-<link rel="stylesheet" type="text/css" href="./memory_task.css" >
-<script type="text/javascript" src="./memory_task.js"></script>
-<body>
-<div style="width: 820px; background: #7fc0de; min-height: 800px" id="memory_container">
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["state"]["answer"]
+    correctness_map = []
+    max_grade = len(data)
+    grade = 0
+    for answer in data:
+        if int(answer) in student_answer:
+            grade += 1
+            correctness_map.append(True)
+        else:
+            correctness_map.append(False)
+
+    result_grade = grade/max_grade
+    if result_grade == 1:
+        return {'input_list': [{'ok': True,'msg':str(correctness_map),'grade_decimal':1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok':False,'msg':str(correctness_map),'grade_decimal':0}]}
+    else:
+        return {'input_list': [{'ok':'Partial','msg':str(correctness_map),'grade_decimal':result_grade}]}
+
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="/static/memory_task.css"></link>
+<script type="text/javascript" src="/static/memory_task.js"></script>
+    <div id="memory_container"></div>
+
+<div id="memory_input" style="display: none!important;">
+    <customresponse cfn="check_answer">
+        <textline size="40" value="$taskId"/>
+        <br/>
+    </customresponse>
+    <!-- <div class="message-about-grade"></div> -->
 </div>
 
 <script type="text/javascript">
 
-let data = [30, 67, 99, 49, 86, 88, 70, 83, 79, 81, 16, 93];
+    let data = $data;
+        // [30, 67, 99, 49, 86, 88, 70, 83, 79, 81, 16, 93];
 
-let memory_task = new MemoryTask({
-    element: document.getElementById('memory_container'),
-    data: data,
-});
-
+    let memory_task = new MemoryTask({
+        element: document.getElementById('memory_container'),
+        data: data,
+    });
 
 
 </script>
-</body>
-</html>
-
-<!--</problem>-->
+</problem>

@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"memory_task.css"}
+{"version":3,"sourceRoot":"","sources":["memory_task.scss"],"names":[],"mappings":"AAEA;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE,QAnBY;EAoBZ;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE,QA7BY;EA8BZ;EACA;EACA;EACA;EACA;EACA;;AAGA;EACE;EACA;;AAGF;EACE;EACA;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;;;AAOR;EACE,QApEY;EAqEZ;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA","file":"memory_task.css"}
