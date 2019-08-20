@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -269,7 +264,7 @@
       <workItem from="1565438994782" duration="2780000" />
       <workItem from="1565682827494" duration="32509000" />
       <workItem from="1565854823090" duration="17272000" />
-      <workItem from="1565961473424" duration="25251000" />
+      <workItem from="1565961473424" duration="31979000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
