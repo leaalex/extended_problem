@@ -984,17 +984,17 @@ function MatchingTableObjects(element, data) {
     if (answer.get()) {
 
 
-        $(".select-block").hide();
+        $(".select-block", element).hide();
 
         var student_answer = answer.getJSON()["answer"];
         var student_params = answer.getJSON()["params"];
         step = parseInt(answer.getJSON()["step"])
 
-
-        $(".params-values", element).append("<p>Память: " + student_params["memory"] + "</p>");
-        $(".params-values", element).append("<p>Переключение внимания: " + student_params["attention"] + "</p>");
-        $(".params-values", element).append("<p>Скорость анализа ситуации: " + student_params["analysis"] + "</p>");
-        $(".params-values", element).append("<p>Скорость принятия решений и готовность действовать: " + student_params["decision"] + "</p>");
+        $("#can_select_text", element).hide();
+        $(".params-values", element).append("<p><strong>Память: " + student_params["memory"] + "</strong></p>");
+        $(".params-values", element).append("<p><strong>Переключение внимания: " + student_params["attention"] + "</strong></p>");
+        $(".params-values", element).append("<p><strong>Скорость анализа ситуации: " + student_params["analysis"] + "</strong></p>");
+        $(".params-values", element).append("<p><strong>Скорость принятия решений и готовность действовать: " + student_params["decision"] + "</strong></p>");
 
         var message_obj = {};
 
@@ -1058,6 +1058,7 @@ function MatchingTableObjects(element, data) {
                         $("#" + next_choiser_id, element).show(500);
 
                         if(next_tr_id == 'tr-5'){
+                            $('#second_tr_task', element).show();
                             $('#second_tr', element).show();
                         }
 
@@ -1105,6 +1106,7 @@ function MatchingTableObjects(element, data) {
                 }
             }
             $('.trka', element).show();
+            $('#second_tr_task', element).show();
             $('.choiser', element).hide();
 
             $(".conf-draggable", element).each(function (j, tr) {
@@ -1121,6 +1123,7 @@ function MatchingTableObjects(element, data) {
         $(".choiser", element).hide();
         $(".conf-table", element).hide();
         setAnswer();
+
     }
     // $(document).ready(function () {
     //     $("input[type=text]", element).hide()

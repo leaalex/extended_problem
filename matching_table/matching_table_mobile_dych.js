@@ -218,7 +218,9 @@ function MatchingTableObjects(element, data) {
             $("span.message", element).hide()
         });
 
+
         $('.trka', element).show();
+        $('#second_tr_task', element).show();
         $('.choiser', element).hide();
 
         $(".conf-draggable", element).each(function (j, tr) {
@@ -256,6 +258,7 @@ function MatchingTableObjects(element, data) {
                     $("#" + next_choiser_id, element).show(500);
 
                     if(next_tr_id == 'tr-5'){
+                        $('#second_tr_task', element).show();
                         $('#second_tr', element).show();
                     }
 

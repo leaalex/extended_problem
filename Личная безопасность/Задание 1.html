@@ -959,81 +959,154 @@ def check_answer(expect, ans):
 
     table.table-1 td{
         border: 2px solid darkgrey;
-        padding: 10px !important;
-        text-align: left;
+        padding: 5px !important;
+        /*text-align: left;*/
+        word-break: keep-all;
     }
 
-    table.table-2 td{
-        border: 2px solid darkgrey;
-        padding: 8px !important;
-        text-align: left;
-
-    }
 
 </style>
 <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/matching_table/matching_table_mobile_dych.js"></script>
 <div class="matching_table disable-marker" id="$unique_id">
 
 
-<p>Описание задания</p>
+<p>Важными составляющими экстремального мышления являются психические способности и быстрота реакции. Ознакомьтесь с таблицей и шкалой проявленности психических способностей и быстроты реакции человека в экстремальной ситуации.</p>
 
-    <h2>Общие положения. Психические способности</h2>
-
-    <p>Мы будем использовать дискретную шкалу проявленности психических способностей</p>
     <table class="table-1">
+        <tbody>
         <tr>
-            <td style="text-align: center"><strong>-1</strong></td>
-            <td>Недостаточно развитая способность</td>
+            <td style="text-align: center;" rowspan="2">
+                №
+            </td>
+            <td style="text-align: center;" colspan="2" rowspan="2">
+                Составляющие экстремального мышления
+            </td>
+            <td style="text-align: center;" rowspan="2">
+                Описание
+            </td>
+            <td colspan="3">
+                Шкала проявленности
+            </td>
         </tr>
         <tr>
-            <td style="text-align: center"><strong>0</strong></td>
-            <td>Способность в норме</td>
+            <td style="text-align: center;">
+                Ниже нормы
+            </td>
+            <td style="text-align: center;">
+                В норме
+            </td>
+            <td style="text-align: center;">
+                Сверх нормы
+            </td>
         </tr>
         <tr>
-            <td style="text-align: center"><strong>1</strong></td>
-            <td>Сверхразвитая способность</td>
+            <td style="text-align: center;">
+                1
+            </td>
+            <td style="text-align: center;transform: rotate(-90deg);padding: 0 !important;" rowspan="2" valign="bottom">
+                Психические способности
+            </td>
+            <td>
+                Память
+            </td>
+            <td>
+                Способность какое-то время сохранять информацию о событиях внешнего мира и реакциях организма на эти события, а также многократно воспроизводить и изменять эту информацию.
+            </td>
+            <td style="text-align: center;">
+                <strong>-1</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>0</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>1</strong>
+            </td>
         </tr>
+        <tr>
+            <td style="text-align: center;">
+                2
+            </td>
+            <td>
+                Переключение внимания
+            </td>
+            <td>
+                Способность действовать одновременно с учетом нескольких факторов. Перенаправление внимания с одного объекта на другой.
+            </td>
+            <td style="text-align: center;">
+                <strong>-1</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>0</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>1</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                3
+            </td>
+            <td style="text-align: center;transform: rotate(-90deg);padding: 0 !important;" rowspan="2">
+                Быстрота реакции
+            </td>
+            <td>
+                Скорость анализа ситуации
+            </td>
+            <td>
+                Глубокий анализ ситуации в коротком временном периоде с учетом имеющейся информации и обобщении данных.
+            </td>
+            <td style="text-align: center;">
+                <strong>-1</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>0</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>1</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                4
+            </td>
+            <td>
+                Скорость принятия решений
+            </td>
+            <td>
+                Психологический процесс, направленный на выбор действия или выработку мнения.
+            </td>
+            <td style="text-align: center;">
+                <strong>-1</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>0</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>1</strong>
+            </td>
+        </tr>
+        </tbody>
     </table>
 
-    <table class="table-2">
-        <tr>
-            <td style="width: 250px;text-align: center;"><i>Психические способности</i></td>
-            <td style="text-align: center"><i>Характеристика</i></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">Память</td>
-            <td>Способность какое-то время сохранять информацию о событиях внешнего мира и реакциях организма на эти события, а также многократно воспроизводить и изменять эту информацию.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">Переключение внимания</td>
-            <td>Способность действовать  одновременно с учетом нескольких факторов. Перенаправление внимания с одного объекта на другой.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">Скорость анализа ситуации</td>
-            <td>Глубокий анализ ситуации в коротком временном периоде с учетом имеющейся информации и обобщении данных.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">Скорость принятия решений</td>
-            <td>Психологический процесс, направленный на выбор действия или выработку мнения.</td>
-        </tr>
-    </table>
-
-
-    <p>Память: $memory</p>
-    <p>Переключение внимания: $attention</p>
-    <p>Скорость анализа ситуации: $analysis</p>
-    <p>Скорость принятия решений и готовность действовать: $decision</p>
+    <p>Ниже вам заданы показатели проявленности составляющих экстремального мышления: ПАМЯТИ, ПЕРЕКЛЮЧЕНИЯ ВНИМАНИЯ, СКОРОСТИ АНАЛИЗА СИТУАЦИИ И СКОРОСТИ ПРИНЯТИЯ РЕШЕНИЯ.</p>
+    <p><strong>Память: $memory</strong></p>
+    <p><strong>Переключение внимания: $attention</strong></p>
+    <p><strong>Скорость анализа ситуации: $analysis</strong></p>
+    <p><strong>Скорость принятия решений и готовность действовать: $decision</strong></p>
     <!-- <p>$recommend_list</p> -->
     <!-- <p>$desc_list</p> -->
     <!-- <p>$student_opt_id</p>-->
 
+    <p>1. Подберите соответствующее описание каждому из четырех показателей в условиях описанного кейса и «перетащите» правильный ответ в соответствующую ячейку:</p>
+    <p>Представьте, что вы находитесь в торговом центре, в который ходите каждую неделю. Ноябрь. Суббота. Около 12:00 часов дня. Вы одеты соответственно погоде: куртка, шарф, шапка. Вы поднялись на 2-ой этаж, купили воду - 0,5л. И почувствовал запах дыма и гари, которые быстро заполняли помещение торгового центра. Люди побежали к выходам, создавая толпу.</p>
+
     <table class="conf-table">
         <tr>
             <th class="conf-text conf-header text-fixed-width">
-                Что это?
+                Показатель
             </th>
             <th class="conf-text conf-header" style="width: 25%;">
-                А это?
+                Описание
             </th>
         </tr>
 
@@ -1053,18 +1126,22 @@ def check_answer(expect, ans):
             <td class="conf-text conf-header text-fixed-height">Скорость принятия решений и готовность действовать</td>
             <td id="a4" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
         </tr>
-        <tr style="height: 20px"></tr>
+        <tr id="second_tr_task" style="display: none">
+        <td colspan="2" style="padding-top: 14px !important;border: none;">
+        <p>2. Дайте заключение и рекомендации о совокупности составляющих экстремального мышления в условиях описанного кейса и «перетащите» правильные ответы в соответствующие ячейки.</p>
+        </td>
+        </tr>
         <tr id="second_tr"  class="trka" style="display: none;">
             <th class="conf-text conf-header">
-                Что это еще?
+                Выводы
             </th>
             <th class="conf-text conf-header">
-                А это?
+                Описание
             </th>
         </tr>
 
         <tr id="tr-5" class="trka" style="display: none;">
-            <td class="conf-text conf-header text-fixed-height">Описание</td>
+            <td class="conf-text conf-header text-fixed-height">Заключение</td>
             <td id="a5" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
         </tr>
         <tr id="tr-6" class="trka" style="display: none;">
