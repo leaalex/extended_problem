@@ -8,170 +8,7 @@ function Crossword(settings) {
     *
     * */
 
-    let data = [
-        {
-            clue: "First letter of greek alphabet",
-            answer: "alpha",
-            position: 1,
-            orientation: "across",
-            start_x: 1,
-            start_y: 1,
-            hint: "Подсказка к вопросу 1"
-        },
-        {
-            clue: "Not a one ___ motor, but a three ___ motor",
-            answer: "phase",
-            position: 3,
-            orientation: "across",
-            start_x: 7,
-            start_y: 1,
-            hint: "Подсказка к вопросу 3"
-        },
-        {
-            clue: "Created from a separation of charge",
-            answer: "capacitance",
-            position: 5,
-            orientation: "across",
-            start_x: 1,
-            start_y: 3,
-            hint: "Подсказка к вопросу 5"
-        },
-        {
-            clue: "The speeds of engines without and accelaration",
-            answer: "idlespeeds",
-            position: 8,
-            orientation: "across",
-            start_x: 1,
-            start_y: 5,
-            hint: "Подсказка к вопросу 8"
-        },
-        {
-            clue: "Complex resistances",
-            answer: "impedances",
-            position: 10,
-            orientation: "across",
-            start_x: 2,
-            start_y: 7,
-            hint: "Подсказка к вопросу 10"
-        },
-        {
-            clue: "This device is used to step-up, step-down, and/or isolate",
-            answer: "transformer",
-            position: 13,
-            orientation: "across",
-            start_x: 1,
-            start_y: 9,
-            hint: "Подсказка к вопросу 13"
-        },
-        {
-            clue: "Type of ray emitted frm the sun",
-            answer: "gamma",
-            position: 16,
-            orientation: "across",
-            start_x: 1,
-            start_y: 11,
-            hint: "Подсказка к вопросу 16"
-        },
-        {
-            clue: "C programming language operator",
-            answer: "cysan",
-            position: 17,
-            orientation: "across",
-            start_x: 7,
-            start_y: 11,
-            hint: "Подсказка к вопросу 17"
-        },
-        {
-            clue: "Defines the alpha-numeric characters that are typically associated with text used in programming",
-            answer: "ascii",
-            position: 1,
-            orientation: "down",
-            start_x: 1,
-            start_y: 1,
-            hint: "Подсказка к вопросу 1"
-        },
-        {
-            clue: "Generally, if you go over 1kV per cm this happens",
-            answer: "arc",
-            position: 2,
-            orientation: "down",
-            start_x: 5,
-            start_y: 1,
-            hint: "Подсказка к вопросу 2"
-        },
-        {
-            clue: "Control system strategy that tries to replicate the human through process (abbr.)",
-            answer: "ann",
-            position: 4,
-            orientation: "down",
-            start_x: 9,
-            start_y: 1,
-            hint: "Подсказка к вопросу 4"
-        },
-        {
-            clue: "Greek variable that usually describes rotor positon",
-            answer: "theta",
-            position: 6,
-            orientation: "down",
-            start_x: 7,
-            start_y: 3,
-            hint: "Подсказка к вопросу 6"
-        },
-        {
-            clue: "Electromagnetic (abbr.)",
-            answer: "em",
-            position: 7,
-            orientation: "down",
-            start_x: 11,
-            start_y: 3,
-            hint: "Подсказка к вопросу 7"
-        },
-        {
-            clue: "No. 13 across does this to a voltage",
-            answer: "steps",
-            position: 9,
-            orientation: "down",
-            start_x: 5,
-            start_y: 5,
-            hint: "Подсказка к вопросу 9"
-        },
-        {
-            clue: "Emits a lout wailing sound",
-            answer: "siren",
-            position: 11,
-            orientation: "down",
-            start_x: 11,
-            start_y: 7,
-            hint: "Подсказка к вопросу 11"
-        },
-        {
-            clue: "Information technology (abbr.)",
-            answer: "it",
-            position: 12,
-            orientation: "down",
-            start_x: 1,
-            start_y: 8,
-            hint: "Подсказка к вопросу 12"
-        },
-        {
-            clue: "Asynchronous transfer mode (abbr.)",
-            answer: "atm",
-            position: 14,
-            orientation: "down",
-            start_x: 3,
-            start_y: 9,
-            hint: "Подсказка к вопросу 14"
-        },
-        {
-            clue: "Offset current control (abbr.)",
-            answer: "occ",
-            position: 15,
-            orientation: "down",
-            start_x: 7,
-            start_y: 9,
-            hint: "Подсказка к вопросу 15"
-        }
-    ];
+
     let data_1 = [
         {
             clue: "Польский ученый, создавший гелиоцентрическую модель строения Солнечной системы и достаточно точно определивший относительные расстояния от Солнца до планет",
@@ -180,7 +17,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 1,
             start_y: 3,
-            hint: "Посказка горизонталь 1"
+            hint: "Этот ученый Средневековья, наряду с Дж. Бруно, превратили в сознании людей Землю в крошечную частицу Вселенной"
         },
         {
             clue: "Греческий ученый и поэт, благодаря своим астрономическим наблюдениям достаточно точно вычисливший расстояние от экватора до тропика",
@@ -189,7 +26,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 1,
             start_y: 6,
-            hint: "Посказка горизонталь 2"
+            hint: "Древнегреческий астроном, впервые определивший угол наклона земной оси"
         },
         {
             clue: "Итальянский и французский ученый-астроном, внесший значительный вклад в исследование Луны и планет Солнечной системы и их спутников, определивший расстояние от Солнца до Земли по параллаксу Марса",
@@ -198,7 +35,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 6,
             start_y: 9,
-            hint: "Посказка горизонталь 7"
+            hint: "Это имя носит межпланетная станция, названная в честь итальяно-французского ученого"
         },
         {
             clue: "Немецкий физик, лауреат Нобелевской премии, один из создателей квантовой механики, известен широкой публике благодаря мысленному эксперименту, демонстрирующему неполноту квантовой механики при переходе от субатомных систем к макроскопическим",
@@ -207,7 +44,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 1,
             start_y: 15,
-            hint: "Посказка горизонталь 9"
+            hint: "Выдающийся физик, один из отцов квантовой механики"
         },
         {
             clue: "Датский физик, один из создателей квантовой механики, создатель первой квантовой теории атома",
@@ -216,7 +53,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 12,
             start_y: 5,
-            hint: "Посказка горизонталь 11"
+            hint: "Ученый, предложивший планетарную модель атома"
         },
         {
             clue: "Древнегреческий философ, развивал атомистические идеи Демокрита, рассматривал Вселенную как бесконечность",
@@ -225,7 +62,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 11,
             start_y: 7,
-            hint: "Посказка горизонталь 14"
+            hint: "Древнегреческий философ, своим учением о природе на многие столетия опередивший время"
         },
         {
             clue: "Английский ученый, заложивший основы классической механики, в том числе закон всемирного тяготения и законы механики",
@@ -234,7 +71,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 11,
             start_y: 14,
-            hint: "Посказка горизонталь 15"
+            hint: "С этим ученым связана легенда об упавшем ему на голову яблоке"
         },
         {
             clue: "Немецкий физик, лауреат Нобелевской премии, основоположник квантовой физики, сформулировал второе начало термодинамики в виде принципа возрастания энтропии",
@@ -243,7 +80,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 15,
             start_y: 12,
-            hint: "Посказка горизонталь 16"
+            hint: "Именем этого ученого названа основная константа квантовой теории"
         },
         {
             clue: "Итальянский ученый, гелиоцентрист, основатель экспериментальной физики, одним из первых стал использовать телескоп для исследования небесных тел",
@@ -252,7 +89,7 @@ function Crossword(settings) {
             orientation: "across",
             start_x: 10,
             start_y: 18,
-            hint: "Посказка горизонталь 17"
+            hint: "Этому ученому принадлежит крылатое высказывание «И всё-таки она вертится!» (итал. E pur si muove! [ɛ ˈpur si muˈovɛ])"
         },
 
 
@@ -263,7 +100,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 5,
             start_y: 2,
-            hint: "Посказка вертикаль 3"
+            hint: "Итальянский философ эпохи Ренессанса, говорил о множественности обитаемых миров"
         },
         {
             clue: "Английский физик, основоположник учения об электромагнитном поле",
@@ -272,7 +109,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 3,
             start_y: 5,
-            hint: "Посказка вертикаль 4"
+            hint: "Ученый, открывший электромагнитную индукцию"
         },
         {
             clue: "Древнегреческий философ, предполагавший, что Земля имеет форму цилиндра, парящего в центре мира, а звезды и Луна – это «окошки» в  кольцах-торах, окружающих Землю",
@@ -281,7 +118,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 9,
             start_y: 5,
-            hint: "Посказка вертикаль 5"
+            hint: "Древнегреческий философ, считал, что Космос подобен живым существам, которые рождаются, достигают зрелости, стареют и должны погибнуть"
         },
         {
             clue: "Американский астроном, внес значительный вклад в современные представления о Вселенной, существовании других галактик, а также применил эффект Доплера к космическим объектам (открыл красное смещение)",
@@ -290,7 +127,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 7,
             start_y: 8,
-            hint: "Посказка вертикаль 6"
+            hint: "Именем этого американского астронома назван орбитальный космический телескоп"
         },
         {
             clue: "Древнегреческий философ, основоположник атомистики, внес значительный вклад в формирование идей Демокрита",
@@ -299,7 +136,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 5,
             start_y: 11,
-            hint: "Посказка вертикаль 8"
+            hint: "Древнегореченский философ, который внес значительный вклад в развитие идей Демокрита по атомистической космологии"
         },
         {
             clue: "Древнегреческий ученый и философ, соратники приписывают ему открытие шарообразности  Земли",
@@ -308,7 +145,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 16,
             start_y: 1,
-            hint: "Посказка вертикаль 10"
+            hint: "Считается, что этому ученому принадлежит открытие одной из основополагающих теорем евклидовой геометрии"
         },
         {
             clue: "Немецкий ученый, первым сформулировал три закона движения планет в Солнечной ситсеме",
@@ -317,7 +154,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 3,
             start_y: 14,
-            hint: "Посказка вертикаль 12"
+            hint: "Именем этого немецкого ученого назван орбитальный телескоп, занимающийся поиском планет в других планетных системах"
         },
         {
             clue: "Древнегреческий философ, ввел положение о всеобщей изменчивости и предложил геоцентрическую модель мира",
@@ -326,7 +163,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 14,
             start_y: 3,
-            hint: "Посказка вертикаль 13"
+            hint: "Древнегреческий философ, создал концепцию непрерывного изменения и в качестве сравнения использовал образ реки, в которую невозможно войти дважды"
         },
         {
             clue: "Немецкий физик-теоретик, один из основателей  современной теоретической физики, автор теории относительности",
@@ -335,7 +172,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 11,
             start_y: 7,
-            hint: "Посказка вертикаль 14"
+            hint: "Известный физик, для доказательства своих теорий использовавший мысленные эксперименты – с лифтом, с поездом, с близнецами и другие"
         },
         {
             clue: "Создал геоцентрическую модель мира, предсказывающую движение планет, по предполагаемым траекториям – деферентам и эпициклам",
@@ -344,7 +181,7 @@ function Crossword(settings) {
             orientation: "down",
             start_x: 15,
             start_y: 12,
-            hint: "Посказка вертикаль 16"
+            hint: "Труды этого ученого многие столетия, вплоть до Коперника, были основополагающими в астрономии"
         }
     ]; // 01-03
     let data_2 = [
@@ -716,7 +553,7 @@ function Crossword(settings) {
 
     let app_data = {};
     app_data.student_state = {};
-    app_data.questions = data_3;
+    app_data.questions = data_1;
     app_data.state = {};
 
     let answer = undefined;

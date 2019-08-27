@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych.js" beforeDir="false" afterPath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Задание 1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -268,7 +266,7 @@
       <workItem from="1565682827494" duration="32509000" />
       <workItem from="1565854823090" duration="17272000" />
       <workItem from="1565961473424" duration="34433000" />
-      <workItem from="1566551365594" duration="7111000" />
+      <workItem from="1566551365594" duration="15783000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
