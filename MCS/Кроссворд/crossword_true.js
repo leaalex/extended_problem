@@ -12,177 +12,177 @@ function Crossword(settings) {
     // Естественнонаучная картина мира
     let data_mcs_01_03 = [
         {
-            clue: "Польский ученый, создавший гелиоцентрическую модель строения Солнечной системы и достаточно точно определивший относительные расстояния от Солнца до планет",
-            answer: "коперник",
-            position: 1,
-            orientation: "across",
-            start_x: 1,
-            start_y: 3,
-            hint: "Этот ученый Средневековья, наряду с Дж. Бруно, превратили в сознании людей Землю в крошечную частицу Вселенной"
+            "clue": "Польский ученый, создавший гелиоцентрическую модель строения Солнечной системы и достаточно точно определивший относительные расстояния от Солнца до планет",
+            "answer": "коперник",
+            "position": 1,
+            "orientation": "across",
+            "start_x": 1,
+            "start_y": 3,
+            "hint": "Этот ученый Средневековья, наряду с Дж. Бруно, превратили в сознании людей Землю в крошечную частицу Вселенной"
         },
         {
-            clue: "Греческий ученый и поэт, благодаря своим астрономическим наблюдениям достаточно точно вычисливший расстояние от экватора до тропика",
-            answer: "эратосфен",
-            position: 2,
-            orientation: "across",
-            start_x: 1,
-            start_y: 6,
-            hint: "Древнегреческий астроном, впервые определивший угол наклона земной оси"
+            "clue": "Греческий ученый и поэт, благодаря своим астрономическим наблюдениям достаточно точно вычисливший расстояние от экватора до тропика",
+            "answer": "эратосфен",
+            "position": 2,
+            "orientation": "across",
+            "start_x": 1,
+            "start_y": 6,
+            "hint": "Древнегреческий астроном, впервые определивший угол наклона земной оси"
         },
         {
-            clue: "Итальянский и французский ученый-астроном, внесший значительный вклад в исследование Луны и планет Солнечной системы и их спутников, определивший расстояние от Солнца до Земли по параллаксу Марса",
-            answer: "кассини",
-            position: 7,
-            orientation: "across",
-            start_x: 6,
-            start_y: 9,
-            hint: "Это имя носит межпланетная станция, названная в честь итальяно-французского ученого"
+            "clue": "Итальянский и французский ученый-астроном, внесший значительный вклад в исследование Луны и планет Солнечной системы и их спутников, определивший расстояние от Солнца до Земли по параллаксу Марса",
+            "answer": "кассини",
+            "position": 7,
+            "orientation": "across",
+            "start_x": 6,
+            "start_y": 9,
+            "hint": "Это имя носит межпланетная станция, названная в честь итальяно-французского ученого"
         },
         {
-            clue: "Немецкий физик, лауреат Нобелевской премии, один из создателей квантовой механики, известен широкой публике благодаря мысленному эксперименту, демонстрирующему неполноту квантовой механики при переходе от субатомных систем к макроскопическим",
-            answer: "шредингер",
-            position: 9,
-            orientation: "across",
-            start_x: 1,
-            start_y: 15,
-            hint: "Выдающийся физик, один из отцов квантовой механики"
+            "clue": "Немецкий физик, лауреат Нобелевской премии, один из создателей квантовой механики, известен широкой публике благодаря мысленному эксперименту, демонстрирующему неполноту квантовой механики при переходе от субатомных систем к макроскопическим",
+            "answer": "шредингер",
+            "position": 9,
+            "orientation": "across",
+            "start_x": 1,
+            "start_y": 15,
+            "hint": "Выдающийся физик, один из отцов квантовой механики"
         },
         {
-            clue: "Датский физик, один из создателей квантовой механики, создатель первой квантовой теории атома",
-            answer: "бор",
-            position: 11,
-            orientation: "across",
-            start_x: 12,
-            start_y: 5,
-            hint: "Ученый, предложивший планетарную модель атома"
+            "clue": "Датский физик, один из создателей квантовой механики, создатель первой квантовой теории атома",
+            "answer": "бор",
+            "position": 11,
+            "orientation": "across",
+            "start_x": 12,
+            "start_y": 5,
+            "hint": "Ученый, предложивший планетарную модель атома"
         },
         {
-            clue: "Древнегреческий философ, развивал атомистические идеи Демокрита, рассматривал Вселенную как бесконечность",
-            answer: "эпикур",
-            position: 14,
-            orientation: "across",
-            start_x: 11,
-            start_y: 7,
-            hint: "Древнегреческий философ, своим учением о природе на многие столетия опередивший время"
+            "clue": "Древнегреческий философ, развивал атомистические идеи Демокрита, рассматривал Вселенную как бесконечность",
+            "answer": "эпикур",
+            "position": 14,
+            "orientation": "across",
+            "start_x": 11,
+            "start_y": 7,
+            "hint": "Древнегреческий философ, своим учением о природе на многие столетия опередивший время"
         },
         {
-            clue: "Английский ученый, заложивший основы классической механики, в том числе закон всемирного тяготения и законы механики",
-            answer: "ньютон",
-            position: 15,
-            orientation: "across",
-            start_x: 11,
-            start_y: 14,
-            hint: "С этим ученым связана легенда об упавшем ему на голову яблоке"
+            "clue": "Английский ученый, заложивший основы классической механики, в том числе закон всемирного тяготения и законы механики",
+            "answer": "ньютон",
+            "position": 15,
+            "orientation": "across",
+            "start_x": 11,
+            "start_y": 14,
+            "hint": "С этим ученым связана легенда об упавшем ему на голову яблоке"
         },
         {
-            clue: "Немецкий физик, лауреат Нобелевской премии, основоположник квантовой физики, сформулировал второе начало термодинамики в виде принципа возрастания энтропии",
-            answer: "планк",
-            position: 16,
-            orientation: "across",
-            start_x: 15,
-            start_y: 12,
-            hint: "Именем этого ученого названа основная константа квантовой теории"
+            "clue": "Немецкий физик, лауреат Нобелевской премии, основоположник квантовой физики, сформулировал второе начало термодинамики в виде принципа возрастания энтропии",
+            "answer": "планк",
+            "position": 16,
+            "orientation": "across",
+            "start_x": 15,
+            "start_y": 12,
+            "hint": "Именем этого ученого названа основная константа квантовой теории"
         },
         {
-            clue: "Итальянский ученый, гелиоцентрист, основатель экспериментальной физики, одним из первых стал использовать телескоп для исследования небесных тел",
-            answer: "галилей",
-            position: 17,
-            orientation: "across",
-            start_x: 10,
-            start_y: 18,
-            hint: "Этому ученому принадлежит крылатое высказывание «И всё-таки она вертится!» (итал. E pur si muove! [ɛ ˈpur si muˈovɛ])"
+            "clue": "Итальянский ученый, гелиоцентрист, основатель экспериментальной физики, одним из первых стал использовать телескоп для исследования небесных тел",
+            "answer": "галилей",
+            "position": 17,
+            "orientation": "across",
+            "start_x": 10,
+            "start_y": 18,
+            "hint": "Этому ученому принадлежит крылатое высказывание «И всё-таки она вертится!» (итал. E pur si muove! [ɛ ˈpur si muˈovɛ])"
         },
 
 
         {
-            clue: "Итальянский философ, гелиоцентрист, рассматривающий звезды как далекие солнца, за свои убеждения пал жертвой римской инквизиции",
-            answer: "бруно",
-            position: 3,
-            orientation: "down",
-            start_x: 5,
-            start_y: 2,
-            hint: "Итальянский философ эпохи Ренессанса, говорил о множественности обитаемых миров"
+            "clue": "Итальянский философ, гелиоцентрист, рассматривающий звезды как далекие солнца, за свои убеждения пал жертвой римской инквизиции",
+            "answer": "бруно",
+            "position": 3,
+            "orientation": "down",
+            "start_x": 5,
+            "start_y": 2,
+            "hint": "Итальянский философ эпохи Ренессанса, говорил о множественности обитаемых миров"
         },
         {
-            clue: "Английский физик, основоположник учения об электромагнитном поле",
-            answer: "фарадей",
-            position: 4,
-            orientation: "down",
-            start_x: 3,
-            start_y: 5,
-            hint: "Ученый, открывший электромагнитную индукцию"
+            "clue": "Английский физик, основоположник учения об электромагнитном поле",
+            "answer": "фарадей",
+            "position": 4,
+            "orientation": "down",
+            "start_x": 3,
+            "start_y": 5,
+            "hint": "Ученый, открывший электромагнитную индукцию"
         },
         {
-            clue: "Древнегреческий философ, предполагавший, что Земля имеет форму цилиндра, парящего в центре мира, а звезды и Луна – это «окошки» в  кольцах-торах, окружающих Землю",
-            answer: "анаксимандр",
-            position: 5,
-            orientation: "down",
-            start_x: 9,
-            start_y: 5,
-            hint: "Древнегреческий философ, считал, что Космос подобен живым существам, которые рождаются, достигают зрелости, стареют и должны погибнуть"
+            "clue": "Древнегреческий философ, предполагавший, что Земля имеет форму цилиндра, парящего в центре мира, а звезды и Луна – это «окошки» в  кольцах-торах, окружающих Землю",
+            "answer": "анаксимандр",
+            "position": 5,
+            "orientation": "down",
+            "start_x": 9,
+            "start_y": 5,
+            "hint": "Древнегреческий философ, считал, что Космос подобен живым существам, которые рождаются, достигают зрелости, стареют и должны погибнуть"
         },
         {
-            clue: "Американский астроном, внес значительный вклад в современные представления о Вселенной, существовании других галактик, а также применил эффект Доплера к космическим объектам (открыл красное смещение)",
-            answer: "хаббл",
-            position: 6,
-            orientation: "down",
-            start_x: 7,
-            start_y: 8,
-            hint: "Именем этого американского астронома назван орбитальный космический телескоп"
+            "clue": "Американский астроном, внес значительный вклад в современные представления о Вселенной, существовании других галактик, а также применил эффект Доплера к космическим объектам (открыл красное смещение)",
+            "answer": "хаббл",
+            "position": 6,
+            "orientation": "down",
+            "start_x": 7,
+            "start_y": 8,
+            "hint": "Именем этого американского астронома назван орбитальный космический телескоп"
         },
         {
-            clue: "Древнегреческий философ, основоположник атомистики, внес значительный вклад в формирование идей Демокрита",
-            answer: "левкипп",
-            position: 8,
-            orientation: "down",
-            start_x: 5,
-            start_y: 11,
-            hint: "Древнегореченский философ, который внес значительный вклад в развитие идей Демокрита по атомистической космологии"
+            "clue": "Древнегреческий философ, основоположник атомистики, внес значительный вклад в формирование идей Демокрита",
+            "answer": "левкипп",
+            "position": 8,
+            "orientation": "down",
+            "start_x": 5,
+            "start_y": 11,
+            "hint": "Древнегореченский философ, который внес значительный вклад в развитие идей Демокрита по атомистической космологии"
         },
         {
-            clue: "Древнегреческий ученый и философ, соратники приписывают ему открытие шарообразности  Земли",
-            answer: "пифагор",
-            position: 10,
-            orientation: "down",
-            start_x: 16,
-            start_y: 1,
-            hint: "Считается, что этому ученому принадлежит открытие одной из основополагающих теорем евклидовой геометрии"
+            "clue": "Древнегреческий ученый и философ, соратники приписывают ему открытие шарообразности  Земли",
+            "answer": "пифагор",
+            "position": 10,
+            "orientation": "down",
+            "start_x": 16,
+            "start_y": 1,
+            "hint": "Считается, что этому ученому принадлежит открытие одной из основополагающих теорем евклидовой геометрии"
         },
         {
-            clue: "Немецкий ученый, первым сформулировал три закона движения планет в Солнечной ситсеме",
-            answer: "кеплер",
-            position: 12,
-            orientation: "down",
-            start_x: 3,
-            start_y: 14,
-            hint: "Именем этого немецкого ученого назван орбитальный телескоп, занимающийся поиском планет в других планетных системах"
+            "clue": "Немецкий ученый, первым сформулировал три закона движения планет в Солнечной ситсеме",
+            "answer": "кеплер",
+            "position": 12,
+            "orientation": "down",
+            "start_x": 3,
+            "start_y": 14,
+            "hint": "Именем этого немецкого ученого назван орбитальный телескоп, занимающийся поиском планет в других планетных системах"
         },
         {
-            clue: "Древнегреческий философ, ввел положение о всеобщей изменчивости и предложил геоцентрическую модель мира",
-            answer: "гераклит",
-            position: 13,
-            orientation: "down",
-            start_x: 14,
-            start_y: 3,
-            hint: "Древнегреческий философ, создал концепцию непрерывного изменения и в качестве сравнения использовал образ реки, в которую невозможно войти дважды"
+            "clue": "Древнегреческий философ, ввел положение о всеобщей изменчивости и предложил геоцентрическую модель мира",
+            "answer": "гераклит",
+            "position": 13,
+            "orientation": "down",
+            "start_x": 14,
+            "start_y": 3,
+            "hint": "Древнегреческий философ, создал концепцию непрерывного изменения и в качестве сравнения использовал образ реки, в которую невозможно войти дважды"
         },
         {
-            clue: "Немецкий физик-теоретик, один из основателей  современной теоретической физики, автор теории относительности",
-            answer: "эйнштейн",
-            position: 14,
-            orientation: "down",
-            start_x: 11,
-            start_y: 7,
-            hint: "Известный физик, для доказательства своих теорий использовавший мысленные эксперименты – с лифтом, с поездом, с близнецами и другие"
+            "clue": "Немецкий физик-теоретик, один из основателей  современной теоретической физики, автор теории относительности",
+            "answer": "эйнштейн",
+            "position": 14,
+            "orientation": "down",
+            "start_x": 11,
+            "start_y": 7,
+            "hint": "Известный физик, для доказательства своих теорий использовавший мысленные эксперименты – с лифтом, с поездом, с близнецами и другие"
         },
         {
-            clue: "Создал геоцентрическую модель мира, предсказывающую движение планет, по предполагаемым траекториям – деферентам и эпициклам",
-            answer: "птолемей",
-            position: 16,
-            orientation: "down",
-            start_x: 15,
-            start_y: 12,
-            hint: "Труды этого ученого многие столетия, вплоть до Коперника, были основополагающими в астрономии"
+            "clue": "Создал геоцентрическую модель мира, предсказывающую движение планет, по предполагаемым траекториям – деферентам и эпициклам",
+            "answer": "птолемей",
+            "position": 16,
+            "orientation": "down",
+            "start_x": 15,
+            "start_y": 12,
+            "hint": "Труды этого ученого многие столетия, вплоть до Коперника, были основополагающими в астрономии"
         }
     ]; // 01-03
     let data_mcs_03_03 = [
@@ -1107,6 +1107,13 @@ function Crossword(settings) {
             language = settings.language;
         }
     }
+
+    let client_check = true;
+    if (settings.client_check !== undefined){
+        if (typeof settings.client_check === "boolean"){
+            client_check = settings.client_check;
+        }
+    }
     let user_labels = labels[language];
     let activePosition = 0;
     // let currentOrientation = "across";
@@ -1116,13 +1123,14 @@ function Crossword(settings) {
 
     let app_data = {};
     app_data.student_state = {};
-    app_data.questions = data_mcs_03_04;
+    app_data.questions = settings.data;
+    // app_data.questions = data_mcs_01_03;
     app_data.state = {};
 
     let answer = undefined;
     if (document.querySelector("#crossword_input")) {
         answer = new Answer(document.querySelector("#crossword_input").querySelector("input[type='text']"));
-        answer.elementField.classList.add("hidden");
+        // answer.elementField.classList.add("hidden");
 
         if (answer.get()) {
             app_data.state = answer.getJSON()["answer"]["user_state"];
@@ -1181,12 +1189,13 @@ function Crossword(settings) {
         calcCoordinates: function () {
             app_data.questions.forEach(function (item, i) {
                 app_data.questions[i].coords = [];
-                app_data.questions[i].unique_position = i;
+                // app_data.questions[i].unique_position = i;
                 app_data.questions[i].raw_coords = [];
                 let start_coords = {
                     x: parseInt(app_data.questions[i].start_x),
                     y: parseInt(app_data.questions[i].start_y)
                 };
+                // console.log("len", app_data.questions[i].answer, app_data.questions[i].answer.split(''));
                 app_data.questions[i].answer.split('').forEach(function (letter, index) {
                     let new_coords = {x: start_coords.x, y: start_coords.y};
                     if (item.orientation === horizontal_sign) {
@@ -1300,14 +1309,17 @@ function Crossword(settings) {
                             } else {
                                 curr_cells[0].querySelector("input").blur();
                             }
-
                             return false;
                         }
-
                     };
 
                     html_cell.onkeyup = function (evt) {
-                        utils.checkAllWords();
+                        if (client_check) {
+                            utils.checkAllWords();
+                        }
+                        else{
+                            utils.serverCheckedAllWords();
+                        }
                         // hint.hide();
                         if (hint.isShow()) return false;
                         let curr_item = app_data.questions.filter(c => c.unique_position === activePosition)[0];
@@ -1343,7 +1355,9 @@ function Crossword(settings) {
                             }
                         }
 
-                        utils.showHint(activePosition);
+                        if(client_check){
+                            utils.showHint(activePosition);
+                        }
                         evt.preventDefault();
                         return false;
                     };
@@ -1481,9 +1495,18 @@ function Crossword(settings) {
             if (item) {
                 item.html_clue.classList.add("active-clue");
                 item.cells.forEach(cell => cell.classList.add("active-cell"));
-
-
             }
+        },
+        serverCheckedAllWords: function () {
+            app_data.questions.forEach(function (item) {
+                let student_str = item.cells.map(cell => cell.querySelector("input").value).join('').toLowerCase();
+                if (item.answer.length === student_str.length) {
+                    item.cells.forEach(cell => {
+                        cell.querySelector("input").blur()
+                    });
+                }
+            });
+            this.buildState();
         },
         checkAllWords: function () {
             grade = 0;
@@ -1498,6 +1521,7 @@ function Crossword(settings) {
                     item.html_clue.classList.add("correct-clue");
                 }
             });
+            console.log("grade: ", grade);
             this.buildState();
         },
         showHint: function (pos) {
@@ -1513,28 +1537,68 @@ function Crossword(settings) {
         },
         buildState: function () {
             app_data.state = {};
-
             let max_grade = app_data.questions.length;
             app_data.questions.forEach(function (item) {
                 app_data.state["question_" + item.unique_position] = {};
+                app_data.state["question_" + item.unique_position]["position"] = {};
+                app_data.state["question_" + item.unique_position]["word"] = "";
                 item.cells.forEach(function (cell) {
-                    app_data.state["question_" + item.unique_position][cell.getAttribute("data-coords")] = cell.querySelector("input").value;
-                })
+                    app_data.state["question_" + item.unique_position]["position"][cell.getAttribute("data-coords")] = cell.querySelector("input").value;
+                });
+                app_data.state["question_" + item.unique_position]["word"] = item.cells.map(cell => cell.querySelector("input").value).join('').toLowerCase()
             });
 
             if (answer) {
-                answer.setJSON({answer: {"user_state": app_data.state, "grade": grade, "max_grade": max_grade}});
+                let ans = {};
+                ans["user_state"] = app_data.state;
+                if(client_check){
+                    ans["grade"] = grade;
+                    ans["max_grade"] = max_grade;
+                }
+                answer.setJSON({answer: ans});
             }
         },
         restoreState: function () {
+            // console.log(app_data.state);
             Object.keys(app_data.state).forEach(function (item) {
-                Object.keys(app_data.state[item]).forEach(function (sub_item) {
+                // console.log(app_data.state[item]['position']);
+                Object.keys(app_data.state[item]['position']).forEach(function (sub_item) {
+                    // console.log()
                     if(element.querySelector('[data-coords="' + sub_item + '"] input')){
-                        element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item][sub_item];
+                        element.querySelector('[data-coords="' + sub_item + '"] input').value = app_data.state[item]['position'][sub_item];
                     }
                 });
             });
-            this.checkAllWords();
+            if (client_check) {
+                this.checkAllWords();
+            }
+            else{
+                // if($("span.message", element)) {
+                //     if ($("span.message", element).text() != "") {
+                //         var wrongCells = JSON.parse($("span.message", element).text())["wrong_cells"];
+                //     }
+                // }
+                if (answer.elementField.parentNode.parentNode.querySelector("span.message")){
+                    let correct_words = JSON.parse(answer.elementField.parentNode.parentNode.querySelector("span.message").innerHTML)["correct_list"];
+                    // console.log();
+                    app_data.questions.forEach(function (item) {
+                        if(correct_words.includes("question_" + item.unique_position)){
+                            item.cells.forEach(cell => {
+                                cell.classList.add("correct-cell");
+                            });
+                            item.html_clue.classList.add("correct-clue");
+                        }
+                        // console.log();
+
+
+
+                    });
+                }
+
+
+
+            //     this.buildState();
+            }
         },
     };
 

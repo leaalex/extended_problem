@@ -1,0 +1,497 @@
+<problem>
+    <style>
+
+        #$unique_id #select_task_input {
+            display: none !important;
+        }
+
+        #$unique_id .task-item {
+              display: inline;
+              padding: 1px;
+          }
+
+        #$unique_id .task-paragraph{
+              display: inline-flex;
+              margin: 4px 0px;
+              /*border: 1px solid #e5e5e5;*/
+              width: 100%;
+          }
+
+        #$unique_id .task-paragraph-dragged{
+              /*background: #e6e6e6;*/
+          }
+
+        #$unique_id .task-item:hover{
+              /*background: #dcdada;*/
+              background: #a7ffaa;
+              cursor: pointer;
+          }
+
+        #$unique_id .task-item.selected-item:hover{
+              background: #ffb3b3;
+              /*background: #a7ffaa;*/
+              cursor: pointer;
+          }
+
+        #$unique_id .task-item.selected-item{
+              background: #ffff7e;
+          }
+
+        #$unique_id .task-paragraph-drag{
+              padding-right: 6px;
+              /* display: flex; */
+              /* flex-direction: column; */
+              /* justify-content: center; */
+              /*align-items: center;*/
+          }
+
+        #$unique_id .task-paragraph-drag-handler{
+              display: block;
+              float: none;
+              height: 24px;
+              width: 13px;
+              cursor: move;
+              padding: 6px;
+              background: #ececec;
+              background-image: url(https://png.pngtree.com/svg/20170111/8fdf1e109c.svg);
+              background-repeat: no-repeat;
+              background-size: 90%;
+              background-position: center;
+              border: 1px solid #e5e5e5;
+              border-radius: 4px 0px 0px 4px;
+          }
+
+        #$unique_id .task-paragraph-placeholder {
+              border: 1px dashed #9a9a9a;
+              border-radius: 4px;
+              /*margin: 0 1em 1em 0;*/
+              /*padding: -50px;*/
+              margin-left: 30px;
+              /*width: 100%;*/
+              height: 100px;
+          }
+
+        #$unique_id .task-paragraph-text{
+              background: #ffffffb3;
+              border: 1px solid #e5e5e5;
+              margin: 0 -7px;
+              padding: 4px 8px;
+              border-radius: 0px 4px 4px 4px;
+              width: 100%;
+          }
+
+        #$unique_id .fake-element{
+              background-color: #ff0000;
+              color: white;
+              padding: 0px 2px;
+        }
+        #$unique_id .detailed-solution h2 {
+              margin-top: 10px;
+              margin-bottom: 0px;
+          }
+
+        #$unique_id .detailed-solution .detailed-solution-header{
+              border-left: 5px solid #009b01;
+              padding: 10px;
+              margin-bottom: 16px;
+              color: #009b01;
+              background: whitesmoke;
+              border-radius: 4px;
+        }
+        #$unique_id .detailed-solution .detailed-solution-content{
+              background: whitesmoke;
+            padding: 10px;
+          }
+
+        #$unique_id .detailed-solution .detailed-solution-header h1{
+            margin-bottom: 0.11575em !important;
+        }
+
+    </style>
+
+    <script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_djkjvfds42v"
+
+def check_func(student_order, correct_order, student_selected, correct_selected):
+    response = {}
+    max_grade = len(correct_selected) * 2
+    grade = 0
+
+    for item_id in student_selected:
+        if item_id in correct_selected:
+            grade += 1
+        else:
+            grade -= 1
+    if 0 > grade:
+        grade = 0
+
+    if student_order == correct_order:
+        grade += len(correct_selected)
+    grade_decimal = float(grade) / float(max_grade)
+
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
+    response["ok"] = ok
+    response["message"] = str(grade_decimal)
+    return response
+
+def check_answer(expect, ans):
+    correct_selected = ["vnxjiuid", "lflkhghh", "lhjgwcme", "vxmwwywo", "tqphejvw", "gfvdyfnm"]
+    correct_order = ['bvqwlqvd', 'vfqxybaq', 'jzanalcm', 'jveqktic', 'iqmedaad', 'dvyiwdtb', 'jecaxsqw']
+    try:
+        student_answer = json.loads(ans)
+        student_answer = student_answer["answer"]
+        student_order = student_answer["order"]
+        student_selected = student_answer["selected"]
+        response = check_func(student_order, correct_order, student_selected, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': response['message'], 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+
+</script>
+
+    <script type="text/javascript">
+
+        if (TaskSelectObjects == undefined) var TaskSelectObjects = {};
+
+        function TaskSelectActivation(selector) {
+            Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
+                return element.dataset.status == undefined
+            }).forEach(function(element, i, array) {
+                TaskSelectObjects[element.id] = (new TaskSelectObjects(element, element.getAttribute("data")));
+                element.dataset.status = "activate";
+            });
+            setTimeout(function() {
+                TaskSelectActivation(selector)
+            }, 1000);
+        }
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function() {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function(value) {
+                if (value == undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function() {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function(object) {
+                if (object == undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object))
+            };
+            this.isJsonString = function(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        $.fn.shuffleChildren = function() {
+            $.each(this.get(), function(index, el) {
+                var $el = $(el);
+                var $find = $el.children();
+
+                $find.sort(function() {
+                    return 0.5 - Math.random();
+                });
+
+                $el.empty();
+                $find.appendTo($el);
+            });
+        };
+
+        function TaskSelectObjects(element, data){
+            this.element = element;
+
+            var answer = new Answer(element.querySelector("#select_task_input").querySelector("input[type='text']"));
+            var items = this.element.querySelectorAll(".task-item");
+
+            var problem =  $("#" + element.id).closest(".problem");
+            var checkButton = $("button.submit", problem);
+            checkButton.attr("disabled", "disabled");
+
+            items.forEach(function(item, i, arr){
+                item.addEventListener("click", function(event){
+                    if ($(item).hasClass('selected-item')){
+                        $(item).removeClass('selected-item')
+                    }
+                    else{
+                        $(item).addClass('selected-item')
+                    }
+                    setAnswer();
+                });
+            });
+
+            $(".task-select-sortable",element).sortable({
+                handle: ".task-paragraph-drag",
+                placeholder: "task-paragraph-placeholder",
+                start: function(event, ui) {
+                    $("#" + ui.item[0].id, element).addClass("task-paragraph-dragged");
+                },
+                stop: function(event, ui) {
+                    $("#" + ui.item[0].id, element).removeClass("task-paragraph-dragged");
+                    setAnswer();
+                }
+            });
+
+            function setAnswer(){
+                var problem =  $("#" + element.id).closest(".problem");
+                var checkButton = $("button.submit", problem);
+                checkButton.removeClass("is-disabled");
+                checkButton.disabled = false;
+                checkButton.removeAttr("disabled");
+
+                var student_answer = {};
+                student_answer["selected"] = [];
+                student_answer["order"] = [];
+
+                items.forEach(function(item, i, arr){
+                    if ($(item).hasClass('selected-item')){
+                        student_answer["selected"].push(item.id)
+                    }
+                });
+
+                var paragraphs = element.querySelectorAll(".task-paragraph");
+                paragraphs.forEach(function(item, i, arr){
+                    student_answer["order"].push(item.id)
+                });
+
+                answer.setJSON({answer: student_answer});
+            }
+
+            if(answer.get()){
+                try {
+                    var student_answer = answer.getJSON()["answer"];
+                    student_answer["selected"].forEach(function(item_id, i, arr){
+                        $("#"+item_id, element).addClass('selected-item');
+                    });
+
+                    student_answer["order"].forEach(function(item_id, i, arr){
+                        $(".task-select-sortable")[0].append($("#" + item_id, element)[0]);
+                    });
+                }
+                catch (err) {
+                    setAnswer();
+                }
+            }
+            else{
+                setAnswer();
+                $ (".task-select-sortable", element).shuffleChildren(); // Включить это для изначального перемешивания
+            }
+
+            //   if($("span.message", element)){
+            //     if( $("span.message", element).text() != ""){
+            //       var wrongCells = JSON.parse($("span.message",element).text())["wrong_cells"];
+            //       var message = JSON.parse($("span.message",element).text())["message"];
+            //       for (cellId in wrongCells){
+            //         $(".conf-table #" + wrongCells[cellId], element).addClass("conf-wrong-cell");
+            //       }
+            //       // $(".message-about-grade", element).html(message);
+            //     }
+            //   }
+        }
+
+        TaskSelectActivation(".task-select")
+    </script>
+
+    <div id="$unique_id" class="task-select">
+
+        <p>Задание: восстановите логику текста (расположите абзацы в правильной последовательности), взгляните на него критически – определите фейковые элементы.</p>
+
+<!--        <div class="task-select-header"></div>-->
+
+        <div class="task-select-sortable">
+            <div class="task-paragraph" id="bvqwlqvd">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="hhxwlfqb">Реакции пострадавших в периоде послевоздействия развиваются в следующей последовательности:</div>
+                    <ul>
+                        <li><div class="task-item" id="vkhvnxae">фаза медового месяца;</div></li>
+                        <li><div class="task-item" id="kdoajide">фаза разочарования;</div></li>
+                        <li><div class="task-item" id="ctwfzrqq">фаза восстановления.</div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="task-paragraph" id="vfqxybaq">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="txfstucd"><strong>Фаза медового месяца</strong></div><br/>
+                    <div class="task-item" id="bnshmtab"><strong><i>Продолжительность:</i></strong> </div>
+                    <div class="task-item" id="uvjyrseo">начинается после </div>
+                    <div class="task-item" id="xcpqnvpy">катастрофы и длится </div>
+                    <div class="task-item" id="vnxjiuid">от полугода до одного года.</div>
+                </div>
+            </div>
+            <div class="task-paragraph" id="jzanalcm">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="svutiabf"><strong><i>Сущность.</i></strong></div>
+                    <div class="task-item" id="vyaxduta">Выжившие испытывают чувство гордости</div>
+                    <div class="task-item" id="qoyzcndd">за то, что им удалось преодолеть опасность, </div>
+                    <div class="task-item" id="qzdaxfyd">у них </div>
+                    <div class="task-item" id="psipmexe">формируется представление, что самое страшное уже позади. </div>
+                    <div class="task-item" id="lflkxyds">При этом люди воспринимают и оценивают опасность, </div>
+                    <div class="task-item" id="ztknqbgm">а также выбирают пути приспособления для защиты </div>
+                    <div class="task-item" id="ogipycau">в зависимости от личного опыта, </div>
+                    <div class="task-item" id="cspjfmrb">возраста, </div>
+                    <div class="task-item" id="bribtoxh">продолжительности проживания в районе бедствия и </div>
+                    <div class="task-item" id="lqqntpob">личных столкновений с опасностью.</div>
+                </div>
+            </div>
+            <div class="task-paragraph" id="jveqktic">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="qgloeqlv"><strong>Фаза разочарования</strong></div><br/>
+                    <div class="task-item" id="mveoxpyr"><strong><i>Продолжительность:</i></strong> </div>
+                    <div class="task-item" id="algpsbwn">длится от двух месяцев до 1–2 лет.</div><br/>
+                    <div class="task-item" id="jeomccre"><strong><i>Сущность.</i></strong> </div>
+                    <div class="task-item" id="znxaeckf">Вследствие того, что многие </div>
+                    <div class="task-item" id="mbfelenq">бытовые, </div>
+                    <div class="task-item" id="ahyzzefw">оциальные, </div>
+                    <div class="task-item" id="htafwrhy">материальные, </div>
+                    <div class="task-item" id="mirmstpx">психологические </div>
+                    <div class="task-item" id="wbxuefwb">проблемы полностью не разрешены, </div>
+                    <div class="task-item" id="htzsivug">пострадавшие испытывают</div>
+                    <div class="task-item" id="lflkhghh">устойчивую потребность решить бытовые проблемы.</div>
+                </div>
+            </div>
+            <div class="task-paragraph" id="iqmedaad">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="vjyptner"><strong>Фаза восстановления</strong></div><br/>
+                    <div class="task-item" id="uvkfeldu"><strong><i>Продолжительность:</i></strong> </div>
+                    <div class="task-item" id="lhjgwcme">От 3 месяцев до года.</div> <br/>
+                    <div class="task-item" id="cogelamn"><strong><i>Сущность.</i></strong> </div>
+                    <div class="task-item" id="vxmwwywo">Выжившие ожидают помощи социальных органов.</div>
+                </div>
+            </div>
+            <div class="task-paragraph" id="dvyiwdtb">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="zightxen">Основу психотравмы </div>
+                    <div class="task-item" id="yfuryzlk">составляют либо </div>
+                    <div class="task-item" id="aztohujl">единичный, </div>
+                    <div class="task-item" id="tndtkeso">сверхстрессогенный опыт </div>
+                    <div class="task-item" id="bqiltjng">(опыт, который для </div>
+                    <div class="task-item" id="tqphejvw">личности является ресурсным сам по себе), </div>
+                    <div class="task-item" id="tlaaitmi">либо длительно существующая,</div>
+                    <div class="task-item" id="ipieymia">длительно действующая стрессовая ситуация.</div>
+                </div>
+            </div>
+            <div class="task-paragraph" id="jecaxsqw">
+                <div class="task-paragraph-drag">
+                    <div class="task-paragraph-drag-handler"></div>
+                </div>
+                <div class="task-paragraph-text">
+                    <div class="task-item" id="wzdbkjcl"><strong>Выделяют </strong></div>
+                    <div class="task-item" id="kpanqbny"><strong>четыре </strong></div>
+                    <div class="task-item" id="bdtbeuhw"><strong>основные </strong></div>
+                    <div class="task-item" id="fwyvygrv"><strong>характеристики психотравмы:</strong></div> <br/>
+                    <ul>
+                        <li>
+                            <div class="task-item" id="boschyhz">внешний по отношению к человеку источник;</div>
+                        </li>
+                        <li>
+                            <div class="task-item" id="gvzdlgpw">событие, которое произошло, вызывает у человека ужас;</div>
+                        </li>
+                        <li>
+                            <div class="task-item" id="gfvdyfnm">ситуация создает новую систему жизендеятельности человека.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div id="select_task_input">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$unique_id" />
+            </customresponse>
+
+            <!-- <div class="message-about-grade"></div> -->
+        </div>
+        <solution>
+            <div class="detailed-solution">
+                <div class="detailed-solution-header">
+                    <h1>Решение задачи</h1>
+                    <p>(Выделенные красным элементы являются фейковыми)</p>
+                </div>
+                <div class="detailed-solution-content">
+                    <p>Реакции пострадавших в периоде послевоздействия развиваются в следующей последовательности:</p>
+                    <ul>
+                        <li>фаза медового месяца;</li>
+                        <li>фаза разочарования;</li>
+                        <li>фаза восстановления.</li>
+                    </ul>
+
+                    <h2>Фаза медового месяца</h2>
+                    <p><strong><i>Продолжительность:</i></strong> начинается после катастрофы и длится <span class="fake-element">от полугода до одного года</span>.</p>
+
+                    <p><strong><i>Сущность.</i></strong> Выжившие испытывают чувство гордости за то, что им удалось преодолеть опасность, у них формируется представление, что самое страшное уже позади. При этом люди воспринимают и оценивают опасность, а также выбирают пути приспособления для защиты в зависимости от личного опыта, возраста, продолжительности проживания в районе бедствия и личных столкновений с опасностью.</p>
+
+
+                    <h2>Фаза разочарования</h2>
+                    <p><strong><i>Продолжительность:</i></strong> длится от двух месяцев до 1–2 лет.</p>
+                    <p><strong><i>Сущность.</i></strong> Вследствие того, что многие бытовые, социальные, материальные, психологические проблемы полностью не разрешены, пострадавшие испытывают <span class="fake-element">устойчивую потребность решить бытовые проблемы</span>.</p>
+
+
+                    <h2>Фаза восстановления</h2>
+                    <p><strong><i>Продолжительность:</i></strong> <span class="fake-element">от 3 месяцев до года</span></p>
+                    <p><strong><i>Сущность. </i></strong><span class="fake-element">Выжившие ожидают помощи социальных органов.</span></p>
+
+                    <p>Основу психотравмы составляют либо единичный, сверхстрессогенный опыт (опыт, который для <span class="fake-element">личности является ресурсным сам по себе</span>), либо длительно существующая, длительно действующая стрессовая ситуация.</p>
+
+                    <br/>
+                    <p>Выделяют четыре основные характеристики психотравмы:</p>
+                    <ul>
+                        <li>
+                            внешний по отношению к человеку источник;
+                        </li>
+                        <li>
+                            событие, которое произошло, вызывает у человека ужас;
+                        </li>
+                        <li>
+                            <span class="fake-element">ситуация создает новую систему жизендеятельности человека.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </solution>
+
+    </div>
+</problem>
