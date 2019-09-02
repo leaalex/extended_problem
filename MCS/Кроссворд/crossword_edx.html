@@ -1,39 +1,275 @@
 <problem>
     <script type="loncapa/python">
 import json
+import copy
+
+source_data = [
+        {
+            "clue": "Польский ученый, создавший гелиоцентрическую модель строения Солнечной системы и достаточно точно определивший относительные расстояния от Солнца до планет",
+            "answer": u"коперник",
+            "position": 1,
+            "orientation": "across",
+            "start_x": 1,
+            "start_y": 3,
+            "hint": "Этот ученый Средневековья, наряду с Дж. Бруно, превратили в сознании людей Землю в крошечную частицу Вселенной"
+        },
+        {
+            "clue": "Греческий ученый и поэт, благодаря своим астрономическим наблюдениям достаточно точно вычисливший расстояние от экватора до тропика",
+            "answer": u"эратосфен",
+            "position": 2,
+            "orientation": "across",
+            "start_x": 1,
+            "start_y": 6,
+            "hint": "Древнегреческий астроном, впервые определивший угол наклона земной оси"
+        },
+        {
+            "clue": "Итальянский и французский ученый-астроном, внесший значительный вклад в исследование Луны и планет Солнечной системы и их спутников, определивший расстояние от Солнца до Земли по параллаксу Марса",
+            "answer": u"кассини",
+            "position": 7,
+            "orientation": "across",
+            "start_x": 6,
+            "start_y": 9,
+            "hint": "Это имя носит межпланетная станция, названная в честь итальяно-французского ученого"
+        },
+        {
+            "clue": "Немецкий физик, лауреат Нобелевской премии, один из создателей квантовой механики, известен широкой публике благодаря мысленному эксперименту, демонстрирующему неполноту квантовой механики при переходе от субатомных систем к макроскопическим",
+            "answer": u"шредингер",
+            "position": 9,
+            "orientation": "across",
+            "start_x": 1,
+            "start_y": 15,
+            "hint": "Выдающийся физик, один из отцов квантовой механики"
+        },
+        {
+            "clue": "Датский физик, один из создателей квантовой механики, создатель первой квантовой теории атома",
+            "answer": u"бор",
+            "position": 11,
+            "orientation": "across",
+            "start_x": 12,
+            "start_y": 5,
+            "hint": "Ученый, предложивший планетарную модель атома"
+        },
+        {
+            "clue": "Древнегреческий философ, развивал атомистические идеи Демокрита, рассматривал Вселенную как бесконечность",
+            "answer": u"эпикур",
+            "position": 14,
+            "orientation": "across",
+            "start_x": 11,
+            "start_y": 7,
+            "hint": "Древнегреческий философ, своим учением о природе на многие столетия опередивший время"
+        },
+        {
+            "clue": "Английский ученый, заложивший основы классической механики, в том числе закон всемирного тяготения и законы механики",
+            "answer": u"ньютон",
+            "position": 15,
+            "orientation": "across",
+            "start_x": 11,
+            "start_y": 14,
+            "hint": "С этим ученым связана легенда об упавшем ему на голову яблоке"
+        },
+        {
+            "clue": "Немецкий физик, лауреат Нобелевской премии, основоположник квантовой физики, сформулировал второе начало термодинамики в виде принципа возрастания энтропии",
+            "answer": u"планк",
+            "position": 16,
+            "orientation": "across",
+            "start_x": 15,
+            "start_y": 12,
+            "hint": "Именем этого ученого названа основная константа квантовой теории"
+        },
+        {
+            "clue": "Итальянский ученый, гелиоцентрист, основатель экспериментальной физики, одним из первых стал использовать телескоп для исследования небесных тел",
+            "answer": u"галилей",
+            "position": 17,
+            "orientation": "across",
+            "start_x": 10,
+            "start_y": 18,
+            "hint": "Этому ученому принадлежит крылатое высказывание «И всё-таки она вертится!» (итал. E pur si muove! [ɛ ˈpur si muˈovɛ])"
+        },
+
+        {
+            "clue": "Итальянский философ, гелиоцентрист, рассматривающий звезды как далекие солнца, за свои убеждения пал жертвой римской инквизиции",
+            "answer": u"бруно",
+            "position": 3,
+            "orientation": "down",
+            "start_x": 5,
+            "start_y": 2,
+            "hint": "Итальянский философ эпохи Ренессанса, говорил о множественности обитаемых миров"
+        },
+        {
+            "clue": "Английский физик, основоположник учения об электромагнитном поле",
+            "answer": u"фарадей",
+            "position": 4,
+            "orientation": "down",
+            "start_x": 3,
+            "start_y": 5,
+            "hint": "Ученый, открывший электромагнитную индукцию"
+        },
+        {
+            "clue": "Древнегреческий философ, предполагавший, что Земля имеет форму цилиндра, парящего в центре мира, а звезды и Луна – это «окошки» в  кольцах-торах, окружающих Землю",
+            "answer": u"анаксимандр",
+            "position": 5,
+            "orientation": "down",
+            "start_x": 9,
+            "start_y": 5,
+            "hint": "Древнегреческий философ, считал, что Космос подобен живым существам, которые рождаются, достигают зрелости, стареют и должны погибнуть"
+        },
+        {
+            "clue": "Американский астроном, внес значительный вклад в современные представления о Вселенной, существовании других галактик, а также применил эффект Доплера к космическим объектам (открыл красное смещение)",
+            "answer": u"хаббл",
+            "position": 6,
+            "orientation": "down",
+            "start_x": 7,
+            "start_y": 8,
+            "hint": "Именем этого американского астронома назван орбитальный космический телескоп"
+        },
+        {
+            "clue": "Древнегреческий философ, основоположник атомистики, внес значительный вклад в формирование идей Демокрита",
+            "answer": u"левкипп",
+            "position": 8,
+            "orientation": "down",
+            "start_x": 5,
+            "start_y": 11,
+            "hint": "Древнегореченский философ, который внес значительный вклад в развитие идей Демокрита по атомистической космологии"
+        },
+        {
+            "clue": "Древнегреческий ученый и философ, соратники приписывают ему открытие шарообразности  Земли",
+            "answer": u"пифагор",
+            "position": 10,
+            "orientation": "down",
+            "start_x": 16,
+            "start_y": 1,
+            "hint": "Считается, что этому ученому принадлежит открытие одной из основополагающих теорем евклидовой геометрии"
+        },
+        {
+            "clue": "Немецкий ученый, первым сформулировал три закона движения планет в Солнечной ситсеме",
+            "answer": u"кеплер",
+            "position": 12,
+            "orientation": "down",
+            "start_x": 3,
+            "start_y": 14,
+            "hint": "Именем этого немецкого ученого назван орбитальный телескоп, занимающийся поиском планет в других планетных системах"
+        },
+        {
+            "clue": "Древнегреческий философ, ввел положение о всеобщей изменчивости и предложил геоцентрическую модель мира",
+            "answer": u"гераклит",
+            "position": 13,
+            "orientation": "down",
+            "start_x": 14,
+            "start_y": 3,
+            "hint": "Древнегреческий философ, создал концепцию непрерывного изменения и в качестве сравнения использовал образ реки, в которую невозможно войти дважды"
+        },
+        {
+            "clue": "Немецкий физик-теоретик, один из основателей  современной теоретической физики, автор теории относительности",
+            "answer": u"эйнштейн",
+            "position": 14,
+            "orientation": "down",
+            "start_x": 11,
+            "start_y": 7,
+            "hint": "Известный физик, для доказательства своих теорий использовавший мысленные эксперименты – с лифтом, с поездом, с близнецами и другие"
+        },
+        {
+            "clue": "Создал геоцентрическую модель мира, предсказывающую движение планет, по предполагаемым траекториям – деферентам и эпициклам",
+            "answer": u"птолемей",
+            "position": 16,
+            "orientation": "down",
+            "start_x": 15,
+            "start_y": 12,
+            "hint": "Труды этого ученого многие столетия, вплоть до Коперника, были основополагающими в астрономии"
+        }
+    ]
+
+
+client_check = True
+language = "ru"
 
 def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
-    grade = float(student_answer["grade"])
-    max_grade = float(student_answer["max_grade"])
-    result_grade = grade/max_grade
-    if result_grade == 1:
-        return {'input_list': [{'ok': True,'msg':'','grade_decimal':1}]}
-    elif result_grade == 0:
-        return {'input_list': [{'ok':False,'msg':'','grade_decimal':0}]}
+    grade = 0
+    max_grade = len(source_data)
+    msg = ""
+
+    if not client_check:
+        correct_list = []
+        for x in source_data:
+            student_word = student_answer["user_state"]["question_" + str(x["unique_position"])]["word"]
+            x_word = x["answer"]
+            if student_word == x_word:
+                grade = grade + 1
+                correct_list.append("question_" + str(x["unique_position"]))
+        msg = str(json.dumps({"correct_list": correct_list}))
     else:
-        return {'input_list': [{'ok':'Partial','msg':'','grade_decimal':result_grade}]}
+        grade = float(student_answer["grade"])
+    result_grade = grade/max_grade
+
+    if result_grade == 1:
+        return {'input_list': [{'ok': True,'msg':msg,'grade_decimal':1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok':False,'msg':msg,'grade_decimal':0}]}
+    else:
+        return {'input_list': [{'ok':'Partial','msg':msg,'grade_decimal':result_grade}]}
+
+student_data = []
+if not client_check:
+    for idx, item in enumerate(source_data):
+        item["unique_position"] = idx
+        new_item = item.copy()
+        new_item["answer"] = ''.join(['x'] * int(len(new_item["answer"])))
+        student_data.append(new_item)
+else:
+    for idx, item in enumerate(json.loads(json.dumps(source_data))):
+        item["unique_position"] = idx
+        new_item = item.copy()
+        student_data.append(new_item)
+
+student_data_json = json.dumps({"student_data":student_data, "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
+student_answer_json = json.dumps({"student_data":json.loads(json.dumps(source_data)), "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
 
 </script>
     <link rel="stylesheet" type="text/css" href="/static/crossword.css" ></link>
     <script type="text/javascript" src="/static/crossword.js"></script>
 
-    <div id="crossword_container">
+    <div class="task-description">
+        <p>Формулировка задания</p>
     </div>
+
+    <div id="crossword_container"></div>
 
     <div id="crossword_input" style="/*display: none!important;*/">
         <customresponse cfn="check_answer">
             <textline size="40" value="$taskId" />
             <br/>
         </customresponse>
-        <!-- <div class="message-about-grade"></div> -->
     </div>
 
     <script type="text/javascript">
 
-        var crossword = new Crossword({
+        let data = $student_data_json;
+
+        new Crossword({
             element: document.getElementById('crossword_container'),
+            input:  document.getElementById('crossword_input'),
+            data: data["student_data"],
+            client_check: data.client_check,
+            language: data.language
         });
 
     </script>
+
+    <solution>
+        <div class="detailed-solution">
+            <div id="crossword_answer_container"></div>
+        </div>
+
+        <script type="text/javascript">
+            let data_answer = $student_answer_json;
+            new CrosswordAnswer({
+                element: document.getElementById('crossword_answer_container'),
+                data: data_answer["student_data"],
+                language: data_answer.language
+            });
+        </script>
+
+    </solution>
+
+
 </problem>

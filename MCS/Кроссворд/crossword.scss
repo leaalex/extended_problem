@@ -1,4 +1,5 @@
 $border-color: #cdcdcd;
+$green-color: #009b01;
 
 .hidden {
   display: none !important;
@@ -40,7 +41,7 @@ $border-color: #cdcdcd;
       font-size: 90%;
     }
 
-    &.en{
+    &.en {
       &:before {
         content: "Hint";
       }
@@ -55,8 +56,7 @@ $border-color: #cdcdcd;
 
 }
 
-
-#crossword_container {
+#crossword_container, #crossword_answer_container {
   //display: flex;
 
   .table-block {
@@ -80,21 +80,15 @@ $border-color: #cdcdcd;
       width: 2.05em;
       height: 2.05em;
 
-      span {
+      .question-num {
         position: absolute;
-        top: -1px;
-        font-size: 0.68em;
-        left: 1px;
+        top: -2px;
+        font-size: 0.69em;
+        left: 0.5px;
         user-select: none;
         cursor: text;
         color: #474747;
         font-weight: 600;
-      }
-
-      &.input {
-
-        //background-color: white;
-        //border: 1px solid $border-color;
       }
 
       &.input {
@@ -103,7 +97,7 @@ $border-color: #cdcdcd;
 
       &.correct-cell {
         user-select: none;
-        background-color: #009b01 !important;
+        background-color: $green-color !important;
 
         input {
 
@@ -116,10 +110,32 @@ $border-color: #cdcdcd;
 
       }
 
+      &.answer {
+        user-select: none;
+        background-color: $green-color !important;
+        pointer-events: none;
+        //color: white;
+
+        .answer-letter {
+          display: none;
+          text-transform: uppercase;
+          width: 100%;
+          background-color: #ffffff00;
+          font-size: 1.05em;
+          text-align: center;
+          line-height: 2.05em;
+        }
+
+        .answer-letter:first-child {
+          display: block;
+        }
+
+      }
+
       &.active-cell {
         background-color: #bfe8ff;
 
-        span {
+        .question-num {
           opacity: 0.7;
         }
       }
@@ -150,8 +166,9 @@ $border-color: #cdcdcd;
     margin-top: 20px;
     display: flex;
 
-    h3{
+    h2, h3 {
       text-align: center;
+      font-weight: 300;
     }
 
     .horizontal {
@@ -201,3 +218,23 @@ $border-color: #cdcdcd;
 
 }
 
+.task-description{
+
+}
+
+.detailed-solution {
+  .detailed-solution-header {
+    border-left: 5px solid $green-color;
+    padding: 10px;
+    color: $green-color;
+    background: whitesmoke;
+    border-radius: 4px;
+    margin-bottom: 1.41575em;
+
+    h1, h2 {
+      margin-bottom: 0.11575em !important;
+      font-weight: 300;
+      color: $green-color;
+    }
+  }
+}

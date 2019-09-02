@@ -2,16 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx_true.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_true.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/4 модуль.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 01-03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 03-03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 03-04" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-01" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  02-04" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  02-06" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  03-02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/тц.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.css" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.scss" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx_true.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_true.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +66,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/MCS/Кроссворд" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
@@ -67,11 +76,11 @@
       <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
+      <recent name="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов" />
       <recent name="$PROJECT_DIR$/MCS/Кроссворд" />
       <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
       <recent name="$PROJECT_DIR$/matching_table" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/presentations" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -273,7 +282,7 @@
       <workItem from="1565682827494" duration="32509000" />
       <workItem from="1565854823090" duration="17272000" />
       <workItem from="1565961473424" duration="34433000" />
-      <workItem from="1566551365594" duration="53561000" />
+      <workItem from="1566551365594" duration="74756000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
