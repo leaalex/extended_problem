@@ -61,7 +61,7 @@ function mind_mapObjects(element, data) {
     $(this.svg_element).hide().fadeIn(600);
 
     function createSVGObject(data) {
-        data = JSON.parse(data)
+        data = JSON.parse(data);
         var nodesGroups = data["nodesGroups"] || {};
         var SVG_width = data["SVG_width"] || 800;
         var SVG_height = data["SVG_height"] || 800;
@@ -606,7 +606,7 @@ function mind_mapObjects(element, data) {
                 setAnswer(nodesObject, graph_scale, center);
 
                 dragObject.copy = createCopy(e);
-                drawFreeNodes(nodesObject)
+                drawFreeNodes(nodesObject);
 
                 dragObject.object = nodesObject["free_nodes"].filter(function(element) {
                     return element.node_id === dragObject.elem.id;
@@ -871,8 +871,8 @@ function mind_mapObjects(element, data) {
         css += "text.group-label{-moz-user-select: none;user-select: none;font-family: 'Open Sans';fill: black;font-size: 0.9em;}";
         css += "g.group-circle {cursor: pointer;}";
         css += ".graph_space{cursor: move; stroke: #c1c1c1; stroke-width: 3px;}";
-        css += ".groups_space{fill-opacity: .3;}"
-        css += ".free_nodes_zone{fill-opacity: .75;}"
+        css += ".groups_space{fill-opacity: .3;}";
+        css += ".free_nodes_zone{fill-opacity: .75;}";
         css += ".svg_object { width: " + SVG_width + "px; height: " + SVG_height + "px;}";
 
         Object.keys(nodesGroups).forEach(function(v, i) {

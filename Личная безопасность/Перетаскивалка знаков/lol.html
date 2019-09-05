@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="svg_object"></div>
+<script type="text/javascript" src="./source_svg.js"></script>
+<script type="text/javascript">
+
+    let utils = {
+        createElementSVG: function (name, id, classList, attributes) {
+            var NS = "http://www.w3.org/2000/svg";
+            var element = document.createElementNS(NS, name);
+            if (id) element.id = id;
+            if (classList) element.classList.add(classList);
+            if (attributes) {
+                for (attribute in attributes) {
+                    element.setAttribute(attribute, attributes[attribute])
+                }
+            }
+            return element;
+        },
+        translateElement: function (element, x, y) {
+            let el_height = element.querySelector("rect").getAttribute("height") / 2;
+            let el_width = element.querySelector("rect").getAttribute("width") / 2;
+            element.setAttribute("transform", `translate(${x - el_width},${y - el_height})`)
+        },
+
+        moveElement: function (element, x, y) {
+            let el_height = element.querySelector("rect").getAttribute("height") / 2 * 0;
+            let el_width = element.querySelector("rect").getAttribute("width") / 2 * 0;
+            element.setAttribute("transform", `translate(${x - el_width},${y - el_height})`)
+        },
+        getWidth: function (element) {
+            return element.querySelector("rect").getAttribute("width");
+        },
+        cursorPoint: function (SVGObject, event) {
+            var pt = SVGObject.createSVGPoint();
+            pt.x = event.clientX;
+            pt.y = event.clientY;
+            return pt.matrixTransform(SVGObject.getScreenCTM().inverse());
+        },
+        // getWidth: function (element) {
+        //
+        // },
+
+    };
+
+    let buttons = {};
+
+    let settings = {
+        width: 820,
+        height: 600,
+        // elements_zone_height: 100,
+        elements_height: 40,
+        elements_widths: [40, 80], //возможные ширины
+    };
+
+    let svg = utils.createElementSVG('svg', "mind_map_svg", null, {
+        viewbox: '0 0 ' + settings.width + ' ' + settings.height,
+        width: settings.width,
+        height: settings.height,
+        style: 'stroke-width: 0px; background-color: #d6d6ff;',
+    });
+
+    let elements_zone = utils.createElementSVG('rect', "elements-background", null, {
+        width: settings.width,
+        y: settings.height - settings.elements_height * 3,
+        height: settings.elements_height * 3,
+        fill: '#cccdcc',
+    });
+
+    let task_img = sourceSVG.getTask().querySelector("#background");
+
+    console.log(task_img);
+
+    let task_zone = utils.createElementSVG('g', "task-zone", null, {});
+    task_zone.appendChild(task_img);
+
+    svg.appendChild(task_zone);
+    svg.appendChild(elements_zone);
+
+
+    let source_svg = sourceSVG.getButtons();
+    let last_end = 0;
+    let row_num = 0;
+    [].forEach.call(source_svg.children, function (item, index) {
+        buttons[item.id] = item.cloneNode(true);
+        svg.appendChild(buttons[item.id]);
+        console.log(last_end);
+        // buttons[item.id].setAttribute("transform", "translate(" + +")")
+        last_end = parseInt(last_end) + parseInt(utils.getWidth(item)) + settings.elements_height / 4;
+        if (last_end + 1 > settings.width) {
+            row_num = 1;
+            last_end = parseInt(utils.getWidth(item)) + settings.elements_height / 4;
+        }
+        let h = settings.height - 1.75 * settings.elements_height + 1.25 * settings.elements_height * row_num;
+        utils.translateElement(buttons[item.id], last_end, h)
+    });
+
+    var dragObject = undefined;
+    var groupObject = {};
+
+    let svg_buttons = [];
+
+    Object.keys(buttons).forEach(function (item) {
+        buttons[item].onmousedown = function (e) {
+            dragObject = buttons[item].cloneNode(true);
+            svg.appendChild(dragObject);
+            dragObject.onmouseup = function (e) {
+                dragObject = undefined;
+                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            };
+            return false;
+        };
+    });
+
+    svg.onmousemove = onMouseMove;
+
+    function onMouseMove(e) {
+        let mousePosition = utils.cursorPoint(svg, e);
+        let moveX = mousePosition.x;
+        let moveY = mousePosition.y;
+        console.log(moveX, moveY);
+        if (dragObject) {
+            console.log(dragObject);
+            utils.moveElement(dragObject, moveX, moveY);
+        }
+    }
+
+    console.log(buttons);
+
+
+    // let but = createElementSVG('g', "g_id", null, {
+    //     transform: "translate(100,100)"
+    // });
+
+    // but.innerHTML = lol;
+
+    document.querySelector(".svg_object").appendChild(svg);
+    // svg.appendChild(but);
+
+
+    // function createElementSVG(name, id, classList, attributes) {
+    //     var NS = "http://www.w3.org/2000/svg";
+    //     var element = document.createElementNS(NS, name);
+    //     if (id) element.id = id;
+    //     if (classList) element.classList.add(classList);
+    //     if (attributes) {
+    //         for (attribute in attributes) {
+    //             element.setAttribute(attribute, attributes[attribute])
+    //         }
+    //     }
+    //     return element;
+    // };
+
+</script>
+
+
+</body>
+</html>

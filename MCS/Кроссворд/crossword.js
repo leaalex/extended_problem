@@ -49,7 +49,6 @@ function Crossword(settings) {
         }
     }
 
-
     let btn_label = client_check ? user_labels.save_label : user_labels.check_label;
     element.closest(".problem").querySelector("button.submit.btn-brand .submit-label").innerHTML = btn_label;
 
@@ -398,9 +397,6 @@ function Crossword(settings) {
 
             return element
         },
-        capitalizeFirstLetter: function(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-        },
         removeDuplicates: function (arr) {
             const result = [];
             const duplicatesIndices = [];
@@ -527,6 +523,7 @@ function Crossword(settings) {
             }
         },
     };
+
     CrosswordInit.init();
 };
 
@@ -566,7 +563,7 @@ function CrosswordAnswer(settings){
             });
             this.calcCoordinates();
             this.buildTable();
-            this.buildEntriesAndClues();
+            this.buildEntries();
         },
         calcCoordinates: function () {
             app_data.questions.forEach(function (item, i) {
@@ -606,8 +603,7 @@ function CrosswordAnswer(settings){
             table_block.appendChild(table);
             element.appendChild(table_block);
         },
-        buildEntriesAndClues: function () {
-
+        buildEntries: function () {
             app_data.questions.forEach(function (item) {
                 item.cells = [];
                 item.raw_coords.forEach(function (coord, index) {
@@ -669,9 +665,6 @@ function CrosswordAnswer(settings){
             };
 
             return element
-        },
-        capitalizeFirstLetter: function (string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
         },
         removeDuplicates: function (arr) {
             const result = [];

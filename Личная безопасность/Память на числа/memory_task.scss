@@ -16,29 +16,45 @@ $task_height: 250px;
   float: none !important;
 }
 
+.instruction-block{
+  text-align: left;
+  margin: 16px 0px;
+  width: 100%;
+}
+
 .start-wrapper {
-  height: $task_height;
+  min-height: $task_height;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: whitesmoke;
   border: 1px solid #c8c8c8;
+  padding: 16px;
+
+  h1, h2{
+    font-weight: 300 !important;
+    width: 100%;
+
+    color: #009b01;
+  }
+
 }
 
 .table-wrapper {
-  height: $task_height;
+  min-height: $task_height;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: whitesmoke;
   border: 1px solid #c8c8c8;
-
+  padding: 16px;
 
   .timer-block {
     text-align: center;
     font-size: 2em;
+    line-height: 1.4em;
   }
 
   .num-table-wrap {
@@ -56,6 +72,7 @@ $task_height: 250px;
       background: white;
       margin: -2px;
       border: 4px solid #a8a8a8;
+      line-height: 1.4em;
 
       &.correct{
         background: #68d369;
@@ -63,10 +80,21 @@ $task_height: 250px;
 
     }
   }
+
+
+
+  h1, h2{
+    font-weight: 300 !important;
+    width: 100%;
+
+    color: #009b01;
+  }
+
+
 }
 
 .input-wrapper{
-  height: $task_height;
+  min-height: $task_height;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,10 @@
 function MemoryTask(settings) {
-
+/*
+*
+* Обязательно ставим количество попыток!(1)
+* Время запоминания по умолчанию - 20 сек.
+*
+* */
     let data = settings.data;
     let element = settings.element;
     let state = {};
@@ -7,36 +12,32 @@ function MemoryTask(settings) {
     state.answer = {};
     state.result = [];
 
-    let correct_map = [];
-    // element.classList.add("");
-
     let language = "ru";
     let labels = {
         ru: {
             start_label: "Начать",
+            instruction_label: "Инструкция",
+            result_label: "Результаты",
             input_instruction: "Введите что-нибудь:",
             start_instruction: ["Пожалуйста, не записывайте цифры, а только запоминайте.", "Тренажер предназначен для оценки кратковременной зрительной памяти, ее объема и точности."]
         },
         en: {
-            start_label: "Начать",
+            start_label: "Start",
             input_instruction: "Введите что-нибудь:",
             start_instruction: ["Пожалуйста, не записывайте цифры, а только запоминайте.", "Тренажер предназначен для оценки кратковременной зрительной памяти, ее объема и точности."]
         }
     };
 
-    let delay = 20;
+    let delay = settings.delay ? ( typeof settings.delay == 'number' ? settings.delay : 20 ) : 20;
 
     let user_labels = labels[language];
 
-    let input_selector = "#memory_input";
     let answer = undefined;
     let submit_btn = undefined;
     let save_btn = undefined;
-    let problem_action_buttons_wrapper;
-    let submit_attempt_container;
 
-    if (document.querySelector(input_selector)) {
-        answer = new Answer(document.querySelector(input_selector).querySelector("input[type='text']"));
+    if (settings.input) {
+        answer = new Answer(settings.input.querySelector("input[type='text']"));
         submit_btn = answer.elementField.closest(".problem").querySelector(".submit.btn-brand");
 
         submit_btn.classList.add("hidden");
@@ -52,14 +53,13 @@ function MemoryTask(settings) {
         if (answer.get()) {
             state = answer.getJSON()["state"];
             if(state.step === 2){
-                let msg = answer.elementField.closest(input_selector).querySelector(".message").innerHTML.toLocaleLowerCase();
+                let msg = settings.input.querySelector(".message").innerHTML.toLocaleLowerCase();
                 if(msg.length > 0){
                     state.result = JSON.parse(msg);
                 }
             }
         }
     }
-
 
     let MemoryTaskInit = {
         init: function () {
@@ -77,7 +77,7 @@ function MemoryTask(settings) {
         buildStart: function () {
             let start_wrap = utils.create("div", {className: "start-wrapper"});
 
-            let instruction_block = utils.create("div", {className: "instruction-block"}, );
+            let instruction_block = utils.create("div", {className: "instruction-block"}, utils.create("h2", {text: user_labels.instruction_label}));
 
             user_labels.start_instruction.map((inst)=>utils.create("p", {text: inst})).forEach(item=>instruction_block.appendChild(item));
 
@@ -111,7 +111,7 @@ function MemoryTask(settings) {
             utils.clear(element);
             state.step = 1;
             answer.setJSON({"state": state});
-            save_btn.click();
+            if (save_btn) save_btn.click();
             let input_wrap = utils.create("div", {className: "input-wrapper"});
             let input_instruction = utils.create("div", {className: "input-instruction", text: user_labels.input_instruction});
             let input_area = utils.create("textarea", {className: "input-area", attr: {"rows": "2", "type": "text"}});
@@ -156,19 +156,19 @@ function MemoryTask(settings) {
         },
         buildResult: function () {
             utils.clear(element);
-            let result_wrap = utils.create("div", {className: "table-wrapper"});
+            let result_wrap = utils.create("div", {className: "table-wrapper"}, utils.create("h2", {text: user_labels.result_label}));
             let table = utils.create("div", {className: "num-table-wrap"});
 
             data.forEach(function (item, idx) {
                 let num_item = utils.create("div", {className: "num-table-item" + (state.result[idx] ? " correct": ""), text: item});
                 table.appendChild(num_item);
             });
-            result_wrap.appendChild(table)
+            result_wrap.appendChild(table);
+            let grade = state.result.reduce((n, x) => n + (x === true), 0);
+            let result = utils.create("div", {className: "instruction-block",}, utils.create("p", {text: `Вы набрали ${grade} из ${state.result.length} баллов.`}));
+            result_wrap.appendChild(result);
             element.appendChild(result_wrap);
-
         },
-
-
     };
 
     let utils = {
@@ -214,7 +214,6 @@ function MemoryTask(settings) {
         clear: function (el) {
             el.innerHTML = "";
         },
-
         timer: function (seconds, tick, result) {
             if (seconds !== -1) {
                 tick(seconds);
@@ -239,7 +238,6 @@ function MemoryTask(settings) {
             return pad(minutes, 2) + ':' + pad(seconds, 2)
             // return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2) + ',' + pad(milliseconds, 3);
         }
-
     };
 
     function Answer(elementField) {

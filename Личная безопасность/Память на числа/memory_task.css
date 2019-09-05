@@ -14,28 +14,42 @@
   float: none !important;
 }
 
+.instruction-block {
+  text-align: left;
+  margin: 16px 0px;
+  width: 100%;
+}
+
 .start-wrapper {
-  height: 250px;
+  min-height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: whitesmoke;
   border: 1px solid #c8c8c8;
+  padding: 16px;
+}
+.start-wrapper h1, .start-wrapper h2 {
+  font-weight: 300 !important;
+  width: 100%;
+  color: #009b01;
 }
 
 .table-wrapper {
-  height: 250px;
+  min-height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: whitesmoke;
   border: 1px solid #c8c8c8;
+  padding: 16px;
 }
 .table-wrapper .timer-block {
   text-align: center;
   font-size: 2em;
+  line-height: 1.4em;
 }
 .table-wrapper .num-table-wrap {
   display: flex;
@@ -51,14 +65,20 @@
   user-select: none;
   background: white;
   margin: -2px;
-  border: 2px solid #a8a8a8;
+  border: 4px solid #a8a8a8;
+  line-height: 1.4em;
 }
 .table-wrapper .num-table-wrap .num-table-item.correct {
   background: #68d369;
 }
+.table-wrapper h1, .table-wrapper h2 {
+  font-weight: 300 !important;
+  width: 100%;
+  color: #009b01;
+}
 
 .input-wrapper {
-  height: 250px;
+  min-height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;

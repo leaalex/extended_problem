@@ -47,9 +47,11 @@ def check_answer(exp, ans):
     let data = $data;
         // [30, 67, 99, 49, 86, 88, 70, 83, 79, 81, 16, 93];
 
-    let memory_task = new MemoryTask({
+    new MemoryTask({
         element: document.getElementById('memory_container'),
+        input: document.getElementById('memory_input'),
         data: data,
+        delay: 20,
     });
 
 
