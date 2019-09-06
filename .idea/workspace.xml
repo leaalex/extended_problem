@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/lol.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/Задание.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mind map/mind_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/mind map/mind_map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/lol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/тц.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/тц.svg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="SCSS File" />
         <option value="HTML File" />
+        <option value="SCSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -276,7 +271,7 @@
       <workItem from="1565854823090" duration="17272000" />
       <workItem from="1565961473424" duration="34433000" />
       <workItem from="1566551365594" duration="84626000" />
-      <workItem from="1567600084625" duration="16243000" />
+      <workItem from="1567600084625" duration="39474000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

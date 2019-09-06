@@ -1,0 +1,21 @@
+.user-button{
+  //cursor: grab;/
+  &:hover {
+    .remove-btn{
+      display: block;
+    }
+  }
+}
+
+.remove-btn{
+  cursor: pointer;
+  display: none;
+  fill: #ff4a4a;
+  stroke: black;
+  stroke-width: 0.75;
+
+  &:hover{
+    fill: red;
+    stroke-width: 1.5
+  }
+}

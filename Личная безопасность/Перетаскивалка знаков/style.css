@@ -1,0 +1,17 @@
+.user-button:hover .remove-btn {
+  display: block;
+}
+
+.remove-btn {
+  cursor: pointer;
+  display: none;
+  fill: #ff4a4a;
+  stroke: black;
+  stroke-width: 0.75;
+}
+.remove-btn:hover {
+  fill: red;
+  stroke-width: 1.5;
+}
+
+/*# sourceMappingURL=style.css.map */
