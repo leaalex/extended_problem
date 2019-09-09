@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/Задание.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/lol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/тц.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/тц.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 03-04" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 03-04" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-03" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-03" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -271,7 +271,8 @@
       <workItem from="1565854823090" duration="17272000" />
       <workItem from="1565961473424" duration="34433000" />
       <workItem from="1566551365594" duration="84626000" />
-      <workItem from="1567600084625" duration="39474000" />
+      <workItem from="1567600084625" duration="53105000" />
+      <workItem from="1568021576383" duration="18080000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
