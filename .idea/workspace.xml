@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Кроссворд">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
+      <change afterPath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_edx.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_test.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/Философия_тесты к разделам.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 03-04" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 03-04" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-03" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/PSYMEDIA  01-03" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -272,7 +271,7 @@
       <workItem from="1565961473424" duration="34433000" />
       <workItem from="1566551365594" duration="84626000" />
       <workItem from="1567600084625" duration="53105000" />
-      <workItem from="1568021576383" duration="18080000" />
+      <workItem from="1568021576383" duration="21465000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -322,7 +321,8 @@
     <MESSAGE value="диагностики" />
     <MESSAGE value="tsts" />
     <MESSAGE value="Кроссворд" />
-    <option name="LAST_COMMIT_MESSAGE" value="Кроссворд" />
+    <MESSAGE value="вфкфр" />
+    <option name="LAST_COMMIT_MESSAGE" value="вфкфр" />
   </component>
   <component name="masterDetails">
     <states>

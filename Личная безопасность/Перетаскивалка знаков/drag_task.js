@@ -74,7 +74,10 @@ function DragTask(options) {
             Object.keys(buttons).forEach(function (item) {
                 buttons[item].onmousedown = function (e) {
                     buttons[item].setAttribute("cursor", "grabbing");
+                    // buttons[item].setAttribute("transform", `scale(${test_scale})`);
                     dragObject = buttons[item].cloneNode(true);
+                    // buttons[item].setAttribute("transform", `scale(1)`)
+
                     elementStart = utils.getTransform(dragObject, "translate");
                     mouseStart   = utils.cursorPoint(svg,e);
                     svg.querySelector("#task_block").appendChild(dragObject);
