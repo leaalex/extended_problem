@@ -20,6 +20,7 @@ function PhilosophyTest(settings) {
     element.closest(".problem").parentNode.querySelector(".problem-progress").classList.add("hidden");
     $(".notification",element.closest(".problem").parentNode).hide();
     submit_btn.querySelector(".submit-label").innerHTML = "Проверить";
+
     function Answer(elementField) {
         this.elementField = elementField;
         this.fieldValue = "";
@@ -49,6 +50,7 @@ function PhilosophyTest(settings) {
             return true;
         };
     };
+
     let PhilosophyTestInit = {
         init: function () {
             if (state.result){
@@ -182,6 +184,7 @@ function PhilosophyTest(settings) {
             return element
         },
     };
+
     function arraysEqual(a, b) {
         a = a.sort();
         b = b.sort();
@@ -193,5 +196,6 @@ function PhilosophyTest(settings) {
         }
         return true;
     }
+
     PhilosophyTestInit.init();
 }

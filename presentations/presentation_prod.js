@@ -43,8 +43,6 @@ function createElement(name, id, classList, attributes) {
     }
     return element;
 }
-    // alert( "DOMContentLoaded" );
-
 
 script.onload = function(){
 
@@ -105,7 +103,6 @@ const translation = {
 
 function PresentationObjects(element){
     this.element = element;
-    console.log($(element));
 
     $(this.element).closest(".xblock").css("overflow-x", "initial");
 
@@ -253,10 +250,7 @@ function PresentationObjects(element){
     }
 
     pdfjsLib.getDocument(presentation.url).then(function(pdfDoc_) {
-        // console.log(presentation);
         presentation.pdfDoc = pdfDoc_;
-        console.log("kek");
-        // $('.page-count', element).text(" / "+presentation.pdfDoc.numPages);
         page_count.innerHTML = " / " + presentation.pdfDoc.numPages;
         renderPage(presentation.current_page);
     }).catch(function(e) {
