@@ -877,7 +877,7 @@ function mind_mapObjects(element, data) {
 
         Object.keys(nodesGroups).forEach(function(v, i) {
             css += "#" + element.id + " g[group='" + v + "'] circle{fill:" + nodesGroups[v]["color"] + " !important;}";
-        })
+        });
 
         var style = document.createElement("style")
         style.id = "mind_map";
