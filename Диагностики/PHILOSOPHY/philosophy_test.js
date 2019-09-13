@@ -1,3 +1,9 @@
+
+/*
+* Показать кнопку сброса: Да
+* Показать ответ: Никогда
+* */
+
 function PhilosophyTest(settings) {
     let questions = settings.questions;
     let element = settings.element;

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/presentation_prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/presentations/presentation_prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_edx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,7 +53,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -269,6 +269,7 @@
       <workItem from="1566551365594" duration="84626000" />
       <workItem from="1567600084625" duration="53105000" />
       <workItem from="1568021576383" duration="22857000" />
+      <workItem from="1568362253492" duration="5164000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
