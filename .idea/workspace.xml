@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/historical_maps/historical_maps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/historical_maps/historical_maps.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historical_maps/historical_maps.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/faset_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/faset_template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mind map/mind_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/mind map/mind_map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exsemple_001.html" beforeDir="false" afterPath="$PROJECT_DIR$/exsemple_001.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.scss" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="SCSS File" />
+        <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -52,20 +55,20 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/historical_maps" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/historical_maps" />
       <recent name="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
       <recent name="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов" />
       <recent name="$PROJECT_DIR$/MCS/Кроссворд" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
-      <recent name="$PROJECT_DIR$/matching_table" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     </key>
   </component>
@@ -271,7 +274,7 @@
       <workItem from="1566551365594" duration="84626000" />
       <workItem from="1567600084625" duration="53105000" />
       <workItem from="1568021576383" duration="22857000" />
-      <workItem from="1568362253492" duration="7882000" />
+      <workItem from="1568362253492" duration="15385000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

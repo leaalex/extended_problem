@@ -1,0 +1,39 @@
+.city{
+  cursor: pointer;
+
+  fill: #ffffff00;
+  r: 2;
+  stroke-width: 0.5px;
+
+  &:hover{
+    stroke-width: 1.2px;
+  }
+//  stroke-width:10px;
+//  transform:scale(1.2,1.2);
+
+  &.first-selected{
+    fill: #2e5d8a;
+
+  }
+}
+
+.path{
+
+  &:hover{
+    //fill: red;
+    stroke: red;
+  }
+}
+
+.hidden{
+  display: none;
+}
+
+.historical-map-container{
+  width: 800px;
+}
+
+#Заливка, #Реки, #Острова, #Границы{
+  display: none;
+}
+
