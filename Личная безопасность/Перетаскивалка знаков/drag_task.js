@@ -4,12 +4,12 @@ function DragTask(options) {
 
     let settings = {
         width: 820,//viewBox[2],
-        height: 600,//viewBox[3] + 120,
+        height: 800,//viewBox[3] + 120,
         elements_height: 40,
 
         elements_widths: [40, 80], //возможные ширины
     };
-    let task_scale = 1;
+    // let task_scale = 1;
     let buttons_zone_height = settings.elements_height * 3;
     let buttons_templates = {};
     Array.from(sourceSVG.getButtons().children).forEach(b => buttons_templates[b.id] = b);
@@ -51,13 +51,17 @@ function DragTask(options) {
             task_block.appendChild(task_background);
             let task_img = sourceSVG.getTask().querySelector("g");
             task_block.appendChild(task_img);
-            // task_block.onmousedown = function (e) {
-            //     dragTaskBlock = task_block;
-            //     start_drag_click = utils.cursorPoint(svg, e);
-            // };
-            // task_block.onmouseup = function () {
-            //     dragTaskBlock = false;
-            // };
+            task_block.onmousedown = function (e) {
+
+                console.log(e.target);
+                dragTaskBlock = task_block;
+                elementStart = utils.getTransform(dragTaskBlock, "translate");
+                mouseStart   = utils.cursorPoint(svg,e);
+                console.log(e);
+            };
+            task_block.onmouseup = function () {
+                dragTaskBlock = false;
+            };
 
             svg.appendChild(task_block);
 
@@ -80,11 +84,54 @@ function DragTask(options) {
 
                     elementStart = utils.getTransform(dragObject, "translate");
                     mouseStart   = utils.cursorPoint(svg,e);
-                    svg.querySelector("#task_block").appendChild(dragObject);
+                    svg.appendChild(dragObject);
                     dragObject.onmouseup = function (e) {
+
+                        let rect = svg.querySelector("#task_block").getBoundingClientRect();
+                        //
+                        let mousePosition = utils.cursorPoint(svg, e);
+                        //
+                        // pt.x = mousePosition.x - mouseStart.x/test_scale;
+                        // pt.y = mousePosition.y - mouseStart.y/test_scale;
+                        //
+                        // console.log(rect, mousePosition)
+                        let k = (mousePosition.x - rect.left + 0) /test_scale;
+                        let j = (mousePosition.y - rect.top) /test_scale;
+
+                        // pt.x = current.x - mouseStart.x;
+                        // pt.y = current.y - mouseStart.y;
+                        //
+                        // let m;
+                        // if(dragObject){
+                        //     m = dragObject.getTransformToElement(svg).inverse();
+                        // }
+                        // else{
+                        //     m = user_buttons.filter(item => item.button_id === dragUserObject)[0].html.getTransformToElement(svg).inverse();
+                        // }
+                        // m.e = m.f = 0;
+                        // pt = pt.matrixTransform(m);
+                        //
+                        // _x = elementStart.x+pt.x;
+                        // _y = elementStart.y+pt.y;
+
+                        // let m = dragObject.getTransformToElement(svg).inverse();
+                        //
+                        // m.e = m.f = 0;
+                        // pt = pt.matrixTransform(m);
+
+                        console.log(pt)
+
+                        // console.log(k, "____", j);
+                        console.log();
+
+                        utils.moveElement(dragObject, k, j);
+
                         if (utils.getTransform(dragObject, "translate").y < settings.height - buttons_zone_height - settings.elements_height / 2) {
                             addUserButton(item, utils.getTransform(dragObject, "translate"), utils.getRandomString())
                         }
+
+
+
                         buttons[item].setAttribute("cursor", "grab");
                         dragObject.parentNode.removeChild(dragObject);
                         dragObject = undefined;
@@ -124,6 +171,7 @@ function DragTask(options) {
                     }
                     dragUserObject = undefined;
                     dragObject = undefined;
+                    dragTaskBlock = undefined;
 
                 };
 
@@ -143,10 +191,11 @@ function DragTask(options) {
 
                     // console.log("elementStart", elementStart);
                 };
-                new_btn.html.onmouseup = function () {
+                new_btn.html.onmouseup = function (e) {
                     offset.x = 0;
                     offset.y = 0;
                     new_btn.html.setAttribute("cursor", "grab");
+
                     dragUserObject = undefined;
                 };
 
@@ -156,11 +205,9 @@ function DragTask(options) {
                 user_buttons.push(new_btn);
             }
 
-
             svg.querySelector("#task_block").addEventListener("mousewheel", ScrollFreeNodesHandler, false);
 
             // svg.querySelector("#task-background").addEventListener("DOMMouseScroll", ScrollFreeNodesHandler, false);
-
 
             function ScrollFreeNodesHandler(e) {
                 e = e || window.event;
@@ -172,26 +219,27 @@ function DragTask(options) {
                 }
                 // console.log(test_scale)
                 utils.scaleElement(svg.querySelector("#task_block"), test_scale)
-                // drawMindMap(nodesObject, null, graph_scale);
+
+                // elementStart = utils.getTransform(dragObject, "translate");
+                // mouseStart   = utils.cursorPoint(svg,e);
             }
 
             document.onmousemove = onMouseMove;
             document.onmouseup = function () {
                 dragUserObject = undefined;
+                dragTaskBlock = undefined;
                 return false;
             };
 
             function onMouseMove(e) {
                 let mousePosition = utils.cursorPoint(svg, e);
-
-
                 let moveX = mousePosition.x;
                 let moveY = mousePosition.y;
 
                 let _x = moveX;
                 let _y = moveY;
 
-                if(dragObject || dragUserObject){
+                if(dragObject || dragUserObject || dragTaskBlock){
 
                     let current = utils.cursorPoint(svg,e);
                     pt.x = current.x - mouseStart.x;
@@ -199,11 +247,13 @@ function DragTask(options) {
 
                     let m;
                     if(dragObject){
-                        // elementStart = utils.getTransform(dragObject, "translate");
                         m = dragObject.getTransformToElement(svg).inverse();
                     }
+                    else if(dragTaskBlock){
+                        m = dragTaskBlock.getTransformToElement(svg).inverse();
+
+                    }
                     else{
-                        // elementStart = utils.getTransform(user_buttons.filter(item => item.button_id === dragUserObject)[0].html, "translate");
                         m = user_buttons.filter(item => item.button_id === dragUserObject)[0].html.getTransformToElement(svg).inverse();
                     }
                     m.e = m.f = 0;
@@ -213,15 +263,13 @@ function DragTask(options) {
                     _y = elementStart.y+pt.y;
                 }
 
-
-
-                //
                 // console.log()
-                // console.log();
+
 
                 SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(elem) {
                     return elem.getScreenCTM().inverse().multiply(this.getScreenCTM());
                 };
+
 
                 if (dragObject) {
                     utils.moveElement(dragObject, _x, _y);
@@ -229,23 +277,15 @@ function DragTask(options) {
 
                     let current_elem = user_buttons.filter(item => item.button_id === dragUserObject)[0];
 
-                    // if (moveX - offset.x > utils.getWidth(current_elem.html) / 2) {
-                    //     if (moveX - offset.x < settings.width - utils.getWidth(current_elem.html) / 2) {
-                    //         if (moveY - offset.y > settings.elements_height / 2) {
-                    //             if (moveY - offset.y < settings.height - buttons_zone_height - settings.elements_height / 2) {
-
                     utils.userMoveElement(current_elem, _x, _y);
-                    //             }
-                    //         }
-                    //     }
-                    // }
                     return false;
+
                 } else if (dragTaskBlock) {
-                    // let mousePosition = utils.cursorPoint(svg, e);
-                    // let start_sdvig = {x: 0, y: 0};
-                    // let moveX = mousePosition.x - start_sdvig.x;
-                    // let moveY = mousePosition.y - start_sdvig.y;
-                    // dragTaskBlock.setAttribute("transform", "translate(" + moveX + "," + moveY + ")" + `scale(${test_scale})`);
+
+                    utils.moveBackground(dragTaskBlock, _x , _y );
+
+                    console.log(settings)
+
                 } else {
                     return false;
                 }
@@ -301,6 +341,7 @@ function DragTask(options) {
         translateElement: function (element, x, y) {
             let el_height = element.querySelector("rect").getAttribute("height") / 2;
             let el_width = element.querySelector("rect").getAttribute("width") / 2;
+
             element.setAttribute("transform", `translate(${x - el_width},${y - el_height})`)
         },
         moveElement: function (element, x, y, user_elem) {
@@ -309,9 +350,38 @@ function DragTask(options) {
             if (y < settings.elements_height / 2) y = settings.elements_height / 2;
             if (y > settings.height - (user_elem ? buttons_zone_height : 0) - settings.elements_height / 2) y = settings.height - (user_elem ? buttons_zone_height : 0) - settings.elements_height / 2;
 
+            // if(element.getAttribute("transform")){
+            //     console.log(this.parseTransform(element.getAttribute("transform")))
+            // }
+
             element.setAttribute("transform", `translate(${x},${y})`);
             this.createAnswer();
         },
+
+        moveBackground: function (element, x, y) {
+            // if(test_scale<1)return false;
+            if(x > (settings.width*(test_scale) - settings.width)/2 ) x = (settings.width*(test_scale) - settings.width)/2;
+            if(x < (settings.width - settings.width*(test_scale))/2) x = (settings.width - settings.width*(test_scale))/2;
+            if(y > (settings.height*test_scale - settings.height)/2){
+                console.log(y, ">>>>", (settings.height*test_scale - settings.height)/2);
+                y = (settings.height*test_scale - settings.height)/2;
+            }
+
+
+            // if(y < (settings.height*test_scale - settings.height - buttons_zone_height)/2) y = (settings.height*test_scale - settings.height - buttons_zone_height)/2;
+                // if (x < this.getWidth(element) / 2) x = this.getWidth(element) / 2;
+            // if (x > settings.width - this.getWidth(element) / 2) x = settings.width - this.getWidth(element) / 2;
+            // if (y < settings.elements_height / 2) y = settings.elements_height / 2;
+            // if (y > settings.height - (user_elem ? buttons_zone_height : 0) - settings.elements_height / 2) y = settings.height - (user_elem ? buttons_zone_height : 0) - settings.elements_height / 2;
+
+            // if(element.getAttribute("transform")){
+            //     console.log(this.parseTransform(element.getAttribute("transform")))
+            // }
+
+            element.setAttribute("transform", `translate(${x},${y})scale(${test_scale})`);
+            // this.createAnswer();
+        },
+
         userMoveElement: function (object, x, y) {
             this.moveElement(object.html, x, y, true);
             let c = this.getTransform(object.html, "translation");

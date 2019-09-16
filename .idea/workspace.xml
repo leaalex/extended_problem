@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/historical_maps/historical_maps.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exsemple_001.html" beforeDir="false" afterPath="$PROJECT_DIR$/exsemple_001.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.scss" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/drag_task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков/source_svg.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -274,7 +269,8 @@
       <workItem from="1566551365594" duration="84626000" />
       <workItem from="1567600084625" duration="53105000" />
       <workItem from="1568021576383" duration="22857000" />
-      <workItem from="1568362253492" duration="15385000" />
+      <workItem from="1568362253492" duration="15985000" />
+      <workItem from="1568621935968" duration="18898000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
