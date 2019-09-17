@@ -51,15 +51,15 @@ function DragTask(options) {
             task_block.appendChild(task_background);
             let task_img = sourceSVG.getTask().querySelector("g");
             task_block.appendChild(task_img);
-            task_block.onmousedown = function (e) {
+            task_background.onmousedown = function (e) {
 
-                console.log(e.target);
+                // console.log(e.target);
                 dragTaskBlock = task_block;
                 elementStart = utils.getTransform(dragTaskBlock, "translate");
                 mouseStart   = utils.cursorPoint(svg,e);
-                console.log(e);
+                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             };
-            task_block.onmouseup = function () {
+            task_background.onmouseup = function () {
                 dragTaskBlock = false;
             };
 
@@ -85,6 +85,7 @@ function DragTask(options) {
                     elementStart = utils.getTransform(dragObject, "translate");
                     mouseStart   = utils.cursorPoint(svg,e);
                     svg.appendChild(dragObject);
+                    // svg.querySelector("#task_block").appendChild(dragObject);
                     dragObject.onmouseup = function (e) {
 
                         let rect = svg.querySelector("#task_block").getBoundingClientRect();
@@ -182,12 +183,11 @@ function DragTask(options) {
                     new_btn.html.setAttribute("cursor", "grabbing");
                     dragUserObject = new_btn.button_id;
 
-
                     offset.x = e.offsetX - utils.getTransform(user_buttons.filter(item => item.button_id === dragUserObject)[0].html, "translate").x;
                     offset.y = e.offsetY - utils.getTransform(user_buttons.filter(item => item.button_id === dragUserObject)[0].html, "translate").y;
 
-                    elementStart = utils.getTransform(new_btn.html, "translate");
-                    mouseStart   = utils.cursorPoint(svg,e);
+                    elementStart = utils.getTransform(dragObject, "translate");
+                    mouseStart = utils.cursorPoint(svg,e);
 
                     // console.log("elementStart", elementStart);
                 };
@@ -207,8 +207,6 @@ function DragTask(options) {
 
             svg.querySelector("#task_block").addEventListener("mousewheel", ScrollFreeNodesHandler, false);
 
-            // svg.querySelector("#task-background").addEventListener("DOMMouseScroll", ScrollFreeNodesHandler, false);
-
             function ScrollFreeNodesHandler(e) {
                 e = e || window.event;
                 var scroll_delta = e.deltaY || e.detail || e.wheelDelta;
@@ -217,7 +215,6 @@ function DragTask(options) {
                     if (test_scale < 0.5) test_scale = 0.5;
                     if (test_scale > 2) test_scale = 2;
                 }
-                // console.log(test_scale)
                 utils.scaleElement(svg.querySelector("#task_block"), test_scale)
 
                 // elementStart = utils.getTransform(dragObject, "translate");
@@ -263,20 +260,15 @@ function DragTask(options) {
                     _y = elementStart.y+pt.y;
                 }
 
-                // console.log()
-
-
                 SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(elem) {
                     return elem.getScreenCTM().inverse().multiply(this.getScreenCTM());
                 };
-
 
                 if (dragObject) {
                     utils.moveElement(dragObject, _x, _y);
                 } else if (dragUserObject) {
 
                     let current_elem = user_buttons.filter(item => item.button_id === dragUserObject)[0];
-
                     utils.userMoveElement(current_elem, _x, _y);
                     return false;
 
@@ -359,7 +351,7 @@ function DragTask(options) {
         },
 
         moveBackground: function (element, x, y) {
-            // if(test_scale<1)return false;
+            if(test_scale<1)return false;
             if(x > (settings.width*(test_scale) - settings.width)/2 ) x = (settings.width*(test_scale) - settings.width)/2;
             if(x < (settings.width - settings.width*(test_scale))/2) x = (settings.width - settings.width*(test_scale))/2;
             if(y > (settings.height*test_scale - settings.height)/2){

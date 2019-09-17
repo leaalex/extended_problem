@@ -1,15 +1,9 @@
 @charset "UTF-8";
 .city {
   cursor: pointer;
-  fill: #ffffff00;
-  r: 2;
-  stroke-width: 0.5px;
 }
 .city:hover {
   stroke-width: 1.2px;
-}
-.city.first-selected {
-  fill: #2e5d8a;
 }
 
 .path:hover {
