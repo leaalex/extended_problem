@@ -255,10 +255,10 @@ student_answer_json = json.dumps({"student_data":json.loads(json.dumps(source_da
     </script>
 
     <solution>
+
         <div class="detailed-solution">
             <div id="crossword_answer_container"></div>
         </div>
-
         <script type="text/javascript">
             let data_answer = $student_answer_json;
             new CrosswordAnswer({
@@ -267,7 +267,6 @@ student_answer_json = json.dumps({"student_data":json.loads(json.dumps(source_da
                 language: data_answer.language
             });
         </script>
-
     </solution>
 
 

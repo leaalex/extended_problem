@@ -1,13 +1,29 @@
-@charset "UTF-8";
 .city {
   cursor: pointer;
 }
 .city:hover {
-  stroke-width: 1.2px;
+  stroke: black;
+  stroke-width: 4px;
+}
+.city.can-start {
+  fill: green;
+}
+.city.can-end {
+  animation: 2s ease 0s pulse infinite;
+  stroke-width: 2px;
+  stroke: green;
 }
 
-.path:hover {
-  stroke: red;
+@keyframes pulse {
+  50% {
+    stroke-width: 16px;
+  }
+}
+.arrow-line.connecting:hover {
+  stroke: #ff4b3e;
+}
+.arrow-line.connecting:hover + marker path {
+  fill: #ff4b3e;
 }
 
 .hidden {
@@ -16,10 +32,6 @@
 
 .historical-map-container {
   width: 800px;
-}
-
-#Заливка, #Реки, #Острова, #Границы {
-  display: none;
 }
 
 /*# sourceMappingURL=historical_maps.css.map */
