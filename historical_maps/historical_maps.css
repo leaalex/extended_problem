@@ -1,28 +1,27 @@
-.city {
+.city.can-start {
   cursor: pointer;
+  fill: green;
 }
-.city:hover {
+.city.can-start:hover {
   stroke: black;
   stroke-width: 4px;
-}
-.city.can-start {
-  fill: green;
 }
 .city.can-end {
   animation: 2s ease 0s pulse infinite;
   stroke-width: 2px;
+  cursor: pointer;
   stroke: green;
 }
 
 @keyframes pulse {
   50% {
-    stroke-width: 16px;
+    stroke-width: 6px;
   }
 }
-.arrow-line.connecting:hover {
+.arrow-line.connecting.for-remove {
   stroke: #ff4b3e;
 }
-.arrow-line.connecting:hover + marker path {
+.arrow-line.connecting.for-remove + marker path {
   fill: #ff4b3e;
 }
 

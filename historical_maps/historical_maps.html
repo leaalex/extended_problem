@@ -10,7 +10,12 @@
 <script type="text/javascript" src="./historical_maps.js"></script>
 
 <div class="historical-map-container">
-<!--    <img src="А%20(1)%202.svg"/>-->
+    <!--    <img src="А%20(1)%202.svg"/>-->
+</div>
+
+<div id="test_input"><input type="text"
+
+                            value='{"answer":{"arrow_id_7379011B":{"from":"city_0","to":"city_1"},"arrow_id_C222FD5C":{"from":"city_1","to":"city_2"},"arrow_id_ED2E34B8":{"from":"city_2","to":"city_7"},"arrow_id_A63C7512":{"from":"city_7","to":"city_10"}}}'/>
 </div>
 
 <script type="text/javascript">
@@ -18,9 +23,9 @@
     // let src =
 
     new HistoricalMaps({
-       svg: sourceMap.getMap(),
+        svg: sourceMap.getMap(),
         element: document.querySelector(".historical-map-container"),
-        input: "",
+        input: document.querySelector("#test_input"),
         main_city_selector: "#Путинсити",
         cities_selector: "#города",
 

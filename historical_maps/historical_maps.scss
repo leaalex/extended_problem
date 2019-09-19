@@ -1,46 +1,54 @@
 $remove_red: #ff4b3e;
 $tile-bg: blue;
-.city{
+.city {
 
-
-  cursor: pointer;
-
-  &:hover{
-    stroke: black;
-    stroke-width: 4px;
-  }
-
-  &.can-start{
+  &.can-start {
+    cursor: pointer;
     fill: green;
+
+    &:hover {
+      stroke: black;
+      stroke-width: 4px;
+
+    }
   }
 
-  &.can-end{
+  &.can-end {
     animation: 2s ease 0s pulse infinite;
     stroke-width: 2px;
+    cursor: pointer;
     stroke: green;
   }
 }
+
 @keyframes pulse {
   50% {
-    stroke-width: 16px;
+    stroke-width: 6px;
   }
 }
 
-.arrow-line.connecting{
-  &:hover{
+.arrow-line.connecting {
+
+  &.for-remove {
     stroke: $remove_red;
-    &+marker {
-      path{
+
+    & + marker {
+      path {
         fill: $remove_red;
       }
+
     }
   }
+
+  //&:hover{
+  //  }
+  //}
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.historical-map-container{
+.historical-map-container {
   width: 800px;
 }

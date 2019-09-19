@@ -8,42 +8,108 @@ function HistoricalMaps(settings) {
     let connections = [];
     let main_arrow;
     let startPoint;
-
+    let max_arrows = 5;
     let can_start_id;
 
-    let lines={};
+    let lines = {};
     let cities = Array.from(svg.querySelector(settings.cities_selector).children);
+    let used = [];
+
+    function Answer(elementField) {
+        this.elementField = elementField;
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function () {
+            this.fieldValue = elementField.value;
+            return this.fieldValue;
+        };
+        this.set = function (value) {
+            if (value === undefined) value = this.fieldValue;
+            elementField.value = value;
+        };
+        this.getJSON = function () {
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function (object) {
+            if (object === undefined) object = this.fieldObject;
+            this.set(JSON.stringify(object))
+        };
+        this.isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        };
+    };
+
+    let answer = undefined;
+    if(settings.input) {
+        if (settings.input.querySelector("input[type='text']")) {
+            answer = new Answer(settings.input.querySelector("input[type='text']"));
+            // settings.input.querySelector(".message").classList.add("hidden");
+            // settings.input.classList.add("hidden");
+            // answer.elementField.classList.add("hidden");
+
+            if (answer.get()) {
+                lines = answer.getJSON()["answer"];
+                console.log(lines)
+            }
+        }
+    }
 
     let HistoricalMapsInit = {
         init: function () {
-            console.log(settings);
             arrow.init();
             this.test_filling();
+            if(Object.keys(lines).length > 0) this.build_state();
             this.create_city_events();
-            // console.log(main_arrow)
+        },
+
+        build_state(){
+          let lines_keys = Object.keys(lines);
+            lines_keys.forEach(function (item){
+
+                let startX = svg.querySelector(`#${lines[item].from}`).getAttribute("cx");
+                let startY = svg.querySelector(`#${lines[item].from}`).getAttribute("cy");
+                let targetX = svg.querySelector(`#${lines[item].to}`).getAttribute('cx');
+                let targetY = svg.querySelector(`#${lines[item].to}`).getAttribute('cy');
+                let r = Math.floor(Math.sqrt((targetY - startY) * (targetY - startY) + (targetX - startX) * (targetX - startX)));
+                let k = r === 0 ? 0 : (r - 10) / r; //(r-pointsRadius-10) / r
+                let currentX = Math.floor(startX) + (targetX - startX) * k;
+                let currentY = Math.floor(startY) + (targetY - startY) * k;
+
+                let new_arrow = utils.create_arrow(startX, startY, currentX, currentY, item, ['connecting']);
+                // parentNode
+                svg.querySelector(settings.cities_selector).parentNode.insertBefore(new_arrow, svg.querySelector(settings.cities_selector));
+
+            });
+
+            if (max_arrows > Object.keys(lines).length){
+                // startPoint = event.target;
+                utils.set_can_start(lines[lines_keys[lines_keys.length - 1]].to);
+                // utils.set_can_end();
+            }
         },
 
         test_filling: function () {
-
             let main_city = svg.querySelector(settings.main_city_selector).firstElementChild;
-
             main_city.classList.add("main-city");
             // main_city.classList.add("city");
             main_city.id = `city_0`;
             cities.push(main_city);
 
-
             utils.set_can_start(`city_0`);
-
             let cities_array = Array.from(svg.querySelector(settings.cities_selector).children);
             cities_array.sort(utils.cx_sorter).forEach((x, index) => x.id = `city_${index + 1}`);
 
             for (let i = 0; i < cities.length; i++) {
                 cities[i].classList.add("city");
                 cities[i].onclick = function (event) {
-                    // console.log(startPoint);
 
-                    if (!startPoint && cities[i].classList.contains("can-start")) {
+                    if (cities[i].classList.contains("can-start")) {
                         let targetX = event.target.getAttribute('cx');
                         let targetY = event.target.getAttribute('cy');
                         arrow.set_coordinate({'x1': targetX, 'y1': targetY, 'x2': targetX, 'y2': targetY});
@@ -52,7 +118,8 @@ function HistoricalMaps(settings) {
                         startPoint = event.target;
                         utils.set_can_end();
 
-                    } else if(startPoint) {
+                    }
+                    else if (startPoint && !used.includes(event.target.id)) {
                         let startX = startPoint.getAttribute("cx");
                         let startY = startPoint.getAttribute("cy");
                         let targetX = event.target.getAttribute('cx');
@@ -61,42 +128,48 @@ function HistoricalMaps(settings) {
                         let k = r === 0 ? 0 : (r - 10) / r; //(r-pointsRadius-10) / r
                         let currentX = Math.floor(startX) + (targetX - startX) * k;
                         let currentY = Math.floor(startY) + (targetY - startY) * k;
-                        // let arrow_id =
                         let new_arrow = utils.create_arrow(startX, startY, currentX, currentY, utils.genID(), ['connecting']);
-                        svg.appendChild(new_arrow);
-                        utils.set_can_start(event.target.id);
-                        arrow.toggle();
+
+                        svg.querySelector(settings.cities_selector).parentNode.insertBefore(new_arrow, svg.querySelector(settings.cities_selector));
+
                         lines[new_arrow.id] = {
                             from: startPoint.id,
                             to: event.target.id
                         };
-                        console.log(lines);
-                        utils.remove_can_end();
-                        startPoint = undefined;
+                        if (max_arrows > Object.keys(lines).length){
+                            startPoint = event.target;
+                            utils.set_can_start(event.target.id);
+                            utils.set_can_end();
+                        }
+                        else{
+                            startPoint = undefined;
+                            utils.set_can_start('');
+                            arrow.toggle();
+                            utils.remove_can_end();
+                        }
+
                     }
+
+                    answer.setJSON({answer: lines});
                 }
 
             }
 
         },
-
         create_city_events: function () {
-
             svg.onmousemove = function (event) {
                 if (startPoint) {
-                    // console.log("KEK");
                     let mousePosition = utils.cursorPoint(svg, event);
                     var startX = startPoint.getAttribute('cx');
                     var startY = startPoint.getAttribute('cy');
                     var r = Math.floor(Math.sqrt((mousePosition.y - startY) * (mousePosition.y - startY) + (mousePosition.x - startX) * (mousePosition.x - startX)));
                     r = r > 30 ? r : 50;
-                    // console.log(r)
                     var k = (r - 8) / r;
                     var currentX = Math.floor(startX) + (mousePosition.x - startX) * k;
                     var currentY = Math.floor(startY) + (mousePosition.y - startY) * k;
-                    arrow.set_coordinate({'x2': currentX, 'y2': currentY});
+                    arrow.set_coordinate({'x1': startX, 'y1': startY, 'x2': currentX, 'y2': currentY});
 
-                    if (event.target.classList.contains("city")) {
+                    if (event.target.classList.contains("city") && !used.includes(event.target.id)) {
                         // console.log(event.target);
 
                         var endX = event.target.getAttribute('cx');
@@ -110,25 +183,57 @@ function HistoricalMaps(settings) {
                         // console.log(startX, startY, k, (endY - startY) * (endY - startY) + (endX - startX) * (endX - startX))
                         arrow.set_coordinate({'x2': currentX, 'y2': currentY});
                     }
+                }
+                else if(utils.contains_classes(event.target, ["arrow-line", "connecting"])){
+                    let lines_keys = Object.keys(lines);
+                    let for_remove = lines_keys.slice(lines_keys.indexOf(event.target.parentNode.id), lines_keys.length);
+                    for_remove.forEach(item=>svg.querySelector(`#${item} .arrow-line`).classList.add("for-remove"));
 
+                    // let lines_keys = Object.keys(lines);
+                    // for (let i in lines_keys){
+                    //     if(event.target.parentNode.id !== lines_keys[i]){
+                    //         svg.querySelector("#"+lines_keys[i] + " .arrow-line").classList.add("for-remove");
+                    //     }
+                    //     else{
+                    //         event.target.classList.add("for-remove");
+                    //         break;
+                    //     }
+                    // }
                 }
 
+            };
+
+            svg.onmouseout = function(){
+                if(utils.contains_classes(event.target, ["arrow-line", "connecting"])){
+                    let lines_keys = Object.keys(lines);
+                    for (let i in lines_keys){
+                            svg.querySelector("#"+lines_keys[i] + " .arrow-line").classList.remove("for-remove");
+                    }
+                }
             };
 
             svg.onclick = function (event) {
 
                 if (!startPoint && utils.contains_classes(event.target, ["arrow-line", "connecting"])) {
-                    // console.log(startPoint, event.target.parentNode.id);
-                    delete lines[event.target.parentNode.id];
-                    event.target.parentNode.remove();
-                }
+                    let lines_keys = Object.keys(lines);
+                    let for_remove = lines_keys.slice(lines_keys.indexOf(event.target.parentNode.id), lines_keys.length);
+                    for_remove.forEach(item=>{delete lines[item];svg.querySelector(`#${item}`).remove();});
 
-                else if (!event.target.classList.contains("city")) {
+                    lines_keys = Object.keys(lines);
+                    if(Object.keys(lines).length > 0){
+                        utils.set_can_start(lines[lines_keys[lines_keys.length - 1]].to);
+                    }
+                    else{
+                        utils.set_can_start("city_0");
+                    }
+
+
+                } else if (!event.target.classList.contains("city")) {
                     arrow.toggle("hide");
                     utils.remove_can_end();
                     startPoint = undefined;
                 }
-
+                answer.setJSON({answer: lines});
             };
         },
     };
@@ -202,25 +307,29 @@ function HistoricalMaps(settings) {
             // let all_elem_classes = element.classList;
             return class_list.every(elem => element.classList.contains(elem));
         },
-        set_can_start(id){
-            for (let city in cities){
+        set_can_start(id) {
+            for (let city in cities) {
                 cities[city].classList.remove("can-start");
-                if (cities[city].id === id)cities[city].classList.add("can-start");
+                if (cities[city].id === id) cities[city].classList.add("can-start");
             }
         },
-        set_can_end(){
+        set_can_end() {
 
-            let used = [startPoint.id];
-            Object.keys(lines).forEach((item)=>{used.push(lines[item].from); used.push(lines[item].to)});
-            console.log(used);
-            for (let city in cities){
-                if(!used.includes(cities[city].id)){
-                    console.log(cities[city].classList.add("can-end"))
+            used = [startPoint.id];
+            Object.keys(lines).forEach((item) => {
+                used.push(lines[item].from);
+                used.push(lines[item].to)
+            });
+            // console.log(used);
+            for (let city in cities) {
+                cities[city].classList.remove("can-end");
+                if (!used.includes(cities[city].id)) {
+                    cities[city].classList.add("can-end")
                 }
             }
         },
-        remove_can_end(){
-            for (let city in cities){
+        remove_can_end() {
+            for (let city in cities) {
                 cities[city].classList.remove("can-end");
             }
         },
@@ -234,8 +343,9 @@ function HistoricalMaps(settings) {
         arrow: utils.create_arrow(0, 0, 1, 1, "main"),
         visibility: false,
         init: function () {
-            // console.log(arrow);
             svg.append(this.arrow);
+            // svg.querySelector(settings.cities_selector).parentNode.insertBefore(this.arrow, svg.querySelector(settings.cities_selector));
+
             this.arrow.classList.add("hidden");
         },
         set_coordinate: function (obj) {

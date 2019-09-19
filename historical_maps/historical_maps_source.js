@@ -181,6 +181,6 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="htt
 \t<circle fill-rule="evenodd" fill="#141818" cx="235.3" cy="338.5" r="4.5"/>
 </g>
 <g id="Путинсити">
-\t<circle fill-rule="evenodd" fill="#141818" cx="124.1" cy="279.6" r="20"/>
+\t<circle fill-rule="evenodd" fill="#141818" cx="124.1" cy="279.6" r="10"/>
 </g>
 </svg>`;
