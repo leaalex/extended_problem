@@ -1,9 +1,7 @@
-let sourceMap = {
+function sourceMap() {
 
-    getMap: function () {
-        return new DOMParser().parseFromString(_source_svg_task, "text/html").querySelector("svg");
-    },
-
+    let svg_map = new DOMParser().parseFromString(_source_svg_task, "text/html").querySelector("svg");
+    this.svg_map = svg_map;
 
 };
 
@@ -163,7 +161,7 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="htt
 \t\t<polygon fill="none" stroke="#141818" points="31.4,342.9 34.2,339.6 27.9,331.3 31.7,320.7 29,318.4 26.6,320.1 17.4,313.8     16.2,315.6 16.6,323.1 13.1,326.9 14,332 20.1,331.7 26.9,340.2   "/>
 \t</g>
 </g>
-<g id="города">
+<g id="cities">
 \t<circle fill-rule="evenodd" fill="#141818" cx="311.7" cy="328.3" r="4.5"/>
 \t<circle fill-rule="evenodd" fill="#141818" cx="402.7" cy="284.1" r="4.5"/>
 \t<circle fill-rule="evenodd" fill="#141818" cx="446.1" cy="393.3" r="4.5"/>
@@ -180,7 +178,7 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="htt
 \t<circle fill-rule="evenodd" fill="#141818" cx="328.2" cy="394.5" r="4.5"/>
 \t<circle fill-rule="evenodd" fill="#141818" cx="235.3" cy="338.5" r="4.5"/>
 </g>
-<g id="Путинсити">
+<g id="putincity">
 \t<circle fill-rule="evenodd" fill="#141818" cx="124.1" cy="279.6" r="10"/>
 </g>
 </svg>`;

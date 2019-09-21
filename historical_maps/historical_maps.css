@@ -20,6 +20,7 @@
 }
 .arrow-line.connecting.for-remove {
   stroke: #ff4b3e;
+  cursor: pointer;
 }
 .arrow-line.connecting.for-remove + marker path {
   fill: #ff4b3e;

@@ -31,7 +31,7 @@ $tile-bg: blue;
 
   &.for-remove {
     stroke: $remove_red;
-
+    cursor: pointer;
     & + marker {
       path {
         fill: $remove_red;

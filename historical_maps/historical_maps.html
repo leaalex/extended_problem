@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<link rel="stylesheet" href="./historical_maps.css">
-<script type="text/javascript" src="./historical_maps_source.js"></script>
-<script type="text/javascript" src="./historical_maps.js"></script>
+<problem>
+    <script type="loncapa/python">
+    </script>
+    <link rel="stylesheet" href="./historical_maps.css"></link>
+    <script type="text/javascript" src="./historical_maps_source.js"></script>
+    <script type="text/javascript" src="./historical_maps.js"></script>
 
-<div class="historical-map-container">
-    <!--    <img src="А%20(1)%202.svg"/>-->
-</div>
+<!--    <link rel="stylesheet" href="/static/historical_maps.css"></link>-->
+<!--    <script type="text/javascript" src="/static/historical_maps_source.js"></script>-->
+<!--    <script type="text/javascript" src="/static/historical_maps.js"></script>-->
 
-<div id="test_input"><input type="text"
+    <div class="historical-map-container">
+    </div>
 
-                            value='{"answer":{"arrow_id_7379011B":{"from":"city_0","to":"city_1"},"arrow_id_C222FD5C":{"from":"city_1","to":"city_2"},"arrow_id_ED2E34B8":{"from":"city_2","to":"city_7"},"arrow_id_A63C7512":{"from":"city_7","to":"city_10"}}}'/>
-</div>
+    <div id="test_input"><input type="text" value='{"answer":{"arrow_id_7379011B":{"from":"city_0","to":"city_1"},"arrow_id_C222FD5C":{"from":"city_1","to":"city_2"},"arrow_id_ED2E34B8":{"from":"city_2","to":"city_7"},"arrow_id_A63C7512":{"from":"city_7","to":"city_10"},"arrow_id_49D24881":{"from":"city_10","to":"city_13"}}}'/>
+    </div>
 
-<script type="text/javascript">
+    <div id="historical_map_input" style="/*display: none!important;*/">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId"/>
+            <br/>
+        </customresponse>
+    </div>
 
-    // let src =
+    <script type="text/javascript">
 
-    new HistoricalMaps({
-        svg: sourceMap.getMap(),
-        element: document.querySelector(".historical-map-container"),
-        input: document.querySelector("#test_input"),
-        main_city_selector: "#Путинсити",
-        cities_selector: "#города",
+        let src_map = new sourceMap().svg_map;
+        console.log(src_map);
+
+        new HistoricalMaps({
+            svg: src_map,
+            element: document.querySelector(".historical-map-container"),
+            // input: document.querySelector("#test_input"),
+            main_city_selector: "#putincity",
+            cities_selector: "#cities",
 
 
-    });
-    // console.log(src)
-</script>
-
-</body>
-
-</html>
+        });
+        // console.log(src)
+    </script>
+</problem>

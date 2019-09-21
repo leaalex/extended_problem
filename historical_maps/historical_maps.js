@@ -3,14 +3,8 @@ function HistoricalMaps(settings) {
     svg = settings.svg;
     settings.element.appendChild(svg);
 
-    let first_selected = undefined;
-
-    let connections = [];
-    let main_arrow;
     let startPoint;
     let max_arrows = 5;
-    let can_start_id;
-
     let lines = {};
     let cities = Array.from(svg.querySelector(settings.cities_selector).children);
     let used = [];
@@ -50,12 +44,11 @@ function HistoricalMaps(settings) {
         if (settings.input.querySelector("input[type='text']")) {
             answer = new Answer(settings.input.querySelector("input[type='text']"));
             // settings.input.querySelector(".message").classList.add("hidden");
-            // settings.input.classList.add("hidden");
-            // answer.elementField.classList.add("hidden");
+            settings.input.classList.add("hidden");
+            answer.elementField.classList.add("hidden");
 
             if (answer.get()) {
                 lines = answer.getJSON()["answer"];
-                console.log(lines)
             }
         }
     }
@@ -71,33 +64,22 @@ function HistoricalMaps(settings) {
         build_state(){
           let lines_keys = Object.keys(lines);
             lines_keys.forEach(function (item){
-
-                let startX = svg.querySelector(`#${lines[item].from}`).getAttribute("cx");
-                let startY = svg.querySelector(`#${lines[item].from}`).getAttribute("cy");
-                let targetX = svg.querySelector(`#${lines[item].to}`).getAttribute('cx');
-                let targetY = svg.querySelector(`#${lines[item].to}`).getAttribute('cy');
-                let r = Math.floor(Math.sqrt((targetY - startY) * (targetY - startY) + (targetX - startX) * (targetX - startX)));
-                let k = r === 0 ? 0 : (r - 10) / r; //(r-pointsRadius-10) / r
-                let currentX = Math.floor(startX) + (targetX - startX) * k;
-                let currentY = Math.floor(startY) + (targetY - startY) * k;
-
-                let new_arrow = utils.create_arrow(startX, startY, currentX, currentY, item, ['connecting']);
-                // parentNode
+                let arrow_coordinates = utils.calculate_arrow_coordinates(svg.querySelector(`#${lines[item].from}`), svg.querySelector(`#${lines[item].to}`));
+                let new_arrow = utils.create_arrow(arrow_coordinates.x1, arrow_coordinates.y1, arrow_coordinates.x2, arrow_coordinates.y2, item, ['connecting']);
                 svg.querySelector(settings.cities_selector).parentNode.insertBefore(new_arrow, svg.querySelector(settings.cities_selector));
-
             });
 
             if (max_arrows > Object.keys(lines).length){
-                // startPoint = event.target;
                 utils.set_can_start(lines[lines_keys[lines_keys.length - 1]].to);
-                // utils.set_can_end();
+            }
+            else{
+                utils.set_can_start('');
             }
         },
 
         test_filling: function () {
             let main_city = svg.querySelector(settings.main_city_selector).firstElementChild;
             main_city.classList.add("main-city");
-            // main_city.classList.add("city");
             main_city.id = `city_0`;
             cities.push(main_city);
 
@@ -120,18 +102,9 @@ function HistoricalMaps(settings) {
 
                     }
                     else if (startPoint && !used.includes(event.target.id)) {
-                        let startX = startPoint.getAttribute("cx");
-                        let startY = startPoint.getAttribute("cy");
-                        let targetX = event.target.getAttribute('cx');
-                        let targetY = event.target.getAttribute('cy');
-                        let r = Math.floor(Math.sqrt((targetY - startY) * (targetY - startY) + (targetX - startX) * (targetX - startX)));
-                        let k = r === 0 ? 0 : (r - 10) / r; //(r-pointsRadius-10) / r
-                        let currentX = Math.floor(startX) + (targetX - startX) * k;
-                        let currentY = Math.floor(startY) + (targetY - startY) * k;
-                        let new_arrow = utils.create_arrow(startX, startY, currentX, currentY, utils.genID(), ['connecting']);
-
+                        let arrow_coords = utils.calculate_arrow_coordinates(startPoint,event.target);
+                        let new_arrow = utils.create_arrow(arrow_coords.x1, arrow_coords.y1, arrow_coords.x2, arrow_coords.y2, utils.genID(), ['connecting']);
                         svg.querySelector(settings.cities_selector).parentNode.insertBefore(new_arrow, svg.querySelector(settings.cities_selector));
-
                         lines[new_arrow.id] = {
                             from: startPoint.id,
                             to: event.target.id
@@ -164,41 +137,24 @@ function HistoricalMaps(settings) {
                     var startY = startPoint.getAttribute('cy');
                     var r = Math.floor(Math.sqrt((mousePosition.y - startY) * (mousePosition.y - startY) + (mousePosition.x - startX) * (mousePosition.x - startX)));
                     r = r > 30 ? r : 50;
+                    // console.log(r);
                     var k = (r - 8) / r;
+                    // console.log("k: ", k);
                     var currentX = Math.floor(startX) + (mousePosition.x - startX) * k;
+                    // console.log(mousePosition.x, currentX);
                     var currentY = Math.floor(startY) + (mousePosition.y - startY) * k;
+
                     arrow.set_coordinate({'x1': startX, 'y1': startY, 'x2': currentX, 'y2': currentY});
 
                     if (event.target.classList.contains("city") && !used.includes(event.target.id)) {
-                        // console.log(event.target);
-
-                        var endX = event.target.getAttribute('cx');
-                        var endY = event.target.getAttribute('cy');
-
-                        var r = Math.floor(Math.sqrt((endY - startY) * (endY - startY) + (endX - startX) * (endX - startX)));
-
-                        var k = r === 0 ? 0 : (r - 10) / r; // (r-pointsRadius-10) / r
-                        currentX = Math.floor(startX) + (endX - startX) * k;
-                        currentY = Math.floor(startY) + (endY - startY) * k;
-                        // console.log(startX, startY, k, (endY - startY) * (endY - startY) + (endX - startX) * (endX - startX))
-                        arrow.set_coordinate({'x2': currentX, 'y2': currentY});
+                        let arrow_coords = utils.calculate_arrow_coordinates(startPoint, event.target);
+                        arrow.set_coordinate({'x2': arrow_coords.x2, 'y2': arrow_coords.y2});
                     }
                 }
                 else if(utils.contains_classes(event.target, ["arrow-line", "connecting"])){
                     let lines_keys = Object.keys(lines);
                     let for_remove = lines_keys.slice(lines_keys.indexOf(event.target.parentNode.id), lines_keys.length);
                     for_remove.forEach(item=>svg.querySelector(`#${item} .arrow-line`).classList.add("for-remove"));
-
-                    // let lines_keys = Object.keys(lines);
-                    // for (let i in lines_keys){
-                    //     if(event.target.parentNode.id !== lines_keys[i]){
-                    //         svg.querySelector("#"+lines_keys[i] + " .arrow-line").classList.add("for-remove");
-                    //     }
-                    //     else{
-                    //         event.target.classList.add("for-remove");
-                    //         break;
-                    //     }
-                    // }
                 }
 
             };
@@ -235,10 +191,17 @@ function HistoricalMaps(settings) {
                 }
                 answer.setJSON({answer: lines});
             };
+
+            document.onkeyup = function (evt) {
+                if (evt.keyCode === 27 || evt.keyCode === 13 || evt.keyCode === 8) {
+                    arrow.toggle("hide");
+                    utils.remove_can_end();
+                    startPoint = undefined;
+                }
+            };
+
         },
     };
-
-
     let utils = {
         createElementSVG: function (name, id, classList, attributes) {
             let NS = "http://www.w3.org/2000/svg";
@@ -262,8 +225,6 @@ function HistoricalMaps(settings) {
             let arrowId;
             if (arrow_id) {
                 arrowId = arrow_id.replace("arrow_", "");
-            } else {
-                // arrowId = genID();
             }
             let arrowColor = "#00d274";
 
@@ -304,7 +265,6 @@ function HistoricalMaps(settings) {
             if (a_cx > b_cx) return 1;
         },
         contains_classes: function (element, class_list) {
-            // let all_elem_classes = element.classList;
             return class_list.every(elem => element.classList.contains(elem));
         },
         set_can_start(id) {
@@ -334,9 +294,27 @@ function HistoricalMaps(settings) {
             }
         },
         genID: function (value) {
-            var value = value || "id";
+            value = value || "id";
             return value + "_" + Math.random().toString(16).substr(2, 8).toUpperCase();
         },
+        calculate_arrow_coordinates: function (start_city, end_city, point_radius) {
+            point_radius = point_radius || 0;
+            let startX = start_city.getAttribute("cx");
+            let startY = start_city.getAttribute("cy");
+            let endX = end_city.getAttribute('cx');
+            let endY = end_city.getAttribute('cy');
+            let r = Math.floor(Math.sqrt((endY - startY) * (endY - startY) + (endX - startX) * (endX - startX)));
+            let k = r === 0 ? 0 : (r - point_radius - 10) / r;
+            let currentX = Math.floor(startX) + (endX - startX) * k;
+            let currentY = Math.floor(startY) + (endY - startY) * k;
+
+            return {
+                x1: startX,
+                y1: startY,
+                x2: currentX,
+                y2: currentY,
+            }
+        }
     };
 
     let arrow = {
@@ -344,8 +322,6 @@ function HistoricalMaps(settings) {
         visibility: false,
         init: function () {
             svg.append(this.arrow);
-            // svg.querySelector(settings.cities_selector).parentNode.insertBefore(this.arrow, svg.querySelector(settings.cities_selector));
-
             this.arrow.classList.add("hidden");
         },
         set_coordinate: function (obj) {
