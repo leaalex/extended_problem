@@ -1,0 +1,40 @@
+<problem>
+<script type="loncapa/python">
+import json
+import copy
+</script>
+    <link rel="stylesheet" type="text/css" href="./machinery_management_task_1.css" ></link>
+    <script type="text/javascript" src="./machinery_management_task_1.js"></script>
+
+    <div class="task-description">
+    </div>
+
+    <div id="machinery_management_task_1_container"></div>
+
+
+    <div id="machinery_management_task_1_input" style="/*display: none!important;*/">
+    <input type="text" />
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+    </div>
+
+    <script type="text/javascript">
+
+        // let data = $student_data_json;
+
+        new MachineryManagement1({
+
+            element: document.getElementById('machinery_management_task_1_container'),
+            input:  document.getElementById('machinery_management_task_1_input'),
+        //     data: data["student_data"],
+        });
+
+    </script>
+
+<!--    <solution>-->
+<!--    </solution>-->
+
+
+</problem>

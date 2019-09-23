@@ -1,0 +1,41 @@
+#machinery_management_task_1_container {
+  width: 820px;
+}
+
+table {
+  border-spacing: 0px;
+}
+table td {
+  border: 0.5px solid #c9c9c9;
+  width: 50px;
+  height: 25px;
+}
+table td.first-cell {
+  text-align: center;
+  border-right: 1px solid;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  width: 30px;
+}
+table td.first-row {
+  border-right: none;
+  border-left: none;
+  border-top: 1px solid;
+  border-bottom: none;
+}
+table td.active {
+  background: #e8f5fb;
+}
+table td.active:hover {
+  cursor: pointer;
+  background: #e3edf1;
+}
+table td.selected {
+  background: #ffc000;
+}
+table td.selected:hover {
+  background: #ffc000;
+}
+
+/*# sourceMappingURL=machinery_management_task_1.css.map */

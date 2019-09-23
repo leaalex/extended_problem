@@ -2,175 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/engines/matching_table/difflib-browser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/matching_table/matching_table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile_dych.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile_dych_0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/matching_table/sortable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/edx_org_html.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/presentation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/presentation_prod.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/presentation_v01.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/presentator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/test_pres.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/test_present.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/untitled.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/presentations/untitled.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.1 Смысловая память/semantic_memory.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.2 Память на числа/twelve_numbers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.4 Таблицы Шульте/Chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.4 Таблицы Шульте/tables_training_apparatus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.5 Закономерности числового ряда/numerical_series.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_001.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_002.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_003.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_004.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_004_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_005.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_006.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_007.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_008.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_009.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_010.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_011.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_012.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_013.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_014.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_015.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_016.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_017_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_018.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_019_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_020_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_021_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_022.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_023.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_024.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_026.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_027.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_029.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_032_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/photos/business_card_033.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы дизайна/vizitki/vizitki.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/crit_think_diagnostic/crit_think_diagnostic.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/selected_task/selected_task_light.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/selected_task/untitled.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/PHILOSOPHY/philosophy_edx.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/PHILOSOPHY/philosophy_test.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/PHILOSOPHY/philosophy_test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/PHILOSOPHY/Философия_тесты к разделам.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/Диагностика 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/Диагностика 3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Философия/Диагностики/Диагностика 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.1 Смысловая память/semantic_memory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.2 Память на числа/twelve_numbers.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.4 Таблицы Шульте/Chart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.4 Таблицы Шульте/tables_training_apparatus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M2 3.5 Закономерности числового ряда/numerical_series.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crit_think_diagnostic/crit_think_diagnostic_3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/genotype/genotype.html" beforeDir="false" afterPath="$PROJECT_DIR$/engines/genotype/genotype.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genotype/genotype.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/genotype/genotype.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heroes_task/heroes_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/heroes_task/heroes_task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_task/images_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Основы дизайна/images_task/images_task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img_exemple/001.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img_exemple/001.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/difflib-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/matching_table_mobile_dych_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching_table/sortable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mini multiengine.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/edx_org_html.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/pdf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/pdf.worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/presentation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/presentation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/presentation_prod.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/presentation_v01.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/presentator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/test_pres.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/test_present.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/untitled.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentations/untitled.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/selected_task/selected_task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/selected_task/selected_task_light.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/selected_task/untitled.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setTimeout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sga_task_choice/sga_task_choice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/svg_test.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/svg_test.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/technical_task/technical_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Основы дизайна/technical_task/technical_task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/timeline/timeline_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/engines/timeline/timeline_task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/timeline/timeline_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/timeline/timeline_task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsts.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_organizer/untitled.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/visual_organizer/untitled.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_organizer/visual_organizer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/visual_organizer/visual_organizer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_001.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_002.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_003.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_004.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_004_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_005.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_006.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_007.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_009.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_010.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_011.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_012.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_013.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_014.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_015.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_016.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_016_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_017.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_017_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_018.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_018_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_019.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_019_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_020.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_020_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_021.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_021_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_022.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_023.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_024.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_025.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_026.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_027.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_027_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_028.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_029.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_030.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_031.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_032.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_032_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_033.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/photos/business_card_033_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vizitki/vizitki.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Безымянный-2-01.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_edx.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_test.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/philosophy_test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/PHILOSOPHY/Философия_тесты к разделам.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Диагностики/Диагностика 4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Методика диагностики самооценки Ч. Д. Спилбергера/spielberger_test_rt.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/Методика диагностики самооценки Ч. Д. Спилбергера/spielberger_test_rt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Опросник стилей юмора/humor_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/Опросник стилей юмора/humor_style.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_managment_task_1/machinery_managment_task_1.scss" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -230,11 +71,11 @@
       <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/electric" />
       <recent name="$PROJECT_DIR$/engines" />
       <recent name="$PROJECT_DIR$/Основы дизайна" />
       <recent name="$PROJECT_DIR$/Философия" />
       <recent name="$PROJECT_DIR$/Адаптационный модуль" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -442,7 +283,7 @@
       <workItem from="1568362253492" duration="15985000" />
       <workItem from="1568621935968" duration="22095000" />
       <workItem from="1568722987999" duration="919000" />
-      <workItem from="1568724956749" duration="62419000" />
+      <workItem from="1568724956749" duration="69367000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
