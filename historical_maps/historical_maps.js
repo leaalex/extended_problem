@@ -4,10 +4,12 @@ function HistoricalMaps(settings) {
     settings.element.appendChild(svg);
 
     let startPoint;
-    let max_arrows = 5;
+    let max_arrows = settings.max_arrows || 5;
     let lines = {};
     let cities = Array.from(svg.querySelector(settings.cities_selector).children);
     let used = [];
+    let main_city_id = 'city_0';
+    let city_radius = 4;
 
     function Answer(elementField) {
         this.elementField = elementField;
@@ -43,12 +45,17 @@ function HistoricalMaps(settings) {
     if(settings.input) {
         if (settings.input.querySelector("input[type='text']")) {
             answer = new Answer(settings.input.querySelector("input[type='text']"));
-            // settings.input.querySelector(".message").classList.add("hidden");
+            // settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+
             settings.input.classList.add("hidden");
             answer.elementField.classList.add("hidden");
 
             if (answer.get()) {
                 lines = answer.getJSON()["answer"];
+                if(settings.input.parentNode.parentNode.querySelector("span.message")){
+                    let correct = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML)
+                }
+
             }
         }
     }
@@ -64,7 +71,7 @@ function HistoricalMaps(settings) {
         build_state(){
           let lines_keys = Object.keys(lines);
             lines_keys.forEach(function (item){
-                let arrow_coordinates = utils.calculate_arrow_coordinates(svg.querySelector(`#${lines[item].from}`), svg.querySelector(`#${lines[item].to}`));
+                let arrow_coordinates = utils.calculate_arrow_coordinates(svg.querySelector(`#${lines[item].from}`), svg.querySelector(`#${lines[item].to}`), city_radius);
                 let new_arrow = utils.create_arrow(arrow_coordinates.x1, arrow_coordinates.y1, arrow_coordinates.x2, arrow_coordinates.y2, item, ['connecting']);
                 svg.querySelector(settings.cities_selector).parentNode.insertBefore(new_arrow, svg.querySelector(settings.cities_selector));
             });
@@ -80,10 +87,10 @@ function HistoricalMaps(settings) {
         test_filling: function () {
             let main_city = svg.querySelector(settings.main_city_selector).firstElementChild;
             main_city.classList.add("main-city");
-            main_city.id = `city_0`;
+            main_city.id = main_city_id;
             cities.push(main_city);
 
-            utils.set_can_start(`city_0`);
+            utils.set_can_start(main_city.id);
             let cities_array = Array.from(svg.querySelector(settings.cities_selector).children);
             cities_array.sort(utils.cx_sorter).forEach((x, index) => x.id = `city_${index + 1}`);
 
@@ -102,7 +109,8 @@ function HistoricalMaps(settings) {
 
                     }
                     else if (startPoint && !used.includes(event.target.id)) {
-                        let arrow_coords = utils.calculate_arrow_coordinates(startPoint,event.target);
+                        let arrow_coords = utils.calculate_arrow_coordinates(startPoint,event.target, city_radius);
+
                         let new_arrow = utils.create_arrow(arrow_coords.x1, arrow_coords.y1, arrow_coords.x2, arrow_coords.y2, utils.genID(), ['connecting']);
                         svg.querySelector(settings.cities_selector).parentNode.insertBefore(new_arrow, svg.querySelector(settings.cities_selector));
                         lines[new_arrow.id] = {
@@ -147,7 +155,7 @@ function HistoricalMaps(settings) {
                     arrow.set_coordinate({'x1': startX, 'y1': startY, 'x2': currentX, 'y2': currentY});
 
                     if (event.target.classList.contains("city") && !used.includes(event.target.id)) {
-                        let arrow_coords = utils.calculate_arrow_coordinates(startPoint, event.target);
+                        let arrow_coords = utils.calculate_arrow_coordinates(startPoint, event.target, city_radius);
                         arrow.set_coordinate({'x2': arrow_coords.x2, 'y2': arrow_coords.y2});
                     }
                 }
@@ -180,7 +188,7 @@ function HistoricalMaps(settings) {
                         utils.set_can_start(lines[lines_keys[lines_keys.length - 1]].to);
                     }
                     else{
-                        utils.set_can_start("city_0");
+                        utils.set_can_start(main_city_id);
                     }
 
 

@@ -1,27 +1,40 @@
-.city{
-  cursor: pointer;
 
+
+
+.city{
   fill: #ffffff00;
   r: 2;
   stroke-width: 0.5px;
 
-  &:hover{
-    stroke-width: 1.2px;
+  &.can-start {
+    //cursor: pointer;
+    fill: green;
+    stroke: green;
+    stroke-width: 5px;
   }
-//  stroke-width:10px;
-//  transform:scale(1.2,1.2);
 
-  &.first-selected{
-    fill: #2e5d8a;
+  &.can-end {
+    animation: 2s ease 0s pulse infinite;
+    stroke-width: 2px;
+    cursor: pointer;
+    stroke: green;
+  }
+}
 
+@keyframes pulse {
+  50% {
+    stroke-width: 6px;
   }
 }
 
 .path{
-
-  &:hover{
-    //fill: red;
+  &.for-remove{
+    cursor: pointer;
     stroke: red;
+  }
+  &.tmp-visible{
+    display: block;
+    opacity: 0.5;
   }
 }
 
@@ -29,11 +42,11 @@
   display: none;
 }
 
-.historical-map-container{
+.historical-path-container{
   width: 800px;
 }
 
 #Заливка, #Реки, #Острова, #Границы{
-  display: none;
+  //display: none;
 }
 

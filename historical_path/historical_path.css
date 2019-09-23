@@ -1,31 +1,40 @@
-@charset "UTF-8";
 .city {
-  cursor: pointer;
   fill: #ffffff00;
   r: 2;
   stroke-width: 0.5px;
 }
-.city:hover {
-  stroke-width: 1.2px;
+.city.can-start {
+  fill: green;
+  stroke: green;
+  stroke-width: 5px;
 }
-.city.first-selected {
-  fill: #2e5d8a;
+.city.can-end {
+  animation: 2s ease 0s pulse infinite;
+  stroke-width: 2px;
+  cursor: pointer;
+  stroke: green;
 }
 
-.path:hover {
+@keyframes pulse {
+  50% {
+    stroke-width: 6px;
+  }
+}
+.path.for-remove {
+  cursor: pointer;
   stroke: red;
+}
+.path.tmp-visible {
+  display: block;
+  opacity: 0.5;
 }
 
 .hidden {
   display: none;
 }
 
-.historical-map-container {
+.historical-path-container {
   width: 800px;
-}
-
-#Заливка, #Реки, #Острова, #Границы {
-  display: none;
 }
 
 /*# sourceMappingURL=historical_path.css.map */

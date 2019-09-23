@@ -1,15 +1,21 @@
 $remove_red: #ff4b3e;
 $tile-bg: blue;
+
+.hidden {
+  display: none;
+}
+
 .city {
 
   &.can-start {
     cursor: pointer;
     fill: green;
+    stroke: green;
+    stroke-width: 5px;
 
     &:hover {
       stroke: black;
-      stroke-width: 4px;
-
+      stroke-width: 6px;
     }
   }
 
@@ -19,6 +25,8 @@ $tile-bg: blue;
     cursor: pointer;
     stroke: green;
   }
+
+
 }
 
 @keyframes pulse {
@@ -45,9 +53,6 @@ $tile-bg: blue;
   //}
 }
 
-.hidden {
-  display: none;
-}
 
 .historical-map-container {
   width: 800px;

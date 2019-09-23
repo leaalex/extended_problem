@@ -1,6 +1,119 @@
 <problem>
-    <script type="loncapa/python">
-    </script>
+<script type="loncapa/python">
+import json
+
+cities = [
+    {
+        "id": "city_0",
+        "title": "Соликамск",
+        "year": 1430,
+    },
+    {
+        "id": "city_1",
+        "title": "Чердынь",
+        "year": 1451,
+    },
+    {
+        "id": "city_2",
+        "title": "Тюмень",
+        "year": 1586,
+    },
+    {
+        "id": "city_3",
+        "title": "Тобольск",
+        "year": 1587,
+    },
+    {
+        "id": "city_4",
+        "title": "Берёзов",
+        "year": 1593,
+    },
+    {
+        "id": "city_5",
+        "title": "Сургут",
+        "year": 1594,
+    },
+    {
+        "id": "city_6",
+        "title": "Обдорск (Салехард)",
+        "year": 1595,
+    },
+    {
+        "id": "city_7",
+        "title": "Томск",
+        "year": 1604,
+    },
+    {
+        "id": "city_8",
+        "title": "Красноярск",
+        "year": 1628,
+    },
+    {
+        "id": "city_9",
+        "title": "Братск",
+        "year": 1631,
+    },
+    {
+        "id": "city_10",
+        "title": "Якутск",
+        "year": 1632,
+    },
+    {
+        "id": "city_11",
+        "title": "Чита",
+        "year": 1653,
+    },
+    {
+        "id": "city_12",
+        "title": "Петропавловск-Камчатский",
+        "year": 1740,
+    },
+    {
+        "id": "city_13",
+        "title": "Хабаровск",
+        "year": 1858,
+    },
+    {
+        "id": "city_14",
+        "title": "Владивосток",
+        "year": 1860,
+    },
+    {
+        "id": "city_15",
+        "title": "Анадырь",
+        "year": 1889,
+    }
+]
+
+correct_list = []
+
+for index, x in enumerate(cities):
+    if len(cities) > (index + 1):
+        correct_list.append({"from": x["id"], "to": cities[index + 1]["id"]})
+
+
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(cities) - 1
+    student_correct = {}
+    for c_a in correct_list:
+        for _, s_a in enumerate(student_answer.keys()):
+            if c_a["from"] == student_answer[s_a]["from"] and c_a["to"] == student_answer[s_a]["to"]:
+                student_correct[s_a] = student_answer[s_a]
+                student_correct[s_a]["to_title"] = next((l for l in cities if l['id'] == c_a["to"]), None)["title"]
+                student_correct[s_a]["to_year"] = next((l for l in cities if l['id'] == c_a["to"]), None)["year"]
+
+    grade = len(student_correct.keys())
+    result_grade = grade / max_grade
+    msg = json.dumps(student_correct)
+    if result_grade == 1:
+        return {'input_list': [{'ok': True, 'msg': msg, 'grade_decimal': 1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok': False, 'msg': msg, 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': result_grade}]}
+
+</script>
     <link rel="stylesheet" href="./historical_maps.css"></link>
     <script type="text/javascript" src="./historical_maps_source.js"></script>
     <script type="text/javascript" src="./historical_maps.js"></script>
@@ -25,17 +138,14 @@
     <script type="text/javascript">
 
         let src_map = new sourceMap().svg_map;
-        console.log(src_map);
 
         new HistoricalMaps({
             svg: src_map,
             element: document.querySelector(".historical-map-container"),
-            // input: document.querySelector("#test_input"),
+            input: document.querySelector("#test_input"),
             main_city_selector: "#putincity",
             cities_selector: "#cities",
-
-
+            max_arrows: 15,
         });
-        // console.log(src)
     </script>
 </problem>

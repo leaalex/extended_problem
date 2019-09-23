@@ -1,9 +1,7 @@
-let sourceMap = {
+function sourceMap() {
 
-    getMap: function () {
-        return new DOMParser().parseFromString(_source_svg_task, "text/html").querySelector("svg");
-    },
-
+    let svg_map = new DOMParser().parseFromString(_source_svg_task, "text/html").querySelector("svg");
+    this.svg_map = svg_map;
 
 };
 
@@ -161,7 +159,10 @@ let _source_svg_task = `
   <g id="Из_воряг_в_греки" data-name="Из воряг в греки">
     <path d="M33.87,41.23c.57-.39,1.14-.75,1.68-1.07" transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1"
           stroke-linejoin="round" stroke-width="2"/>
-    <path class="path" id="path_city_10__city_8" d="M36.41,39.66c5.62-3.14,9.53-3.13,12.14-2.45s2.58,1.56,9.79,4.72c6.35,2.78,7.9,2.79,9,2.66.58-.07,1.36-.23,6.62-1,1-.16,1.5-.23,1.63-.23,3.07.08,3.61,3.06,7.11,4.38,1.45.55,2.76.54,5.38.52,3.4,0,3.39-.67,5-.34,2.52.49,2.61,2,6.6,3.9,1.85.87,3,1.39,4.17,1s1.44-1.66,3-3.3a14.61,14.61,0,0,1,4.08-2.87c3.43-1.68,8-.34,10.68.77"
+          <line x1="32.54" id="path_city_0__city_3" y1="44.35" x2="28.13" y2="69.86"  stroke="rgb(43, 181, 209)" stroke-width="2" />
+          <line x1="32.54" id="path_city_0__city_2" y1="44.35" x2="188.5" y2="50.33"  stroke="rgb(43, 181, 209)" stroke-width="2" />
+          <line x1="143.38" id="path_city_1__city_8" y1="50.01" x2="202.03" y2="93.63"  stroke="rgb(43, 181, 209)" stroke-width="2" />
+    <path class="path" id="path_city_0__city_1" d="M36.41,39.66c5.62-3.14,9.53-3.13,12.14-2.45s2.58,1.56,9.79,4.72c6.35,2.78,7.9,2.79,9,2.66.58-.07,1.36-.23,6.62-1,1-.16,1.5-.23,1.63-.23,3.07.08,3.61,3.06,7.11,4.38,1.45.55,2.76.54,5.38.52,3.4,0,3.39-.67,5-.34,2.52.49,2.61,2,6.6,3.9,1.85.87,3,1.39,4.17,1s1.44-1.66,3-3.3a14.61,14.61,0,0,1,4.08-2.87c3.43-1.68,8-.34,10.68.77"
           transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1" stroke-linejoin="round" stroke-width="2"
           stroke-dasharray="3.94 0.98"/>
     <path d="M122,47.54a19.92,19.92,0,0,1,1.8.87" transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1"
@@ -198,9 +199,9 @@ let _source_svg_task = `
           transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1" stroke-linejoin="round" stroke-width="2"/>
     <path d="M126.21,118.44a1.48,1.48,0,0,1,0-.86,2,2,0,0,1,.53-.74c.44-.44,2.07.16,2,.16s.08.17.75.09c.14,0,.1-.67.22-.79s.27-.06.35-.56a2.06,2.06,0,0,0-.57-1.69c-.18-.18-.11-.79-.11-1.12,0-.86.1-2.11.88-2.5a1.89,1.89,0,0,0,1.14-.53"
           transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1" stroke-linejoin="round" stroke-width="2"/>
-    <path class="path" id="path_city_8__city_14" d="M141.62,46.84c-.05,0,.14,0,.14.06,0,.48.05,1,.05,1.42,0,1.07.22,3.73-.33,4.28s-1.1.71-1.53,1.15-.38,1-.71,1.31c-1,1-1.47,2.71-2.14,4.06-.55,1.09.21,2.59-.39,3.78a13.66,13.66,0,0,1-2.3,3.34c-.28.28-.06.94-.33,1.21-.66.67-1.07,2-1.7,2.63-.27.27-.16.88-.43,1.15s.38.73.38.88"
+    <path class="path" id="path_city_1__city_4" d="M141.62,46.84c-.05,0,.14,0,.14.06,0,.48.05,1,.05,1.42,0,1.07.22,3.73-.33,4.28s-1.1.71-1.53,1.15-.38,1-.71,1.31c-1,1-1.47,2.71-2.14,4.06-.55,1.09.21,2.59-.39,3.78a13.66,13.66,0,0,1-2.3,3.34c-.28.28-.06.94-.33,1.21-.66.67-1.07,2-1.7,2.63-.27.27-.16.88-.43,1.15s.38.73.38.88"
           transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1" stroke-linejoin="round" stroke-width="2"/>
-    <path d="M132.87,77c.12.07.33,1.19.5,1.54.28.56.8,1.39.55,2.14-.17.51-.49.71-.49,1.31,0,.4.25,1.56,0,1.81A11.76,11.76,0,0,0,131.62,86c-.36.72-.15,1.67-.5,2.36-.06.12,0,.5-.05.6-.38.38-.09,1.51-.49,1.92a7.14,7.14,0,0,1-1.48.93c-.38.19-.57.78-.83,1s-.48-.18-.65,0c-.41.41-.76.82-1.15,1.21s.22,1.19-.11,1.53-1.36-.62-1.81-.16c-.2.2.07.86-.11,1-.81.81,0,2.72-.61,3.83a1.34,1.34,0,0,0-.14,1"
+    <path id="path_city_4__city_16" d="M132.87,77c.12.07.33,1.19.5,1.54.28.56.8,1.39.55,2.14-.17.51-.49.71-.49,1.31,0,.4.25,1.56,0,1.81A11.76,11.76,0,0,0,131.62,86c-.36.72-.15,1.67-.5,2.36-.06.12,0,.5-.05.6-.38.38-.09,1.51-.49,1.92a7.14,7.14,0,0,1-1.48.93c-.38.19-.57.78-.83,1s-.48-.18-.65,0c-.41.41-.76.82-1.15,1.21s.22,1.19-.11,1.53-1.36-.62-1.81-.16c-.2.2.07.86-.11,1-.81.81,0,2.72-.61,3.83a1.34,1.34,0,0,0-.14,1"
           transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1" stroke-linejoin="round" stroke-width="2"/>
     <path d="M126.36,49.7c.29-.05.52.33.75.44s.53.61.77.74c.44.22,1.09.31,1.4.62.15.15.46-.47.51-.51s.3.14.44.07.1-.47.33-.59.63.17.74,0-.21-.75,0-.92.27-.3.41-.44"
           transform="translate(2.49 1.62)" fill="none" stroke="#2bb5d1" stroke-linejoin="round" stroke-width="2"/>
@@ -772,8 +773,7 @@ let _source_svg_task = `
             stroke-width="0.24"/>
     <circle cx="188.5" cy="50.33" r="0.76" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
             stroke-width="0.24"/>
-    <circle cx="32.54" cy="44.35" r="0.76" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="0.24"/>
+
     <circle cx="28.13" cy="69.86" r="0.76" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
             stroke-width="0.24"/>
     <circle cx="109.16" cy="80.44" r="0.76" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
@@ -909,6 +909,8 @@ let _source_svg_task = `
     <circle cx="292.38" cy="121.88" r="0.79" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
             stroke-width="0.24"/>
   </g>
+  <g id="putincity">    <circle cx="32.54" cy="44.35" r="0.76" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="0.24"/></g>
 </svg>
 
 `;
