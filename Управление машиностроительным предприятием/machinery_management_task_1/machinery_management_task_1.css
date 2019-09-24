@@ -2,15 +2,25 @@
   width: 820px;
 }
 
-table {
+table.task-table {
   border-spacing: 0px;
+  border: 2px solid #dfdfdf;
+  padding: 10px 5px 0px;
+  margin: 10px 0px;
 }
-table td {
+table.task-table.correct {
+  border: 4px solid green;
+}
+table.task-table.incorrect {
+  border: 4px solid red;
+}
+table.task-table td {
   border: 0.5px solid #c9c9c9;
   width: 50px;
   height: 25px;
+  padding: 0;
 }
-table td.first-cell {
+table.task-table td.first-cell {
   text-align: center;
   border-right: 1px solid;
   border-left: none;
@@ -18,24 +28,49 @@ table td.first-cell {
   border-bottom: none;
   width: 30px;
 }
-table td.first-row {
+table.task-table td.first-row {
   border-right: none;
   border-left: none;
   border-top: 1px solid;
   border-bottom: none;
 }
-table td.active {
+table.task-table.table-type-1 td.active {
   background: #e8f5fb;
 }
-table td.active:hover {
+table.task-table.table-type-1 td.active:hover {
   cursor: pointer;
   background: #e3edf1;
 }
-table td.selected {
+table.task-table.table-type-1 td.selected {
   background: #ffc000;
 }
-table td.selected:hover {
+table.task-table.table-type-1 td.selected:hover {
   background: #ffc000;
+}
+table.task-table.table-type-2 td.active {
+  background: #e8f5fb;
+}
+table.task-table.table-type-2 td.active .group-input {
+  width: 100%;
+  background: #ffffff00;
+  text-align: center;
+  border-style: none;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  opacity: 0.5;
+}
+table.task-table.table-type-2 td.active .group-input:focus {
+  opacity: 1;
+}
+table.task-table.table-type-2 td.group-1 {
+  background: #ffc000;
+}
+table.task-table.table-type-2 td.group-2 {
+  background: #bdd7ee;
+}
+table.task-table.table-type-2 td.group-3 {
+  background: #ffe699;
 }
 
 /*# sourceMappingURL=machinery_management_task_1.css.map */

@@ -1,19 +1,29 @@
+$group_1_color:  #ffc000;
+$group_2_color: #bdd7ee;
+$group_3_color: #ffe699;
 
-#machinery_management_task_1_container{
+#machinery_management_task_1_container {
   width: 820px;
 }
 
-//td:nth-child(3) {
-//  background: yellow;
-//}
-
-table {
+table.task-table {
   border-spacing: 0px;
+  border: 2px solid #dfdfdf;
+  padding: 10px 5px 0px;
+  margin: 10px 0px;
+
+  &.correct{
+    border: 4px solid green;
+  }
+  &.incorrect{
+    border: 4px solid red;
+  }
 
   td {
     border: 0.5px solid #c9c9c9;
     width: 50px;
     height: 25px;
+    padding: 0;
 
     &.first-cell {
       text-align: center;
@@ -23,6 +33,7 @@ table {
       border-bottom: none;
       width: 30px;
     }
+
     &.first-row {
       border-right: none;
       border-left: none;
@@ -30,29 +41,59 @@ table {
       border-bottom: none;
     }
 
-    &.active{
-      background: #e8f5fb;
-      &:hover{
-        cursor: pointer;
-        background: #e3edf1;
-      }
-    }
-
-    &.selected{
-      background: #ffc000;
-      &:hover{
-        background: #ffc000;
-      }
-    }
-
   }
 
-  tr{
-    //&.first-row {
-    //    border-right: none;
-    //    border-left: none;
-    //    border-top: 1px solid;
-    //    border-bottom: none;
-    //}
+  &.table-type-1 {
+    td {
+      &.active {
+        background: #e8f5fb;
+
+        &:hover {
+          cursor: pointer;
+          background: #e3edf1;
+        }
+      }
+
+      &.selected {
+        background: #ffc000;
+
+        &:hover {
+          background: #ffc000;
+        }
+      }
+    }
+  }
+
+  &.table-type-2 {
+    td {
+      &.active {
+        background: #e8f5fb;
+
+        .group-input {
+          width: 100%;
+          background: #ffffff00;
+          text-align: center;
+          border-style: none;
+          height: 100%;
+          display: inline-block;
+          position: relative;
+          opacity: 0.5;
+          &:focus{
+            opacity: 1;
+          }
+        }
+      }
+      &.group-1 {
+        background: $group_1_color;
+      }
+      &.group-2 {
+        background: $group_2_color;
+      }
+      &.group-3 {
+        background: $group_3_color;
+      }
+
+    }
+
   }
 }
