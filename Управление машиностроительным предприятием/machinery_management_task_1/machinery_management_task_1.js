@@ -2,10 +2,9 @@ function MachineryManagement1(settings) {
 
     let element = settings.element;
 
-    let width = 20;
     let count = 5;
 
-    let height = count * 2;
+    let tables_len = settings.tables_len ? (settings.tables_len.length === 3) ? settings.tables_len : [16, 16, 16] : [16, 16, 16];
 
     let state = {
         table_1: [],
@@ -13,36 +12,124 @@ function MachineryManagement1(settings) {
         table_3: [],
     };
 
-    // let groups = {
-    //     group_1:{
-    //         class: "group-1",
-    //         value: 1,
-    //     },
-    //     group_2:{
-    //         class: "group-2",
-    //         value: 2,
-    //     },
-    //     group_3:{
-    //         class: "group-3",
-    //         value: 3,
-    //     },
-    // };
+    let groups = {
+        group_1: {
+            title: "Группа 1",
+            id: "group_1",
+        },
+        group_2: {
+            title: "Группа 2",
+            id: "group_2",
+        },
+        group_3: {
+            title: "Группа 3",
+            id: "group_3",
+        }
+    };
+
+    function Answer(elementField) {
+        this.elementField = elementField;
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function () {
+            this.fieldValue = elementField.value;
+            return this.fieldValue;
+        };
+        this.set = function (value) {
+            if (value === undefined) value = this.fieldValue;
+            elementField.value = value;
+        };
+        this.getJSON = function () {
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function (object) {
+            if (object === undefined) object = this.fieldObject;
+            this.set(JSON.stringify(object));
+        };
+        this.isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        };
+    };
+
+    let correctness = undefined;
+    let answer = undefined;
+
+    if (settings.input) {
+        if (settings.input.querySelector("input[type='text']")) {
+            answer = new Answer(settings.input.querySelector("input[type='text']"));
+            if (settings.input.parentNode.parentNode.querySelector(".message")) {
+                settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+            }
+
+            settings.input.classList.add("hidden");
+            answer.elementField.classList.add("hidden");
+
+            if (answer.get()) {
+                state = answer.getJSON()["answer"];
+                if (settings.input.parentNode.parentNode.querySelector("span.message")) {
+                    correctness = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML);
+                }
+            }
+        }
+    }
 
     let MachineryManagementInit = {
         init: function () {
 
-            state.table_1 = utils.zeros([count, width]);
-            state.table_2 = utils.zeros([count, width]);
+            if (state.table_1.length === 0 && state.table_2.length === 0 && state.table_3.length === 0) {
+                state.table_1 = utils.zeros([count, tables_len[0]]);
+                state.table_2 = utils.zeros([count, tables_len[1]]);
+                state.table_3 = utils.zeros([count, tables_len[2]]);
+            }
+
+            this.init_group_description();
 
             this.init_table_1();
             this.init_table_2();
+            this.init_table_3();
+
+            if (correctness !== undefined) {
+                Object.keys(correctness).forEach(function (item) {
+                    if (correctness[item]) {
+                        element.querySelector(`table.task-table#${item}`).classList.add("correct");
+                    } else {
+                        element.querySelector(`table.task-table#${item}`).classList.add("incorrect");
+                    }
+                });
+            }
 
         },
+
+        init_group_description: function () {
+            let group_description_block = utils.create("div", {className: "group-description-block"});
+            Object.keys(groups).forEach(function (group) {
+                let description_item = utils.create("div", {className: "description-item"});
+                let description_color = utils.create("div", {className: `description-color ${group}`});
+                let description_label = utils.create("div", {
+                    className: "description-label",
+                    html: " - " + groups[group].title.toLowerCase()
+                });
+                description_item.appendChild(description_color);
+                description_item.appendChild(description_label);
+                group_description_block.appendChild(description_item);
+            });
+            element.appendChild(group_description_block);
+        },
+
         init_table_1: function () {
-            let table_1 = utils.create_table_type_1(height, width, "table_1");
+            let task_block = utils.create_text_task(["Здесь задание"], "Таблица 1");
+            let table_1 = utils.create_table_type_1(count * 2, tables_len[0], "table_1", task_block);
+            this.build_table_type_1(table_1, state.table_1);
             let cells = Array.from(table_1.querySelectorAll("td.active"));
             for (let i in cells) {
                 cells[i].onclick = function (event) {
+                    utils.remove_classes(table_1.querySelector("table"), ["correct", "incorrect"]);
                     let x = cells[i].dataset.coordinates.split(",")[0];
                     let y = cells[i].dataset.coordinates.split(",")[1];
                     if (event.target.classList.contains("selected")) {
@@ -52,24 +139,26 @@ function MachineryManagement1(settings) {
                         event.target.classList.add("selected");
                         state.table_1[y][x] = 1;
                     }
-                    // console.log(state.table_1);
+                    answer.setJSON({answer: state});
                 }
             }
+
             element.appendChild(table_1);
         },
         init_table_2: function () {
-            let table_2 = utils.create_table_type_2(height, width, "table_2");
+            let task_block = utils.create_text_task(["Здесь задание про таблицу 2"], "Таблица 2");
+            let table_2 = utils.create_table_type_2(count * 2, tables_len[1], "table_2", task_block);
+            this.build_table_type_2(table_2, state.table_2);
             let cells = Array.from(table_2.querySelectorAll("td.active"));
             for (let i in cells) {
-                cells[i].onclick = function(event){
+                cells[i].onclick = function (event) {
                     cells[i].querySelector("input.group-input").select();
                 };
                 cells[i].querySelector("input.group-input").oninput = function (event) {
+                    utils.remove_classes(table_2.querySelector("table"), ["correct", "incorrect"]);
                     let x = cells[i].dataset.coordinates.split(",")[0];
                     let y = cells[i].dataset.coordinates.split(",")[1];
-                    cells[i].classList.remove("group-1");
-                    cells[i].classList.remove("group-2");
-                    cells[i].classList.remove("group-3");
+                    utils.remove_classes(cells[i], ["group-1", "group-2", "group-3"]);
                     let val = parseInt(event.target.value);
                     switch (val) {
                         case 1:
@@ -85,13 +174,87 @@ function MachineryManagement1(settings) {
                             val = 0;
                     }
                     state.table_2[y][x] = val;
-
-                    console.log(state.table_2);
+                    answer.setJSON({answer: state});
                 }
             }
-            element.appendChild(table_2);
-        }
 
+            element.appendChild(table_2);
+        },
+        init_table_3: function () {
+            let task_block = utils.create_text_task(["Здесь задание 3"], "Таблица 3");
+
+            let table_3 = utils.create_table_type_2(count * 2, tables_len[2], "table_3", task_block);
+            this.build_table_type_2(table_3, state.table_3);
+            let cells = Array.from(table_3.querySelectorAll("td.active"));
+            for (let i in cells) {
+                cells[i].onclick = function (event) {
+                    cells[i].querySelector("input.group-input").select();
+                };
+                cells[i].querySelector("input.group-input").oninput = function (event) {
+                    utils.remove_classes(table_3.querySelector("table"), ["correct", "incorrect"]);
+                    let x = cells[i].dataset.coordinates.split(",")[0];
+                    let y = cells[i].dataset.coordinates.split(",")[1];
+                    utils.remove_classes(cells[i], ["group-1", "group-2", "group-3"]);
+                    let val = parseInt(event.target.value);
+                    switch (val) {
+                        case 1:
+                            cells[i].classList.add("group-1");
+                            break;
+                        case 2:
+                            cells[i].classList.add("group-2");
+                            break;
+                        case 3:
+                            cells[i].classList.add("group-3");
+                            break;
+                        default:
+                            val = 0;
+                    }
+                    state.table_3[y][x] = val;
+                    answer.setJSON({answer: state});
+                }
+            }
+
+            element.appendChild(table_3);
+        },
+        build_table_type_2: function (table, data) {
+            data.forEach(function (row_val, row_idx) {
+                data[row_idx].forEach(function (cell_val, cell_idx) {
+                    let current_td = table.querySelector(`[data-coordinates="${cell_idx},${row_idx}"]`);
+                    if (current_td) {
+                        let current_input = current_td.querySelector('input.group-input');
+                        switch (cell_val) {
+                            case 1:
+                                current_td.classList.add("group-1");
+                                current_input.value = cell_val;
+                                break;
+                            case 2:
+                                current_td.classList.add("group-2");
+                                current_input.value = cell_val;
+                                break;
+                            case 3:
+                                current_td.classList.add("group-3");
+                                current_input.value = cell_val;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+            });
+        },
+        build_table_type_1: function (table, data) {
+            data.forEach(function (row_val, row_idx) {
+                data[row_idx].forEach(function (cell_val, cell_idx) {
+                    let current_td = table.querySelector(`[data-coordinates="${cell_idx},${row_idx}"]`);
+                    if (current_td) {
+                        if (cell_val === 1) {
+                            current_td.classList.add("selected");
+                        }
+                    }
+                });
+            });
+
+        },
     };
 
     let utils = {
@@ -137,6 +300,12 @@ function MachineryManagement1(settings) {
         range: function (start, end) {
             return Array(end - start + 1).fill().map((_, idx) => start + idx)
         },
+        remove_classes: function (element, class_list) {
+            class_list.forEach(function (class_item) {
+                class_item = class_item.replace(/\s/g, '');
+                element.classList.remove(class_item);
+            });
+        },
         zeros: function (dimensions) {
             let array = [];
 
@@ -145,11 +314,11 @@ function MachineryManagement1(settings) {
             }
             return array;
         },
-
-        create_table_type_1: function (row_count, column_count, id) {
+        create_table_type_1: function (row_count, column_count, id, task_block) {
+            let table_container = utils.create("div", {className: "table-container"});
             let table = utils.create("table", {id: id, className: "task-table table-type-1"});
-            utils.range(0, row_count).forEach(function (row, row_ind) {
-                let table_tr = utils.create("tr", {id: row_ind.toString()});
+            utils.range(0, row_count - 1).forEach(function (row, row_ind) {
+                let table_tr = utils.create("tr", {/*id: row_ind.toString()*/});
                 utils.range(0, column_count).forEach(function (cell, cell_ind) {
                     let table_td = utils.create("td", {});
                     if (cell_ind === 0) {
@@ -165,18 +334,25 @@ function MachineryManagement1(settings) {
                         table_td.id = (cell_ind - 1).toString();
                         table_td.setAttribute("data-coordinates", `${(cell_ind - 1)},${row_ind / 2}`);
                         table_td.classList.add("active")
+                    } else if (cell_ind !== 0 && row_ind !== row_count && row_ind % 2 !== 0) {
+                        table_td.classList.add("inactive")
                     }
                     table_tr.appendChild(table_td);
                 });
                 table.appendChild(table_tr);
             });
-            return table;
-        },
+            let correct_indicator = utils.create("div", {className: "correct-indicator",});
+            if (task_block) table_container.appendChild(task_block);
+            table_container.appendChild(table);
+            table_container.appendChild(correct_indicator);
 
-        create_table_type_2: function (row_count, column_count, id) {
+            return table_container;
+        },
+        create_table_type_2: function (row_count, column_count, id, task_block) {
+            let table_container = utils.create("div", {className: "table-container"});
             let table = utils.create("table", {id: id, className: "task-table table-type-2"});
-            utils.range(0, row_count).forEach(function (row, row_ind) {
-                let table_tr = utils.create("tr", {id: row_ind.toString()});
+            utils.range(0, row_count - 1).forEach(function (row, row_ind) {
+                let table_tr = utils.create("tr", {/*id: row_ind.toString()*/});
                 utils.range(0, column_count).forEach(function (cell, cell_ind) {
                     let table_td = utils.create("td", {});
                     if (cell_ind === 0) {
@@ -191,8 +367,11 @@ function MachineryManagement1(settings) {
                     if (cell_ind !== 0 && row_ind !== row_count && row_ind % 2 === 0) {
                         table_td.id = (cell_ind - 1).toString();
                         table_td.setAttribute("data-coordinates", `${(cell_ind - 1)},${row_ind / 2}`);
-                        let input = utils.create("input", {className: "group-input", attr: {"maxlength": "1", type:"text" }});
-                        input.onkeypress = function(evt){
+                        let input = utils.create("input", {
+                            className: "group-input",
+                            attr: {"maxlength": "1", type: "text"}
+                        });
+                        input.onkeypress = function (evt) {
                             let theEvent = evt || window.event;
                             let key;
                             if (theEvent.type === 'paste') {
@@ -202,22 +381,40 @@ function MachineryManagement1(settings) {
                                 key = String.fromCharCode(key);
                             }
                             let regex = /[1-3]/;
-                            if( !regex.test(key) ) {
+                            if (!regex.test(key)) {
                                 theEvent.returnValue = false;
-                                if(theEvent.preventDefault) theEvent.preventDefault();
+                                if (theEvent.preventDefault) theEvent.preventDefault();
                             }
                         };
                         table_td.appendChild(input);
                         table_td.classList.add("active")
+                    } else if (cell_ind !== 0 && row_ind !== row_count && row_ind % 2 !== 0) {
+                        table_td.classList.add("inactive")
                     }
                     table_tr.appendChild(table_td);
                 });
                 table.appendChild(table_tr);
             });
-            return table;
+            let correct_indicator = utils.create("div", {className: "correct-indicator",});
+            if (task_block) table_container.appendChild(task_block);
+            table_container.appendChild(table);
+            table_container.appendChild(correct_indicator);
+            return table_container;
         },
-    };
+        create_text_task: function (text, header) {
+            let task_block = utils.create("div", {className: "table-task"});
+            if (header) {
+                let head = utils.create("h2", {html: header});
+                task_block.appendChild(head)
+            }
+            text.forEach(function (item) {
+                let t = utils.create("p", {html: [item]});
+                task_block.appendChild(t);
+            });
 
+            return task_block;
+        }
+    };
 
 
     MachineryManagementInit.init();

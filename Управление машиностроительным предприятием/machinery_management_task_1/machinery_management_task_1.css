@@ -1,56 +1,126 @@
-#machinery_management_task_1_container {
-  width: 820px;
+@charset "UTF-8";
+.hidden {
+  display: none !important;
 }
 
-table.task-table {
-  border-spacing: 0px;
-  border: 2px solid #dfdfdf;
-  padding: 10px 5px 0px;
+.group-description-block .description-item {
+  margin: 5px 0px;
+  display: flex;
+}
+.group-description-block .description-item .description-label {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.group-description-block .description-item .description-color {
+  width: 50px;
+  height: 1.5em;
+  margin-right: 5px;
+  border: 1px solid #c9c9c9;
+}
+.group-description-block .description-item .description-color.group_1 {
+  background: #ffc000;
+}
+.group-description-block .description-item .description-color.group_2 {
+  background: #bdd7ee;
+}
+.group-description-block .description-item .description-color.group_3 {
+  background: #ffe699;
+}
+
+.table-container {
+  padding: 10px;
+  background: whitesmoke;
+  width: fit-content;
+  border-radius: 5px;
   margin: 10px 0px;
 }
-table.task-table.correct {
-  border: 4px solid green;
+.table-container table.task-table {
+  border-spacing: 0px;
+  margin: 10px 0px 2px !important;
+  border-style: solid;
+  border-color: #c9c9c9;
+  border-left-width: 2px;
+  border-bottom-width: 0px;
+  border-top-width: 2px;
+  border-right-width: 2px;
 }
-table.task-table.incorrect {
-  border: 4px solid red;
+.table-container table.task-table.correct {
+  border: 4px solid #009b00;
 }
-table.task-table td {
-  border: 0.5px solid #c9c9c9;
+.table-container table.task-table.correct + .correct-indicator {
+  text-align: center;
+  width: 100%;
+}
+.table-container table.task-table.correct + .correct-indicator::after {
+  font-family: FontAwesome;
+  color: #009b00;
+  font-size: 1.5em;
+  content: "";
+}
+.table-container table.task-table.incorrect {
+  border: 4px solid #cb0712;
+}
+.table-container table.task-table.incorrect + .correct-indicator {
+  text-align: center;
+  width: 100%;
+}
+.table-container table.task-table.incorrect + .correct-indicator::after {
+  font-family: FontAwesome;
+  color: #cb0712;
+  font-size: 1.5em;
+  content: "";
+}
+.table-container table.task-table td {
+  border: 1px solid #c9c9c9;
   width: 50px;
   height: 25px;
-  padding: 0;
+  padding: 0px !important;
+  background: white;
 }
-table.task-table td.first-cell {
-  text-align: center;
-  border-right: 1px solid;
-  border-left: none;
-  border-top: none;
-  border-bottom: none;
-  width: 30px;
+.table-container table.task-table td.first-cell {
+  text-align: center !important;
+  border-right-color: black;
+  border-right-width: 2px;
+  border-left-color: #c9c9c9;
+  width: 40px;
 }
-table.task-table td.first-row {
+.table-container table.task-table td.first-cell + td {
+  border-left-color: black;
+}
+.table-container table.task-table td.first-row {
   border-right: none;
   border-left: none;
   border-top: 1px solid;
   border-bottom: none;
 }
-table.task-table.table-type-1 td.active {
+.table-container table.task-table td.first-row.first-cell {
+  border-top: none;
+}
+.table-container table.task-table tr:last-child td.inactive {
+  border-bottom-color: black;
+  border-bottom-width: 2px;
+}
+.table-container table.task-table tr:last-child td.first-cell {
+  border-bottom-width: 2px;
+}
+.table-container table.task-table.table-type-1 td.active {
   background: #e8f5fb;
 }
-table.task-table.table-type-1 td.active:hover {
+.table-container table.task-table.table-type-1 td.active:hover {
   cursor: pointer;
   background: #e3edf1;
 }
-table.task-table.table-type-1 td.selected {
+.table-container table.task-table.table-type-1 td.selected {
   background: #ffc000;
 }
-table.task-table.table-type-1 td.selected:hover {
+.table-container table.task-table.table-type-1 td.selected:hover {
   background: #ffc000;
 }
-table.task-table.table-type-2 td.active {
+.table-container table.task-table.table-type-2 td.active {
   background: #e8f5fb;
 }
-table.task-table.table-type-2 td.active .group-input {
+.table-container table.task-table.table-type-2 td.active .group-input {
   width: 100%;
   background: #ffffff00;
   text-align: center;
@@ -59,17 +129,20 @@ table.task-table.table-type-2 td.active .group-input {
   display: inline-block;
   position: relative;
   opacity: 0.5;
+  font-size: 1em;
+  line-height: 1em;
+  padding: 0px;
 }
-table.task-table.table-type-2 td.active .group-input:focus {
+.table-container table.task-table.table-type-2 td.active .group-input:focus {
   opacity: 1;
 }
-table.task-table.table-type-2 td.group-1 {
+.table-container table.task-table.table-type-2 td.group-1 {
   background: #ffc000;
 }
-table.task-table.table-type-2 td.group-2 {
+.table-container table.task-table.table-type-2 td.group-2 {
   background: #bdd7ee;
 }
-table.task-table.table-type-2 td.group-3 {
+.table-container table.task-table.table-type-2 td.group-3 {
   background: #ffe699;
 }
 
