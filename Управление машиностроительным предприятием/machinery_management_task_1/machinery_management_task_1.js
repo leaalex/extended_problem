@@ -14,15 +14,15 @@ function MachineryManagement1(settings) {
 
     let groups = {
         group_1: {
-            title: "Группа 1",
+            title: 'Группа 1 (цифра "1" для ввода)',
             id: "group_1",
         },
         group_2: {
-            title: "Группа 2",
+            title: 'Группа 2 (цифра "2" для ввода)',
             id: "group_2",
         },
         group_3: {
-            title: "Группа 3",
+            title: 'Группа 3 (цифра "3" для ввода)',
             id: "group_3",
         }
     };
