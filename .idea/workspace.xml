@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -278,7 +275,7 @@
       <workItem from="1568362253492" duration="15985000" />
       <workItem from="1568621935968" duration="22095000" />
       <workItem from="1568722987999" duration="919000" />
-      <workItem from="1568724956749" duration="97685000" />
+      <workItem from="1568724956749" duration="99053000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

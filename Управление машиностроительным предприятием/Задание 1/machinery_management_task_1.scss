@@ -12,7 +12,7 @@ $correct_color: #009b00;
 $border_color: #c9c9c9;
 
 @function darker($color, $tone) {
-  $adjust: -16*$tone;
+  $adjust: -16 * $tone;
   @return adjust-color($color, $red: $adjust, $green: $adjust, $blue: $adjust);
 }
 
