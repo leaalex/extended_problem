@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/machinery_management_task_1/machinery_management_task_1.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.scss" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="SCSS File" />
         <option value="JavaScript File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -49,7 +57,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/historical_maps" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Симулятор ЛБ/safety_simulator" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="web.server" />
@@ -275,7 +283,7 @@
       <workItem from="1568362253492" duration="15985000" />
       <workItem from="1568621935968" duration="22095000" />
       <workItem from="1568722987999" duration="919000" />
-      <workItem from="1568724956749" duration="99053000" />
+      <workItem from="1568724956749" duration="113176000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

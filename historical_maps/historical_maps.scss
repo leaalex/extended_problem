@@ -6,7 +6,10 @@ $tile-bg: blue;
 }
 
 .city {
-
+  fill: aliceblue;
+  stroke: black;
+  stroke-width: 1;
+  //r: 5;
   &.can-start {
     cursor: pointer;
     fill: green;
@@ -21,7 +24,7 @@ $tile-bg: blue;
 
   &.can-end {
     animation: 2s ease 0s pulse infinite;
-    stroke-width: 2px;
+    stroke-width: 1px;
     cursor: pointer;
     stroke: green;
   }
@@ -31,7 +34,7 @@ $tile-bg: blue;
 
 @keyframes pulse {
   50% {
-    stroke-width: 6px;
+    stroke-width: 3px;
   }
 }
 
@@ -55,5 +58,10 @@ $tile-bg: blue;
 
 
 .historical-map-container {
-  width: 800px;
+  width: 820px;
+  margin: 0 auto;
+}
+
+#Города{
+  //display: none;
 }

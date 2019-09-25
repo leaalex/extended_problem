@@ -105,7 +105,6 @@ function MachineryManagement1(settings) {
             }
 
         },
-
         init_group_description: function () {
             let group_description_block = utils.create("div", {className: "group-description-block"});
             Object.keys(groups).forEach(function (group) {
@@ -121,7 +120,6 @@ function MachineryManagement1(settings) {
             });
             element.appendChild(group_description_block);
         },
-
         init_table_1: function () {
             let task_block = utils.create_text_task(["Здесь задание"], "Таблица 1");
             let table_1 = utils.create_table_type_1(count * 2, tables_len[0], "table_1", task_block);
@@ -413,7 +411,7 @@ function MachineryManagement1(settings) {
             });
 
             return task_block;
-        }
+        },
     };
 
 

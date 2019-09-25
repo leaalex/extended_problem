@@ -96,6 +96,7 @@ function HistoricalMaps(settings) {
 
             for (let i = 0; i < cities.length; i++) {
                 cities[i].classList.add("city");
+                // cities[i].setAttribute("r", 6);
                 cities[i].onclick = function (event) {
 
                     if (cities[i].classList.contains("can-start")) {
@@ -234,11 +235,13 @@ function HistoricalMaps(settings) {
             if (arrow_id) {
                 arrowId = arrow_id.replace("arrow_", "");
             }
-            let arrowColor = "#00d274";
+            // let arrowColor = "#00d274";
+            let arrowColor = "black";
 
             let arrowGroup = this.createElementSVG('g', "arrow_" + arrowId, "arrowGroup");
             let arrowLine = this.createElementSVG('line', "arrowLine" + arrowId, "arrow-line", {
                 stroke: arrowColor,
+                "stroke-width": "3",
                 "stroke-width": "4",
                 "marker-end": "url(#" + 'arrowMarker_' + arrowId + ")",
                 x1: x1,
@@ -256,12 +259,16 @@ function HistoricalMaps(settings) {
             let arrowMarker = this.createElementSVG('marker', 'arrowMarker_' + arrowId, null, {
                 "markerWidth": "10",
                 "markerHeight": "10",
-                "refX": "3.4",
+                "refX": "2.4",
+                // "refX": "0.2",
                 "refY": "3",
                 "orient": "auto",
                 "markerUnits": "strokeWidth"
             });
             arrowMarker.innerHTML = '<path d="M-3,0 L-3,6 L6,3 z" fill="' + arrowColor + '" />';
+            arrowMarker.innerHTML = '<path d="M-3,0 L-3,6 L6,3 z" fill="' + arrowColor + '" />';
+            arrowMarker.innerHTML = '<path d="M-3,0 L-3,6 L4,3.1 z" fill="' + arrowColor + '" />';
+            // arrowMarker.innerHTML = '<path d="M-5,0 L-5,6 L3,3 z" fill="' + arrowColor + '" />';
             arrowGroup.append(arrowMarker);
 
             return arrowGroup;
@@ -312,7 +319,7 @@ function HistoricalMaps(settings) {
             let endX = end_city.getAttribute('cx');
             let endY = end_city.getAttribute('cy');
             let r = Math.floor(Math.sqrt((endY - startY) * (endY - startY) + (endX - startX) * (endX - startX)));
-            let k = r === 0 ? 0 : (r - point_radius - 10) / r;
+            let k = r === 0 ? 0 : (r - point_radius - 6) / r;
             let currentX = Math.floor(startX) + (endX - startX) * k;
             let currentY = Math.floor(startY) + (endY - startY) * k;
 
