@@ -6,11 +6,12 @@ function HistoricalMaps(settings) {
     let startPoint;
     let max_arrows = settings.max_arrows || 5;
     let lines = {};
-    let cities = Array.from(svg.querySelector(settings.cities_selector).children);
+    let cities = Array.from(svg.querySelector(settings.cities_selector).querySelectorAll('circle'));
+    // Array.from(svg.querySelector(settings.cities_selector).querySelectorAll('circle'));
     let used = [];
     let main_city_id = 'city_0';
     let city_radius = 4;
-
+    let correctness = undefined;
     function Answer(elementField) {
         this.elementField = elementField;
         this.fieldValue = "";
@@ -45,7 +46,9 @@ function HistoricalMaps(settings) {
     if(settings.input) {
         if (settings.input.querySelector("input[type='text']")) {
             answer = new Answer(settings.input.querySelector("input[type='text']"));
-            // settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+            if(settings.input.parentNode.parentNode.querySelector(".message")){
+                settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+            }
 
             settings.input.classList.add("hidden");
             answer.elementField.classList.add("hidden");
@@ -53,7 +56,8 @@ function HistoricalMaps(settings) {
             if (answer.get()) {
                 lines = answer.getJSON()["answer"];
                 if(settings.input.parentNode.parentNode.querySelector("span.message")){
-                    let correct = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML)
+                    correctness = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML);
+                    // console.log(correctness);
                 }
 
             }
@@ -82,6 +86,28 @@ function HistoricalMaps(settings) {
             else{
                 utils.set_can_start('');
             }
+
+            if (correctness){
+                Object.keys(correctness).forEach(function (correct_item) {
+                    if(svg.querySelector(`.arrowGroup#${correct_item} .arrow-line.connecting`)){
+                        svg.querySelector(`.arrowGroup#${correct_item} .arrow-line.connecting`).classList.add("correct");
+                    }
+                    svg.querySelector(`.city#${correctness[correct_item].to}`).parentNode.querySelector('text').textContent= '';
+                    let city_name_arr = correctness[correct_item].to_title.split("-");
+                    city_name_arr.forEach(function(name, idx, all_arr){
+                        let title_block = utils.createElementSVG("tspan", null, null, {x:"2", y: idx.toString() + "em"});
+                        title_block.innerHTML = name + (all_arr.length-1 === idx ? "":"-");
+                        svg.querySelector(`.city#${correctness[correct_item].to}`).parentNode.querySelector('text').appendChild(title_block);
+                    });
+                    let year_pad = (city_name_arr[0].length * 6 + 4 - 36)/2;
+                    year_pad = year_pad > 0 ? year_pad : 0;
+                    let year_block = utils.createElementSVG("tspan", null, null, {x:year_pad.toString(), y:city_name_arr.length.toString() + "em"});
+                    year_block.innerHTML = "(" + correctness[correct_item].to_year.toString() + ")";
+                    svg.querySelector(`.city#${correctness[correct_item].to}`).parentNode.querySelector('text').appendChild(year_block);
+                    svg.querySelector(`.city#${correctness[correct_item].to}`).parentNode.querySelector('g').classList.remove("hidden");
+                });
+            }
+
         },
 
         test_filling: function () {
@@ -91,12 +117,22 @@ function HistoricalMaps(settings) {
             cities.push(main_city);
 
             utils.set_can_start(main_city.id);
-            let cities_array = Array.from(svg.querySelector(settings.cities_selector).children);
+            let cities_array = Array.from(svg.querySelector(settings.cities_selector).querySelectorAll('circle'));
+
             cities_array.sort(utils.cx_sorter).forEach((x, index) => x.id = `city_${index + 1}`);
 
             for (let i = 0; i < cities.length; i++) {
                 cities[i].classList.add("city");
-                // cities[i].setAttribute("r", 6);
+
+                if(cities[i].parentNode.querySelector("text")){
+                    let city_name = cities[i].parentNode.querySelector("text").textContent;
+                    let hidden_city_name = '?'.repeat(city_name.split("(")[0].length);
+                    cities[i].parentNode.querySelector("text").textContent = hidden_city_name;
+                    // console.log(cities[i].parentNode)
+                    if(cities[i].parentNode.querySelector("g")) cities[i].parentNode.querySelector("g").classList.add("hidden");
+                }
+
+                cities[i].setAttribute("r", 5);
                 cities[i].onclick = function (event) {
 
                     if (cities[i].classList.contains("can-start")) {
@@ -146,21 +182,16 @@ function HistoricalMaps(settings) {
                     var startY = startPoint.getAttribute('cy');
                     var r = Math.floor(Math.sqrt((mousePosition.y - startY) * (mousePosition.y - startY) + (mousePosition.x - startX) * (mousePosition.x - startX)));
                     r = r > 30 ? r : 50;
-                    // console.log(r);
                     var k = (r - 8) / r;
-                    // console.log("k: ", k);
                     var currentX = Math.floor(startX) + (mousePosition.x - startX) * k;
-                    // console.log(mousePosition.x, currentX);
                     var currentY = Math.floor(startY) + (mousePosition.y - startY) * k;
-
                     arrow.set_coordinate({'x1': startX, 'y1': startY, 'x2': currentX, 'y2': currentY});
-
                     if (event.target.classList.contains("city") && !used.includes(event.target.id)) {
                         let arrow_coords = utils.calculate_arrow_coordinates(startPoint, event.target, city_radius);
                         arrow.set_coordinate({'x2': arrow_coords.x2, 'y2': arrow_coords.y2});
                     }
                 }
-                else if(utils.contains_classes(event.target, ["arrow-line", "connecting"])){
+                else if(utils.contains_classes(event.target, ["arrow-line", "connecting"]) && !event.target.classList.contains("correct")){
                     let lines_keys = Object.keys(lines);
                     let for_remove = lines_keys.slice(lines_keys.indexOf(event.target.parentNode.id), lines_keys.length);
                     for_remove.forEach(item=>svg.querySelector(`#${item} .arrow-line`).classList.add("for-remove"));
@@ -179,7 +210,7 @@ function HistoricalMaps(settings) {
 
             svg.onclick = function (event) {
 
-                if (!startPoint && utils.contains_classes(event.target, ["arrow-line", "connecting"])) {
+                if (!startPoint && utils.contains_classes(event.target, ["arrow-line", "connecting"]) && !event.target.classList.contains("correct")) {
                     let lines_keys = Object.keys(lines);
                     let for_remove = lines_keys.slice(lines_keys.indexOf(event.target.parentNode.id), lines_keys.length);
                     for_remove.forEach(item=>{delete lines[item];svg.querySelector(`#${item}`).remove();});
@@ -236,13 +267,13 @@ function HistoricalMaps(settings) {
                 arrowId = arrow_id.replace("arrow_", "");
             }
             // let arrowColor = "#00d274";
-            let arrowColor = "black";
+            let arrowColor = "#20323c";
 
             let arrowGroup = this.createElementSVG('g', "arrow_" + arrowId, "arrowGroup");
             let arrowLine = this.createElementSVG('line', "arrowLine" + arrowId, "arrow-line", {
                 stroke: arrowColor,
-                "stroke-width": "3",
-                "stroke-width": "4",
+                "stroke-width": "5",
+                // "stroke-width": "4",
                 "marker-end": "url(#" + 'arrowMarker_' + arrowId + ")",
                 x1: x1,
                 y1: y1,

@@ -1,8 +1,22 @@
 $remove_red: #ff4b3e;
+$correct_arrow: green;
 $tile-bg: blue;
 
 .hidden {
   display: none;
+}
+
+#arrows {
+  display: none;
+}
+
+#cities g g {
+
+  polygon, rect {
+    fill: white;
+    fill-opacity: 0.35;
+    user-select: none;
+  }
 }
 
 .city {
@@ -17,7 +31,7 @@ $tile-bg: blue;
     stroke-width: 5px;
 
     &:hover {
-      stroke: black;
+      stroke: green;
       stroke-width: 6px;
     }
   }
@@ -40,14 +54,25 @@ $tile-bg: blue;
 
 .arrow-line.connecting {
 
+  &.correct {
+    stroke: $correct_arrow;
+    cursor: default;
+
+    & + marker {
+      path {
+        fill: $correct_arrow;
+      }
+    }
+  }
+
   &.for-remove {
     stroke: $remove_red;
     cursor: pointer;
+
     & + marker {
       path {
         fill: $remove_red;
       }
-
     }
   }
 
@@ -58,10 +83,20 @@ $tile-bg: blue;
 
 
 .historical-map-container {
-  width: 820px;
+  max-width: 830px;
   margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  //padding-bottom: 100%;
+  vertical-align: middle;
+  overflow: hidden;
+
+  text {
+    user-select: none;
+  }
 }
 
-#Города{
+#Города {
   //display: none;
 }

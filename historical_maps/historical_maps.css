@@ -1,0 +1,70 @@
+.hidden {
+  display: none;
+}
+
+#arrows {
+  display: none;
+}
+
+#cities g g polygon, #cities g g rect {
+  fill: white;
+  fill-opacity: 0.35;
+  user-select: none;
+}
+
+.city {
+  fill: aliceblue;
+  stroke: black;
+  stroke-width: 1;
+}
+.city.can-start {
+  cursor: pointer;
+  fill: green;
+  stroke: green;
+  stroke-width: 5px;
+}
+.city.can-start:hover {
+  stroke: green;
+  stroke-width: 6px;
+}
+.city.can-end {
+  animation: 2s ease 0s pulse infinite;
+  stroke-width: 1px;
+  cursor: pointer;
+  stroke: green;
+}
+
+@keyframes pulse {
+  50% {
+    stroke-width: 3px;
+  }
+}
+.arrow-line.connecting.correct {
+  stroke: green;
+  cursor: default;
+}
+.arrow-line.connecting.correct + marker path {
+  fill: green;
+}
+.arrow-line.connecting.for-remove {
+  stroke: #ff4b3e;
+  cursor: pointer;
+}
+.arrow-line.connecting.for-remove + marker path {
+  fill: #ff4b3e;
+}
+
+.historical-map-container {
+  max-width: 830px;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.historical-map-container text {
+  user-select: none;
+}
+
+/*# sourceMappingURL=historical_maps.css.map */
