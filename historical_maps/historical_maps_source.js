@@ -6,7 +6,7 @@ function sourceMap() {
 };
 
 let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 468">
-  <title>Безымянный-2############</title>
+  <title></title>
   <g id="background">
     <line x1="640.02923" y1="130.85288" x2="701.98273" y2="183.79496" fill="none" stroke="#65aee5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.35"/>
     <path d="M554.42076,293.80935s4.90025-2.36578,10.8888-5.25666,14.94422-7.45378,19.90022-10.13784c4.956-2.68479,12.89817-7.33123,17.64736-10.32559s12.945-8.40133,18.21057-12.01522,14.82241-10.83006,21.23629-16.0355l2.58447-2.09726c6.41388-5.20544,16.56194-13.85746,22.55049-19.22708s14.0994-13.14165,18.02284-17.27188,9.24614-9.79029,11.82748-12.57844,4.69345-5.06892,4.69345-5.06892" fill="none" stroke="#65aee5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.35"/>
@@ -307,7 +307,7 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
     <polygon points="454.044 136.986 455.295 136.986 456.297 138.988 455.546 140.49 455.044 141.992 453.293 141.992 449.538 141.241 451.04 139.489 451.04 138.237 452.041 136.986 454.044 136.986" fill="none" stroke="#65aee5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.6"/>
     <polygon points="443.28 109.952 444.282 111.704 442.278 110.452 443.28 109.952" fill="none" stroke="#65aee5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.6"/>
     <text transform="translate(514.91309 386.16504)" font-size="7.51455" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Озеро<tspan x="0" y="9.01758">Байкал</tspan></text>
-    <text transform="translate(410.2808 418.34349) rotate(-1.0543)" font-size="6.01164" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Енисей</text>
+    <text transform="translate(419.37025 421.4472) rotate(-1.0543)" font-size="6.01164" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Енисей</text>
     <text transform="matrix(0.4823, 0.876, -0.876, 0.4823, 375.78172, 324.66364)" font-size="6.0116" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Енисей</text>
     <text transform="matrix(0.76552, 0.64341, -0.64341, 0.76552, 310.52441, 332.16395)" font-size="6.0115" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Обь</text>
     <text transform="matrix(0.94197, -0.33569, 0.33569, 0.94197, 424.41264, 346.54414)" font-size="6.01181" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Ангара</text>
@@ -326,54 +326,12 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
     <text transform="translate(233.20162 267.71318) rotate(-46.36952)" font-size="6.0116" fill="#4598d7" font-family="Helvetica-Oblique, Helvetica" font-style="oblique">Обь</text>
     <text transform="translate(15.29932 248.37695)" font-size="12.01522" font-family="Helvetica-Bold, Helvetica" font-weight="700">Москва</text>
   </g>
-  <g id="cities">
-    <g>
-      <circle cx="257.40165" cy="233.84704" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <polygon points="354 226 318 226 317.521 240 279 240 279 226 245 226 245 214 354 214 354 226" fill="none"/>
-        <text transform="translate(245.31982 223.40234)" font-size="11.26427" font-family="Helvetica">Обдорск (Салехард)<tspan x="38.1875" y="13.51709">(1595)</tspan></text>
-      </g>
-    </g>
+  <g id="cities_">
     <g>
       <circle cx="298.77596" cy="312.90498" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="306" y="304" width="85" height="11" fill="none"/>
         <text transform="translate(305.39893 312.42871)" font-size="11.26427" font-family="Helvetica">Нижневартовск</text>
-      </g>
-    </g>
-    <g>
-      <circle cx="276.47369" cy="309.55964" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="274" y="277" width="38" height="27" fill="none"/>
-        <text transform="translate(275.14844 286.76074)" font-size="11.26427" font-family="Helvetica">Сургут<tspan x="1.63623" y="13.51709">(1594)</tspan></text>
-      </g>
-    </g>
-    <g>
-      <circle cx="235.21449" cy="335.20725" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="241" y="321" width="50" height="25" fill="none"/>
-        <text transform="translate(241.3501 330.61035)" font-size="11.26427" font-family="Helvetica">Тобольск<tspan x="8.50586" y="13.51709">(1587)</tspan></text>
-      </g>
-    </g>
-    <g>
-      <circle cx="448.20115" cy="373.1211" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="414" y="343" width="38" height="25" fill="none"/>
-        <text transform="translate(414.26953 351.80859)" font-size="11.26427" font-family="Helvetica">Братск<tspan x="2.43164" y="13.51709">(1631)</tspan></text>
-      </g>
-    </g>
-    <g>
-      <circle cx="398.02105" cy="385.38735" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="391" y="392" width="64" height="27" fill="none"/>
-        <text transform="translate(391.86279 402.13867)" font-size="11.26427" font-family="Helvetica">Красноярск<tspan x="14.99902" y="13.51709">(1628)</tspan></text>
-      </g>
-    </g>
-    <g>
-      <circle cx="734.78529" cy="26.32084" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="740" y="11" width="49" height="26" fill="none"/>
-        <text transform="translate(740.7168 20.75488)" font-size="11.26427" font-family="Helvetica">Анадырь<tspan x="7.23047" y="13.51709">(1889)</tspan></text>
       </g>
     </g>
     <g>
@@ -384,31 +342,10 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
       </g>
     </g>
     <g>
-      <circle cx="589.82055" cy="244.88306" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="598" y="242" width="39" height="27" fill="none"/>
-        <text transform="translate(598.59082 252.05566)" font-size="11.26427" font-family="Helvetica">Якутск<tspan x="2.3623" y="13.51709">(1632)</tspan></text>
-      </g>
-    </g>
-    <g>
       <circle cx="547.44624" cy="248.2284" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="494" y="235" width="50" height="9" fill="none"/>
         <text transform="translate(495.09863 243.38379)" font-size="11.26427" font-family="Helvetica">Вилюйск</text>
-      </g>
-    </g>
-    <g>
-      <circle cx="735.9004" cy="425.53143" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="742" y="421" width="70" height="26" fill="none"/>
-        <text transform="translate(741.87793 429.84668)" font-size="11.26427" font-family="Helvetica">Владивосток<tspan x="18.60938" y="13.51709">(1860)</tspan></text>
-      </g>
-    </g>
-    <g>
-      <circle cx="719.1737" cy="360.85485" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="725" y="347" width="58" height="26" fill="none"/>
-        <text transform="translate(725.78516 356.83203)" font-size="11.26427" font-family="Helvetica">Хабаровск<tspan x="12.125" y="13.51709">(1858)</tspan></text>
       </g>
     </g>
     <g>
@@ -489,20 +426,6 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
       </g>
     </g>
     <g>
-      <circle cx="342.26538" cy="376.46644" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <polygon points="379 376 347 376 344 363.5 344 351 379 351 379 376" fill="none"/>
-        <text transform="translate(345.15771 359.68359)" font-size="11.26427" font-family="Helvetica">Томск<tspan x="0" y="13.51709">(1604)</tspan></text>
-      </g>
-    </g>
-    <g>
-      <circle cx="549.67647" cy="403.22916" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <rect x="514" y="397" width="30" height="25" fill="none"/>
-        <text transform="translate(516.01953 405.79688)" font-size="11.26427" font-family="Helvetica">Чита<tspan x="-3.37695" y="13.51709">(1653)</tspan></text>
-      </g>
-    </g>
-    <g>
       <circle cx="657.84247" cy="376.46644" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="631" y="360" width="78" height="11" fill="none"/>
@@ -524,17 +447,96 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
       </g>
     </g>
     <g>
-      <circle cx="803.58551" cy="192.57267" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
-      <g>
-        <polygon points="820 176 795.54 176.642 795 192 759 192 759 177 734 176 734 151 820 151 820 176" fill="none"/>
-        <text transform="translate(733.8418 161.41797)" font-size="11.26427" font-family="Helvetica">Петропавловск-<tspan x="10.7666" y="13.51709">Камчатский</tspan><tspan x="26.5791" y="27.03418">(1740)</tspan></text>
-      </g>
-    </g>
-    <g>
       <circle cx="319.96311" cy="392.07803" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="291" y="398" width="72" height="11" fill="none"/>
         <text transform="translate(291.72607 406.41113)" font-size="11.26427" font-family="Helvetica">Новосибирск</text>
+      </g>
+    </g>
+  </g>
+  <g id="cities">
+    <g>
+      <circle cx="257.40165" cy="233.84704" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <polygon points="354 226 318 226 317.521 240 279 240 279 226 245 226 245 214 354 214 354 226" fill="none"/>
+        <text transform="translate(245.31982 223.40234)" font-size="11.26427" font-family="Helvetica">Обдорск (Салехард)<tspan x="38.1875" y="13.51709">(1595)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="276.47369" cy="309.55964" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="274" y="277" width="38" height="27" fill="none"/>
+        <text transform="translate(275.14844 286.76074)" font-size="11.26427" font-family="Helvetica">Сургут<tspan x="1.63623" y="13.51709">(1594)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="235.21449" cy="335.20725" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="241" y="321" width="50" height="25" fill="none"/>
+        <text transform="translate(241.3501 330.61035)" font-size="11.26427" font-family="Helvetica">Тобольск<tspan x="8.50586" y="13.51709">(1587)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="448.20115" cy="373.1211" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="414" y="343" width="38" height="25" fill="none"/>
+        <text transform="translate(414.26953 351.80859)" font-size="11.26427" font-family="Helvetica">Братск<tspan x="2.43164" y="13.51709">(1631)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="398.02105" cy="385.38735" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="391" y="392" width="64" height="27" fill="none"/>
+        <text transform="translate(391.86279 402.13867)" font-size="11.26427" font-family="Helvetica">Красноярск<tspan x="14.99902" y="13.51709">(1628)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="734.78529" cy="26.32084" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="740" y="11" width="49" height="26" fill="none"/>
+        <text transform="translate(740.7168 20.75488)" font-size="11.26427" font-family="Helvetica">Анадырь<tspan x="7.23047" y="13.51709">(1889)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="589.82055" cy="244.88306" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="598" y="242" width="39" height="27" fill="none"/>
+        <text transform="translate(598.59082 252.05566)" font-size="11.26427" font-family="Helvetica">Якутск<tspan x="2.3623" y="13.51709">(1632)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="735.9004" cy="425.53143" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="742" y="421" width="70" height="26" fill="none"/>
+        <text transform="translate(741.87793 429.84668)" font-size="11.26427" font-family="Helvetica">Владивосток<tspan x="18.60938" y="13.51709">(1860)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="719.1737" cy="360.85485" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="725" y="347" width="58" height="26" fill="none"/>
+        <text transform="translate(725.78516 356.83203)" font-size="11.26427" font-family="Helvetica">Хабаровск<tspan x="12.125" y="13.51709">(1858)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="342.26538" cy="376.46644" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <polygon points="379 376 347 376 344 363.5 344 351 379 351 379 376" fill="none"/>
+        <text transform="translate(345.15771 359.68359)" font-size="11.26427" font-family="Helvetica">Томск<tspan x="0" y="13.51709">(1604)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="549.67647" cy="403.22916" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <rect x="514" y="397" width="30" height="25" fill="none"/>
+        <text transform="translate(516.01953 405.79688)" font-size="11.26427" font-family="Helvetica">Чита<tspan x="-3.37695" y="13.51709">(1653)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <circle cx="803.58551" cy="192.57267" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
+      <g>
+        <polygon points="820 176 795.54 176.642 795 192 759 192 759 177 734 176 734 151 820 151 820 176" fill="none"/>
+        <text transform="translate(733.8418 161.41797)" font-size="11.26427" font-family="Helvetica">Петропавловск-<tspan x="10.7666" y="13.51709">Камчатский</tspan><tspan x="26.5791" y="27.03418">(1740)</tspan></text>
       </g>
     </g>
     <g>
@@ -552,9 +554,9 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
       </g>
     </g>
   </g>
-
   <g id="main_city">
     <circle cx="38.39698" cy="256.59175" r="6.13312" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
   </g>
 </svg>
+
 `;

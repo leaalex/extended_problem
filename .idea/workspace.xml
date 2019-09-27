@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
+      <change afterPath="$PROJECT_DIR$/historical_path/historical_path_source.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.scss" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.css" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.scss" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path_source.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path_source.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,25 +61,25 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Симулятор ЛБ/safety_simulator" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/historical_path" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/historical_maps" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
-      <recent name="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов" />
-      <recent name="$PROJECT_DIR$/MCS/Кроссворд" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/electric" />
       <recent name="$PROJECT_DIR$/engines" />
       <recent name="$PROJECT_DIR$/Основы дизайна" />
       <recent name="$PROJECT_DIR$/Философия" />
       <recent name="$PROJECT_DIR$/Адаптационный модуль" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/historical_path" />
+      <recent name="$PROJECT_DIR$/historical_maps" />
+      <recent name="$PROJECT_DIR$/Личная безопасность/Перетаскивалка знаков" />
+      <recent name="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов" />
+      <recent name="$PROJECT_DIR$/MCS/Кроссворд" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -280,7 +288,7 @@
       <workItem from="1568621935968" duration="22095000" />
       <workItem from="1568722987999" duration="919000" />
       <workItem from="1568724956749" duration="122181000" />
-      <workItem from="1569494353221" duration="10563000" />
+      <workItem from="1569494353221" duration="31466000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

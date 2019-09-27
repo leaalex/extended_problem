@@ -1,40 +1,74 @@
+.historical-path-container {
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.historical-path-container .hidden {
+  visibility: visible !important;
+  display: none;
+}
+
 .city {
-  fill: #ffffff00;
-  r: 2;
+  fill: white;
+  r: 1.5;
   stroke-width: 0.5px;
 }
+.city.kiev {
+  stroke-width: 1px !important;
+  r: 3 !important;
+}
+.city.main-city {
+  r: 4;
+}
+.city.end-city {
+  r: 4;
+}
 .city.can-start {
-  fill: green;
-  stroke: green;
-  stroke-width: 5px;
+  fill: #6d8dad;
+  stroke: #2f6cbd;
+  stroke-width: 1px;
+  r: 4;
 }
 .city.can-end {
   animation: 2s ease 0s pulse infinite;
-  stroke-width: 2px;
+  r: 3;
   cursor: pointer;
   stroke: green;
 }
 
 @keyframes pulse {
   50% {
-    stroke-width: 6px;
+    stroke-width: 2px;
   }
 }
+.path {
+  stroke: #3d6f9f;
+  stroke-width: 3px;
+}
+.path path {
+  stroke: #3d6f9f;
+  stroke-width: 3px;
+}
+.path.correct {
+  stroke: green;
+}
+.path.correct path {
+  stroke: green;
+}
 .path.for-remove {
+  stroke: red;
+  cursor: pointer;
+}
+.path.for-remove path {
   cursor: pointer;
   stroke: red;
 }
 .path.tmp-visible {
-  display: block;
+  display: block !important;
   opacity: 0.5;
-}
-
-.hidden {
-  display: none;
-}
-
-.historical-path-container {
-  width: 800px;
 }
 
 /*# sourceMappingURL=historical_path.css.map */

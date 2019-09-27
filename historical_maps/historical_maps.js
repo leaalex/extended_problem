@@ -1,10 +1,11 @@
 function HistoricalMaps(settings) {
 
     svg = settings.svg;
+    svg.querySelector("title").textContent = "";
     settings.element.appendChild(svg);
 
     let startPoint;
-    let max_arrows = settings.max_arrows || 5;
+    let max_arrows = settings.max_arrows || 15;
     let lines = {};
     let cities = Array.from(svg.querySelector(settings.cities_selector).querySelectorAll('circle'));
     // Array.from(svg.querySelector(settings.cities_selector).querySelectorAll('circle'));
@@ -128,7 +129,6 @@ function HistoricalMaps(settings) {
                     let city_name = cities[i].parentNode.querySelector("text").textContent;
                     let hidden_city_name = '?'.repeat(city_name.split("(")[0].length);
                     cities[i].parentNode.querySelector("text").textContent = hidden_city_name;
-                    // console.log(cities[i].parentNode)
                     if(cities[i].parentNode.querySelector("g")) cities[i].parentNode.querySelector("g").classList.add("hidden");
                 }
 
@@ -267,7 +267,7 @@ function HistoricalMaps(settings) {
                 arrowId = arrow_id.replace("arrow_", "");
             }
             // let arrowColor = "#00d274";
-            let arrowColor = "#20323c";
+            let arrowColor = "#325271";
 
             let arrowGroup = this.createElementSVG('g', "arrow_" + arrowId, "arrowGroup");
             let arrowLine = this.createElementSVG('line', "arrowLine" + arrowId, "arrow-line", {
@@ -326,7 +326,6 @@ function HistoricalMaps(settings) {
                 used.push(lines[item].from);
                 used.push(lines[item].to)
             });
-            // console.log(used);
             for (let city in cities) {
                 cities[city].classList.remove("can-end");
                 if (!used.includes(cities[city].id)) {

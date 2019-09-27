@@ -12,9 +12,14 @@
   user-select: none;
 }
 
+#cities_ circle {
+  background: #7fc0de;
+  r: 4;
+}
+
 .city {
   fill: aliceblue;
-  stroke: black;
+  stroke: green;
   stroke-width: 1;
 }
 .city.can-start {
@@ -28,8 +33,8 @@
   stroke-width: 6px;
 }
 .city.can-end {
-  animation: 2s ease 0s pulse infinite;
-  stroke-width: 1px;
+  animation: 1s ease 0s pulse infinite;
+  stroke-width: 1.5px;
   cursor: pointer;
   stroke: green;
 }
@@ -60,11 +65,16 @@
   display: inline-block;
   position: relative;
   width: 100%;
+  border: 1px solid #c7c7c9;
   vertical-align: middle;
   overflow: hidden;
 }
 .historical-map-container text {
   user-select: none;
+}
+
+.historical-map-correct-answer {
+  border: 1px solid green;
 }
 
 /*# sourceMappingURL=historical_maps.css.map */

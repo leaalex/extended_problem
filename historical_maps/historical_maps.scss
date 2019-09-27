@@ -19,9 +19,14 @@ $tile-bg: blue;
   }
 }
 
+#cities_ circle {
+  background: #7fc0de;
+  r: 4;
+}
+
 .city {
   fill: aliceblue;
-  stroke: black;
+  stroke: green;
   stroke-width: 1;
   //r: 5;
   &.can-start {
@@ -37,8 +42,8 @@ $tile-bg: blue;
   }
 
   &.can-end {
-    animation: 2s ease 0s pulse infinite;
-    stroke-width: 1px;
+    animation: 1s ease 0s pulse infinite;
+    stroke-width: 1.5px;
     cursor: pointer;
     stroke: green;
   }
@@ -89,6 +94,7 @@ $tile-bg: blue;
   position: relative;
   width: 100%;
   //padding-bottom: 100%;
+  border: 1px solid #c7c7c9;
   vertical-align: middle;
   overflow: hidden;
 
@@ -96,7 +102,7 @@ $tile-bg: blue;
     user-select: none;
   }
 }
+.historical-map-correct-answer{
+  border: 1px solid $correct_arrow;
 
-#Города {
-  //display: none;
 }

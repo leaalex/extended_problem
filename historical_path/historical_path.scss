@@ -1,21 +1,52 @@
 
+.historical-path-container {
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  vertical-align: middle;
+  overflow: hidden;
 
+  .hidden {
+    visibility: visible !important;
+    display: none;
+  }
 
-.city{
-  fill: #ffffff00;
-  r: 2;
+}
+
+.historical-map-container text {
+  //user-select: none;
+}
+
+.city {
+
+  fill: white;
+  r: 1.5;
   stroke-width: 0.5px;
 
+  &.kiev {
+    stroke-width: 1px !important;
+    r: 3 !important;
+  }
+
+  &.main-city {
+    r: 4;
+  }
+  &.end-city {
+    r: 4;
+  }
+
   &.can-start {
-    //cursor: pointer;
-    fill: green;
-    stroke: green;
-    stroke-width: 5px;
+    fill: #6d8dad;
+    stroke: #2f6cbd;
+    stroke-width: 1px;
+    r: 4;
   }
 
   &.can-end {
     animation: 2s ease 0s pulse infinite;
-    stroke-width: 2px;
+    //stroke-width: 2px;
+    r: 3;
     cursor: pointer;
     stroke: green;
   }
@@ -23,30 +54,46 @@
 
 @keyframes pulse {
   50% {
-    stroke-width: 6px;
+    stroke-width: 2px;
   }
 }
 
-.path{
-  &.for-remove{
-    cursor: pointer;
+.path {
+
+  stroke: #3d6f9f;
+  stroke-width: 3px;
+
+  path {
+    stroke: #3d6f9f;
+    stroke-width: 3px;
+  }
+
+  &.correct{
+    stroke: green;
+    path{
+      stroke: green;
+    }
+  }
+
+  &.for-remove {
     stroke: red;
+    cursor: pointer;
+
+    path {
+      cursor: pointer;
+      stroke: red;
+    }
   }
-  &.tmp-visible{
-    display: block;
+
+  &.tmp-visible {
+    display: block !important;
     opacity: 0.5;
+    path{
+    }
   }
 }
 
-.hidden{
-  display: none;
-}
-
-.historical-path-container{
-  width: 800px;
-}
-
-#Заливка, #Реки, #Острова, #Границы{
+#Заливка, #Реки, #Острова, #Границы {
   //display: none;
 }
 

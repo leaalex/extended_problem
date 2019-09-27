@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
+<problem>
 <script type="loncapa/python">
 import json
 
-cities = ["city_0", "city_1", "city_2", "city_3", "city_4", "city_5", "city_6", "city_7", "city_8", "city_9",]
+cities = ["city_0","city_1","city_4","city_20","city_31","city_71"]
 
 def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
-    max_grade = len(cities)
-    student_correct = []
+    student_correct = [cities[0]]
     grade = 0
+    del cities[0]
+    del student_answer[0]
+    max_grade = len(cities)
+
     for index, s_a in enumerate(student_answer):
         if s_a == cities[index]:
             grade += 1
@@ -32,17 +28,18 @@ def check_answer(exp, ans):
     else:
         return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': result_grade}]}
 
+
 </script>
 
+<link rel="stylesheet" href="/static/historical_path.css"></link>
+<script type="text/javascript" src="/static/historical_path_source.js"></script>
+<script type="text/javascript" src="/static/historical_path.js"></script>
 
-<link rel="stylesheet" href="./historical_path.css">
-<script type="text/javascript" src="./historical_path_source.js"></script>
-<script type="text/javascript" src="./historical_path.js"></script>
+<!--<link rel="stylesheet" href="./historical_path.css"></link>-->
+<!--<script type="text/javascript" src="./historical_path_source.js"></script>-->
+<!--<script type="text/javascript" src="./historical_path.js"></script>-->
 
-<div class="historical-path-container"></div>
-
-<div id="test_input"><input type="text" value='{"answer":["city_0","city_1", "city_4"]}'/>
-</div>
+    <div class="historical-path-container"></div>
 
 <div id="historical_path_input" style="/*display: none!important;*/">
     <customresponse cfn="check_answer">
@@ -58,15 +55,12 @@ def check_answer(exp, ans):
     new HistoricalPath({
         svg: src_map,
         element: document.querySelector(".historical-path-container"),
-        input: document.querySelector("#test_input"),
-        main_city_selector: "#putincity",
-        cities_selector: "#Города",
-        paths_selector: "#Из_воряг_в_греки"
+        input: document.querySelector("#historical_path_input"),
+        main_city_selector: "#main_city",
+        cities_selector: "#cities",
+        paths_selector: "#from_varangians_to_greeks"
 
     });
 
 </script>
-
-</body>
-
-</html>
+</problem>
