@@ -1,218 +1,299 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <link rel="stylesheet" href="./gridstack/gridstack.css"></link>
-    <link rel="stylesheet" href="./gridstack/gridstack-extra.css"></link>
-<!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+<meta charset="utf-8">
+<title>VueDraggableResizable demo</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./VueDraggableResizable.umd.js"></script>
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="./VueDraggableResizable.css">
+<link rel="stylesheet" href="./machinery_management_task_2.css">
 
-    <script src="./gridstack/gridstack.js"></script>
-    <script src="./gridstack/gridstack.jQueryUI.js"></script>
+<div id='slider_view'>
+    <div v-bind:style="areaStyle">
+        <template v-for="item in items">
+            <vue-draggable-resizable :w="pixel_step*item.width" :x="pixel_step*item.x" :y="pixel_step*item.y"
+                                     :h="pixel_step*item.height" @dragging="onDrag" @resizing="onResize"
+                                     @activated="onActivated(item.id)" @deactivated="onDeactivated"
+                                     :min-Height="pixel_step" :min-Width="pixel_step" :grid=[pixel_step,pixel_step]
+                                     :parent="true"
+                                     :z="item.z_index"
+                                     v-bind:class="[item.type, 'machine-element']" v-bind:id="item.id">
+                <div class="title-wrapper">
+                    <div class="title-size">{{item.width}}x{{item.height}}</div>
 
-    <link rel="stylesheet" type="text/css" href="./machinery_management_task_2.css" ></link>
-    <script type="text/javascript" src="./machinery_management_task_2.js"></script>
-
-    <div class="task-description">
+                    <div class="title" v-if="item.width > 1">
+                        {{item.title}}
+                    </div>
+                    <div class="title" v-else>
+                        {{getLastWord(item.title)}}
+                    </div>
+<!--                    <div>{{item.title}}</div>-->
+                    <!--                    <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>-->
+                    <!--                        X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>-->
+                </div>
+            </vue-draggable-resizable>
+        </template>
     </div>
+</div>
+
+<div id='slider_table' class="x-axis-labels" style="position: relative;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 40px 40px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 40px 40px;
+    height: 40px;
+    width: 760px;">
+    <template v-for="(item,index) in values">
+        <vue-draggable-resizable class="axis-label" :resizable="false" :draggable="false" :w="pixel_step"
+                                 :h="pixel_step" :x="index*pixel_step" :y="0" :grid=[pixel_step,pixel_step]
+                                 :parent="true">
+            <div class="label">{{item}}</div>
+        </vue-draggable-resizable>
+    </template>
+</div>
 
 
-    <div id="machinery_management_task_2_container"></div>
+<script>
 
+    let z_indexes = {
+        machine: 1,
+        aggregate:10,
+        node: 20,
+        detail: 30,
 
-    <div id="machinery_management_task_2_input" style="/*display: none!important;*/">
+    };
 
-        <customresponse cfn="check_answer">
-            <textline size="40" value="$taskId" />
-            <br/>
-        </customresponse>
-    </div>
+    let settings = {
+        pixel_step: 40,
+        area_height: 14,
+        area_width: 19 + 5,
+        data: [
+            {
+                type: "machine",
+                id: "machine_1",
+                duration: 6,
+                title: "Машина",
+                end_on: 6
+            },
+            {
+                type: "aggregate",
+                id: "aggregate_1",
+                duration: 4,
+                title: "Аггрегат",
+                end_on: 10
+            },
+            {
+                type: "node",
+                id: "node_1",
+                duration: 4,
+                title: "Узел 1",
+                end_on: 14
+            },
+            {
+                type: "detail",
+                id: "detail_1_1",
+                duration: 3,
+                title: "Деталь 1.1",
+                end_on: 17
+            },
+            {
+                type: "detail",
+                id: "detail_1_2",
+                duration: 2,
+                title: "Деталь 1.2",
+                end_on: 16
+            },
+            {
+                type: "detail",
+                id: "detail_1_3",
+                duration: 4,
+                title: "Деталь 1.3",
+                end_on: 18
+            },
+            {
+                type: "node",
+                id: "node_2",
+                duration: 5,
+                title: "Узел 2",
+                end_on: 15
+            },
+            {
+                type: "detail",
+                id: "detail_2_1",
+                duration: 4,
+                title: "Деталь 2.1",
+                end_on: 19
+            },
+            {
+                type: "detail",
+                id: "detail_2_2",
+                duration: 3,
+                title: "Деталь 2.2",
+                end_on: 18
+            },
+            {
+                type: "detail",
+                id: "detail_2_3",
+                duration: 3,
+                title: "Деталь 2.3",
+                end_on: 18
+            },
+            {
+                type: "node",
+                id: "node_3",
+                duration: 6,
+                title: "Узел 3",
+                end_on: 12
+            },
+            {
+                type: "detail",
+                id: "detail_3_1",
+                duration: 2,
+                title: "Деталь 3.1",
+                end_on: 14
+            },
+            {
+                type: "detail",
+                id: "detail_3_2",
+                duration: 1,
+                title: "Деталь 3.2",
+                end_on: 13
+            },
+            {
+                type: "detail",
+                id: "detail_3_3",
+                duration: 4,
+                title: "Деталь 3.3",
+                end_on: 16
+            },
+            {
+                type: "node",
+                id: "node_4",
+                duration: 3,
+                title: "Узел 4",
+                end_on: 9
+            },
+            {
+                type: "detail",
+                id: "detail_4_1",
+                duration: 3,
+                title: "Деталь 4.1",
+                end_on: 12
+            },
+            {
+                type: "detail",
+                id: "detail_4_2",
+                duration: 2,
+                title: "Деталь 4.2",
+                end_on: 11
+            },
+            {
+                type: "detail",
+                id: "detail_4_3",
+                duration: 3,
+                title: "Деталь 4.3",
+                end_on: 12
+            },
+            {
+                type: "detail",
+                id: "detail_5",
+                duration: 3,
+                title: "Деталь 5",
+                end_on: 9
+            },
+            {
+                type: "detail",
+                id: "detail_6",
+                duration: 3,
+                title: "Деталь 6",
+                end_on: 9
+            }
+        ],
+    };
 
-    <style type="text/css">
-
-        #grid1 {
-            background: lightgoldenrodyellow;
+    settings.data = settings.data.map(function (x, index) {
+        x.z_index = z_indexes[x.type];
+        x.height = 1;
+        x.width = 3;
+        x.x = 0;
+        let calc_help = (Math.ceil((index + 1) / settings.area_height)) - 1;
+        x.x = calc_help * 3;
+        x.y = settings.area_height - 1 - index;
+        if (index >= settings.area_height) {
+            x.y = settings.area_height - (index - settings.area_height * calc_help + 1);
         }
+        return x;
+    });
+    settings.data_obj = settings.data.reduce((acc, cur) => ({...acc, [cur.id]: cur}), {});
 
-        #grid2 {
-            background: lightcyan;
+
+    // console.log(settings.data_obj);
+
+    new Vue({
+        el: '#slider_view',
+        data: {
+            data_obj: settings.data_obj,
+            pixel_step: settings.pixel_step,
+            items: settings.data.reverse(),
+            current_element: undefined,
+        },
+        methods: {
+            onResize: function (x, y, width, height) {
+                this.width = width;
+                this.height = height;
+                this.x = x;
+                this.y = y;
+                this.data_obj[this.current_element].x = this.x / this.pixel_step;
+                this.data_obj[this.current_element].y = this.y / this.pixel_step;
+                this.data_obj[this.current_element].width = this.width / this.pixel_step;
+                this.data_obj[this.current_element].height = this.height / this.pixel_step;
+            },
+            onDrag: function (x, y) {
+                this.x = x;
+                this.y = y;
+                this.data_obj[this.current_element].x = this.x / this.pixel_step;
+                this.data_obj[this.current_element].y = this.y / this.pixel_step;
+                // console.log(this.data_obj[this.current_element])
+            },
+            onActivated(id) {
+                this.current_element = id;
+            },
+            onDeactivated() {
+                this.current_element = undefined;
+            },
+            getLastWord(l){
+                return l.split(" ").slice(-1)[0]
+            },
+        },
+        computed: {
+            areaStyle: function () {
+                return {
+                    height: this.pixel_step * settings.area_height + "px",
+                    width: this.pixel_step * settings.area_width + "px",
+                    background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px`,
+                    position: "relative",
+                    border: "1px solid blue",
+                }
+            },
         }
-
-        .grid-stack-item-content {
-            color: #2c3e50;
-            text-align: center;
-            background-color: #18bc9c;
-        }
-
-        #grid2 .grid-stack-item-content {
-            background-color: #9caabc;
-        }
-
-        .grid-stack-item-removing {
-            opacity: 0.5;
-        }
-
-        .trash {
-            height: 150px;
-            margin-bottom: 20px;
-            background: rgba(255, 0, 0, 0.1) center center url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDQzOC41MjkgNDM4LjUyOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDM4LjUyOSA0MzguNTI5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTQxNy42ODksNzUuNjU0Yy0xLjcxMS0xLjcwOS0zLjkwMS0yLjU2OC02LjU2My0yLjU2OGgtODguMjI0TDMwMi45MTcsMjUuNDFjLTIuODU0LTcuMDQ0LTcuOTk0LTEzLjA0LTE1LjQxMy0xNy45ODkgICAgQzI4MC4wNzgsMi40NzMsMjcyLjU1NiwwLDI2NC45NDUsMGgtOTEuMzYzYy03LjYxMSwwLTE1LjEzMSwyLjQ3My0yMi41NTQsNy40MjFjLTcuNDI0LDQuOTQ5LTEyLjU2MywxMC45NDQtMTUuNDE5LDE3Ljk4OSAgICBsLTE5Ljk4NSw0Ny42NzZoLTg4LjIyYy0yLjY2NywwLTQuODUzLDAuODU5LTYuNTY3LDIuNTY4Yy0xLjcwOSwxLjcxMy0yLjU2OCwzLjkwMy0yLjU2OCw2LjU2N3YxOC4yNzQgICAgYzAsMi42NjQsMC44NTUsNC44NTQsMi41NjgsNi41NjRjMS43MTQsMS43MTIsMy45MDQsMi41NjgsNi41NjcsMi41NjhoMjcuNDA2djI3MS44YzAsMTUuODAzLDQuNDczLDI5LjI2NiwxMy40MTgsNDAuMzk4ICAgIGM4Ljk0NywxMS4xMzksMTkuNzAxLDE2LjcwMywzMi4yNjQsMTYuNzAzaDIzNy41NDJjMTIuNTY2LDAsMjMuMzE5LTUuNzU2LDMyLjI2NS0xNy4yNjhjOC45NDUtMTEuNTIsMTMuNDE1LTI1LjE3NCwxMy40MTUtNDAuOTcxICAgIFYxMDkuNjI3aDI3LjQxMWMyLjY2MiwwLDQuODUzLTAuODU2LDYuNTYzLTIuNTY4YzEuNzA4LTEuNzA5LDIuNTctMy45LDIuNTctNi41NjRWODIuMjIxICAgIEM0MjAuMjYsNzkuNTU3LDQxOS4zOTcsNzcuMzY3LDQxNy42ODksNzUuNjU0eiBNMTY5LjMwMSwzOS42NzhjMS4zMzEtMS43MTIsMi45NS0yLjc2Miw0Ljg1My0zLjE0aDkwLjUwNCAgICBjMS45MDMsMC4zODEsMy41MjUsMS40Myw0Ljg1NCwzLjE0bDEzLjcwOSwzMy40MDRIMTU1LjMxMUwxNjkuMzAxLDM5LjY3OHogTTM0Ny4xNzMsMzgwLjI5MWMwLDQuMTg2LTAuNjY0LDguMDQyLTEuOTk5LDExLjU2MSAgICBjLTEuMzM0LDMuNTE4LTIuNzE3LDYuMDg4LTQuMTQxLDcuNzA2Yy0xLjQzMSwxLjYyMi0yLjQyMywyLjQyNy0yLjk5OCwyLjQyN0gxMDAuNDkzYy0wLjU3MSwwLTEuNTY1LTAuODA1LTIuOTk2LTIuNDI3ICAgIGMtMS40MjktMS42MTgtMi44MS00LjE4OC00LjE0My03LjcwNmMtMS4zMzEtMy41MTktMS45OTctNy4zNzktMS45OTctMTEuNTYxVjEwOS42MjdoMjU1LjgxNVYzODAuMjkxeiIgZmlsbD0iI2ZmOWNhZSIvPgoJCTxwYXRoIGQ9Ik0xMzcuMDQsMzQ3LjE3MmgxOC4yNzFjMi42NjcsMCw0Ljg1OC0wLjg1NSw2LjU2Ny0yLjU2N2MxLjcwOS0xLjcxOCwyLjU2OC0zLjkwMSwyLjU2OC02LjU3VjE3My41ODEgICAgYzAtMi42NjMtMC44NTktNC44NTMtMi41NjgtNi41NjdjLTEuNzE0LTEuNzA5LTMuODk5LTIuNTY1LTYuNTY3LTIuNTY1SDEzNy4wNGMtMi42NjcsMC00Ljg1NCwwLjg1NS02LjU2NywyLjU2NSAgICBjLTEuNzExLDEuNzE0LTIuNTY4LDMuOTA0LTIuNTY4LDYuNTY3djE2NC40NTRjMCwyLjY2OSwwLjg1NCw0Ljg1MywyLjU2OCw2LjU3QzEzMi4xODYsMzQ2LjMxNiwxMzQuMzczLDM0Ny4xNzIsMTM3LjA0LDM0Ny4xNzJ6IiBmaWxsPSIjZmY5Y2FlIi8+CgkJPHBhdGggZD0iTTIxMC4xMjksMzQ3LjE3MmgxOC4yNzFjMi42NjYsMCw0Ljg1Ni0wLjg1NSw2LjU2NC0yLjU2N2MxLjcxOC0xLjcxOCwyLjU2OS0zLjkwMSwyLjU2OS02LjU3VjE3My41ODEgICAgYzAtMi42NjMtMC44NTItNC44NTMtMi41NjktNi41NjdjLTEuNzA4LTEuNzA5LTMuODk4LTIuNTY1LTYuNTY0LTIuNTY1aC0xOC4yNzFjLTIuNjY0LDAtNC44NTQsMC44NTUtNi41NjcsMi41NjUgICAgYy0xLjcxNCwxLjcxNC0yLjU2OCwzLjkwNC0yLjU2OCw2LjU2N3YxNjQuNDU0YzAsMi42NjksMC44NTQsNC44NTMsMi41NjgsNi41N0MyMDUuMjc0LDM0Ni4zMTYsMjA3LjQ2NSwzNDcuMTcyLDIxMC4xMjksMzQ3LjE3MnogICAgIiBmaWxsPSIjZmY5Y2FlIi8+CgkJPHBhdGggZD0iTTI4My4yMiwzNDcuMTcyaDE4LjI2OGMyLjY2OSwwLDQuODU5LTAuODU1LDYuNTctMi41NjdjMS43MTEtMS43MTgsMi41NjItMy45MDEsMi41NjItNi41N1YxNzMuNTgxICAgIGMwLTIuNjYzLTAuODUyLTQuODUzLTIuNTYyLTYuNTY3Yy0xLjcxMS0xLjcwOS0zLjkwMS0yLjU2NS02LjU3LTIuNTY1SDI4My4yMmMtMi42NywwLTQuODUzLDAuODU1LTYuNTcxLDIuNTY1ICAgIGMtMS43MTEsMS43MTQtMi41NjYsMy45MDQtMi41NjYsNi41Njd2MTY0LjQ1NGMwLDIuNjY5LDAuODU1LDQuODUzLDIuNTY2LDYuNTdDMjc4LjM2NywzNDYuMzE2LDI4MC41NSwzNDcuMTcyLDI4My4yMiwzNDcuMTcyeiIgZmlsbD0iI2ZmOWNhZSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=) no-repeat;
-        }
-
-        .sidebar {
-            background: rgba(0, 255, 0, 0.1);
-            height: 150px;
-            padding: 25px 0;
-            text-align: center;
-        }
-
-        /*.grid-stack-item {*/
-        /*    width: 20px;*/
-        /*    height: 20px;*/
-        /*    border: 2px dashed green;*/
-        /*    text-align: center;*/
-        /*    line-height: 100px;*/
-        /*    z-index: 10;*/
-        /*    background: rgba(0, 255, 0, 0.1);*/
-        /*    cursor: default;*/
-        /*    display: inline-block;*/
-        /*}*/
-
-        .sidebar .grid-stack-item .grid-stack-item-content {
-            background: none;
-        }
-
-    </style>
-
-
-<!--    <div class="container-fluid">-->
-<!--        <h1>Two grids demo</h1>-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-md-3">-->
-<!--                <div class="sidebar">-->
-<!--                    <div class="grid-stack-item"><div class="grid-stack-item-content">Drag me</div></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-9">-->
-<!--                <div class="trash">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="row">-->
-
-
-                <div class="grid-stack " id="grid1">
-
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="grid-stack grid-stack-6" id="grid2">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
-
-<script type="text/javascript">
-
-    // let details = [
-    //     {"type": "machine", "id": "machine_1", "duration": 6, "title": "Машина"},
-    //     {"type": "aggregate", "id": "aggregate_1", "duration": 4, "title": "Аггрегат"},
-    //     {"type": "node", "id": "node_1", "duration": 4, "title": "Узел 1"},
-    //     {"type": "detail", "id": "detail_1_1", "duration": 3, "title": "Деталь 1.1"},
-    //     {"type": "detail", "id": "detail_1_2", "duration": 1, "title": "Деталь 1.2"},
-    //     {"type": "detail", "id": "detail_1_3", "duration": 4, "title": "Деталь 1.3"},
-    //     {"type": "node", "id": "node_2", "duration": 5, "title": "Узел 2"},
-    //     {"type": "detail", "id": "detail_2_1", "duration": 4, "title": "Деталь 2.1"},
-    //     {"type": "detail", "id": "detail_2_2", "duration": 3, "title": "Деталь 2.2"},
-    //     {"type": "detail", "id": "detail_2_3", "duration": 3, "title": "Деталь 2.3"},
-    //     {"type": "node", "id": "node_3", "duration": 6, "title": "Узел 3"},
-    //     {"type": "detail", "id": "detail_3_1", "duration": 2, "title": "Деталь 3.1"},
-    //     {"type": "detail", "id": "detail_3_2", "duration": 1, "title": "Деталь 3.2"},
-    //     {"type": "detail", "id": "detail_3_3", "duration": 4, "title": "Деталь 3.3"},
-    //     {"type": "node", "id": "node_4", "duration": 3, "title": "Узел 4"},
-    //     {"type": "detail", "id": "detail_4_1", "duration": 3, "title": "Деталь 4.1"},
-    //     {"type": "detail", "id": "detail_4_2", "duration": 2, "title": "Деталь 4.2"},
-    //     {"type": "detail", "id": "detail_4_3", "duration": 3, "title": "Деталь 4.3"},
-    //     {"type": "detail", "id": "detail_5", "duration": 3, "title": "Деталь 5"},
-    //     {"type": "detail", "id": "detail_6", "duration": 3, "title": "Деталь 6"}
-    //     ];
-    //
-    // new MachineryManagement2({
-    //     element: document.getElementById('machinery_management_task_2_container'),
-    //     input:  document.getElementById('machinery_management_task_2_input'),
-    //     details: details,
-    //
-    // });
-
-    $(function () {
-        var options = {
-            // gridWidth: 12,
-            width:8,
-            // float: false,
-            float: true,
-            height:5,
-            // onDragMove: true,
-            // verticalMargin: "30px",
-            // removable: '.trash',
-            // removeTimeout: 100,
-            acceptWidgets: '.grid-stack-item-content'
-        };
-        $('#grid1').gridstack(options);
-        // console.log(grid);
-        // $('#grid2').gridstack(options);
-
-        var items = [
-            {x: 0, y: 0, width: 2, height: 2},
-            {x: 3, y: 1, width: 1, height: 2},
-            {x: 4, y: 1, width: 1, height: 1},
-            {x: 2, y: 3, width: 3, height: 1},
-            {x: 2, y: 5, width: 1, height: 1}
-        ];
-
-        var lol_items =             [
-            {x: 0, y: 10, width: 1, height: 1},
-            {x: 1, y: 10, width: 1, height: 1},
-            {x: 2, y: 10, width: 1, height: 1},
-            {x: 3, y: 10, width: 1, height: 1},
-            {x: 4, y: 10, width: 1, height: 1},
-            {x: 5, y: 10, width: 1, height: 1},
-            {x: 6, y: 10, width: 1, height: 1},
-            {x: 7, y: 10, width: 1, height: 1},
-            {x: 8, y: 10, width: 1, height: 1},
-            {x: 9, y: 10, width: 1, height: 1},
-            {x: 10, y: 10, width: 1, height: 1}
-        ];
-
-        $('.grid-stack').each(function () {
-            var grid = $(this).data('gridstack');
-            console.log(grid);
-            items.forEach(function (node) {
-                grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
-                    node.x, node.y, node.width, node.height);
-            }, this);
-
-            // lol_items.forEach(function (node, index) {
-            //     grid.addWidget($('<div><div class="grid-stack-item-content" style="background: red" /><div/>'),
-            //         node.x, node.y, node.width, node.height);
-            // }, this);
-        });
-
-        $('.sidebar .grid-stack-item').draggable({
-            revert: 'invalid',
-            handle: '.grid-stack-item-content',
-            scroll: false,
-            appendTo: 'body'
-        });
     });
 
-</script>
+    new Vue({
+        el: '#slider_table',
 
-</body>
-</html>
+        data: {
+            values: Array.from({length: settings.area_width}, (v, k) => k + 1).reverse(),
+            pixel_step: settings.pixel_step,
+        },
+        methods: {},
+        computed: {
+            areaStyle: function () {
+                return {
+                    height: settings.area_height + "px",
+                    width: this.pixel_step * settings.area_width + "px",
+                    background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px`,
+                    position: "relative",
+                    border: "1px solid blue",
+                }
+            },
+
+        }
+    })
+
+
+</script>

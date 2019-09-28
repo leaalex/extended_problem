@@ -1,0 +1,81 @@
+/*
+
+машина -
+агрегат -
+узел -
+деталь -
+types = ["machine", "aggregate", "node", "detail"]
+
+*/
+$colors: red, orange, yellow, green, blue, purple;
+
+$machine_color: red;
+$aggregate_color: orange;
+$node_color: yellow;
+$detail_color: green;
+
+.machine-element {
+  border: 1px solid;
+
+  &.machine {
+    background: rgba($machine_color, .5);
+  }
+
+  &.aggregate {
+    background: rgba($aggregate_color, .5);
+
+  }
+
+  &.node {
+    background: rgba($node_color, .5);
+
+  }
+
+  &.detail {
+    background: rgba($detail_color, .5);
+
+  }
+
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    text-align: center;
+    .title-size{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 0.72em;
+      background: white;
+      padding: 0 0.2em;
+      user-select: none;
+    }
+    .title {
+      width: 100%;
+    }
+  }
+
+
+}
+
+
+.x-axis-labels {
+  border: 1px solid white;
+
+  .axis-label {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+
+    .label {
+      width: 100%;
+    }
+
+  }
+}

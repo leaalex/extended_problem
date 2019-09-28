@@ -1,3 +1,62 @@
+@charset "UTF-8";
+/*
 
+машина -
+агрегат -
+узел -
+деталь -
+types = ["machine", "aggregate", "node", "detail"]
+
+*/
+.machine-element {
+  border: 1px solid;
+}
+.machine-element.machine {
+  background: rgba(255, 0, 0, 0.5);
+}
+.machine-element.aggregate {
+  background: rgba(255, 165, 0, 0.5);
+}
+.machine-element.node {
+  background: rgba(255, 255, 0, 0.5);
+}
+.machine-element.detail {
+  background: rgba(0, 128, 0, 0.5);
+}
+.machine-element .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  text-align: center;
+}
+.machine-element .title-wrapper .title-size {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.72em;
+  background: white;
+  padding: 0 0.2em;
+  user-select: none;
+}
+.machine-element .title-wrapper .title {
+  width: 100%;
+}
+
+.x-axis-labels {
+  border: 1px solid white;
+}
+.x-axis-labels .axis-label {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+.x-axis-labels .axis-label .label {
+  width: 100%;
+}
 
 /*# sourceMappingURL=machinery_management_task_2.css.map */
