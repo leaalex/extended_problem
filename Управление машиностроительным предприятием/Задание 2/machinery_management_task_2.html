@@ -7,22 +7,22 @@
 <link rel="stylesheet" href="./machinery_management_task_2.css">
 
 <div id='slider_view'>
-    <div v-bind:style="areaStyle">
+    <div v-bind:style="areaStyle" id="test">
         <template v-for="item in items">
             <vue-draggable-resizable :w="pixel_step*item.width" :x="pixel_step*item.x" :y="pixel_step*item.y"
                                      :h="pixel_step*item.height" @dragging="onDrag" @resizing="onResize"
                                      @activated="onActivated(item.id)" @deactivated="onDeactivated"
                                      :min-Height="pixel_step" :min-Width="pixel_step" :grid=[pixel_step,pixel_step]
                                      :parent="true"
-                                     :z="item.z_index"
+                                     :z="z_indexes[item.type]"
                                      v-bind:class="[item.type, 'machine-element']" v-bind:id="item.id">
                 <div class="title-wrapper">
 
                     <div class="title-size" v-if="item.width > 1">
-                        Длит.: {{item.width}}
+                        Длит: {{item.width}}
                     </div>
                     <div class="title-size" v-else>
-                       {{item.width}}
+                        {{item.width}}
                     </div>
 
 
@@ -32,7 +32,7 @@
                     <div class="title" v-else>
                         {{getLastWord(item.title)}}
                     </div>
-<!--                    <div>{{item.title}}</div>-->
+                    <!--                    <div>{{item.title}}</div>-->
                     <!--                    <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>-->
                     <!--                        X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>-->
                 </div>
@@ -41,19 +41,25 @@
     </div>
 </div>
 
-<div id='slider_table' class="x-axis-labels" style="position: relative;
-    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 40px 40px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 40px 40px;
-    height: 40px;
-    width: 760px;">
+<div id='slider_table' class="x-axis-labels"
+     v-bind:style="xLabelsStyle">
+    <!--     style="position: relative;-->
+    <!--    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 40px 40px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 40px 40px;-->
+    <!--    height: 40px;-->
+    <!--    width: 760px;">-->
     <template v-for="(item,index) in values">
         <vue-draggable-resizable class="axis-label" :resizable="false" :draggable="false" :w="pixel_step"
                                  :h="pixel_step" :x="index*pixel_step" :y="0" :grid=[pixel_step,pixel_step]
                                  :parent="true">
-            <div class="label">{{item}}</div>
+            <div class="label"  v-if="index > (extra_cells_count-1)">{{item}}</div>
         </vue-draggable-resizable>
     </template>
 </div>
 
+<div id="machinery_management_task_2_input" style="/*display: none!important;*/">
+    <textarea type="text" style="width: 100%;height: 300px;">
+    </textarea>
+</div>
 
 <script>
 
@@ -65,10 +71,13 @@
 
     };
 
+    let init_width = 3;
+    // let extra_cells_count = 5;
+
     let settings = {
-        pixel_step: 40,
+        pixel_step: 34,
         area_height: 14,
-        area_width: 19 + 5,
+        area_width: 19,
         data: [
             {
                 type: "machine",
@@ -211,33 +220,49 @@
                 end_on: 9
             }
         ],
+        input: document.querySelector("#machinery_management_task_2_input"),
+        z_indexes: z_indexes,
+
     };
 
-    settings.data = settings.data.map(function (x, index) {
-        x.z_index = z_indexes[x.type];
+    let answer = new Answer(settings.input.querySelector("textarea"));
+
+    console.log(answer.getJSON()["answer"]);
+
+    settings.data = settings.data.reverse().map(function (x, index) {
         x.height = 1;
-        x.width = 3;
+        x.width = init_width;
         x.x = 0;
+        delete x.duration;
+        delete x.end_on;
         let calc_help = (Math.ceil((index + 1) / settings.area_height)) - 1;
-        x.x = calc_help * 3;
+        x.x = calc_help * init_width;
         x.y = settings.area_height - 1 - index;
         if (index >= settings.area_height) {
             x.y = settings.area_height - (index - settings.area_height * calc_help + 1);
         }
         return x;
     });
+
+    if (answer.getJSON()["answer"]) settings.data = Object.keys(answer.getJSON()["answer"]).map(item=>answer.getJSON()["answer"][item]);
+
+    settings.extra_cells_count = Math.ceil(settings.data.length / settings.area_height) * init_width;
     settings.data_obj = settings.data.reduce((acc, cur) => ({...acc, [cur.id]: cur}), {});
 
+    // console.log(settings.extra_cells_count );
+    //
 
-    // console.log(settings.data_obj);
+
+    console.log(settings.data_obj);
 
     new Vue({
         el: '#slider_view',
         data: {
             data_obj: settings.data_obj,
             pixel_step: settings.pixel_step,
-            items: settings.data.reverse(),
+            items: settings.data,
             current_element: undefined,
+            z_indexes: settings.z_indexes
         },
         methods: {
             onResize: function (x, y, width, height) {
@@ -249,12 +274,14 @@
                 this.data_obj[this.current_element].y = this.y / this.pixel_step;
                 this.data_obj[this.current_element].width = this.width / this.pixel_step;
                 this.data_obj[this.current_element].height = this.height / this.pixel_step;
+                answer.setJSON({"answer": this.data_obj});
             },
             onDrag: function (x, y) {
                 this.x = x;
                 this.y = y;
                 this.data_obj[this.current_element].x = this.x / this.pixel_step;
                 this.data_obj[this.current_element].y = this.y / this.pixel_step;
+                answer.setJSON({"answer": this.data_obj});
                 // console.log(this.data_obj[this.current_element])
             },
             onActivated(id) {
@@ -264,17 +291,18 @@
                 this.current_element = undefined;
             },
             getLastWord(l){
-                return l.split(" ").slice(-1)[0]
+                let l_arr = l.split(" ").slice();
+                return l_arr.length > 1 ? l_arr[l_arr.length -1 ] : l.slice(0, 3) + ".";
             },
         },
         computed: {
             areaStyle: function () {
                 return {
                     height: this.pixel_step * settings.area_height + "px",
-                    width: this.pixel_step * settings.area_width + "px",
+                    width: this.pixel_step * (settings.area_width + settings.extra_cells_count) + "px",
                     background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px`,
                     position: "relative",
-                    border: "1px solid blue",
+                    border: "1px solid #e6e6e6",
                 }
             },
         }
@@ -282,25 +310,60 @@
 
     new Vue({
         el: '#slider_table',
-
         data: {
-            values: Array.from({length: settings.area_width}, (v, k) => k + 1).reverse(),
+            values: Array.from({length: (settings.area_width + settings.extra_cells_count)}, (v, k) => k + 1).reverse(),
             pixel_step: settings.pixel_step,
+            extra_cells_count: settings.extra_cells_count,
         },
         methods: {},
         computed: {
-            areaStyle: function () {
+            xLabelsStyle: function () {
                 return {
-                    height: settings.area_height + "px",
-                    width: this.pixel_step * settings.area_width + "px",
+                    height: this.pixel_step + "px",
+                    width: this.pixel_step * (settings.area_width + settings.extra_cells_count) + "px",
+                    // background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px;`
                     background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px`,
                     position: "relative",
-                    border: "1px solid blue",
+                    // border: "1px solid ",
                 }
             },
-
         }
-    })
+    });
 
+    function Answer(elementField) {
+        this.elementField = elementField;
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function () {
+            this.fieldValue = elementField.value;
+            return this.fieldValue;
+        };
+        this.set = function (value) {
+            if (value === undefined) value = this.fieldValue;
+            elementField.value = value;
+        };
+        this.getJSON = function () {
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function (object) {
+            if (object === undefined) object = this.fieldObject;
+            this.set(JSON.stringify(object));
+        };
+        this.isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        };
+    };
+
+
+
+    var intersects = function ( a, b ) {
+        return ( a.y < b.y1 || a.y1 > b.y || a.x1 < b.x || a.x > b.x1 );
+    }
 
 </script>

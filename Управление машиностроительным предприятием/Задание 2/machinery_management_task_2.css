@@ -10,18 +10,19 @@ types = ["machine", "aggregate", "node", "detail"]
 */
 .machine-element {
   border: 1px solid;
+  cursor: pointer;
 }
 .machine-element.machine {
-  background: rgba(255, 0, 0, 0.5);
+  background: rgba(255, 0, 0, 0.6);
 }
 .machine-element.aggregate {
-  background: rgba(255, 165, 0, 0.5);
+  background: rgba(255, 165, 0, 0.6);
 }
 .machine-element.node {
-  background: rgba(255, 255, 0, 0.5);
+  background: rgba(255, 255, 0, 0.6);
 }
 .machine-element.detail {
-  background: rgba(0, 128, 0, 0.5);
+  background: rgba(0, 128, 0, 0.6);
 }
 .machine-element .title-wrapper {
   display: flex;
@@ -34,17 +35,19 @@ types = ["machine", "aggregate", "node", "detail"]
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 0.72em;
+  font-size: 0.62em;
   background: white;
   padding: 0 0.2em;
   user-select: none;
 }
 .machine-element .title-wrapper .title {
   width: 100%;
+  font-size: 0.8em;
 }
 
 .x-axis-labels {
   border: 1px solid white;
+  margin-top: -1;
 }
 .x-axis-labels .axis-label {
   border: none;
@@ -57,6 +60,17 @@ types = ["machine", "aggregate", "node", "detail"]
 }
 .x-axis-labels .axis-label .label {
   width: 100%;
+}
+
+#slider_view #test:after {
+  border-left: 2px dashed rgba(0, 0, 0, 0.5);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 203px;
+  right: 0;
+  height: 100%;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=machinery_management_task_2.css.map */

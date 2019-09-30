@@ -14,25 +14,29 @@ $aggregate_color: orange;
 $node_color: yellow;
 $detail_color: green;
 
+$machine_element_opacity: 0.6;
+
+
 .machine-element {
   border: 1px solid;
+  cursor: pointer;
 
   &.machine {
-    background: rgba($machine_color, .5);
+    background: rgba($machine_color, $machine_element_opacity);
   }
 
   &.aggregate {
-    background: rgba($aggregate_color, .5);
+    background: rgba($aggregate_color, $machine_element_opacity);
 
   }
 
   &.node {
-    background: rgba($node_color, .5);
+    background: rgba($node_color, $machine_element_opacity);
 
   }
 
   &.detail {
-    background: rgba($detail_color, .5);
+    background: rgba($detail_color, $machine_element_opacity);
 
   }
 
@@ -43,17 +47,20 @@ $detail_color: green;
     justify-items: center;
     height: 100%;
     text-align: center;
-    .title-size{
+
+    .title-size {
       position: absolute;
       top: 0;
       right: 0;
-      font-size: 0.72em;
+      font-size: 0.62em;
       background: white;
       padding: 0 0.2em;
       user-select: none;
     }
+
     .title {
       width: 100%;
+      font-size: 0.8em;
     }
   }
 
@@ -63,6 +70,7 @@ $detail_color: green;
 
 .x-axis-labels {
   border: 1px solid white;
+  margin-top: -1;
 
   .axis-label {
     border: none;
@@ -77,5 +85,21 @@ $detail_color: green;
       width: 100%;
     }
 
+  }
+}
+
+
+#slider_view {
+ #test {
+    &:after {
+      border-left: 2px dashed rgba(0, 0, 0, 0.5);
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 203px;
+      right: 0;
+      height: 100%;
+      z-index: -1;
+    }
   }
 }
