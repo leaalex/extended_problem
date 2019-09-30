@@ -17,7 +17,14 @@
                                      :z="item.z_index"
                                      v-bind:class="[item.type, 'machine-element']" v-bind:id="item.id">
                 <div class="title-wrapper">
-                    <div class="title-size">{{item.width}}x{{item.height}}</div>
+
+                    <div class="title-size" v-if="item.width > 1">
+                        Длит.: {{item.width}}
+                    </div>
+                    <div class="title-size" v-else>
+                       {{item.width}}
+                    </div>
+
 
                     <div class="title" v-if="item.width > 1">
                         {{item.title}}

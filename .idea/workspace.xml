@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/VueDraggableResizable.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack-extra.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack-extra.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack-extra.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack.jQueryUI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/gridstack/gridstack.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Задание 1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Задание 1_0.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -288,7 +278,8 @@
       <workItem from="1568621935968" duration="22095000" />
       <workItem from="1568722987999" duration="919000" />
       <workItem from="1568724956749" duration="122181000" />
-      <workItem from="1569494353221" duration="44926000" />
+      <workItem from="1569494353221" duration="46511000" />
+      <workItem from="1569831540458" duration="158000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
