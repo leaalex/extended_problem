@@ -1,21 +1,15 @@
 /*
 
-машина -
-агрегат -
-узел -
-деталь -
 types = ["machine", "aggregate", "node", "detail"]
 
 */
-$colors: red, orange, yellow, green, blue, purple;
 
-$machine_color: red;
-$aggregate_color: orange;
-$node_color: yellow;
-$detail_color: green;
+$machine_color: #0074D9;
+$aggregate_color: #01FF70;
+$node_color: #FF851B;
+$detail_color: #AAAAAA;
 
-$machine_element_opacity: 0.6;
-
+$machine_element_opacity: 0.76;
 
 .machine-element {
   border: 1px solid;
@@ -27,19 +21,15 @@ $machine_element_opacity: 0.6;
 
   &.aggregate {
     background: rgba($aggregate_color, $machine_element_opacity);
-
   }
 
   &.node {
     background: rgba($node_color, $machine_element_opacity);
-
   }
 
   &.detail {
     background: rgba($detail_color, $machine_element_opacity);
-
   }
-
 
   .title-wrapper {
     display: flex;
@@ -47,20 +37,23 @@ $machine_element_opacity: 0.6;
     justify-items: center;
     height: 100%;
     text-align: center;
+    font-family: monospace;
 
     .title-size {
+
       position: absolute;
       top: 0;
       right: 0;
-      font-size: 0.62em;
+      font-size: 0.72em;
       background: white;
-      padding: 0 0.2em;
+      padding: 0 0.1em;
       user-select: none;
+      border-bottom-left-radius: 0.2em;
     }
 
     .title {
       width: 100%;
-      font-size: 0.8em;
+      font-size: 1em;
     }
   }
 
@@ -69,8 +62,8 @@ $machine_element_opacity: 0.6;
 
 
 .x-axis-labels {
-  border: 1px solid white;
-  margin-top: -1;
+  margin-top: -1px;
+  margin-left: 1px;
 
   .axis-label {
     border: none;
@@ -90,16 +83,14 @@ $machine_element_opacity: 0.6;
 
 
 #slider_view {
- #test {
-    &:after {
-      border-left: 2px dashed rgba(0, 0, 0, 0.5);
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 203px;
-      right: 0;
-      height: 100%;
-      z-index: -1;
-    }
+
+
+  .dividing-line{
+    border-left: 3px dashed black;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+    width: 0px;
   }
 }
