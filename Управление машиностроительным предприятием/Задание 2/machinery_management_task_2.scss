@@ -11,86 +11,90 @@ $detail_color: #AAAAAA;
 
 $machine_element_opacity: 0.76;
 
-.machine-element {
-  border: 1px solid;
-  cursor: pointer;
+#machinery_management_task_2-container {
 
-  &.machine {
-    background: rgba($machine_color, $machine_element_opacity);
-  }
+  margin: 10px;
 
-  &.aggregate {
-    background: rgba($aggregate_color, $machine_element_opacity);
-  }
+  #slider_view {
 
-  &.node {
-    background: rgba($node_color, $machine_element_opacity);
-  }
-
-  &.detail {
-    background: rgba($detail_color, $machine_element_opacity);
-  }
-
-  .title-wrapper {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    height: 100%;
-    text-align: center;
-    font-family: monospace;
-
-    .title-size {
-
+    .dividing-line {
+      border-left: 3px dashed black;
+      height: 100%;
       position: absolute;
       top: 0;
       right: 0;
-      font-size: 0.72em;
-      background: white;
-      padding: 0 0.1em;
-      user-select: none;
-      border-bottom-left-radius: 0.2em;
+      width: 0px;
     }
 
-    .title {
-      width: 100%;
-      font-size: 1em;
+    .machine-element {
+      border: 1px solid;
+      cursor: pointer;
+
+      &.machine {
+        background: rgba($machine_color, $machine_element_opacity);
+      }
+
+      &.aggregate {
+        background: rgba($aggregate_color, $machine_element_opacity);
+      }
+
+      &.node {
+        background: rgba($node_color, $machine_element_opacity);
+      }
+
+      &.detail {
+        background: rgba($detail_color, $machine_element_opacity);
+      }
+
+      .title-wrapper {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        height: 100%;
+        text-align: center;
+        font-family: monospace;
+
+        .title-size {
+
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 0.72em;
+          background: white;
+          padding: 0 0.1em;
+          user-select: none;
+          border-bottom-left-radius: 0.2em;
+        }
+
+        .title {
+          width: 100%;
+          font-size: 0.9em;
+          white-space: nowrap;
+        }
+      }
+
+
     }
+
   }
 
+  #x_axis_labels {
+    margin-top: -1px;
+    margin-left: 1px;
 
-}
-
-
-.x-axis-labels {
-  margin-top: -1px;
-  margin-left: 1px;
-
-  .axis-label {
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    height: 100%;
-    text-align: center;
-    width: 100%;
-
-    .label {
+    .axis-label {
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      height: 100%;
+      text-align: center;
       width: 100%;
+
+      .label {
+        width: 100%;
+      }
+
     }
-
-  }
-}
-
-
-#slider_view {
-
-
-  .dividing-line{
-    border-left: 3px dashed black;
-    height: 100%;
-    position:absolute;
-    top: 0;
-    right: 0;
-    width: 0px;
   }
 }

@@ -3,23 +3,34 @@
 types = ["machine", "aggregate", "node", "detail"]
 
 */
-.machine-element {
+#machinery_management_task_2-container {
+  margin: 10px;
+}
+#machinery_management_task_2-container #slider_view .dividing-line {
+  border-left: 3px dashed black;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0px;
+}
+#machinery_management_task_2-container #slider_view .machine-element {
   border: 1px solid;
   cursor: pointer;
 }
-.machine-element.machine {
+#machinery_management_task_2-container #slider_view .machine-element.machine {
   background: rgba(0, 116, 217, 0.76);
 }
-.machine-element.aggregate {
+#machinery_management_task_2-container #slider_view .machine-element.aggregate {
   background: rgba(1, 255, 112, 0.76);
 }
-.machine-element.node {
+#machinery_management_task_2-container #slider_view .machine-element.node {
   background: rgba(255, 133, 27, 0.76);
 }
-.machine-element.detail {
+#machinery_management_task_2-container #slider_view .machine-element.detail {
   background: rgba(170, 170, 170, 0.76);
 }
-.machine-element .title-wrapper {
+#machinery_management_task_2-container #slider_view .machine-element .title-wrapper {
   display: flex;
   align-items: center;
   justify-items: center;
@@ -27,7 +38,7 @@ types = ["machine", "aggregate", "node", "detail"]
   text-align: center;
   font-family: monospace;
 }
-.machine-element .title-wrapper .title-size {
+#machinery_management_task_2-container #slider_view .machine-element .title-wrapper .title-size {
   position: absolute;
   top: 0;
   right: 0;
@@ -37,16 +48,16 @@ types = ["machine", "aggregate", "node", "detail"]
   user-select: none;
   border-bottom-left-radius: 0.2em;
 }
-.machine-element .title-wrapper .title {
+#machinery_management_task_2-container #slider_view .machine-element .title-wrapper .title {
   width: 100%;
-  font-size: 1em;
+  font-size: 0.9em;
+  white-space: nowrap;
 }
-
-.x-axis-labels {
+#machinery_management_task_2-container #x_axis_labels {
   margin-top: -1px;
   margin-left: 1px;
 }
-.x-axis-labels .axis-label {
+#machinery_management_task_2-container #x_axis_labels .axis-label {
   border: none;
   display: flex;
   align-items: center;
@@ -55,17 +66,8 @@ types = ["machine", "aggregate", "node", "detail"]
   text-align: center;
   width: 100%;
 }
-.x-axis-labels .axis-label .label {
+#machinery_management_task_2-container #x_axis_labels .axis-label .label {
   width: 100%;
-}
-
-#slider_view .dividing-line {
-  border-left: 3px dashed black;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0px;
 }
 
 /*# sourceMappingURL=machinery_management_task_2.css.map */

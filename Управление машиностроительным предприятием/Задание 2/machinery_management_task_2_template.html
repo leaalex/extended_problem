@@ -1,0 +1,36 @@
+
+<div id="machinery_management_task_2-container">
+<div id='slider_view'>
+    <div v-bind:style="areaStyle" id="test">
+        <template v-for="item in items">
+            <vue-draggable-resizable :w="pixel_step*item.width" :x="pixel_step*item.x" :y="pixel_step*item.y"
+                                     :h="pixel_step*item.height" @dragging="onDrag" @resizing="onResize"
+                                     @activated="onActivated(item.id)" @deactivated="onDeactivated"
+                                     :min-Height="pixel_step" :min-Width="pixel_step" :grid=[pixel_step,pixel_step]
+                                     :parent="true"
+                                     :z="z_indexes[item.type]"
+                                     v-bind:class="[item.type, 'machine-element']" v-bind:id="item.id">
+                <div class="title-wrapper">
+                    <div class="title-size" v-if="1 < item.width" v-html="item.width"></div>
+                    <div class="title-size" v-else v-html="item.width"></div>
+                    <div class="title" v-if="1 < item.width" v-html="item.title"></div>
+                    <div class="title" v-else v-html="getLastWord(item.title)"></div>
+                </div>
+            </vue-draggable-resizable>
+        </template>
+        <div class="dividing-line" v-bind:style="dividingLineLeft"></div>
+    </div>
+</div>
+
+<div id="x_axis_labels">
+    <div v-bind:style="xLabelsStyle">
+    <template v-for="(item,index) in values">
+        <vue-draggable-resizable class="axis-label" :resizable="false" :draggable="false" :w="pixel_step"
+                                 :h="pixel_step" :x="index*pixel_step" :y="0" :grid=[pixel_step,pixel_step]
+                                 :parent="true">
+            <div class="label" v-if="index > (extra_cells_count-1)" v-html="item"></div>
+        </vue-draggable-resizable>
+    </template>
+    </div>
+</div>
+</div>

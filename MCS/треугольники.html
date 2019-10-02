@@ -1,0 +1,21 @@
+<problem>
+    <script type="loncapa/python">
+import json
+
+def check(expect, answer_given):
+    check1 = (int(answer_given[0]) == 1)
+    check2 = (int(answer_given[1]) == 2)
+    check3 = (int(answer_given[2]) == 3)
+    return {'input_list': [
+                    { 'ok': check1, 'msg': ''},
+                    { 'ok': check1, 'msg': ''},
+                    { 'ok': check1, 'msg': ''} ] }
+
+</script>
+    <customresponse cfn="check">
+        <textline size="10" correct_answer="3" label="Integer #1"/><br/>
+        <textline size="10" correct_answer="7" label="Integer #2"/>
+        <textline size="10" correct_answer="7" label="Integer #2"/>
+    </customresponse>
+
+</problem>
