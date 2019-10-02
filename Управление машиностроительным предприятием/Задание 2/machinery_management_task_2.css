@@ -6,6 +6,9 @@ types = ["machine", "aggregate", "node", "detail"]
 #machinery_management_task_2-container, #machinery_management_task_2-answer {
   margin: 10px;
 }
+#machinery_management_task_2-container .task_title, #machinery_management_task_2-answer .task_title {
+  margin: 20px 0;
+}
 #machinery_management_task_2-container .task_table .dividing-line, #machinery_management_task_2-answer .task_table .dividing-line {
   border-left: 3px dashed black;
   height: 100%;

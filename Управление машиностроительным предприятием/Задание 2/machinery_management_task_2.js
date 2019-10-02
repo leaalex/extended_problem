@@ -44,6 +44,32 @@ function MachineryManagement2(settings) {
     answer.setJSON({"answer": settings.data_obj});
 
     new Vue({
+       el: '#tt',
+       template:`
+       <div class="task_title">
+            <span>Длительность процесса изготовления, обработки и сборки деталей, узлов, агрегатов и изделия, дн.:</span>
+            
+            <span v-for="(m, m_i) in machines"><span style="font-weight: bold">{{m.title}}</span> – {{m.width}}; </span>            
+            <span v-for="(a, a_i) in aggregates"><span style="font-weight: bold">{{a.title}}</span> – {{a.width}}; </span>            
+            <span v-for="(n, n_i) in nodes"><span style="font-weight: bold">{{n.title}}</span> – {{n.width}}; </span>            
+            <span v-for="(d, m_i) in details"><span style="font-weight: bold">{{d.title}}</span> – {{d.width}}; </span>            
+            
+       
+        </div>
+       
+       `,
+       data:{
+           source: settings.data,
+           machines: settings.data.filter(l=>l.type==='machine'),
+           aggregates: settings.data.filter(l=>l.type==='aggregate'),
+           nodes: settings.data.filter(l=>l.type==='node'),
+           details: settings.data.filter(l=>l.type==='detail'),
+       },
+       methods:{},
+        computed: {}
+    });
+
+    new Vue({
         template: `<div class='task_table' v-bind:style="areaStyle" >
         <template v-for="item in items">
             <vue-draggable-resizable :w="pixel_step*item.width" :x="pixel_step*item.x" :y="pixel_step*item.y"
