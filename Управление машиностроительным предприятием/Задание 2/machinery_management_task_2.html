@@ -155,6 +155,7 @@ def get_list_from_structure(struct):
         if "children" in elem.keys():
             for x in elem['children']:
                 get_elem(x, tmp_obj["end_on"])
+
     get_elem(struct, 0)
 
     return s_list
@@ -185,6 +186,7 @@ student_data = {
 def get_details_count(elem):
     details_list = []
     details_list_count = 1
+
     def get_item(el):
         if "children" in el.keys():
             for x in el['children']:
@@ -192,6 +194,7 @@ def get_details_count(elem):
                     details_list.append(x)
                 else:
                     get_item(x)
+
     get_item(elem)
 
     if len(details_list) > 0:
@@ -201,12 +204,11 @@ def get_details_count(elem):
 
 def get_element_children(student_obj, element):
     ret_list = []
-    # print(element)
     for k in student_obj.keys():
-        if (student_obj[k]['x'] + student_obj[k]['width'] == element['x']) and (student_obj[k]['y'] >= element['y'] and element['y'] + element['height'] >= student_obj[k]['y'] + student_obj[k]['height']):
+        if (student_obj[k]['x'] + student_obj[k]['width'] == element['x']) and (
+                student_obj[k]['y'] >= element['y'] and element['y'] + element['height'] >= student_obj[k]['y'] +
+                student_obj[k]['height']):
             ret_list.append(student_obj[k])
-    # print("children: ", [x["id"] for x in ret_list])
-    # print("_________________________________________________")
     return ret_list
 
 
@@ -223,7 +225,8 @@ def intersects(a, b):
         "x1": b['x'] + b['width'],
         "y1": area_height - b['y'] - b['height'],
     }
-    return not (b_coords['y1'] >= a_coords['y'] or a_coords['y1'] >= b_coords['y'] or b_coords['x'] >= a_coords['x1'] or a_coords['x'] >= b_coords['x1'])
+    return not (b_coords['y1'] >= a_coords['y'] or a_coords['y1'] >= b_coords['y'] or b_coords['x'] >= a_coords['x1'] or
+                a_coords['x'] >= b_coords['x1'])
 
 
 def check_children_intersections(children_list):
@@ -263,10 +266,35 @@ def check_children_equal(student_children, correct_children):
         return True
     else:
         print("Нашли разных детей: ")
-        for problem in list(set(student_children) - set(correct_children)) + list((set(correct_children) - set(student_children))):
+        for problem in list(set(student_children) - set(correct_children)) + list(
+                (set(correct_children) - set(student_children))):
             problem_elements.append(problem)
         return False
 
+
+def get_answer(struct):
+    res_list = []
+
+    def build_item(item, start_y, end_last):
+        new_item = {
+            'type': item['type'],
+            'id': item['id'],
+            'title': item['title'],
+            'x': end_last - item["duration"],
+            'y': start_y,
+            'width': item["duration"],
+            'height': get_details_count(item)
+        }
+
+        if 'children' in item.keys():
+            for index, child in enumerate(item['children']):
+                start_y = new_item['y'] + sum([get_details_count(y) for y in item['children']][:index])
+                build_item(child, start_y, new_item['x'])
+        res_list.append(new_item)
+
+    build_item(structure, 0, area_width)
+
+    return res_list
 
 
 def check_answer(exp, ans):
@@ -274,13 +302,16 @@ def check_answer(exp, ans):
     user_machine = answer_obj[structure["id"]]
     grade = 0
 
-    if user_machine['width'] == structure["duration"] and user_machine['x'] == area_width + extra_cells_count + 2 - structure["duration"] and user_machine['y'] == 0 and user_machine['height'] == area_height:
+    if user_machine['width'] == structure["duration"] and user_machine['x'] == area_width + extra_cells_count + 2 - \
+            structure["duration"] and user_machine['y'] == 0 and user_machine['height'] == area_height:
         def rec_check(student_el, cor_obj):
             if "children" in cor_obj.keys():
                 children_ids_correct = [x["id"] for x in cor_obj['children']]
                 children_ids_student = [x["id"] for x in get_element_children(answer_obj, student_el)]
 
-                if check_children_equal(children_ids_student, children_ids_correct) and check_children_intersections([answer_obj[x] for x in children_ids_student]) and check_children_widths(answer_obj, cor_obj["children"]) and check_children_heights(answer_obj, cor_obj["children"]):
+                if check_children_equal(children_ids_student, children_ids_correct) and check_children_intersections(
+                        [answer_obj[x] for x in children_ids_student]) and check_children_widths(answer_obj, cor_obj[
+                    "children"]) and check_children_heights(answer_obj, cor_obj["children"]):
                     for c in cor_obj["children"]:
                         if c["type"] != "detail":
                             rec_check(answer_obj[c["id"]], c)
@@ -288,6 +319,7 @@ def check_answer(exp, ans):
                             pass
                 else:
                     pass
+
         rec_check(user_machine, structure)
     else:
         problem_elements.append(structure["id"])
@@ -307,7 +339,17 @@ def check_answer(exp, ans):
     else:
         return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': grade}]}
 
+
 student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "'")
+
+answer_data = {
+    "data": get_answer(structure),
+    "area_height": area_height,
+    "area_width": area_width,
+}
+
+student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", "'")
+
 
 
     </script>
@@ -318,7 +360,7 @@ student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "
     window.define = undefined;
     window.require = undefined;
 </script>
-<script type="text/javascript" src="/static/vue.js"></script>
+<script type="text/javascript" src="/static/vue.min.js"></script>
 <script type="text/javascript" src="/static/VueDraggableResizable.umd.js"></script>
 <script type="text/javascript">
     window.define = window.__define;
@@ -332,11 +374,12 @@ student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "
     <link rel="stylesheet" href="/static/machinery_management_task_2.css"></link>
 
     <div id="machinery_management_task_2-container">
-        <div id='t1'></div>
+        <div id="t1"></div>
         <div id="t2"></div>
+        <div id="hb"></div>
     </div>
 
-<!--        <script  type="text/javascript" src="./vue.js"></script>-->
+<!--        <script  type="text/javascript" src="./vue.min.js"></script>-->
 <!--        <script  type="text/javascript" src="./VueDraggableResizable.umd.js"></script>-->
 <!--        <script  type="text/javascript" src="./machinery_management_task_2.js"></script>-->
 <!--        <link rel="stylesheet" href="./VueDraggableResizable.css"></link>-->
@@ -354,10 +397,8 @@ student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "
 
 
         let student_data = $student_data_json;
-        //
-        // let student_data = {'data': [{'type': 'machine', 'id': 'machine_1', 'duration': 6, 'title': 'Машина'}, {'type': 'aggregate', 'id': 'aggregate_1', 'duration': 4, 'title': 'Аггрегат'}, {'type': 'node', 'id': 'node_1', 'duration': 4, 'title': 'Узел 1'}, {'type': 'detail', 'id': 'detail_1_1', 'duration': 3, 'title': 'Деталь 1.1'}, {'type': 'detail', 'id': 'detail_1_2', 'duration': 2, 'title': 'Деталь 1.2'}, {'type': 'detail', 'id': 'detail_1_3', 'duration': 4, 'title': 'Деталь 1.3'}, {'type': 'node', 'id': 'node_2', 'duration': 5, 'title': 'Узел 2'}, {'type': 'detail', 'id': 'detail_2_1', 'duration': 4, 'title': 'Деталь 2.1'}, {'type': 'detail', 'id': 'detail_2_2', 'duration': 3, 'title': 'Деталь 2.2'}, {'type': 'detail', 'id': 'detail_2_3', 'duration': 3, 'title': 'Деталь 2.3'}, {'type': 'node', 'id': 'node_3', 'duration': 6, 'title': 'Узел 3'}, {'type': 'detail', 'id': 'detail_3_1', 'duration': 2, 'title': 'Деталь 3.1'}, {'type': 'detail', 'id': 'detail_3_2', 'duration': 1, 'title': 'Деталь 3.2'}, {'type': 'detail', 'id': 'detail_3_3', 'duration': 4, 'title': 'Деталь 3.3'}, {'type': 'node', 'id': 'node_4', 'duration': 3, 'title': 'Узел 4'}, {'type': 'detail', 'id': 'detail_4_1', 'duration': 3, 'title': 'Деталь 4.1'}, {'type': 'detail', 'id': 'detail_4_2', 'duration': 2, 'title': 'Деталь 4.2'}, {'type': 'detail', 'id': 'detail_4_3', 'duration': 3, 'title': 'Деталь 4.3'}, {'type': 'detail', 'id': 'detail_5', 'duration': 3, 'title': 'Деталь 5'}, {'type': 'detail', 'id': 'detail_6', 'duration': 3, 'title': 'Деталь 6'}], 'area_height': 14, 'area_width': 19, 'extra_cells_count': 7}
 
-        let settings = {
+        new MachineryManagement2({
             pixel_step: 30,
             area_height: student_data.area_height,
             area_width: student_data.area_width,
@@ -365,12 +406,29 @@ student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "
             init_width: 3,
             extra_cells_count: student_data.extra_cells_count,
             input: document.querySelector("#machinery_management_task_2_input"),
-
-        };
-
-        new MachineryManagement2(settings);
-
+        });
 
     </script>
+
+    <solution>
+
+        <div id="machinery_management_task_2-answer">
+            <h2>Правильный ответ:</h2>
+            <div id="MachineryManagement2_answer_container"></div>
+        </div>
+        <script type="text/javascript">
+
+            let data_answer = $student_answer_json;
+            // console.log(data_answer);
+            new MachineryManagement2Answer({
+                pixel_step: 30,
+                area_height: data_answer.area_height,
+                area_width: data_answer.area_width,
+                data: data_answer.data,
+            });
+        </script>
+
+    </solution>
+
 
 </problem>

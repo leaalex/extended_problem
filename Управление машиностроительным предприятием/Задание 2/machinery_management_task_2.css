@@ -3,10 +3,10 @@
 types = ["machine", "aggregate", "node", "detail"]
 
 */
-#machinery_management_task_2-container {
+#machinery_management_task_2-container, #machinery_management_task_2-answer {
   margin: 10px;
 }
-#machinery_management_task_2-container #slider_view .dividing-line {
+#machinery_management_task_2-container .task_table .dividing-line, #machinery_management_task_2-answer .task_table .dividing-line {
   border-left: 3px dashed black;
   height: 100%;
   position: absolute;
@@ -14,31 +14,35 @@ types = ["machine", "aggregate", "node", "detail"]
   right: 0;
   width: 0px;
 }
-#machinery_management_task_2-container #slider_view .machine-element {
+#machinery_management_task_2-container .task_table .machine-element, #machinery_management_task_2-answer .task_table .machine-element {
   border: 1px solid;
   cursor: pointer;
 }
-#machinery_management_task_2-container #slider_view .machine-element.machine {
+#machinery_management_task_2-container .task_table .machine-element.answer-item, #machinery_management_task_2-answer .task_table .machine-element.answer-item {
+  cursor: default;
+}
+#machinery_management_task_2-container .task_table .machine-element.machine, #machinery_management_task_2-answer .task_table .machine-element.machine {
   background: rgba(0, 116, 217, 0.76);
 }
-#machinery_management_task_2-container #slider_view .machine-element.aggregate {
+#machinery_management_task_2-container .task_table .machine-element.aggregate, #machinery_management_task_2-answer .task_table .machine-element.aggregate {
   background: rgba(1, 255, 112, 0.76);
 }
-#machinery_management_task_2-container #slider_view .machine-element.node {
+#machinery_management_task_2-container .task_table .machine-element.node, #machinery_management_task_2-answer .task_table .machine-element.node {
   background: rgba(255, 133, 27, 0.76);
 }
-#machinery_management_task_2-container #slider_view .machine-element.detail {
+#machinery_management_task_2-container .task_table .machine-element.detail, #machinery_management_task_2-answer .task_table .machine-element.detail {
   background: rgba(170, 170, 170, 0.76);
 }
-#machinery_management_task_2-container #slider_view .machine-element .title-wrapper {
+#machinery_management_task_2-container .task_table .machine-element .title-wrapper, #machinery_management_task_2-answer .task_table .machine-element .title-wrapper {
   display: flex;
   align-items: center;
   justify-items: center;
   height: 100%;
   text-align: center;
   font-family: monospace;
+  user-select: none;
 }
-#machinery_management_task_2-container #slider_view .machine-element .title-wrapper .title-size {
+#machinery_management_task_2-container .task_table .machine-element .title-wrapper .title-size, #machinery_management_task_2-answer .task_table .machine-element .title-wrapper .title-size {
   position: absolute;
   top: 0;
   right: 0;
@@ -48,16 +52,16 @@ types = ["machine", "aggregate", "node", "detail"]
   user-select: none;
   border-bottom-left-radius: 0.2em;
 }
-#machinery_management_task_2-container #slider_view .machine-element .title-wrapper .title {
+#machinery_management_task_2-container .task_table .machine-element .title-wrapper .title, #machinery_management_task_2-answer .task_table .machine-element .title-wrapper .title {
   width: 100%;
   font-size: 0.9em;
   white-space: nowrap;
 }
-#machinery_management_task_2-container #x_axis_labels {
+#machinery_management_task_2-container .x_axis_labels, #machinery_management_task_2-answer .x_axis_labels {
   margin-top: -1px;
   margin-left: 1px;
 }
-#machinery_management_task_2-container #x_axis_labels .axis-label {
+#machinery_management_task_2-container .x_axis_labels .axis-label, #machinery_management_task_2-answer .x_axis_labels .axis-label {
   border: none;
   display: flex;
   align-items: center;
@@ -66,8 +70,12 @@ types = ["machine", "aggregate", "node", "detail"]
   text-align: center;
   width: 100%;
 }
-#machinery_management_task_2-container #x_axis_labels .axis-label .label {
+#machinery_management_task_2-container .x_axis_labels .axis-label .label, #machinery_management_task_2-answer .x_axis_labels .axis-label .label {
   width: 100%;
+  user-select: none;
+}
+#machinery_management_task_2-container .help_block, #machinery_management_task_2-answer .help_block {
+  padding: 1em 0;
 }
 
 /*# sourceMappingURL=machinery_management_task_2.css.map */

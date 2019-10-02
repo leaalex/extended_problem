@@ -11,11 +11,11 @@ $detail_color: #AAAAAA;
 
 $machine_element_opacity: 0.76;
 
-#machinery_management_task_2-container {
+#machinery_management_task_2-container, #machinery_management_task_2-answer {
 
   margin: 10px;
 
-  #slider_view {
+  .task_table {
 
     .dividing-line {
       border-left: 3px dashed black;
@@ -29,6 +29,10 @@ $machine_element_opacity: 0.76;
     .machine-element {
       border: 1px solid;
       cursor: pointer;
+
+      &.answer-item{
+        cursor: default;
+      }
 
       &.machine {
         background: rgba($machine_color, $machine_element_opacity);
@@ -53,6 +57,7 @@ $machine_element_opacity: 0.76;
         height: 100%;
         text-align: center;
         font-family: monospace;
+        user-select: none;
 
         .title-size {
 
@@ -78,7 +83,7 @@ $machine_element_opacity: 0.76;
 
   }
 
-  #x_axis_labels {
+  .x_axis_labels {
     margin-top: -1px;
     margin-left: 1px;
 
@@ -93,8 +98,13 @@ $machine_element_opacity: 0.76;
 
       .label {
         width: 100%;
+        user-select: none;
       }
 
     }
+  }
+
+  .help_block{
+    padding: 1em 0;
   }
 }

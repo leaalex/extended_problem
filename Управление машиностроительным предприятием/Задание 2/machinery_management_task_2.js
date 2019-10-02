@@ -1,9 +1,4 @@
 function MachineryManagement2(settings) {
-
-    // let answer = new Answer(settings.input.querySelector("input[type='text']"));
-
-    // console.log(answer)
-
     settings.data = settings.data.reverse().map(function (x, index) {
         x.height = 1;
         x.width = settings.init_width;
@@ -17,19 +12,21 @@ function MachineryManagement2(settings) {
         }
         return x;
     });
-    
+
     let correctness = undefined;
     let answer = undefined;
 
     if (settings.input) {
         if (settings.input.querySelector("input[type='text']")) {
+
+
             answer = new Answer(settings.input.querySelector("input[type='text']"));
             if (settings.input.parentNode.parentNode.querySelector(".message")) {
-                // settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+                settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
             }
 
-            // settings.input.classList.add("hidden");
-            // answer.elementField.classList.add("hidden");
+            settings.input.classList.add("hidden");
+            answer.elementField.classList.add("hidden");
 
             if (answer.get()) {
                 let l = answer.getJSON()["answer"];
@@ -38,16 +35,16 @@ function MachineryManagement2(settings) {
                 });
                 if (settings.input.parentNode.parentNode.querySelector("span.message")) {
                     correctness = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML);
-                    // console.log(correctness);
                 }
             }
         }
     }
 
     settings.data_obj = settings.data.reduce((acc, cur) => ({...acc, [cur.id]: cur}), {});
+    answer.setJSON({"answer": settings.data_obj});
 
     new Vue({
-        template: `<div id='slider_view'><div v-bind:style="areaStyle" >
+        template: `<div class='task_table' v-bind:style="areaStyle" >
         <template v-for="item in items">
             <vue-draggable-resizable :w="pixel_step*item.width" :x="pixel_step*item.x" :y="pixel_step*item.y"
                                      :h="pixel_step*item.height" @dragging="onDrag" @resizing="onResize"
@@ -65,7 +62,7 @@ function MachineryManagement2(settings) {
             </vue-draggable-resizable>
         </template>
         <div class="dividing-line" v-bind:style="dividingLineLeft"></div>
-    </div></div>`,
+    </div>`,
         el: '#t1',
         data: {
             data_obj: settings.data_obj,
@@ -94,7 +91,6 @@ function MachineryManagement2(settings) {
                 this.data_obj[this.current_element].x = this.x / this.pixel_step;
                 this.data_obj[this.current_element].y = this.y / this.pixel_step;
                 answer.setJSON({"answer": this.data_obj});
-                // console.log(this.data_obj[this.current_element])
             },
             onActivated(id) {
                 this.current_element = id;
@@ -126,7 +122,7 @@ function MachineryManagement2(settings) {
     });
 
     new Vue({
-        template: `<div id="x_axis_labels" v-bind:style="xLabelsStyle">
+        template: `<div class="x_axis_labels" v-bind:style="xLabelsStyle">
     <template v-for="(item,index) in values">
         <vue-draggable-resizable class="axis-label" :resizable="false" :draggable="false" :w="pixel_step"
                                  :h="pixel_step" :x="index*pixel_step" :y="0" :grid=[pixel_step,pixel_step]
@@ -155,6 +151,25 @@ function MachineryManagement2(settings) {
         }
     });
 
+    if (correctness) {
+        new Vue({
+            el: "#hb",
+            template: `<div class="help_block" v-if="correctness.length > 0">
+                    <p>Обратите внимание на следующие элементы: 
+                    <template v-for="(item,index) in correctness">
+                        <span style="text-transform: lowercase;font-weight: bold" >{{data_obj[item].title}}<template v-if="index!=correctness.length-1"  style="text-transform: lowercase;font-weight: bold">, </template> <template v-else>.</template></span>
+                    </template>
+                    </p>
+                </div>`,
+            data: {
+                correctness: correctness,
+                data_obj: settings.data_obj,
+            },
+            methods: {},
+            computed: {},
+        });
+
+    }
 
     function Answer(elementField) {
         this.elementField = elementField;
@@ -186,4 +201,71 @@ function MachineryManagement2(settings) {
         };
     };
 
+}
+
+function MachineryManagement2Answer(settings) {
+    new Vue({
+        template: `
+<div style="width: fit-content;margin: auto;">
+<div class='task_table' v-bind:style="areaStyle" >
+        <template v-for="item in items">
+            <vue-draggable-resizable :resizable="false" :draggable="false" :w="pixel_step*item.width" :x="pixel_step*item.x" :y="pixel_step*item.y"
+                                     :h="pixel_step*item.height":grid=[pixel_step,pixel_step]
+                                     :parent="true"
+                                     :z="z_indexes[item.type]"
+                                     v-bind:class="[item.type, 'machine-element', 'answer-item']" >
+                <div class="title-wrapper">
+                    <div class="title-size" v-if="1 < item.width" v-html="item.width"></div>
+                    <div class="title-size" v-else v-html="item.width"></div>
+                    <div class="title" v-if="2 < item.width" v-html="item.title"></div>
+                    <div class="title" v-else v-html="getLastWord(item.title)"></div>
+                </div>
+            </vue-draggable-resizable>
+        </template>
+            </div>
+            
+        <div class="x_axis_labels" v-bind:style="xLabelsStyle">
+        <template v-for="(val,index) in values">
+            <vue-draggable-resizable class="axis-label" :resizable="false" :draggable="false" :w="pixel_step" :h="pixel_step" :x="index*pixel_step" :y="0" :grid=[pixel_step,pixel_step] :parent="true" >
+                <div class="label" v-html="val"></div>
+            </vue-draggable-resizable>
+        </template>
+        </div>
+            </div>
+`,
+        el: '#MachineryManagement2_answer_container',
+        data: {
+            pixel_step: settings.pixel_step,
+            items: settings.data,
+            z_indexes: {machine: 1, aggregate: 10, node: 20, detail: 30},
+            values: Array.from({length: (settings.area_width)}, (v, k) => k + 1).reverse(),
+            area_width: settings.area_width,
+        },
+        methods: {
+            getLastWord(l) {
+                let l_arr = l.split(" ").slice();
+                return 1 < l_arr.length ? l_arr[l_arr.length - 1] : l.slice(0, 3) + ".";
+            },
+        },
+        computed: {
+            areaStyle: function () {
+                return {
+                    height: this.pixel_step * (settings.area_height) + "px",
+                    width: this.pixel_step * (settings.area_width) + "px",
+                    background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.25) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px`,
+                    position: "relative",
+                    border: "1px solid #e6e6e6",
+                }
+            },
+            xLabelsStyle: function () {
+                return {
+                    height: this.pixel_step + "px",
+                    width: this.pixel_step * (this.area_width) + "px",
+                    background: `linear-gradient(-90deg, rgba(0, 0, 0, 0.25) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px, linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px) 0% 0% / ${this.pixel_step}px ${this.pixel_step}px`,
+                    position: "relative",
+                }
+            },
+
+        }
+    });
 }
