@@ -1,0 +1,83 @@
+.table-container {
+  width: 810px;
+}
+.table-container table {
+  width: 100%;
+  border-spacing: 0px;
+  overflow: hidden;
+}
+.table-container table th {
+  text-align: left;
+  font-weight: normal;
+}
+.table-container table td, .table-container table th {
+  border: 1px solid #c9c9c9;
+  padding: 4px !important;
+  position: relative;
+}
+.table-container table td.header-cell, .table-container table th.header-cell {
+  text-align: center !important;
+  cursor: default;
+  z-index: 1;
+  background: white;
+  font-weight: normal;
+  font-size: 14px;
+}
+.table-container table td.subdivision-abbr-header, .table-container table th.subdivision-abbr-header {
+  text-align: center !important;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  font-weight: bold;
+}
+.table-container table td.subdivision-abbr-header:hover::after, .table-container table th.subdivision-abbr-header:hover::after {
+  opacity: 1;
+}
+.table-container table td.function-title-cell, .table-container table th.function-title-cell {
+  min-width: 300px;
+  z-index: 1;
+  font-weight: normal;
+  font-size: 14px;
+}
+.table-container table td.operation-input-cell, .table-container table th.operation-input-cell {
+  height: 2.5em;
+  padding: 0px !important;
+}
+.table-container table td.operation-input-cell input.operation-input, .table-container table th.operation-input-cell input.operation-input {
+  box-shadow: none !important;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100% !important;
+  background: #ffffff00;
+  text-align: center;
+  border-style: none;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  font-size: 1.3em;
+  line-height: 1em;
+  padding: 0px !important;
+  z-index: 1;
+}
+.table-container table td.operation-input-cell:hover::before, .table-container table th.operation-input-cell:hover::before {
+  background-color: #ededed66;
+  content: "";
+  height: 100%;
+  left: -5000px;
+  position: absolute;
+  top: 0;
+  width: 10000px;
+  z-index: 0;
+}
+.table-container table td.operation-input-cell:hover::after, .table-container table th.operation-input-cell:hover::after {
+  background-color: #ededed66;
+  content: "";
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: -5000px;
+  width: 100%;
+  z-index: 0;
+}
+
+/*# sourceMappingURL=machinery_management_task_4.css.map */

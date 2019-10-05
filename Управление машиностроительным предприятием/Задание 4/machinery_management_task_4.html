@@ -1,0 +1,166 @@
+<problem>
+    <script type="loncapa/python">
+    </script>
+    <link rel="stylesheet" type="text/css" href="./machinery_management_task_4.css" ></link>
+    <script type="text/javascript" src="./machinery_management_task_4.js"></script>
+
+<!--        <link rel="stylesheet" type="text/css" href="/static/machinery_management_task_4.css" ></link>-->
+<!--        <script type="text/javascript" src="/static/machinery_management_task_4.js"></script>-->
+
+
+    <div class="task-description">
+        <p></p>
+    </div>
+
+
+    <div id="machinery_management_task_4_container"></div>
+
+<!--    <div id="machinery_management_task_1_input" style="/*display: none!important;*/">-->
+
+<!--        <customresponse cfn="check_answer">-->
+<!--            <textline size="40" value="$taskId" />-->
+<!--            <br/>-->
+<!--        </customresponse>-->
+<!--    </div>-->
+
+    <script type="text/javascript">
+
+        // let data = $student_data_json;
+
+        let subdivision = [
+            {
+                abbr: "ПП",
+                title: "Председатель правления"
+            },
+            {
+                abbr: "ДП",
+                title: "Директор предприятия"
+            },
+            {
+                abbr: "ЗП",
+                title: "Заместитель директора по производству"
+            },
+            {
+                abbr: "ЗК",
+                title: "Заместитель директора по коммерции"
+            },
+            {
+                abbr: "ГБ",
+                title: "Главный бухгалтер"
+            },
+            {
+                abbr: "СР",
+                title: "Секретарь-референт"
+            },
+            {
+                abbr: "ЮК",
+                title: "Юрисконсульт-кадровик"
+            },
+            {
+                abbr: "ЭП",
+                title: "Экономист по планированию"
+            },
+            {
+                abbr: "ПО",
+                title: "Программист-оператор"
+            },
+            {
+                abbr: "ДС",
+                title: "Диспетчер"
+            },
+            {
+                abbr: "ИМ",
+                title: "Инженер по маркетингу"
+            },
+            {
+                abbr: "ИС",
+                title: "Инженер по снабжению"
+            },
+            // {
+            //     abbr: "ТЗ",
+            //     title: " Транспортно-заготовительный участок"
+            // },
+            // {
+            //     abbr: "ПУ",
+            //     title: "Производственный участок"
+            // },
+            // {
+            //     abbr: "РС",
+            //     title: " Ремонтно-строительный участок"
+            // },
+            // {
+            //     abbr: "МС",
+            //     title: "Магазин-склад"
+            // },
+        ];
+
+        let subdivision_functions = [
+            {title: "1. Управление стратегией развития предприятия"},
+            {title: "2. Организация системы и процессов управления"},
+            {title: "3. Управление персоналом"},
+            {title: "4. Управление социальным развитием"},
+            {title: "5. Управление экономическим развитием"},
+            {title: "6. Управление финансами и бухгалтерским учетом"},
+            {title: "7. Управление техническим развитием"},
+            {title: "8. Управление капитальным строительством и ремонтом"},
+            {title: "9. Управление подготовкой производства"},
+            {title: "10. Управление основным производством"},
+            {title: "11. Управление вспомогательным производством"},
+            {title: "12. Управление качеством продукции"},
+            {title: "13. Управление трудом и заработной платой"},
+            {title: "14. Управление охраной труда и техникой безопасности"},
+            {title: "15. Управление материально-техническим снабжением"},
+            {title: "16. Управление маркетингом и сбытом продукции"},
+            {title: "17. Управление механизацией производства"},
+            {title: "18. Управление транспортом"},
+            {title: "19. Управление обслуживающим хозяйством"},
+            {title: "20. Управление внешне-экономической деятельностью"},
+        ];
+
+        let operations = [
+            {
+                let_ru: "Ц",
+                title: "постановка цели управления",
+                let_en: "C",
+            },
+            {
+                let_ru: "Р",
+                title: "руководство, принятие решения, утверждение",
+                let_en: "R",
+            },
+            {
+                let_ru: "П",
+                title: "подготовка решения, составление, расчет, разработка",
+                let_en: "P",
+            },
+            {
+                let_ru: "С",
+                title: "согласование, рассмотрение",
+                let_en: "S",
+            },
+            {
+                let_ru: "И",
+                title: "исполнение, доведение, выполнение",
+                let_en: "I",
+            },
+            {
+                let_ru: "У",
+                title: "участие, оказание помощи, информирование",
+                let_en: "U",
+            }
+        ];
+
+        new MachineryManagement4({
+            element: document.getElementById('machinery_management_task_4_container'),
+            subdivision: subdivision,
+            subdivision_functions: subdivision_functions,
+            operations: operations,
+            // input:  document.getElementById('machinery_management_task_4_input'),
+            // tables_len: data.tables_len,
+            // source_data: data,
+        });
+
+    </script>
+
+</problem>
+

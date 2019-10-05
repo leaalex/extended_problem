@@ -1,0 +1,118 @@
+
+.table-container {
+  width: 810px;
+  //PADDING: 101PX;
+
+  table {
+    width: 100%;
+    border-spacing: 0px;
+    overflow: hidden;
+    th {
+      text-align: left;
+      font-weight: normal;
+
+    }
+
+    td, th {
+      border: 1px solid #c9c9c9;
+      padding: 4px !important;
+      position: relative;
+
+
+      &.header-cell{
+        text-align: center !important;
+        cursor: default;
+        z-index: 1;
+        background: white;
+        font-weight: normal;
+        font-size: 14px;
+        //padding: 4px;
+      }
+
+      &.subdivision-abbr-header{
+      text-align: center !important;
+        position: relative;
+        cursor: pointer;
+        z-index: 1;
+        font-weight: bold;
+        //&::after {
+        //  content: attr(data-tooltip);
+        //  position: absolute;
+        //  min-width: 170px;
+        //  left: -50%;
+        //  top: 1.5em;
+        //  background: whitesmoke;
+        //  border: 1px solid #c8c8c8;
+        //  padding: 0.5em 0.2em !important;
+        //  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        //  pointer-events: none;
+        //  opacity: 0;
+        //  transition: 0.5s;
+        //  z-index: 999;
+        //}
+
+        &:hover::after {
+          opacity: 1;
+          //top: 2em;
+        }
+
+      }
+
+      &.function-title-cell{
+        min-width: 300px;
+        //padding: 4px;
+        z-index: 1;
+        font-weight: normal;
+        font-size: 14px;
+      }
+
+      &.operation-input-cell {
+        height: 2.5em;
+        padding: 0px !important;
+
+        input.operation-input {
+          //width: 30px;
+          box-shadow: none !important;
+          text-transform: uppercase;
+          text-align: center;
+          width: 100% !important;
+          background: #ffffff00;
+          text-align: center;
+          border-style: none;
+          height: 100%;
+          display: inline-block;
+          position: relative;
+          //opacity: 0.5;
+          font-size: 1.3em;
+          line-height: 1em;
+          padding: 0px !important;
+          z-index: 1;
+        }
+        // row
+        &:hover::before {
+          background-color: #ededed66;
+          content: '';
+          height: 100%;
+          left: -5000px;
+          position: absolute;
+          top: 0;
+          width: 10000px;
+          z-index: 0;
+        }
+        //column
+        &:hover::after {
+          background-color: #ededed66;
+          content: '';
+          height: 10000px;
+          left: 0;
+          position: absolute;
+          top: -5000px;
+          width: 100%;
+          z-index: 0;
+        }
+
+
+      }
+    }
+  }
+}
