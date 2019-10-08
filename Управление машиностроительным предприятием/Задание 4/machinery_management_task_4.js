@@ -97,25 +97,26 @@ function MachineryManagement4(settings) {
                         let regex_str = '/[Ц-Цц-цC-Cc-cР-Рр-рR-Rr-rП-Пп-пP-Pp-pС-Сс-сS-Ss-sИ-Ии-иI-Ii-iУ-Уу-уU-Uu-u]/';
                         let lastSlash = regex_str.lastIndexOf("/");
                         let regex = new RegExp(regex_str.slice(1, lastSlash), regex_str.slice(lastSlash + 1));
+                        console.log(allowed_letters);
 
-                        console.log(allowed_letters)
-                        // [^A-AH-HЦ-Цa-z]
-
-                        // let num_regexp = /^([^0-9]*)$/;
                         if (!regex.test(key)) {
                             theEvent.returnValue = false;
                             if (theEvent.preventDefault) theEvent.preventDefault();
-                        } else {
-                            console.log("OK!: ", typeof key)
                         }
-
+                        // else {
+                        //     console.log("OK!: ", typeof key)
+                        // }
                     };
 
                     input.oninput = function (evt) {
                         student_state[sf_index][sd_index] = input.value === "" ? 0 : input.value;
-
                         console.log(student_state);
                     };
+
+                    sd_input_cell.onclick = function(event){
+                        input.select();
+                    };
+
                     sd_input_cell.appendChild(input);
 
                     sf_row.appendChild(sd_input_cell);

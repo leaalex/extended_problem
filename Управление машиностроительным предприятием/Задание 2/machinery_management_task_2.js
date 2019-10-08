@@ -44,30 +44,74 @@ function MachineryManagement2(settings) {
     answer.setJSON({"answer": settings.data_obj});
 
     new Vue({
-       el: '#tt',
-       template:`
-       <div class="task_title">
-            <span>Длительность процесса изготовления, обработки и сборки деталей, узлов, агрегатов и изделия, дн.:</span>
-            
-            <span v-for="(m, m_i) in machines"><span style="font-weight: bold">{{m.title}}</span> – {{m.width}}; </span>            
-            <span v-for="(a, a_i) in aggregates"><span style="font-weight: bold">{{a.title}}</span> – {{a.width}}; </span>            
-            <span v-for="(n, n_i) in nodes"><span style="font-weight: bold">{{n.title}}</span> – {{n.width}}; </span>            
-            <span v-for="(d, m_i) in details"><span style="font-weight: bold">{{d.title}}</span> – {{d.width}}; </span>            
-            
-       
-        </div>
-       
-       `,
-       data:{
-           source: settings.data,
-           machines: settings.data.filter(l=>l.type==='machine'),
-           aggregates: settings.data.filter(l=>l.type==='aggregate'),
-           nodes: settings.data.filter(l=>l.type==='node'),
-           details: settings.data.filter(l=>l.type==='detail'),
-       },
-       methods:{},
-        computed: {}
+        el: '#three_task',
+        template: `
+            <tree
+              :data="treeData"
+              :options="treeOptions"
+            />`,
+        data: function () {
+
+            let structure = settings.structure;
+            structure.state = { expanded: true };
+
+            function rec_add_title(struct) {
+                struct.new_title = struct.title +  " (длит. - " + struct.duration + " дн.)";
+                if(struct.children){
+                    struct.children.forEach(function (item, i){
+                        rec_add_title(struct.children[i]);
+                    });
+                }
+            }
+
+            rec_add_title(structure);
+
+            return {
+                treeData: structure,
+                treeOptions: {
+                    propertyNames: {
+                        text: 'new_title',
+                    }
+                }
+            }
+        },
+        methods: {
+            onNodeSelected(node) {
+                console.log(node.text)
+            }
+        }
     });
+
+    // new Vue({
+    //     el: '#tt',
+    //     template: `
+    //    <div class="task_title">
+    //         <span>Длительность процесса изготовления, обработки и сборки деталей, узлов, агрегатов и изделия, дн.:</span>
+    //         <span v-for="(m, m_i) in get_data.machines"><span style="font-weight: bold">{{m.title}}</span> – {{m.duration}}; </span>
+    //         <span v-for="(a, a_i) in get_data.aggregates"><span style="font-weight: bold">{{a.title}}</span> – {{a.duration}}; </span>
+    //         <span v-for="(n, n_i) in get_data.nodes"><span style="font-weight: bold">{{n.title}}</span> – {{n.duration}}; </span>
+    //         <span v-for="(d, m_i) in get_data.details"><span style="font-weight: bold">{{d.title}}</span> – {{d.duration}}; </span>
+    //     </div>
+    //    `,
+    //     data: {
+    //         source: settings.student_default_data,
+    //     },
+    //     methods: {},
+    //     computed: {
+    //         get_data: function () {
+    //             let static_data = this.source;
+    //             return {
+    //                 machines: static_data.filter(l => l.type === 'machine'),
+    //                 aggregates: static_data.filter(l => l.type === 'aggregate'),
+    //                 nodes: static_data.filter(l => l.type === 'node'),
+    //                 details: static_data.filter(l => l.type === 'detail'),
+    //             }
+    //         },
+    //         default_data: function () {
+    //             return this.source;
+    //         }
+    //     }
+    // });
 
     new Vue({
         template: `<div class='task_table' v-bind:style="areaStyle" >

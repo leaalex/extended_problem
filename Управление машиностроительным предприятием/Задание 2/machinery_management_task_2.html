@@ -180,6 +180,7 @@ student_data = {
     "area_height": area_height,
     "area_width": area_width,
     "extra_cells_count": extra_cells_count,
+    "structure": structure,
 }
 
 
@@ -360,6 +361,7 @@ student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", 
 </script>
 <script type="text/javascript" src="/static/vue.min.js"></script>
 <script type="text/javascript" src="/static/VueDraggableResizable.umd.js"></script>
+<script type="text/javascript" src="/static/liquor-tree.umd.js"></script>
 <script type="text/javascript">
     window.define = window.__define;
     window.require = window.__require;
@@ -372,6 +374,7 @@ student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", 
     <link rel="stylesheet" href="/static/machinery_management_task_2.css"></link>
 
     <div id="machinery_management_task_2-container">
+        <div id="three_task"></div>
         <div id="tt"></div>
         <div id="t1"></div>
         <div id="t2"></div>
@@ -396,6 +399,8 @@ student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", 
 
 
         let student_data = $student_data_json;
+        let student_default_data = $student_data_json;
+
 
         new MachineryManagement2({
             pixel_step: 30,
@@ -403,7 +408,9 @@ student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", 
             area_width: student_data.area_width,
             data: student_data.data,
             init_width: 3,
+            student_default_data: student_default_data.data,
             extra_cells_count: student_data.extra_cells_count,
+            structure: student_data.structure,
             input: document.querySelector("#machinery_management_task_2_input"),
         });
 

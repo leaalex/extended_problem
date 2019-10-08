@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2/machinery_management_task_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -280,7 +280,7 @@
       <workItem from="1568724956749" duration="122181000" />
       <workItem from="1569494353221" duration="46511000" />
       <workItem from="1569831540458" duration="52128000" />
-      <workItem from="1570182781236" duration="13257000" />
+      <workItem from="1570182781236" duration="24422000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
