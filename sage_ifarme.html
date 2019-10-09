@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    if (window.location.host !== 'studio.openedu.ru'){
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://sagecell.sagemath.org/static/embedded_sagecell.js';
+        //https://openedu.urfu.ru/sagecell/
+        document.head.insertBefore(script, document.head.firstChild);
+    }
+</script>
+<style>
+    .CodeMirror-fullscreen {
+        z-index: 99999 !important;
+    }
+    .CodeMirror pre { margin:0px !important }
+</style>
+
+<h2>Sage 3.1. Понятие функции. Графики</h2>
+<script type="text/javascript">
+    function run_sage () {
+        sagecell.makeSagecell({inputLocation:  '#mycell',
+            template:       sagecell.templates.minimal,
+            evalButtonText: 'Activate'});
+        sagecell.makeSagecell({inputLocation: 'div.compute',
+            evalButtonText: 'Evaluate'});
+    };
+
+</script>
+
+<div class="compute">
+    <script type="text/x-sage">
+f(x)=x^2
+f1(x)= f(x)+5
+g=plot(f(x),(x,-5,5))
+g1=plot(f1(x),(x,-5,5), rgbcolor=(1,0,0))
+show(g+g1)
+</script>
+</div>
+<script type="text/javascript" >
+    window.onload = run_sage;
+    run_sage();
+</script>
+
+
+</body>
+</html>

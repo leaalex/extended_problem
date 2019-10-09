@@ -1,0 +1,117 @@
+<problem>
+    <script type="loncapa/python">
+
+    </script>
+
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+<!--    <script type="text/javascript" src="./apexcharts.js"></script>-->
+<!--    <script type="text/javascript" src="./vue-apexcharts.js"></script>-->
+    <script type="text/javascript" src="./machinery_management_task_3.js"></script>
+    <link rel="stylesheet" href="./machinery_management_task_3.css"></link>
+
+
+    <div id="machinery_management_task_3_container">
+        <div id="machinery_management_task_3_text">
+
+        </div>
+    </div>
+
+<!--    <div id="appl">-->
+<!--    <template>-->
+<!--        <div>-->
+<!--            <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>-->
+<!--        </div>-->
+<!--    </template>-->
+
+<!--    </div>-->
+
+    <script type="text/javascript">
+
+
+        // $student_data_json;
+        let student_data = {
+            "operations": [{
+                "id": "operation_1",
+                "title": "Токарная",
+                "duration": 1.9,
+                "type": "turning",
+                "weight": 0
+            }, {
+                "id": "operation_2",
+                "title": "Сверлильная",
+                "duration": 1.1,
+                "type": "drilling",
+                "weight": 1
+            }, {
+                "id": "operation_3",
+                "title": "Фрезерная",
+                "duration": 2.1,
+                "type": "milling",
+                "weight": 2
+            }, {"id": "operation_4", "title": "Шлифовальная", "duration": 1.3, "type": "grinding", "weight": 3}],
+            "employees": {
+                "employee_1": {"id": "employee_1", "title": "Сашка"},
+                "employee_2": {"id": "employee_2", "title": "Женьдос"},
+                "employee_3": {"id": "employee_3", "title": "Славик"},
+                "employee_4": {"id": "employee_4", "title": "Колян"},
+                "employee_5": {"id": "employee_5", "title": "Лёха"},
+                "employee_6": {"id": "employee_6", "title": "Паша"},
+                "employee_7": {"id": "employee_7", "title": "Работник 1"},
+                "employee_8": {"id": "employee_8", "title": "Работник 2"},
+                "employee_9": {"id": "employee_9", "title": "Работник 3"},
+                "employee_10": {"id": "employee_10", "title": "Работник 4"},
+                "employee_11": {"id": "employee_11", "title": "Работник 5"},
+                "employee_12": {"id": "employee_12", "title": "Работник 6"},
+                "employee_13": {"id": "employee_13", "title": "Работник 7"},
+                "employee_14": {"id": "employee_14", "title": "Работник 8"}
+            },
+            "companion_data": {
+                "month": 21,
+                "work_day": 2,
+                "work_shift": 8,
+                "half_shift": 0.5,
+                "defect_percent": 16,
+                "N_out": 12600,
+                "tact": 1.6,
+                "safety_stock": 5,
+                "max_time": 240.0
+            },
+            "workplaces_len": 6,
+            "periods_len": 3,
+            "operations_pairs": [["operation_1", "operation_2"], ["operation_2", "operation_3"], ["operation_3", "operation_4"]]
+        };
+
+
+        new MachineryManagement3({
+            data: student_data,
+            // input: document.querySelector("#machinery_management_task_2_input"),
+        });
+        // Vue.use(VueApexCharts)
+
+
+        var app = new Vue({
+            el: '#appl',
+            data: function() {
+                console.log("KEKEKEKEKE&&")
+                return {
+                    options: {
+                        chart: {
+                            id: 'vuechart-example'
+                        },
+                        xaxis: {
+                            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                        }
+                    },
+                    series: [{
+                        name: 'series-1',
+                        data: [30, 40, 45, 50, 49, 60, 70, 91]
+                    }]
+                }
+            }
+        });
+    </script>
+
+
+</problem>
