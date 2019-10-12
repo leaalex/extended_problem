@@ -148,24 +148,25 @@ function MachineryManagement3(user_settings) {
                     <tr>
                      <td colspan="2">изменение</td>
                      <td v-for="n in array_0_n(periods_len)">
-                     {{round_num(user_data.operations_pairs[index].pair[0].out[n]-user_data.operations_pairs[index].pair[1].out[n])}}
+                        {{round_num(user_data.operations_pairs[index].pair[0].out[n]-user_data.operations_pairs[index].pair[1].out[n])}}
                      </td>
                     </tr>
                     <tr>
                     <td>Динамика</td>
                     <td><input v-model.number="user_data.operations_pairs[index].dynamic_value" type="number"></td>
                     <td v-for="n in array_0_n(periods_len)">
+                        <template v-if="n == 0">
+<!--                                {{round_num(user_data.operations_pairs[index].pair[0].out[n]-user_data.operations_pairs[index].pair[1].out[n] + user_data.operations_pairs[index].dynamic_value)}}-->
+                        </template>
+                        <template v-else>
+                                         
+                        </template>
                     </td>
                     </tr>
-                    
                     </table>
-               
                 </div>
-                
                 </div>
-               
             </div>
-        
         `,
                 el: '#machinery_management_task_3_text',
                 data: {
@@ -177,57 +178,40 @@ function MachineryManagement3(user_settings) {
                     periods_len: settings.periods_len,
                     user_data: user_data,
                     options: {
-                        animate:false,
                         chart: {
                             height: 350,
                             type: 'rangeBar',
-                            animate:false,
+
                         },
                         plotOptions: {
-                            animate:false,
                             bar: {
-                                animate:false,
                                 horizontal: true,
                             }
                         },
-
                         yaxis: {
-                            min: 0,
-                            max: 240
+
                         },
                         xaxis: {
-                            // type: 'datetime'
+                            min: 0,
+                            max: 240,
+                            tickAmount: 8,
+                            range: 240,
+                            // floating: false,
                         },
-                        fill: {
-                            type: 'gradient',
-                            gradient: {
-                                shade: 'light',
-                                type: "vertical",
-                                shadeIntensity: 0.25,
-                                gradientToColors: undefined,
-                                inverseColors: true,
-                                opacityFrom: 1,
-                                opacityTo: 1,
-                                stops: [50, 0, 100, 100]
-                            }
-                        }
-                    }
-                    // options: {},
-                    // series: [44, 55, 41, 17, 15]
+                    },
+
+                    changes: utils.zeros([settings.operations_pairs.length,settings.periods_len]),
 
                 },
 
                 methods: {
-
                     array_0_n: function (n) {
                         return Array.from(Array(n).keys())
                     },
                     get_operation_by_id(id) {
-                        // console.log(user_data);
                         return this.operations.filter(item => item.id === id)[0];
                     },
                     console_user_data() {
-
                         console.log(this.user_data);
                     },
                     round_num(num, d){
@@ -245,30 +229,19 @@ function MachineryManagement3(user_settings) {
                     get_graphic_data:function(){
                         let g_d = [];
                         this.user_data.workplaces.forEach(function (item) {
-                            if(item.employee !== "") {
+                            console.log("fdfdf", item.type);
+                            if(item.employee !== "" && item.type !== "") {
                                 g_d.push( {
                                     x: settings.employees[item.employee].title,
                                     y: [item.op_start, item.op_end]
-                                    // }
                                 })
                             }
                         });
-
-
-                        let kek = [{
-                            // name: 'Bob',
-                            data: g_d
-                        },
-                        ];
-
-                        console.log(kek);
-                        return kek;
+                        return [{data: g_d},];
                     },
-                    // calculate_workplace_num: function () {
-                    //     console.log("__________________________________________________")
-                    //
-                    // }
-                    // this.program_change =
+                    calculate_change: function(){
+                        console.log("fdfdf");
+                    },
                 },
 
             });

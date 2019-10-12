@@ -211,17 +211,19 @@ def check_answer(exp, ans):
         return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': result_grade}]}
 
 </script>
-    <link rel="stylesheet" type="text/css" href="./machinery_management_task_1.css" ></link>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>
-    <script type="text/javascript" src="./machinery_management_task_1.js"></script>
+<!--    <link rel="stylesheet" type="text/css" href="./machinery_management_task_1.css" ></link>-->
+<!--    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>-->
+<!--    <script type="text/javascript" src="./machinery_management_task_1.js"></script>-->
 
-<!--    <link rel="stylesheet" type="text/css" href="/static/machinery_management_task_1.css" ></link>-->
-<!--    <script type="text/javascript" src="/static/machinery_management_task_1.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="/static/machinery_management_task_1.css" ></link>
+    <script type="text/javascript" src="/static/machinery_management_task_1.js"></script>
 
 
     <div class="task-description">
         <p>Определить длительность технологического и производственного цикла изготовления всей партии деталей при последовательном, параллельном и параллельно-последовательном видах движения. Построить график технологического цикла при всех видах движения.</p>
-        <p>\(n = $n, \ p = $p, \ t_1 = $t1, \ t_2 = $t2, \ t_3 = $t3, \ t_4 = $t4, \ t_5 = $t5\)</p>
+        <p>Исходные данные:</p>
+        <p><strong>n = $n шт., p = $p шт.</strong></p>
+        <p><strong>t<sub>1</sub> = $t1, t<sub>2</sub> = $t2 мин., t<sub>3</sub> = $t3 мин., t<sub>4</sub> = $t4 мин., t<sub>5</sub> = $t5 мин.</strong></p>
     </div>
 
 
@@ -238,18 +240,18 @@ def check_answer(exp, ans):
 
     <script type="text/javascript">
 
-        // let data = $student_data_json;
+        let data = $student_data_json;
 
-        let data = {
-            n: 15,
-            p: 5,
-            t1: 1,
-            t2: 2,
-            t3: 1,
-            t4: 3,
-            t5: 1,
-            tables_len: [15, 25, 27],
-        };
+        // let data = {
+        //     n: 15,
+        //     p: 5,
+        //     t1: 1,
+        //     t2: 2,
+        //     t3: 1,
+        //     t4: 3,
+        //     t5: 1,
+        //     tables_len: [15, 25, 27],
+        // };
 
         console.log(data);
 

@@ -126,10 +126,11 @@ function HistoricalMaps(settings) {
                 cities[i].classList.add("city");
 
                 if(cities[i].parentNode.querySelector("text")){
-                    let city_name = cities[i].parentNode.querySelector("text").textContent;
-                    let hidden_city_name = '?'.repeat(city_name.split("(")[0].length);
-                    cities[i].parentNode.querySelector("text").textContent = hidden_city_name;
-                    if(cities[i].parentNode.querySelector("g")) cities[i].parentNode.querySelector("g").classList.add("hidden");
+                    // let city_name = cities[i].parentNode.querySelector("text").textContent;
+                    // let hidden_city_name = '?'.repeat(city_name.split("(")[0].length);
+                    // console.log(cities[i].parentNode.querySelector("text"))
+                    // cities[i].parentNode.querySelector("text").textContent = hidden_city_name;
+                    // if(cities[i].parentNode.querySelector("g")) cities[i].parentNode.querySelector("g").classList.add("hidden");
                 }
 
                 cities[i].setAttribute("r", 5);

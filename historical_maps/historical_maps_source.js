@@ -459,98 +459,98 @@ let _source_svg_task = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820
       <circle cx="257.40165" cy="233.84704" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <polygon points="354 226 318 226 317.521 240 279 240 279 226 245 226 245 214 354 214 354 226" fill="none"/>
-        <text transform="translate(245.31982 223.40234)" font-size="11.26427" font-family="Helvetica">Обдорск (Салехард)<tspan x="38.1875" y="13.51709">(1595)</tspan></text>
+        <text transform="translate(245.31982 223.40234)" font-size="11.26427" font-family="Helvetica">Обдорск (Салехард)<tspan x="38.1875" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="276.47369" cy="309.55964" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="274" y="277" width="38" height="27" fill="none"/>
-        <text transform="translate(275.14844 286.76074)" font-size="11.26427" font-family="Helvetica">Сургут<tspan x="1.63623" y="13.51709">(1594)</tspan></text>
+        <text transform="translate(275.14844 286.76074)" font-size="11.26427" font-family="Helvetica">Сургут<tspan x="1.63623" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="235.21449" cy="335.20725" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="241" y="321" width="50" height="25" fill="none"/>
-        <text transform="translate(241.3501 330.61035)" font-size="11.26427" font-family="Helvetica">Тобольск<tspan x="8.50586" y="13.51709">(1587)</tspan></text>
+        <text transform="translate(241.3501 330.61035)" font-size="11.26427" font-family="Helvetica">Тобольск<tspan x="8.50586" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="448.20115" cy="373.1211" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="414" y="343" width="38" height="25" fill="none"/>
-        <text transform="translate(414.26953 351.80859)" font-size="11.26427" font-family="Helvetica">Братск<tspan x="2.43164" y="13.51709">(1631)</tspan></text>
+        <text transform="translate(414.26953 351.80859)" font-size="11.26427" font-family="Helvetica">Братск<tspan x="2.43164" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="398.02105" cy="385.38735" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="391" y="392" width="64" height="27" fill="none"/>
-        <text transform="translate(391.86279 402.13867)" font-size="11.26427" font-family="Helvetica">Красноярск<tspan x="14.99902" y="13.51709">(1628)</tspan></text>
+        <text transform="translate(391.86279 402.13867)" font-size="11.26427" font-family="Helvetica">Красноярск<tspan x="14.99902" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="734.78529" cy="26.32084" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="740" y="11" width="49" height="26" fill="none"/>
-        <text transform="translate(740.7168 20.75488)" font-size="11.26427" font-family="Helvetica">Анадырь<tspan x="7.23047" y="13.51709">(1889)</tspan></text>
+        <text transform="translate(740.7168 20.75488)" font-size="11.26427" font-family="Helvetica">Анадырь<tspan x="7.23047" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="589.82055" cy="244.88306" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="598" y="242" width="39" height="27" fill="none"/>
-        <text transform="translate(598.59082 252.05566)" font-size="11.26427" font-family="Helvetica">Якутск<tspan x="2.3623" y="13.51709">(1632)</tspan></text>
+        <text transform="translate(598.59082 252.05566)" font-size="11.26427" font-family="Helvetica">Якутск<tspan x="2.3623" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="735.9004" cy="425.53143" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="742" y="421" width="70" height="26" fill="none"/>
-        <text transform="translate(741.87793 429.84668)" font-size="11.26427" font-family="Helvetica">Владивосток<tspan x="18.60938" y="13.51709">(1860)</tspan></text>
+        <text transform="translate(741.87793 429.84668)" font-size="11.26427" font-family="Helvetica">Владивосток<tspan x="18.60938" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="719.1737" cy="360.85485" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="725" y="347" width="58" height="26" fill="none"/>
-        <text transform="translate(725.78516 356.83203)" font-size="11.26427" font-family="Helvetica">Хабаровск<tspan x="12.125" y="13.51709">(1858)</tspan></text>
+        <text transform="translate(725.78516 356.83203)" font-size="11.26427" font-family="Helvetica">Хабаровск<tspan x="12.125" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="342.26538" cy="376.46644" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <polygon points="379 376 347 376 344 363.5 344 351 379 351 379 376" fill="none"/>
-        <text transform="translate(345.15771 359.68359)" font-size="11.26427" font-family="Helvetica">Томск<tspan x="0" y="13.51709">(1604)</tspan></text>
+        <text transform="translate(345.15771 359.68359)" font-size="11.26427" font-family="Helvetica">Томск<tspan x="0" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="549.67647" cy="403.22916" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="514" y="397" width="30" height="25" fill="none"/>
-        <text transform="translate(516.01953 405.79688)" font-size="11.26427" font-family="Helvetica">Чита<tspan x="-3.37695" y="13.51709">(1653)</tspan></text>
+        <text transform="translate(516.01953 405.79688)" font-size="11.26427" font-family="Helvetica">Чита<tspan x="-3.37695" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="803.58551" cy="192.57267" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <polygon points="820 176 795.54 176.642 795 192 759 192 759 177 734 176 734 151 820 151 820 176" fill="none"/>
-        <text transform="translate(733.8418 161.41797)" font-size="11.26427" font-family="Helvetica">Петропавловск-<tspan x="10.7666" y="13.51709">Камчатский</tspan><tspan x="26.5791" y="27.03418">(1740)</tspan></text>
+        <text transform="translate(733.8418 161.41797)" font-size="11.26427" font-family="Helvetica">Петропавловск-<tspan x="10.7666" y="13.51709">Камчатский</tspan><tspan x="26.5791" y="27.03418">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="229.63893" cy="257.14931" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="183" y="230" width="53" height="22" fill="none"/>
-        <text transform="translate(182.89941 238.70215)" font-size="11.26427" font-family="Helvetica">Берёзово<tspan x="9.01221" y="13.51709">(1953)</tspan></text>
+        <text transform="translate(182.89941 238.70215)" font-size="11.26427" font-family="Helvetica">Берёзово<tspan x="9.01221" y="13.51709">(____)</tspan></text>
       </g>
     </g>
     <g>
       <circle cx="173.88326" cy="291.71782" r="4.46045" fill="#fff" stroke="#000" stroke-miterlimit="10"/>
       <g>
         <rect x="144" y="259" width="60" height="26" fill="none"/>
-        <text transform="translate(144.58545 268.36523)" font-size="11.26427" font-family="Helvetica">Соликамск<tspan x="13.31055" y="13.51709">(1430)</tspan></text>
+        <text transform="translate(144.58545 268.36523)" font-size="11.26427" font-family="Helvetica">Соликамск<tspan x="13.31055" y="13.51709">(____)</tspan></text>
       </g>
     </g>
   </g>

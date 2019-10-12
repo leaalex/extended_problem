@@ -1,0 +1,25 @@
+.hidden {
+  display: none !important;
+  z-index: -999;
+}
+
+.question-block {
+  margin: 10px 0px;
+  padding: 10px;
+  border-bottom: 2px solid #f2f2f2;
+
+  .question-text {
+    font-weight: bold;
+  }
+}
+
+.radio-input, .checkbox-input{
+  margin-top: -1px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+
+.submit.btn-brand{
+  text-transform: none !important;
+}
