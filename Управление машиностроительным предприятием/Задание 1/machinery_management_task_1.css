@@ -41,6 +41,30 @@
 .group-description-block .description-item .description-color.group_3:hover {
   background: #efd689;
 }
+.group-description-block .description-item .description-color.group_4 {
+  background: #9966CC;
+}
+.group-description-block .description-item .description-color.group_4:hover {
+  background: #8956bc;
+}
+.group-description-block .description-item .description-color.group_5 {
+  background: #CCCCFF;
+}
+.group-description-block .description-item .description-color.group_5:hover {
+  background: #bcbcef;
+}
+.group-description-block .description-item .description-color.group_6 {
+  background: #3F888F;
+}
+.group-description-block .description-item .description-color.group_6:hover {
+  background: #2f787f;
+}
+.group-description-block .description-item .description-color.group_7 {
+  background: #755C48;
+}
+.group-description-block .description-item .description-color.group_7:hover {
+  background: #654c38;
+}
 
 .table-container {
   padding: 10px;
@@ -161,6 +185,22 @@
 }
 .table-container table.task-table.table-type-2 td.group-3 {
   background: #ffe699;
+  border-style: unset;
+}
+.table-container table.task-table.table-type-2 td.group-4 {
+  background: #9966CC;
+  border-style: unset;
+}
+.table-container table.task-table.table-type-2 td.group-5 {
+  background: #CCCCFF;
+  border-style: unset;
+}
+.table-container table.task-table.table-type-2 td.group-6 {
+  background: #3F888F;
+  border-style: unset;
+}
+.table-container table.task-table.table-type-2 td.group-7 {
+  background: #755C48;
   border-style: unset;
 }
 

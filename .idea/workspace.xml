@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_maps/historical_maps_source.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.js" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -287,7 +286,7 @@
       <workItem from="1569831540458" duration="52128000" />
       <workItem from="1570182781236" duration="48473000" />
       <workItem from="1570629263453" duration="9000000" />
-      <workItem from="1570777725659" duration="16757000" />
+      <workItem from="1570777725659" duration="21311000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

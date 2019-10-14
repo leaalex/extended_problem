@@ -3,7 +3,7 @@ function MachineryManagement1(settings) {
     let element = settings.element;
 
     let count = 5;
-
+    let groups_len = settings.source_data.groups_len;
     let tables_len = settings.tables_len ? (settings.tables_len.length === 3) ? settings.tables_len : [16, 16, 16] : [16, 16, 16];
 
     let state = {
@@ -12,20 +12,23 @@ function MachineryManagement1(settings) {
         table_3: [],
     };
 
-    let groups = {
-        group_1: {
-            title: 'Группа 1 (цифра "1" для ввода)',
-            id: "group_1",
-        },
-        group_2: {
-            title: 'Группа 2 (цифра "2" для ввода)',
-            id: "group_2",
-        },
-        group_3: {
-            title: 'Группа 3 (цифра "3" для ввода)',
-            id: "group_3",
-        }
-    };
+    let groups = range(0,groups_len-1).map(g=>{return {title: `Группа ${g+1} (цифра "${g+1}" для ввода)`, id: "group_"+(g+1), btn:(g+1) } });
+
+    console.log(groups);
+    //     {
+    //     group_1: {
+    //         title: 'Группа 1 (цифра "1" для ввода)',
+    //         id: "group_1",
+    //     },
+    //     group_2: {
+    //         title: 'Группа 2 (цифра "2" для ввода)',
+    //         id: "group_2",
+    //     },
+    //     group_3: {
+    //         title: 'Группа 3 (цифра "3" для ввода)',
+    //         id: "group_3",
+    //     }
+    // };
 
     function Answer(elementField) {
         this.elementField = elementField;
@@ -107,12 +110,12 @@ function MachineryManagement1(settings) {
         },
         init_group_description: function () {
             let group_description_block = utils.create("div", {className: "group-description-block"});
-            Object.keys(groups).forEach(function (group) {
+            groups.forEach(function (group) {
                 let description_item = utils.create("div", {className: "description-item"});
-                let description_color = utils.create("div", {className: `description-color ${group}`});
+                let description_color = utils.create("div", {className: `description-color ${group.id}`});
                 let description_label = utils.create("div", {
                     className: "description-label",
-                    html: " - " + groups[group].title.toLowerCase()
+                    html: " - " + group.title.toLowerCase()
                 });
                 description_item.appendChild(description_color);
                 description_item.appendChild(description_label);
@@ -156,21 +159,15 @@ function MachineryManagement1(settings) {
                     utils.remove_classes(table_2.querySelector("table"), ["correct", "incorrect"]);
                     let x = cells[i].dataset.coordinates.split(",")[0];
                     let y = cells[i].dataset.coordinates.split(",")[1];
-                    utils.remove_classes(cells[i], ["group-1", "group-2", "group-3"]);
+                    utils.remove_classes(cells[i], groups.map(g=>"group-"+g.btn));
                     let val = parseInt(event.target.value);
-                    switch (val) {
-                        case 1:
-                            cells[i].classList.add("group-1");
-                            break;
-                        case 2:
-                            cells[i].classList.add("group-2");
-                            break;
-                        case 3:
-                            cells[i].classList.add("group-3");
-                            break;
-                        default:
-                            val = 0;
+                    if (groups.map(g=>g.btn).includes(val)){
+                        cells[i].classList.add("group-" + val);
                     }
+                    else{
+                        val = 0;
+                    }
+
                     state.table_2[y][x] = val;
                     answer.setJSON({answer: state});
                 }
@@ -192,21 +189,27 @@ function MachineryManagement1(settings) {
                     utils.remove_classes(table_3.querySelector("table"), ["correct", "incorrect"]);
                     let x = cells[i].dataset.coordinates.split(",")[0];
                     let y = cells[i].dataset.coordinates.split(",")[1];
-                    utils.remove_classes(cells[i], ["group-1", "group-2", "group-3"]);
+                    utils.remove_classes(cells[i], groups.map(g=>"group-"+g.btn));
                     let val = parseInt(event.target.value);
-                    switch (val) {
-                        case 1:
-                            cells[i].classList.add("group-1");
-                            break;
-                        case 2:
-                            cells[i].classList.add("group-2");
-                            break;
-                        case 3:
-                            cells[i].classList.add("group-3");
-                            break;
-                        default:
-                            val = 0;
+                    if (groups.map(g=>g.btn).includes(val)){
+                        cells[i].classList.add("group-" + val);
                     }
+                    else{
+                        val = 0;
+                    }
+                    // switch (val) {
+                    //     case 1:
+                    //         cells[i].classList.add("group-1");
+                    //         break;
+                    //     case 2:
+                    //         cells[i].classList.add("group-2");
+                    //         break;
+                    //     case 3:
+                    //         cells[i].classList.add("group-3");
+                    //         break;
+                    //     default:
+                    //         val = 0;
+                    // }
                     state.table_3[y][x] = val;
                     answer.setJSON({answer: state});
                 }
@@ -220,22 +223,25 @@ function MachineryManagement1(settings) {
                     let current_td = table.querySelector(`[data-coordinates="${cell_idx},${row_idx}"]`);
                     if (current_td) {
                         let current_input = current_td.querySelector('input.group-input');
-                        switch (cell_val) {
-                            case 1:
-                                current_td.classList.add("group-1");
-                                current_input.value = cell_val;
-                                break;
-                            case 2:
-                                current_td.classList.add("group-2");
-                                current_input.value = cell_val;
-                                break;
-                            case 3:
-                                current_td.classList.add("group-3");
-                                current_input.value = cell_val;
-                                break;
-                            default:
-                                break;
+
+                        // switch (cell_val) {
+                        //     case 1:
+                        if (groups.map(g=>g.btn).includes(parseInt(cell_val))) {
+                            current_td.classList.add("group-" + cell_val);
+                            current_input.value = cell_val;
                         }
+                            //     break;
+                            // case 2:
+                            //     current_td.classList.add("group-2");
+                            //     current_input.value = cell_val;
+                            //     break;
+                            // case 3:
+                            //     current_td.classList.add("group-3");
+                            //     current_input.value = cell_val;
+                            //     break;
+                            // default:
+                            //     break;
+                        // }
                     }
                 });
             });
@@ -253,6 +259,10 @@ function MachineryManagement1(settings) {
             });
 
         },
+    };
+
+    function range (start, end) {
+        return Array(end - start + 1).fill().map((_, idx) => start + idx)
     };
 
     let utils = {
@@ -378,7 +388,8 @@ function MachineryManagement1(settings) {
                                 key = theEvent.keyCode || theEvent.which;
                                 key = String.fromCharCode(key);
                             }
-                            let regex = /[1-3]/;
+                            let regex = new RegExp(`[1-${groups_len}]`);
+
                             if (!regex.test(key)) {
                                 theEvent.returnValue = false;
                                 if (theEvent.preventDefault) theEvent.preventDefault();

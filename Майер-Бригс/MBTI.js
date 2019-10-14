@@ -3,6 +3,7 @@ function MBTI(settings) {
     let element = settings.element;
     let questions = settings.questions;
     let interpretations = settings.interpretations;
+    let task_wording = settings.task_wording;
 
     let state = {
         complete: true
@@ -79,6 +80,13 @@ function MBTI(settings) {
         createTest: function () {
             state.complete = true;
             let test_wrapper = utils.create("div", {className: "test-wrapper"});
+
+            let wording_wrapper = utils.create("div", {className: "wording-wrapper"});
+            task_wording.forEach(function (paragraph) {
+                wording_wrapper.appendChild(utils.create("p", {html: paragraph}));
+            });
+            test_wrapper.appendChild(wording_wrapper);
+
             questions.forEach(function (question, index) {
                 let question_block = utils.create("div", {
                     id: `question_${index}`,

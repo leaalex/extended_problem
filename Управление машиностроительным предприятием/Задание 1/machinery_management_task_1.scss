@@ -1,6 +1,10 @@
 $group_1_color: #ffc000;
 $group_2_color: #bdd7ee;
 $group_3_color: #ffe699;
+$group_4_color: #9966CC;
+$group_5_color: #CCCCFF;
+$group_6_color: #3F888F;
+$group_7_color: #755C48;
 
 //$group_1_color: white;
 //$group_2_color: blue;
@@ -62,6 +66,38 @@ $border_color: #c9c9c9;
 
         &:hover {
           background: darker($group_3_color, 1);
+        }
+      }
+
+      &.group_4 {
+        background: $group_4_color;
+
+        &:hover {
+          background: darker($group_4_color, 1);
+        }
+      }
+
+      &.group_5 {
+        background: $group_5_color;
+
+        &:hover {
+          background: darker($group_5_color, 1);
+        }
+      }
+
+      &.group_6 {
+        background: $group_6_color;
+
+        &:hover {
+          background: darker($group_6_color, 1);
+        }
+      }
+
+      &.group_7 {
+        background: $group_7_color;
+
+        &:hover {
+          background: darker($group_7_color, 1);
         }
       }
     }
@@ -226,6 +262,26 @@ $border_color: #c9c9c9;
 
         &.group-3 {
           background: $group_3_color;
+          border-style: unset;
+        }
+
+        &.group-4 {
+          background: $group_4_color;
+          border-style: unset;
+        }
+
+        &.group-5 {
+          background: $group_5_color;
+          border-style: unset;
+        }
+
+        &.group-6 {
+          background: $group_6_color;
+          border-style: unset;
+        }
+
+        &.group-7 {
+          background: $group_7_color;
           border-style: unset;
         }
 
