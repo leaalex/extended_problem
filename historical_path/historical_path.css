@@ -16,6 +16,9 @@
   r: 1.5;
   stroke-width: 0.5px;
 }
+.city.unused-city {
+  display: none;
+}
 .city.kiev {
   stroke-width: 1px !important;
   r: 3 !important;

@@ -80,11 +80,14 @@ function HistoricalPath(settings) {
 
     let endPoint = "city_71";
     let correctness = undefined;
-    // let can_used_cities = rules.map((item) => {
-    //     return [item["from"]].concat(item["can_to"])
-    // }).reduce(function (a, b) {
-    //     return a.concat(b)
-    // });
+    let can_used_cities = rules.map((item) => {
+        return [item["from"]].concat(item["can_to"])
+    }).reduce(function (a, b) {
+        return a.concat(b)
+    });
+    can_used_cities = can_used_cities.concat(["city_8", "city_13", "city_16"]);
+
+    console.log(can_used_cities)
 
     let user_path = [startPoint];
     let cities = Array.from(svg.querySelector(settings.cities_selector).children);
@@ -253,6 +256,13 @@ function HistoricalPath(settings) {
 
             for (let i = 0; i < cities.length; i++) {
                 cities[i].classList.add("city");
+
+                // console.log(cities[i].id)
+                if (!can_used_cities.includes(cities[i].id)){
+                    cities[i].classList.add("unused-city");
+
+                }
+
                 cities[i].onmouseleave = function (event) {
                     let path = svg.querySelector(`.path#path_${startPoint}__${event.target.id}`);
                     if (path) {

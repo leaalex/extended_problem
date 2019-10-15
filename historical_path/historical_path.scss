@@ -7,6 +7,8 @@
   vertical-align: middle;
   overflow: hidden;
 
+  //width: 800px;
+
   .hidden {
     visibility: visible !important;
     display: none;
@@ -19,6 +21,10 @@
 }
 
 .city {
+
+  &.unused-city{
+    display: none;
+  }
 
   fill: white;
   r: 1.5;

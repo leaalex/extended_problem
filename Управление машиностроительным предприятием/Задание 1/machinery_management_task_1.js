@@ -3,7 +3,8 @@ function MachineryManagement1(settings) {
     let element = settings.element;
 
     let count = 5;
-    let groups_len = settings.source_data.groups_len;
+    let source_data = settings.source_data;
+    let groups_len = source_data.groups_len;
     let tables_len = settings.tables_len ? (settings.tables_len.length === 3) ? settings.tables_len : [16, 16, 16] : [16, 16, 16];
 
     let state = {
@@ -12,23 +13,9 @@ function MachineryManagement1(settings) {
         table_3: [],
     };
 
-    let groups = range(0,groups_len-1).map(g=>{return {title: `Группа ${g+1} (цифра "${g+1}" для ввода)`, id: "group_"+(g+1), btn:(g+1) } });
+    let groups = range(0,groups_len-1).map(g=>{return {title: `Транспортная партия #${g+1} (цифра "${g+1}" для ввода)`, id: "group_"+(g+1), btn:(g+1) } });
 
     console.log(groups);
-    //     {
-    //     group_1: {
-    //         title: 'Группа 1 (цифра "1" для ввода)',
-    //         id: "group_1",
-    //     },
-    //     group_2: {
-    //         title: 'Группа 2 (цифра "2" для ввода)',
-    //         id: "group_2",
-    //     },
-    //     group_3: {
-    //         title: 'Группа 3 (цифра "3" для ввода)',
-    //         id: "group_3",
-    //     }
-    // };
 
     function Answer(elementField) {
         this.elementField = elementField;
@@ -124,7 +111,9 @@ function MachineryManagement1(settings) {
             element.appendChild(group_description_block);
         },
         init_table_1: function () {
-            let task_block = utils.create_text_task(["Здесь задание"], "Таблица 1");
+            let task_block = utils.create_text_task(["Здесь задание"], "График технологического цикла при последовательном виде движения предметов труда");
+            let scale_block = utils.create("div", {html: `Масштаб графика = ${source_data.n} мин.`});
+            task_block.appendChild(scale_block);
             let table_1 = utils.create_table_type_1(count * 2, tables_len[0], "table_1", task_block);
             this.build_table_type_1(table_1, state.table_1);
             let cells = Array.from(table_1.querySelectorAll("td.active"));
@@ -147,7 +136,10 @@ function MachineryManagement1(settings) {
             element.appendChild(table_1);
         },
         init_table_2: function () {
-            let task_block = utils.create_text_task(["Здесь задание про таблицу 2"], "Таблица 2");
+            let task_block = utils.create_text_task(["Здесь задание про таблицу 2"], "График технологического цикла при параллельном виде движения предметов труда");
+
+            let scale_block = utils.create("div", {html: `Масштаб графика = ${source_data.p} мин.`});
+            task_block.appendChild(scale_block);
             let table_2 = utils.create_table_type_2(count * 2, tables_len[1], "table_2", task_block);
             this.build_table_type_2(table_2, state.table_2);
             let cells = Array.from(table_2.querySelectorAll("td.active"));
@@ -176,7 +168,10 @@ function MachineryManagement1(settings) {
             element.appendChild(table_2);
         },
         init_table_3: function () {
-            let task_block = utils.create_text_task(["Здесь задание 3"], "Таблица 3");
+            let task_block = utils.create_text_task(["Здесь задание 3"], "График технологического цикла при параллельно-последовательном виде движения предметов труда");
+
+            let scale_block = utils.create("div", {html: `Масштаб графика = ${source_data.p} мин.`});
+            task_block.appendChild(scale_block);
 
             let table_3 = utils.create_table_type_2(count * 2, tables_len[2], "table_3", task_block);
             this.build_table_type_2(table_3, state.table_3);
@@ -197,19 +192,6 @@ function MachineryManagement1(settings) {
                     else{
                         val = 0;
                     }
-                    // switch (val) {
-                    //     case 1:
-                    //         cells[i].classList.add("group-1");
-                    //         break;
-                    //     case 2:
-                    //         cells[i].classList.add("group-2");
-                    //         break;
-                    //     case 3:
-                    //         cells[i].classList.add("group-3");
-                    //         break;
-                    //     default:
-                    //         val = 0;
-                    // }
                     state.table_3[y][x] = val;
                     answer.setJSON({answer: state});
                 }
@@ -224,24 +206,10 @@ function MachineryManagement1(settings) {
                     if (current_td) {
                         let current_input = current_td.querySelector('input.group-input');
 
-                        // switch (cell_val) {
-                        //     case 1:
                         if (groups.map(g=>g.btn).includes(parseInt(cell_val))) {
                             current_td.classList.add("group-" + cell_val);
                             current_input.value = cell_val;
                         }
-                            //     break;
-                            // case 2:
-                            //     current_td.classList.add("group-2");
-                            //     current_input.value = cell_val;
-                            //     break;
-                            // case 3:
-                            //     current_td.classList.add("group-3");
-                            //     current_input.value = cell_val;
-                            //     break;
-                            // default:
-                            //     break;
-                        // }
                     }
                 });
             });
