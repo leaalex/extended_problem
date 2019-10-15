@@ -43,7 +43,7 @@ function MachineryManagement3(user_settings) {
                 return return_object
             });
 
-            user_data = { "tact": 0, "periods": [ 10, 12, 23 ], "workplaces": [ { "type": "operation_1", "congestion": 100, "employee": "employee_1", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_1", "congestion": 18.75, "employee": "employee_2", "work_time": 45, "op_start": 0, "op_end": 45 }, { "type": "operation_2", "congestion": 0, "employee": "employee_3", "work_time": "", "op_start": 0, "op_end": 165 }, { "type": "operation_3", "congestion": 0, "employee": "employee_4", "work_time": "", "op_start": 0, "op_end": 240 }, { "type": "operation_3", "congestion": 0, "employee": "employee_3", "work_time": "", "op_start": 165, "op_end": 240 }, { "type": "operation_4", "congestion": 0, "employee": "employee_2", "work_time": 45, "op_start": 45, "op_end": 240 } ], "operations_pairs": [ { "dynamic_value": 45, "pair": [ { "id": "operation_1", "KPPM": [ 2, 1, 1 ], "out": [ 47.368, 63.158, 39.474 ] }, { "id": "operation_2", "KPPM": [ 1, 1, 0 ], "out": [ 40.909, 109.091, "" ] } ] }, { "dynamic_value": 0, "pair": [ { "id": "operation_2", "KPPM": [ 1, 1, 0 ], "out": [ 0, 0, 0 ] }, { "id": "operation_3", "KPPM": [ 0, 0, 0 ], "out": [ 0, 0, 0 ] } ] }, { "dynamic_value": 0, "pair": [ { "id": "operation_3", "KPPM": [ 0, 0, 0 ], "out": [ 0, 0, 0 ] }, { "id": "operation_4", "KPPM": [ 0, 0, 0 ], "out": [ 0, 0, 0 ] } ] } ] }
+            user_data = { "tact": 0, "periods": [ 10, 12, 23 ], "workplaces": [ { "type": "operation_1", "congestion": 100, "employee": "employee_1", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_1", "congestion": 18.75, "employee": "employee_2", "work_time": 45, "op_start": 0, "op_end": 45 }, { "type": "operation_2", "congestion": 0, "employee": "employee_3", "work_time": "", "op_start": 0, "op_end": 165 }, { "type": "operation_3", "congestion": 0, "employee": "employee_4", "work_time": "", "op_start": 0, "op_end": 240 }, { "type": "operation_3", "congestion": 0, "employee": "employee_3", "work_time": "", "op_start": 165, "op_end": 240 }, { "type": "operation_4", "congestion": 0, "employee": "employee_2", "work_time": 45, "op_start": 45, "op_end": 240 } ], "operations_pairs": [ { "dynamic_value": 45, "pair": [ { "id": "operation_1", "KPPM": [ 2, 1, 1 ], "out": [ 47.368, 63.158, 39.474 ] }, { "id": "operation_2", "KPPM": [ 1, 1, 0 ], "out": [ 40.909, 109.091, 0 ] } ] }, { "dynamic_value": 0, "pair": [ { "id": "operation_2", "KPPM": [ 1, 1, 0 ], "out": [ 0, 0, 0 ] }, { "id": "operation_3", "KPPM": [ 0, 0, 0 ], "out": [ 0, 0, 0 ] } ] }, { "dynamic_value": 0, "pair": [ { "id": "operation_3", "KPPM": [ 0, 0, 0 ], "out": [ 0, 0, 0 ] }, { "id": "operation_4", "KPPM": [ 0, 0, 0 ], "out": [ 0, 0, 0 ] } ] } ] }
 
             console.log(user_data);
             Vue.component('apexchart', VueApexCharts)
@@ -140,10 +140,10 @@ function MachineryManagement3(user_settings) {
                     <td colspan="2">КРРМ 2</td><td v-for="n in array_0_n(periods_len)"><input v-model.number="user_data.operations_pairs[index].pair[1].KPPM[n]" type="number"></td>
                     </tr>
                     <tr>
-                    <td colspan="2">выход 1</td><td v-for="n in array_0_n(periods_len)"><input v-model.number="user_data.operations_pairs[index].pair[0].out[n]" type="number"></td>
+                    <td colspan="2">выход 1</td><td v-for="n in array_0_n(periods_len)"><input @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[0].out[n]" type="number"></td>
                     </tr>
                     <tr>
-                    <td colspan="2">выход 2</td><td v-for="n in array_0_n(periods_len)"><input v-model.number="user_data.operations_pairs[index].pair[1].out[n]" type="number"></td>
+                    <td colspan="2">выход 2</td><td v-for="n in array_0_n(periods_len)"><input @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[1].out[n]" type="number"></td>
                     </tr>
                     <tr>
                      <td colspan="2">изменение</td>
@@ -153,14 +153,15 @@ function MachineryManagement3(user_settings) {
                     </tr>
                     <tr>
                     <td>Динамика</td>
-                    <td><input v-model.number="user_data.operations_pairs[index].dynamic_value" type="number"></td>
+                    <td><input v-model.number="user_data.operations_pairs[index].dynamic_value" @input="calculate_change" type="number"></td>
                     <td v-for="n in array_0_n(periods_len)">
-                        <template v-if="n == 0">
+                        <template>
+                                    {{changes[index][n]}}
 <!--                                {{round_num(user_data.operations_pairs[index].pair[0].out[n]-user_data.operations_pairs[index].pair[1].out[n] + user_data.operations_pairs[index].dynamic_value)}}-->
                         </template>
-                        <template v-else>
-                                         
-                        </template>
+<!--                        <template v-else>-->
+<!--                                         -->
+<!--                        </template>-->
                     </td>
                     </tr>
                     </table>
@@ -200,7 +201,7 @@ function MachineryManagement3(user_settings) {
                         },
                     },
 
-                    changes: utils.zeros([settings.operations_pairs.length,settings.periods_len]),
+                    changes: utils.zeros([settings.operations_pairs.length, settings.periods_len]),
 
                 },
 
@@ -215,7 +216,8 @@ function MachineryManagement3(user_settings) {
                         console.log(this.user_data);
                     },
                     round_num(num, d){
-                        return num.toFixed(d || 3);
+                        // console.log(num, typeof num)
+                        return parseFloat(num).toFixed(d || 3);
                     },
                     calculate_workplace_num(workplace, ind){
                         let value = "";
@@ -223,13 +225,42 @@ function MachineryManagement3(user_settings) {
                             value = this.user_data.workplaces.slice(0,ind).filter(item=>item.type === workplace.type).length + 1;
                         }
                         return value;
-                    }
+                    },
+                    set_value(){
+
+                    },
+                    calculate_change: function(event){
+                        // console.log(this.operations_pairs);
+
+                        if(event) {
+
+                            console.log(event.target.value, user_data);
+                            event.target.value = 0
+                        }
+                        // let tmp_changes = [];
+
+                        this.operations_pairs.forEach((ch,index)=>{
+                            this.array_0_n(this.periods_len).forEach((sub_ch,sub_index)=>{
+                                if(sub_index === 0){
+                                    this.changes[index][0] = this.round_num(parseFloat(this.user_data.operations_pairs[index].dynamic_value) + (parseFloat(user_data.operations_pairs[index].pair[0].out[0]) - parseFloat(user_data.operations_pairs[index].pair[1].out[0])));
+                                }
+                                else{
+                                    this.changes[index][sub_index] = this.round_num(parseFloat(this.changes[index][sub_index-1]) + (parseFloat(user_data.operations_pairs[index].pair[0].out[sub_index]) - parseFloat(user_data.operations_pairs[index].pair[1].out[sub_index])));
+                                }
+                                // this.changes[index][2] = this.changes[index][1] + (user_data.operations_pairs[index].pair[0].out[2] - user_data.operations_pairs[index].pair[1].out[2] )
+                            });
+                        });
+                        // console.log(user_data.operations_pairs);
+                    },
+                },
+                beforeMount(){
+                    this.calculate_change()
                 },
                 computed: {
                     get_graphic_data:function(){
                         let g_d = [];
                         this.user_data.workplaces.forEach(function (item) {
-                            console.log("fdfdf", item.type);
+                            // console.log("fdfdf", item.type);
                             if(item.employee !== "" && item.type !== "") {
                                 g_d.push( {
                                     x: settings.employees[item.employee].title,
@@ -237,11 +268,10 @@ function MachineryManagement3(user_settings) {
                                 })
                             }
                         });
+
                         return [{data: g_d},];
                     },
-                    calculate_change: function(){
-                        console.log("fdfdf");
-                    },
+
                 },
 
             });

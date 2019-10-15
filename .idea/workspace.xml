@@ -3,16 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.css" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.scss" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path_source.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path_source.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1/machinery_management_task_1.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +50,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ableplayer" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="web.server" />
@@ -289,7 +281,7 @@
       <workItem from="1569831540458" duration="52128000" />
       <workItem from="1570182781236" duration="48473000" />
       <workItem from="1570629263453" duration="9000000" />
-      <workItem from="1570777725659" duration="27717000" />
+      <workItem from="1570777725659" duration="34749000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
