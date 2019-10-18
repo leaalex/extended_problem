@@ -181,7 +181,7 @@ function PresentationObjects(element){
     function renderPage(num) {
         pageRendering = true;
         presentation.pdfDoc.getPage(num).then(function(page) {
-            var viewport = page.getViewport(scale);
+            var viewport = page.getViewport({scale:scale});
             canvas_block.height = viewport.height;
             canvas_block.width = viewport.width;
 
@@ -249,7 +249,9 @@ function PresentationObjects(element){
         queueRenderPage();
     }
 
-    pdfjsLib.getDocument(presentation.url).then(function(pdfDoc_) {
+    let loadingTask = pdfjsLib.getDocument(presentation.url);
+
+    loadingTask.promise.then(function(pdfDoc_) {
         presentation.pdfDoc = pdfDoc_;
         page_count.innerHTML = " / " + presentation.pdfDoc.numPages;
         renderPage(presentation.current_page);

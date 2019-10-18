@@ -1,0 +1,117 @@
+<problem>
+<html>
+<head>
+    <meta charset="utf-8"></meta>
+</head>
+<link rel="stylesheet" href="/static/VueDraggableResizable.css"></link>
+<link rel="stylesheet" href="/static/evacuation_plan.css"></link>
+
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+<script type="text/javascript" src="/static/vue.min.js"></script>
+<script type="text/javascript" src="/static/VueDraggableResizable.umd.js"></script>
+<script type="text/javascript" src="/static/evacuation_plan.js"></script>
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+
+<div id="evacuation_plan_container">
+
+    <div id="evacuation_plan_block"></div>
+
+</div>
+
+<img id="img_for_path" src="/static/img.img"></img>
+
+<script type="text/javascript">
+
+    let source_data = {};
+
+    /*
+    *
+    * Тип "1" - прямоугольный
+    * Тип "2" - квадратный
+    *
+    *
+    * */
+
+    let badges = [
+      {
+            id: "badge_01",
+            size_type: 1,
+            avail_count: 1,
+        },
+      {
+            id: "badge_02",
+            size_type: 1,
+            avail_count: 2,
+      },
+      {
+            id: "badge_03",
+            size_type: 1,
+            avail_count: 3,
+      },
+      {
+            id: "badge_04",
+            size_type: 1,
+            avail_count: 10,
+      },
+      {
+            id: "badge_05",
+            size_type: 1,
+            avail_count: 10,
+      },
+      {
+            id: "badge_07",
+            size_type: 1,
+            avail_count: 10,
+      },
+      {
+            id: "badge_06",
+            size_type: 2,
+          avail_count: 10,
+        },
+      {
+            id: "badge_08",
+            size_type: 2,
+          avail_count: 10,
+        },
+     {
+            id: "badge_09",
+            size_type: 2,
+         avail_count: 10,
+        },
+      {
+            id: "badge_10",
+            size_type: 2,
+          avail_count: 10,
+        },
+      {
+            id: "badge_11",
+            size_type: 2,
+          avail_count: 10,
+        },
+    ];
+
+    let img_path = document.getElementById("img_for_path").src.replace("img.img","");
+    console.log(img_path);
+
+    new EvacuationPlan({
+        element: document.getElementById("evacuation_plan_container"),
+        data: source_data,
+        badges: badges,
+        img_path: img_path,
+        background_img: 'tc_montaj.svg',
+    });
+
+</script>
+
+</html>
+</problem>

@@ -1,0 +1,87 @@
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+#evacuation_plan_container {
+
+  .badge {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    cursor: grab;
+    //border: 1px solid #000;
+
+    &.badge-disabled {
+      opacity: 0.4;
+      border: none;
+      cursor: not-allowed;
+    }
+    &.preview{
+      cursor: default;
+    }
+    &.badge-dragging{
+      cursor: move;
+    }
+  }
+  .remove-btn {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    border-radius: 50%;
+    border: 2px solid black;
+  }
+
+  .components-zone{
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #e6e6e6;
+    background: #f4f4f4;
+  }
+  .components-zone-hider {
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #e6e6e6;
+    background: #f4f4f4;
+  }
+  .instruction-block{
+    //width: 100%;
+    //height: 200px;
+    background: #7fc0de;
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .instruction-content{
+      background: white;
+      width: 70%;
+      padding: 14px;
+
+      .instruction-text{
+
+      }
+      .start-button{
+          text-align: center;
+      }
+    }
+
+  }
+
+
+  .hidden{
+    display: none !important;
+  }
+
+}

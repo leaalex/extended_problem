@@ -233,8 +233,7 @@ function MachineryManagement3(user_settings) {
                         // console.log(this.operations_pairs);
 
                         if(event) {
-
-                            console.log(event.target.value, user_data);
+                            // console.log(event.target.value, user_data);
                             event.target.value = 0
                         }
                         // let tmp_changes = [];
