@@ -1,0 +1,68 @@
+<problem>
+    <style>
+        .my-width-next {
+            display: none !important;
+        }
+        .my-width-next + div{
+            width: 800px !important;
+        }
+
+        .problem div {
+            overflow-wrap: break-word !important;
+            word-break: keep-all !important;
+        }
+        .base_image_container div {
+            text-align: center;
+        }
+    </style>
+
+    <customresponse>
+
+        <p>Под картинкой храма представлены 9 ключевых терминов (элементов) теории общественно-экономических формаций.</p>
+        <p>Кликните на каждый элемент и перетащите его на картинку храма так, чтобы термины базиса располагались на нижнем основании храма (под словом «Базис»), а элементы надстройки – на колоннах храма.</p>
+
+
+        <div class="my-width-next"></div>
+        <drag_and_drop_input img="/static/8Artboard_2.png" style="width:800px !important;" target_outline="false" one_per_target="true" no_labels="true" label_bg_color="#4caf50">
+            <draggable id="drag_1" label="Право" />
+            <draggable id="drag_2" label="Политика" />
+            <draggable id="drag_3" label="Мораль" />
+            <draggable id="basis_1" label="Производительные силы общества" />
+            <draggable id="drag_4" label="Искусство" />
+            <draggable id="drag_5" label="Религия" />
+            <draggable id="basis_2" label="Производственные отношения" />
+            <draggable id="drag_6" label="Наука" />
+            <draggable id="drag_7" label="Философия" />
+
+            <target id="col_1" x="35" y="292" w="104" h="270"/>
+            <target id="col_2" x="139" y="292" w="101" h="270"/>
+            <target id="col_3" x="241" y="292" w="102" h="270"/>
+            <target id="col_4" x="344" y="292" w="101" h="270"/>
+            <target id="col_5" x="446" y="292" w="102" h="270"/>
+            <target id="col_6" x="549" y="292" w="102" h="270"/>
+            <target id="col_7" x="652" y="292" w="102" h="270"/>
+
+
+            <target id="bott_1" x="25" y="620" w="372" h="104"/>
+            <target id="bott_2" x="400" y="620" w="362" h="104"/>
+
+        </drag_and_drop_input>
+        <answer type="loncapa/python">
+            correct_answer = [{
+            'draggables': ['drag_1', 'drag_2', 'drag_3', 'drag_4', 'drag_5', 'drag_6', 'drag_7'],
+            'targets': ['col_1', 'col_2', 'col_3', 'col_4', 'col_5', 'col_6', 'col_7' ],
+            'rule':'anyof'
+            },
+            {
+            'draggables': ['basis_1','basis_2'],
+            'targets': ['bott_1','bott_2' ],
+            'rule':'anyof'
+            }]
+            if draganddrop.grade(submission[0], correct_answer):
+            correct = ['correct']
+            else:
+            correct = ['incorrect']
+        </answer>
+    </customresponse>
+</problem>
+

@@ -2,20 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/VueDraggableResizable.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_06.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_07.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_08.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_09.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation plan .html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/vue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/История 5 подходов/hram.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_03.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_04.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_06.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_07.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_08.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_09.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engines/presentations/presentation_prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/presentations/presentation_prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_03.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_04.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_05.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_06.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_07.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_08.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_09.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_10.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges/badge_11.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation plan .html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation plan .html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/tc_montaj.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Память на числа/memory_task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,9 +44,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="SCSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -68,11 +80,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static" />
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan" />
       <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
       <recent name="$PROJECT_DIR$/electric" />
       <recent name="$PROJECT_DIR$/engines" />
-      <recent name="$PROJECT_DIR$/Основы дизайна" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
@@ -293,7 +305,7 @@
       <workItem from="1570182781236" duration="48473000" />
       <workItem from="1570629263453" duration="9000000" />
       <workItem from="1570777725659" duration="72838000" />
-      <workItem from="1571382949185" duration="15126000" />
+      <workItem from="1571382949185" duration="26823000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

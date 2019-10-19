@@ -56,9 +56,11 @@ function EvacuationPlan(settings) {
     });
     let badges_types = badges_types_1.concat(badges_types_2);
 
-    let correct_state = [{"class":"badge_07","center_y":59,"center_x":420.5,"current_x":383,"current_y":39},{"class":"badge_07","center_y":462,"center_x":421.5,"current_x":384,"current_y":442},{"class":"badge_08","center_y":104,"center_x":775,"current_x":755,"current_y":84},{"class":"badge_08","center_y":302,"center_x":775,"current_x":755,"current_y":282},{"class":"badge_08","center_y":104,"center_x":24,"current_x":4,"current_y":84},{"class":"badge_08","center_y":508,"center_x":25,"current_x":5,"current_y":488}];
+    let correct_state = [{"class":"badge_00","center_y":372,"center_x":135.5,"current_x":98,"current_y":352},{"class":"badge_00","center_y":217,"center_x":239.5,"current_x":202,"current_y":197},{"class":"badge_00","center_y":477,"center_x":50.5,"current_x":13,"current_y":457},{"class":"badge_04","center_y":345,"center_x":575.5,"current_x":538,"current_y":325},{"class":"badge_04","center_y":301,"center_x":748.5,"current_x":711,"current_y":281},{"class":"badge_04","center_y":193,"center_x":748.5,"current_x":711,"current_y":173},{"class":"badge_07","center_y":461,"center_x":421.5,"current_x":384,"current_y":441},{"class":"badge_07","center_y":60,"center_x":421.5,"current_x":384,"current_y":40},{"class":"badge_08","center_y":416,"center_x":515,"current_x":495,"current_y":396},{"class":"badge_08","center_y":105,"center_x":478,"current_x":458,"current_y":85},{"class":"badge_09","center_y":252,"center_x":298,"current_x":278,"current_y":232},{"class":"badge_09","center_y":314,"center_x":515,"current_x":495,"current_y":294},{"class":"badge_10","center_y":414,"center_x":299,"current_x":279,"current_y":394},{"class":"badge_10","center_y":103,"center_x":606,"current_x":586,"current_y":83},{"class":"badge_11","center_y":336,"center_x":299,"current_x":279,"current_y":316},{"class":"badge_11","center_y":188,"center_x":516,"current_x":496,"current_y":168},{"class":"unused_badge_12","center_y":188,"center_x":143,"current_x":123,"current_y":168},{"class":"unused_badge_12","center_y":236,"center_x":619,"current_x":599,"current_y":216},{"class":"unused_badge_12","center_y":221,"center_x":414,"current_x":394,"current_y":201},{"class":"unused_badge_12","center_y":466,"center_x":131,"current_x":111,"current_y":446},{"class":"unused_badge_13","center_y":105,"center_x":299,"current_x":279,"current_y":85},{"class":"unused_badge_13","center_y":106,"center_x":774,"current_x":754,"current_y":86},{"class":"unused_badge_14","center_y":327,"center_x":254,"current_x":234,"current_y":307},{"class":"unused_badge_15","center_y":410,"center_x":598,"current_x":578,"current_y":390},{"class":"unused_badge_16","center_y":373,"center_x":30,"current_x":10,"current_y":353}]
 
-    let student_state = [{"class":"badge_05","center_y":458,"center_x":420.5,"current_x":383,"current_y":438},{"class":"badge_07","center_y":172,"center_x":418.5,"current_x":381,"current_y":152},{"class":"badge_07","center_y":327,"center_x":415.5,"current_x":378,"current_y":307},{"class":"badge_08","center_y":105,"center_x":776,"current_x":756,"current_y":85},{"class":"badge_08","center_y":251,"center_x":510,"current_x":490,"current_y":231},{"class":"badge_08","center_y":509,"center_x":26,"current_x":6,"current_y":489},{"class":"badge_08","center_y":248,"center_x":331,"current_x":311,"current_y":228},{"class":"badge_11","center_y":254,"center_x":420,"current_x":400,"current_y":234}];
+    let student_state = []
+        // [{"class":"badge_00","center_y":372,"center_x":135.5,"current_x":98,"current_y":352},{"class":"badge_00","center_y":217,"center_x":239.5,"current_x":202,"current_y":197},{"class":"badge_00","center_y":477,"center_x":50.5,"current_x":13,"current_y":457},{"class":"badge_04","center_y":345,"center_x":575.5,"current_x":538,"current_y":325},{"class":"badge_04","center_y":301,"center_x":748.5,"current_x":711,"current_y":281},{"class":"badge_04","center_y":193,"center_x":748.5,"current_x":711,"current_y":173},{"class":"badge_07","center_y":461,"center_x":421.5,"current_x":384,"current_y":441},{"class":"badge_07","center_y":60,"center_x":421.5,"current_x":384,"current_y":40},{"class":"badge_08","center_y":416,"center_x":515,"current_x":495,"current_y":396},{"class":"badge_08","center_y":105,"center_x":478,"current_x":458,"current_y":85},{"class":"badge_09","center_y":252,"center_x":298,"current_x":278,"current_y":232},{"class":"badge_09","center_y":314,"center_x":515,"current_x":495,"current_y":294},{"class":"badge_10","center_y":414,"center_x":299,"current_x":279,"current_y":394},{"class":"badge_10","center_y":103,"center_x":606,"current_x":586,"current_y":83},{"class":"badge_11","center_y":336,"center_x":299,"current_x":279,"current_y":316},{"class":"badge_11","center_y":188,"center_x":516,"current_x":496,"current_y":168},{"class":"unused_badge_12","center_y":188,"center_x":143,"current_x":123,"current_y":168},{"class":"unused_badge_12","center_y":236,"center_x":619,"current_x":599,"current_y":216},{"class":"unused_badge_12","center_y":221,"center_x":414,"current_x":394,"current_y":201},{"class":"unused_badge_12","center_y":466,"center_x":131,"current_x":111,"current_y":446},{"class":"unused_badge_13","center_y":105,"center_x":299,"current_x":279,"current_y":85},{"class":"unused_badge_13","center_y":106,"center_x":774,"current_x":754,"current_y":86},{"class":"unused_badge_14","center_y":327,"center_x":254,"current_x":234,"current_y":307},{"class":"unused_badge_15","center_y":410,"center_x":598,"current_x":578,"current_y":390},{"class":"unused_badge_16","center_y":373,"center_x":30,"current_x":10,"current_y":353}]
+        // [{"class":"badge_00","center_y":372,"center_x":135.5,"current_x":98,"current_y":352},{"class":"badge_00","center_y":217,"center_x":239.5,"current_x":202,"current_y":197},{"class":"badge_00","center_y":477,"center_x":50.5,"current_x":13,"current_y":457},{"class":"badge_04","center_y":345,"center_x":575.5,"current_x":538,"current_y":325},{"class":"badge_04","center_y":301,"center_x":748.5,"current_x":711,"current_y":281},{"class":"badge_04","center_y":193,"center_x":748.5,"current_x":711,"current_y":173},{"class":"badge_07","center_y":461,"center_x":421.5,"current_x":384,"current_y":441},{"class":"badge_07","center_y":60,"center_x":421.5,"current_x":384,"current_y":40},{"class":"badge_08","center_y":416,"center_x":515,"current_x":495,"current_y":396},{"class":"badge_08","center_y":105,"center_x":478,"current_x":458,"current_y":85},{"class":"badge_09","center_y":252,"center_x":298,"current_x":278,"current_y":232},{"class":"badge_09","center_y":314,"center_x":515,"current_x":495,"current_y":294},{"class":"badge_10","center_y":414,"center_x":299,"current_x":279,"current_y":394},{"class":"badge_10","center_y":103,"center_x":606,"current_x":586,"current_y":83},{"class":"badge_11","center_y":336,"center_x":299,"current_x":279,"current_y":316},{"class":"badge_11","center_y":188,"center_x":516,"current_x":496,"current_y":168},{"class":"unused_badge_12","center_y":188,"center_x":143,"current_x":123,"current_y":168},{"class":"unused_badge_12","center_y":236,"center_x":619,"current_x":599,"current_y":216},{"class":"unused_badge_12","center_y":221,"center_x":414,"current_x":394,"current_y":201},{"class":"unused_badge_12","center_y":466,"center_x":131,"current_x":111,"current_y":446},{"class":"unused_badge_13","center_y":105,"center_x":299,"current_x":279,"current_y":85},{"class":"unused_badge_13","center_y":106,"center_x":774,"current_x":754,"current_y":86},{"class":"unused_badge_14","center_y":327,"center_x":254,"current_x":234,"current_y":307},{"class":"unused_badge_15","center_y":410,"center_x":598,"current_x":578,"current_y":390},{"class":"unused_badge_16","center_y":373,"center_x":30,"current_x":10,"current_y":353}]
 
     function range (start, end) {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
@@ -72,14 +74,10 @@ function EvacuationPlan(settings) {
     <div v-if="instruction_visible" :style="instructionStyle" class="instruction-block"> 
         <div class="instruction-content">
             <div class="instruction-text">
-                <p>Предлагаю показать следующим образом:</p>
-                <p>Термины даны врзаброс, их надо перетащить на картинку в соответствующую зону.</p>
-                
-                <p>Картинка -  здание античного храма, где:</p>
-                <p>Стереобат:</p>
-                <p>Верхняя ступень подписана “базис”</p>
-                <p>Нижняя ступень разделена на 2 части, в которые надо поместить элементы из “базиса”. Порядок - любой, строгого соответствия нет.</p>
-            
+                <p><strong>Кейс:</strong> после нажатия кнопки «Начать» вам будет представлен план эвакуации из торгового центра, на котором размещены как обязательные значки, так и дополнительные, информационные. </p>
+                <p>У вас есть 10 секунд с момента нажатия кнопки «Начать», чтобы смотреть на картинку и запоминать расположение значков.</p>
+                <p><strong>Задание:</strong> </p>
+                <p>разместить на чистом шаблоне только те значки, которые обязательно должны быть указаны на плане эвакуации. Время для размещения значков не ограничено.</p>
             </div>    
             <div class="start-button">
                 <button v-on:click="showCorrect">Начать</button>
@@ -91,7 +89,7 @@ function EvacuationPlan(settings) {
 <div v-if="instruction_visible === false" v-bind:style="areaStyle">
             <template v-for="(components_group, index_0) in components">
     
-            <vue-draggable-resizable v-for="(component, index_1) in components_group" :id="component.id" :draggable="index_1 != 0 && can_draggable" :parent="true" :resizable="false" :x="component.current_x" :y="component.current_y" :w="component.w" :h="component.h" @dragging="onDrag" @dragstop="onDragStop" @activated="onActivated(index_0, index_1)" @deactivated="onDeactivated">
+            <vue-draggable-resizable v-for="(component, index_1) in components_group" :id="component.id" :z="9" :draggable="index_1 != 0 && can_draggable" :parent="true" :resizable="false" :x="component.current_x" :y="component.current_y" :w="component.w" :h="component.h" @dragging="onDrag" @dragstop="onDragStop" @activated="onActivated(index_0, index_1)" @deactivated="onDeactivated">
             <div :class="[component.class, 'badge', { 'badge-disabled': index_1 == 0 }, {'badge-dragging':(can_draggable && dragging && index_1 != 0)}, {preview:!can_draggable}]" :style="badgeBackground(component.class)"></div>
                     <template v-if="component.current_y + badge_height < height && can_draggable && can_draggable">
                         <div @click="removeComponent(index_0, index_1)" class="remove-btn" ></div>
@@ -125,13 +123,15 @@ function EvacuationPlan(settings) {
             correct_state: correct_state,
             show_instruction: true,
             instruction_visible:false,
-            show_correct_delay: 3,
+            show_correct_delay: 1550,
         },
         mounted() {
             // this.setDefaultState();
             if (this.show_instruction){
                 this.instruction_visible = true;
             }
+
+            this.build_state(this.student_state);
 
         },
         methods: {
