@@ -11,15 +11,23 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
+  cursor: default;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+#evacuation_plan_container .badge .badge-img {
+  width: 100%;
+  height: 100%;
+}
+#evacuation_plan_container .badge.active-badge {
   cursor: grab;
+  border: 1px solid black;
 }
 #evacuation_plan_container .badge.badge-disabled {
   opacity: 0.4;
   border: none;
   cursor: not-allowed;
-}
-#evacuation_plan_container .badge.preview {
-  cursor: default;
 }
 #evacuation_plan_container .badge.badge-dragging {
   cursor: move;

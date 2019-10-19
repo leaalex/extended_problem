@@ -4,31 +4,85 @@
     <meta charset="utf-8"></meta>
 </head>
 
-<link rel="stylesheet" href="./VueDraggableResizable.css"></link>
-<link rel="stylesheet" href="./evacuation_plan.css"></link>
-<script type="text/javascript" src="./vue.min.js"></script>
-<script type="text/javascript" src="./VueDraggableResizable.umd.js"></script>
-<script type="text/javascript" src="./evacuation_plan.js"></script>
+<script type="loncapa/python">
+import json
+import math
+
+badge_height = 40
+
+correct_radius = badge_height/2
+
+# badge_08 - телефон
+# badge_07 - запасный выход
+
+correct_answer = '[{"class":"badge_01","center_y":372,"center_x":136,"current_x":96,"current_y":352},{"class":"badge_01","center_y":479,"center_x":47,"current_x":7,"current_y":459},{"class":"badge_01","center_y":213,"center_x":236,"current_x":196,"current_y":193},{"class":"badge_05","center_y":345,"center_x":578,"current_x":538,"current_y":325},{"class":"badge_05","center_y":304,"center_x":750,"current_x":710,"current_y":284},{"class":"badge_05","center_y":192,"center_x":751,"current_x":711,"current_y":172},{"class":"badge_08","center_y":458,"center_x":422,"current_x":382,"current_y":438},{"class":"badge_08","center_y":60,"center_x":421,"current_x":381,"current_y":40},{"class":"badge_09","center_y":105,"center_x":481,"current_x":461,"current_y":85},{"class":"badge_09","center_y":415,"center_x":516,"current_x":496,"current_y":395},{"class":"badge_10","center_y":250,"center_x":299,"current_x":279,"current_y":230},{"class":"badge_10","center_y":312,"center_x":516,"current_x":496,"current_y":292},{"class":"badge_11","center_y":105,"center_x":605,"current_x":585,"current_y":85},{"class":"badge_11","center_y":415,"center_x":299,"current_x":279,"current_y":395},{"class":"badge_12","center_y":327,"center_x":299,"current_x":279,"current_y":307},{"class":"badge_12","center_y":191,"center_x":515,"current_x":495,"current_y":171},{"class":"badge_14","center_y":417,"center_x":583,"current_x":563,"current_y":397},{"class":"badge_15","center_y":325,"center_x":255,"current_x":235,"current_y":305},{"class":"badge_16","center_y":465,"center_x":138,"current_x":118,"current_y":445},{"class":"badge_16","center_y":243,"center_x":623,"current_x":603,"current_y":223},{"class":"badge_16","center_y":259,"center_x":413,"current_x":393,"current_y":239},{"class":"badge_16","center_y":201,"center_x":142,"current_x":122,"current_y":181},{"class":"badge_17","center_y":107,"center_x":775,"current_x":755,"current_y":87},{"class":"badge_17","center_y":107,"center_x":299,"current_x":279,"current_y":87},{"class":"badge_17","center_y":373,"center_x":30,"current_x":10,"current_y":353}]'
+correct_answer = json.loads(correct_answer)
+
+def point_in_circle(c_r, c_x, c_y, p_x, p_y):
+    result = False
+    if math.pow(c_r, 2) >= math.pow((c_x - p_x), 2) + math.pow((c_y - p_y), 2):
+        result = True
+    return result
 
 
-<!--<link rel="stylesheet" href="/static/VueDraggableResizable.css"></link>-->
-<!--<link rel="stylesheet" href="/static/evacuation_plan.css"></link>-->
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = 0
+    grade = 0
 
-<!--<script type="text/javascript">-->
-<!--    window.__define = window.define;-->
-<!--    window.__require = window.require;-->
-<!--    window.define = undefined;-->
-<!--    window.require = undefined;-->
-<!--</script>-->
-<!--<script type="text/javascript" src="/static/vue.min.js"></script>-->
-<!--<script type="text/javascript" src="/static/VueDraggableResizable.umd.js"></script>-->
-<!--<script type="text/javascript" src="/static/evacuation_plan.js"></script>-->
-<!--<script type="text/javascript">-->
-<!--    window.define = window.__define;-->
-<!--    window.require = window.__require;-->
-<!--    window.__define = undefined;-->
-<!--    window.__require = undefined;-->
-<!--</script>-->
+    incorrect_badges = []
+    excess_badges = ["badge_14", "badge_15", "badge_16", "badge_17", "badge_18"]
+
+    for badge in correct_answer:
+        if not badge["class"] in excess_badges:
+            max_grade = max_grade+1
+            student_filtered_badges = list(filter(lambda x: x["class"] == badge["class"], student_answer))
+            for filter_b in student_filtered_badges:
+                if point_in_circle(
+                        correct_radius,
+                        badge["center_x"],
+                        badge["center_y"],
+                        filter_b["center_x"],
+                        filter_b["center_y"]
+                ):
+                    grade = grade + 1
+                    break
+
+    result_grade = grade / max_grade
+    msg = ""
+    if result_grade == 1:
+        return {'input_list': [{'ok': True, 'msg': msg, 'grade_decimal': 1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok': False, 'msg': msg, 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': result_grade}]}
+</script>
+
+<!--<link rel="stylesheet" href="./VueDraggableResizable.css"></link>-->
+<!--<link rel="stylesheet" href="./evacuation_plan.css"></link>-->
+<!--<script type="text/javascript" src="./vue.min.js"></script>-->
+<!--<script type="text/javascript" src="./VueDraggableResizable.umd.js"></script>-->
+<!--<script type="text/javascript" src="./evacuation_plan.js"></script>-->
+
+
+<link rel="stylesheet" href="/static/VueDraggableResizable.css"></link>
+<link rel="stylesheet" href="/static/evacuation_plan.css"></link>
+
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+<script type="text/javascript" src="/static/vue.min.js"></script>
+<script type="text/javascript" src="/static/VueDraggableResizable.umd.js"></script>
+<script type="text/javascript" src="/static/evacuation_plan.js"></script>
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
 
 <div id="evacuation_plan_container">
 
@@ -37,6 +91,14 @@
     <img class="hidden" id="img_for_path" src="/static/img.img"></img>
 </div>
 
+
+<div id="evacuation_plan_input" style="/*display: none!important;*/">
+
+    <customresponse cfn="check_answer">
+        <textline size="40" value="$taskId" />
+        <br/>
+    </customresponse>
+</div>
 
 <script type="text/javascript">
 
@@ -51,106 +113,120 @@
     * */
 
     let badges = [
-        {
-            id: "badge_00",
-            size_type: 1,
-            avail_count: 8,
-        },
       {
             id: "badge_01",
             size_type: 1,
-            avail_count: 1,
+            avail_count: 6,
         },
       {
             id: "badge_02",
             size_type: 1,
-            avail_count: 2,
+            avail_count: 6,
       },
       {
             id: "badge_03",
             size_type: 1,
-            avail_count: 3,
+            avail_count: 6,
       },
       {
             id: "badge_04",
             size_type: 1,
-            avail_count: 10,
+            avail_count: 6,
       },
       {
             id: "badge_05",
             size_type: 1,
-            avail_count: 10,
+            avail_count: 6,
       },
       {
             id: "badge_07",
-            size_type: 1,
-            avail_count: 10,
+            size_type: 2,
+            avail_count: 6,
       },
       {
             id: "badge_06",
-            size_type: 2,
-          avail_count: 10,
+            size_type: 1,
+          avail_count: 6,
         },
       {
             id: "badge_08",
-            size_type: 2,
-          avail_count: 10,
+            size_type: 1,
+          avail_count: 6,
         },
      {
             id: "badge_09",
             size_type: 2,
-         avail_count: 10,
+         avail_count: 6,
         },
       {
             id: "badge_10",
             size_type: 2,
-          avail_count: 10,
+          avail_count: 6,
         },
       {
             id: "badge_11",
             size_type: 2,
-            avail_count: 10,
+            avail_count: 6,
         },
         {
-            id: "unused_badge_12",
+            id: "badge_12",
             size_type: 2,
-            avail_count: 4,
+            avail_count: 6,
         },
         {
-            id: "unused_badge_13",
+            id: "badge_13",
             size_type: 2,
-            avail_count: 4,
+            avail_count: 6,
         },
         {
-            id: "unused_badge_14",
+            id: "badge_14",
             size_type: 2,
-            avail_count: 4,
+            avail_count: 6,
         },
         {
-            id: "unused_badge_15",
+            id: "badge_15",
             size_type: 2,
-            avail_count: 4,
+            avail_count: 6,
         },
         {
-            id: "unused_badge_16",
+            id: "badge_16",
             size_type: 2,
-            avail_count: 4,
-        }
-
-
+            avail_count: 6,
+        },
+        {
+            id: "badge_17",
+            size_type: 2,
+            avail_count: 6,
+        },
+        {
+            id: "badge_18",
+            size_type: 2,
+            avail_count: 6,
+        },
 
     ];
 
     let img_path = document.getElementById("img_for_path").src.replace("img.img","");
-    img_path = "./static/";
-    console.log(img_path);
 
+    let c_a = $correct_answer;
+
+    // console.log(c_a)
+
+    // img_path = "./static/";
+    // console.log(img_path);
+    //
     new EvacuationPlan({
         element: document.getElementById("evacuation_plan_container"),
+        input: document.getElementById("evacuation_plan_input"),
         data: source_data,
         badges: badges,
         img_path: img_path,
         background_img: 'tc_montaj.svg',
+        correct_answer: c_a,
+        area_width: 800,
+        area_height: 600,
+        badge_height: 40,
+        delay: 2,
     });
 
 </script>

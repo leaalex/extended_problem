@@ -11,17 +11,30 @@
     background-repeat: no-repeat;
     background-size: contain;
     position: relative;
-    cursor: grab;
+    cursor: default;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     //border: 1px solid #000;
+
+    .badge-img{
+      width: 100%;
+      height: 100%;
+    }
+
+    &.active-badge{
+      cursor: grab;
+      border: 1px solid black;
+    }
 
     &.badge-disabled {
       opacity: 0.4;
       border: none;
       cursor: not-allowed;
     }
-    &.preview{
-      cursor: default;
-    }
+    //&.preview{
+    //  cursor: default;
+    //}
     &.badge-dragging{
       cursor: move;
     }

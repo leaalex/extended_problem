@@ -1,21 +1,92 @@
+
 function EvacuationPlan(settings) {
 
     let element = settings.element;
     let badges = settings.badges;
     const img_path = settings.img_path;
     const background_img = settings.background_img;
-    let width = 800; // in px
-    let height = 600; // in px
+    let width = settings.area_width; // in px
+    let height = settings.area_height; // in px'
+    let delay = settings.delay;
 
-    let badge_height = 40;
+    let badge_height = settings.badge_height ;
     let components_zone_height = badge_height * 3.5;
 
-    // let components_count = 1;
-    console.log(badges);
+    let answer = undefined;
+
+    let student_state = [];
+
+    let state = {answer: student_state, complete: false };
+
+    function Answer(elementField) {
+        this.elementField = elementField;
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function () {
+            this.fieldValue = elementField.value;
+            return this.fieldValue;
+        };
+        this.set = function (value) {
+            if (value === undefined) value = this.fieldValue;
+            elementField.value = value;
+        };
+        this.getJSON = function () {
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function (object) {
+            if (object === undefined) object = this.fieldObject;
+            this.set(JSON.stringify(object));
+        };
+        this.isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        };
+    };
+
+    let save_button = $(".save.problem-action-btn", $(element).closest(".xblock"));
+    let submit_button = $(".submit.btn-brand", $(element).closest(".xblock"));
+
+    $(submit_button).hide();
+
+    console.log(save_button);
+    console.log(submit_button);
+    console.log(settings);
+
+
+    if (settings.input) {
+        if (settings.input.querySelector("input[type='text']")) {
+            answer = new Answer(settings.input.querySelector("input[type='text']"));
+            // console.log(answer)
+            // if (settings.input.parentNode.parentNode.querySelector(".message")) {
+            //     settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+            // }
+
+            settings.input.classList.add("hidden");
+            answer.elementField.classList.add("hidden");
+
+            if (answer.get()) {
+                state = answer.getJSON();
+
+                console.log(state);
+
+                student_state = state.answer;
+                // if (settings.input.parentNode.parentNode.querySelector("span.message")) {
+                    // correctness = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML);
+                // }
+            }
+        }
+    }
+
+    let badges_object = {};
 
     let badges_types_1 = badges.filter(t=>t.size_type === 1).map((badge, idx) => {
-
-        let w = badge_height * 1.875;
+        let w = badge_height * 2 ;
+        badges_object[badge.id] = {w: w, h: badge_height};
         let default_y = (height + badge_height/2);
         let default_x = ((w+badge_height/2) * idx) + badge_height/2;
         let components_count = badge.avail_count || 5;
@@ -30,12 +101,15 @@ function EvacuationPlan(settings) {
                 current_y: default_y,
                 current_x: default_x,
                 text: badge.id
-        }
+            }
         });
     });
+
     let badges_types_2 = badges.filter(t=>t.size_type === 2).map((badge, idx) => {
 
         let w = badge_height;
+
+        badges_object[badge.id] = {w: w, h: badge_height};
         let default_y = (height + badge_height*2);
         let default_x =  ((w+badge_height/2) * idx) + badge_height/2;
 
@@ -54,23 +128,23 @@ function EvacuationPlan(settings) {
             }
         });
     });
+
     let badges_types = badges_types_1.concat(badges_types_2);
 
-    let correct_state = [{"class":"badge_00","center_y":372,"center_x":135.5,"current_x":98,"current_y":352},{"class":"badge_00","center_y":217,"center_x":239.5,"current_x":202,"current_y":197},{"class":"badge_00","center_y":477,"center_x":50.5,"current_x":13,"current_y":457},{"class":"badge_04","center_y":345,"center_x":575.5,"current_x":538,"current_y":325},{"class":"badge_04","center_y":301,"center_x":748.5,"current_x":711,"current_y":281},{"class":"badge_04","center_y":193,"center_x":748.5,"current_x":711,"current_y":173},{"class":"badge_07","center_y":461,"center_x":421.5,"current_x":384,"current_y":441},{"class":"badge_07","center_y":60,"center_x":421.5,"current_x":384,"current_y":40},{"class":"badge_08","center_y":416,"center_x":515,"current_x":495,"current_y":396},{"class":"badge_08","center_y":105,"center_x":478,"current_x":458,"current_y":85},{"class":"badge_09","center_y":252,"center_x":298,"current_x":278,"current_y":232},{"class":"badge_09","center_y":314,"center_x":515,"current_x":495,"current_y":294},{"class":"badge_10","center_y":414,"center_x":299,"current_x":279,"current_y":394},{"class":"badge_10","center_y":103,"center_x":606,"current_x":586,"current_y":83},{"class":"badge_11","center_y":336,"center_x":299,"current_x":279,"current_y":316},{"class":"badge_11","center_y":188,"center_x":516,"current_x":496,"current_y":168},{"class":"unused_badge_12","center_y":188,"center_x":143,"current_x":123,"current_y":168},{"class":"unused_badge_12","center_y":236,"center_x":619,"current_x":599,"current_y":216},{"class":"unused_badge_12","center_y":221,"center_x":414,"current_x":394,"current_y":201},{"class":"unused_badge_12","center_y":466,"center_x":131,"current_x":111,"current_y":446},{"class":"unused_badge_13","center_y":105,"center_x":299,"current_x":279,"current_y":85},{"class":"unused_badge_13","center_y":106,"center_x":774,"current_x":754,"current_y":86},{"class":"unused_badge_14","center_y":327,"center_x":254,"current_x":234,"current_y":307},{"class":"unused_badge_15","center_y":410,"center_x":598,"current_x":578,"current_y":390},{"class":"unused_badge_16","center_y":373,"center_x":30,"current_x":10,"current_y":353}]
+    let correct_state = settings.correct_answer;
 
-    let student_state = []
-        // [{"class":"badge_00","center_y":372,"center_x":135.5,"current_x":98,"current_y":352},{"class":"badge_00","center_y":217,"center_x":239.5,"current_x":202,"current_y":197},{"class":"badge_00","center_y":477,"center_x":50.5,"current_x":13,"current_y":457},{"class":"badge_04","center_y":345,"center_x":575.5,"current_x":538,"current_y":325},{"class":"badge_04","center_y":301,"center_x":748.5,"current_x":711,"current_y":281},{"class":"badge_04","center_y":193,"center_x":748.5,"current_x":711,"current_y":173},{"class":"badge_07","center_y":461,"center_x":421.5,"current_x":384,"current_y":441},{"class":"badge_07","center_y":60,"center_x":421.5,"current_x":384,"current_y":40},{"class":"badge_08","center_y":416,"center_x":515,"current_x":495,"current_y":396},{"class":"badge_08","center_y":105,"center_x":478,"current_x":458,"current_y":85},{"class":"badge_09","center_y":252,"center_x":298,"current_x":278,"current_y":232},{"class":"badge_09","center_y":314,"center_x":515,"current_x":495,"current_y":294},{"class":"badge_10","center_y":414,"center_x":299,"current_x":279,"current_y":394},{"class":"badge_10","center_y":103,"center_x":606,"current_x":586,"current_y":83},{"class":"badge_11","center_y":336,"center_x":299,"current_x":279,"current_y":316},{"class":"badge_11","center_y":188,"center_x":516,"current_x":496,"current_y":168},{"class":"unused_badge_12","center_y":188,"center_x":143,"current_x":123,"current_y":168},{"class":"unused_badge_12","center_y":236,"center_x":619,"current_x":599,"current_y":216},{"class":"unused_badge_12","center_y":221,"center_x":414,"current_x":394,"current_y":201},{"class":"unused_badge_12","center_y":466,"center_x":131,"current_x":111,"current_y":446},{"class":"unused_badge_13","center_y":105,"center_x":299,"current_x":279,"current_y":85},{"class":"unused_badge_13","center_y":106,"center_x":774,"current_x":754,"current_y":86},{"class":"unused_badge_14","center_y":327,"center_x":254,"current_x":234,"current_y":307},{"class":"unused_badge_15","center_y":410,"center_x":598,"current_x":578,"current_y":390},{"class":"unused_badge_16","center_y":373,"center_x":30,"current_x":10,"current_y":353}]
-        // [{"class":"badge_00","center_y":372,"center_x":135.5,"current_x":98,"current_y":352},{"class":"badge_00","center_y":217,"center_x":239.5,"current_x":202,"current_y":197},{"class":"badge_00","center_y":477,"center_x":50.5,"current_x":13,"current_y":457},{"class":"badge_04","center_y":345,"center_x":575.5,"current_x":538,"current_y":325},{"class":"badge_04","center_y":301,"center_x":748.5,"current_x":711,"current_y":281},{"class":"badge_04","center_y":193,"center_x":748.5,"current_x":711,"current_y":173},{"class":"badge_07","center_y":461,"center_x":421.5,"current_x":384,"current_y":441},{"class":"badge_07","center_y":60,"center_x":421.5,"current_x":384,"current_y":40},{"class":"badge_08","center_y":416,"center_x":515,"current_x":495,"current_y":396},{"class":"badge_08","center_y":105,"center_x":478,"current_x":458,"current_y":85},{"class":"badge_09","center_y":252,"center_x":298,"current_x":278,"current_y":232},{"class":"badge_09","center_y":314,"center_x":515,"current_x":495,"current_y":294},{"class":"badge_10","center_y":414,"center_x":299,"current_x":279,"current_y":394},{"class":"badge_10","center_y":103,"center_x":606,"current_x":586,"current_y":83},{"class":"badge_11","center_y":336,"center_x":299,"current_x":279,"current_y":316},{"class":"badge_11","center_y":188,"center_x":516,"current_x":496,"current_y":168},{"class":"unused_badge_12","center_y":188,"center_x":143,"current_x":123,"current_y":168},{"class":"unused_badge_12","center_y":236,"center_x":619,"current_x":599,"current_y":216},{"class":"unused_badge_12","center_y":221,"center_x":414,"current_x":394,"current_y":201},{"class":"unused_badge_12","center_y":466,"center_x":131,"current_x":111,"current_y":446},{"class":"unused_badge_13","center_y":105,"center_x":299,"current_x":279,"current_y":85},{"class":"unused_badge_13","center_y":106,"center_x":774,"current_x":754,"current_y":86},{"class":"unused_badge_14","center_y":327,"center_x":254,"current_x":234,"current_y":307},{"class":"unused_badge_15","center_y":410,"center_x":598,"current_x":578,"current_y":390},{"class":"unused_badge_16","center_y":373,"center_x":30,"current_x":10,"current_y":353}]
 
     function range (start, end) {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
     }
 
+
+
     new Vue({
         el: '#evacuation_plan_block',
         template: `
-<div :style="instructionStyle">
-<transition name="fade">
+<div :style="instructionStyle" style="border: 1px solid " >
+    
     <div v-if="instruction_visible" :style="instructionStyle" class="instruction-block"> 
         <div class="instruction-content">
             <div class="instruction-text">
@@ -80,35 +154,68 @@ function EvacuationPlan(settings) {
                 <p>разместить на чистом шаблоне только те значки, которые обязательно должны быть указаны на плане эвакуации. Время для размещения значков не ограничено.</p>
             </div>    
             <div class="start-button">
-                <button v-on:click="showCorrect">Начать</button>
+                <button v-on:click="startTask">Начать</button>
             </div>
         </div>
     </div>
-</transition>
 
-<div v-if="instruction_visible === false" v-bind:style="areaStyle">
-            <template v-for="(components_group, index_0) in components">
-    
-            <vue-draggable-resizable v-for="(component, index_1) in components_group" :id="component.id" :z="9" :draggable="index_1 != 0 && can_draggable" :parent="true" :resizable="false" :x="component.current_x" :y="component.current_y" :w="component.w" :h="component.h" @dragging="onDrag" @dragstop="onDragStop" @activated="onActivated(index_0, index_1)" @deactivated="onDeactivated">
-            <div :class="[component.class, 'badge', { 'badge-disabled': index_1 == 0 }, {'badge-dragging':(can_draggable && dragging && index_1 != 0)}, {preview:!can_draggable}]" :style="badgeBackground(component.class)"></div>
-                    <template v-if="component.current_y + badge_height < height && can_draggable && can_draggable">
-                        <div @click="removeComponent(index_0, index_1)" class="remove-btn" ></div>
-                    </template>
-            </vue-draggable-resizable>
+
+<div v-bind:style="areaStyle">
             
-</template>
-                  
-    <div class="components-zone" :style="componentsZoneHeight"></div>
+            <template v-if="correct_answer_visible">
+               <vue-draggable-resizable v-for="(corr_comp, corr_index) in correct_state" 
+               :z="9" 
+               :draggable="false" 
+               :parent="true" 
+               :resizable="false" 
+               :x="corr_comp.current_x" 
+               :y="corr_comp.current_y" 
+               :class="[corr_comp.class, 'badge']"
+               :w="badges_object[corr_comp.class].w"
+               :h="badges_object[corr_comp.class].h">
+               <div class="badge-img" :style="badgeBackground(corr_comp.class)"></div>
+               </vue-draggable-resizable>
+         </template>
+         
+            <template v-if="task_visible" v-for="(components_group, index_0) in components">
 
-<transition name="fade">
-    <div v-if="can_draggable == false" class="components-zone-hider" :style="componentsZoneHeight"></div>
-    </transition>
+                <vue-draggable-resizable v-for="(component, index_1) in components_group" 
+                :id="component.id" 
+                :z="9" 
+                :draggable="index_1 != 0 && can_draggable"  
+                :class="[component.class, 'badge', { 'active-badge ': (can_draggable && index_1 != 0) }, { 'badge-disabled ': index_1 == 0 }, {'badge-dragging':(can_draggable && dragging && index_1 != 0)}, {preview:!can_draggable}]" 
+                :parent="true" 
+                :resizable="false" 
+                :x="component.current_x" 
+                :y="component.current_y" 
+                :w="component.w" 
+                :h="component.h" 
+                @dragging="onDrag" 
+                @dragstop="onDragStop"
+                @activated="onActivated(index_0, index_1)" 
+                @deactivated="onDeactivated">
+                <div class="badge-img" :style="badgeBackground(component.class)"></div>
+                
+                <template v-if="component.current_y + badge_height < height && can_draggable && can_draggable">
+                    <div @click="removeComponent(index_0, index_1)" class="remove-btn" ></div>
+                </template>
+                </vue-draggable-resizable>
+
+            </template>
+
+         
+        <div v-if="task_visible" class="components-zone" :style="componentsZoneHeight"></div>
     
-     </div>
+    </div>
+
+<!--    <div v-if="can_draggable == false" class="components-zone-hider" :style="componentsZoneHeight"></div>-->
+    
+
 
      </div>
         `,
         data: {
+            badges_object: badges_object,
             used_elements: [],
             current_element: undefined,
             components: badges_types,
@@ -121,44 +228,58 @@ function EvacuationPlan(settings) {
             components_zone_height: components_zone_height,
             student_state: student_state,
             correct_state: correct_state,
-            show_instruction: true,
+            // show_instruction: false,
+            // instruction_visible:false,
+
+            state: state,
+
             instruction_visible:false,
-            show_correct_delay: 1550,
+            correct_answer_visible: false,
+            task_visible: false,
+
+            show_correct_delay: delay,
+            badges_object: badges_object,
         },
         mounted() {
-            // this.setDefaultState();
-            if (this.show_instruction){
-                this.instruction_visible = true;
+            // console.log("this.student_state: ", this.student_state);
+            if(this.state.complete){
+                this.can_draggable = false;
+                this.task_visible = true;
+                this.build_state(this.student_state);
+                // this.correct_answer_visible = true;
+                $(submit_button).show();
             }
-
-            this.build_state(this.student_state);
+            else{
+                this.instruction_visible = true;
+                // this.startTask();
+            }
 
         },
         methods: {
 
-            showCorrect(){
-                this.can_draggable = false;
+            startTask(){
                 this.instruction_visible = false;
-                console.log("this.instruction_visible: ", this.instruction_visible);
-                this.build_state(this.correct_state);
+                this.correct_answer_visible = true;
                 setTimeout(() => {
-                    this.setDefaultState();
-                    this.can_draggable = true;
+                    this.correct_answer_visible = false;
+                    this.task_visible = true;
+                    answer.setJSON({answer: this.used_elements, complete: true});
+                    $(submit_button).show();
+                    // $(save_button).trigger('click');
                     }, this.show_correct_delay * 1000);
 
             },
 
             removeComponent(index_0, index_1) {
-
                 // if (confirm('Удалить элемент со схемы?')) {
                     this.components[index_0][index_1].current_x = this.components[index_0][index_1].default_x;
                     this.components[index_0][index_1].current_y = this.components[index_0][index_1].default_y;
                     this.get_used_components();
                     // }
                 // else {}
-
             },
             onDrag: function (x, y) {
+                console.log("onDrag");
                 this.components[this.currentIndex_0][this.currentIndex_1].current_x = x;
                 this.components[this.currentIndex_0][this.currentIndex_1].current_y = y;
                 this.currentField.current_x = x;
@@ -166,6 +287,8 @@ function EvacuationPlan(settings) {
                 this.dragging = true;
             },
             onDragStop: function(x,y){
+                console.log("onDragStop");
+
                 if(y + this.badge_height > height){
                     this.components[this.currentIndex_0][this.currentIndex_1].current_x = this.components[this.currentIndex_0][this.currentIndex_1].default_x;
                     this.components[this.currentIndex_0][this.currentIndex_1].current_y = this.components[this.currentIndex_0][this.currentIndex_1].default_y;
@@ -185,6 +308,7 @@ function EvacuationPlan(settings) {
             },
 
             onActivated(ind_0, ind_1) {
+                console.log('onActivated');
                 this.currentIndex_0 = ind_0;
                 this.currentIndex_1 = ind_1;
                 this.dragging = true;
@@ -196,13 +320,13 @@ function EvacuationPlan(settings) {
 
             get_used_components(){
                 this.used_elements = [];
-                let answer = [];
+                let answer_arr = [];
                 this.components.forEach((group) => {
                     this.used_elements = this.used_elements.concat(group.filter(component=>{return (component.current_y + this.badge_height) < height }));
                 });
 
                 this.used_elements.forEach((element)=>{
-                    answer.push({
+                    answer_arr.push({
                         // id: element.id,
                         class: element.class,
                         center_y: element.current_y + element.h / 2,
@@ -212,7 +336,8 @@ function EvacuationPlan(settings) {
                     })
                 });
                 // console.log()
-                console.log(JSON.stringify(answer));
+                answer.setJSON({answer: answer_arr, complete: true});
+                // console.log(JSON.stringify(answer));
             },
 
             badgeBackground: function (badge_class) {
@@ -249,19 +374,19 @@ function EvacuationPlan(settings) {
         computed: {
             areaStyle: function () {
                 return {
-                    height: this.height + this.components_zone_height + "px",
+                    height: this.height + (this.task_visible ? this.components_zone_height : 0) + "px",
                     width: this.width + "px",
                     background: `url(${img_path}${background_img})`,
                     "background-position": "top center",
                     "background-repeat": "no-repeat",
                     "background-size": "contain",
                     position: "relative",
-                    border: "1px solid #e6e6e6",
+                    // border: "1px solid #e6e6e6",
                 }
             },
             instructionStyle: function(){
                 return {
-                    height: this.height + this.components_zone_height + "px",
+                    height: this.height + (this.task_visible ? this.components_zone_height : 0) + "px",
                     width: this.width + "px",
                 }
             },
