@@ -1,27 +1,32 @@
-<html>
-<head>
-    <meta charset="utf-8">
-</head>
 <problem>
 <script type="loncapa/python">
 import json
 
-cities = ["city_0","city_1","city_4","city_20","city_31","city_71"]
+cities = ["city_0", "city_1", "city_4", "city_20", "city_31", "city_71"]
+
+cities_1 = ["city_0", "city_9", "city_20", "city_31", "city_71"]
 
 def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
     student_correct = [cities[0]]
     grade = 0
     del cities[0]
+    del cities_1[0]
     del student_answer[0]
+
     max_grade = len(cities)
 
     for index, s_a in enumerate(student_answer):
         if s_a == cities[index]:
+            max_grade = len(cities)
+            grade += 1
+            student_correct.append(s_a)
+        elif s_a == cities_1[index]:
+            max_grade = len(cities_1)
             grade += 1
             student_correct.append(s_a)
         else:
-            grade = 0
+
             break
     result_grade = grade / max_grade
     msg = json.dumps(student_correct)
@@ -35,13 +40,13 @@ def check_answer(exp, ans):
 
 </script>
 
-<!--<link rel="stylesheet" href="/static/historical_path.css"></link>-->
-<!--<script type="text/javascript" src="/static/historical_path_source.js"></script>-->
-<!--<script type="text/javascript" src="/static/historical_path.js"></script>-->
+<link rel="stylesheet" href="/static/historical_path.css"></link>
+<script type="text/javascript" src="/static/historical_path_source.js"></script>
+<script type="text/javascript" src="/static/historical_path.js"></script>
 
-<link rel="stylesheet" href="./historical_path.css"></link>
-<script type="text/javascript" src="./historical_path_source.js"></script>
-<script type="text/javascript" src="./historical_path.js"></script>
+<!--<link rel="stylesheet" href="./historical_path.css"></link>-->
+<!--<script type="text/javascript" src="./historical_path_source.js"></script>-->
+<!--<script type="text/javascript" src="./historical_path.js"></script>-->
 
     <div class="historical-path-container"></div>
 
@@ -68,4 +73,3 @@ def check_answer(exp, ans):
 
 </script>
 </problem>
-</html>

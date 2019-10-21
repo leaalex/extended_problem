@@ -6,6 +6,7 @@
 
 if (MatchingTableObjects == undefined) var MatchingTableObjects = {};
 
+
 function MatchingTableActivation(selector) {
     Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
         return element.dataset.status == undefined
@@ -99,6 +100,8 @@ function MatchingTableObjects(element, data){
     this.element = element;
 
     var answer = new Answer(element.querySelector("#matching_table_input").querySelector("input[type='text']"));
+
+    // console.log("Sortable")
 
 
     const sortable = new Sortable.default(
@@ -438,4 +441,29 @@ function MatchingTableObjects(element, data){
     if (!document.querySelector("style#matching_table")) document.querySelector("head").appendChild(style);
 }
 
-MatchingTableActivation(".matching_table")
+function whenAvailable(name, callback) {
+    let interval = 10; // ms
+    window.setTimeout(function() {
+        if (window[name]) {
+            callback(window[name]);
+        } else {
+            window.setTimeout(arguments.callee, interval);
+        }
+    }, interval);
+}
+
+// if(window.location.href.replace("https://", "").replace("http://", "").split(".")[0] != "studio") {
+    whenAvailable("Sortable", function (t) {
+        MatchingTableActivation(".matching_table");
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    });
+
+// }
+// else{
+//     MatchingTableActivation(".matching_table");
+// }
+// setTimeout( function() { MatchingTableActivation(".matching_table") } , 1000);
+

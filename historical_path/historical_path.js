@@ -87,7 +87,7 @@ function HistoricalPath(settings) {
     });
     can_used_cities = can_used_cities.concat(["city_8", "city_13", "city_16"]);
 
-    console.log(can_used_cities)
+    console.log(can_used_cities);
 
     let user_path = [startPoint];
     let cities = Array.from(svg.querySelector(settings.cities_selector).children);
@@ -199,7 +199,6 @@ function HistoricalPath(settings) {
 
                 paths[i].onmouseover = function (event) {
                     let path = undefined;
-                    // console.log("!!!!!!!!!!!!!", event.target.closest("g.path"));
 
                     if (event.target.closest("g.path")) {
                         if (utils.contains_classes(event.target.closest("g.path"), ["path", "approved"])) {

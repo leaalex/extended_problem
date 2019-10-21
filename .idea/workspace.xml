@@ -3,29 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/VueDraggableResizable.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/VueDraggableResizable.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation plan .html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation plan .html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/evacuation_plan.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_00.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_05.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_05.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_06.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_06.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_07.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_07.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_08.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_08.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_09.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_09.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_10.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_10.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_11.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/badge_11.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/unused_badge_12.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/unused_badge_13.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/unused_badge_14.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/unused_badge_15.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static/unused_badge_16.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/matching_table/sortable.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/matching_table/sortable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -303,7 +285,7 @@
       <workItem from="1570182781236" duration="48473000" />
       <workItem from="1570629263453" duration="9000000" />
       <workItem from="1570777725659" duration="72838000" />
-      <workItem from="1571382949185" duration="37579000" />
+      <workItem from="1571382949185" duration="52583000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
