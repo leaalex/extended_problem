@@ -35,8 +35,35 @@ function MachineryManagement4(settings) {
     let MachineryManagementInit = {
         init: function () {
             console.log(element)
+
             student_state = utils.empty_arr([subdivision_functions.length, subdivision.length]);
+
+            console.log("subdivision_functions:", subdivision_functions.length, " subdivision: ", subdivision.length)
+
+            student_state = [
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""],
+                ["ц","р","п","И","","","","","","","",""]];
+
             console.log(student_state);
+
             this.build_table();
         },
         build_table: function () {
@@ -82,7 +109,7 @@ function MachineryManagement4(settings) {
 
                     let input = utils.create("input", {
                         className: "operation-input",
-                        attr: {"maxlength": "1", type: "text"}
+                        attr: {"maxlength": "1", type: "text", value:student_state[sf_index][sd_index]}
                     });
                     input.onkeypress = function (evt) {
                         let theEvent = evt || window.event;
@@ -109,8 +136,8 @@ function MachineryManagement4(settings) {
                     };
 
                     input.oninput = function (evt) {
-                        student_state[sf_index][sd_index] = input.value === "" ? 0 : input.value;
-                        console.log(student_state);
+                        student_state[sf_index][sd_index] = input.value === "" ? "" : input.value;
+                        console.log(JSON.stringify(student_state));
                     };
 
                     sd_input_cell.onclick = function(event){
