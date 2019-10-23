@@ -7,9 +7,14 @@
   margin: 10px 0px;
   padding: 10px;
   border-bottom: 2px solid #f2f2f2;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 
   .question-text {
     font-weight: bold;
+    margin-bottom: 4px;
   }
 }
 
@@ -22,4 +27,23 @@
 
 .submit.btn-brand{
   text-transform: none !important;
+}
+
+.student_type_title{
+  text-align: center;
+  color: #3F51B5;
+  font-family: monospace !important;
+  font-size: 2.5em !important;
+  margin-bottom: 5px !important;
+  font-weight: bold !important;
+}
+
+.a-b-header{
+  text-align: center;
+  color: #3F51B5;
+}
+
+
+.d_t_description{
+  color: #673AB7;
 }

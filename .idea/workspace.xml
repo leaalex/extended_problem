@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engines/matching_table/sortable.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/matching_table/sortable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.html" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historical_path/historical_path.js" beforeDir="false" afterPath="$PROJECT_DIR$/historical_path/historical_path.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.css" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.js" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -285,7 +285,8 @@
       <workItem from="1570182781236" duration="48473000" />
       <workItem from="1570629263453" duration="9000000" />
       <workItem from="1570777725659" duration="72838000" />
-      <workItem from="1571382949185" duration="52583000" />
+      <workItem from="1571382949185" duration="62049000" />
+      <workItem from="1571742633986" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

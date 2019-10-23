@@ -6,9 +6,35 @@ function MBTI(settings) {
     let task_wording = settings.task_wording;
 
     let state = {
-        complete: true
+        type: [],
+        sum_brightness: 0,
+        complete: true,
     };
     let answer = undefined;
+
+    let letters_types = {
+        I: "Интравертный",
+        E: "Экстравертный",
+        S: "Сенсорный",
+        N: "Интуитивный",
+        T: "Мыслительный",
+        F: "Чувствующий",
+        J: "Решающий",
+        P: "Воспринимающий"
+    };
+
+    let description_titles = {
+        general: "Общая характеристика",
+        first: "Первое впечатление",
+        communication: "Общение",
+        sex: "Секс и близость",
+        finance: "Финансы",
+        conflict: "Конфликт",
+        commitment: "Обязательства",
+        parenthood: "Родительство",
+        contracts: "Контракты",
+        end_relationship: "Окончание отношений",
+    };
 
     if (settings.input) {
         if (settings.input.querySelector("input[type='text']")) {
@@ -119,10 +145,47 @@ function MBTI(settings) {
             element.appendChild(test_wrapper);
         },
         createResult: function () {
-            let student_result = utils.calculate_type();
-            let result_wrapper = utils.create("div", {className: "result-wrapper"}, utils.create("h2",{html:"Ваш результат"}));
-            let result_block = utils.create("div", {html:interpretations.types[student_result.join("")].title});
-            result_wrapper.appendChild(result_block);
+
+            let type_let = state.type.map(item=>Object.keys(item)[0]).join("");
+
+            let student_type = interpretations.types[type_let];
+
+            let result_wrapper = utils.create("div", {className: "result-wrapper"}, utils.create("h2",{html:"Психологический портрет: "}));
+
+            let student_type_title = utils.create("h2",{className: "student_type_title", html: student_type.title});
+
+            let temper_type = utils.create("p",{html:"Тип тепмерамента: "}, utils.create("strong",{}, utils.create("i",{html: "«" + student_type.temper_type + "»"})));
+
+            let lol_html =
+                  Object.keys(state.type[0])[0] + " - " + letters_types[Object.keys(state.type[0])[0]] + " (" + state.type[0][Object.keys(state.type[0])[0]] + ") + "
+                + Object.keys(state.type[1])[0] + " - " + letters_types[Object.keys(state.type[1])[0]] + " (" + state.type[1][Object.keys(state.type[1])[0]] + ") + "
+                + Object.keys(state.type[2])[0] + " - " + letters_types[Object.keys(state.type[2])[0]] + " (" + state.type[2][Object.keys(state.type[2])[0]] + ") + "
+                + Object.keys(state.type[3])[0] + " - " + letters_types[Object.keys(state.type[3])[0]] + " (" + state.type[3][Object.keys(state.type[3])[0]] + ") = "
+                + state.sum_brightness;
+
+            let sum_brightness = utils.create("p",{html:"Суммарная яркость факторов: "}, utils.create("strong",{html:  lol_html}));
+
+            let result_header_a = utils.create("h2",{className: "a-b-header", html: student_type.description.A_thesis});
+            // let result_header_a = utils.create("h2",{className: "a-b-header", html: student_type.description.A_thesis});
+            result_wrapper.appendChild(student_type_title);
+            result_wrapper.appendChild(temper_type);
+            result_wrapper.appendChild(sum_brightness);
+
+            result_wrapper.appendChild(result_header_a);
+            student_type.description.A_description.forEach(function (description_paragraph) {
+                result_wrapper.appendChild(utils.create("p",{html:description_paragraph}));
+            });
+
+            let result_header_b = utils.create("h2",{className: "a-b-header", html: student_type.description.B_thesis});
+            result_wrapper.appendChild(result_header_b);
+
+            Object.keys(description_titles).forEach(function (d_t) {
+                let dt_div = utils.create("p",{html: student_type.description[d_t]});
+                let dt_div_title = utils.create("strong", {className: "d_t_description", html: description_titles[d_t] + ". "});
+                dt_div.prepend(dt_div_title);
+                result_wrapper.appendChild(dt_div);
+            });
+
             element.appendChild(result_wrapper);
             submit_btn.classList.remove("disabled");
             submit_btn.querySelector(".submit-label").innerHTML = "Пройти ещё раз";
@@ -196,22 +259,23 @@ function MBTI(settings) {
 
             let E_I_ans = calc_arr[0].map(q_num=>state.student_answer[q_num-1]);
             let E_I_brightness = (Math.max(utils.let_count(E_I_ans, 'a'), utils.let_count(E_I_ans, 'b')) - 5) * 2;
-            result[0] = utils.let_count(E_I_ans, 'a') <= utils.let_count(E_I_ans, 'b') ?  "I" : "E";
+            result[0] = utils.let_count(E_I_ans, 'a') <= utils.let_count(E_I_ans, 'b') ?  {"I": E_I_brightness} : {"E":E_I_brightness};
 
             let S_N_ans = calc_arr[1].concat(calc_arr[2]).map(q_num=>state.student_answer[q_num-1]);
             let S_N_brightness = Math.max(utils.let_count(S_N_ans, 'a'), utils.let_count(S_N_ans, 'b')) - 10;
-            result[1] = utils.let_count(S_N_ans, 'a') <= utils.let_count(S_N_ans, 'b') ?  "N" : "S";
+            result[1] = utils.let_count(S_N_ans, 'a') <= utils.let_count(S_N_ans, 'b') ?  {"N":S_N_brightness} : {"S":S_N_brightness};
 
             let T_F_ans = calc_arr[3].concat(calc_arr[4]).map(q_num=>state.student_answer[q_num-1]);
             let T_F_brightness = Math.max(utils.let_count(T_F_ans, 'a'), utils.let_count(T_F_ans, 'b')) - 10;
-            result[2] = utils.let_count(T_F_ans, 'a') <= utils.let_count(T_F_ans, 'b') ?  "F" : "T";
+            result[2] = utils.let_count(T_F_ans, 'a') <= utils.let_count(T_F_ans, 'b') ?  {"F":T_F_brightness} : {"T":T_F_brightness};
 
             let J_P_ans = calc_arr[5].concat(calc_arr[6]).map(q_num=>state.student_answer[q_num-1]);
             let J_P_brightness = Math.max(utils.let_count(J_P_ans, 'a'), utils.let_count(J_P_ans, 'b')) - 10;
-            result[3] = utils.let_count(J_P_ans, 'a') <= utils.let_count(J_P_ans, 'b') ?  "P" : "J";
+            result[3] = utils.let_count(J_P_ans, 'a') <= utils.let_count(J_P_ans, 'b') ?  {"P": J_P_brightness} : {"J":J_P_brightness};
 
             let sum_brightness = E_I_brightness + S_N_brightness + T_F_brightness + J_P_brightness;
-            console.log(E_I_brightness, " ", S_N_brightness, " ", T_F_brightness, " ", J_P_brightness, " = ", sum_brightness);
+            state.type = result;
+            state.sum_brightness = sum_brightness;
 
             answer.setJSON({answer: state});
 
