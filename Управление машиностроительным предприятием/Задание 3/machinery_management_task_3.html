@@ -19,59 +19,9 @@
 
     <script type="text/javascript">
         // $student_data_json;
-        let student_data = {
-            "operations": [{
-                "id": "operation_1",
-                "title": "Токарная",
-                "duration": 1.9,
-                "weight": 0
-            }, {
-                "id": "operation_2",
-                "title": "Сверлильная",
-                "duration": 1.1,
-                "weight": 1
-            }, {
-                "id": "operation_3",
-                "title": "Фрезерная",
-                "duration": 2.1,
-                "weight": 2
-            },
-                {
-                "id": "operation_4",
-                "title": "Шлифовальная",
-                "duration": 1.3,
-                "weight": 3
-                }
-            ],
+        let student_data = {"operations": [{"id": "operation_1","title": "Токарная","duration": 1.9,"weight": 0}, {"id": "operation_2","title": "Сверлильная","duration": 1.1,"weight": 1}, {"id": "operation_3","title": "Фрезерная","duration": 2.1,"weight": 2},{"id": "operation_4","title": "Шлифовальная","duration": 1.3,"weight": 3}],"employees": {"employee_1": {"id": "employee_1", "title": "Сашка"},"employee_2": {"id": "employee_2", "title": "Женьдос"},"employee_3": {"id": "employee_3", "title": "Славик"},"employee_4": {"id": "employee_4", "title": "Колян"},"employee_5": {"id": "employee_5", "title": "Лёха"},"employee_6": {"id": "employee_6", "title": "Паша"},"employee_7": {"id": "employee_7", "title": "Работник 1"},"employee_8": {"id": "employee_8", "title": "Работник 2"},"employee_9": {"id": "employee_9", "title": "Работник 3"},},"companion_data": {"month": 21,"work_day": 2,"work_shift": 8,"half_shift": 0.5,"defect_percent": 16,"N_out": 12600,"tact": 1.6,"safety_stock": 5,"max_time": 240.0},"workplaces_len": 6,"periods_len": 3,"operations_pairs": [["operation_1", "operation_2"], ["operation_2", "operation_3"], ["operation_3", "operation_4"]]};
 
-            "employees": {
-                "employee_1": {"id": "employee_1", "title": "Сашка"},
-                "employee_2": {"id": "employee_2", "title": "Женьдос"},
-                "employee_3": {"id": "employee_3", "title": "Славик"},
-                "employee_4": {"id": "employee_4", "title": "Колян"},
-                "employee_5": {"id": "employee_5", "title": "Лёха"},
-                "employee_6": {"id": "employee_6", "title": "Паша"},
-                "employee_7": {"id": "employee_7", "title": "Работник 1"},
-                "employee_8": {"id": "employee_8", "title": "Работник 2"},
-                "employee_9": {"id": "employee_9", "title": "Работник 3"},
-            },
-            "companion_data": {
-                "month": 21,
-                "work_day": 2,
-                "work_shift": 8,
-                "half_shift": 0.5,
-                "defect_percent": 16,
-                "N_out": 12600,
-                "tact": 1.6,
-                "safety_stock": 5,
-                "max_time": 240.0
-            },
-            "workplaces_len": 6,
-            "periods_len": 3,
-            "operations_pairs": [["operation_1", "operation_2"], ["operation_2", "operation_3"], ["operation_3", "operation_4"]]
-        };
-
-        // student_data = {"operations": [{"id": "operation_1","title": "Токарная 1","duration": 1.6,"type": "turning","weight": 0},{"id": "operation_2","title": "Токарная 2","duration": 1.7,"type": "turning_1","weight": 1},{"id": "operation_3","title": "Сверлильная","duration": 1.3,"type": "drilling","weight": 2},{"id": "operation_4","title": "Фрезерная","duration": 3.2,"type": "milling","weight": 3},{"id": "operation_5","title": "Шлифовальная","duration": 2.7,"type": "grinding","weight": 4}],"employees": {"employee_1": {"id": "employee_1","title": "Сашка"},"employee_2": {"id": "employee_2","title": "Женьдос"},"employee_3": {"id": "employee_3","title": "Славик"},"employee_4": {"id": "employee_4","title": "Колян"},"employee_5": {"id": "employee_5","title": "Лёха"},"employee_6": {"id": "employee_6","title": "Паша"},"employee_7": {"id": "employee_7","title": "Работник 1"},"employee_8": {"id": "employee_8","title": "Работник 2"},"employee_9": {"id": "employee_9","title": "Работник 3"},"employee_10": {"id": "employee_10","title": "Работник 4"},"employee_11": {"id": "employee_11","title": "Работник 5"},"employee_12": {"id": "employee_12","title": "Работник 6"},"employee_13": {"id": "employee_13","title": "Работник 7"},"employee_14": {"id": "employee_14","title": "Работник 8"}},"companion_data": {"month": 21,"work_day": 2,"work_shift": 8,"half_shift": 0.5,"defect_percent": 16,"N_out": 16799.98966,"tact": 1.2000007385718832,"safety_stock": 5,"max_time": 240},"workplaces_len": 12,"periods_len": 5,"operations_pairs": [["operation_1","operation_2"],["operation_2","operation_3"],["operation_3","operation_4"],["operation_4","operation_5"]]};
+        student_data = {"operations": [{"id": "operation_1","title": "Токарная 1","duration": 1.6,"type": "turning","weight": 0},{"id": "operation_2","title": "Токарная 2","duration": 1.7,"type": "turning_1","weight": 1},{"id": "operation_3","title": "Сверлильная","duration": 1.3,"type": "drilling","weight": 2},{"id": "operation_4","title": "Фрезерная","duration": 3.2,"type": "milling","weight": 3},{"id": "operation_5","title": "Шлифовальная","duration": 2.7,"type": "grinding","weight": 4}],"employees": {"employee_1": {"id": "employee_1","title": "Сашка"},"employee_2": {"id": "employee_2","title": "Женьдос"},"employee_3": {"id": "employee_3","title": "Славик"},"employee_4": {"id": "employee_4","title": "Колян"},"employee_5": {"id": "employee_5","title": "Лёха"},"employee_6": {"id": "employee_6","title": "Паша"},"employee_7": {"id": "employee_7","title": "Работник 1"},"employee_8": {"id": "employee_8","title": "Работник 2"},"employee_9": {"id": "employee_9","title": "Работник 3"},"employee_10": {"id": "employee_10","title": "Работник 4"},"employee_11": {"id": "employee_11","title": "Работник 5"},"employee_12": {"id": "employee_12","title": "Работник 6"},"employee_13": {"id": "employee_13","title": "Работник 7"},"employee_14": {"id": "employee_14","title": "Работник 8"}},"companion_data": {"month": 21,"work_day": 2,"work_shift": 8,"half_shift": 0.5,"defect_percent": 16,"N_out": 16799.98966,"tact": 1.2000007385718832,"safety_stock": 5,"max_time": 240},"workplaces_len": 12,"periods_len": 5,"operations_pairs": [["operation_1","operation_2"],["operation_2","operation_3"],["operation_3","operation_4"],["operation_4","operation_5"]]};
 
         new MachineryManagement3({
             data: student_data,
