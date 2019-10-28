@@ -37,7 +37,7 @@ function MachineryManagement1(settings) {
             if (object === undefined) object = this.fieldObject;
             this.set(JSON.stringify(object));
         };
-        this.isJsonString = function (str) {
+        this.isJsonString = function (str) {safe
             try {
                 JSON.parse(str);
             } catch (e) {

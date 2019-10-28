@@ -1,6 +1,3 @@
-.table-container {
-  width: 810px;
-}
 .table-container table {
   width: 100%;
   border-spacing: 0px;
@@ -35,6 +32,7 @@
 }
 .table-container table td.function-title-cell, .table-container table th.function-title-cell {
   min-width: 300px;
+  cursor: default;
   z-index: 1;
   font-weight: normal;
   font-size: 14px;

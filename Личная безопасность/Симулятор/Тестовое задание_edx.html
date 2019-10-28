@@ -620,6 +620,7 @@ images_src = json.dumps("/static/_", ensure_ascii=False).replace("\"", "'")
 
     var simulator = new Simulator({
         element: document.getElementById('task_container'),
+        input: document.getElementById('simulator_input'),
         messages: messages,
         things: things_list,
         images_src: "https://courses.openedu.ru" + images_src + "@",

@@ -1,7 +1,6 @@
 
 .table-container {
-  width: 810px;
-  //PADDING: 101PX;
+  //width: 810px;
 
   table {
     width: 100%;
@@ -61,6 +60,7 @@
       &.function-title-cell{
         min-width: 300px;
         //padding: 4px;
+        cursor: default;
         z-index: 1;
         font-weight: normal;
         font-size: 14px;

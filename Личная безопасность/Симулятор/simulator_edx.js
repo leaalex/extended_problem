@@ -13,8 +13,6 @@ function Simulator(settings) {
 
     let things = settings.things || [];
 
-    // console.log(things);
-
     let use_things = things.length > 0;
     let images_src = settings.images_src || "";
     let max_things = this.options.max_things ? this.options.max_things : things.length;
@@ -37,11 +35,8 @@ function Simulator(settings) {
     $(submit_button).removeAttr("disabled");
 
     console.log(submit_button);
-    // $(".action", $(this.html_element).closest(".xblock")).hide();
-    // $(".notification", $(this.html_element).closest(".xblock")).css("display","none !important;");
-    this.init = function () {
-        // console.log(out_of_turn);
 
+    this.init = function () {
         if (out_of_turn) {
             if (Object.keys(messages).includes(out_of_turn)) {
                 first_msg = out_of_turn;
@@ -224,13 +219,23 @@ function Simulator(settings) {
                     }, html_element);
                 } else {
                     Message.curr_msg_id = this.next_id;
-                    new Message(this.next_id, messages[this.next_id], html_element);
+                    console.log("messages[this.next_id]: ", messages[this.next_id].final);
+                    if (messages[this.next_id].final !== true){
+                        new Message(this.next_id, messages[this.next_id], html_element);
+                    }
+                    else{
+                        // Message.curr_msg_id = this.next_id;
+                        $(settings.element).css('opacity', 0);
+                        user_state.path.push(this.next_id);
+                        answer.setJSON({answer: {"user_state": user_state, "current_msg": this.next_id}});
+                        $(submit_button).trigger('click');
+                    }
                 }
             }
         }.bind(this);
 
         this.html.onmouseover = function () {
-            console.log(this)
+            console.log(this.next_id);
         }.bind(this)
 
     }
@@ -275,10 +280,6 @@ function Simulator(settings) {
 
             return class_list;
         };
-
-        // let class_list = this.get_class_list();
-
-        // let success_class = (settings.success !== undefined) ? "success-"+settings.success: "";
 
         if (settings.choices) {
             this.choices = settings.choices.map(function (ch, index) {
@@ -361,15 +362,13 @@ function Simulator(settings) {
         if(!this.is_comment){
             user_state.path.push(this.id);
         }
-        // console.log(user_state.path)
-        // console.log(html_element.closest(".simulator-container"));
 
         answer.setJSON({answer: {"user_state": user_state, "current_msg": id}});
 
         console.log(user_state);
 
         if(this.final){
-            console.log("click submit trigger");
+            // console.log("click submit trigger");
             // $(submit_button).trigger('click');
         }else{
             // console.log("click save trigger");
@@ -488,26 +487,31 @@ function Simulator(settings) {
 
     // this.init();
     if(edx_mode){
-        answer = new Answer(document.querySelector("#simulator_input").querySelector("input[type='text']"));
+        if (settings.input.querySelector("input[type='text']")) {
 
-        if(answer.get()){
-            let curr_msg = answer.getJSON()["answer"]["current_msg"];
+            answer = new Answer(settings.input.querySelector("input[type='text']"));
 
-            first_msg = curr_msg;
-            user_state = answer.getJSON()["answer"]["user_state"];
-            user_state.path = user_state.path.slice(0, -1);
+            // answer = new Answer(document.querySelector("#simulator_input").querySelector("input[type='text']"));
 
-            // console.log(this);
-            this.createGame();
+            if (settings.input.parentNode.parentNode.querySelector(".message")) {
+                settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+            }
 
-            // this.init();
+            settings.input.classList.add("hidden");
+            answer.elementField.classList.add("hidden");
 
-            // user_state.path = answer.getJSON()["answer"]["user_state"]["path"].slice(0, -1);
-            // user_state.things = answer.getJSON()["answer"]["user_state"]["path"];
-            // console.log(curr_msg);
-        }else{
-            this.init();
+            if(answer.get()){
+                let curr_msg = answer.getJSON()["answer"]["current_msg"];
+                first_msg = curr_msg;
+                user_state = answer.getJSON()["answer"]["user_state"];
+                user_state.path = user_state.path.slice(0, -1);
+                this.createGame();
+            }else{
+                this.init();
+            }
         }
+
+
 
     }
     else{
@@ -516,18 +520,4 @@ function Simulator(settings) {
     }
 
 };
-
-/*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-* */
-
 

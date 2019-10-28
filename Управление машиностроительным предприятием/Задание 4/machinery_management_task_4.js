@@ -148,45 +148,127 @@ function MachineryManagement4(settings) {
 
     let element = settings.element;
 
-    // let subdivision = settings.subdivision;
-    // let subdivision_functions = settings.subdivision_functions;
-    // let operations = settings.operations;
+    function Answer(elementField) {
+        this.elementField = elementField;
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function () {
+            this.fieldValue = elementField.value;
+            return this.fieldValue;
+        };
+        this.set = function (value) {
+            if (value === undefined) value = this.fieldValue;
+            elementField.value = value;
+        };
+        this.getJSON = function () {
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function (object) {
+            if (object === undefined) object = this.fieldObject;
+            this.set(JSON.stringify(object));
+        };
+        this.isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        };
+    };
 
+    let answer = undefined;
     let student_state = undefined;
+    let response = undefined;
+
+    let letters_conformity = {
+        "ц": "c",
+        "р": "r",
+        "п": "p",
+        "и": "i",
+        "у": "u",
+        "с": "s",
+    };
+
+    let letters_conformity_reverse = {
+        "c": "ц",
+        "r": "р",
+        "p": "п",
+        "i": "и",
+        "u": "у",
+        "s": "с",
+    };
+
+
+    if (settings.input) {
+        if (settings.input.querySelector("input[type='text']")) {
+            answer = new Answer(settings.input.querySelector("input[type='text']"));
+            if (settings.input.parentNode.parentNode.querySelector(".message")) {
+                settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");
+            }
+
+            settings.input.classList.add("hidden");
+            answer.elementField.classList.add("hidden");
+
+            if (answer.get()) {
+                student_state = answer.getJSON()["answer"];
+                if (settings.input.parentNode.parentNode.querySelector("span.message")) {
+                    response = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML);
+                    console.log(element);
+                    console.log(response);
+                    // correctness = ;
+                }
+            }
+        }
+    }
+
+
 
     let MachineryManagementInit = {
         init: function () {
-            console.log(element);
 
-            student_state = utils.empty_arr([subdivision_functions.length, subdivision.length]);
+            if (!student_state){
+                student_state = utils.empty_arr([subdivision_functions.length, subdivision.length]);
+            }
 
-            console.log("subdivision_functions:", subdivision_functions.length, " subdivision: ", subdivision.length)
-
-            student_state = [["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],
-                ["ц","р","п","И","у","с","с","у","с","с","п","у"],]
-
-            console.log(student_state);
+            answer.setJSON({answer: student_state});
 
             this.build_table();
+
+
+            if (response){
+                this.build_response();
+            }
+
         },
+
+        build_response: function(){
+            let response_block = utils.create("div", {});
+
+            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "За ЦРПИ в каждой строке:"})));
+
+            response_block.appendChild(utils.create("p", {html: response.grade_1}));
+
+            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА Ц:"})));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.c.criteria_1.replace("C","Ц")}));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.c.criteria_2.replace("C","Ц")}));
+
+            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА Р:"})));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.r.criteria_1.replace("R","Р")}));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.r.criteria_2.replace("R","Р")}));
+
+            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА П:"})));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.p.criteria_1.replace("P","П")}));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.p.criteria_2.replace("P","П")}));
+
+            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА И:"})));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.i.criteria_1.replace("I","И")}));
+            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.i.criteria_2.replace("I","И")}));
+
+            element.appendChild(response_block);
+        },
+
         build_table: function () {
             let table_container = utils.create("div", {className: "table-container"});
             let table = utils.create("table", {});
@@ -209,7 +291,7 @@ function MachineryManagement4(settings) {
 
             subdivision.forEach(function (sd, ind) {
                 let sd_title = utils.create("td", {
-                    html: sd.title + "<br>" + (ind+1),
+                    html: sd.abbr + "<br>", // + (ind+1),
                     className: "subdivision-abbr-header",
                     attr: {"data-tooltip": sd.title}
                 });
@@ -228,9 +310,11 @@ function MachineryManagement4(settings) {
                         attr: {"data-coords": `${sf_index},${sd_index}`}
                     });
 
+                    let cand = student_state[sf_index][sd_index] === "" ? "": letters_conformity_reverse[student_state[sf_index][sd_index]];
+
                     let input = utils.create("input", {
                         className: "operation-input",
-                        attr: {"maxlength": "1", type: "text", value:student_state[sf_index][sd_index]}
+                        attr: {"maxlength": "1", type: "text", value: cand}
                     });
                     input.onkeypress = function (evt) {
                         let theEvent = evt || window.event;
@@ -241,11 +325,12 @@ function MachineryManagement4(settings) {
                             key = theEvent.keyCode || theEvent.which;
                             key = String.fromCharCode(key);
                         }
-                        let allowed_letters = operations.map(l => l.let_ru.toUpperCase() + "-" + l.let_ru.toUpperCase() + l.let_ru.toLowerCase() + "-" + l.let_ru.toLowerCase() + l.let_en.toUpperCase() + "-" + l.let_en.toUpperCase() + l.let_en.toLowerCase() + "-" + l.let_en.toLowerCase()).join("");
-                        let regex_str = '/[Ц-Цц-цC-Cc-cР-Рр-рR-Rr-rП-Пп-пP-Pp-pС-Сс-сS-Ss-sИ-Ии-иI-Ii-iУ-Уу-уU-Uu-u]/';
+                        let allowed_letters = operations.map(l => l.let_ru.toUpperCase() + "-" + l.let_ru.toUpperCase() + l.let_ru.toLowerCase() + "-" + l.let_ru.toLowerCase()).join("");
+                        // + l.let_en.toUpperCase() + "-" + l.let_en.toUpperCase() + l.let_en.toLowerCase() + "-" + l.let_en.toLowerCase()
+                        // let regex_str = '/[Ц-Цц-цC-Cc-cР-Рр-рR-Rr-rП-Пп-пP-Pp-pС-Сс-сS-Ss-sИ-Ии-иI-Ii-iУ-Уу-уU-Uu-u]/';
+                        let regex_str = '/[Ц-Цц-цР-Рр-рП-Пп-пС-Сс-сИ-Ии-иУ-Уу-у]/';
                         let lastSlash = regex_str.lastIndexOf("/");
                         let regex = new RegExp(regex_str.slice(1, lastSlash), regex_str.slice(lastSlash + 1));
-                        console.log(allowed_letters);
 
                         if (!regex.test(key)) {
                             theEvent.returnValue = false;
@@ -257,8 +342,9 @@ function MachineryManagement4(settings) {
                     };
 
                     input.oninput = function (evt) {
-                        student_state[sf_index][sd_index] = input.value === "" ? "" : input.value;
-                        console.log(JSON.stringify(student_state));
+                        let val_candidate = input.value === "" ? "" : letters_conformity[input.value.toLowerCase()];
+                        student_state[sf_index][sd_index] = val_candidate === undefined ? "": val_candidate;
+                        answer.setJSON({answer: student_state});
                     };
 
                     sd_input_cell.onclick = function(event){
