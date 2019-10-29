@@ -121,27 +121,27 @@ function MachineryManagement4(settings) {
         },
         {
             let_ru: "Р",
-            title: "руководство, принятие решения, утверждение",
+            title: "руководства, принятия решения, утверждения",
             let_en: "R",
         },
         {
             let_ru: "П",
-            title: "подготовка решения, составление, расчет, разработка",
+            title: "подготовки решения, составления, расчета, разработки",
             let_en: "P",
         },
         {
             let_ru: "С",
-            title: "согласование, рассмотрение",
+            title: "согласования, рассмотрения",
             let_en: "S",
         },
         {
             let_ru: "И",
-            title: "исполнение, доведение, выполнение",
+            title: "исполнения, доведения, выполнения",
             let_en: "I",
         },
         {
             let_ru: "У",
-            title: "участие, оказание помощи, информирование",
+            title: "участия, оказания помощи, информирования",
             let_en: "U",
         }
     ];
@@ -182,6 +182,33 @@ function MachineryManagement4(settings) {
     let student_state = undefined;
     let response = undefined;
 
+    let letters_description = {
+        c: {
+            letter: "ц",
+            title: "постановки цели управления",
+        },
+        r: {
+            letter: "р",
+            title: "руководства, принятия решения, утверждения",
+        },
+        p: {
+            letter: "п",
+            title: "подготовки решения, составления, расчета, разработки",
+        },
+        i: {
+            letter: "с",
+            title: "согласования, рассмотрения",
+        },
+        u: {
+            letter: "и",
+            title: "исполнения, доведения, выполнения",
+        },
+        s: {
+            letter: "у",
+            title: "участия, оказания помощи, информирования",
+        },
+    };
+
     let letters_conformity = {
         "ц": "c",
         "р": "r",
@@ -215,8 +242,8 @@ function MachineryManagement4(settings) {
                 student_state = answer.getJSON()["answer"];
                 if (settings.input.parentNode.parentNode.querySelector("span.message")) {
                     response = JSON.parse(settings.input.parentNode.parentNode.querySelector("span.message").innerHTML);
-                    console.log(element);
-                    console.log(response);
+                    // console.log(element);
+                    // console.log(response);
                     // correctness = ;
                 }
             }
@@ -246,26 +273,14 @@ function MachineryManagement4(settings) {
         build_response: function(){
             let response_block = utils.create("div", {});
 
-            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "За ЦРПИ в каждой строке:"})));
+            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "Все это относительно ста баллов:"})));
+            response_block.appendChild(utils.create("p", {html: response.criteria_1}));
 
-            response_block.appendChild(utils.create("p", {html: response.grade_1}));
-
-            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА Ц:"})));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.c.criteria_1.replace("C","Ц")}));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.c.criteria_2.replace("C","Ц")}));
-
-            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА Р:"})));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.r.criteria_1.replace("R","Р")}));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.r.criteria_2.replace("R","Р")}));
-
-            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА П:"})));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.p.criteria_1.replace("P","П")}));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.p.criteria_2.replace("P","П")}));
-
-            response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "БУКВА И:"})));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.i.criteria_1.replace("I","И")}));
-            response_block.appendChild(utils.create("p", {html: "Набрано " + response.grade_2.i.criteria_2.replace("I","И")}));
-
+            response_block.appendChild(utils.create("p", {html: response.criteria_2.c}));
+            response_block.appendChild(utils.create("p", {html: response.criteria_2.r}));
+            response_block.appendChild(utils.create("p", {html: response.criteria_2.p}));
+            response_block.appendChild(utils.create("p", {html: response.criteria_2.i}));
+            //
             element.appendChild(response_block);
         },
 
@@ -329,8 +344,12 @@ function MachineryManagement4(settings) {
                         // + l.let_en.toUpperCase() + "-" + l.let_en.toUpperCase() + l.let_en.toLowerCase() + "-" + l.let_en.toLowerCase()
                         // let regex_str = '/[Ц-Цц-цC-Cc-cР-Рр-рR-Rr-rП-Пп-пP-Pp-pС-Сс-сS-Ss-sИ-Ии-иI-Ii-iУ-Уу-уU-Uu-u]/';
                         let regex_str = '/[Ц-Цц-цР-Рр-рП-Пп-пС-Сс-сИ-Ии-иУ-Уу-у]/';
+
+
                         let lastSlash = regex_str.lastIndexOf("/");
                         let regex = new RegExp(regex_str.slice(1, lastSlash), regex_str.slice(lastSlash + 1));
+
+
 
                         if (!regex.test(key)) {
                             theEvent.returnValue = false;
@@ -342,7 +361,16 @@ function MachineryManagement4(settings) {
                     };
 
                     input.oninput = function (evt) {
-                        let val_candidate = input.value === "" ? "" : letters_conformity[input.value.toLowerCase()];
+                        let val_candidate = input.value.replace(" ", "") === "" ? "" : letters_conformity[input.value.toLowerCase()];
+                        if (val_candidate!== "" && student_state[sf_index].includes(val_candidate) && !["s","u"].includes(val_candidate)){
+                            alert("Данная функция управления уже содержит операцию " + letters_description[val_candidate].title);
+                            input.value = "";
+                            val_candidate = "";
+                        }
+                        else{
+                            // console.log("Не содержится val_candidate: ", val_candidate);
+                        }
+
                         student_state[sf_index][sd_index] = val_candidate === undefined ? "": val_candidate;
                         answer.setJSON({answer: student_state});
                     };
