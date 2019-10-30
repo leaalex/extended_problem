@@ -1,0 +1,231 @@
+<problem>
+    <script type="loncapa/python">
+import math
+import json
+import random
+
+unique_id = "task_Jhfdsue3f"
+
+correct_answer = {"a1":["b1"],"a2":["b2"]}
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+    elif check_type == 'check_or':
+        response = check_or(correct_answer, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+
+
+variants = [
+{
+    "item_1": "Определение количественных значений свойств, сторон изучаемого объекта или явления с помощью специальных технических устройств",
+    "item_2": "измерение"
+},
+{
+    "item_1": "Активное, целенаправленное, строго контролируемое воздействие исследователя на изучаемый объект",
+    "item_2": "эксперимент"
+},
+{
+    "item_1": "Преднамеренное и целенаправленное изучение объектов, опирающееся на чувственные способности человека",
+    "item_2": "наблюдение"
+},
+{
+    "item_1": "Построение абстрактно-математических моделей, раскрывающих сущность изучаемых процессов действительности",
+    "item_2": "формализация"
+},
+{
+    "item_1": "Операция соединения выделенных частей предмета в единое целое",
+    "item_2": "моделирование"
+}
+]
+
+
+variant_nums = random.sample(list(range(0, len(variants))), 2)
+
+print(variant_nums)
+
+a_1 = variants[variant_nums[0]]["item_1"]
+a_2 = variants[variant_nums[1]]["item_1"]
+b_1 = variants[variant_nums[0]]["item_2"]
+b_2 = variants[variant_nums[1]]["item_2"]
+
+answers = [b_1, b_2]
+
+for index, v in enumerate(variants):
+    if not index in variant_nums:
+        answers.append(variants[index]["item_2"])
+
+g_text_0 = answers[0]
+g_text_1 = answers[1]
+g_text_2 = answers[2]
+g_text_3 = answers[3]
+g_text_4 = answers[4]
+
+</script>
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+    <script type="text/javascript" src="/static/sortable.js"/>
+
+    <script type="text/javascript" src="/static/matching_table_mobile.js"/>
+    <style>
+        #$unique_id .text-fixed-width{
+            width: 69%;
+        }
+
+        #$unique_id .text-fixed-height{
+              height: 40px;
+              vertical-align: middle !important;
+          }
+        #$unique_id .conf-item{
+              min-height: 40px;
+              overflow-y: hidden;
+              padding: 0.3rem !important;
+              margin: 0.3rem 0.5rem !important;
+          }
+
+    </style>
+
+    <div class="matching_table disable-marker" id="$unique_id">
+        <p>Установить соответствие между авторами и вкладом в естественно-научные знания</p>
+        <table class="conf-table">
+            <tr>
+                <th class="conf-text conf-header text-fixed-width">Определение метода</th>
+                <th class="conf-text conf-header text-fixed-width">Метод научного познания</th>
+            </tr>
+            <tr>
+                <td capacity="1" class="conf-text conf-header text-fixed-height">$a_1</td>
+                <td id="a1" capacity="1" class="text-fixed-height conf-answers-place conf-inputable input-place"></td>
+            </tr>
+            <tr>
+                <td capacity="1" class="conf-text conf-header text-fixed-height">$a_2</td>
+                <td id="a2" capacity="1" class="text-fixed-height conf-answers-place conf-inputable input-place"></td>
+            </tr>
+        </table>
+        <p>Методы научного познания:</p>
+        <div id="conf-id" class="conf-answers-place conf-inputable conf-all-answers halfs">
+            <div id="b1" class="conf-item conf-draggable" style="">$g_text_0</div>
+            <div id="b2" class="conf-item conf-draggable" style="">$g_text_1</div>
+            <div id="b3" class="conf-item conf-draggable" style="">$g_text_2</div>
+            <div id="b4" class="conf-item conf-draggable" style="">$g_text_3</div>
+            <div id="b5" class="conf-item conf-draggable" style="">$g_text_4</div>
+        </div>
+
+        <div id="matching_table_input" style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$taskId"/>
+                <br/>
+            </customresponse>
+            <div class="message-about-grade"/>
+        </div>
+        <solution>
+            <div class="detailed-solution">
+                <div class="detailed-solution-header">
+                    <h1>Решение задачи</h1>
+                </div>
+
+                <table class="conf-table">
+                    <tr>
+                        <th class="conf-text conf-header text-fixed-width">Определение метода</th>
+                        <th class="conf-text conf-header text-fixed-width">Метод научного познания</th>
+                    </tr>
+                    <tr>
+                        <td capacity="1" class="conf-text conf-header text-fixed-height">$a_1</td>
+                        <td class="text-fixed-height input-place"><div class="conf-item">$g_text_0</div></td>
+                    </tr>
+                    <tr>
+                        <td capacity="1" class="conf-text conf-header text-fixed-height">$a_2</td>
+                        <td class="text-fixed-height input-place"><div class="conf-item">$g_text_1</div></td>
+                    </tr>
+                </table>
+
+            </div>
+        </solution>
+    </div>
+</problem>
