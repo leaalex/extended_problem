@@ -10,7 +10,7 @@ function MachineryManagement3(user_settings) {
         init: function () {
             user_data.tact = 0;
             user_data.periods = utils.zeros([settings.periods_len]);
-            user_data.workplaces = utils.zeros([settings.workplaces_len]).map(function (item) {
+            user_data.workplaces = settings.workplaces.map(function (item) {
                 return {
                     type: "",
                     congestion: 0,
@@ -42,7 +42,7 @@ function MachineryManagement3(user_settings) {
 
             // user_data = {"tact": 0,"periods": [45, 120, 75],"workplaces": [{"type": "operation_1","congestion": 100,"employee": "employee_1","work_time": 240,"op_start": 0,"op_end": 240}, {"type": "operation_1","congestion": 18.75,"employee": "employee_2","work_time": 45,"op_start": 0,"op_end": 45}, {"type": "operation_2","congestion": 68.75,"employee": "employee_3","work_time": 165,"op_start": 0,"op_end": 165}, {"type": "operation_3","congestion": 100,"employee": "employee_4","work_time": 240,"op_start": 0,"op_end": 240}, {"type": "operation_3","congestion": 31.25,"employee": "employee_3","work_time": 75,"op_start": 165,"op_end": 75}, {"type": "operation_4","congestion": 81.25,"employee": "employee_2","work_time": 195,"op_start": 45,"op_end": 195}],"operations_pairs": [{"dynamic_value": 45,"changes": [6.459, -45.933, 37.13],"dynamics": [51.459, 5.526, 42.656],"pair": [{"id": "operation_1","KPPM": [2, 1, 1],"out": [47.368, 63.158, 39.47]}, {"id": "operation_2", "KPPM": [1, 1, 0], "out": [40.909, 109.091, 2.34]}]}, {"dynamic_value": 0,"changes": [40.909, 51.948, -71.429],"dynamics": [40.909, 92.857, 21.428],"pair": [{"id": "operation_2","KPPM": [1, 1, 0],"out": [40.909, 109.091, 0]}, {"id": "operation_3", "KPPM": [0, 1, 2], "out": [0, 57.143, 71.429]}]}, {"dynamic_value": 19,"changes": [21.429, -35.165, 13.737],"dynamics": [40.429, 5.264, 19.001],"pair": [{"id": "operation_3","KPPM": [1, 1, 2],"out": [21.429, 57.143, 71.429]}, {"id": "operation_4", "KPPM": [0, 1, 1], "out": [0, 92.308, 57.692]}]}]};
             //
-            // user_data = { "tact": 0, "periods": [ 80, 20, 20, 60, 60 ], "workplaces": [ { "type": "operation_1", "congestion": 100, "employee": "employee_7", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_1", "congestion": 33.33, "employee": "employee_5", "work_time": 80, "op_start": 0, "op_end": 80 }, { "type": "operation_2", "congestion": 100, "employee": "employee_8", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_2", "congestion": 41.67, "employee": "employee_6", "work_time": 100, "op_start": 0, "op_end": 100 }, { "type": "operation_3", "congestion": 100, "employee": "employee_9", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_3", "congestion": 8.33, "employee": "employee_6", "work_time": 20, "op_start": 100, "op_end": 120 }, { "type": "operation_4", "congestion": 100, "employee": "employee_10", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_4", "congestion": 100, "employee": "employee_11", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_4", "congestion": 66.67, "employee": "employee_5", "work_time": 160, "op_start": 80, "op_end": 240 }, { "type": "operation_5", "congestion": 100, "employee": "employee_12", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_5", "congestion": 100, "employee": "employee_13", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_5", "congestion": 25, "employee": "employee_6", "work_time": 60, "op_start": 120, "op_end": 180 } ], "operations_pairs": [ { "dynamic_value": 11, "changes": [ 5.882, -11.029, 0.735, 2.206, 2.206 ], "dynamics": [ 16.882, 5.853, 6.588, 8.794, 11 ], "pair": [ { "id": "operation_1", "KPPM": [ 2, 1, 1, 1, 1 ], "out": [ 100, 12.5, 12.5, 37.5, 37.5 ] }, { "id": "operation_2", "KPPM": [ 2, 2, 1, 1, 1 ], "out": [ 94.1176, 23.5294, 11.7647, 35.29411, 35.29411 ] } ] }, { "dynamic_value": 6, "changes": [ 32.579, 8.145, -19.005, -10.86, -10.86 ], "dynamics": [ 38.579, 46.724, 27.719, 16.859, 5.999 ], "pair": [ { "id": "operation_2", "KPPM": [ 2, 2, 1, 1, 1 ], "out": [ 94.117647058823, 23.5294117647, 11.764705882, 35.2941176, 35.2941176 ] }, { "id": "operation_3", "KPPM": [ 1, 1, 2, 1, 1 ], "out": [ 61.538461, 15.384615, 30.76923, 46.15384615, 46.15384615 ] } ] }, { "dynamic_value": 5, "changes": [ 11.538, -3.365, 12.019, -10.096, -10.096 ], "dynamics": [ 16.538, 13.173, 25.192, 15.096, 5 ], "pair": [ { "id": "operation_3", "KPPM": [ 1, 1, 2, 1, 1 ], "out": [ 61.538461538, 15.384615384, 30.76923, 46.15384615, 46.15384615 ] }, { "id": "operation_4", "KPPM": [ 2, 3, 3, 3, 3 ], "out": [ 50, 18.75, 18.75, 56.25, 56.25 ] } ] }, { "dynamic_value": 17, "changes": [ -9.259, 3.935, 3.935, -10.417, 11.806 ], "dynamics": [ 7.741, 11.676, 15.611, 5.194, 17 ], "pair": [ { "id": "operation_4", "KPPM": [ 2, 3, 3, 3, 3 ], "out": [ 50, 18.75, 18.75, 56.25, 56.25 ] }, { "id": "operation_5", "KPPM": [ 2, 2, 2, 3, 2 ], "out": [ 59.2592592, 14.81481481, 14.81481481, 66.666666, 44.44444 ] } ] } ] }
+            user_data = { "tact": 0, "periods": [ 80, 20, 20, 60, 60 ], "workplaces": [ { "type": "operation_1", "congestion": 100, "employee": "employee_7", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_1", "congestion": 33.33, "employee": "employee_5", "work_time": 80, "op_start": 0, "op_end": 80 }, { "type": "operation_2", "congestion": 100, "employee": "employee_8", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_2", "congestion": 41.67, "employee": "employee_6", "work_time": 100, "op_start": 0, "op_end": 100 }, { "type": "operation_3", "congestion": 100, "employee": "employee_9", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_3", "congestion": 8.33, "employee": "employee_6", "work_time": 20, "op_start": 100, "op_end": 120 }, { "type": "operation_4", "congestion": 100, "employee": "employee_10", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_4", "congestion": 100, "employee": "employee_11", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_4", "congestion": 66.67, "employee": "employee_5", "work_time": 160, "op_start": 80, "op_end": 240 }, { "type": "operation_5", "congestion": 100, "employee": "employee_12", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_5", "congestion": 100, "employee": "employee_13", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_5", "congestion": 25, "employee": "employee_6", "work_time": 60, "op_start": 120, "op_end": 180 } ], "operations_pairs": [ { "dynamic_value": 11, "changes": [ 5.882, -11.029, 0.735, 2.206, 2.206 ], "dynamics": [ 16.882, 5.853, 6.588, 8.794, 11 ], "pair": [ { "id": "operation_1", "KPPM": [ 2, 1, 1, 1, 1 ], "out": [ 100, 12.5, 12.5, 37.5, 37.5 ] }, { "id": "operation_2", "KPPM": [ 2, 2, 1, 1, 1 ], "out": [ 94.1176, 23.5294, 11.7647, 35.29411, 35.29411 ] } ] }, { "dynamic_value": 6, "changes": [ 32.579, 8.145, -19.005, -10.86, -10.86 ], "dynamics": [ 38.579, 46.724, 27.719, 16.859, 5.999 ], "pair": [ { "id": "operation_2", "KPPM": [ 2, 2, 1, 1, 1 ], "out": [ 94.117647058823, 23.5294117647, 11.764705882, 35.2941176, 35.2941176 ] }, { "id": "operation_3", "KPPM": [ 1, 1, 2, 1, 1 ], "out": [ 61.538461, 15.384615, 30.76923, 46.15384615, 46.15384615 ] } ] }, { "dynamic_value": 5, "changes": [ 11.538, -3.365, 12.019, -10.096, -10.096 ], "dynamics": [ 16.538, 13.173, 25.192, 15.096, 5 ], "pair": [ { "id": "operation_3", "KPPM": [ 1, 1, 2, 1, 1 ], "out": [ 61.538461538, 15.384615384, 30.76923, 46.15384615, 46.15384615 ] }, { "id": "operation_4", "KPPM": [ 2, 3, 3, 3, 3 ], "out": [ 50, 18.75, 18.75, 56.25, 56.25 ] } ] }, { "dynamic_value": 17, "changes": [ -9.259, 3.935, 3.935, -10.417, 11.806 ], "dynamics": [ 7.741, 11.676, 15.611, 5.194, 17 ], "pair": [ { "id": "operation_4", "KPPM": [ 2, 3, 3, 3, 3 ], "out": [ 50, 18.75, 18.75, 56.25, 56.25 ] }, { "id": "operation_5", "KPPM": [ 2, 2, 2, 3, 2 ], "out": [ 59.2592592, 14.81481481, 14.81481481, 66.666666, 44.44444 ] } ] } ] }
 
             Vue.component('apexchart', VueApexCharts);
 
@@ -54,7 +54,7 @@ function MachineryManagement3(user_settings) {
                             <p>Операции:</p>
                             <ul>
                                 <li v-for="operation in operations">
-                                    {{ operation.title }} - <strong>{{ operation.duration }} </strong> мин
+                                    {{ operation.title }} - {{ operation.duration }} мин
                                 </li>
                             </ul>
                             <p>N<sub>выпуска</sub> = <strong> {{companion_data.N_out}}</strong> шт в мес</p>
@@ -63,6 +63,7 @@ function MachineryManagement3(user_settings) {
                             <p>1 смена =<strong> {{companion_data.work_shift}}</strong> часов</p>
                             <p>ПОЛ =<strong> {{companion_data.half_shift}}</strong> смены</p>
                             <p>Такт =<strong> {{round_num(companion_data.tact)}}</strong> мин/шт</p>
+                            <p>Введите такт = <input v-model.number="user_data.tact" @change="validate_tact" type="number"> мин/шт</p>
                         </div>
 <!--                        <p>{{user_data}}</p>-->
                         <div class="problem-block">
@@ -71,35 +72,55 @@ function MachineryManagement3(user_settings) {
                             </div>
                 
                             <div class="problem-block-task">
-                                <div style="display: flex">
+                                <div style="/*display: flex*/">
                                     <div>
-                                        <table>
+                                        <table  class="problem-table problem-table-1">
                                             <tr>
                                                 <th>Операция</th>
+<!--                                                <th>Нужное кол-во опраций</th>-->
                                                 <th>№ РМ</th>
                                                 <th>Загрузка РМ, %</th>
                                                 <th>Рабочий</th>
-                                                <th>Рабочее время</th>
-                                                <th>Начало графика</th>
-                                                <th>Конец графика</th>
+<!--                                                <th>Загрузка рабочего</th>-->
+                                                <th>Рабочее время</th> <!-- Раб. вр. Рабочее время -->
+                                                <th>Начало графика</th> <!-- Нач. гр. Начало графика -->
+                                                <th>Конец графика</th> <!-- Кон. гр. Конец графика -->
                                             </tr>
                                             <tr v-for="(workplace,ind) in user_data.workplaces">
                                                 <td>
                                                     <select v-model="workplace.type">
                                                         <option value="">Нет операции</option>
-                                                        <option v-for="op in operations" :value="op.id">{{op.title}}</option>
+                                                        <option v-for="op in operations" :value="op.id" v-html="op.title"></option>
                                                     </select>
                                                 </td>
+<!--                                                <td>        -->
+<!--                                                            <div v-if="user_data.workplaces.every(elem => elem.type != '')">-->
+<!--                                                                <div v-if="user_data.workplaces.filter(w => (workplace.type!='' && w.type==workplace.type)).length == workplaces.filter(w_t=>w_t == workplace.type).length">Норм</div>-->
+<!--                                                                <div v-else-if="user_data.workplaces.filter(w => (workplace.type!='' && w.type==workplace.type)).length < workplaces.filter(w_t=>w_t == workplace.type).length">Слишком мало</div>-->
+<!--                                                                <div v-else-if="user_data.workplaces.filter(w => (workplace.type!='' && w.type==workplace.type)).length > workplaces.filter(w_t=>w_t == workplace.type).length">Слишком много</div>-->
+<!--                                                            </div>-->
+<!--                                                </td>-->
                                                 <td class="auto-calculated-cell">{{calculate_workplace_num(workplace, ind)}}</td>
-                                                <td>
-                                                    <input type="number" v-model.number="workplace.congestion"  :disabled="!workplace.type /*|| !workplace.employee*/">
+                                                <td :class="{'percentage-greater-than': workplace.congestion > 100, 'percentage-less-than': workplace.congestion < 0}">
+                                                    <input type="number" v-model.number="workplace.congestion" @change="validate_congestion"  :disabled="!workplace.type /*|| !workplace.employee*/">
                                                 </td>
                                                 <td>
                                                     <select v-model="workplace.employee" >
                                                         <option value="">Нет рабочего</option>
-                                                        <option v-for="emp in employees" :value="emp.id">{{emp.title}}</option> <!-- :disabled="employee_is_full(emp.id)"-->
+                                                        <option v-for="emp in employees" :value="emp.id" v-html="emp.title"></option> <!-- :disabled="employee_is_full(emp.id)"-->
                                                     </select>
                                                 </td>
+<!--                                                <td>-->
+<!--                                                -->
+<!--                                                    <div v-if="workplace.employee!=''">-->
+<!--                                                        <div v-if="user_data.workplaces.filter(wp => wp.employee == workplace.employee).map(m=>m.congestion).reduce((a, b) => a + b, 0) == 100" class="congestion-full"> Полная</div>-->
+<!--                                                        <div v-else-if="user_data.workplaces.filter(wp => wp.employee == workplace.employee).map(m=>m.congestion).reduce((a, b) => a + b, 0) > 100" class="congestion-high">Перегруз</div>-->
+<!--                                                        <div v-else-if="user_data.workplaces.filter(wp => wp.employee == workplace.employee).map(m=>m.congestion).reduce((a, b) => a + b, 0) < 100" class="congestion-low">Недозагруз</div>-->
+<!--                                                    </div>-->
+<!--                                                    <div v-else>-->
+<!--                                                        нет рабочего-->
+<!--                                                    </div>-->
+<!--                                                </td>-->
                                                 <td class="auto-calculated-cell">
                                                     {{ workplace.work_time }}
                                                 </td>
@@ -114,7 +135,7 @@ function MachineryManagement3(user_settings) {
                                         </table>
                                     </div>
                                     <div>
-                                        <apexchart width="500" :options="first_graphic_options" :series="get_graphic_data"></apexchart>
+                                        <apexchart :height="first_graphic_options.chart.height" :width="first_graphic_options.chart.width" :options="first_graphic_options" :series="get_graphic_data"></apexchart>
                                     </div>
                                 </div>
                             </div>
@@ -131,14 +152,23 @@ function MachineryManagement3(user_settings) {
                                                     <p>Нижний край графика должен быть: больше или равен <strong>{{companion_data.safety_stock}}</strong>; меньше <strong>{{companion_data.safety_stock + 1}}</strong></p>
                                                 </div>
                                 <p>Получилось периодов: <strong>{{periods_len}}</strong></p>
-                                <table>
+                                <table class="problem-table">
                                     <tr>
                                         <td >Период неизменной работы - ПНР</td>
                                         <td v-for="n in array_0_n(periods_len)">Период {{n+1}}</td>
+                                        <td>Сумма должна быть 240</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td v-for="n in array_0_n(periods_len)"><input v-model.number="user_data.periods[n]" type="number"></td>
+                                        <td>
+                                            <div v-if="user_data.periods.every(elem => elem > 0)" :class="{ 'student-correct-input': user_data.periods.reduce((a, b) => a + b, 0) == companion_data.max_time}">
+                                                {{ user_data.periods.reduce((a, b) => a + b, 0) }}
+                                            </div>
+                                            <div v-else>
+                                                Заполните все значения периодов
+                                            </div>
+                                        </td>
                                     </tr>
                                 </table>
                 
@@ -148,7 +178,7 @@ function MachineryManagement3(user_settings) {
                                         <div>{{get_operation_by_id(op[0]).title}} - {{get_operation_by_id(op[0]).duration}}</div>
                                         <div>{{get_operation_by_id(op[1]).title}} - {{get_operation_by_id(op[1]).duration}}</div>
                 
-                                        <table>
+                                        <table class="problem-table">
                                             <tr >
                                                 <td colspan="2"></td><td v-for="n in array_0_n(periods_len)">Период {{n+1}} ({{user_data.periods[n]}})</td>
                                             </tr>
@@ -195,17 +225,17 @@ function MachineryManagement3(user_settings) {
                 data: {
                     companion_data: settings.companion_data,
                     operations: settings.operations,
-                    workplaces_len: settings.workplaces_len,
+                    workplaces: settings.workplaces,
                     employees: settings.employees,
                     operations_pairs: settings.operations_pairs,
                     periods_len: settings.periods_len,
                     user_data: user_data,
                     first_graphic_options: {
                         chart: {
+                            width: '100%',
+                            height: '350px',
                             defaultLocale: 'ru',
                             background: '#fff',
-                            // height: 350,
-                            // width: "200px",
                             type: 'rangeBar',
                             locales: [{
                                 name: 'ru',
@@ -301,7 +331,17 @@ function MachineryManagement3(user_settings) {
                         }
                         return value;
                     },
+                    validate_congestion: function () {
+                        this.user_data.workplaces.forEach((wp)=>{
+                            wp.congestion = (wp.congestion === "" || isNaN(wp.congestion)) ? 0 : parseFloat(wp.congestion);
+                        });
+                    },
+                    validate_tact: function (){
+                        this.user_data.tact = this.user_data.tact === "" ? 0 : parseFloat(this.user_data.tact);
+                    },
+
                     calculate_change: function (event) {
+                        console.log("calculate_change");
 
                         this.user_data.operations_pairs.forEach((ch, index) => {
                             ch.dynamic_value = ch.dynamic_value === "" ? 0 : ch.dynamic_value;
