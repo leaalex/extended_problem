@@ -2,53 +2,126 @@
   width: 820px;
   margin: 0 auto;
 }
+#machinery_management_task_3_container p {
+  font-family: monospace;
+  margin-bottom: 5px !important;
+  margin-top: 10px !important;
+  font-size: 14px;
+}
+#machinery_management_task_3_container h1, #machinery_management_task_3_container h2, #machinery_management_task_3_container h3 {
+  font-family: monospace;
+  padding: 1em 0;
+  font-weight: bold;
+}
 #machinery_management_task_3_container .problem-conditions {
-  background: #ccffcd;
-  padding: 10px;
+  padding: 30px 10px;
+  margin: 20px 0px;
+  background: whitesmoke;
+  font-family: monospace;
 }
 #machinery_management_task_3_container .problem-block {
-  background: #f2f2f2;
-  padding: 10px;
-  margin: 10px 0px;
+  padding: 0px 10px;
+  margin: 20px 0px;
+  font-family: monospace;
+  background: #f6f6f6;
+  border: 1px solid #c7c7c9;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .tact-input {
+  box-sizing: border-box;
+  font-family: monospace;
+  padding: 2px 6px;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .tact-input::-webkit-outer-spin-button, #machinery_management_task_3_container .problem-block .problem-block-task .tact-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table {
+  width: 100%;
+  word-break: initial;
+  margin: 0.61575em 0;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .auto-calculated-cell {
-  background: #b7b7b7;
+  padding: 2px 6px;
+  cursor: default;
+  background: #f2f2f2;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table td, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table th {
   background: white;
   border: 1px solid black;
+  padding: 0px;
 }
-#machinery_management_task_3_container .problem-block .problem-block-task .operation-pair-wrap {
-  display: flex;
-  border: 5px solid #c2c2c2;
-  margin: 10px 0px;
-  padding: 5px;
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table td select, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table th select {
+  height: 100%;
+  border: none;
+  box-sizing: content-box;
+  width: 100%;
+  font-size: 14px;
 }
-
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table td select option, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table th select option {
+  font-family: monospace;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell {
+  height: 25px;
+  padding: 0px;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .title-cell {
+  padding: 3px;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .center-cell {
+  text-align: center;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table th {
+  padding: 3px !important;
+  text-align: center;
+  font-weight: bold;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number] {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: monospace;
+  border: none;
+  padding: 2px 6px;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number]::-webkit-outer-spin-button, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number][disabled=disabled] {
+  cursor: not-allowed;
+}
 .student-correct-input {
-  background: green;
+  background: green !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
 }
 
-.congestion-full {
-  background: #007b01;
-  width: 100%;
-  height: 20px;
+.congestion-full select {
+  background: #7cc07c;
+}
+.congestion-full select option {
+  background: white;
 }
 
-.congestion-low {
+.congestion-low select {
   background: orange;
-  width: 100%;
-  height: 20px;
+}
+.congestion-low select option {
+  background: white;
 }
 
-.congestion-high {
-  background: red;
-  width: 100%;
-  height: 20px;
+.congestion-high select {
+  background: #ff8a8a;
+}
+.congestion-high select option {
+  background: white;
 }
 
-.percentage-greater-than, .percentage-less-than {
-  background: red;
+.percentage-greater-than input, .percentage-less-than input {
+  background: #ff8a8a;
 }
 
 /*# sourceMappingURL=machinery_management_task_3.css.map */

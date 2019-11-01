@@ -287,7 +287,7 @@
       <workItem from="1570777725659" duration="72838000" />
       <workItem from="1571382949185" duration="62049000" />
       <workItem from="1571742633986" duration="60816000" />
-      <workItem from="1572362483778" duration="25375000" />
+      <workItem from="1572362483778" duration="45643000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -339,18 +339,6 @@
     <MESSAGE value="Кроссворд" />
     <MESSAGE value="вфкфр" />
     <option name="LAST_COMMIT_MESSAGE" value="вфкфр" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js</url>
-          <line>245</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>
