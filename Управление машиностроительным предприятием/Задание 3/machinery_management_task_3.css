@@ -55,7 +55,7 @@
   border: none;
   box-sizing: content-box;
   width: 100%;
-  font-size: 14px;
+  font-family: monospace;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table td select option, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table th select option {
   font-family: monospace;
@@ -75,6 +75,9 @@
   text-align: center;
   font-weight: bold;
 }
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table.problem-table-2 .input-cell {
+  width: 150px;
+}
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number] {
   height: 100%;
   width: 100%;
@@ -92,11 +95,7 @@
 }
 .student-correct-input {
   background: green !important;
-  height: 100%;
-  display: flex;
-  align-items: center;
   color: white;
-  justify-content: center;
 }
 
 .congestion-full select {

@@ -49,10 +49,6 @@
         word-break: initial;
         margin: 0.61575em 0;
 
-        &.problem-table-1 {
-
-        }
-
         .auto-calculated-cell {
           padding: 2px 6px;
           cursor: default;
@@ -69,8 +65,8 @@
             border: none;
             box-sizing: content-box;
             width: 100%;
-            font-size: 14px;
-
+            //font-size: 14px;
+            font-family: monospace;
             option {
               font-family: monospace;
             }
@@ -96,6 +92,14 @@
           font-weight: bold;
         }
 
+        &.problem-table-1 {
+
+        }
+        &.problem-table-2 {
+          .input-cell{
+            width: 150px;
+          }
+        }
 
         input[type="number"] {
           height: 100%;
@@ -131,11 +135,7 @@
 
 .student-correct-input {
   background: green !important;
-  height: 100%;
-  display: flex;
-  align-items: center;
   color: white;
-  justify-content: center;
 }
 
 
