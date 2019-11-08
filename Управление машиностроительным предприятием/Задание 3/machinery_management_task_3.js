@@ -4,6 +4,40 @@ function MachineryManagement3(user_settings) {
 
     let user_data = {};
 
+    function Answer(elementField) {
+        this.elementField = elementField;
+        this.fieldValue = "";
+        this.fieldObject = {};
+        this.get = function () {
+            this.fieldValue = elementField.value;
+            return this.fieldValue;
+        };
+        this.set = function (value) {
+            if (value === undefined) value = this.fieldValue;
+            elementField.value = value;
+        };
+        this.getJSON = function () {
+            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+            return this.fieldObject;
+        };
+        this.setJSON = function (object) {
+            if (object === undefined) object = this.fieldObject;
+            this.set(JSON.stringify(object));
+        };
+        this.isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        };
+    };
+
+    let answer = undefined;
+    // console.log(user_settings.input);
+    answer = new Answer(user_settings.input.querySelector("textarea"));
+
     // operations.forEach((item,idx)=>{ if(idx>0) { pairs.push([operations[idx-1].id,item.id ]) } })
 
     let MachineryManagementInit = {
@@ -41,7 +75,7 @@ function MachineryManagement3(user_settings) {
             });
 
             // user_data = {"tact": 1.6, "periods": [45, 120, 75],"workplaces": [{"type": "operation_1","congestion": 100,"employee": "employee_1","work_time": 240,"op_start": 0,"op_end": 240}, {"type": "operation_1","congestion": 18.75,"employee": "employee_2","work_time": 45,"op_start": 0,"op_end": 45}, {"type": "operation_2","congestion": 68.75,"employee": "employee_3","work_time": 165,"op_start": 0,"op_end": 165}, {"type": "operation_3","congestion": 100,"employee": "employee_4","work_time": 240,"op_start": 0,"op_end": 240}, {"type": "operation_3","congestion": 31.25,"employee": "employee_3","work_time": 75,"op_start": 165,"op_end": 75}, {"type": "operation_4","congestion": 81.25,"employee": "employee_2","work_time": 195,"op_start": 45,"op_end": 195}],"operations_pairs": [{"dynamic_value": 45,"changes": [6.459, -45.933, 37.13],"dynamics": [51.459, 5.526, 42.656],"pair": [{"id": "operation_1","KPPM": [2, 1, 1],"out": [47.368, 63.158, 39.47]}, {"id": "operation_2", "KPPM": [1, 1, 0], "out": [40.909, 109.091, 2.34]}]}, {"dynamic_value": 0,"changes": [40.909, 51.948, -71.429],"dynamics": [40.909, 92.857, 21.428],"pair": [{"id": "operation_2","KPPM": [1, 1, 0],"out": [40.909, 109.091, 0]}, {"id": "operation_3", "KPPM": [0, 1, 2], "out": [0, 57.143, 71.429]}]}, {"dynamic_value": 19,"changes": [21.429, -35.165, 13.737],"dynamics": [40.429, 5.264, 19.001],"pair": [{"id": "operation_3","KPPM": [1, 1, 2],"out": [21.429, 57.143, 71.429]}, {"id": "operation_4", "KPPM": [0, 1, 1], "out": [0, 92.308, 57.692]}]}]};
-
+            //
             // user_data = { "tact": 0, "periods": [ 80, 20, 20, 60, 60 ], "workplaces": [ { "type": "operation_1", "congestion": 100, "employee": "employee_7", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_1", "congestion": 33.33, "employee": "employee_5", "work_time": 80, "op_start": 0, "op_end": 80 }, { "type": "operation_2", "congestion": 100, "employee": "employee_8", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_2", "congestion": 41.67, "employee": "employee_6", "work_time": 100, "op_start": 0, "op_end": 100 }, { "type": "operation_3", "congestion": 100, "employee": "employee_9", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_3", "congestion": 8.33, "employee": "employee_6", "work_time": 20, "op_start": 100, "op_end": 120 }, { "type": "operation_4", "congestion": 100, "employee": "employee_10", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_4", "congestion": 100, "employee": "employee_11", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_4", "congestion": 66.67, "employee": "employee_5", "work_time": 160, "op_start": 80, "op_end": 240 }, { "type": "operation_5", "congestion": 100, "employee": "employee_12", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_5", "congestion": 100, "employee": "employee_13", "work_time": 240, "op_start": 0, "op_end": 240 }, { "type": "operation_5", "congestion": 25, "employee": "employee_6", "work_time": 60, "op_start": 120, "op_end": 180 } ], "operations_pairs": [ { "dynamic_value": 11, "changes": [ 5.882, -11.029, 0.735, 2.206, 2.206 ], "dynamics": [ 16.882, 5.853, 6.588, 8.794, 11 ], "pair": [ { "id": "operation_1", "KPPM": [ 2, 1, 1, 1, 1 ], "out": [ 100, 12.5, 12.5, 37.5, 37.5 ] }, { "id": "operation_2", "KPPM": [ 2, 2, 1, 1, 1 ], "out": [ 94.1176, 23.5294, 11.7647, 35.29411, 35.29411 ] } ] }, { "dynamic_value": 6, "changes": [ 32.579, 8.145, -19.005, -10.86, -10.86 ], "dynamics": [ 38.579, 46.724, 27.719, 16.859, 5.999 ], "pair": [ { "id": "operation_2", "KPPM": [ 2, 2, 1, 1, 1 ], "out": [ 94.117647058823, 23.5294117647, 11.764705882, 35.2941176, 35.2941176 ] }, { "id": "operation_3", "KPPM": [ 1, 1, 2, 1, 1 ], "out": [ 61.538461, 15.384615, 30.76923, 46.15384615, 46.15384615 ] } ] }, { "dynamic_value": 5, "changes": [ 11.538, -3.365, 12.019, -10.096, -10.096 ], "dynamics": [ 16.538, 13.173, 25.192, 15.096, 5 ], "pair": [ { "id": "operation_3", "KPPM": [ 1, 1, 2, 1, 1 ], "out": [ 61.538461538, 15.384615384, 30.76923, 46.15384615, 46.15384615 ] }, { "id": "operation_4", "KPPM": [ 2, 3, 3, 3, 3 ], "out": [ 50, 18.75, 18.75, 56.25, 56.25 ] } ] }, { "dynamic_value": 17, "changes": [ -9.259, 3.935, 3.935, -10.417, 11.806 ], "dynamics": [ 7.741, 11.676, 15.611, 5.194, 17 ], "pair": [ { "id": "operation_4", "KPPM": [ 2, 3, 3, 3, 3 ], "out": [ 50, 18.75, 18.75, 56.25, 56.25 ] }, { "id": "operation_5", "KPPM": [ 2, 2, 2, 3, 2 ], "out": [ 59.2592592, 14.81481481, 14.81481481, 66.666666, 44.44444 ] } ] } ] }
 
             Vue.component('apexchart', VueApexCharts);
@@ -97,7 +131,7 @@ function MachineryManagement3(user_settings) {
                                             </tr>
                                             <tr v-for="(workplace,ind) in user_data.workplaces">
                                                 <td class="input-cell">
-                                                    <select v-model="workplace.type">
+                                                    <select v-model="workplace.type" @change="set_answer">
                                                         <option value="">Нет операции</option>
                                                         <option v-for="op in operations" :value="op.id" v-html="op.title"></option>
                                                     </select>
@@ -114,7 +148,7 @@ function MachineryManagement3(user_settings) {
                                                     <input type="number" v-model.number="workplace.congestion" @change="validate_congestion"  :disabled="!workplace.type /*|| !workplace.employee*/">
                                                 </td>
                                                 <td :class="get_employee_class(workplace.employee)">
-                                                    <select class="input-cell" v-model="workplace.employee" >
+                                                    <select class="input-cell" v-model="workplace.employee" @change="set_answer">
                                                         <option value="">Нет рабочего</option>
                                                         <option v-for="emp in employees" :value="emp.id" v-html="emp.title"></option> <!-- :disabled="employee_is_full(emp.id)"-->
                                                     </select>
@@ -192,10 +226,10 @@ function MachineryManagement3(user_settings) {
                                                 <th colspan="2"></th><th v-for="n in array_0_n(periods_len)">Период {{n+1}} ({{user_data.periods[n]}})</th>
                                             </tr>
                                             <tr >
-                                                <td colspan="2" class="title-cell">Кол-во работающих рабочих мест 1</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input v-model.number="user_data.operations_pairs[index].pair[0].KPPM[n]" type="number"></td>
+                                                <td colspan="2" class="title-cell">Кол-во работающих рабочих мест 1</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input @change="validate_KPPM" v-model.number="user_data.operations_pairs[index].pair[0].KPPM[n]" type="number"></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2" class="title-cell">Кол-во работающих рабочих мест 2</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input v-model.number="user_data.operations_pairs[index].pair[1].KPPM[n]" type="number"></td>
+                                                <td colspan="2" class="title-cell">Кол-во работающих рабочих мест 2</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input @change="validate_KPPM" v-model.number="user_data.operations_pairs[index].pair[1].KPPM[n]" type="number"></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="title-cell">выход 1</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[0].out[n]" type="number"></td>
@@ -324,12 +358,12 @@ function MachineryManagement3(user_settings) {
                     get_employee_class(emp){
                         if(emp==="")return "";
 
-                        let sum_employee_congestion = user_data.workplaces.filter(wp => wp.employee === emp).map(m=>m.congestion).reduce((a, b) => a + b, 0);
+                        let sum_employee_work_time = user_data.workplaces.filter(wp => wp.employee === emp).map(m=>m.work_time).reduce((a, b) => a + b, 0);
 
-                        if (sum_employee_congestion === 100){
+                        if (sum_employee_work_time === this.companion_data.max_time){
                             return 'congestion-full'
                         }
-                        else if (sum_employee_congestion > 100){
+                        else if (sum_employee_work_time > this.companion_data.max_time){
                             return 'congestion-high';
 
                         }
@@ -351,17 +385,13 @@ function MachineryManagement3(user_settings) {
                         return parseFloat(parseFloat(num).toFixed(d || 3));
                     },
                     parseNumber(str_num){
-                        console.log("str_num: ", str_num);
                         let str_num_arr = str_num.toString().replace(" ", "").replace(",", ".").split('.');
-                        console.log("str_num_arr: ", str_num_arr);
                         let return_num = str_num_arr.length > 1 ? (str_num_arr[0] + '.' + str_num_arr.slice(1).join('')) : str_num_arr[0];
-                        console.log("return_num: ", return_num);
                         if (isNaN(parseFloat(return_num))){
                             return 0;
                         }
                         else{
                             return parseFloat(return_num);
-                            // console.log()
                         }
                     },
                     calculate_workplace_num(workplace, ind) {
@@ -378,16 +408,33 @@ function MachineryManagement3(user_settings) {
                             // wp.congestion = (wp.congestion === "" || isNaN(wp.congestion)) ? 0 : parseFloat(wp.congestion);
                             wp.congestion = this.parseNumber(wp.congestion);
                         });
+                        this.set_answer();
                     },
                     validate_tact: function (){
-                        console.log("this.parseNumber(this.user_data.tact): ", this.parseNumber(this.user_data.tact));
+                        // console.log("this.parseNumber(this.user_data.tact): ", this.parseNumber(this.user_data.tact));
                         this.user_data.tact = this.parseNumber(this.user_data.tact);
+                        this.set_answer()
                     },
 
                     validate_period: function (){
                         this.user_data.periods = this.user_data.periods.map((period)=>{
                             return this.parseNumber(period);
-                        })
+                        });
+                        this.set_answer();
+                    },
+
+                    validate_KPPM: function(){
+                        this.user_data.operations_pairs.forEach((ch, index) => {
+                            console.log("ch.pair[0].KPPM: ", ch.pair[0].KPPM);
+                            ch.pair[0].KPPM = ch.pair[0].KPPM.map(item => this.parseNumber(item));
+                            ch.pair[1].KPPM = ch.pair[1].KPPM.map(item => this.parseNumber(item));
+                        });
+                        this.set_answer();
+                    },
+
+                    set_answer: function(){
+                        console.log("SET ANSWER");
+                        answer.setJSON({answer: this.user_data});
                     },
 
                     calculate_change: function (event) {
@@ -404,10 +451,12 @@ function MachineryManagement3(user_settings) {
                                 return this.round_num(res);
                             });
                         });
-                        console.log(JSON.stringify(user_data));
+
+                        this.set_answer();
                     },
                     get_second_graphic_data: function (data_index) {
                         let graphic_data = [this.user_data.operations_pairs[data_index].dynamic_value].concat(this.user_data.operations_pairs[data_index].dynamics);
+                        // console
                         return [{
                             data: graphic_data
                         }]
@@ -415,6 +464,7 @@ function MachineryManagement3(user_settings) {
                 },
                 beforeMount() {
                     // this.calculate_change();
+                    this.set_answer();
                 },
                 computed: {
                     get_graphic_data: function () {
@@ -439,6 +489,8 @@ function MachineryManagement3(user_settings) {
                                     y: [item.op_start, item.op_end]
                                 })
                         });
+                        // console.log("KEKEKEKEK")
+
                         return [{data: g_d,},];
                     },
 

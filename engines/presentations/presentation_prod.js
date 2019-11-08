@@ -5,6 +5,7 @@ script.type = 'text/javascript';
 document.head.appendChild(script);
 
 const presentationSelectorClass = "presentation-block";
+let isSafari;
 
 function PresentationActivation(selector) {
     Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
@@ -45,8 +46,12 @@ function createElement(name, id, classList, attributes) {
 }
 
 script.onload = function(){
+    isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
-    if (typeof pdfjsLib !== 'undefined'){
+    console.log("isSafari: ", isSafari);
+
+    if (typeof pdfjsLib !== 'undefined' && !isSafari){
+        console.log("Activate custom pdf viewer.")
         PresentationActivation("." + presentationSelectorClass);
     }
     else{
@@ -75,7 +80,9 @@ function PresentationDefaulfViewerObjects(element){
 
     let defaultObject = createElement('object', null, "", {data: presentation.url, type: "application/pdf", width: "100%", height: "800px", });
 
-    this.element.appendChild(default_view_warn);
+    if (!isSafari){
+        this.element.appendChild(default_view_warn);
+    }
     this.element.appendChild(defaultObject);
 }
 
