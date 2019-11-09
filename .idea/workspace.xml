@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/MCS/Doppler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Лес один_edx.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Пожар в тц.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engines/presentations/presentation_prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/presentations/presentation_prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/simulator_edx.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/Тестовое задание_edx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Личная безопасность/Симулятор/лес один.js" beforeDir="false" afterPath="$PROJECT_DIR$/Личная безопасность/Симулятор/лес один.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/machinery_management_task_4.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -53,25 +56,25 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Личная безопасность/Симулятор" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/Vue-перетаскивалка" />
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3" />
-      <recent name="$PROJECT_DIR$/historical_path" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static" />
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan" />
       <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
       <recent name="$PROJECT_DIR$/electric" />
       <recent name="$PROJECT_DIR$/engines" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Личная безопасность/Симулятор" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
+      <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/badges" />
+      <recent name="$PROJECT_DIR$/Личная безопасность/Vue-перетаскивалка" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -289,7 +292,7 @@
       <workItem from="1571742633986" duration="60816000" />
       <workItem from="1572362483778" duration="52560000" />
       <workItem from="1572924491234" duration="600000" />
-      <workItem from="1573038414565" duration="10765000" />
+      <workItem from="1573038414565" duration="24915000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

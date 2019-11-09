@@ -34,8 +34,6 @@ function Simulator(settings) {
 
     $(submit_button).removeAttr("disabled");
 
-    console.log(submit_button);
-
     this.init = function () {
         if (out_of_turn) {
             if (Object.keys(messages).includes(out_of_turn)) {
@@ -167,8 +165,6 @@ function Simulator(settings) {
         let game_container = create("div", {className: "game-container"});
         let game_wrapper = create("div", {className: "game-wrapper"});
 
-        // console.log(user_state.things)
-
         if (use_things && user_state.things.length > 0) setTimeout(() => {
             game_container.appendChild(this.createUserThingsBlock())
         }, 2000);
@@ -219,7 +215,7 @@ function Simulator(settings) {
                     }, html_element);
                 } else {
                     Message.curr_msg_id = this.next_id;
-                    console.log("messages[this.next_id]: ", messages[this.next_id].final);
+                    // console.log("messages[this.next_id]: ", messages[this.next_id].final);
                     if (messages[this.next_id].final !== true){
                         new Message(this.next_id, messages[this.next_id], html_element);
                     }
@@ -234,9 +230,9 @@ function Simulator(settings) {
             }
         }.bind(this);
 
-        this.html.onmouseover = function () {
-            console.log(this.next_id);
-        }.bind(this)
+        // this.html.onmouseover = function () {
+        //     console.log(this.next_id);
+        // }.bind(this)
 
     }
 
@@ -289,9 +285,11 @@ function Simulator(settings) {
                 if (typeof (ch.next_id) == "object") {
 
                     if (user_state.things.map((item) => item.name).some(r => ch.next_id.condition.includes(r))) {
-                        ch.next_id = ch.next_id["yes"]["next_id"];
+                        ch.next_id = ch.next_id["yes"];
+                        choice_id = id + "_choice_" + ch.next_id["yes"]
                     } else {
-                        ch.next_id = ch.next_id["no"]["next_id"];
+                        ch.next_id = ch.next_id["no"];
+                        choice_id = id + "_choice_" + ch.next_id["no"]
                     }
                 }
                 return new Choice(id, choice_id, ch, html_element)
@@ -364,8 +362,6 @@ function Simulator(settings) {
         }
 
         answer.setJSON({answer: {"user_state": user_state, "current_msg": id}});
-
-        console.log(user_state);
 
         if(this.final){
             // console.log("click submit trigger");
@@ -489,9 +485,9 @@ function Simulator(settings) {
     if(edx_mode){
         if (settings.input.querySelector("input[type='text']")) {
 
-            answer = new Answer(settings.input.querySelector("input[type='text']"));
+            // answer = new Answer(settings.input.querySelector("input[type='text']"));
 
-            // answer = new Answer(document.querySelector("#simulator_input").querySelector("input[type='text']"));
+            answer = new Answer(settings.input.querySelector("input[type='text']"));
 
             if (settings.input.parentNode.parentNode.querySelector(".message")) {
                 settings.input.parentNode.parentNode.querySelector(".message").classList.add("hidden");

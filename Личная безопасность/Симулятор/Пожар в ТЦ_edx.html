@@ -1,0 +1,212 @@
+<problem>
+
+<link rel="stylesheet" type="text/css" href="/static/simulator.css"></link>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+<script type="loncapa/python">
+import json
+import hashlib
+
+debug = True
+student_salt = "salt"
+
+source_obj = {'msg_1': {'type': 'choice', 'text': 'Вы находитесь далеко от эвакуационного выхода. Что вы будете делать?', 'choices': [{'text': 'Смочу шарф жидкостью из бутылки. Приложу его к лицу', 'next_id': 'msg_15'}, {'text': 'Я вижу туалет. Направляюсь к нему', 'next_id': 'msg_2'}, {'text': 'Вижу, что навстречу мне идет толпа. Чтобы не попасть в давку, я пойду против движения толпы', 'next_id': 'msg_25'}, {'text': 'Пойду к лифту', 'next_id': 'msg_22'}], 'image': 'tc_pojar_gorim.png'}, 'msg_2': {'type': 'choice', 'text': 'Вы стоите около туалета. Что будете делать?', 'choices': [{'text': 'Я повешу куртку на ручку двери туалета с обратной стороны', 'comment': 'Молодец! По опознавательным знакам спасателям будет проще вас найти', 'next_id': 'msg_3'}, {'text': 'Я быстро зайду в туалет и плотно закрою за собой дверь', 'comment': 'Вы не оставили никаких знаков для спасателей, чтобы они смогли быстрее вас найти. Им помогут повешенные на ручку с обратной стороны двери ваши вещи (куртка, шарф)', 'next_id': 'msg_4'}], 'image': 'tc_pojar_gorim.png'}, 'msg_3': {'type': 'choice', 'text': 'Что дальше?', 'choices': [{'text': 'Смочу свитер водой. Положу его на пол, закрыв щель между полом и дверью', 'comment': 'Молодец! Это необходимо, чтобы в щель между дверью и полом не поступал угарный дым ', 'next_id': 'msg_5'}, {'text': 'Позвоню в службу спасения 112. Сообщу о случившемся и о том, где я нахожусь ', 'next_id': 'msg_8'}], 'image': 'tc_pojar_gorim.png'}, 'msg_4': {'type': 'choice', 'text': 'Вы в туалете. Что будете делать дальше?', 'choices': [{'text': 'Позвоню в службу спасения 112. Сообщу о случившемся и о том, где я нахожусь', 'next_id': 'msg_8'}, {'text': 'Открою окно, чтобы было больше воздуха', 'next_id': 'msg_9'}, {'text': 'Открою водопроводные краны. Регулярно буду смачивать одежду и шарф, через который дышу', 'next_id': 'msg_10'}], 'image': 'tc_pojar_gorim.png'}, 'msg_5': {'type': 'choice', 'text': 'Что дальше?', 'choices': [{'text': 'Открою окно и начну звать на помощь', 'next_id': 'msg_6'}, {'text': 'Позвоню в службу спасения 112. Сообщу о случившемся и о том, где я нахожусь', 'next_id': 'msg_7'}], 'image': 'tc_pojar_gorim.png'}, 'msg_6': {'type': 'text', 'text': 'Вы создадите тягу воздуха, и в туалет станет поступать дым. Вы надышитесь угарным газом и потеряете сознание.', 'final': True, 'success': False, 'image': 'tc_pojar_gorim.png'}, 'msg_7': {'type': 'choice', 'text': 'Хорошо. Какой ваш следующий шаг?', 'choices': [{'text': 'Открою окно, чтобы было больше воздуха', 'next_id': 'msg_9'}, {'text': 'Открою водопроводные краны. Регулярно буду смачивать одежду и шарф, через который дышу', 'next_id': 'msg_10'}], 'image': 'tc_pojar_gorim.png'}, 'msg_8': {'type': 'text', 'text': 'Пока вы разговариваете по телефону, рискуете надышаться угарным газом и потерять сознание. Плохое решение.', 'final': True, 'success': False, 'image': 'tc_pojar_gorim.png'}, 'msg_9': {'type': 'text', 'text': 'Вы создадите тягу воздуха, и в туалет станет поступать дым. Вы надышитесь угарным газом и потеряете сознание.', 'final': True, 'success': False, 'image': 'tc_pojar_gorim.png'}, 'msg_10': {'type': 'choice', 'text': 'Что дальше?', 'choices': [{'text': 'Лягу на пол', 'next_id': 'msg_14'}, {'text': 'Открою окно, чтобы было больше воздуха', 'next_id': 'msg_9'}], 'image': 'tc_pojar_gorim.png'}, 'msg_11': {'type': 'choice', 'text': 'Прыгать будем?', 'choices': [{'text': 'Да, я прыгну', 'next_id': 'msg_13'}, {'text': 'Нет, я не прыгну. Слишком высоко.', 'next_id': 'msg_12'}], 'image': 'tc_pojar_gorim.png'}, 'msg_12': {'type': 'text', 'text': 'В случае, когда пламя подступает к помещению, в котором вы находитесь, прыжок из окна - это шанс выжить.', 'final': True, 'success': False, 'image': 'tc_pojar_gorim.png'}, 'msg_13': {'type': 'text', 'text': 'Верно! В случае, когда пламя подступает к помещению, в котором вы находитесь, прыжок из окна - это шанс выжить. Если вы собрались прыгать, лучше всего сократить расстояние до земли и повиснуть на откосе на вытянутых руках, ноги держать в полусгибе и постараться после соприкосновения с землей завалиться на бок. На растянутую под вами материю постарайтесь упасть плашмя на спину, не солдатиком.', 'final': True, 'success': True, 'image': 'tc_pojar_gorim.png'}, 'msg_14': {'type': 'choice', 'text': 'Вы молодец! Чем ближе к полу, тем больше кислорода. Вы лежите на полу и увидели, что пламя огня уже врывается в дверь туалета. В туалете есть окно. Что вы будете делать?', 'choices': [{'text': 'Открою окно. Оценю, какова его высота', 'next_id': 'msg_11'}, {'text': 'Не открою окно. Ведь тогда будет создана тяга воздуха, и в туалет станет поступать дым. Я надышусь угарным газом и потеряю сознание', 'next_id': 'msg_12'}], 'image': 'tc_pojar_gorim.png'}, 'msg_15': {'type': 'choice', 'text': 'Вы молодец! Это важно сделать, чтобы снизить долю поступления угарного газа в дыхательные пути. Что будете делать дальше?', 'choices': [{'text': 'Я вижу туалет. Направляюсь к нему', 'next_id': 'msg_2'}, {'text': 'Вижу, что навстречу мне идет толпа. Чтобы не попасть в давку, я пойду против движения толпы', 'next_id': 'msg_25'}, {'text': 'Пойду к лифту', 'next_id': 'msg_22'}], 'image': 'tc_pojar_gorim.png'}, 'msg_16': {'type': 'text', 'text': 'Молодец! Так вы дойдете до эвакуационного выхода и спасетесь', 'final': True, 'success': True, 'image': 'tc_pojar_gorim.png'}, 'msg_17': {'type': 'choice', 'text': 'Вот неудача: у друга на пол падает сумка', 'choices': [{'text': 'Друг пытается поднять свою сумку, ведь там - «целая жизнь»', 'next_id': 'msg_18'}, {'text': 'Друг оставляет сумку там, где она упала', 'comment': 'Молодец! Ни в коем случае не наклоняйтесь в толпе за упавшими предметами. Это очень опасно. Вы можете упасть и вас затопчут. Люди, спасающиеся бегством даже не заметят тебя', 'next_id': 'msg_19'}], 'image': 'tc_pojar_gorim.png'}, 'msg_18': {'type': 'choice', 'text': 'Друг не удержался на ногах и упал. Слишком сильный поток толпы. Что ты будешь делать дальше?', 'choices': [{'text': 'Я резко дерну друга за руку. Он одновременно с моим рывком вскочит на ноги', 'next_id': 'msg_20'}], 'image': 'tc_pojar_gorim.png'}, 'msg_19': {'type': 'choice', 'text': 'Используем актерское мастерство: изображаем рвотные позывы.', 'choices': [{'text': 'Продвигаемся к выходу', 'next_id': 'msg_21'}], 'image': 'tc_pojar_gorim.png'}, 'msg_20': {'type': 'text', 'text': 'Считайте, что вам повезло. Если подобное не получилось, толпа продолжает вас топтать, то нужно принять позу эмбриона - свернуться калачиком, подбородок прижать к груди, колени к голове, руками прикрыть голову. отанется переждать людской поток и идти в медпункт.', 'final': True, 'success': True, 'image': 'tc_pojar_gorim.png'}, 'msg_21': {'type': 'text', 'text': 'Молодцы! Так вы дойдете до эвакуационного выхода и спасетесь', 'final': True, 'success': True, 'image': 'tc_pojar_gorim.png'}, 'msg_22': {'type': 'choice', 'text': 'Сомнительное решение. Что дальше?', 'choices': [{'text': 'Осматриваюсь, ищу эвакуационный выход. Но вижу только туалет', 'next_id': 'msg_23'}, {'text': 'Зайду в лифт', 'next_id': 'msg_24'}], 'image': 'tc_pojar_gorim.png'}, 'msg_23': {'type': 'choice', 'text': 'Что дальше?', 'choices': [{'text': 'Я вижу туалет. Направляюсь к нему', 'next_id': 'msg_2'}], 'image': 'tc_pojar_gorim.png'}, 'msg_24': {'type': 'text', 'text': 'Ни в коем случае! Во время пожара сработает система отключения лифта, и вы рискуете быть заблокированным. Спасатели вас не смогут быстро освободить. Большой риск погибнуть.', 'final': True, 'success': False, 'image': 'tc_pojar_gorim.png'}, 'msg_25': {'type': 'choice', 'text': 'Вот вы в толпе. Ваши действия?', 'choices': [{'text': 'Начну двигаться по диагонали линии движения толпы, постепенно пробираясь к стене', 'next_id': 'msg_16'}, {'text': 'Использую актерское мастерство: изображаю рвотные позывы.', 'comment': 'Людям не захочется быть испачканными рвотными массами. Они сами расступятся и вокруг вас образуют коридор, через который вы сможете покинуть опасное место.', 'next_id': 'msg_16'}, {'text': 'Вот неудача: у друга на пол падает сумка', 'next_id': 'msg_17'}], 'image': 'tc_pojar_gorim.png'}}
+
+first_msg = "msg_1"
+
+source_obj_str = json.dumps(source_obj)
+
+if not debug:
+    first_msg = hashlib.md5(str(first_msg + student_salt).encode('utf-8')).hexdigest()
+    for key in source_obj.keys():
+        hash_msg = hashlib.md5(str(key + student_salt).encode('utf-8')).hexdigest()
+        source_obj_str = source_obj_str.replace('"' + key + '"', '"' + hash_msg + '"')
+    source_obj = json.loads(source_obj_str)
+
+
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["answer"]
+    student_path = student_answer["user_state"]["path"]
+    grade = get_grade(student_path, source_obj, first_msg)
+    return {'input_list': [{'ok':'Partial','msg':str(student_path),'grade_decimal':grade}]}
+
+
+def get_next_id_list(item_key, obj):
+
+    def get_recursively(search_dict, field):
+        """
+        Takes a dict with nested lists and dicts,
+        and searches all dicts for a key of the field
+        provided.
+        """
+        fields_found = []
+
+        for key, value in search_dict.items():
+
+            if key == field:
+                fields_found.append(value)
+
+            elif isinstance(value, dict):
+                results = get_recursively(value, field)
+                for result in results:
+                    fields_found.append(result)
+
+            elif isinstance(value, list):
+                for item in value:
+                    if isinstance(item, dict):
+                        more_results = get_recursively(item, field)
+                        for another_result in more_results:
+                            fields_found.append(another_result)
+
+        return fields_found
+
+    finded = get_recursively(obj[item_key], 'next_id')
+    finded_list = []
+    for item in finded:
+        if isinstance(item, dict):
+            for sub_item in get_recursively(item, 'next_id'):
+                finded_list.append(sub_item)
+        else:
+            finded_list.append(item)
+
+    return finded_list
+
+
+def get_grade(path, messages, first):
+    grade = 0
+
+    keep_on_process = True
+
+    # отсекаем путь раный нулю или с неправильным первым сообщением
+    if len(path) == 0:
+        keep_on_process = False
+    else:
+        if path[0] != first:
+            keep_on_process = False
+
+    # Не все сообщения из пути есть в ключах messages
+    if not set(path).issubset(messages.keys()):
+        keep_on_process = False
+
+    if keep_on_process and 'final' in messages[path[-1]]:
+        # print('существует поле "final"')
+        if messages[path[-1]]["final"]:
+            if messages[path[-1]]["success"]:
+                grade = 1
+                # print('финал успешный')
+            else:
+                grade = 0
+                # print('финал не успешный')
+        # else:
+        #     pass
+    # else:
+        # print('поле "final" не существует или длина пути равна нулю')
+        # pass
+
+    # если он дошел до этого этапа с единицей
+
+    if grade == 1:
+        # or grade == 0:
+        i = 0
+        for step in path:
+            if i+1 != len(path):
+                if path[i+1] in get_next_id_list(step, messages):
+                    pass
+                else:
+                    # print(path[i+1], ' не содержится в ', step, )  # messages[step]
+                    grade = 0
+            # else:
+            #     print('tyt poslednii', step)
+
+            i = i+1
+
+    return grade
+
+
+first_msg_json = json.dumps(first_msg, ensure_ascii=False).replace("\"", "'")
+source_obj_json = json.dumps(source_obj, ensure_ascii=False).replace("\"", "'")
+images_src = json.dumps("/static/_", ensure_ascii=False).replace("\"", "'")
+</script>
+
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+<script type="text/javascript" src="/static/simulator_edx.js"></script>
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+
+
+
+<div id="task_container">
+
+    <div id="simulator_input">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+        <!-- <div class="message-about-grade"></div> -->
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    let source_obj = $source_obj_json;
+     let first_msg = $first_msg_json;
+    let messages = source_obj;
+    let images_src = $images_src;
+    images_src = images_src.slice(0, -2);
+
+    var simulator = new Simulator({
+        element: document.getElementById('task_container'),
+        input: document.getElementById('simulator_input'),
+        messages: messages,
+        // things: things_list,
+        images_src: "https://courses.openedu.ru" + images_src + "@",
+        first_msg: first_msg,
+        // out_of_turn: "msg_3",
+        edx_mode: true,
+        debug: true,
+
+        options: {
+            max_things: 5,
+            introduction_text: "Ноябрь. Вы приехали с другом в торговый центр, в который вы ходите каждую неделю и хорошо знаете расположение всех объектов внутри. Вы одеты соответственно погоде: куртки, шарфы. Вы поднялись на 2-ой этаж. Почувствовали запах дыма и гари, которые быстро заполняли помещение торгового центра . Люди побежали к центральному выходу, создавая толпу. Вы находитесь далеко от эвакуационного выхода.",
+            choice_thing_text: "Наберите себе вещей.",
+            things_grid: "fifths"
+        }
+    });
+
+
+    /***
+     *
+     * things_grid: number
+     *      Сетка вещей для выбора:
+     *          thirds - три в ряд
+     *          fourths - четыре в ряд
+     *          fifths - пять в ряд
+     *          sixths - шесть в ряд
+     *
+     *
+     * first_msg: "*msg_id*"
+     *      id первого сообщения
+     *
+     *
+     * out_of_turn: "*msg_id*"
+     *      если передается id сообщения, то это сообщение будет показано сразу же, минуя Introduction блок и выбор вещей
+     *      должен иметь фоновую картинку!!
+     *
+     * ***/
+
+
+
+
+
+</script>
+
+</problem>
