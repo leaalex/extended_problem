@@ -119,7 +119,7 @@ function MachineryManagement3(user_settings) {
                             </ul>
                                 <div style="/*display: flex*/">
                                     <div>
-                                        <table  class="problem-table problem-table-1">
+                                        <table  class="problem-table problem-table-1" id="workplaces_table">
                                             <tr>
                                                 <th>Операция</th>
 <!--                                                <th>Нужное кол-во опраций</th>-->
