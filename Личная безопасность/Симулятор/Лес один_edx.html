@@ -29,7 +29,10 @@ def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
     student_path = student_answer["user_state"]["path"]
     grade = get_grade(student_path, source_obj, first_msg)
-    return {'input_list': [{'ok':'Partial','msg':str(student_path),'grade_decimal':grade}]}
+    if grade == 1:
+        return {'input_list': [{'ok':True,'msg':str(student_path),'grade_decimal':grade}]}
+    else:
+        return {'input_list': [{'ok':False,'msg':str(student_path),'grade_decimal':grade}]}
 
 
 def get_next_id_list(item_key, obj):
@@ -65,6 +68,8 @@ def get_next_id_list(item_key, obj):
     finded_list = []
     for item in finded:
         if isinstance(item, dict):
+            finded_list.append(item["yes"])
+            finded_list.append(item["no"])
             for sub_item in get_recursively(item, 'next_id'):
                 finded_list.append(sub_item)
         else:

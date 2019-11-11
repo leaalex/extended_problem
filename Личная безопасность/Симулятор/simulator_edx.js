@@ -112,7 +112,7 @@ function Simulator(settings) {
         });
 
         if (choice_thing_text.length > 0) {
-            things_choice_container.appendChild(create('h2', {html: "Есть возможность взять вещей .."}));
+            things_choice_container.appendChild(create('h2', {html: ""}));
             things_choice_container.appendChild(create('div', {
                 className: "introduction-text",
                 html: choice_thing_text
@@ -133,7 +133,7 @@ function Simulator(settings) {
 
         this.clear_html();
 
-        let introduction_container = create("div", {className: "introduction-container"}, create("h2", {text: "Что случилось?"}), create("div", {
+        let introduction_container = create("div", {className: "introduction-container"}, create("h2", {text: "Кейс:"}), create("div", {
             className: "introduction-text",
             html: introduction_text
         }));
