@@ -35,6 +35,17 @@
   -webkit-appearance: none;
   margin: 0;
 }
+#machinery_management_task_3_container .problem-block .problem-block-task .tact-input input[type=number] {
+  background: #ffffff00;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .tact-input.correct {
+  border: 3px solid white;
+  background: white;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .tact-input.incorrect {
+  border: 3px solid #cb0712;
+  background: #fb8b91;
+}
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table {
   width: 100%;
   word-break: initial;
@@ -64,6 +75,15 @@
   height: 25px;
   padding: 0px;
 }
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.correct {
+  background: white;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.incorrect {
+  background: #cb0712;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.incorrect input[type=number] {
+  color: white;
+}
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .title-cell {
   padding: 3px;
 }
@@ -85,6 +105,7 @@
   font-family: monospace;
   border: none;
   padding: 2px 6px;
+  background: #ffffff00;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number]::-webkit-outer-spin-button, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -93,6 +114,10 @@
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number][disabled=disabled] {
   cursor: not-allowed;
 }
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table.incorrect {
+  border: 5px solid #cb0712;
+}
+
 .student-correct-input {
   background: green !important;
   color: white;

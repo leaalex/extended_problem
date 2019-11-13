@@ -1,3 +1,6 @@
+$correct-color: #009b00;
+$correct-color: white;
+$incorrect-color: #cb0712;
 
 #machinery_management_task_3_container {
   width: 820px;
@@ -42,6 +45,22 @@
           -webkit-appearance: none;
           margin: 0;
         }
+
+        input[type="number"] {
+          background: #ffffff00;
+        }
+
+        &.correct{
+            border: 3px solid $correct-color;
+            background: scale-color($correct-color,$lightness:+20%);
+
+        }
+        &.incorrect{
+            border: 3px solid $incorrect-color;
+          background: scale-color($incorrect-color,$lightness:+60%);
+        }
+
+
       }
 
       .problem-table {
@@ -76,6 +95,19 @@
         .input-cell {
           height: 25px;
           padding: 0px;
+
+          &.correct{
+            background: $correct-color;
+            input[type="number"] {
+              //color: white;
+            }
+          }
+          &.incorrect{
+            background: $incorrect-color;
+            input[type="number"] {
+              color: white;
+            }
+          }
         }
 
         .title-cell {
@@ -108,6 +140,7 @@
           font-family: monospace;
           border: none;
           padding: 2px 6px;
+          background: #ffffff00;
 
           &::-webkit-outer-spin-button,
           &::-webkit-inner-spin-button {
@@ -121,12 +154,17 @@
 
         }
 
+        &.correct{
+          //border: 5px solid $correct-color;
+        }
+        &.incorrect{
+          border: 5px solid $incorrect-color;
+        }
+
       }
-
-      .operation-pair-wrap {
-
-      }
-
+      //.operation-pair-wrap {
+      //
+      //}
     }
   }
 
