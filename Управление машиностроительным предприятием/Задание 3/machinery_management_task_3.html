@@ -57,128 +57,9 @@ student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "
 
         // let student_data = $student_data_json;
         // console.log(student_data)
-        let student_data = {
-            "operations": [
-                {
-                    "id": "operation_1",
-                    "title": "Токарная",
-                    "duration": 1.9,
-                    "weight": 0
-                },
-                {
-                    "id": "operation_2",
-                    "title": "Сверлильная",
-                    "duration": 1.1,
-                    "weight": 1
-                },
-                {
-                    "id": "operation_3",
-                    "title": "Фрезерная",
-                    "duration": 2.1,
-                    "weight": 2
-                },
-                {
-                    "id": "operation_4",
-                    "title": "Шлифовальная",
-                    "duration": 1.3,
-                    "weight": 3
-                }
-            ],
-            "employees": {
-                "employee_1": {
-                    "id": "employee_1",
-                    "title": "Сашка"
-                },
-                "employee_2": {
-                    "id": "employee_2",
-                    "title": "Женьдос"
-                },
-                "employee_3": {
-                    "id": "employee_3",
-                    "title": "Славик"
-                },
-                "employee_4": {
-                    "id": "employee_4",
-                    "title": "Колян"
-                },
-                "employee_5": {
-                    "id": "employee_5",
-                    "title": "Лёха"
-                },
-                "employee_6": {
-                    "id": "employee_6",
-                    "title": "Паша"
-                },
-                "employee_7": {
-                    "id": "employee_7",
-                    "title": "Работник 1"
-                },
-                "employee_8": {
-                    "id": "employee_8",
-                    "title": "Работник 2"
-                },
-                "employee_9": {
-                    "id": "employee_9",
-                    "title": "Работник 3"
-                },
-                "employee_10": {
-                    "id": "employee_10",
-                    "title": "Работник 4"
-                },
-                "employee_11": {
-                    "id": "employee_11",
-                    "title": "Работник 5"
-                },
-                "employee_12": {
-                    "id": "employee_12",
-                    "title": "Работник 6"
-                },
-                "employee_13": {
-                    "id": "employee_13",
-                    "title": "Работник 7"
-                },
-                "employee_14": {
-                    "id": "employee_14",
-                    "title": "Работник 8"
-                }
-            },
-            "companion_data": {
-                "month": 21,
-                "work_day": 2,
-                "work_shift": 8,
-                "half_shift": 0.5,
-                "defect_percent": 16,
-                "N_out": 12600,
-                "tact": 1.6,
-                "safety_stock": 5,
-                "max_time": 240
-            },
-            "workplaces": [
-                "operation_1",
-                "operation_3",
-                "operation_1",
-                "operation_4",
-                "operation_2",
-                "operation_3"
-            ],
-            "periods_len": 3,
-            "operations_pairs": [
-                [
-                    "operation_1",
-                    "operation_2"
-                ],
-                [
-                    "operation_2",
-                    "operation_3"
-                ],
-                [
-                    "operation_3",
-                    "operation_4"
-                ]
-            ]
-        };
+        let student_data = {"operations": [{"duration": 1.9, "id": "operation_1", "weight": 0, "title": "\u0422\u043e\u043a\u0430\u0440\u043d\u0430\u044f"}, {"duration": 1.1, "id": "operation_2", "weight": 1, "title": "\u0421\u0432\u0435\u0440\u043b\u0438\u043b\u044c\u043d\u0430\u044f"}, {"duration": 2.1, "id": "operation_3", "weight": 2, "title": "\u0424\u0440\u0435\u0437\u0435\u0440\u043d\u0430\u044f"}, {"duration": 1.3, "id": "operation_4", "weight": 3, "title": "\u0428\u043b\u0438\u0444\u043e\u0432\u0430\u043b\u044c\u043d\u0430\u044f"}], "periods_len": 3, "employees": {"employee_14": {"id": "employee_14", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 8"}, "employee_13": {"id": "employee_13", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 7"}, "employee_12": {"id": "employee_12", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 6"}, "employee_11": {"id": "employee_11", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 5"}, "employee_10": {"id": "employee_10", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 4"}, "employee_7": {"id": "employee_7", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 1"}, "employee_6": {"id": "employee_6", "title": "\u041f\u0430\u0448\u0430"}, "employee_5": {"id": "employee_5", "title": "\u041b\u0451\u0445\u0430"}, "employee_4": {"id": "employee_4", "title": "\u041a\u043e\u043b\u044f\u043d"}, "employee_3": {"id": "employee_3", "title": "\u0421\u043b\u0430\u0432\u0438\u043a"}, "employee_2": {"id": "employee_2", "title": "\u0416\u0435\u043d\u044c\u0434\u043e\u0441"}, "employee_1": {"id": "employee_1", "title": "\u0421\u0430\u0448\u043a\u0430"}, "employee_9": {"id": "employee_9", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 3"}, "employee_8": {"id": "employee_8", "title": "\u0420\u0430\u0431\u043e\u0442\u043d\u0438\u043a 2"}}, "companion_data": {"safety_stock": 5, "half_shift": 0.5, "defect_percent": 16, "work_shift": 8, "month": 21, "work_day": 2, "max_time": 240.0, "N_out": 12600}, "workplaces": ["operation_1", "operation_3", "operation_1", "operation_4", "operation_2", "operation_3"], "operations_pairs": [["operation_1", "operation_2"], ["operation_2", "operation_3"], ["operation_3", "operation_4"]]}
         //
-        console.log(student_data);
+
         student_data = {
             "operations": [{
                 "id": "operation_1",
@@ -235,7 +116,9 @@ student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "
             "workplaces": ["operation_1", "operation_2", "operation_3", "operation_4", "operation_4", "operation_5", "operation_5", "operation_1", "operation_4", "operation_2", "operation_3", "operation_5"],
             "periods_len": 5,
             "operations_pairs": [["operation_1", "operation_2"], ["operation_2", "operation_3"], ["operation_3", "operation_4"], ["operation_4", "operation_5"]]
-        }
+        };
+
+        console.log(student_data);
 
         new MachineryManagement3({
             data: student_data,
