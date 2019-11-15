@@ -39,12 +39,12 @@
   background: #ffffff00;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .tact-input.correct {
-  border: 3px solid white;
-  background: white;
+  border: 3px solid #009400c4;
+  background: rgba(0, 220, 0, 0.768627451);
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .tact-input.incorrect {
-  border: 3px solid #cb0712;
-  background: #fb8b91;
+  border: 3px solid #ff6e76;
+  background: #ffc5c8;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table {
   width: 100%;
@@ -75,11 +75,17 @@
   height: 25px;
   padding: 0px;
 }
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.percentage-greater-than, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell0.percentage-less-than {
+  background: #ff8a8a;
+}
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.correct {
-  background: white;
+  background: #009400c4;
+}
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.correct input[type=number] {
+  color: white;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.incorrect {
-  background: #cb0712;
+  background: #ff6e76;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.incorrect input[type=number] {
   color: white;
@@ -114,8 +120,11 @@
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number][disabled=disabled] {
   cursor: not-allowed;
 }
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table.correct {
+  border: 5px solid #009400c4;
+}
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table.incorrect {
-  border: 5px solid #cb0712;
+  border: 5px solid #ff6e76;
 }
 
 .student-correct-input {
@@ -142,10 +151,6 @@
 }
 .congestion-high select option {
   background: white;
-}
-
-.percentage-greater-than input, .percentage-less-than input {
-  background: #ff8a8a;
 }
 
 /*# sourceMappingURL=machinery_management_task_3.css.map */

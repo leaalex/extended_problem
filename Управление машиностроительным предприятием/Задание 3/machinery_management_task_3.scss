@@ -1,6 +1,6 @@
-$correct-color: #009b00;
-$correct-color: white;
-$incorrect-color: #cb0712;
+$correct-color: #009400c4;
+//$correct-color: white;
+$incorrect-color: #ff6e76;
 
 #machinery_management_task_3_container {
   width: 820px;
@@ -96,10 +96,14 @@ $incorrect-color: #cb0712;
           height: 25px;
           padding: 0px;
 
+          &.percentage-greater-than, &0.percentage-less-than {
+            background: #ff8a8a;
+          }
+
           &.correct{
             background: $correct-color;
             input[type="number"] {
-              //color: white;
+              color: white;
             }
           }
           &.incorrect{
@@ -155,7 +159,7 @@ $incorrect-color: #cb0712;
         }
 
         &.correct{
-          //border: 5px solid $correct-color;
+          border: 5px solid $correct-color;
         }
         &.incorrect{
           border: 5px solid $incorrect-color;
@@ -201,12 +205,5 @@ $incorrect-color: #cb0712;
     option{
       background: white;
     }
-  }
-}
-
-.percentage-greater-than, .percentage-less-than {
-  input {
-    background: #ff8a8a;
-
   }
 }
