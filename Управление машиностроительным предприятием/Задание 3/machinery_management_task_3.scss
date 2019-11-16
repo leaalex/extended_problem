@@ -1,5 +1,5 @@
 $correct-color: #009400c4;
-//$correct-color: white;
+$correct-color: white;
 $incorrect-color: #ff6e76;
 
 #machinery_management_task_3_container {
@@ -96,14 +96,14 @@ $incorrect-color: #ff6e76;
           height: 25px;
           padding: 0px;
 
-          &.percentage-greater-than, &0.percentage-less-than {
+          &.percentage-greater-than, &.percentage-less-than {
             background: #ff8a8a;
           }
 
           &.correct{
             background: $correct-color;
             input[type="number"] {
-              color: white;
+              //color: white;
             }
           }
           &.incorrect{
@@ -159,7 +159,7 @@ $incorrect-color: #ff6e76;
         }
 
         &.correct{
-          border: 5px solid $correct-color;
+          //border: 5px solid $correct-color;
         }
         &.incorrect{
           border: 5px solid $incorrect-color;

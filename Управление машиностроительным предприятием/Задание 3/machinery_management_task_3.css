@@ -39,8 +39,8 @@
   background: #ffffff00;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .tact-input.correct {
-  border: 3px solid #009400c4;
-  background: rgba(0, 220, 0, 0.768627451);
+  border: 3px solid white;
+  background: white;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .tact-input.incorrect {
   border: 3px solid #ff6e76;
@@ -75,14 +75,11 @@
   height: 25px;
   padding: 0px;
 }
-#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.percentage-greater-than, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell0.percentage-less-than {
+#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.percentage-greater-than, #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.percentage-less-than {
   background: #ff8a8a;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.correct {
-  background: #009400c4;
-}
-#machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.correct input[type=number] {
-  color: white;
+  background: white;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table .input-cell.incorrect {
   background: #ff6e76;
@@ -119,9 +116,6 @@
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table input[type=number][disabled=disabled] {
   cursor: not-allowed;
-}
-#machinery_management_task_3_container .problem-block .problem-block-task .problem-table.correct {
-  border: 5px solid #009400c4;
 }
 #machinery_management_task_3_container .problem-block .problem-block-task .problem-table.incorrect {
   border: 5px solid #ff6e76;

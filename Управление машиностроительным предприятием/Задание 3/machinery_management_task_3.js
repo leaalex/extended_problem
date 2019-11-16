@@ -151,6 +151,9 @@ function MachineryManagement3(user_settings) {
                         <div class="problem-block">
                             <div class="problem-block-wording">
                                     <h2>Условия задачи</h2>
+                                    <p>Месячная программа запуска изделий на поточной линии составляет 12880 шт. Режим работы поточной линии двухсменный, продолжительность смены 8  ч, регламентированные перерывы в работе поточной линии составляют 20 мин в смену, в месяце – 21 рабочий день, число деталей в транспортной партии – 30 шт. Определить такт линии, ритм линии.</p>
+                                    <p>Действительный фонд времени работы поточной линии в неделю составляет 4800 мин. Недельная программа выпуска изделий – 2280 шт., потери от брака – 5%, число деталей в транспортной партии – 20 шт. Определить такт линии, ритм линии.</p>
+                                    
                                 <p><strong>Операции:</strong></p>
                                 <ul>
                                     <li v-for="operation in operations">
@@ -514,13 +517,13 @@ function MachineryManagement3(user_settings) {
                         this.user_data.operations_pairs.forEach((ch, index) => {
                             ch.dynamic_value = ch.dynamic_value === "" ? 0 : ch.dynamic_value;
                             ch.changes = ch.pair[0].out.map((num, idx) => {
-                                return this.round_num(num - ch.pair[1].out[idx])
+                                return this.round_num(num - ch.pair[1].out[idx], 5)
                             });
                             let last_dynamics = ch.dynamic_value;
                             ch.dynamics = ch.dynamics.map((num, idx) => {
                                 let res = ch.changes[idx] + last_dynamics;
                                 last_dynamics = res;
-                                return this.round_num(res);
+                                return this.round_num(res, 5);
                             });
                         });
 
