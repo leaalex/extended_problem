@@ -1,0 +1,97 @@
+<problem>
+
+<style>
+    .no-equation .equation{
+        display: none;
+    }
+
+    .no-equation sup{
+        font-size: 80%;
+    }
+
+    .no-equation .task-table td {
+        vertical-align: middle;
+        border: 1px solid #c7c7c9;
+        padding: 7px !important;
+        word-break: initial;
+        text-align: center !important;
+    }
+
+    .no-equation .task-table .explanation-title,.no-equation .task-table .hint-label{
+        display: none !important;
+    }
+</style>
+
+
+    <div class="no-equation">
+
+        <h2>Ход работы</h2>
+        <p>Воспользуйтесь формулой для определения расстояний до указанных звезд, если известен их параллакс при
+            наблюдении с противоположных точек орбиты Земли (годичный параллакс). Радиус орбиты Земли можно принять
+            \(\approx 150 \ 000 \ 000 \ км\). Необходимо учесть, что угловое смещение наблюдения звезд с противоположных точек
+            орбиты Земли настолько малое, измеряется в угловых секундах! Одна угловая секунда равна \(1/3600\) углового
+            градуса, поскольку \(1^{\circ} = 60' = 3600''\), поэтому вычислив синус угла в градусах, вы должны разделить
+            полученное число на \(3600\). Таким образом вы получите синус угла в секундах.</p>
+         \[r = \frac{d}{sin(p)}\]
+        <p><strong>Округлять значения не нужно, необходимо брать только указанное число знаков.</strong></p>
+
+        <table class="task-table">
+            <tr>
+                <td style="width: 22% !important;">Звезда</td>
+                <td>Угол \(p\), <i>в секундах</i></td>
+                <td>\(sin(p)\), <i>до восьмого знака после запятой</i></td>
+                <td>Расстояние до объекта, км (с указанием только целых)</td>
+            </tr>
+            <tr>
+                <td style="width: 23% !important;"><strong>Сириус</strong></td>
+                <td>0,375</td>
+                <td style="text-align: center">
+                    <numericalresponse answer="0.00000181" >
+                        <responseparam type="tolerance" default="0.0"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center">
+                    <numericalresponse answer="82872928176795">
+                        <formulaequationinput type="tolerance" default="0.0"/>
+                        <correcthint>Восемьдесят два триллиона восемьсот семьдесят два миллиарда девятьсот двадцать восемь миллионов сто семьдесят шесть тысяч семьсот девяносто пять</correcthint>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Процион</strong></td>
+                <td>0,288</td>
+                <td style="text-align: center">
+                    <numericalresponse answer="0.00000139" >
+                        <responseparam type="tolerance" default="0.0"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center">
+                    <numericalresponse answer="107913669064748">
+                        <formulaequationinput type="tolerance" default="0.0"/>
+                        <correcthint>Сто семь триллионов девятьсот тринадцать миллиардов шестьсот шестьдесят девять миллионов шестьдесят четыре тысячи семьсот сорок восемь</correcthint>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Барнарда</strong></td>
+                <td>0,547</td>
+                <td style="text-align: center">
+                    <numericalresponse answer="0.00000265" >
+                        <responseparam type="tolerance" default="0.0"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center">
+                    <numericalresponse answer="566037735849">
+                        <formulaequationinput type="tolerance" default="0.0"/>
+                        <correcthint>Пятьдесят шесть триллионов шестьсот три миллиарда семьсот семьдесят три миллиона пятьсот восемьдесят четыре тысячи девятьсот пять</correcthint>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</problem>
