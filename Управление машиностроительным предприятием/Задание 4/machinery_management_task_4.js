@@ -276,7 +276,6 @@ function MachineryManagement4(settings) {
 
             response_block.appendChild(utils.create("p", {}, utils.create("strong", {html: "Все это относительно ста баллов:"})));
             response_block.appendChild(utils.create("p", {html: response.criteria_1}));
-
             response_block.appendChild(utils.create("p", {html: response.criteria_2.c}));
             response_block.appendChild(utils.create("p", {html: response.criteria_2.r}));
             response_block.appendChild(utils.create("p", {html: response.criteria_2.p}));
