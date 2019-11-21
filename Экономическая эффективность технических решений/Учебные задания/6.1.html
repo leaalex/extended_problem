@@ -1,0 +1,197 @@
+<problem>
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+    </style>
+    <p>Выберите экономически целесообразный вариант, основываясь на показатели приведенных затрат. Числа приведены в ДЕ (денежных единицах).</p>
+    <table class="training-task">
+        <tr>
+            <th></th>
+            <th>Вариант 1</th>
+            <th>Вариант 2</th>
+        </tr>
+        <tr>
+            <td>Капитальные вложения</td>
+            <td>1000</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Годовые постоянные затраты</td>
+            <td>500</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Удельные (на единицу продукции) переменные затраты</td>
+            <td>20</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <p>Нормативный (требуемый) срок окупаемости – <strong>2 года</strong></p>
+    <p>Годовой объем производства (текущий год) – <strong>150 единиц</strong>, годовой объем производства (предстоящий год) – <strong>200 единиц</strong>.</p>
+    <p>Ответы для показателей в ДЕ – в целых числах, срок окупаемости – с десятой долей.</p>
+    <p>Этапы расчетов:</p>
+
+    <div class="inline-dropdown">
+        <optionresponse>
+            <p style="display:inline">Расчеты целесообразно выполнять по данным</p>
+            <optioninput label="" options="('текущего','предстоящего')" correct="предстоящего" inline="1"></optioninput>
+            <p style="display:inline">года</p>
+        </optionresponse>
+    </div>
+
+    <div class="no-equation">
+        <p><strong>Этап 1.</strong> Определение себестоимости по вариантам</p>
+        <div class="inline-numerical">
+            <div>
+                <span>С1 = </span>
+            </div>
+            <numericalresponse answer="4500">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+        <div class="inline-numerical">
+            <div>
+                <span>С2 = </span>
+            </div>
+            <numericalresponse answer="5500">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+        <hr />
+
+        <div class="inline-numerical">
+            <div>
+                <span><strong>Этап 2.</strong> Условно-годовая экономия = </span>
+            </div>
+            <numericalresponse answer="1000">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="ДЕ" />
+            </numericalresponse>
+        </div>
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Условно-годовую экономию обеспечивает </p>
+                <optioninput label="" options="('1 вариант','2 вариант')" correct="1 вариант" inline="1"></optioninput>
+            </optionresponse>
+        </div>
+
+        <hr />
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline"><strong>Этап 3.</strong> </p>
+                <optioninput label="" options="('1 вариант','2 вариант')" correct="1 вариант" inline="1"></optioninput>
+                <p style="display:inline">требует дополнительные капитальные вложения в размере: </p>
+            </optionresponse>
+        </div>
+        <div class="inline-numerical">
+            <numericalresponse answer="500">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="ДЕ" />
+            </numericalresponse>
+        </div>
+        <hr />
+
+
+        <p><strong>Этап 4.</strong> Расчетный срок окупаемости дополнительных капитальных вложений: </p>
+        <div class="inline-numerical">
+            <numericalresponse answer="0.5">
+                <responseparam type="tolerance" default="0.01"/>
+                <formulaequationinput size="5" trailing_text="года" />
+            </numericalresponse>
+        </div>
+        <p>Вывод по результатам сравнения расчетного и нормативного срока окупаемости:</p>
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">для внедрения следует рекомендовать </p>
+                <optioninput label="" options="('1 вариант','2 вариант')" correct="1 вариант" inline="1"></optioninput>
+            </optionresponse>
+        </div>
+        <hr />
+
+
+        <p><strong>Этап 5.</strong> Определение приведенных затрат по вариантам</p>
+        <div class="inline-numerical">
+            <div>
+                <span>Зпр1 =</span>
+            </div>
+            <numericalresponse answer="5000">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+
+        <div class="inline-numerical">
+            <div>
+                <span>Зпр2 =</span>
+            </div>
+            <numericalresponse answer="5750">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+        <p>Решение принимается по минимуму приведенных затрат:</p>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">наиболее выгодным является </p>
+                <optioninput label="" options="('1 вариант','2 вариант')" correct="1 вариант" inline="1"></optioninput>
+                <p style="display:inline">, его внедрение обеспечит годовой экономический эффект в течение нормативного срока окупаемости (2 года), в размере:</p>
+            </optionresponse>
+        </div>
+        <div class="inline-numerical">
+            <numericalresponse answer="750">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="ДЕ" />
+            </numericalresponse>
+        </div>
+        <p>Далее при сохранении расчетного объема деятельности предприятие будет ежегодно экономить:</p>
+        <div class="inline-numerical">
+            <numericalresponse answer="1000">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="ДЕ" />
+            </numericalresponse>
+        </div>
+
+    </div>
+
+</problem>

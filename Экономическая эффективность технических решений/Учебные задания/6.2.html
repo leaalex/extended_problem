@@ -1,0 +1,241 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+    </style>
+
+    <p>В качестве примера технического решения рассматривается бытовая ситуация по целесообразности замены технического устройства. Принятие решения осуществляется в два этапа:</p>
+    <p><strong>Учебное задание 6.2</strong> – расчет показателей и оценка целесообразности замены для заданного объема деятельности</p>
+    <p><strong>Учебное задание 7.2</strong> – определение границ целесообразности выбранного при выполнении задания 6.2 варианта, оценка устойчивости принятого решения.</p>
+
+    <p>Предусмотрена проверка правильности выполнения задания.</p>
+    <h2>Определение целесообразности приобретения собственником квартиры двухтарифного счетчика взамен действующему варианту (однотарифный счетчик)</h2>
+
+    <p>Информация по затратам:</p>
+    <table class="training-task">
+        <tr>
+            <td>Стоимость 1 кВт*час в обычное время</td>
+            <td>2,58 ДЕ</td>
+        </tr>
+        <tr>
+            <td>Стоимость 1 кВт*час в льготное время</td>
+            <td>1,21 ДЕ</td>
+        </tr>
+        <tr>
+            <td>Цена двухтарифного счетчика с затратами на монтаж</td>
+            <td>2 200 ДЕ</td>
+        </tr>
+    </table>
+
+
+    <div class="no-equation">
+
+        <p>Энергопотребление – <strong>300</strong> кВт*час/месяц. Соотношение потребления электроэнергии в обычное и льготное время – <strong>2 к 1</strong>.</p>
+        <p>Собственник не планирует менять место жительства, считает разумным рассчитывать на окупаемость денег, вложенных в новый счетчик в течении <strong>двух лет</strong>.</p>
+
+        <p>Так как ситуация повторяется из месяца в месяц, расчеты допустимо выполнять для промежутка времени, равному <strong>1 месяцу</strong>. </p>
+        <p>Заполните таблицу с исходными данными, используя заданную информацию по затратам (если какие-то расходы из представленных в таблице отсутствуют, следует поставить <strong>0</strong>):</p>
+
+        <table class="training-task">
+            <tr>
+                <th style="width: 60%">
+                    Наименование показателя
+                </th>
+                <th style="width: 20%; text-align: center;">
+                    Вариант 1 <br />
+                    (действующий – однотарифный счетчик)
+                </th>
+                <th style="width: 20%; text-align: center;">
+                    Вариант 2 <br />
+                    (проектный – двух тарифный счетчик)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Объем деятельности за месяц
+                </td>
+                <td colspan="2" style="text-align: center;">
+                    <numericalresponse answer="300">
+                        <responseparam type="tolerance" default="0.5"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Единицы измерения для объема деятельности
+                </td>
+                <td colspan="2">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Капитальные вложения по вариантам <strong>(К)</strong>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.5"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="2200">
+                        <responseparam type="tolerance" default="0.5"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Нормативный срок окупаемости дополнительных капитальных вложений, в годах
+                </td>
+                <td colspan="2" style="text-align: center;">
+                    <numericalresponse answer="2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Нормативный срок окупаемости дополнительных капитальных вложений, в месяцах
+                </td>
+                <td colspan="2" style="text-align: center;">
+                    <numericalresponse answer="24">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Переменные расходы на единицу объема деятельности ( \(C_{ед}^{пер} \))
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="2.58">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="2.12">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Условно-постоянные расходы за период ( \(C_{пост} \))
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.00001"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.00001"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <p>*Примечание: Переменные расходы на единицу объема деятельности для проектного варианта – следует рассчитать среднее значение с учетом планируемого соотношения потребления в обычное и льготное время.</p>
+
+        <p>Заполните таблицу с результатами расчетов (ответы вводятся в целых числах):</p>
+
+        <table class="training-task">
+            <tr>
+                <th style="width: 60%">
+                    Наименование показателя
+                </th>
+                <th style="width: 20%; text-align: center;">
+                    Вариант 1 <br />
+                    (действующий – однотарифный счетчик)
+                </th>
+                <th style="width: 20%; text-align: center;">
+                    Вариант 2 <br />
+                    (проектный – двух тарифный счетчик)
+                </th>
+            </tr>
+
+            <tr>
+                <td colspan="2">Расчетный срок окупаемости дополнительных капитальных вложений, мес</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="16">
+                        <responseparam type="tolerance" default="0.00001"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Условно-постоянные расходы за период
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="774">
+                        <responseparam type="tolerance" default="0.00001"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="728">
+                        <responseparam type="tolerance" default="0.00001"/>
+                        <additional_answer answer="729"/>
+                        <formulaequationinput size="5" trailing_text="" />
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <p>При заданном объеме энергопотребления <strong>300 кВт*час/мес</strong> приобретение и установка двухтарифного счетчика</p>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice">
+                <choice correct="true">целесообразно</choice>
+                <choice correct="false">нецелесообразно</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+</problem>
