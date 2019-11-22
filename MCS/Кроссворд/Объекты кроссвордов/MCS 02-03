@@ -1,8 +1,3 @@
-<problem>
-    <script type="loncapa/python">
-import json
-import copy
-
 source_data = [
         {
             "clue": "Философ, предположивший, что Солнечная система образовалась из огромного холодного газопылевого облака",
@@ -144,7 +139,7 @@ source_data = [
             "answer": u"нептун",
             "position": 15,
             "orientation": "down",
-            "start_x": 8,
+            "start_x": 3,
             "start_y": 10,
             "hint": "Самая дальняя планета Солнечной системы"
         },
@@ -194,98 +189,3 @@ source_data = [
             "hint": "К этой группе планет относят Юпитер, Сатурн, Уран и Нептун"
         }
 ]
-
-
-client_check = True
-language = "ru"
-
-def check_answer(exp, ans):
-    student_answer = json.loads(ans)["answer"]
-    grade = 0
-    max_grade = len(source_data)
-    msg = ""
-
-    if not client_check:
-        correct_list = []
-        for x in source_data:
-            student_word = student_answer["user_state"]["question_" + str(x["unique_position"])]["word"]
-            x_word = x["answer"]
-            if student_word == x_word:
-                grade = grade + 1
-                correct_list.append("question_" + str(x["unique_position"]))
-        msg = str(json.dumps({"correct_list": correct_list}))
-    else:
-        grade = float(student_answer["grade"])
-    result_grade = grade/max_grade
-
-    if result_grade == 1:
-        return {'input_list': [{'ok': True,'msg':msg,'grade_decimal':1}]}
-    elif result_grade == 0:
-        return {'input_list': [{'ok':False,'msg':msg,'grade_decimal':0}]}
-    else:
-        return {'input_list': [{'ok':'Partial','msg':msg,'grade_decimal':result_grade}]}
-
-student_data = []
-if not client_check:
-    for idx, item in enumerate(source_data):
-        item["unique_position"] = idx
-        new_item = item.copy()
-        new_item["answer"] = ''.join(['x'] * int(len(new_item["answer"])))
-        student_data.append(new_item)
-else:
-    for idx, item in enumerate(json.loads(json.dumps(source_data))):
-        item["unique_position"] = idx
-        new_item = item.copy()
-        student_data.append(new_item)
-
-student_data_json = json.dumps({"student_data":student_data, "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
-student_answer_json = json.dumps({"student_data":json.loads(json.dumps(source_data)), "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
-
-</script>
-    <link rel="stylesheet" type="text/css" href="/static/crossword.css" ></link>
-    <script type="text/javascript" src="/static/crossword.js"></script>
-
-    <div class="task-description">
-        <p>Заполните поля кроссворда</p>
-    </div>
-
-    <div id="crossword_container"></div>
-
-    <div id="crossword_input" style="/*display: none!important;*/">
-        <customresponse cfn="check_answer">
-            <textline size="40" value="$taskId" />
-            <br/>
-        </customresponse>
-    </div>
-
-    <script type="text/javascript">
-
-        let data = $student_data_json;
-
-        new Crossword({
-            element: document.getElementById('crossword_container'),
-            input:  document.getElementById('crossword_input'),
-            data: data["student_data"],
-            client_check: data.client_check,
-            language: data.language
-        });
-
-    </script>
-
-    <solution>
-
-        <div class="detailed-solution">
-            <div id="crossword_answer_container"></div>
-        </div>
-        <script type="text/javascript">
-            let data_answer = $student_answer_json;
-            new CrosswordAnswer({
-                element: document.getElementById('crossword_answer_container'),
-                data: data_answer["student_data"],
-                language: data_answer.language
-            });
-        </script>
-    </solution>
-
-
-</problem>
