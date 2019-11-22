@@ -1,0 +1,242 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+    </style>
+
+    <p>Следует обеспечить сопоставимость сравниваемых вариантов по фактору «объем деятельности».</p>
+    <p>Сравниваются два варианта: первый вариант используется в настоящее время, второй (предлагаемый) обеспечивает лучшие технические показатели. В перспективе (планируемый год) предполагается увеличить объем деятельности. В связи с тем, что имеющееся оборудование – низкопроизводительное, рассматривается альтернативный вариант, предполагающий покупку нового производительного оборудования.</p>
+
+    <table class="training-task">
+        <tr>
+            <th></th>
+            <th>Текущий год</th>
+            <th>Планируемый год</th>
+        </tr>
+        <tr>
+            <td>Годовой объем производства, единиц</td>
+            <td>400</td>
+            <td>700</td>
+        </tr>
+    </table>
+
+    <table class="training-task">
+        <tr>
+            <th rowspan="2"></th>
+            <th colspan="2">
+                Рассматриваемые варианты техники
+            </th>
+        </tr>
+        <tr>
+            <th style="text-align: center;">
+                Текущий <br />
+                Вариант 1
+            </th>
+            <th style="text-align: center;">
+                Планируемый <br />
+                Вариант 2
+            </th>
+        </tr>
+        <tr>
+
+            <td>
+                Годовая производительность единицы оборудования, штук
+            </td>
+            <td>
+                400
+            </td>
+            <td>
+                700
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Цена единицы оборудования
+            </td>
+            <td>
+                4000
+            </td>
+            <td>
+                10000
+            </td>
+        </tr>
+    </table>
+
+    <p>Так как текущий (базовый) вариант не справляется с планируемым на будущее объемом деятельности, недопустимо брать в качестве данных для расчета показатели текущего года. Необходима корректировка себестоимости и учет капитальных вложений в связи с приобретением дополнительной единицы оборудования для обеспечения сопоставимого объема деятельности.</p>
+
+    <table class="training-task">
+        <tr>
+            <th rowspan="2"></th>
+            <th colspan="2" style="text-align: center;">
+                Вариант 1
+            </th>
+            <th rowspan="2" style="text-align: center;">
+                Вариант 2
+            </th>
+        </tr>
+        <tr>
+            <th>«как есть»</th>
+            <th style="width: 250px;">
+                после корректировки варианта на новый объем деятельности
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Производственные возможности в год, штук
+            </td>
+            <td>
+                400
+            </td>
+            <td>800</td>
+            <td>700</td>
+        </tr>
+        <tr>
+            <td>
+                Капитальные вложения по вариантам
+            </td>
+            <td>-</td>
+            <td>4000</td>
+            <td>10 000</td>
+        </tr>
+        <tr>
+            <td>
+                Постоянные затраты на годовой объем деятельности
+            </td>
+            <td>500</td>
+            <td>800</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>
+                Удельные переменные затраты
+            </td>
+            <td>25</td>
+            <td>25</td>
+            <td>20</td>
+        </tr>
+    </table>
+
+    <p>Нормативный (требуемый) срок окупаемости – <strong>2 года</strong></p>
+
+    <p><u>Решение:</u></p>
+
+    <p>В связи с планируемым увеличением объемов деятельности предприятию необходимо принять решение по выбору более выгодного варианта осуществления процесса. Первый вариант (он же базовый) в варианте «как есть» не сопоставим с новым, так как не может обеспечить планируемый объем деятельности. Сравнивать разные варианты по показателям Методики сравнительной эффективности допустимо только в том случае, если они обеспечивают одинаковые результаты.</p>
+    <p>Вариант первый или базовый использует оборудование конкретной модели, для увеличения производственных возможностей этого варианта следует приобрести дополнительные единицы такого же оборудования. При этом технические характеристики первого варианта не меняются и он может рассматриваться в сравнении под тем же наименованием. Но предусматриваемое расширение производственных возможностей требует капитальных вложений, изменяются затраты постоянного характера в составе себестоимости. При расчете показателей варианта следует предусматривать исходные данные для первого варианта после корректировки на планируемый объем деятельности.</p>
+
+
+    <div class="no-equation">
+        <p>Рассчитайте и укажите критический объем деятельности:</p>
+        <div class="inline-numerical">
+            <div>
+                <span>\(C_1 = C_{пер}^{ед} \times N_{г} + C_{пост} = 25 \times 700 \ + \)</span>
+            </div>
+            <numericalresponse answer="800">
+                <responseparam type="tolerance" default="0.00001"/>
+                <additional_answer answer="200"/>
+                <formulaequationinput size="5" trailing_text=" = 18 300" />
+            </numericalresponse>
+        </div>
+
+        <p>\(C_2 = C_{пер}^{ед} \times N_{г} + C_{пост} = 20 \times 700  + 500 = 14 500\)</p>
+
+        <div class="inline-numerical">
+            <div>
+                <span>Условно-годовая экономия составит:</span>
+            </div>
+            <numericalresponse answer="3800">
+                <responseparam type="tolerance" default="0.01"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Экономия будет получена при внедрении</p>
+                <optioninput label="" options="('первого','второго')" correct="второго" inline="1"></optioninput>
+                <p style="display:inline">варианта.</p>
+            </optionresponse>
+        </div>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Дополнительные капитальные вложения требует</p>
+                <optioninput label="" options="('первый','второй')" correct="второй" inline="1"></optioninput>
+                <p style="display:inline">вариант.</p>
+            </optionresponse>
+        </div>
+
+        <p>Далее следует рассчитать показатели, являющиеся критериями для принятия решения.</p>
+
+        <p><strong>Расчетный срок окупаемости</strong> дополнительных капитальных вложений (точность результата расчета – до сотых):</p>
+        <i>Дробную часть необходимо вводить через точку.</i>
+        <div class="inline-numerical">
+            <numericalresponse answer="1.58">
+                <responseparam type="tolerance" default="0.1"/>
+                <formulaequationinput size="5" trailing_text="лет" />
+            </numericalresponse>
+        </div>
+
+        <p><strong>Приведенные (к году) затраты</strong> рассчитываются по рассматриваемым вариантам:</p>
+
+        <div class="inline-numerical">
+            <div>
+                <span>\(З_{пр}1 = \)</span>
+            </div>
+            <numericalresponse answer="20300">
+                <responseparam type="tolerance" default="0.1"/>
+                <additional_answer answer="200"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+
+        <p>\(З_{пр}2 = 19 500\)</p>
+
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Следовательно эффективнее</p>
+                <optioninput label="" options="('вариант 1','вариант 2')" correct="вариант 2" inline="1"></optioninput>
+                <p style="display:inline"></p>
+            </optionresponse>
+        </div>
+
+    </div>
+
+
+</problem>

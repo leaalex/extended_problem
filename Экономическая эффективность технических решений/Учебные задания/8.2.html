@@ -1,0 +1,168 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+    </style>
+
+    <p>Выполните расчеты по тем же исходным данным, но для другого промежутка объема деятельности. Прогноз объема производства <strong>320 – 400 штук</strong> ежегодно. Для расчета показателей используйте объем производства, соответствующий середине промежутка – <strong>360 штук</strong>.</p>
+
+
+    <div class="no-equation">
+        <p>Количество оборудования для обеспечения годовой программы:</p>
+
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 1 - </span>
+            </div>
+            <numericalresponse answer="2">
+                <responseparam type="tolerance" default="0.01"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 2 - </span>
+            </div>
+            <numericalresponse answer="2">
+                <responseparam type="tolerance" default="0.01"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+
+
+        <p>Капитальные вложения по вариантам при обеспечении сопоставимости по сроку службы:</p>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 1 - </span>
+            </div>
+            <numericalresponse answer="2000">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 2 - </span>
+            </div>
+            <numericalresponse answer="6667">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+
+
+        <p>Себестоимость по вариантам:</p>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 1 - </span>
+            </div>
+            <numericalresponse answer="5080">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 2 - </span>
+            </div>
+            <numericalresponse answer="4400">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="" />
+            </numericalresponse>
+        </div>
+
+        <p><strong>Расчетный срок окупаемости</strong> дополнительных капитальных вложений:</p>
+        <div class="inline-numerical">
+            <numericalresponse answer="6.86">
+                <responseparam type="tolerance" default="0.1"/>
+                <formulaequationinput size="5" trailing_text="лет" />
+            </numericalresponse>
+        </div>
+
+
+        <p><strong>Приведенные затраты</strong> по вариантам:</p>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 1 - </span>
+            </div>
+            <numericalresponse answer="5480">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="лет" />
+            </numericalresponse>
+        </div>
+        <div class="inline-numerical">
+            <div>
+                <span>Вариант 2 - </span>
+            </div>
+            <numericalresponse answer="5733">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="лет" />
+            </numericalresponse>
+        </div>
+
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Для объема производства <strong>360 штук в год</strong> более целесообразен</p>
+                <optioninput label="" options="('вариант 1','вариант 2')" correct="вариант 1" inline="1"></optioninput>
+                <p style="display:inline"></p>
+            </optionresponse>
+        </div>
+
+        <p>Проверьте, не меняется ли количество необходимого оборудования в пределах заданного интервала объемов производства. Сделайте вывод о правильности решения по выбору варианта для внедрения для любых значений объема производства в пределах вероятного интервала.</p>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Для внедрения рекомендую</p>
+                <optioninput label="" options="('вариант 1','вариант 2')" correct="вариант 1" inline="1"></optioninput>
+                <p style="display:inline"></p>
+            </optionresponse>
+        </div>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Он является наиболее экономически целесообразным для</p>
+                <optioninput label="" options="('любых значений','большинства значений')" correct="любых значений" inline="1"></optioninput>
+                <p style="display:inline">объемов производства в интервале <strong>320 – 400 штук</strong> в год.</p>
+            </optionresponse>
+        </div>
+
+    </div>
+
+</problem>

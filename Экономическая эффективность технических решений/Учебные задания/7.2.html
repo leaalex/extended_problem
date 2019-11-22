@@ -1,0 +1,126 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+    </style>
+
+    <p>В качестве примера технического решения рассматривается бытовая ситуация по целесообразности замены технического устройства. Принятие решения осуществляется в два этапа:</p>
+    <p><strong>Учебное задание 6.2</strong> – расчет показателей и оценка целесообразности замены для заданного объема деятельности</p>
+    <p><strong>Учебное задание 7.2</strong> – определение границ целесообразности выбранного при выполнении задания 6.2 варианта, оценка устойчивости принятого решения.</p>
+    <p>Предусмотрена проверка правильности выполнения задания.</p>
+
+
+    <h2>Определение целесообразности приобретения собственником квартиры двухтарифного счетчика взамен действующему варианту (однотарифный счетчик)</h2>
+
+    <p>Информация по затратам:</p>
+    <table class="training-task">
+        <tr>
+            <td>Стоимость 1 кВт*час в обычное время</td>
+            <td>2,58 ДЕ</td>
+        </tr>
+        <tr>
+            <td>Стоимость 1 кВт*час в льготное время</td>
+            <td>1,21 ДЕ</td>
+        </tr>
+        <tr>
+            <td>Цена двухтарифного счетчика с затратами на монтаж</td>
+            <td>2 200 ДЕ</td>
+        </tr>
+    </table>
+
+    <p>Энергопотребление – <strong>300</strong> кВт*час/месяц. Соотношение потребления электроэнергии в обычное и льготное время – <strong>2 к 1</strong>.</p>
+    <p>Собственник не планирует менять место жительства, считает разумным рассчитывать на окупаемость денег, вложенных в новый счетчик в течении <strong>двух лет</strong>.</p>
+
+
+    <p>Ожидается увеличение энергопотребления на <strong>10 – 20 %</strong> в месяц.</p>
+
+    <p>Чтобы быть уверенным в правильности принимаемого решения, целесообразно проконтролировать ситуацию при разных объемах деятельности.</p>
+
+
+
+    <div class="no-equation">
+        <p>Рассчитайте и укажите критический объем деятельности:</p>
+        <div class="inline-numerical">
+            <numericalresponse answer="199">
+                <responseparam type="tolerance" default="0.00001"/>
+                <additional_answer answer="200"/>
+                <formulaequationinput size="5" trailing_text="кВт*час/мес" />
+            </numericalresponse>
+        </div>
+
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Для потребителя при планируемых структуре энергопотребления и объемах <strong>300 – 360 кВт*час/мес</strong></p>
+                <optioninput label="" options="('целесообразно','нецелесообразно')" correct="целесообразно" inline="1"></optioninput>
+                <p style="display:inline">устанавливать двухтарифный счетчик</p>
+            </optionresponse>
+        </div>
+
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Для потребителя при заданной структуре энергопотребления и объеме <strong>100 – 150 кВт*час/мес</strong></p>
+                <optioninput label="" options="('целесообразно','нецелесообразно')" correct="нецелесообразно" inline="1"></optioninput>
+                <p style="display:inline">устанавливать двухтарифный счетчик</p>
+            </optionresponse>
+        </div>
+
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Результат расчета критического значения объема деятельности при изменении структуры энергопотребления (соотношение потребления в льготное и обычное время)</p>
+                <optioninput label="" options="('изменится','не изменится')" correct="изменится" inline="1"></optioninput>
+                <p style="display:inline">.</p>
+            </optionresponse>
+        </div>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline">Результат расчета критического значения объема деятельности при изменении требуемого срока окупаемости</p>
+                <optioninput label="" options="('изменится','не изменится')" correct="изменится" inline="1"></optioninput>
+                <p style="display:inline">.</p>
+            </optionresponse>
+        </div>
+
+
+    </div>
+
+
+</problem>

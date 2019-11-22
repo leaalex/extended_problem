@@ -1,0 +1,96 @@
+<problem>
+    <p>Выберите экономически целесообразный вариант, основываясь на показатели приведенных затрат. Числа приведены в ДЕ (денежных единицах).</p>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+    </style>
+
+
+    <p>В дополнение к решению задания из предыдущей темы (учебное задание 6.1) определите значение критического объема производства, соответствующее границе целесообразности сравниваемых вариантов. Уточните решение для вероятного для предприятия интервала объема деятельности.</p>
+    <p>Числа приведены в ДЕ (денежных единицах).</p>
+    <p>Капвложения и постоянные затраты не меняются в промежутке от <strong>0 до 300</strong> единиц продукции.</p>
+
+    <table class="training-task">
+        <tr>
+            <th></th>
+            <th>Вариант 1</th>
+            <th>Вариант 2</th>
+        </tr>
+        <tr>
+            <td>Капитальные вложения</td>
+            <td>1000</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Годовые постоянные затраты</td>
+            <td>500</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Удельные (на единицу продукции) переменные затраты</td>
+            <td>20</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <p>Нормативный (требуемый) срок окупаемости – <strong>2 года</strong></p>
+    <p>Годовой объем производства (текущий год) – <strong>150 единиц</strong>, годовой объем производства (предстоящий год) – <strong>200 единиц</strong>.</p>
+    <div class="no-equation">
+        <p></p>
+        <div class="inline-numerical">
+            <div>
+                <span><strong>1.</strong> Критический объем производства \(N_{кр} = \)</span>
+            </div>
+            <numericalresponse answer="50">
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput size="5" trailing_text="единиц продукции" />
+            </numericalresponse>
+        </div>
+
+        <div class="inline-dropdown">
+            <optionresponse>
+                <p style="display:inline"><strong>2.</strong> Интервал вероятных для предприятия значений объема деятельности (объем производства) от <strong>150 до 250</strong> единиц продукции. Предприятию целесообразно внедрять</p>
+                <optioninput label="" options="('1 вариант','2 вариант')" correct="1 вариант" inline="1"></optioninput>
+                <p style="display:inline"></p>
+            </optionresponse>
+        </div>
+    </div>
+
+</problem>
