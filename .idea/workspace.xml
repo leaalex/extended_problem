@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/MCS/Кроссворд/Объекты кроссвордов/MCS 02-03" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword_edx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/6.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/6.2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/7.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/7.1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/7.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/7.2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/8.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/8.1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/8.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/8.2.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -289,7 +290,7 @@
       <workItem from="1572362483778" duration="52560000" />
       <workItem from="1572924491234" duration="600000" />
       <workItem from="1573038414565" duration="49120000" />
-      <workItem from="1573650937296" duration="44037000" />
+      <workItem from="1573650937296" duration="53886000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
