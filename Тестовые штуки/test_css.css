@@ -1,0 +1,20 @@
+.economic-choice {
+  padding-bottom: 20px;
+}
+.economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
+  display: none !important;
+}
+.economic-choice.two .field {
+  width: calc(100% / 2 - 4px);
+  display: inline-block;
+}
+.economic-choice.three .field {
+  width: calc(100% / 3 - 4px);
+  display: inline-block;
+}
+.economic-choice.four .field {
+  width: calc(100% / 4 - 4px);
+  display: inline-block;
+}
+
+/*# sourceMappingURL=test_css.css.map */
