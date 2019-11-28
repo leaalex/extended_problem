@@ -1,0 +1,197 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+    <h2>Задание</h2>
+    <p>Рассчитать дисконтированный денежный поток за все годы проекта при норме доходности \(15\ \%\) и определить выгодность проекта.</p>
+    <h2>Исходные данные</h2>
+
+    <p>На предприятии разрабатывается бизнес-план проекта по освоению производства нового продукта и его продвижению на рынок. Эксплуатационный период проекта составит \(6\) лет. Информация о величине инвестиций о доходах приведена в <i>таблице 2.2.</i></p>
+    <p>В первый год происходит поэтапное освоение производственной мощности, поэтому объем производства и продаж, а следовательно и доходы ниже, чем в последующие периоды. В последний год выпуска возможно насыщение рынка данным товаром, поэтому предусмотрена продажа со скидками.</p>
+    <p>Заполните пустые ячейки расчетной таблицы.</p>
+
+    <p style="text-align: right"><i>Таблица 2.2</i></p>
+    <p style="text-align: center">Расчет текущей стоимости будущих доходов при норме доходности \(15 \ \%\), млн.&#8381;</p>
+
+    <div class="no-equation no-trailing">
+    <table class="training-task">
+            <tr>
+                <th rowspan="2">
+                    Показатели
+                </th>
+                <th colspan="7" style="text-align: center">
+                    Годы проекта (t)
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center"><strong>0</strong></td>
+                <td style="text-align: center"><strong>1</strong></td>
+                <td style="text-align: center"><strong>2</strong></td>
+                <td style="text-align: center"><strong>3</strong></td>
+                <td style="text-align: center"><strong>4</strong></td>
+                <td style="text-align: center"><strong>5</strong></td>
+                <td style="text-align: center"><strong>6</strong></td>
+            </tr>
+            <tr>
+                <td colspan="8" style="text-align: center"><strong>Исходные данные</strong></td>
+            </tr>
+            <tr>
+                <td><strong>1.</strong> Инвестиции</td>
+                <td>\(950\)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>2.</strong> Доходы</td>
+                <td></td>
+                <td>\(300\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(350\)</td>
+            </tr>
+            <tr>
+                <td><strong>3.</strong> Денежный поток (стр.1-стр.2)</td>
+                <td>\(-950\)</td>
+                <td>\(300\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(350\)</td>
+            </tr>
+            <tr>
+                <td colspan="8" style="text-align: center"><strong>Решение</strong></td>
+            </tr>
+            <tr>
+                <td><strong>4.</strong> Коэффициент дисконтирования \((Kд_t = \frac{1}{1.15^t})\)</td>
+                <td>\(1\)</td>
+                <td>\(0.8696\)</td>
+                <td>\(0.7561\)</td>
+                <td>\(0.6575\)</td>
+                <td>\(0.5718\)</td>
+                <td>\(0.4972\)</td>
+                <td>\(0.4323\)</td>
+            </tr>
+            <tr>
+                <td><strong>5.</strong> Дисконтированный денежный поток (стр.3*стр.4)</td>
+                <td>\(-950.0\)</td>
+                <td>\(260.9\)</td>
+                <td>\(302.5\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="263.0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="228.7">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="198.9">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td>\(151.3\)</td>
+            </tr>
+            <tr>
+                <td><strong>6.</strong> Дисконтированный денежный поток нарастающим итогом *</td>
+                <td>\(-950.0\)</td>
+                <td>\(-689.1\)</td>
+                <td>\(-386.7\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="-123.7">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="105.0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="303.9">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td>\(455.2\)</td>
+            </tr>
+    </table>
+        <p><i>* Нарастающий итог \(t\)-го периода равен сумме всех значений от нулевого до \(t\)-го периода. Например, в третьем году дисконтированный денежный поток нарастающим итогом равен \((-950.0 + 260.9 + 302.5)\)  или сумме нарастающего итога за предыдущий период и дисконтированного денежного потока за данный период \((-689.1 + 302.5)\). Округления производятся по обычным правилам.</i></p>
+    </div>
+
+    <p>Дисконтированный денежный поток за все годы проекта (нарастающим итогом) при норме доходности \(15 \ \%\) составил \(455.2\) млн.&#8381;</p>
+    <p>Проект выгоден, так как дисконтированный денежный поток нарастающим итогом является положительным числом (то есть дисконтированные притоки больше дисконтированных оттоков). Проект позволяет инвестору не только вернуть вложенные средства, но и получить доход на вложенный капитал больше минимально допустимого уровня.</p>
+    <h2>Пояснения к расчету коэффициента дисконтирования</h2>
+    <p>Если не предусмотрен нулевой период (в который осуществляются инвестиции), возможен разный подход к коэффициенту дисконтирования:</p>
+    <ol>
+        <li>Денежные потоки приводятся к году (периоду), предшествующему проекту: в этом случае степень знаменателя совпадает с порядковым номером года (периода) и дисконтируются не только доходы, но и инвестиции;</li>
+        <li>Денежные потоки приводятся к первому году (периоду) проекта: в этом случае степень знаменателя на единицу меньше порядкового номера  периода (расчетного шага) и инвестиции (а возможно и доходы) первого периода не дисконтируются, точнее коэффициент дисконтирования первого периода равен единице. В этом случае коэффициент равен:  \(Kд_t = 1/(1 = е)^{t-1}\) <i>(см.табл. 2.3 и 2.4 лекций по теме)</i></li>
+    </ol>
+
+</problem>

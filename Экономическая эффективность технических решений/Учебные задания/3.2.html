@@ -1,0 +1,74 @@
+<problem>
+    <style>
+        .economic-choice {
+            padding-bottom: 20px;
+        }
+        .economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
+            display: none !important;
+        }
+        .economic-choice.two .field {
+            width: calc(100% / 2 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.three .field {
+            width: calc(100% / 3 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.four .field {
+            width: calc(100% / 4 - 4px);
+            display: inline-block;
+        }
+    </style>
+
+    <ol>
+        <li>Прочитайте описание ситуаций</li>
+        <li>По каждой ситуации определите метод экономической оценки инвестиций (капитальных вложений)</li>
+    </ol>
+
+    <p>Производственное предприятие рассматривает инвестиционный проект по разработке, освоению выпуска и выводу на рынок новой продукции.</p>
+    <p>В рамках технологической части проекта поставлена задача выбора оборудования для производства новой продукции, предлагается три варианта с разными техническими характеристиками и эксплуатационными возможностями, но обеспечивающими равные характеристики продукта.</p>
+
+    <p><strong>Укажите, какую методику будет использовать предприятие:</strong></p>
+    <div class="economic-choice three">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Метод абсолютной экономической эффективности, так как необходимо оценить инвестиционный проект<choicehint>Ответ неверный, так как для разных целей используются разные методы оценки при выборе модели оборудования и оценке эффективности проекта по выпуску новой продукции</choicehint></choice>
+                <choice correct="false">Метод сравнительной экономической эффективности, так как приоритетная задача <choicehint>Ответ неверный, так как для разных целей используются разные методы оценки при выборе модели оборудования и оценке эффективности проекта по выпуску новой продукции</choicehint></choice>
+                <choice correct="true">На разных этапах расчета используются разные методы оценки экономической эффективности</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <p><strong>Укажите, какую методику будет использовать предприятие для оценки эффективности инвестиционного проекта по выпуску новой продукции:</strong></p>
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Метод сравнительной экономической эффективности<choicehint>Ответ неверный, так как для сравнительная экономическая эффективность оценивает преимущества одного из вариантов техники, технологии и т.п. по сравнению с альтернативным вариантом, а в данном случае надо оценить проект в целом</choicehint></choice>
+                <choice correct="true">Метод абсолютной экономической эффективности</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+
+    <p><strong>Укажите, какую методику будет использовать предприятие при выборе оборудования для выпуска новой продукции:</strong></p>
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Метод абсолютной экономической эффективности<choicehint>Ответ неверный, так как необходимо из нескольких моделей оборудования выбрать наиболее эффективный вариант</choicehint></choice>
+                <choice correct="true">Метод сравнительной экономической эффективности</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+
+    <p><strong>Какой метод  по времени будет использоваться раньше:</strong></p>
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Метод абсолютной экономической эффективности<choicehint>Ответ неверный, так как при расчете абсолютной экономической эффективности будут учитываться инвестиции в оборудование выбранное на основе сравнительной  экономической эффективности</choicehint></choice>
+                <choice correct="true">Метод сравнительной экономической эффективности</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

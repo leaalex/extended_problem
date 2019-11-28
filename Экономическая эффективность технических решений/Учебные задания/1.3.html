@@ -1,0 +1,36 @@
+<problem>
+    <style>
+        .economic-choice {
+            padding-bottom: 20px;
+        }
+        .economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
+            display: none !important;
+        }
+        .economic-choice.two .field {
+            width: calc(100% / 2 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.three .field {
+            width: calc(100% / 3 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.four .field {
+            width: calc(100% / 4 - 4px);
+            display: inline-block;
+        }
+    </style>
+
+    <p>Физическое лицо после приобретения в собственность офисных помещений для их последующей сдачи в долгосрочную аренду регистрирует общество с ограниченной ответственностью. В качестве вклада в уставный капитал ООО используются ранее приобретенные офисные помещения.</p>
+
+    <p><strong>Укажите, к какому виду относятся данные инвестиции:</strong></p>
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="true">в форме объектов имущества</choice>
+                <choice correct="false">в форме денежных средств<choicehint>Ответ неверный, так как в качестве вклада используются не денежные средства, а имущество (офисное помещение)</choicehint></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

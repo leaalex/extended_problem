@@ -1,52 +1,201 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<script type="text/javascript">
-    if (window.location.host !== 'studio.openedu.ru'){
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://sagecell.sagemath.org/static/embedded_sagecell.js';
-        //https://openedu.urfu.ru/sagecell/
-        document.head.insertBefore(script, document.head.firstChild);
-    }
-</script>
-<style>
-    .CodeMirror-fullscreen {
-        z-index: 99999 !important;
-    }
-    .CodeMirror pre { margin:0px !important }
-</style>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            Показатели
+        </td>
+        <td>
+            Годы проекта (t)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            0
+        </td>
+        <td>
+            1
+        </td>
+        <td>
+            2
+        </td>
+        <td>
+            3
+        </td>
+        <td>
+            4
+        </td>
+        <td>
+            5
+        </td>
+        <td>
+            6
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Исходные данные
+        </td>
+    </tr>
+    <tr>
+        <td>
+            1. Инвестиции
+        </td>
+        <td>
+            950
+        </td>
+        <td>
 
-<h2>Sage 3.1. Понятие функции. Графики</h2>
-<script type="text/javascript">
-    function run_sage () {
-        sagecell.makeSagecell({inputLocation:  '#mycell',
-            template:       sagecell.templates.minimal,
-            evalButtonText: 'Activate'});
-        sagecell.makeSagecell({inputLocation: 'div.compute',
-            evalButtonText: 'Evaluate'});
-    };
+        </td>
+        <td>
 
-</script>
+        </td>
+        <td>
 
-<div class="compute">
-    <script type="text/x-sage">
-f(x)=x^2
-f1(x)= f(x)+5
-g=plot(f(x),(x,-5,5))
-g1=plot(f1(x),(x,-5,5), rgbcolor=(1,0,0))
-show(g+g1)
-</script>
-</div>
-<script type="text/javascript" >
-    window.onload = run_sage;
-    run_sage();
-</script>
+        </td>
+        <td>
 
+        </td>
+        <td>
 
-</body>
-</html>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            2. Доходы
+        </td>
+        <td>
+
+        </td>
+        <td>
+            300
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            350
+        </td>
+    </tr>
+    <tr>
+        <td>
+            3. Денежный поток (стр.1-стр.2)
+        </td>
+        <td>
+            -950
+        </td>
+        <td>
+            300
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            400
+        </td>
+        <td>
+            350
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Решение
+        </td>
+    </tr>
+    <tr>
+        <td>
+            4. Коэффициент дисконтирования(Кд t = 1/1,15 t)
+        </td>
+        <td>
+            1
+        </td>
+        <td>
+            0.8696
+        </td>
+        <td>
+            0.7561
+        </td>
+        <td>
+            0.6575
+        </td>
+        <td>
+            0.5718
+        </td>
+        <td>
+            0.4972
+        </td>
+        <td>
+            0.4323
+        </td>
+    </tr>
+    <tr>
+        <td>
+            5. Дисконтированный денежный поток (стр.3*стр.4)
+        </td>
+        <td>
+            -950.0
+        </td>
+        <td>
+            260.9
+        </td>
+        <td>
+            302.5
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+            151.3
+        </td>
+    </tr>
+    <tr>
+        <td>
+            6. Дисконтированный денежный поток нарастающим итогом *
+        </td>
+        <td>
+            -950.0
+        </td>
+        <td>
+            -689.1
+        </td>
+        <td>
+            -386.7
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+            455.2
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,69 @@
+<problem>
+    <style>
+        .economic-choice {
+            padding-bottom: 20px;
+        }
+        .economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
+            display: none !important;
+        }
+        .economic-choice.two .field {
+            width: calc(100% / 2 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.three .field {
+            width: calc(100% / 3 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.four .field {
+            width: calc(100% / 4 - 4px);
+            display: inline-block;
+        }
+    </style>
+
+    <p>Физическое лицо приобретает в собственность офисные помещения для последующего предоставления их в долгосрочную аренду.</p>
+
+    <p><strong>Укажите, к какому виду относятся данные инвестиции:</strong></p>
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">финансовые<choicehint>Ответ неверный, так как финансовые инвестиции включают вложения в ценные бумаги</choicehint></choice>
+                <choice correct="true">реальные</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <hr />
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">краткосрочные<choicehint>Ответ неверный, так как предполагается длительное получение дохода от использования приобретаемого объекта</choicehint></choice>
+                <choice correct="true">долгосрочные</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <hr />
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">косвенные <choicehint>Ответ неверный, так как инвестор самостоятельно выбирает объект инвестирования</choicehint></choice>
+                <choice correct="true">прямые</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <hr />
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">автономные <choicehint>Ответ неверный, так как целью данных инвестиций является получение прибыли, а автономные инвестиции предусматривают вложение капитала, не связанное с формированием прибыли, что противоречит условию</choicehint></choice>
+                <choice correct="true">производные</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

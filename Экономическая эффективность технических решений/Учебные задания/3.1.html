@@ -1,0 +1,79 @@
+<problem>
+    <style>
+        .economic-choice {
+            padding-bottom: 20px;
+        }
+        .economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
+            display: none !important;
+        }
+        .economic-choice.two .field {
+            width: calc(100% / 2 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.three .field {
+            width: calc(100% / 3 - 4px);
+            display: inline-block;
+        }
+        .economic-choice.four .field {
+            width: calc(100% / 4 - 4px);
+            display: inline-block;
+        }
+    </style>
+
+    <ol>
+        <li>Прочитайте описание ситуаций</li>
+        <li>По каждой ситуации определите метод экономической оценки инвестиций (капитальных вложений)</li>
+    </ol>
+
+
+    <p>Производственное предприятие, производящее оборудование, предполагает улучшить качественные характеристики выпускаемой продукции, что сделает дешевле его последующую эксплуатацию (эффект в сфере использования). Однако, улучшение характеристик усовершенствованного оборудования  приведет к удорожанию себестоимости и цены продукции.</p>
+    <p>Для того, чтобы сориентироваться по возможности продаж улучшенной модели оборудования по более дорогой цене и учесть полученные результаты при разработке рекламной компании, предприятие-производитель намерено оценить ситуацию «глазами потребителя» –  в сфере эксплуатации модифицированного (улучшенного) продукта</p>
+
+    <p><strong>Укажите, какую методику будет использовать предприятие для оценки инвестиций:</strong></p>
+
+    <div class="economic-choice three">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Абсолютная экономическая эффективность<choicehint>Ответ неверный, так как основное назначение расчета – выбор наиболее эффективного варианта новой техники из альтернативных (прежней модели и новой)</choicehint></choice>
+                <choice correct="false">Анализ конкурентоспособности<choicehint>Ответ неверный, так как основное назначение расчета – выбор наиболее эффективного варианта новой техники из альтернативных (прежней модели и новой)</choicehint></choice>
+                <choice correct="true">Сравнительная экономическая эффективность</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <p><strong>При выполнении расчетов будет учитываться :</strong></p>
+
+    <div class="economic-choice four">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="false">низкая норма доходности<choicehint>Ответ неверный, так как при расчетах сравнительной экономической эффективности использование дисконтирования нехарактерно (норма доходности используется при расчете коэффициента дисконтирования)</choicehint></choice>
+                <choice correct="false">средняя норма доходности<choicehint>Ответ неверный, так как при расчетах сравнительной экономической эффективности использование дисконтирования нехарактерно (норма доходности используется при расчете коэффициента дисконтирования)</choicehint></choice>
+                <choice correct="false">высокая норма доходности<choicehint>Ответ неверный, так как при расчетах сравнительной экономической эффективности использование дисконтирования нехарактерно (норма доходности используется при расчете коэффициента дисконтирования)</choicehint></choice>
+                <choice correct="true">норма доходности учитываться не будет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <p><strong>При выполнении расчетов эффективности учет капвложений предполагает</strong></p>
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Общую сумму капитальных вложений<choicehint>Ответ неверный, так как совпадающие элементы капвложений не повлияют на выбор более эффективного варианта техники</choicehint></choice>
+                <choice correct="true">Элементы капитальных вложений, отличающиеся по вариантам</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <p><strong>При выполнении расчетов эффективности будет ли учитываться увеличение себестоимости улучшенной модели оборудования</strong></p>
+
+    <div class="economic-choice two">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">Будет<choicehint>Ответ неверный, так как потенциальных покупателей продукции (расчет ведется с позиции потребителя товара)интересует изменение цены на товар, а не изменение его себестоимости (и в абсолютном выражении и в процентах изменение себестоимости и цены товара могут не совпадать)</choicehint></choice>
+                <choice correct="true">Не будет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

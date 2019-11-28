@@ -1,0 +1,213 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+    <h2>Задание</h2>
+    <p>Используя метод суммирования определить норму доходности и рассчитать коэффициент дисконтирования за \(8\) лет.</p>
+    <h2>Исходные данные</h2>
+    <p>Предприятие планирует существенно расширить и обновить ассортимент выпускаемой продукции. Изучается вопрос экономической целесообразности внедрения инвестиционного проекта в по освоению выпуска и реализации нового вида продукции.</p>
+    <p>Срок жизни проекта и длительность расчетного периода составляют \(8\) лет, инвестиции осваиваются в нулевом периоде. Денежные потоки проекта определены на основании прогнозных цен (с учетом роста цен из-за инфляции).</p>
+    <p>Норма доходности (ставка дисконта) определяется методом суммирования.</p>
+    <p>Плановый уровень инфляции – \(4 \ \%\) в год.</p>
+    <p>Минимальная безрисковая доходность (реальная безрисковая доходность очищенная от инфляции) – \(5 \ \%\) в год.</p>
+
+    <p>Премия за риск (уровень предпринимательского риска) в связи с освоением выпуска новой продукции при в условиях значительной скорости изменения конъюнктуры рынка  – \(13 \ \%\) в год <i>(см. лекции по теме, табл. 2.5)</i>.</p>
+    <h2>Решение</h2>
+    <p>При определении нормы доходности по методу суммирования, норма доходности \((e)\) рассчитывается как сумма составляющих: уровня инфляции \((I_{инф})\), безрисковой доходности, очищенной от инфляции \((I_{д})\), и премии за предпринимательский риск \((I_{р})\). Инфляция учитывается,  так как все денежные потоки заданы с учетом инфляции.</p>
+    <p>\[ е = I_{инф} + I_{д} + I_{р} \]</p>
+
+    <p style="text-align: center;">\(e = 0.04 + 0.05 + 0.13 = 0.22\) или \(22 \ \%\)</p>
+
+    <p>Коэффициент дисконтирования рассчитывается для каждого t-го года реализации проекта по следующей формуле:</p>
+    <p>\[ Kд_{t} = \frac{1}{(1+e)^t} \]</p>
+    <p>При норме доходности \(22 \ \%\) коэффициент дисконтирования имеет вид:</p>
+
+    <p>\(Kд_{t} = \frac{1}{(1 + 0.22)^t}\) или \(Kд_{t} = \frac{1}{(1.22)^t}\)</p>
+
+    <p>Для снижения трудоёмкости расчета коэффициента за \(t\)-ый год можно не возводить в \(t\)-ую степень \(1.22\), а делить значение коэффициента за предыдущий год на \(1.22\):</p>
+
+    <ol>
+        <li>в первом году: \( \frac{1}{1.22} = 0.8197\); </li>
+        <li>во втором году: \( \frac{0.8197}{1.22} = 0.6719\);</li>
+        <li>в третьем году: \( \frac{0.6719}{1.22} = 0.5507\) и т.д. </li>
+    </ol>
+
+
+    <p>Самостоятельно рассчитайте коэффициенты дисконтирования для \(4\), \(5\) и \(6\)-го года.</p>
+    <p>Результаты расчета приведены в <i>таблице 2.1:</i></p>
+    <p style="text-align: right"><i>Таблица 2.1</i></p>
+    <p style="text-align: center">Расчет коэффициента дисконтирования</p>
+
+    <div class="no-equation no-trailing">
+    <table class="training-task">
+            <tr>
+                <th rowspan="2">
+                    Показатель
+                </th>
+                <th colspan="9">
+                    Годы проекта (шаги расчета)
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <strong>0</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>1</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>2</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>3</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>4</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>5</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>6</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>7</strong>
+                </td>
+                <td style="text-align: center">
+                    <strong>8</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    Коэффициент дисконтирования
+                </th>
+                <td>
+                    <span style="word-break: keep-all;">\(1.000\)</span>
+                </td>
+                <td>
+                    <span style="word-break: keep-all;">\(0.820\)</span>
+                </td>
+                <td>
+                    <span style="word-break: keep-all;">\(0.672\)</span>
+                </td>
+                <td>
+                    <span style="word-break: keep-all;">\(0.551\)</span>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.451">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.370">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.303">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <span style="word-break: keep-all;">\(0.249\)</span>
+                </td>
+                <td>
+                    <span style="word-break: keep-all;">\(0.204\)</span>
+                </td>
+            </tr>
+    </table>
+    </div>
+
+    <h2>Задача для самостоятельного решения</h2>
+
+    <p>Используя метод суммирования, определите норму доходности для оценки инвестиций, обеспечивающих интенсификацию производства на базе освоенной техники и технологии.</p>
+
+    <p>Денежные потоки инвестиционного проекта заданы в базовых (текущих) ценах.</p>
+
+    <p>Плановый уровень инфляции – \(4 \ \%\) в год.</p>
+
+    <p>Минимальная безрисковая доходность (реальная безрисковая доходность равна доходности, очищенной от инфляции) – \(4 \ \%\) в год.</p>
+
+    <p>При оценке уровня предпринимательского риска используйте минимальное значение поправки на риск из интервала, рекомендованного в конспекте лекций <i>(таблица 2.5)</i>.</p>
+
+    <div class="no-equation">
+        <div class="inline-numerical">
+            <div>
+                <span>Норма доходности =</span>
+            </div>
+            <numericalresponse answer="8">
+                <responseparam type="tolerance" default="0.01"/>
+                <formulaequationinput size="5" trailing_text=" %" />
+            </numericalresponse>
+        </div>
+    </div>
+
+    <p>При данной норме доходности коэффициент дисконтирования определяется по формуле:</p>
+
+    <div class="inline-numerical">
+        <div>
+            <span>\(Kд_t =\)</span>
+        </div>
+        <numericalresponse answer="1/1.08^t">
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+</problem>
