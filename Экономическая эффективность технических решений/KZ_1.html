@@ -1,0 +1,170 @@
+<problem>
+<style>
+    .training-task td, .training-task th{
+        margin: 20px 0 !important;
+        padding: 10px !important;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    .training-task th{
+        background: #eee;
+        font-weight: bold;
+    }
+
+    .inline-dropdown{
+        margin-bottom: 20px;
+    }
+
+    .inline-dropdown .indicator-container{
+        margin-left: 0px !important;
+    }
+
+    .no-equation .equation{
+        display: none !important;
+    }
+
+    .inline-numerical{
+        display: flex;
+        padding-bottom: 20px;
+    }
+    .inline-numerical div:first-of-type{
+        display: flex;
+        align-items: center;
+        padding-right: 15px;
+    }
+
+    .trailing_text{
+        margin-left: 10px;
+        word-break: keep-all;
+    }
+
+</style>
+<script type="loncapa/python">
+import math
+
+p_m = random.choice([1, -1])
+add_investments = random.randrange(0, 500, 10)
+add_additional_income = random.choice([0, 10, 20, 30, 40, 50])
+
+
+investments = 800 + (p_m * add_investments)
+additional_income = 200 + (p_m * add_additional_income)
+rate_of_return = random.choice([4, 5, 6, 7])
+
+cash_flow_1 = 0 - investments
+cash_flow_2 = additional_income
+cash_flow_3 = additional_income
+cash_flow_4 = additional_income
+cash_flow_5 = additional_income
+cash_flow_6 = additional_income
+
+lol = ["first", "prev"]
+prev_first = "first"
+
+if prev_first == "prev":
+    disc_pow_val = 0
+    prev_first_title = "к году предшествующему началу проекта"
+else:
+    disc_pow_val = 1
+    prev_first_title = "к первому году проекта"
+
+discount_coeff_1 = math.pow((1 / (1 + rate_of_return * 0.01)), (1 - disc_pow_val))
+discount_coeff_2 = math.pow((1 / (1 + rate_of_return * 0.01)), (2 - disc_pow_val))
+discount_coeff_3 = math.pow((1 / (1 + rate_of_return * 0.01)), (3 - disc_pow_val))
+discount_coeff_4 = math.pow((1 / (1 + rate_of_return * 0.01)), (4 - disc_pow_val))
+discount_coeff_5 = math.pow((1 / (1 + rate_of_return * 0.01)), (5 - disc_pow_val))
+discount_coeff_6 = math.pow((1 / (1 + rate_of_return * 0.01)), (6 - disc_pow_val))
+
+discount_cash_flow_1 = cash_flow_1 * discount_coeff_1
+discount_cash_flow_2 = cash_flow_2 * discount_coeff_2
+discount_cash_flow_3 = cash_flow_3 * discount_coeff_3
+discount_cash_flow_4 = cash_flow_4 * discount_coeff_4
+discount_cash_flow_5 = cash_flow_5 * discount_coeff_5
+discount_cash_flow_6 = cash_flow_6 * discount_coeff_6
+
+full_cash_flow = discount_cash_flow_1 + discount_cash_flow_2 + discount_cash_flow_3 + discount_cash_flow_4 + discount_cash_flow_5 + discount_cash_flow_6
+
+if full_cash_flow >= 0:
+    profitable_choice_0 = True
+    profitable_choice_1 = False
+else:
+    profitable_choice_0 = False
+    profitable_choice_1 = True
+
+</script>
+    <p><strong>Задание:</strong></p>
+    <ol>
+        <li>Прочитайте описание ситуации.</li>
+        <li>Определите дисконтированный денежный поток за расчетный период и оцените выгодность инвестиций за данный период.</li>
+        <li>Определите вид инвестиций в соответствии с указанным признаком.</li>
+        <li>В каждой строке выделите ячейку с правильным на ваш взгляд ответом.</li>
+    </ol>
+
+    <h2>Ситуация для расчета дисконтированного денежного потока и определения вида инвестиций по различным признакам</h2>
+
+    <p>Очистные сооружения производственного предприятия морально и физически устарели, предприятие несет большие затраты на их содержание и ремонт (в том числе аварийный). Предприятие выплачивает существенные платежи за загрязнение водного и воздушного бассейна и периодически получает штрафы за превышение предельно-допустимых концентраций вредных веществ (выплачиваются за счет чистой прибыли).</p>
+    <p>Кроме того, ужесточилось экологическое законодательство. Это привело не только к снижению прибыли от реализации продукции, но и к существенному росту штрафных санкций за выбросы вредных веществ, превышающие предельно допустимые концентрации. При дальнейшем ухудшении ситуации возможно судебное предписание об остановке производства.</p>
+    <p>Предприятие планирует реализовать проект по созданию новых очистных сооружений. Проект будет финансироваться за счет собственных средств.</p>
+
+    <p>Инвестиции в размере <strong>$investments млн.&#8381;</strong> осваиваются в течение первого года. Затем предприятие ежегодно планирует получать дополнительные доходы (от снижения экологических платежей) в размере <strong>$additional_income млн.&#8381;</strong>.</p>
+    <p>Норма доходности – <strong>$rate_of_return %</strong>.</p>
+    <p>Расчетный период – <strong>6 лет</strong>.</p>
+    <p>Потоки стоимости приводятся <strong>$prev_first_title</strong>.</p>
+
+    <p>Ответ: дисконтированный денежный поток за расчетный период составил $full_cash_flow</p>
+
+    <div class="no-equation">
+        <p></p>
+        <div class="inline-numerical">
+            <div>
+                <span>Дисконтированный денежный поток за расчетный период составил</span>
+            </div>
+            <numericalresponse answer="$full_cash_flow">
+                <responseparam type="tolerance" default="0.2"/>
+                <formulaequationinput size="5" trailing_text="млн. &#8381;" />
+            </numericalresponse>
+        </div>
+    </div>
+
+    <multiplechoiceresponse>
+        <label>Инвестиции в данном расчетном периоде:</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$profitable_choice_0">выгодны</choice>
+            <choice correct="$profitable_choice_1">невыгодны</choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+
+<!--    <p>плюс-минус: $p_m</p>-->
+<!--    <p> + add_investments: $add_investments</p>-->
+<!--    <p> + add_additional_income: $add_additional_income</p>-->
+
+<!--    <p> investments: $investments</p>-->
+<!--    <p> additional_income: $additional_income</p>-->
+<!--    <p> rate_of_return: $rate_of_return %</p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p>$prev_first_title</p>-->
+
+<!--    <p>Денежный поток года 1: $cash_flow_1</p>-->
+<!--    <p>Денежный поток года 2: $cash_flow_2</p>-->
+<!--    <p>Денежный поток года 3: $cash_flow_3</p>-->
+<!--    <p>Денежный поток года 4: $cash_flow_4</p>-->
+<!--    <p>Денежный поток года 5: $cash_flow_5</p>-->
+<!--    <p>Денежный поток года 6: $cash_flow_6</p>-->
+
+<!--    <p>Коэффициент дисконтирования года 1: $discount_coeff_1</p>-->
+<!--    <p>Коэффициент дисконтирования года 2: $discount_coeff_2</p>-->
+<!--    <p>Коэффициент дисконтирования года 3: $discount_coeff_3</p>-->
+<!--    <p>Коэффициент дисконтирования года 4: $discount_coeff_4</p>-->
+<!--    <p>Коэффициент дисконтирования года 5: $discount_coeff_5</p>-->
+<!--    <p>Коэффициент дисконтирования года 6: $discount_coeff_6</p>-->
+
+<!--    <p>Дисконтированный денежный поток года 1: $discount_cash_flow_1</p>-->
+<!--    <p>Дисконтированный денежный поток года 2: $discount_cash_flow_2</p>-->
+<!--    <p>Дисконтированный денежный поток года 3: $discount_cash_flow_3</p>-->
+<!--    <p>Дисконтированный денежный поток года 4: $discount_cash_flow_4</p>-->
+<!--    <p>Дисконтированный денежный поток года 5: $discount_cash_flow_5</p>-->
+<!--    <p>Дисконтированный денежный поток года 6: $discount_cash_flow_6</p>-->
+
+
+</problem>
