@@ -1,0 +1,283 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+    <h2>Задание</h2>
+
+
+    <p>Цель: освоение навыков расчета показателей коммерческой эффективности проекта</p>
+    <p>Определить:</p>
+    <ol>
+        <li>Чистый дисконтированный доход по инвестиционному проекту</li>
+        <li>Срок окупаемости проекта</li>
+    </ol>
+    <p>Рекомендуется использовать материалы видеопрактикума по расчету показателей эффективности инвестиционного проекта. Расчеты могут быть выполнены с помощью <i>MS Excel</i> или <i>Google-таблиц</i>.</p>
+
+    <p style="text-align: center">Исходные данные для самостоятельного решения</p>
+
+    <table style="width: 100%" class="training-task">
+        <tr>
+            <th rowspan="2">
+                Наименование показателя
+            </th>
+            <th colspan="5">
+                Горизонт расчета(номер года)
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                <strong>1</strong>
+            </td>
+            <td style="text-align: center">
+                <strong>2</strong>
+            </td>
+            <td style="text-align: center">
+                <strong>3</strong>
+            </td>
+            <td style="text-align: center">
+                <strong>4</strong>
+            </td>
+            <td style="text-align: center">
+                <strong>5</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Выручка от реализации ВР
+            </td>
+            <td style="text-align: center">
+                \(-\)
+            </td>
+            <td style="text-align: center">
+                \(20\)
+            </td>
+            <td style="text-align: center">
+                \(35\)
+            </td>
+            <td style="text-align: center">
+                \(40\)
+            </td>
+            <td style="text-align: center">
+                \(45\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Текущие затраты <strong>С</strong>, включая <strong>А = 2 ДЕ</strong>
+            </td>
+            <td style="text-align: center">
+                \(-\)
+            </td>
+            <td style="text-align: center">
+                \(15.5\)
+            </td>
+            <td style="text-align: center">
+                \(21.8\)
+            </td>
+            <td style="text-align: center">
+                \(22.5\)
+            </td>
+            <td style="text-align: center">
+                \(22.5\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Единовременные затраты <strong>И</strong>
+            </td>
+            <td style="text-align: center">
+                \(10\)
+            </td>
+            <td style="text-align: center">
+                \(3\)
+            </td>
+            <td style="text-align: center">
+                \(-\)
+            </td>
+            <td style="text-align: center">
+                \(-\)
+            </td>
+            <td style="text-align: center">
+                \(-\)
+            </td>
+        </tr>
+    </table>
+
+    <p>Горизонт расчета (расчетный период) – \(5\) лет. Ликвидационного дохода не предполагается. Ставка налога на прибыль – \(20 \ \%\).</p>
+    <p>Требуемая доходность (норма дисконта) – \(12 \ \%\) годовых.</p>
+    <p>Результаты расчетов с точностью до двух знаков после запятой внесите в таблицу.</p>
+    <p><i>Примечание: При выполнении расчетов с помощью электронных таблиц коэффициент дисконтирования следует округлить до двух знаков после запятой по правилам математики.</i></p>
+
+
+    <div class="no-equation no-trailing">
+        <table class="training-task">
+            <tr>
+                <th rowspan="2">
+                    Показатели
+                </th>
+                <th colspan="7" style="text-align: center">
+                    Годы проекта (t)
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center"><strong>0</strong></td>
+                <td style="text-align: center"><strong>1</strong></td>
+                <td style="text-align: center"><strong>2</strong></td>
+                <td style="text-align: center"><strong>3</strong></td>
+                <td style="text-align: center"><strong>4</strong></td>
+                <td style="text-align: center"><strong>5</strong></td>
+                <td style="text-align: center"><strong>6</strong></td>
+            </tr>
+            <tr>
+                <td colspan="8" style="text-align: center"><strong>Исходные данные</strong></td>
+            </tr>
+            <tr>
+                <td><strong>1.</strong> Инвестиции</td>
+                <td>\(950\)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>2.</strong> Доходы</td>
+                <td></td>
+                <td>\(300\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(350\)</td>
+            </tr>
+            <tr>
+                <td><strong>3.</strong> Денежный поток (стр.1-стр.2)</td>
+                <td>\(-950\)</td>
+                <td>\(300\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(400\)</td>
+                <td>\(350\)</td>
+            </tr>
+            <tr>
+                <td colspan="8" style="text-align: center"><strong>Решение</strong></td>
+            </tr>
+            <tr>
+                <td><strong>4.</strong> Коэффициент дисконтирования \((Kд_t = \frac{1}{1.15^t})\)</td>
+                <td>\(1\)</td>
+                <td>\(0.8696\)</td>
+                <td>\(0.7561\)</td>
+                <td>\(0.6575\)</td>
+                <td>\(0.5718\)</td>
+                <td>\(0.4972\)</td>
+                <td>\(0.4323\)</td>
+            </tr>
+            <tr>
+                <td><strong>5.</strong> Дисконтированный денежный поток (стр.3*стр.4)</td>
+                <td>\(-950.0\)</td>
+                <td>\(260.9\)</td>
+                <td>\(302.5\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="263.0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="228.7">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="198.9">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td>\(151.3\)</td>
+            </tr>
+            <tr>
+                <td><strong>6.</strong> Дисконтированный денежный поток нарастающим итогом *</td>
+                <td>\(-950.0\)</td>
+                <td>\(-689.1\)</td>
+                <td>\(-386.7\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="-123.7">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="105.0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="303.9">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="2" />
+                    </numericalresponse>
+                </td>
+                <td>\(455.2\)</td>
+            </tr>
+        </table>
+        <p><i>* Нарастающий итог \(t\)-го периода равен сумме всех значений от нулевого до \(t\)-го периода. Например, в третьем году дисконтированный денежный поток нарастающим итогом равен \((-950.0 + 260.9 + 302.5)\)  или сумме нарастающего итога за предыдущий период и дисконтированного денежного потока за данный период \((-689.1 + 302.5)\). Округления производятся по обычным правилам.</i></p>
+    </div>
+    
+
+</problem>

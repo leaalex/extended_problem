@@ -6,17 +6,32 @@
         .economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
             display: none !important;
         }
+        .economic-choice .field {
+            word-break: keep-all;
+        }
+        .economic-choice.height80px .field {
+            min-height: 80px;
+        }
+        .economic-choice.height100px .field {
+            min-height: 100px;
+        }
+        .economic-choice.height150px .field {
+            min-height: 150px;
+        }
         .economic-choice.two .field {
             width: calc(100% / 2 - 4px);
-            display: inline-block;
+            display: inline-flex;
+            min-width: 200px;
         }
         .economic-choice.three .field {
             width: calc(100% / 3 - 4px);
-            display: inline-block;
+            display: inline-flex;
+            min-width: 250px;
         }
         .economic-choice.four .field {
             width: calc(100% / 4 - 4px);
-            display: inline-block;
+            display: inline-flex;
+            min-width: 200px;
         }
     </style>
 

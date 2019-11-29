@@ -1,0 +1,50 @@
+.economic-choice {
+  padding-bottom: 20px;
+
+  .hint-label, .indicator-container, .explanation-title {
+    display: none !important;
+  }
+
+  .field{
+    word-break: keep-all;
+  }
+  &.height80px{
+    .field{
+      min-height: 80px;
+    }
+  }
+  &.height100px{
+    .field{
+      min-height: 100px;
+    }
+  }
+  &.height150px{
+    .field{
+      min-height: 150px;
+    }
+  }
+
+  &.two {
+    .field {
+      width: calc(100% / 2 - 4px);
+      display: inline-flex;
+      min-width: 200px;
+    }
+  }
+
+  &.three {
+    .field {
+      width: calc(100% / 3 - 4px);
+      display: inline-flex;
+      min-width: 250px;
+    }
+  }
+
+  &.four {
+    .field {
+      width: calc(100% / 4 - 4px);
+      display: inline-flex;
+      min-width: 200px;
+    }
+  }
+}

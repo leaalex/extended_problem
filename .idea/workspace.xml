@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/2.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/2.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/3.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/Задание 4.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/4.1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sage_ifarme.html" beforeDir="false" afterPath="$PROJECT_DIR$/sage_ifarme.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/6.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/6.2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Тестовые штуки/test_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/Тестовые штуки/test_css.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Тестовые штуки/test_css.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Тестовые штуки/test_css.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Тестовые штуки/test_css.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Тестовые штуки/test_css.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1_1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/1.4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/3.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/3.1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/3.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/3.2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +303,7 @@
       <workItem from="1572924491234" duration="600000" />
       <workItem from="1573038414565" duration="49120000" />
       <workItem from="1573650937296" duration="55863000" />
-      <workItem from="1574760825791" duration="21906000" />
+      <workItem from="1574760825791" duration="29649000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -358,6 +361,10 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="847" y="352" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1574927917149" />
+    <state x="526" y="438" width="672" height="678" key="search.everywhere.popup" timestamp="1575038435692">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="526" y="438" width="672" height="678" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1575038435692" />
   </component>
   <component name="masterDetails">
     <states>
