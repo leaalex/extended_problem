@@ -1,0 +1,493 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 5px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+            height: 30px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+    <h2>Задание</h2>
+    <p><strong>Цель: получение навыков оценки коммерческой эффективности проекта</strong></p>
+    <p>Характеристика инвестиционного проекта:</p>
+    <p>Предприятие планирует начать выпуск усовершенствованной модели традиционного продукта, для чего необходимо приобрести, установить новое оборудование и организовать работу нового подразделения на имеющихся площадях. Для выполнения всех работ, начиная с оплаты оборудования, необходимо \(6\) месяцев, с начала следующего года предприятие приступает к производству продукта. Ожидаемый срок производства продукта \(4\) года. Ежегодно производится и отгружается заказчику одинаковое количество продукции. Цена продукта принимается в расчетах постоянной и составляет \(70\) Д.Е.. Реализация приобретенного имущества в конце срока осуществления проекта не планируется. Требуемая доходность (норма дисконта) – \(10 \ \%\) годовых.</p>
+
+    <p>Затраты на:</p>
+    <ul>
+        <li>покупку оборудования составят \(20\) тыс. Д.Е.;</li>
+        <li>заработную плату монтажников оборудования – \(3\) тыс. Д.Е.;</li>
+        <li>подготовку производства – \(2\) тыс. Д.Е.;</li>
+        <li>пополнение оборотных средств – \(1\) тыс. Д.Е.;</li>
+        <li>основные материалы на одно изделие - \(30\) Д.Е..</li>
+    </ul>
+
+    <p>Постоянные затраты на объем производства – \(20\) тыс. Д.Е., включая амортизационные отчисления – \(2.5\) тыс. Д.Е.</p>
+    <p>Планируемый годовой объем производства остается неизменным и составляет \(1\) тыс. штук.</p>
+    <p>Единовременные затраты осуществляются до начала производства.</p>
+
+    <p>График проекта:</p>
+    <table class="training-task" style="width: 100%">
+        <tr>
+            <td></td>
+            <th colspan="5" style="text-align: center;">Расчетный период
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <strong>0-ой год</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>1-й год</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>2-ой год</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>3-ий год</strong>
+            </td>
+            <td style="text-align: center;">
+                <strong>4-ый год</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="color: #548dd4;">Инвестиции</span>
+            </td>
+            <td style="background: #97bdec; width: 15%;"></td>
+            <td style="width: 15%;"></td>
+            <td style="width: 15%;"></td>
+            <td style="width: 15%;"></td>
+            <td style="width: 15%;"></td>
+        </tr>
+        <tr>
+            <td>
+                <span style="color: #e36c0a;">Эксплуатация</span>
+            </td>
+            <td></td>
+            <td style="background: #ffa357;"></td>
+            <td style="background: #ffa357;"></td>
+            <td style="background: #ffa357;"></td>
+            <td style="background: #ffa357;"></td>
+        </tr>
+    </table>
+
+    <p>Определить:</p>
+    <ol>
+        <li>Инвестиции.</li>
+        <li>Текущие затраты.</li>
+        <li>Чистый дисконтированный доход проекта.</li>
+        <li>Построить график финансового профиля проекта, с учетом продолжительности каждого шага расчета.</li>
+        <li>Определить дисконтированный срок окупаемости проекта. Срок окупаемости определять по графику финансового профиля проекта (с учетом продолжительности каждого шага расчета).</li>
+    </ol>
+    <p><i>Округление значений в процессе расчетов проводить на каждом этапе расчета до двух знаков после запятой. Дробная часть вводтся через точку.</i></p>
+
+    <p><strong>Результаты расчета:</strong></p>
+
+
+    <div class="no-equation">
+        <div class="inline-numerical">
+            <div>
+                <span>Чистый дисконтированный доход <strong>(ЧДД)</strong> проекта = </span>
+            </div>
+            <numericalresponse answer="32.66">
+                <responseparam type="tolerance" default="0.1"/>
+                <formulaequationinput size="5" trailing_text="тыс. ДЕ" />
+            </numericalresponse>
+        </div>
+        <div class="inline-numerical">
+            <div>
+                <span>Дисконтированный срок окупаемости проекта = </span>
+            </div>
+            <numericalresponse answer="2.1">
+                <responseparam type="tolerance" default="0.1"/>
+                <formulaequationinput size="5" trailing_text="лет" />
+            </numericalresponse>
+        </div>
+
+        <multiplechoiceresponse>
+            <label>Инвестиционный проект следует признать:</label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">полученные результаты не позволяют принять однозначное решение</choice>
+                <choice correct="false">неэффективным</choice>
+                <choice correct="true">эффективным</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <solution>
+            <div class="detailed-solution">
+                <figure style="text-align:center;">
+                    <img src="/static/photo_2019-11-30_14-58-56.jpg" alt="" style="max-width: 500px;"/>
+                    <figcaption></figcaption>
+                </figure>
+                <p></p>
+            </div>
+        </solution>
+
+    </div>
+
+
+    <div class="no-equation no-trailing">
+        <table class="training-task" style="width: 100%">
+            <tr>
+                <th rowspan="2" style="text-align: center">
+<!--                    Наименование показателя-->
+                </th>
+                <th colspan="5" style="text-align: center">
+                    Расчетный период
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center"><strong>1-й год,<br /> полугодие</strong></td>
+                <td style="text-align: center"><strong>2-ой год</strong></td>
+                <td style="text-align: center"><strong>3-ий год</strong></td>
+                <td style="text-align: center"><strong>4-ый год</strong></td>
+                <td style="text-align: center"><strong>5-ый год</strong></td>
+            </tr>
+            <tr>
+                <td>Выручка от продаж в текущих ценах, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="70">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="70">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="70">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="70">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Текущие затраты, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="50">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="50">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="50">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="50">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Единовременные затраты <strong>И</strong>, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="26">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                </td>
+            </tr>
+            <tr>
+                <td>Прибыль <strong>П</strong>, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="20">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="20">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="20">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="20">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Чистая прибыль <strong>ЧП</strong> (Нп = 20%), <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="16">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="16">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="16">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="16">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Скорректированная чистая прибыль, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Чистый доход <strong>ЧД</strong>, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="-26">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="18.5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Коэффициент дисконтирования <strong>Кд</strong> (Нд = 10 % )</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="1.0">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.91">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.83">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.75">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="0.68">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Чистый дисконтированный доход по шагам (годам) <strong>ЧДД</strong>, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="-26">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="16.84">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="15.36">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="13.88">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="12.58">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>ЧДД</strong> нарастающим итогом, <i>тыс. Д.Е.</i></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="-26">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="-9.16">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="6.2">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="20.08">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="32.66">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="4" />
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+</problem>
