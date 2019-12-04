@@ -1,0 +1,540 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 5px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+            height: 30px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+<script type="loncapa/python">
+import math
+import random
+
+variants = [
+    {
+        "revenue_year_1": 22,
+        "revenue_year_2": 24,
+        "revenue_year_3": 26,
+        "revenue_year_4": 28,
+
+        "expenses_year_1": 16,
+        "expenses_year_2": 17,
+        "expenses_year_3": 17.5,
+        "expenses_year_4": 18.2,
+
+        "depreciation": 1.5,
+
+        "initial_investment": 21,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 40,
+        "revenue_year_2": 46,
+        "revenue_year_3": 52,
+        "revenue_year_4": 60,
+
+        "expenses_year_1": 32,
+        "expenses_year_2": 34,
+        "expenses_year_3": 36,
+        "expenses_year_4": 42,
+
+        "depreciation": 3,
+
+        "initial_investment": 40,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 25,
+        "revenue_year_2": 28,
+        "revenue_year_3": 32,
+        "revenue_year_4": 34,
+
+        "expenses_year_1": 19,
+        "expenses_year_2": 21,
+        "expenses_year_3": 23,
+        "expenses_year_4": 24,
+
+        "depreciation": 2,
+
+        "initial_investment": 35,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 44,
+        "revenue_year_2": 48,
+        "revenue_year_3": 52,
+        "revenue_year_4": 56,
+
+        "expenses_year_1": 36,
+        "expenses_year_2": 38,
+        "expenses_year_3": 40,
+        "expenses_year_4": 42,
+
+        "depreciation": 3.5,
+
+        "initial_investment": 45,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 35,
+        "revenue_year_2": 38,
+        "revenue_year_3": 41,
+        "revenue_year_4": 44,
+
+        "expenses_year_1": 28,
+        "expenses_year_2": 29,
+        "expenses_year_3": 30,
+        "expenses_year_4": 31,
+
+        "depreciation": 2,
+
+        "initial_investment": 34,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 28,
+        "revenue_year_2": 31,
+        "revenue_year_3": 34,
+        "revenue_year_4": 37,
+
+        "expenses_year_1": 23,
+        "expenses_year_2": 24,
+        "expenses_year_3": 25,
+        "expenses_year_4": 26,
+
+        "depreciation": 1.5,
+
+        "initial_investment": 24,
+        "discount": 12,
+    },
+    {
+        "revenue_year_1": 50,
+        "revenue_year_2": 55,
+        "revenue_year_3": 60,
+        "revenue_year_4": 65,
+
+        "expenses_year_1": 42,
+        "expenses_year_2": 45,
+        "expenses_year_3": 48,
+        "expenses_year_4": 50,
+
+        "depreciation": 3.5,
+
+        "initial_investment": 46,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 80,
+        "revenue_year_2": 88,
+        "revenue_year_3": 96,
+        "revenue_year_4": 104,
+
+        "expenses_year_1": 65,
+        "expenses_year_2": 68,
+        "expenses_year_3": 73,
+        "expenses_year_4": 77,
+
+        "depreciation": 5,
+
+        "initial_investment": 70,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 70,
+        "revenue_year_2": 74,
+        "revenue_year_3": 78,
+        "revenue_year_4": 82,
+
+        "expenses_year_1": 58,
+        "expenses_year_2": 59,
+        "expenses_year_3": 60,
+        "expenses_year_4": 61,
+
+        "depreciation": 4,
+
+        "initial_investment": 55,
+        "discount": 12,
+    },
+    {
+        "revenue_year_1": 75,
+        "revenue_year_2": 84,
+        "revenue_year_3": 96,
+        "revenue_year_4": 102,
+
+        "expenses_year_1": 57,
+        "expenses_year_2": 63,
+        "expenses_year_3": 69,
+        "expenses_year_4": 72,
+
+        "depreciation": 4.5,
+
+        "initial_investment": 65,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 55,
+        "revenue_year_2": 55,
+        "revenue_year_3": 60,
+        "revenue_year_4": 60,
+
+        "expenses_year_1": 42,
+        "expenses_year_2": 42,
+        "expenses_year_3": 43,
+        "expenses_year_4": 43,
+
+        "depreciation": 3,
+
+        "initial_investment": 40,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 38,
+        "revenue_year_2": 38,
+        "revenue_year_3": 50,
+        "revenue_year_4": 50,
+
+        "expenses_year_1": 27,
+        "expenses_year_2": 27,
+        "expenses_year_3": 34,
+        "expenses_year_4": 34,
+
+        "depreciation": 3,
+
+        "initial_investment": 42,
+        "discount": 12,
+    },
+    {
+        "revenue_year_1": 60,
+        "revenue_year_2": 60,
+        "revenue_year_3": 70,
+        "revenue_year_4": 70,
+
+        "expenses_year_1": 45,
+        "expenses_year_2": 45,
+        "expenses_year_3": 48,
+        "expenses_year_4": 48,
+
+        "depreciation": 2,
+
+        "initial_investment": 33,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 68,
+        "revenue_year_2": 68,
+        "revenue_year_3": 80,
+        "revenue_year_4": 80,
+
+        "expenses_year_1": 53,
+        "expenses_year_2": 53,
+        "expenses_year_3": 56,
+        "expenses_year_4": 56,
+
+        "depreciation": 3,
+
+        "initial_investment": 41,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 48,
+        "revenue_year_2": 54,
+        "revenue_year_3": 54,
+        "revenue_year_4": 70,
+
+        "expenses_year_1": 35,
+        "expenses_year_2": 37,
+        "expenses_year_3": 37,
+        "expenses_year_4": 42,
+
+        "depreciation": 3.5,
+
+        "initial_investment": 44,
+        "discount": 12,
+    },
+    {
+        "revenue_year_1": 100,
+        "revenue_year_2": 120,
+        "revenue_year_3": 135,
+        "revenue_year_4": 140,
+
+        "expenses_year_1": 85,
+        "expenses_year_2": 100,
+        "expenses_year_3": 110,
+        "expenses_year_4": 115,
+
+        "depreciation": 4,
+
+        "initial_investment": 50,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 90,
+        "revenue_year_2": 90,
+        "revenue_year_3": 100,
+        "revenue_year_4": 100,
+
+        "expenses_year_1": 75,
+        "expenses_year_2": 75,
+        "expenses_year_3": 78,
+        "expenses_year_4": 78,
+
+        "depreciation": 2,
+
+        "initial_investment": 36,
+        "discount": 10,
+    },
+    {
+        "revenue_year_1": 58,
+        "revenue_year_2": 70,
+        "revenue_year_3": 70,
+        "revenue_year_4": 70,
+
+        "expenses_year_1": 40,
+        "expenses_year_2": 48,
+        "expenses_year_3": 48,
+        "expenses_year_4": 48,
+
+        "depreciation": 4,
+
+        "initial_investment": 54,
+        "discount": 12,
+    },
+    {
+        "revenue_year_1": 65,
+        "revenue_year_2": 75,
+        "revenue_year_3": 80,
+        "revenue_year_4": 85,
+
+        "expenses_year_1": 50,
+        "expenses_year_2": 55,
+        "expenses_year_3": 58,
+        "expenses_year_4": 60,
+
+        "depreciation": 4,
+
+        "initial_investment": 52,
+        "discount": 11,
+    },
+    {
+        "revenue_year_1": 49,
+        "revenue_year_2": 49,
+        "revenue_year_3": 60,
+        "revenue_year_4": 60,
+
+        "expenses_year_1": 35,
+        "expenses_year_2": 35,
+        "expenses_year_3": 39,
+        "expenses_year_4": 39,
+
+        "depreciation": 4.5,
+
+        "initial_investment": 60,
+        "discount": 10,
+    }
+]
+
+variant = variants[1]
+
+revenue_year_0 = 0
+revenue_year_1 = variant["revenue_year_1"]
+revenue_year_2 = variant["revenue_year_2"]
+revenue_year_3 = variant["revenue_year_3"]
+revenue_year_4 = variant["revenue_year_4"]
+
+expenses_year_0 = 0
+expenses_year_1 = variant["expenses_year_1"]
+expenses_year_2 = variant["expenses_year_2"]
+expenses_year_3 = variant["expenses_year_3"]
+expenses_year_4 = variant["expenses_year_4"]
+
+depreciation = variant["depreciation"]
+initial_investment = variant["initial_investment"]
+discount = variant["discount"]
+
+main_coef = 1.2
+
+revenue_year_1 = revenue_year_1 * main_coef
+revenue_year_2 = revenue_year_2 * main_coef
+revenue_year_3 = revenue_year_3 * main_coef
+revenue_year_4 = revenue_year_4 * main_coef
+expenses_year_1 = expenses_year_1 * main_coef
+expenses_year_2 = expenses_year_2 * main_coef
+expenses_year_3 = expenses_year_3 * main_coef
+expenses_year_4 = expenses_year_4 * main_coef
+depreciation = depreciation * main_coef
+initial_investment = initial_investment * main_coef
+
+discount = random.choice([10, 11, 12])
+
+
+net_income_0 = (revenue_year_0 - expenses_year_0) * 0.8 + 0 - initial_investment
+net_income_1 = (revenue_year_1 - expenses_year_1) * 0.8 + depreciation
+net_income_2 = (revenue_year_2 - expenses_year_2) * 0.8 + depreciation
+net_income_3 = (revenue_year_3 - expenses_year_3) * 0.8 + depreciation
+net_income_4 = (revenue_year_4 - expenses_year_4) * 0.8 + depreciation
+
+coef_disc_year_0 = round(1 / math.pow((1 + (0.01*discount)), 0), 2)
+coef_disc_year_1 = round(1 / math.pow((1 + (0.01*discount)), 1), 2)
+coef_disc_year_2 = round(1 / math.pow((1 + (0.01*discount)), 2), 2)
+coef_disc_year_3 = round(1 / math.pow((1 + (0.01*discount)), 3), 2)
+coef_disc_year_4 = round(1 / math.pow((1 + (0.01*discount)), 4), 2)
+
+chdd_1_year_0 = round(coef_disc_year_0 * net_income_0, 2)
+chdd_1_year_1 = round(coef_disc_year_1 * net_income_1, 2)
+chdd_1_year_2 = round(coef_disc_year_2 * net_income_2, 2)
+chdd_1_year_3 = round(coef_disc_year_3 * net_income_3, 2)
+chdd_1_year_4 = round(coef_disc_year_4 * net_income_4, 2)
+
+chdd_2_year_0 = chdd_1_year_0
+chdd_2_year_1 = chdd_1_year_1 + chdd_2_year_0
+chdd_2_year_2 = chdd_1_year_2 + chdd_2_year_1
+chdd_2_year_3 = chdd_1_year_3 + chdd_2_year_2
+chdd_2_year_4 = chdd_1_year_4 + chdd_2_year_3
+
+
+pays_off_year_1 = False
+pays_off_year_2 = False
+pays_off_year_3 = False
+pays_off_year_4 = False
+pays_off_not = False
+
+if chdd_2_year_1 > 0:
+    pays_off_year_1 = True
+elif chdd_2_year_2 > 0:
+    pays_off_year_2 = True
+elif chdd_2_year_3 > 0:
+    pays_off_year_3 = True
+elif chdd_2_year_4 > 0:
+    pays_off_year_4 = True
+else:
+    pays_off_not = True
+
+</script>
+
+    <p>discount = $discount</p>
+
+    <p>Когда окупается: </p>
+    <p>1 год: $pays_off_year_1</p>
+    <p>2 год: $pays_off_year_2</p>
+    <p>3 год: $pays_off_year_3</p>
+    <p>4 год: $pays_off_year_4</p>
+    <p>Никогда: $pays_off_not</p>
+
+    <table class="training-task">
+        <tr>
+            <th></th>
+            <th>0 год</th>
+            <th>1 год</th>
+            <th>2 год</th>
+            <th>3 год</th>
+            <th>4 год</th>
+        </tr>
+        <tr>
+            <td>
+                Выручка от продаж в текущих ценах, тыс. Д.Е.
+            </td>
+            <td>$revenue_year_0</td>
+            <td>$revenue_year_1</td>
+            <td>$revenue_year_2</td>
+            <td>$revenue_year_3</td>
+            <td>$revenue_year_4</td>
+        </tr>
+        <tr>
+            <td>Текущие затраты, тыс. Д.Е.</td>
+            <td>$expenses_year_0</td>
+            <td>$expenses_year_1</td>
+            <td>$expenses_year_2</td>
+            <td>$expenses_year_3</td>
+            <td>$expenses_year_4</td>
+        </tr>
+        <tr>
+            <td>Единовременные затраты И, тыс. Д.Е.(начальные инвестиции)</td>
+            <td>$initial_investment</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Чистый доход ЧД, тыс. Д.Е.</td>
+            <td>$net_income_0</td>
+            <td>$net_income_1</td>
+            <td>$net_income_2</td>
+            <td>$net_income_3</td>
+            <td>$net_income_4</td>
+        </tr>
+        <tr>
+            <td>Коэффициент дисконтирования Кд (е = 10% )</td>
+            <td>$coef_disc_year_0</td>
+            <td>$coef_disc_year_1</td>
+            <td>$coef_disc_year_2</td>
+            <td>$coef_disc_year_3</td>
+            <td>$coef_disc_year_4</td>
+        </tr>
+        <tr>
+            <td>Чистый дисконтированный доход по шагам (годам) ЧДД, тыс. Д.Е.</td>
+            <td>$chdd_1_year_0</td>
+            <td>$chdd_1_year_1</td>
+            <td>$chdd_1_year_2</td>
+            <td>$chdd_1_year_3</td>
+            <td>$chdd_1_year_4</td>
+        </tr>
+        <tr>
+            <td>ЧДД нарастающим итогом, тыс. Д.Е.</td>
+            <td>$chdd_2_year_0</td>
+            <td>$chdd_2_year_1</td>
+            <td>$chdd_2_year_2</td>
+            <td>$chdd_2_year_3</td>
+            <td>$chdd_2_year_4</td>
+        </tr>
+    </table>
+
+</problem>

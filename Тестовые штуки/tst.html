@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<textarea id="task_text" style="margin: 0px;width: 100%;height: 40rem;"></textArea>
+
+<script type="text/javascript">
+
+
+let id = Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
+
+let task_wording = "Соотнесите событие и дату.";
+
+let left_col_name = "Событие";
+let right_col_name = "Дата";
+
+let left_values = [
+
+"Пуск Горьковского автомобильного завода",
+"Франко-советский договор о взаимопомощи",
+"Мюнхенский договор Германии, Великобритании, Франции и Италии",
+"Высылка Л. Д. Троцкого за границу СССР",
+"Принятие «сталинской» конституции СССР",
+
+
+];
+
+
+
+let right_values = [
+
+"1932 г.",
+"1935 г.",
+"1938 г.",
+"1929 г.",
+"1936 г.",
+
+];
+
+let all_values = "Даты:";
+
+let width_val = "70%";
+
+
+
+
+let task =`<problem>
+<script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_${id}"
+
+correct_answer = {"a1":["b1"], "a2":["b2"], "a3":["b3"], "a4":["b4"], "a5":["b5"]}
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+    elif check_type == 'check_or':
+        response = check_or(correct_answer, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+<\/script>
+
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+<\/script>
+
+<script type="text/javascript" src="/static/sortable.js"><\/script>
+
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+<\/script>
+<style>
+    #$unique_id .text-fixed-width{
+        width: ${width_val};
+    }
+
+    #$unique_id .text-fixed-height{
+          height: 50px;
+      }
+
+</style>
+
+<script type="text/javascript" src="/static/matching_table_mobile.js"><\/script>
+
+<p>${task_wording}</p>
+<div class="matching_table disable-marker" id="$unique_id">
+    <table class="conf-table">
+        <tr>
+            <th class="conf-text conf-header text-fixed-width">
+                ${left_col_name}</th>
+            <th class="conf-text conf-header">
+                ${right_col_name}
+            </th>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-height">${left_values[0]}</td>
+            <td id="a1" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-height">${left_values[1]}</td>
+            <td id="a2" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-height">${left_values[2]}</td>
+            <td id="a3" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr>
+            <td class="conf-text text-fixed-height">${left_values[3]}</td>
+            <td id="a4" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+
+        <tr>
+            <td class="conf-text text-fixed-height">${left_values[4]}</td>
+            <td id="a5" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+    </table>
+
+    <p><strong>${all_values}</strong></p>
+
+    <div id="conf-id" class="conf-answers-place conf-inputable conf-all-answers ones">
+
+        <div id="b1" class="conf-item conf-draggable">${right_values[0]}</div>
+        <div id="b2" class="conf-item conf-draggable">${right_values[1]}</div>
+        <div id="b3" class="conf-item conf-draggable">${right_values[2]}</div>
+        <div id="b4" class="conf-item conf-draggable">${right_values[3]}</div>
+        <div id="b5" class="conf-item conf-draggable">${right_values[4]}</div>
+
+    </div>
+
+    <div id="matching_table_input" style="display: none !important;">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+
+        <div class="message-about-grade"></div>
+    </div>
+
+    <solution>
+        <div class="detailed-solution">
+
+            <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
+
+            <table class="conf-table">
+                <tr>
+                    <th class="conf-text conf-header text-fixed-width">
+                        ${left_col_name}</th>
+                    <th class="conf-text conf-header">
+                        ${right_col_name}
+                    </th>
+                </tr>
+
+                <tr>
+                    <td class="conf-text text-fixed-height">${left_values[0]}</td>
+                    <td class="input-place"><div class="conf-item">${right_values[0]}</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text text-fixed-height">${left_values[1]}</td>
+                    <td class="input-place"><div class="conf-item">${right_values[1]}</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text text-fixed-height">${left_values[2]}</td>
+                    <td class="input-place"><div class="conf-item">${right_values[2]}</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text text-fixed-height">${left_values[3]}</td>
+                    <td class="input-place"><div class="conf-item">${right_values[3]}</div></td>
+                </tr>
+                <tr>
+                    <td class="conf-text text-fixed-height">${left_values[4]}</td>
+                    <td class="input-place"><div class="conf-item">${right_values[4]}</div></td>
+                </tr>
+            </table>
+        </div>
+    </solution>
+</div>
+
+</problem>`;
+
+// console.log(task)
+
+document.querySelector("#task_text").value = task;
+
+</script>
+
+
+</body>
+</html>
