@@ -611,6 +611,8 @@ def check_answer(expect, ans):
 			"experiment_3": "c1",
 		}
 
+
+
 		function scrollToElement(element){
 			$('html,body').animate({ scrollTop: element.offset().top - 10 });
 		}
@@ -622,9 +624,9 @@ def check_answer(expect, ans):
 
 		if(answer.get()){
 			user_hero = answer.getJSON()["answer"];
+			console.log("user_hero: ", JSON.stringify(user_hero));
 			if (user_hero.hero_class){
 				if(user_hero.hero){
-					console.log("user_hero: ", user_hero);
 					switch(user_hero.current_step){
 						case 1:
 							create_step_3_1();
@@ -743,10 +745,6 @@ def check_answer(expect, ans):
 				return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
 			});
 			// heroes.filter(function(item){item.class==user_hero.hero_class}
-			// console.log(user_hero.hero_class);
-			// console.log();
-
-
 
 			$("#modifications_choice").html('');
 			var modifications_block = $('<div/>',{
@@ -762,7 +760,7 @@ def check_answer(expect, ans):
 			});
 
 			modifications_block.append("<p>Теперь необходимо выбрать модификацию вашего героя.</p>");
-			
+
 			modifications_list.forEach(function(modification_element) {
 				var mod_wrap = $('<div/>',{});
 				var mod_input = $('<input/>',{
@@ -810,21 +808,17 @@ def check_answer(expect, ans):
 					if (arraysEqual(user_hero.user_selected, candidate_1.theses.map(function(name) {return name.letter;}))){
 						user_hero.hero = candidate_1;
 						user_hero.current_step = 1;
-						console.log("1: ", user_hero.user_selected);
 						answer.setJSON({answer: user_hero});
 					}
 					else if (arraysEqual(user_hero.user_selected, candidate_2.theses.map(function(name) {return name.letter;}))){
 						user_hero.hero = candidate_2;
 						user_hero.current_step = 1;
-						console.log("2: ", user_hero.user_selected);
 
 						answer.setJSON({answer: user_hero});
 					}
 					else{
 						user_hero.hero = undefined;
 					}
-					// console.log(user_hero);
-					console.log("3: ", user_hero.user_selected);
 
 					answer.setJSON({answer: user_hero});
 				});
@@ -849,8 +843,6 @@ def check_answer(expect, ans):
 
 			// $(submit_button).hide();
 			$("#step_3_experiment_1 .you-hero-modification").html('Ваш герой: <strong>' + user_hero.hero.title + '</strong>')
-
-			// console.log(user_hero);
 
 			var theses_block = $('<ul/>',{});
 			user_hero.hero.theses.forEach(function(thesis){
@@ -925,8 +917,6 @@ def check_answer(expect, ans):
 				else{
 					$("#step_3_experiment_1_" + user_hero.student_answer["experiment_1"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 					$("#step_3_experiment_1 .experiment-explanation").show();
-					// scrollToElement($("#step_3_experiment_1 .incorrect-message"));
-					// console.log("!!!!!!!!");
 					$("#step_3_experiment_1 .incorrect-message").html(result.comment).show();
 				}
 				user_hero.current_step = 2;
@@ -1021,8 +1011,6 @@ def check_answer(expect, ans):
 				else{
 					$("#step_3_experiment_2_" + user_hero.student_answer["experiment_2"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 					$("#step_3_experiment_2 .experiment-explanation").show();
-					// scrollToElement($("#step_3_experiment_2 .incorrect-message"));
-					console.log("!!!!!!!!");
 					$("#step_3_experiment_2 .incorrect-message").html(result.comment).show();
 				}
 				user_hero.current_step = 3;
@@ -1085,18 +1073,22 @@ def check_answer(expect, ans):
 
 			$(submit_button).hide();
 			if (user_hero.attempts["experiment_3"] == 0 ){
+
 				scrollToElement($(".heroes-task #step_3"));
 				$(submit_button).find('span.submit-label').text(check_ans_btn_label);
 				$(submit_button).show();
 			}
 			else if ([1,2,3].includes(user_hero.attempts["experiment_3"]) ){
+
 				var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
 
 				if (result.correctness){
+
 					$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("correct-answer");
 					$(submit_button).unbind("click.heroNamespace_3");
 					$("#step_3_experiment_3 .experiment-explanation").show();
 					$(submit_button).hide();
+
 					$(notification).show();
 				}
 				else{
@@ -1109,6 +1101,7 @@ def check_answer(expect, ans):
 			}
 
 			else if (user_hero.attempts["experiment_3"] == 4 ){
+
 				var result = check_answer("experiment_3", user_hero.student_answer["experiment_3"]);
 				if (result.correctness){
 					$("#step_3_experiment_3 .experiment-explanation").show();
@@ -1118,7 +1111,7 @@ def check_answer(expect, ans):
 					$("#step_3_experiment_3_" + user_hero.student_answer["experiment_3"]).closest('.hero-input-wrap').addClass("incorrect-answer");
 					$("#step_3_experiment_3 .experiment-explanation").show();
 					// scrollToElement($("#step_3_experiment_3 .incorrect-message"));
-					console.log("!!!!!!!!");
+
 					$("#step_3_experiment_3 .incorrect-message").html(result.comment).show();
 				}
 				$(submit_button).unbind("click.heroNamespace_3");

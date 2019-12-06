@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Тестовые штуки/problem.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Тестовые штуки/tst.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Философия/heroes_task/Heroes_task без попыток.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/4.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/4.2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mind map/mind_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/mind map/mind_map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Тестовые штуки/tst.html" beforeDir="false" afterPath="$PROJECT_DIR$/Тестовые штуки/tst.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/Задание 4.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4/Задание 4.1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Философия/heroes_task/heroes_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/heroes_task/heroes_task.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +295,7 @@
       <workItem from="1572924491234" duration="600000" />
       <workItem from="1573038414565" duration="49120000" />
       <workItem from="1573650937296" duration="55863000" />
-      <workItem from="1574760825791" duration="63449000" />
+      <workItem from="1574760825791" duration="73359000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>

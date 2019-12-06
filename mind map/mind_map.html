@@ -10,13 +10,13 @@ taskObject = {}
 
 SVG_width = 830
 SVG_height = 800
-    
+
 taskObject["SVG_width"] = SVG_width
 taskObject["SVG_height"] = SVG_height
 
 # Минимальный мастаб графа
 taskObject["min_scale"] = 0.5
-  
+
 # Минимальный мастаб графа
 taskObject["max_scale"] = 1.5
 taskObject["free_nodes_zone_height"] = 140
@@ -112,9 +112,9 @@ taskObjectTemplate = json.dumps(taskObject)
 def check_answer(expect, ans):
     answer = json.loads(ans)['graph_scale']
     return {'input_list': [{ 'ok': True, 'msg': str(answer), 'grade_decimal':float(0.5) },]}
- 
+
 </script>
-  
+
 <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/mind_map/mind_map.js"></script>
 <script type="text/javascript">
 window.onload = function() {
@@ -123,7 +123,7 @@ window.onload = function() {
 }
 document.getElementById("id$taskId").setAttribute("data", JSON.stringify($taskObjectTemplate));
 
-</script>  
+</script>
 <div class="mind_map" id="id$taskId" data=''>
   <p><strong>Задание.</strong> Сформируйте классификационную таблицу персонала предприятия.</p>
     <div class="svg_object"></div>
@@ -140,8 +140,8 @@ document.getElementById("id$taskId").setAttribute("data", JSON.stringify($taskOb
         display: none !important;
     }
 
-    #id$taskId .svg_object { 
-        width: $SVG_widthpx; 
+    #id$taskId .svg_object {
+        width: $SVG_widthpx;
         height: $SVG_heightpx;
     }
 </style>
