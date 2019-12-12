@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/vue.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Философия/heroes_task/Heroes_task без попыток.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/heroes_task/Heroes_task без попыток.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/2.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/2.1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +296,7 @@
       <workItem from="1573650937296" duration="55863000" />
       <workItem from="1574760825791" duration="75166000" />
       <workItem from="1575871258482" duration="1206000" />
-      <workItem from="1575884514716" duration="17827000" />
+      <workItem from="1575884514716" duration="32319000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -358,10 +354,10 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="467" y="488" width="704" height="528" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1575108011323" />
-    <state x="847" y="352" key="run.anything.popup" timestamp="1576062409520">
+    <state x="847" y="352" key="run.anything.popup" timestamp="1576140788646">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="847" y="352" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1576062409520" />
+    <state x="847" y="352" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1576140788646" />
     <state x="526" y="438" width="672" height="678" key="search.everywhere.popup" timestamp="1576048848252">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
