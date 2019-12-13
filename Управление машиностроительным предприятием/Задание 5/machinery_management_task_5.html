@@ -1,25 +1,610 @@
-<meta charset="utf-8"></meta>
-
 <problem>
-    <script type="text/javascript" src="./vue.min.js"></script>
-    <script type="text/javascript" src="./machinery_management_task_5.js"></script>
-    <link rel="stylesheet" href="./machinery_management_task_5.css"></link>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import json
+import math
 
+products = [{"operations": {"operation_1": {"model": 1, "rank": 2, "time": 5},
+                            "operation_3": {"model": 11, "rank": 3, "time": 16},
+                            "operation_2": {"model": 2, "rank": 3, "time": 16},
+                            "operation_5": {"model": 7, "rank": 4, "time": 15},
+                            "operation_4": {"model": 5, "rank": 4, "time": 22},
+                            "operation_6": {"model": 6, "rank": 3, "time": 8}},
+             "product_num": 1, "weight": 1.5, "consumption": 2, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 6},
+                            "operation_3": {"model": 11, "rank": 3, "time": 18},
+                            "operation_2": {"model": 2, "rank": 3, "time": 48},
+                            "operation_5": {"model": 7, "rank": 4, "time": 19},
+                            "operation_4": {"model": 5, "rank": 4, "time": 30},
+                            "operation_6": {"model": 6, "rank": 3, "time": 11}}, "product_num": 2, "weight": 8,
+             "consumption": 10,
+             "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 8},
+                            "operation_3": {"model": 11, "rank": 3, "time": 21},
+                            "operation_2": {"model": 2, "rank": 3, "time": 80},
+                            "operation_5": {"model": 7, "rank": 4, "time": 20},
+                            "operation_4": {"model": 5, "rank": 4, "time": 37},
+                            "operation_6": {"model": 6, "rank": 3, "time": 16}}, "product_num": 3, "weight": 16,
+             "consumption": 20,
+             "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 4},
+                            "operation_3": {"model": 2, "rank": 3, "time": 19},
+                            "operation_2": {"model": 2, "rank": 3, "time": 80},
+                            "operation_5": {"model": 2, "rank": 4, "time": 23},
+                            "operation_4": {"model": 2, "rank": 3, "time": 85},
+                            "operation_6": {"model": 2, "rank": 5, "time": 62}}, "product_num": 4, "weight": 18,
+             "consumption": 22,
+             "material": 1, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 6},
+                            "operation_3": {"model": 2, "rank": 3, "time": 19},
+                            "operation_2": {"model": 3, "rank": 3, "time": 67},
+                            "operation_5": {"model": 2, "rank": 4, "time": 53},
+                            "operation_4": {"model": 2, "rank": 3, "time": 90},
+                            "operation_6": {"model": 2, "rank": 5, "time": 6}},
+             "product_num": 5, "weight": 21, "consumption": 26, "material": 1, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 7},
+                            "operation_3": {"model": 3, "rank": 3, "time": 25},
+                            "operation_2": {"model": 3, "rank": 3, "time": 36},
+                            "operation_5": {"model": 3, "rank": 4, "time": 123},
+                            "operation_4": {"model": 3, "rank": 3, "time": 95},
+                            "operation_6": {"model": 3, "rank": 5, "time": 16}}, "product_num": 6, "weight": 101,
+             "consumption": 120, "material": 1, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 2},
+                            "operation_3": {"model": 2, "rank": 3, "time": 10},
+                            "operation_2": {"model": 2, "rank": 3, "time": 12},
+                            "operation_5": {"model": 2, "rank": 3, "time": 7},
+                            "operation_4": {"model": 2, "rank": 3, "time": 9},
+                            "operation_6": {"model": 3, "rank": 4, "time": 44}},
+             "product_num": 7, "weight": 1.6, "consumption": 2, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 2},
+                            "operation_3": {"model": 2, "rank": 3, "time": 11},
+                            "operation_2": {"model": 2, "rank": 3, "time": 12},
+                            "operation_5": {"model": 2, "rank": 3, "time": 7},
+                            "operation_4": {"model": 2, "rank": 3, "time": 9},
+                            "operation_6": {"model": 3, "rank": 4, "time": 47}},
+             "product_num": 8, "weight": 1.4, "consumption": 2, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 2},
+                            "operation_3": {"model": 2, "rank": 3, "time": 14},
+                            "operation_2": {"model": 2, "rank": 3, "time": 13},
+                            "operation_5": {"model": 2, "rank": 3, "time": 7},
+                            "operation_4": {"model": 2, "rank": 3, "time": 9},
+                            "operation_6": {"model": 3, "rank": 4, "time": 50}},
+             "product_num": 9, "weight": 2.2, "consumption": 3, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 9},
+                            "operation_2": {"model": 2, "rank": 3, "time": 19},
+                            "operation_5": {"model": 3, "rank": 3, "time": 12},
+                            "operation_4": {"model": 2, "rank": 3, "time": 62},
+                            "operation_6": {"model": 12, "rank": 4, "time": 27}}, "product_num": 10, "weight": 3.2,
+             "consumption": 5, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 11},
+                            "operation_2": {"model": 2, "rank": 3, "time": 20},
+                            "operation_5": {"model": 3, "rank": 3, "time": 12},
+                            "operation_4": {"model": 2, "rank": 3, "time": 77},
+                            "operation_6": {"model": 12, "rank": 4, "time": 47}}, "product_num": 11, "weight": 6,
+             "consumption": 7,
+             "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 12},
+                            "operation_2": {"model": 2, "rank": 3, "time": 22},
+                            "operation_5": {"model": 2, "rank": 3, "time": 13},
+                            "operation_4": {"model": 2, "rank": 3, "time": 110},
+                            "operation_6": {"model": 12, "rank": 4, "time": 87}}, "product_num": 12, "weight": 10,
+             "consumption": 12, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 8},
+                            "operation_2": {"model": 2, "rank": 3, "time": 14},
+                            "operation_5": {"model": 2, "rank": 3, "time": 13},
+                            "operation_4": {"model": 2, "rank": 3, "time": 6},
+                            "operation_6": {"model": 11, "rank": 3, "time": 69}}, "product_num": 13, "weight": 1.3,
+             "consumption": 2, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 9},
+                            "operation_2": {"model": 2, "rank": 3, "time": 15},
+                            "operation_5": {"model": 2, "rank": 3, "time": 14},
+                            "operation_4": {"model": 2, "rank": 3, "time": 7},
+                            "operation_6": {"model": 11, "rank": 3, "time": 87}}, "product_num": 14, "weight": 2.3,
+             "consumption": 3, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 2},
+                            "operation_3": {"model": 2, "rank": 3, "time": 9},
+                            "operation_2": {"model": 2, "rank": 3, "time": 10},
+                            "operation_5": {"model": 6, "rank": 3, "time": 6},
+                            "operation_4": {"model": 2, "rank": 3, "time": 12},
+                            "operation_6": {"model": 11, "rank": 3, "time": 13}}, "product_num": 15, "weight": 5.5,
+             "consumption": 7, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 11},
+                            "operation_2": {"model": 2, "rank": 3, "time": 11},
+                            "operation_5": {"model": 6, "rank": 3, "time": 5},
+                            "operation_4": {"model": 2, "rank": 3, "time": 14},
+                            "operation_6": {"model": 11, "rank": 2, "time": 17}}, "product_num": 16, "weight": 2.4,
+             "consumption": 3, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 3, "time": 3},
+                            "operation_3": {"model": 2, "rank": 3, "time": 6},
+                            "operation_2": {"model": 2, "rank": 3, "time": 8},
+                            "operation_5": {"model": 14, "rank": 3, "time": 12},
+                            "operation_4": {"model": 2, "rank": 3, "time": 7},
+                            "operation_6": {"model": 7, "rank": 2, "time": 36}},
+             "product_num": 17, "weight": 20, "consumption": 25, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 3, "time": 4},
+                            "operation_3": {"model": 2, "rank": 3, "time": 6},
+                            "operation_2": {"model": 2, "rank": 3, "time": 6},
+                            "operation_5": {"model": 14, "rank": 3, "time": 14},
+                            "operation_4": {"model": 2, "rank": 3, "time": 10},
+                            "operation_6": {"model": 7, "rank": 2, "time": 38}}, "product_num": 18, "weight": 21,
+             "consumption": 25, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 3, "time": 4},
+                            "operation_3": {"model": 2, "rank": 3, "time": 12},
+                            "operation_2": {"model": 2, "rank": 3, "time": 10},
+                            "operation_5": {"model": 14, "rank": 3, "time": 15},
+                            "operation_4": {"model": 3, "rank": 3, "time": 10},
+                            "operation_6": {"model": 7, "rank": 2, "time": 15}}, "product_num": 19, "weight": 2.2,
+             "consumption": 3, "material": 2, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 2, "rank": 3, "time": 24},
+                            "operation_3": {"model": 2, "rank": 3, "time": 25},
+                            "operation_2": {"model": 2, "rank": 3, "time": 35},
+                            "operation_5": {"model": 9, "rank": 4, "time": 10},
+                            "operation_4": {"model": 14, "rank": 2, "time": 2},
+                            "operation_6": {"model": 10, "rank": 4, "time": 12}}, "product_num": 20, "weight": 4.8,
+             "consumption": 6, "material": 3, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 5},
+                            "operation_3": {"model": 9, "rank": 4, "time": 55},
+                            "operation_2": {"model": 2, "rank": 3, "time": 56},
+                            "operation_5": {"model": 14, "rank": 2, "time": 2},
+                            "operation_4": {"model": 10, "rank": 4, "time": 60},
+                            "operation_6": {"model": 12, "rank": 3, "time": 10}}, "product_num": 21, "weight": 1.3,
+             "consumption": 2, "material": 3, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 6},
+                            "operation_3": {"model": 9, "rank": 4, "time": 66},
+                            "operation_2": {"model": 2, "rank": 3, "time": 69},
+                            "operation_5": {"model": 14, "rank": 2, "time": 2},
+                            "operation_4": {"model": 10, "rank": 4, "time": 60},
+                            "operation_6": {"model": 6, "rank": 3, "time": 8}}, "product_num": 22, "weight": 2.7,
+             "consumption": 4,
+             "material": 3, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 5},
+                            "operation_3": {"model": 2, "rank": 4, "time": 9},
+                            "operation_2": {"model": 2, "rank": 4, "time": 33},
+                            "operation_5": {"model": 11, "rank": 4, "time": 3},
+                            "operation_4": {"model": 8, "rank": 4, "time": 55},
+                            "operation_6": {"model": 13, "rank": 4, "time": 7}}, "product_num": 23, "weight": 2.1,
+             "consumption": 3, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 2, "rank": 2, "time": 13},
+                            "operation_3": {"model": 8, "rank": 4, "time": 21},
+                            "operation_2": {"model": 2, "rank": 4, "time": 19},
+                            "operation_5": {"model": 7, "rank": 4, "time": 59},
+                            "operation_4": {"model": 2, "rank": 4, "time": 11},
+                            "operation_6": {"model": 3, "rank": 4, "time": 4}},
+             "product_num": 24, "weight": 1.2, "consumption": 2, "material": 4, "blank_type": 2},
+            {"operations": {"operation_1": {"model": 2, "rank": 3, "time": 46},
+                            "operation_3": {"model": 2, "rank": 3, "time": 33},
+                            "operation_2": {"model": 2, "rank": 3, "time": 29},
+                            "operation_5": {"model": 2, "rank": 3, "time": 26},
+                            "operation_4": {"model": 2, "rank": 3, "time": 69},
+                            "operation_6": {"model": 3, "rank": 4, "time": 27}}, "product_num": 25, "weight": 22,
+             "consumption": 26, "material": 0, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 3, "rank": 3, "time": 15},
+                            "operation_3": {"model": 2, "rank": 3, "time": 44},
+                            "operation_2": {"model": 2, "rank": 3, "time": 35},
+                            "operation_5": {"model": 2, "rank": 3, "time": 42},
+                            "operation_4": {"model": 2, "rank": 3, "time": 72},
+                            "operation_6": {"model": 3, "rank": 4, "time": 37}}, "product_num": 26, "weight": 6,
+             "consumption": 8,
+             "material": 0, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 3},
+                            "operation_3": {"model": 2, "rank": 4, "time": 34},
+                            "operation_2": {"model": 2, "rank": 3, "time": 43},
+                            "operation_5": {"model": 13, "rank": 3, "time": 16},
+                            "operation_4": {"model": 11, "rank": 3, "time": 51},
+                            "operation_6": {"model": 6, "rank": 3, "time": 12}}, "product_num": 27, "weight": 1.4,
+             "consumption": 2, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 1, "rank": 2, "time": 4},
+                            "operation_3": {"model": 3, "rank": 4, "time": 41},
+                            "operation_2": {"model": 2, "rank": 3, "time": 40},
+                            "operation_5": {"model": 13, "rank": 3, "time": 18},
+                            "operation_4": {"model": 11, "rank": 3, "time": 95},
+                            "operation_6": {"model": 6, "rank": 3, "time": 18}}, "product_num": 28, "weight": 1.3,
+             "consumption": 2, "material": 2, "blank_type": 3},
+            {"operations": {"operation_1": {"model": 3, "rank": 2, "time": 6},
+                            "operation_3": {"model": 3, "rank": 4, "time": 35},
+                            "operation_2": {"model": 2, "rank": 4, "time": 116},
+                            "operation_5": {"model": 6, "rank": 3, "time": 24},
+                            "operation_4": {"model": 11, "rank": 3, "time": 32},
+                            "operation_6": {"model": 6, "rank": 4, "time": 135}}, "product_num": 29, "weight": 105,
+             "consumption": 130, "material": 2, "blank_type": 1},
+            {"operations": {"operation_1": {"model": 3, "rank": 2, "time": 6},
+                            "operation_3": {"model": 3, "rank": 4, "time": 37},
+                            "operation_2": {"model": 2, "rank": 4, "time": 102},
+                            "operation_5": {"model": 6, "rank": 3, "time": 34},
+                            "operation_4": {"model": 11, "rank": 3, "time": 32},
+                            "operation_6": {"model": 6, "rank": 4, "time": 44}}, "product_num": 30, "weight": 248,
+             "consumption": 275, "material": 2, "blank_type": 1}
+]
+
+employees = {
+    'carver': {
+        'title': u'Резчик',
+        'id': 'carver',
+        'title_ru': 'Rezchik'
+    },
+    'turner': {
+        'title': u'Токарь',
+        'id': 'turner',
+        'title_ru': 'Tokar'
+    },
+    'grinder': {
+        'title': u'Шлифовщик',
+        'id': 'grinder',
+        'title_ru': 'Schlifovschik'
+    },
+    'milling': {
+        'title': u'Фрезеровщик',
+        'id': 'milling',
+        'title_ru': 'Frezerovschik'
+    },
+    'mortar': {
+        'title': u'Долбёжник',
+        'id': 'mortar',
+        'title_ru': 'Dolbezhnik'
+    },
+    'broach': {
+        'title': u'Протяжчик',
+        'id': 'broach',
+        'title_ru': 'Protyazhchik'
+    }
+}
+
+equipments = [
+    {'equipment_title': u'Отрезная пила', 'equipment_num': 1, 'profession': 'carver', 'equipment_model': '8642'},
+    {'equipment_title': u'Токарно-винторезный станок', 'equipment_num': 2, 'profession': 'turner',
+     'equipment_model': '1610'},
+    {'equipment_title': u'Токарно-винторезный станок', 'equipment_num': 3, 'profession': 'turner',
+     'equipment_model': '165'},
+    {'equipment_title': u'Шлице-шлифовальный станок', 'equipment_num': 4, 'profession': 'grinder',
+     'equipment_model': '3451B'},
+    {'equipment_title': u'Круглошлифовальный станок', 'equipment_num': 5, 'profession': 'grinder',
+     'equipment_model': '3M123'},
+    {'equipment_title': u'Круглошлифовальный станок', 'equipment_num': 6, 'profession': 'grinder',
+     'equipment_model': '3A161'},
+    {'equipment_title': u'Зубофрезерный станок', 'equipment_num': 7, 'profession': 'milling',
+     'equipment_model': '5A312'},
+    {'equipment_title': u'Зубофрезерный станок', 'equipment_num': 8, 'profession': 'milling', 'equipment_model': 'E311'},
+    {'equipment_title': u'Зубодолбежный полуавтомат', 'equipment_num': 9, 'profession': 'mortar',
+     'equipment_model': '5140'},
+    {'equipment_title': u'Зубозакругляющий станок', 'equipment_num': 10, 'profession': 'milling',
+     'equipment_model': '5580'},
+    {'equipment_title': u'Горизонтально-фрезерный станок', 'equipment_num': 11, 'profession': 'milling',
+     'equipment_model': '6M80'},
+    {'equipment_title': u'Вертикально-фрезерный станок', 'equipment_num': 12, 'profession': 'milling',
+     'equipment_model': '6H10'},
+    {'equipment_title': u'Долбежный станок', 'equipment_num': 13, 'profession': 'mortar', 'equipment_model': '7A420'},
+    {'equipment_title': u'Горизонтально-протяжный станок', 'equipment_num': 14, 'profession': 'broach',
+     'equipment_model': '7B510'}]
+
+
+def get_product(num):
+    _p = list(filter(lambda x: x["product_num"] == num, products))
+    if len(_p) > 0:
+        return _p[0]
+    else:
+        return None
+
+
+def get_equipment(num):
+    _e = list(filter(lambda x: x["equipment_num"] == num, equipments))
+    if len(_e) > 0:
+        return _e[0]
+    else:
+        return None
+
+
+# часов в смене
+emp_hours = 8
+equ_hours = 8
+
+# смен в дне
+emp_workdays = 1
+equ_workdays = 2
+
+# дней в месяце
+emp_days = 21
+equ_days = 20
+
+# месяцев в году
+emp_month = 11
+equ_month = 12
+
+# часов в году
+emp_year_h = 1848
+equ_year_h = 3840
+
+load_coeff = 0.85
+
+time_coeff = 1.1
+
+products_count = [40000, 20000, 30000]
+
+products_1_count = products_count[0]
+products_2_count = products_count[1]
+products_3_count = products_count[2]
+
+
+variants = [[1, 2, 30], [2, 6, 29], [2, 5, 28], [2, 7, 20], [5, 9, 30], [9, 14, 28], [7, 14, 29], [11, 17, 29], [1, 6, 28], [2, 5, 29], [5, 14, 29], [9, 17, 30], [1, 2, 7], [7, 2, 28], [11, 14, 30], [2, 7, 14], [5, 9, 17], [1, 6, 29], [13, 14, 29], [6, 14, 29], [18, 21, 30], [14, 16, 30], [21, 23, 30], [13, 17, 29], [17, 25, 29], [25, 26, 29], [15, 16, 28], [13, 20, 28], [10, 24, 28], [13, 15, 30], [14, 18, 30], [18, 23, 30], [17, 21, 29], [19, 22, 29], [14, 27, 30], [23, 24, 29], [6, 21, 30], [7, 22, 29], [8, 21, 29], [9, 24, 29], [4, 7, 21], [6, 9, 28], [7, 14, 30], [10, 21, 29], [11, 17, 30], [12, 24, 29], [14, 16, 30], [15, 18, 29], [3, 24, 30], [6, 15, 30]]
+
+manufactured_products_numbers = variants[0]
+manufactured_products = []
+
+for mpn in manufactured_products_numbers:
+    current_product = get_product(mpn)
+    for op in current_product["operations"]:
+        current_product["operations"][op]["profession"] = get_equipment(current_product["operations"][op]["model"])["profession"]
+    manufactured_products.append(current_product)
+
+used_equipment = []
+used_employees = []
+
+for mp in manufactured_products:
+    for op in mp["operations"]:
+        if mp["operations"][op]["model"] not in used_equipment:
+            used_equipment.append(mp["operations"][op]["model"])
+        if {"profession": mp["operations"][op]["profession"], "rank": mp["operations"][op]["rank"]} not in used_employees:
+            used_employees.append({"profession": mp["operations"][op]["profession"], "rank": mp["operations"][op]["rank"]})
+
+used_equipment = sorted(used_equipment)
+used_equipment_len = len(used_equipment)
+used_employees_len = len(used_employees)
+equipment_data = {}
+employee_data = {}
+
+for equipment in used_equipment:
+    equipment_data["equipment_" + str(equipment)] = {}
+    equipment_data["equipment_" + str(equipment)]["table_1"] = []
+    equipment_data["equipment_" + str(equipment)]["table_2"] = []
+    equipment_data["equipment_" + str(equipment)]["table_3"] = 0
+    equipment_products_count = 0
+    for index, product in enumerate(manufactured_products):
+        sum_time = 0
+        for op in product["operations"]:
+            if product["operations"][op]["model"] == equipment:
+                sum_time += product["operations"][op]["time"]
+        equipment_data["equipment_" + str(equipment)]["table_1"].append(sum_time)
+        year_time = math.ceil((sum_time * products_count[index]) / 60.0)
+        equipment_data["equipment_" + str(equipment)]["table_2"].append(year_time)
+        equipment_products_count += year_time / (equ_year_h * load_coeff * time_coeff)
+    equipment_data["equipment_" + str(equipment)]["table_3"] = math.ceil(equipment_products_count)
+
+for employee in used_employees:
+    employee_title = employee["profession"] + "_" + str(employee["rank"])
+    employee_data[employee_title] = {}
+    employee_data[employee_title]["table_1"] = []
+    employee_data[employee_title]["table_2"] = []
+    employee_data[employee_title]["table_3"] = 0
+
+    for index, product in enumerate(manufactured_products):
+        sum_time = 0
+        for op in product["operations"]:
+            if product["operations"][op]["profession"] == employee["profession"]:
+                if product["operations"][op]["rank"] == employee["rank"]:
+                    sum_time += product["operations"][op]["time"]
+        employee_data[employee_title]["table_1"].append(sum_time)
+        year_time = math.ceil((sum_time * products_count[index]) / 60.0)
+        employee_data[employee_title]["table_2"].append(year_time)
+    employee_data[employee_title]["table_3"] = math.ceil(sum(employee_data[employee_title]["table_2"])/(emp_year_h * time_coeff))
+
+
+# for x in equipment_data:
+#     print x, equipment_data[x]
+# print "------------------------------------------------------------------------------------"
+# for x in employee_data:
+#     print x, employee_data[x]
+# print "------------------------------------------------------------------------------------"
+
+student_data = {
+    "manufactured_products": manufactured_products,
+    "employees": employees,
+    "equipments": equipments,
+    "companion_data": {
+        "emp_hours": emp_hours,
+        "equ_hours": equ_hours,
+        "emp_workdays": emp_workdays,
+        "equ_workdays": equ_workdays,
+        "emp_days": emp_days,
+        "equ_days": equ_days,
+        "emp_month": emp_month,
+        "equ_month": equ_month,
+        "emp_year_h": emp_year_h,
+        "equ_year_h": equ_year_h,
+        "load_coeff": load_coeff,
+        "time_coeff": time_coeff,
+        "products_count": products_count,
+        "used_equipment_len": used_equipment_len,
+        "used_employees_len": used_employees_len
+    }
+}
+
+student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "'")
+
+
+def unique_list(inlist):
+    out_list = []
+    for val in inlist:
+        if not val in out_list:
+            out_list.append(val)
+    return out_list
+
+
+def comparison_numbers(correct_number, student_number, tol=0.05):
+    if type(student_number) == str:
+        student_number = student_number.replace(",", ".")
+    try:
+        st_num = float(student_number)
+        return tol >= abs(st_num - correct_number)
+    except ValueError:
+        return False
+
+
+def comparison_numbers_arrays(correct_array, student_array, tol=0.05):
+    return all(comparison_arrays(correct_array, student_array, tol=0.05))
+
+
+def comparison_arrays(correct_array, student_array, tol=0.05):
+    if len(correct_array) != len(student_array):
+        return [False for x in correct_array]
+    else:
+        ret_arr = []
+        for idx, c_a in enumerate(correct_array):
+            if comparison_numbers(c_a, student_array[idx], tol):
+                ret_arr.append(True)
+            else:
+                ret_arr.append(False)
+        return ret_arr
+
+
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["answer"]
+
+    response = {
+        "used_equipment": [False] * len(equipment_data.keys()),
+        "used_employees": [False] * len(employee_data.keys()),
+
+        "used_equipment_table_1": [[False, False, False]] * len(equipment_data.keys()),
+        "used_equipment_table_2": [[False, False, False]] * len(equipment_data.keys()),
+        "used_equipment_table_3": [False] * len(equipment_data.keys()),
+
+        "used_employees_table_1": [[False, False, False]] * len(employee_data.keys()),
+        "used_employees_table_2": [[False, False, False]] * len(employee_data.keys()),
+        "used_employees_table_3": [False] * len(employee_data.keys()),
+    }
+
+    # оборудование таблица 1, 2, 3
+    for item in equipment_data.keys():
+        user_equipments_keys = list(map(lambda x: x["equipment"], student_answer["used_equipment"]))
+        if item in user_equipments_keys:
+            equ_index = user_equipments_keys.index(item)
+            response["used_equipment"][equ_index] = True
+            response["used_equipment_table_1"][equ_index] = comparison_arrays(equipment_data[item]["table_1"], student_answer["used_equipment"][equ_index]["table_1"])
+            response["used_equipment_table_2"][equ_index] = comparison_arrays(equipment_data[item]["table_2"], student_answer["used_equipment"][equ_index]["table_2"])
+            response["used_equipment_table_3"][equ_index] = comparison_numbers(equipment_data[item]["table_3"], student_answer["used_equipment"][equ_index]["table_3"])
+
+    # рабочие таблица 1, 2, 3
+    for item in employee_data.keys():
+        user_professions_keys = list(map(lambda x: x["profession_rank"], student_answer["used_employees"]))
+        if item in user_professions_keys:
+            emp_index = user_professions_keys.index(item)
+            response["used_employees"][emp_index] = True
+            response["used_employees_table_1"][emp_index] = comparison_arrays(employee_data[item]["table_1"], student_answer["used_employees"][emp_index]["table_1"])
+            response["used_employees_table_2"][emp_index] = comparison_arrays(employee_data[item]["table_2"], student_answer["used_employees"][emp_index]["table_2"])
+            response["used_employees_table_3"][emp_index] = comparison_numbers(employee_data[item]["table_3"], student_answer["used_employees"][emp_index]["table_3"])
+
+    msg = json.dumps(response)
+
+    # ОЦЕНИВАНИЕ:
+
+    # 3 детали
+    # used_equipment_len используемого оборудования
+    # used_employees_len используемых работников
+
+    # всего 100 баллов
+    # за первые две таблицы 20 баллов за каждую
+    # остальные 6 таблиц по 10 баллов
+    # каждая строка оценивается целиком(!)
+
+    grade = 0
+    max_grade = 100
+    tables_main_max_grade = 20.0
+    tables_additional_max_grade = 10.0
+
+    for x in response["used_equipment"]:
+        if x:
+            grade += tables_main_max_grade/used_equipment_len
+
+    for x in response["used_employees"]:
+        if x:
+            grade += tables_main_max_grade / used_employees_len
+
+    # Оценки таблиц оборудования
+    for x in response["used_equipment_table_1"]:
+        if all(x):
+            grade += tables_additional_max_grade / used_equipment_len
+
+    for x in response["used_equipment_table_2"]:
+        if all(x):
+            grade += tables_additional_max_grade / used_equipment_len
+
+    for x in response["used_equipment_table_3"]:
+        if x:
+            grade += tables_additional_max_grade / used_equipment_len
+
+    # Оценки таблиц рабочих
+    for x in response["used_employees_table_1"]:
+        if all(x):
+            grade += tables_additional_max_grade / used_employees_len
+
+    for x in response["used_employees_table_2"]:
+        if all(x):
+            grade += tables_additional_max_grade / used_employees_len
+
+    for x in response["used_employees_table_3"]:
+        if x:
+            grade += tables_additional_max_grade / used_employees_len
+
+    grade = round(grade, 2)  # потестировать с округлениями
+
+    # print json.dumps(response)
+
+    result_grade = grade / float(max_grade)
+
+    print result_grade
+
+    if result_grade == 1:
+        return {'input_list': [{'ok': True, 'msg': msg, 'grade_decimal': 1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok': False, 'msg': msg, 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': result_grade}]}
+
+
+</script>
+
+<!--    <script type="text/javascript" src="./vue.min.js"></script>-->
+<!--    <script type="text/javascript" src="./machinery_management_task_5.js"></script>-->
+<!--    <link rel="stylesheet" href="./machinery_management_task_5.css"></link>-->
+
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+    <script type="text/javascript" src="/static/vue.min.js"></script>
+    <script type="text/javascript" src="/static/machinery_management_task_5.js"></script>
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
+    <link rel="stylesheet" href="/static/machinery_management_task_5.css"></link>
+
+
+    <div id="machinery_management_task_5_input" style="/*display: none;*/ text-align: center;">
+        <!--        <textarea style="width: 800px;height: 210px;margin: 0 auto;"></textarea>-->
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+    </div>
     <div id="machinery_management_task_5_container">
         <div id="machinery_management_task_5_text"></div>
     </div>
 
-    <div id="machinery_management_task_5_input" style="display: none; text-align: center;">
-        <textarea style="width: 800px;height: 210px;margin: 0 auto;"></textarea>
-<!--            <customresponse cfn="check_answer">-->
-<!--                <textline size="40" value="$taskId" />-->
-<!--                <br/>-->
-<!--            </customresponse>-->
-    </div>
 
     <script type="text/javascript">
 
-        let student_data = {"manufactured_products": [{"operations": {"operation_1": {"model": 1, "profession": "carver", "rank": 2, "time": 5}, "operation_3": {"model": 11, "profession": "milling", "rank": 3, "time": 16}, "operation_2": {"model": 2, "profession": "turner", "rank": 3, "time": 16}, "operation_5": {"model": 7, "profession": "milling", "rank": 4, "time": 15}, "operation_4": {"model": 5, "profession": "grinder", "rank": 4, "time": 22}, "operation_6": {"model": 6, "profession": "grinder", "rank": 3, "time": 8}}, "product_num": 1, "weight": 1.5, "consumption": 2, "material": 2, "blank_type": 3}, {"operations": {"operation_1": {"model": 1, "profession": "carver", "rank": 2, "time": 6}, "operation_3": {"model": 11, "profession": "milling", "rank": 3, "time": 18}, "operation_2": {"model": 2, "profession": "turner", "rank": 3, "time": 48}, "operation_5": {"model": 7, "profession": "milling", "rank": 4, "time": 19}, "operation_4": {"model": 5, "profession": "grinder", "rank": 4, "time": 30}, "operation_6": {"model": 6, "profession": "grinder", "rank": 3, "time": 11}}, "product_num": 2, "weight": 8, "consumption": 10, "material": 2, "blank_type": 3}, {"operations": {"operation_1": {"model": 3, "profession": "turner", "rank": 2, "time": 6}, "operation_3": {"model": 3, "profession": "turner", "rank": 4, "time": 37}, "operation_2": {"model": 2, "profession": "turner", "rank": 4, "time": 102}, "operation_5": {"model": 6, "profession": "grinder", "rank": 3, "time": 34}, "operation_4": {"model": 11, "profession": "milling", "rank": 3, "time": 32}, "operation_6": {"model": 6, "profession": "grinder", "rank": 4, "time": 44}}, "product_num": 30, "weight": 248, "consumption": 275, "material": 2, "blank_type": 1}], "employees": {"carver": {"id": "carver", "title_ru": "Rezchik", "title": "\u0420\u0435\u0437\u0447\u0438\u043a"}, "grinder": {"id": "grinder", "title_ru": "Schlifovschik", "title": "\u0428\u043b\u0438\u0444\u043e\u0432\u0449\u0438\u043a"}, "milling": {"id": "milling", "title_ru": "Frezerovschik", "title": "\u0424\u0440\u0435\u0437\u0435\u0440\u043e\u0432\u0449\u0438\u043a"}, "mortar": {"id": "mortar", "title_ru": "Dolbezhnik", "title": "\u0414\u043e\u043b\u0431\u0451\u0436\u043d\u0438\u043a"}, "broach": {"id": "broach", "title_ru": "Protyazhchik", "title": "\u041f\u0440\u043e\u0442\u044f\u0436\u0447\u0438\u043a"}, "turner": {"id": "turner", "title_ru": "Tokar'", "title": "\u0422\u043e\u043a\u0430\u0440\u044c"}}, "companion_data": {"used_employees_len": 8, "products_count": [40000, 20000, 30000], "equ_days": 20, "time_coeff": 1.1, "equ_hours": 8, "emp_month": 11, "equ_year_h": 3840, "emp_days": 21, "emp_hours": 8, "used_equipment_len": 7, "load_coeff": 0.85, "emp_year_h": 1848, "equ_workdays": 2, "equ_month": 12, "emp_workdays": 1}, "equipments": [{"equipment_num": 1, "equipment_title": "\u041e\u0442\u0440\u0435\u0437\u043d\u0430\u044f \u043f\u0438\u043b\u0430", "profession": "carver", "equipment_model": "8642"}, {"equipment_num": 2, "equipment_title": "\u0422\u043e\u043a\u0430\u0440\u043d\u043e-\u0432\u0438\u043d\u0442\u043e\u0440\u0435\u0437\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "turner", "equipment_model": "1610"}, {"equipment_num": 3, "equipment_title": "\u0422\u043e\u043a\u0430\u0440\u043d\u043e-\u0432\u0438\u043d\u0442\u043e\u0440\u0435\u0437\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "turner", "equipment_model": "165"}, {"equipment_num": 4, "equipment_title": "\u0428\u043b\u0438\u0446\u0435-\u0448\u043b\u0438\u0444\u043e\u0432\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "grinder", "equipment_model": "3451B"}, {"equipment_num": 5, "equipment_title": "\u041a\u0440\u0443\u0433\u043b\u043e\u0448\u043b\u0438\u0444\u043e\u0432\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "grinder", "equipment_model": "3M123"}, {"equipment_num": 6, "equipment_title": "\u041a\u0440\u0443\u0433\u043b\u043e\u0448\u043b\u0438\u0444\u043e\u0432\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "grinder", "equipment_model": "3A161"}, {"equipment_num": 7, "equipment_title": "\u0417\u0443\u0431\u043e\u0444\u0440\u0435\u0437\u0435\u0440\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "milling", "equipment_model": "5A312"}, {"equipment_num": 8, "equipment_title": "\u0417\u0443\u0431\u043e\u0444\u0440\u0435\u0437\u0435\u0440\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "milling", "equipment_model": "E311"}, {"equipment_num": 9, "equipment_title": "\u0417\u0443\u0431\u043e\u0434\u043e\u043b\u0431\u0435\u0436\u043d\u044b\u0439 \u043f\u043e\u043b\u0443\u0430\u0432\u0442\u043e\u043c\u0430\u0442", "profession": "mortar", "equipment_model": "5140"}, {"equipment_num": 10, "equipment_title": "\u0417\u0443\u0431\u043e\u0437\u0430\u043a\u0440\u0443\u0433\u043b\u044f\u044e\u0449\u0438\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "milling", "equipment_model": "5580"}, {"equipment_num": 11, "equipment_title": "\u0413\u043e\u0440\u0438\u0437\u043e\u043d\u0442\u0430\u043b\u044c\u043d\u043e-\u0444\u0440\u0435\u0437\u0435\u0440\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "milling", "equipment_model": "6M80"}, {"equipment_num": 12, "equipment_title": "\u0412\u0435\u0440\u0442\u0438\u043a\u0430\u043b\u044c\u043d\u043e-\u0444\u0440\u0435\u0437\u0435\u0440\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "milling", "equipment_model": "6H10"}, {"equipment_num": 13, "equipment_title": "\u0414\u043e\u043b\u0431\u0435\u0436\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "mortar", "equipment_model": "7A420"}, {"equipment_num": 14, "equipment_title": "\u0413\u043e\u0440\u0438\u0437\u043e\u043d\u0442\u0430\u043b\u044c\u043d\u043e-\u043f\u0440\u043e\u0442\u044f\u0436\u043d\u044b\u0439 \u0441\u0442\u0430\u043d\u043e\u043a", "profession": "broach", "equipment_model": "7B510"}]};
+        let student_data = $student_data_json;
+
+        // console.log(student_data)
 
         new MachineryManagement5({
             data: student_data,

@@ -1,5 +1,23 @@
+input {
+  background: #ffffff00;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 td, th {
   border: 1px solid;
+}
+
+.correct {
+  border: 3px solid #009400c4;
+  background: rgba(0, 220, 0, 0.768627451);
+}
+
+.incorrect {
+  border: 3px solid #ff6e76;
+  background: #ffc5c8;
 }
 
 /*# sourceMappingURL=machinery_management_task_5.css.map */

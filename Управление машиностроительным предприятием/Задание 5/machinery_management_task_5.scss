@@ -1,4 +1,26 @@
+$correct-color: #009400c4;
+//$correct-color: white;
+$incorrect-color: #ff6e76;
+
+input{
+  background: #ffffff00;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 td, th {
   border: 1px solid;
 }
 
+.correct{
+  border: 3px solid $correct-color;
+  background: scale-color($correct-color,$lightness:+20%);
+
+}
+.incorrect{
+  border: 3px solid $incorrect-color;
+  background: scale-color($incorrect-color,$lightness:+60%);
+}

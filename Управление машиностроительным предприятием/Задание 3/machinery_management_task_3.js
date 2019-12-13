@@ -602,7 +602,6 @@ function MachineryManagement3(user_settings) {
                 },
                 beforeMount() {
                     this.set_answer();
-
                 },
                 mounted(){
                     this.show_correctness();
