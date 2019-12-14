@@ -2,25 +2,147 @@ $correct-color: #009400c4;
 //$correct-color: white;
 $incorrect-color: #ff6e76;
 
-input{
-  background: #ffffff00;
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+#machinery_management_task_5_block {
+  font-family: monospace;
+
+  p, h2, h3 {
+    font-family: monospace;
   }
 }
 
-td, th {
-  border: 1px solid;
+//td, th {
+//  border: 1px solid;
+//}
+
+.correct {
+  //border: 3px solid $correct-color;
+  background: scale-color($correct-color, $lightness: +20%);
+  select{
+    background: #ffffff00 !important;
+  }
 }
 
-.correct{
-  border: 3px solid $correct-color;
-  background: scale-color($correct-color,$lightness:+20%);
+.incorrect {
+  //border: 3px solid $incorrect-color;
+  background: $incorrect-color;
+  //border: 1px solid;
+  input{
+    color: white;
+  }
+  select{
+    background: #ffffff00 !important;
+  }
+}
+
+
+
+.source-table {
+  width: 100%;
+  word-break: initial;
+  margin: 0.61575em 0;
+
+  th {
+    padding: 2px 6px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    background: white;
+    border: 1px solid black;
+  }
+
+  tr:hover {
+    background: #f2f2f2;
+  }
+
+  td {
+    border: 1px solid;
+    padding: 2px 6px !important;
+    cursor: default;
+    //
+    &.centered-cell {
+      text-align: center !important;
+    }
+  }
+
+  caption {
+    margin-bottom: .25rem !important;
+    padding: 0.25rem 0 !important;
+    /* text-align: left; */
+  }
 
 }
-.incorrect{
-  border: 3px solid $incorrect-color;
-  background: scale-color($incorrect-color,$lightness:+60%);
+
+.problem-table {
+  width: 100%;
+  word-break: initial;
+  margin: 0.61575em 0;
+
+  th {
+    padding: 3px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    background: white;
+    border: 1px solid black;
+  }
+
+  td {
+    //padding: 2px 6px !important;
+    border: 1px solid;
+
+    &.centered-cell {
+      text-align: center !important;
+    }
+
+    &.auto-calculated-cell {
+      padding: 2px 6px !important;
+      cursor: default;
+    }
+
+    &.input-cell {
+      height: 25px;
+      padding: 0px !important;
+      input[type=number] {
+        height: 100%;
+        width: 100% !important;
+        box-sizing: border-box;
+        font-family: monospace;
+        border: none;
+        padding: 2px 6px;
+
+        background: #ffffff00;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+    &.select-cell {
+      height: 25px;
+      padding: 0px !important;
+
+      select {
+        height: 100%;
+        border: none;
+        box-sizing: content-box;
+        width: 100%;
+        background: whitesmoke;
+        //font-size: 14px;
+        font-family: monospace;
+
+        option {
+          font-family: monospace;
+        }
+      }
+    }
+
+  }
+
+  .empty-employee, .empty-equipment{
+    background: #dedede;
+    text-align: center !important;
+    //color: white;
+    border: 1px solid black;
+  }
+
 }

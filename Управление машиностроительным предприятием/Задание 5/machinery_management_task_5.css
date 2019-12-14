@@ -1,23 +1,114 @@
-input {
-  background: #ffffff00;
+#machinery_management_task_5_block {
+  font-family: monospace;
 }
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-td, th {
-  border: 1px solid;
+#machinery_management_task_5_block p, #machinery_management_task_5_block h2, #machinery_management_task_5_block h3 {
+  font-family: monospace;
 }
 
 .correct {
-  border: 3px solid #009400c4;
   background: rgba(0, 220, 0, 0.768627451);
+}
+.correct select {
+  background: #ffffff00 !important;
 }
 
 .incorrect {
-  border: 3px solid #ff6e76;
-  background: #ffc5c8;
+  background: #ff6e76;
+}
+.incorrect input {
+  color: white;
+}
+.incorrect select {
+  background: #ffffff00 !important;
+}
+
+.source-table {
+  width: 100%;
+  word-break: initial;
+  margin: 0.61575em 0;
+}
+.source-table th {
+  padding: 2px 6px !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  background: white;
+  border: 1px solid black;
+}
+.source-table tr:hover {
+  background: #f2f2f2;
+}
+.source-table td {
+  border: 1px solid;
+  padding: 2px 6px !important;
+  cursor: default;
+}
+.source-table td.centered-cell {
+  text-align: center !important;
+}
+.source-table caption {
+  margin-bottom: 0.25rem !important;
+  padding: 0.25rem 0 !important;
+  /* text-align: left; */
+}
+
+.problem-table {
+  width: 100%;
+  word-break: initial;
+  margin: 0.61575em 0;
+}
+.problem-table th {
+  padding: 3px !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  background: white;
+  border: 1px solid black;
+}
+.problem-table td {
+  border: 1px solid;
+}
+.problem-table td.centered-cell {
+  text-align: center !important;
+}
+.problem-table td.auto-calculated-cell {
+  padding: 2px 6px !important;
+  cursor: default;
+}
+.problem-table td.input-cell {
+  height: 25px;
+  padding: 0px !important;
+}
+.problem-table td.input-cell input[type=number] {
+  height: 100%;
+  width: 100% !important;
+  box-sizing: border-box;
+  font-family: monospace;
+  border: none;
+  padding: 2px 6px;
+  background: #ffffff00;
+}
+.problem-table td.input-cell input[type=number]::-webkit-outer-spin-button, .problem-table td.input-cell input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.problem-table td.select-cell {
+  height: 25px;
+  padding: 0px !important;
+}
+.problem-table td.select-cell select {
+  height: 100%;
+  border: none;
+  box-sizing: content-box;
+  width: 100%;
+  background: whitesmoke;
+  font-family: monospace;
+}
+.problem-table td.select-cell select option {
+  font-family: monospace;
+}
+.problem-table .empty-employee, .problem-table .empty-equipment {
+  background: #dedede;
+  text-align: center !important;
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=machinery_management_task_5.css.map */

@@ -567,29 +567,31 @@ def check_answer(exp, ans):
 
 </script>
 
-<!--    <script type="text/javascript" src="./vue.min.js"></script>-->
-<!--    <script type="text/javascript" src="./machinery_management_task_5.js"></script>-->
-<!--    <link rel="stylesheet" href="./machinery_management_task_5.css"></link>-->
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript" src="./machinery_management_task_5.js"></script>
+    <link rel="stylesheet" href="./machinery_management_task_5.css"></link>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
-    <script type="text/javascript">
-        window.__define = window.define;
-        window.__require = window.require;
-        window.define = undefined;
-        window.require = undefined;
-    </script>
-    <script type="text/javascript" src="/static/vue.min.js"></script>
-    <script type="text/javascript" src="/static/machinery_management_task_5.js"></script>
-    <script type="text/javascript">
-        window.define = window.__define;
-        window.require = window.__require;
-        window.__define = undefined;
-        window.__require = undefined;
-    </script>
-    <link rel="stylesheet" href="/static/machinery_management_task_5.css"></link>
+<!--    <script type="text/javascript">-->
+<!--        window.__define = window.define;-->
+<!--        window.__require = window.require;-->
+<!--        window.define = undefined;-->
+<!--        window.require = undefined;-->
+<!--    </script>-->
+<!--    <script type="text/javascript" src="/static/vue.min.js"></script>-->
+<!--    <script type="text/javascript" src="/static/machinery_management_task_5.js"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        window.define = window.__define;-->
+<!--        window.require = window.__require;-->
+<!--        window.__define = undefined;-->
+<!--        window.__require = undefined;-->
+<!--    </script>-->
+<!--    <link rel="stylesheet" href="/static/machinery_management_task_5.css"></link>-->
 
 
     <div id="machinery_management_task_5_input" style="/*display: none;*/ text-align: center;">
-        <!--        <textarea style="width: 800px;height: 210px;margin: 0 auto;"></textarea>-->
         <customresponse cfn="check_answer">
             <textline size="40" value="$taskId" />
             <br/>
@@ -602,13 +604,16 @@ def check_answer(exp, ans):
 
     <script type="text/javascript">
 
-        let student_data = $student_data_json;
+        // let student_data = $student_data_json;
+
+        let student_data = {"manufactured_products": [{"operations": {"operation_1": {"model": 1, "profession": "carver", "rank": 2, "time": 5}, "operation_3": {"model": 11, "profession": "milling", "rank": 3, "time": 16}, "operation_2": {"model": 2, "profession": "turner", "rank": 3, "time": 16}, "operation_5": {"model": 7, "profession": "milling", "rank": 4, "time": 15}, "operation_4": {"model": 5, "profession": "grinder", "rank": 4, "time": 22}, "operation_6": {"model": 6, "profession": "grinder", "rank": 3, "time": 8}}, "product_num": 1, "weight": 1.5, "consumption": 2, "material": 2, "blank_type": 3}, {"operations": {"operation_1": {"model": 1, "profession": "carver", "rank": 2, "time": 6}, "operation_3": {"model": 11, "profession": "milling", "rank": 3, "time": 18}, "operation_2": {"model": 2, "profession": "turner", "rank": 3, "time": 48}, "operation_5": {"model": 7, "profession": "milling", "rank": 4, "time": 19}, "operation_4": {"model": 5, "profession": "grinder", "rank": 4, "time": 30}, "operation_6": {"model": 6, "profession": "grinder", "rank": 3, "time": 11}}, "product_num": 2, "weight": 8, "consumption": 10, "material": 2, "blank_type": 3}, {"operations": {"operation_1": {"model": 3, "profession": "turner", "rank": 2, "time": 6}, "operation_3": {"model": 3, "profession": "turner", "rank": 4, "time": 37}, "operation_2": {"model": 2, "profession": "turner", "rank": 4, "time": 102}, "operation_5": {"model": 6, "profession": "grinder", "rank": 3, "time": 34}, "operation_4": {"model": 11, "profession": "milling", "rank": 3, "time": 32}, "operation_6": {"model": 6, "profession": "grinder", "rank": 4, "time": 44}}, "product_num": 30, "weight": 248, "consumption": 275, "material": 2, "blank_type": 1}], "employees": {"carver": {"id": "carver", "title_ru": "Rezchik", "title": "Резчик"}, "grinder": {"id": "grinder", "title_ru": "Schlifovschik", "title": "Шлифовщик"}, "milling": {"id": "milling", "title_ru": "Frezerovschik", "title": "Фрезеровщик"}, "mortar": {"id": "mortar", "title_ru": "Dolbezhnik", "title": "Долбёжник"}, "broach": {"id": "broach", "title_ru": "Protyazhchik", "title": "Протяжчик"}, "turner": {"id": "turner", "title_ru": "Tokar", "title": "Токарь"}}, "companion_data": {"used_employees_len": 8, "products_count": [40000, 20000, 30000], "equ_days": 20, "time_coeff": 1.1, "equ_hours": 8, "emp_month": 11, "equ_year_h": 3840, "emp_days": 21, "emp_hours": 8, "used_equipment_len": 7, "load_coeff": 0.85, "emp_year_h": 1848, "equ_workdays": 2, "equ_month": 12, "emp_workdays": 1}, "equipments": [{"equipment_num": 1, "equipment_title": "Отрезная пила", "profession": "carver", "equipment_model": "8642"}, {"equipment_num": 2, "equipment_title": "Токарно-винторезный станок", "profession": "turner", "equipment_model": "1610"}, {"equipment_num": 3, "equipment_title": "Токарно-винторезный станок", "profession": "turner", "equipment_model": "165"}, {"equipment_num": 4, "equipment_title": "Шлице-шлифовальный станок", "profession": "grinder", "equipment_model": "3451B"}, {"equipment_num": 5, "equipment_title": "Круглошлифовальный станок", "profession": "grinder", "equipment_model": "3M123"}, {"equipment_num": 6, "equipment_title": "Круглошлифовальный станок", "profession": "grinder", "equipment_model": "3A161"}, {"equipment_num": 7, "equipment_title": "Зубофрезерный станок", "profession": "milling", "equipment_model": "5A312"}, {"equipment_num": 8, "equipment_title": "Зубофрезерный станок", "profession": "milling", "equipment_model": "E311"}, {"equipment_num": 9, "equipment_title": "Зубодолбежный полуавтомат", "profession": "mortar", "equipment_model": "5140"}, {"equipment_num": 10, "equipment_title": "Зубозакругляющий станок", "profession": "milling", "equipment_model": "5580"}, {"equipment_num": 11, "equipment_title": "Горизонтально-фрезерный станок", "profession": "milling", "equipment_model": "6M80"}, {"equipment_num": 12, "equipment_title": "Вертикально-фрезерный станок", "profession": "milling", "equipment_model": "6H10"}, {"equipment_num": 13, "equipment_title": "Долбежный станок", "profession": "mortar", "equipment_model": "7A420"}, {"equipment_num": 14, "equipment_title": "Горизонтально-протяжный станок", "profession": "broach", "equipment_model": "7B510"}]}
+
 
         // console.log(student_data)
 
         new MachineryManagement5({
             data: student_data,
-            input: document.querySelector("#machinery_management_task_5_input"),
+            // input: document.querySelector("#machinery_management_task_5_input"),
         });
 
     </script>

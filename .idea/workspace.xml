@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3/machinery_management_task_3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.css" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5/machinery_management_task_5.html" afterDir="false" />
@@ -299,7 +298,7 @@
       <workItem from="1573650937296" duration="55863000" />
       <workItem from="1574760825791" duration="75166000" />
       <workItem from="1575871258482" duration="1206000" />
-      <workItem from="1575884514716" duration="46991000" />
+      <workItem from="1575884514716" duration="62653000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
