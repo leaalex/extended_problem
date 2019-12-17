@@ -150,22 +150,39 @@ function MachineryManagement3(user_settings) {
                     <div>
                         <div class="problem-block">
                             <div class="problem-block-wording">
-                                    <h2>Условия задачи</h2>
-                                    <p>Месячная программа запуска изделий на поточной линии составляет 12880 шт. Режим работы поточной линии двухсменный, продолжительность смены 8  ч, регламентированные перерывы в работе поточной линии составляют 20 мин в смену, в месяце – 21 рабочий день, число деталей в транспортной партии – 30 шт. Определить такт линии, ритм линии.</p>
-                                    <p>Действительный фонд времени работы поточной линии в неделю составляет 4800 мин. Недельная программа выпуска изделий – 2280 шт., потери от брака – 5%, число деталей в транспортной партии – 20 шт. Определить такт линии, ритм линии.</p>
-                                    
-                                <p><strong>Операции:</strong></p>
+
+                                    <h2>Исходные данные:</h2>
+                                    <p>Месячный объём <strong>выпуска</strong> изделий на поточной линии составляет {{companion_data.N_out}} шт. В одном месяце в среднем {{companion_data.month}} рабочий день, режим работы линии двухсменный, продолжительность смены – {{companion_data.work_shift}} часов. Производственный процесс состоит из следующих операций:</p>
                                 <ul>
                                     <li v-for="operation in operations">
-                                        <p>#{{ operation.weight + 1 }} - <strong>{{ operation.title }}</strong> - {{ operation.duration }} мин.</p>
+                                        <p><strong>{{ operation.title }}</strong> - {{ operation.duration }} мин.</p>
                                     </li>
                                 </ul>
-                                <p>N<sub>выпуска</sub> = <strong> {{companion_data.N_out}}</strong> штук в месяц</p>
-                                <p>1 месяц =<strong> {{companion_data.month}}</strong> рабочий день</p>
-                                <p>1 рабочий день =<strong> {{companion_data.work_day}}</strong> смены</p>
-                                <p>1 смена =<strong> {{companion_data.work_shift}}</strong> часов</p>
-                                <p>Период оборота линии (<strong>ПОЛ</strong>) =<strong> {{companion_data.half_shift}}</strong> смены</p>
-                                <!--<p>Такт =<strong> {{round_num(companion_data.tact)}}</strong> мин./шт.</p>-->
+                                
+                                <p>Период оборота линии – {{companion_data.half_shift}} смены. Брак на линии – {{companion_data.defect_percent}} %. Страховой запас незавершённого производства между смежными операциями – {{companion_data.safety_stock}} единиц.</p>
+                                
+                                <h2>Задание:</h2>
+                                    <ol>
+                                    <li>Построить график работы рабочих мест на линии в рамках периода оборота линии; для этого последовательно определить:
+                                    <ol style="list-style-type: lower-alpha;">
+                                    <li>Объём <strong>запуска</strong>, который учитывал бы имеющийся брак</li>
+                                    <li>Такт линии</li>
+                                    <li>Количество рабочих мест на каждой операции и их загрузку</li>
+                                    <li>Состав рабочих и время начала и окончания их работы в рамках периода оборота линии</li>
+                                    </ol>
+                                    </li>
+                                    <li>Величины межоперационных оборотных заделов между каждой парой смежных операций, необходимых для обеспечения непрерывной работы всех последующих операций; для этого последовательно определить:
+                                    <ol style="list-style-type: lower-alpha;">
+                                    <li>Количество и длительность периодов неизменной работы</li>
+                                    <li>Динамику незавершённого производства между каждой парой смежных операций; для этого определить на каждом периоде неизменной работы:
+                                    <ol style="list-style-type: lower-roman;">
+                                    <li>Количество работающих рабочих мест на предшествующей и последующей операциях</li>
+                                    <li>Выход (количество изделий), которые будут обработаны на предшествующей и последующей операциях</li>
+                                    </ol>
+                                    </li>
+                                    </ol>
+                                    </li>
+                                    </ol>
                             </div>
                         </div>
                         <div class="problem-block">
@@ -175,19 +192,25 @@ function MachineryManagement3(user_settings) {
              
                             <div class="problem-block-task">
                             
-                            <p>Дробные числа вводятся <strong>через точку</strong>.</p>
+                            <p>Время такта следует <strong>округлить до десятых</strong> и <strong>ввести через точку</strong>.</p>
                             
                             <div id="tact_value">
                             <!-- input.tact-input" -->
                             <p>Время такта = <input class="tact-input" v-model.number="user_data.tact" @change="validate_tact" type="number"> мин./шт. <i>(округлить до <strong>десятых</strong>)</i></p>
                             </div>
-                            <p><strong>Цветовая индикация:</strong></p>
-                            <ul>
-                            <li>Имя работника выделено <span style="color:green">зеленым</span> цветом - работник имеет оптимальную загрузку - 100 процентов рабочего времени.</li>
-                            <li>Имя работника выделено <span style="color:red">красным</span> цветом - работник загружен более чем на 100 процентов, что <strong>является недопустимой ситуацией.</strong></li>
-                            <li>Имя работника выделено <span style="color:orange">оранжевым</span> цветом - работник загружен менее чем на 100 процентов, что может являться нормальной ситуацией.</li>
-                            </ul>
-                            <p>Ввод загрузки рабочего места становится доступен после выбора операции рабочего места.</p>
+
+                             
+                             <div>
+                             <h3>График работы рабочих мест</h3>
+                             <p>Цветовая индикация:</p>
+                             <ol>
+                                 <li>Имя работника выделено <span style="color:green">зеленым</span> цветом - он загружен на 100 % – это <strong><strong>оптимальный</strong></strong> вариант.</li>
+                                 <li>Имя работника выделено <span style="color:red">красным</span> цветом - он загружен <strong><strong>более</strong></strong> чем на 100 % – это <strong><strong>недопустимый </strong></strong>вариант, его необходимо исключить.</li>
+                                 <li>Имя работника выделено <span style="color:orange">оранжевым</span> цветом - он загружен <strong><strong>менее</strong></strong> чем на 100 % - это вариант <strong><strong>допустимый</strong></strong>, но <strong><strong>не желательный.</strong></strong>
+                                 </li>
+                             </ol>
+                             </div>
+
                                 <div style="/*display: flex*/">
                                     <div>
                                     <!-- table.correct -->
@@ -264,10 +287,11 @@ function MachineryManagement3(user_settings) {
                 
                             <div class="problem-block-task">
                                 <div>
-                                    <p>Значение страхового запаса: <strong>{{companion_data.safety_stock}}</strong>.</p>
+<!--                                    <p>Значение страхового запаса: <strong>{{companion_data.safety_stock}}</strong>.</p>-->
+                                    <h3>Периоды неизменной работы</h3>
 <!--                                    <p>Нижний край графика должен быть: больше или равен <strong>{{companion_data.safety_stock}}</strong>; меньше <strong>{{companion_data.safety_stock + 1}}</strong></p>-->
                                 </div>
-                                <p><strong>Периодов неизменной работы (ПНР): {{periods_len}}</strong></p>
+                                <p>Периодов неизменной работы (ПНР): {{periods_len}}</p>
                                 <table class="problem-table" id="periods_table">
                                     <tr>
                                         <th v-for="n in array_0_n(periods_len)">Период {{n+1}}</th>
@@ -287,6 +311,10 @@ function MachineryManagement3(user_settings) {
                                         </td>
                                     </tr>
                                 </table>
+                                
+                                <div>
+                                    <h3>Расчёт межоперационных оборотных заделов для пар смежных операций:</h3>
+                                </div>
                 
                                 <div v-for="(op,index) in operations_pairs" class="operation-pair-wrap">
                                     <div class="operation-pair-table">

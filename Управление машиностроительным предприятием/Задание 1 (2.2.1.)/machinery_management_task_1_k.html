@@ -96,8 +96,8 @@ variants = [
     }
 ]
 
-#random.choice(variants)
-user_data = variants[0]
+#random.choice(variants) variants[1]
+user_data = random.choice(variants)
 
 n = user_data["n"]
 p = user_data["p"]
@@ -162,6 +162,8 @@ cells_1_len = len(cells_1_correct[0])
 cells_2_len = len(cells_2_correct[0])
 cells_3_len = len(cells_3_correct[0])
 
+durations = [cells_1_len * n, cells_2_len * p, cells_3_len * p]
+
 student_data = {
     "n": n,
     "p": p,
@@ -176,26 +178,62 @@ student_data = {
 
 student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "'")
 
+def comparison_numbers(correct_number, student_number, tol=0.05):
+    if type(student_number) == str:
+        student_number = student_number.replace(",", ".")
+    try:
+        st_num = float(student_number)
+        return tol >= abs(st_num - correct_number)
+    except ValueError:
+        return False
+
+
+def comparison_numbers_arrays(correct_array, student_array, tol=0.05):
+    return all(comparison_arrays(correct_array, student_array, tol=0.05))
+
+
+def comparison_arrays(correct_array, student_array, tol=0.05):
+    if len(correct_array) != len(student_array):
+        return [False for x in correct_array]
+    else:
+        ret_arr = []
+        for idx, c_a in enumerate(correct_array):
+            if comparison_numbers(c_a, student_array[idx], tol):
+                ret_arr.append(True)
+            else:
+                ret_arr.append(False)
+        return ret_arr
+
+
+
+
 
 def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
-    max_grade = 3
+    max_grade = 100.0
     student_correctness = {
         'table_1': False,
         'table_2': False,
-        'table_3': False
+        'table_3': False,
+        'durations': [False, False, False]
     }
     grade = 0
 
     if cells_1_correct.tolist() == student_answer['table_1']:
-        grade += 1
+        grade += 25
         student_correctness['table_1'] = True
     if cells_2_correct.tolist() == student_answer['table_2']:
-        grade += 1
+        grade += 30
         student_correctness['table_2'] = True
     if cells_3_correct.tolist() == student_answer['table_3']:
-        grade += 1
+        grade += 30
         student_correctness['table_3'] = True
+
+    student_correctness['durations'] = comparison_arrays(durations, student_answer["durations"])
+
+    for x in student_correctness['durations']:
+        if x:
+            grade += 5
 
     result_grade = grade / max_grade
     msg = json.dumps(student_correctness)
@@ -212,22 +250,30 @@ def check_answer(exp, ans):
 <!--    <script type="text/javascript" src="./machinery_management_task_1.js"></script>-->
 
     <link rel="stylesheet" type="text/css" href="/static/machinery_management_task_1.css" ></link>
-    <script type="text/javascript" src="/static/machinery_management_task_1.js"></script>
+    <script type="text/javascript" src="/static/machinery_management_task_1_k.js"></script>
 
 
     <div class="task-description">
-        <p>Задание:</p>
-        <p><strong>1.</strong> Определить длительность технологического и производственного цикла изготовления партии деталей при последовательном, параллельном и параллельно-последовательном видах движения предметов труда (ВДПТ).</p>
-        <p><strong>2.</strong> Построить графики технологического цикла при всех ВДПТ.</p>
 
-        <p><strong>n = $n шт., p = $p шт.</strong></p>
+        <h2>Исходные данные:</h2>
+        <p>Размер всей партии деталей \(n = $n\) шт.</p>
+        <p>Размер транспортной партии \(p = $p\) шт.</p>
+
+        <p>Процесс обработки включает следующие операции:</p>
         <ul>
-            <li>t<sub>1</sub> = <strong>$t1</strong> мин.;</li>
-            <li>t<sub>2</sub> = <strong>$t2</strong> мин.;</li>
-            <li>t<sub>3</sub> = <strong>$t3</strong> мин.;</li>
-            <li>t<sub>4</sub> = <strong>$t4</strong> мин.;</li>
-            <li>t<sub>5</sub> = <strong>$t5</strong> мин.</li>
+            <li>\(t1 = $t1\) мин.;</li>
+            <li>\(t2 = $t2\) мин.;</li>
+            <li>\(t3 = $t3\) мин.;</li>
+            <li>\(t4 = $t4\) мин.;</li>
+            <li>\(t5 = $t5\) мин.</li>
         </ul>
+
+        <h2>Задание:</h2>
+        <ol>
+            <li>Определить длительность технологического цикла обработки партии деталей при <strong>последовательном, параллельном и параллельно-последовательном</strong> видах движения предметов труда (ВДПТ).</li>
+            <li>Построить графики технологического цикла обработки партии деталей при всех ВДПТ.</li>
+        </ol>
+
     </div>
 
 
@@ -246,13 +292,7 @@ def check_answer(exp, ans):
 
         let data = $student_data_json;
 
-        // 3) добавить перед графиками поля для ввода цифр длительностей технологического цикла:
-        //     Т посл = [   ]
-        //     Т парал = [   ]
-        //     Т парал-посл = [   ]
-        // предлагаю это не делать
-
-        console.log(data);
+        // console.log(data);
 
         new MachineryManagement1({
             element: document.getElementById('machinery_management_task_1_container'),

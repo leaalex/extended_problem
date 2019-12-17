@@ -3,19 +3,17 @@ $correct-color: #009400c4;
 $incorrect-color: #ff6e76;
 
 #machinery_management_task_5_block {
-  font-family: monospace;
-
-  p, h2, h3 {
-    font-family: monospace;
+  //font-family: monospace;
+  //
+  //p, h2, h3 {
+  //  font-family: monospace;
+  //}
+  h3{
+    padding-bottom: 20px;
   }
 }
 
-//td, th {
-//  border: 1px solid;
-//}
-
 .correct {
-  //border: 3px solid $correct-color;
   background: scale-color($correct-color, $lightness: +20%);
   select{
     background: #ffffff00 !important;
@@ -23,9 +21,7 @@ $incorrect-color: #ff6e76;
 }
 
 .incorrect {
-  //border: 3px solid $incorrect-color;
   background: $incorrect-color;
-  //border: 1px solid;
   input{
     color: white;
   }
@@ -57,7 +53,7 @@ $incorrect-color: #ff6e76;
     border: 1px solid;
     padding: 2px 6px !important;
     cursor: default;
-    //
+
     &.centered-cell {
       text-align: center !important;
     }
@@ -66,7 +62,6 @@ $incorrect-color: #ff6e76;
   caption {
     margin-bottom: .25rem !important;
     padding: 0.25rem 0 !important;
-    /* text-align: left; */
   }
 
 }
@@ -85,7 +80,6 @@ $incorrect-color: #ff6e76;
   }
 
   td {
-    //padding: 2px 6px !important;
     border: 1px solid;
 
     &.centered-cell {
@@ -104,7 +98,7 @@ $incorrect-color: #ff6e76;
         height: 100%;
         width: 100% !important;
         box-sizing: border-box;
-        font-family: monospace;
+        //font-family: monospace;
         border: none;
         padding: 2px 6px;
 
@@ -128,10 +122,10 @@ $incorrect-color: #ff6e76;
         width: 100%;
         background: whitesmoke;
         //font-size: 14px;
-        font-family: monospace;
+        //font-family: monospace;
 
         option {
-          font-family: monospace;
+          //font-family: monospace;
         }
       }
     }
@@ -141,7 +135,6 @@ $incorrect-color: #ff6e76;
   .empty-employee, .empty-equipment{
     background: #dedede;
     text-align: center !important;
-    //color: white;
     border: 1px solid black;
   }
 

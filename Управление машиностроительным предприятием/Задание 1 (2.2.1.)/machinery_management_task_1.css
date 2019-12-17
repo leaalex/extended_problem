@@ -6,6 +6,7 @@
 .group-description-block {
   width: fit-content;
   cursor: default;
+  margin-bottom: 20px;
 }
 .group-description-block .description-item {
   margin: 5px 0px;
@@ -67,11 +68,29 @@
 }
 
 .table-container {
-  padding: 10px;
-  background: whitesmoke;
-  width: fit-content;
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 10px 0px 40px;
+  width: fit-content;
+}
+.table-container .table-task p {
+  margin-bottom: 6px !important;
+}
+.table-container .duration-block {
+  margin: 20px 0px;
+}
+.table-container .duration-block p {
+  margin-bottom: 6px !important;
+}
+.table-container .duration-block input.duration-block-input {
+  padding: 3px;
+  border: 2px solid #c7c7c9;
+  border-radius: 4px;
+}
+.table-container .duration-block input.duration-block-input.correct {
+  border: 2px solid #009b00;
+}
+.table-container .duration-block input.duration-block-input.incorrect {
+  border: 2px solid #cb0712;
 }
 .table-container table.task-table {
   border-spacing: 0px;

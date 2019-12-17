@@ -1,8 +1,5 @@
-#machinery_management_task_5_block {
-  font-family: monospace;
-}
-#machinery_management_task_5_block p, #machinery_management_task_5_block h2, #machinery_management_task_5_block h3 {
-  font-family: monospace;
+#machinery_management_task_5_block h3 {
+  padding-bottom: 20px;
 }
 
 .correct {
@@ -48,7 +45,6 @@
 .source-table caption {
   margin-bottom: 0.25rem !important;
   padding: 0.25rem 0 !important;
-  /* text-align: left; */
 }
 
 .problem-table {
@@ -81,7 +77,6 @@
   height: 100%;
   width: 100% !important;
   box-sizing: border-box;
-  font-family: monospace;
   border: none;
   padding: 2px 6px;
   background: #ffffff00;
@@ -100,10 +95,6 @@
   box-sizing: content-box;
   width: 100%;
   background: whitesmoke;
-  font-family: monospace;
-}
-.problem-table td.select-cell select option {
-  font-family: monospace;
 }
 .problem-table .empty-employee, .problem-table .empty-equipment {
   background: #dedede;

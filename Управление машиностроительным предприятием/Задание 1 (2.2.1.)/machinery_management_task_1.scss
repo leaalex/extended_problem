@@ -29,6 +29,7 @@ $border_color: #c9c9c9;
 .group-description-block {
   width: fit-content;
   cursor: default;
+  margin-bottom: 20px;
 
   .description-item {
     margin: 5px 0px;
@@ -107,16 +108,38 @@ $border_color: #c9c9c9;
 }
 
 .table-container {
-  padding: 10px;
-  background: whitesmoke;
+
+  border-radius: 5px;
+  margin: 10px 0px 40px;
   width: fit-content;
 
+  .table-task{
+    p {
+      margin-bottom: 6px !important;
+    }
+  }
+
+  .duration-block{
+    margin: 20px 0px;
+     p{
+       margin-bottom: 6px !important;
+     }
+    input.duration-block-input {
+      padding: 3px;
+      border: 2px solid #c7c7c9;
+      border-radius: 4px;
+      &.correct{
+        border: 2px solid $correct_color;
+      }
+      &.incorrect{
+        border: 2px solid $incorrect_color;
+      }
+    }
+  }
   //display: flex;
   //width: 100%;
   //flex-direction: column;
 
-  border-radius: 5px;
-  margin: 10px 0px;
 
   table.task-table {
     border-spacing: 0px;
