@@ -3,6 +3,8 @@
 <!--</head>-->
 <problem>
 <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+
 import json
 
 subdivision_functions_count = 20
@@ -60,8 +62,9 @@ in_every_row = [c, r, p, i]
 
 def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
-    max_grade_1 = 50
-    max_grade_2 = 50
+    print student_answer
+    max_grade_1 = 50.0
+    max_grade_2 = 50.0
 
     min_percent = 0.5
 
@@ -122,11 +125,11 @@ def check_answer(exp, ans):
                 above["second_half"][letter["letter"]] += second_half.count(letter["letter"])
             pass
 
-    c_percent = round(above["first_half"]["c"] / (subdivision_functions_count / 2), 1)  # (above["first_half"]["c"] + above["second_half"]["c"])
-    r_percent = round(above["first_half"]["r"] / (subdivision_functions_count / 2), 1)  # (above["first_half"]["r"] + above["second_half"]["r"])
+    c_percent = round(above["first_half"]["c"] / (subdivision_functions_count / 2.0), 2)  # (above["first_half"]["c"] + above["second_half"]["c"])
+    r_percent = round(above["first_half"]["r"] / (subdivision_functions_count / 2.0), 2)  # (above["first_half"]["r"] + above["second_half"]["r"])
 
-    p_percent = round(below["second_half"]["p"] / (subdivision_functions_count / 2), 1)  # (below["first_half"]["p"] + below["second_half"]["p"])
-    i_percent = round(below["second_half"]["i"] / (subdivision_functions_count / 2), 1)  # (below["first_half"]["i"] + below["second_half"]["i"])
+    p_percent = round(below["second_half"]["p"] / (subdivision_functions_count / 2.0), 2)  # (below["first_half"]["p"] + below["second_half"]["p"])
+    i_percent = round(below["second_half"]["i"] / (subdivision_functions_count / 2.0), 2)  # (below["first_half"]["i"] + below["second_half"]["i"])
 
     c_grade = 0 if min_percent > c_percent else c_percent * (max_grade_2/len(in_every_row))
     r_grade = 0 if min_percent > r_percent else r_percent * (max_grade_2/len(in_every_row))
@@ -143,17 +146,18 @@ def check_answer(exp, ans):
     response["criteria_2"]["i"] = str(i_percent * 100) + "% букв И попало куда надо. За это набрали " + str(i_grade) + " из " + str((max_grade_2/len(in_every_row)))
 
     result_grade = (grade_1 + grade_2)/(max_grade_1 + max_grade_2)
+    result_grade = round(result_grade, 4)
 
-    print("оценка 1: ", grade_1, " из ", max_grade_1)
-    print("оценка 2: ", grade_2, " из ", max_grade_2)
-    print("Итоговая оценка от 0 до 1: ", result_grade)
-
-    print("RESPONSE:_____________________________________________________")
-    print(response["criteria_1"])
-    print(response["criteria_2"]["c"])
-    print(response["criteria_2"]["r"])
-    print(response["criteria_2"]["p"])
-    print(response["criteria_2"]["i"])
+    # print("оценка 1: ", grade_1, " из ", max_grade_1)
+    # print("оценка 2: ", grade_2, " из ", max_grade_2)
+    # print("Итоговая оценка от 0 до 1: ", result_grade)
+    #
+    # print("RESPONSE:_____________________________________________________")
+    # print(response["criteria_1"])
+    # print(response["criteria_2"]["c"])
+    # print(response["criteria_2"]["r"])
+    # print(response["criteria_2"]["p"])
+    # print(response["criteria_2"]["i"])
 
     if result_grade == 1:
         return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}]}
@@ -161,6 +165,7 @@ def check_answer(exp, ans):
         return {'input_list': [{'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}]}
     else:
         return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}]}
+
 </script>
 <!--    <link rel="stylesheet" type="text/css" href="./machinery_management_task_4.css" ></link>-->
 <!--    <script type="text/javascript" src="./machinery_management_task_4.js"></script>-->
@@ -170,7 +175,39 @@ def check_answer(exp, ans):
 
 
     <div class="task-description">
-        <p></p>
+
+        <h2>Разработка матрицы распределения функций управления</h2>
+        <p>Предприятие с организационно-правовой формой - общество с ограниченной ответственностью (ООО) ведет производственную деятельность. Требуется распределить функции управления и их реализацию между руководителями и функциональными подразделениями данной организации. В состав подразделений и руководителей предприятия входят следующие подразделения.</p>
+        <p><i>Руководство ООО:</i></p>
+        <ul>
+            <li><strong>ПП</strong> - председатель правления;</li>
+            <li><strong>ДП</strong> - директор предприятия;</li>
+            <li><strong>ЗП</strong> - заместитель директора по производству;</li>
+            <li><strong>ЗК</strong> - заместитель директора по коммерции.</li>
+        </ul>
+
+
+        <p><i>Функциональные подразделения:</i></p>
+        <ul>
+            <li><strong>ГБ</strong> - главный бухгалтер;</li>
+            <li><strong>СР</strong> - секретарь-референт,</li>
+            <li><strong>ЮК</strong> - юрисконсульт-кадровик;</li>
+            <li><strong>ЭП</strong> - экономист по планированию;</li>
+            <li><strong>ПО</strong> - программист-оператор;</li>
+            <li><strong>ИМ</strong> - инженер по маркетингу;</li>
+            <li><strong>ИС</strong> - инженер по снабжению;</li>
+            <li><strong>ДС</strong> - диспетчер.</li>
+        </ul>
+
+        <p><i>Производственные подразделения:</i></p>
+        <ul>
+            <li><strong>ТЗП</strong> - транспортно-заготовительный участок;</li>
+            <li><strong>ПУ</strong> - производственный участок;</li>
+            <li><strong>РСУ</strong> - ремонтно-строительный участок;</li>
+            <li><strong>МС</strong> - магазин-склад.</li>
+        </ul>
+        <h2>Задание:</h2>
+        <p>Необходимо разработать матрицу распределения функций между подразделениями.</p>
         <p>Распределение функции управления осуществляется в виде матрицы. Её строками являются основные функции управления, за реализацию которых отвечает руководитель или специалисты. Условные обозначения операции:</p>
         <p><strong>Ц</strong> - постановка цели управления;</p>
         <p><strong>Р</strong> - руководство, принятие решения, утверждение;</p>
@@ -179,9 +216,10 @@ def check_answer(exp, ans):
         <p><strong>И</strong> - исполнение, доведение, выполнение;</p>
         <p><strong>У</strong> - участие, оказание помощи, информирование;</p>
         <p><strong>пустая ячейка</strong> - неучастие в выполнении функции.</p>
-        <p>По каждой функции управления операции Ц, Р, П, И указываются только один раз, а С и У могут указываться в строке несколько раз. В одной графе можно указывать не более двух операции.</p>
+        <p>По каждой функции управления операции Ц, Р, П, И указываются только один раз, а С и У могут указываться в строке несколько раз. В одной графе можно указывать не более одной операции.</p>
 
     </div>
+
 
 
     <div id="machinery_management_task_4_container"></div>

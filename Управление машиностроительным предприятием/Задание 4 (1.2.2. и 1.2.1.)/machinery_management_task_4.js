@@ -266,7 +266,7 @@ function MachineryManagement4(settings) {
 
 
             if (response){
-                this.build_response();
+                // this.build_response();
             }
 
         },
