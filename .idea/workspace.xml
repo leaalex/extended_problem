@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4 (1.2.2. и 1.2.1.)/machinery_management_task_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4 (1.2.2. и 1.2.1.)/machinery_management_task_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4 (1.2.2. и 1.2.1.)/machinery_management_task_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 4 (1.2.2. и 1.2.1.)/machinery_management_task_4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sage_ifarme.html" beforeDir="false" afterPath="$PROJECT_DIR$/sage_ifarme.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/7.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/7.2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/8.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания/8.1.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +296,9 @@
       <workItem from="1573650937296" duration="55863000" />
       <workItem from="1574760825791" duration="75166000" />
       <workItem from="1575871258482" duration="1206000" />
-      <workItem from="1575884514716" duration="92310000" />
+      <workItem from="1575884514716" duration="92908000" />
+      <workItem from="1576766036714" duration="606000" />
+      <workItem from="1577088550820" duration="11174000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -353,26 +356,14 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="467" y="488" width="729" height="528" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1576580291642" />
-    <state x="847" y="352" key="run.anything.popup" timestamp="1576140788646">
+    <state x="847" y="352" width="672" height="677" key="run.anything.popup" timestamp="1577178036395">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="847" y="352" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1576140788646" />
+    <state x="847" y="352" width="672" height="677" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1577178036395" />
     <state x="526" y="438" width="672" height="678" key="search.everywhere.popup" timestamp="1576247556906">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="526" y="438" width="672" height="678" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1576247556906" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2 (2.2.2.)/machinery_management_task_2.js</url>
-          <line>275</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>
