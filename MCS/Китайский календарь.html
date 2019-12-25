@@ -1,82 +1,82 @@
 <problem>
-<style>
-    .choice-block{
-        padding: 10px;
-        margin: 10px 0px;
-        border: 2px solid #ffffff00;
-        border-radius: 3px;
-    }
+    <style>
+        .choice-block{
+            padding: 10px;
+            margin: 10px 0px;
+            border: 2px solid #ffffff00;
+            border-radius: 3px;
+        }
 
-    .choice-block label{
-        display: block;
-    }
+        .choice-block label{
+            display: block;
+        }
 
-    .choice-block #cell_input{
-        box-sizing: border-box;
-        background-color: #f2f2f2;
-        background-image: -webkit-linear-gradient(#f2f2f2,#fff);
-        background-image: linear-gradient(#f2f2f2,#fff);
-        padding: 6px 8px 8px;
-        border: 1px solid #b2b2b2;
-        border-radius: 2px;
-        box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        font-family: 'Open Sans', sans-serif;
-        color: #4c4c4c;
-        margin-bottom: 6px;
-        outline: 0;
-    }
+        .choice-block #cell_input{
+            box-sizing: border-box;
+            background-color: #f2f2f2;
+            background-image: -webkit-linear-gradient(#f2f2f2,#fff);
+            background-image: linear-gradient(#f2f2f2,#fff);
+            padding: 6px 8px 8px;
+            border: 1px solid #b2b2b2;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            font-family: 'Open Sans', sans-serif;
+            color: #4c4c4c;
+            margin-bottom: 6px;
+            outline: 0;
+        }
 
-    .correct-block{
-        border: 2px solid #009b00;
-    }
+        .correct-block{
+            border: 2px solid #009b00;
+        }
 
-    .correct-block .message {
-        background: whitesmoke;
-        padding: 4px;
-        color: #009b00;
-        text-align: center;
-    }
+        .correct-block .message {
+            background: whitesmoke;
+            padding: 4px;
+            color: #009b00;
+            text-align: center;
+        }
 
-    .incorrect-block{
-        border: 2px solid #cb0712;
-    }
+        .incorrect-block{
+            border: 2px solid #cb0712;
+        }
 
-    .incorrect-block .message {
-        background: whitesmoke;
-        padding: 4px;
-        color: #cb0711;
-        text-align: center;
-    }
+        .incorrect-block .message {
+            background: whitesmoke;
+            padding: 4px;
+            color: #cb0711;
+            text-align: center;
+        }
 
-    .choice-block legend {
-        padding-bottom: 10px;
-    }
+        .choice-block legend {
+            padding-bottom: 10px;
+        }
 
-    .calendar-table td p{
+        .calendar-table td p{
 
-        word-break: keep-all;
-        margin-bottom: 2px !important;
-        margin-top: 2px !important;
-    }
-    .calendar-table td, .calendar-table th {
-        font-size: 80% !important;
-        padding: 4px !important;
-        border: 1px solid #c8c8c8;
-    }
+            word-break: keep-all;
+            margin-bottom: 2px !important;
+            margin-top: 2px !important;
+        }
+        .calendar-table td, .calendar-table th {
+            font-size: 80% !important;
+            padding: 4px !important;
+            border: 1px solid #c8c8c8;
+        }
 
-    .calendar-table td p:first-of-type {
-        text-align: center;
-    }
+        .calendar-table td p:first-of-type {
+            text-align: center;
+        }
 
-    .calendar-table th {
-        background: #eee;
-        font-weight: bold;
-        text-align: center !important;
-        vertical-align: middle !important;
-    }
+        .calendar-table th {
+            background: #eee;
+            font-weight: bold;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
 
-</style>
-<script type="loncapa/python">
+    </style>
+    <script type="loncapa/python">
 # -*- coding: utf-8 -*-
 import json
 
@@ -165,142 +165,142 @@ def check_answer(expect, answer_given):
 </script>
 
 
-<script type="text/javascript">
-    function Answer(elementField) {
-        this.elementField = elementField;
-        this.fieldValue = "";
-        this.fieldObject = {};
-        this.get = function () {
-            this.fieldValue = elementField.value;
-            return this.fieldValue;
+    <script type="text/javascript">
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function () {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function (value) {
+                if (value === undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function () {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function (object) {
+                if (object === undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object));
+            };
+            this.isJsonString = function (str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
         };
-        this.set = function (value) {
-            if (value === undefined) value = this.fieldValue;
-            elementField.value = value;
+
+        let state = {
+            trunk: "",
+            branch: "",
+            cell: "",
         };
-        this.getJSON = function () {
-            if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
-            return this.fieldObject;
-        };
-        this.setJSON = function (object) {
-            if (object === undefined) object = this.fieldObject;
-            this.set(JSON.stringify(object));
-        };
-        this.isJsonString = function (str) {
-            try {
-                JSON.parse(str);
-            } catch (e) {
-                return false;
+
+        let answer = new Answer(document.querySelector("#chinese_calendar_input").querySelector("input[type='text']"));
+
+        let response;
+
+
+        let choice_trunk_inputs = document.querySelectorAll("#chinese_calendar #choice_trunk input");
+        let choice_branch_inputs = document.querySelectorAll("#chinese_calendar #choice_branch input");
+        let cell_input = document.querySelector("#chinese_calendar #cell_input");
+
+        let choice_trunk_block = choice_trunk_inputs[0].closest(".choice-block");
+        let choice_branch_block = choice_branch_inputs[0].closest(".choice-block");
+        let cell_input_block = cell_input.parentNode;
+
+        if(answer.get()){
+            state = answer.getJSON();
+
+            if (document.querySelector("#chinese_calendar_input").parentNode.parentNode.querySelector("span.message")) {
+                response = JSON.parse(document.querySelector("#chinese_calendar_input").parentNode.parentNode.querySelector("span.message").innerHTML);
+                if (response){
+                    // console.log(response);
+                    if(response.branch.correctness){
+                        choice_branch_block.classList.add("correct-block")
+                    }
+                    else{
+                        choice_branch_block.classList.add("incorrect-block")
+                    }
+                    if(response.trunk.correctness){
+                        choice_trunk_block.classList.add("correct-block")
+                    }
+                    else{
+                        choice_trunk_block.classList.add("incorrect-block")
+                    }
+
+                    if (response.cell_num.msg){
+                        document.querySelector("#choice_cell .message").innerHTML = response.cell_num.msg;
+                    }
+                    else{
+                        document.querySelector("#choice_trunk .message").innerHTML = response.trunk.msg;
+                        document.querySelector("#choice_branch .message").innerHTML = response.branch.msg;
+                    }
+
+                    if(!response.cell_num.correctness){
+                        cell_input_block.classList.add("incorrect-block");
+                    }
+
+                }
             }
-            return true;
-        };
-    };
 
-    let state = {
-        trunk: "",
-        branch: "",
-        cell: "",
-    };
-
-    let answer = new Answer(document.querySelector("#chinese_calendar_input").querySelector("input[type='text']"));
-
-    let response;
-
-
-    let choice_trunk_inputs = document.querySelectorAll("#chinese_calendar #choice_trunk input");
-    let choice_branch_inputs = document.querySelectorAll("#chinese_calendar #choice_branch input");
-    let cell_input = document.querySelector("#chinese_calendar #cell_input");
-
-    let choice_trunk_block = choice_trunk_inputs[0].closest(".choice-block");
-    let choice_branch_block = choice_branch_inputs[0].closest(".choice-block");
-    let cell_input_block = cell_input.parentNode;
-
-    if(answer.get()){
-        state = answer.getJSON();
-
-        if (document.querySelector("#chinese_calendar_input").parentNode.parentNode.querySelector("span.message")) {
-            response = JSON.parse(document.querySelector("#chinese_calendar_input").parentNode.parentNode.querySelector("span.message").innerHTML);
-            if (response){
-                // console.log(response);
-                if(response.branch.correctness){
-                    choice_branch_block.classList.add("correct-block")
-                }
-                else{
-                    choice_branch_block.classList.add("incorrect-block")
-                }
-                if(response.trunk.correctness){
-                    choice_trunk_block.classList.add("correct-block")
-                }
-                else{
-                    choice_trunk_block.classList.add("incorrect-block")
-                }
-
-                if (response.cell_num.msg){
-                    document.querySelector("#choice_cell .message").innerHTML = response.cell_num.msg;
-                }
-                else{
-                    document.querySelector("#choice_trunk .message").innerHTML = response.trunk.msg;
-                    document.querySelector("#choice_branch .message").innerHTML = response.branch.msg;
-                }
-
-                if(!response.cell_num.correctness){
-                    cell_input_block.classList.add("incorrect-block");
-                }
-
-            }
         }
 
-    }
 
-
-    answer.setJSON(state);
-
-
-    cell_input.value = state.cell;
-    cell_input.oninput = function() {
-        state.cell = this.value;
         answer.setJSON(state);
-        cell_input_block.classList.remove("incorrect-block");
-        cell_input_block.classList.remove("correct-block");
-        cell_input_block.querySelector(".message").innerHTML = "";
-    };
 
-    let prev = null;
-    choice_trunk_inputs.forEach(function (input, index) {
-        if (state.trunk === input.value){
-            input.checked = true;
-        }
-        input.addEventListener('change', function() {
-            if (this !== prev) {
-                prev = this;
-            }
-            state.trunk = this.value;
-            choice_trunk_block.classList.remove("incorrect-block");
-            choice_trunk_block.classList.remove("correct-block");
-            choice_trunk_block.querySelector(".message").innerHTML = "";
+
+        cell_input.value = state.cell;
+        cell_input.oninput = function() {
+            state.cell = this.value;
             answer.setJSON(state);
-        });
-    });
-    prev = null;
-    choice_branch_inputs.forEach(function (input, index) {
-        if (state.branch === input.value){
-            input.checked = true;
-        }
-        input.addEventListener('change', function() {
-            if (this !== prev) {
-                prev = this;
+            cell_input_block.classList.remove("incorrect-block");
+            cell_input_block.classList.remove("correct-block");
+            cell_input_block.querySelector(".message").innerHTML = "";
+        };
+
+        let prev = null;
+        choice_trunk_inputs.forEach(function (input, index) {
+            if (state.trunk === input.value){
+                input.checked = true;
             }
-            state.branch = this.value;
-            choice_branch_block.classList.remove("incorrect-block");
-            choice_branch_block.classList.remove("correct-block");
-            choice_branch_block.querySelector(".message").innerHTML = "";
-            answer.setJSON(state);
+            input.addEventListener('change', function() {
+                if (this !== prev) {
+                    prev = this;
+                }
+                state.trunk = this.value;
+                choice_trunk_block.classList.remove("incorrect-block");
+                choice_trunk_block.classList.remove("correct-block");
+                choice_trunk_block.querySelector(".message").innerHTML = "";
+                answer.setJSON(state);
+            });
         });
-    });
+        prev = null;
+        choice_branch_inputs.forEach(function (input, index) {
+            if (state.branch === input.value){
+                input.checked = true;
+            }
+            input.addEventListener('change', function() {
+                if (this !== prev) {
+                    prev = this;
+                }
+                state.branch = this.value;
+                choice_branch_block.classList.remove("incorrect-block");
+                choice_branch_block.classList.remove("correct-block");
+                choice_branch_block.querySelector(".message").innerHTML = "";
+                answer.setJSON(state);
+            });
+        });
 
-</script>
+    </script>
 
-<div id="chinese_calendar">
+    <div id="chinese_calendar">
 
         <p><strong>Китайский циклический календарь</strong> является комбинацией 10-летнего цикла («небесные стволы») и 12-летнего цикла («земные ветви») и составляет общий цикл 60 лет, половина сочетаний (у которых разная чётность) не используется. «Небесные стволы» – 10 летний цикл состоит из пяти знаков, каждый из которых имеет две тональности: дерево, огонь, земля, металл, вода. «Земные ветви» – 12 летний цикл названы в честь животных: крыса, бык, тигр, кролик, дракон, змея, лошадь, овца, обезьяна, петух, собака, свинья. Год в цикле обозначается двумя иероглифами: небесный ствол и земная ветвь. Китайский циклический календарь получил популярность, но при этом чаще указывают только «земную ветвь», т.е. символ животное.</p>
         <p>Начало года в китайском календаре зависит от астрономического явления (новолуния), а не от даты как в григорианском календаре. Поэтому, из-за протяжённости территории, на которой использовался календарь, в разных местах Новый Год могли отмечать в разные (±1) дни григорианского календаря.</p>
@@ -309,7 +309,7 @@ def check_answer(expect, answer_given):
         <p>Моя жена родилась 4 сентября 1958 года т.е. после 18 февраля 1958 года, когда год земляной собаки уже наступил это и есть год ее рождения по китайскому календарю (ячейка 35).</p>
 
         <table class="calendar-table">
-            <caption>Шестидесятилетний цикл китайского календаря по григорианскому календарю</caption>
+            <caption>Таблица. Шестидесятилетний цикл китайского календаря по григорианскому календарю</caption>
             <tbody>
             <tr>
                 <th rowspan="2">
