@@ -1,5 +1,10 @@
 <problem>
     <style>
+
+        .calendar-table-wrapper{
+            overflow: auto;
+        }
+
         .choice-block{
             padding: 10px;
             margin: 10px 0px;
@@ -53,12 +58,12 @@
         }
 
         .calendar-table td p{
-
-            word-break: keep-all;
             margin-bottom: 2px !important;
             margin-top: 2px !important;
         }
+
         .calendar-table td, .calendar-table th {
+            word-break: keep-all;
             font-size: 80% !important;
             padding: 4px !important;
             border: 1px solid #c8c8c8;
@@ -308,7 +313,8 @@ def check_answer(expect, answer_given):
         <p>Я родился 28 января 1958 года. Поскольку я рожден до начала нового года – 18 февраля 1958 года т. е. до года земляной собаки (ячейка 35), то я родился в год огненного петуха, наступивший 31 января 1957 года и продолжавшийся до 17 февраля 1958 года (ячейка 34).</p>
         <p>Моя жена родилась 4 сентября 1958 года т.е. после 18 февраля 1958 года, когда год земляной собаки уже наступил это и есть год ее рождения по китайскому календарю (ячейка 35).</p>
 
-        <table class="calendar-table">
+        <div class="calendar-table-wrapper">
+            <table class="calendar-table">
             <caption>Таблица. Шестидесятилетний цикл китайского календаря по григорианскому календарю</caption>
             <tbody>
             <tr>
@@ -863,7 +869,7 @@ def check_answer(expect, answer_given):
             </tr>
             </tbody>
         </table>
-
+        </div>
         <h2>Задание:</h2>
 
         <div id="choice_cell" class="choice-block">
@@ -873,7 +879,7 @@ def check_answer(expect, answer_given):
         </div>
 
         <div class="choice-block" id="choice_trunk">
-            <fieldset> <legend><b>Небесный ствол, к которому относится Ваша дата рождения?</b></legend>
+            <fieldset> <legend><b>Небесный ствол, к которому относится Ваша дата рождения:</b></legend>
                 <label><input type="radio" name="trunk" value="tree"/> Дерево</label>
                 <label><input type="radio" name="trunk" value="fire"/> Огонь</label>
                 <label><input type="radio" name="trunk" value="land"/> Земля</label>
@@ -885,7 +891,7 @@ def check_answer(expect, answer_given):
 
         <div class="choice-block" id="choice_branch">
 
-            <fieldset> <legend><b>Земная ветвь, к которой относится дата Вашего рождения?</b></legend>
+            <fieldset> <legend><b>Земная ветвь, к которой относится дата Вашего рождения:</b></legend>
                 <label><input type="radio" name="branch" value="rat"/> Крыса</label>
                 <label><input type="radio" name="branch" value="bull"/> Бык</label>
                 <label><input type="radio" name="branch" value="tiger"/> Тигр</label>

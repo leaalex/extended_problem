@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="вфкфр">
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="китайский календарь">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCS/Китайский календарь.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Китайский календарь.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_3.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +297,7 @@
       <workItem from="1575871258482" duration="1206000" />
       <workItem from="1575884514716" duration="92908000" />
       <workItem from="1576766036714" duration="606000" />
-      <workItem from="1577088550820" duration="20966000" />
+      <workItem from="1577088550820" duration="23138000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -347,7 +348,8 @@
     <MESSAGE value="tsts" />
     <MESSAGE value="Кроссворд" />
     <MESSAGE value="вфкфр" />
-    <option name="LAST_COMMIT_MESSAGE" value="вфкфр" />
+    <MESSAGE value="китайский календарь" />
+    <option name="LAST_COMMIT_MESSAGE" value="китайский календарь" />
   </component>
   <component name="WindowStateProjectService">
     <state x="838" y="329" width="843" height="807" key="CommitChangelistDialog2" timestamp="1577345733586">

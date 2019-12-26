@@ -415,7 +415,11 @@ every_more = variant["every_more"]
 p_z_v1 = (1/planned_payback) * long_term_asset_acquisition_v1 + conditionally_fixed_costs_v1 + (variable_costs_v1 * volume_of_production)
 p_z_v2 = (1/planned_payback) * long_term_asset_acquisition_v2 + conditionally_fixed_costs_v2 + (variable_costs_v2 * volume_of_production)
 
-gr = math.ceil((((conditionally_fixed_costs_v2-conditionally_fixed_costs_v1) + (1/planned_payback) * (long_term_asset_acquisition_v2 - long_term_asset_acquisition_v1))/(variable_costs_v1-variable_costs_v2)))
+
+
+gr_test = round((((conditionally_fixed_costs_v2-conditionally_fixed_costs_v1) + (1/planned_payback) * (long_term_asset_acquisition_v2 - long_term_asset_acquisition_v1))/(variable_costs_v1-variable_costs_v2)), 3)
+
+gr = math.ceil(gr_test)
 
 if p_z_v2 >= p_z_v1:
     recommend = "variant_1"
