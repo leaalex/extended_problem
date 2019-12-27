@@ -9,7 +9,7 @@ function MachineryManagement2(settings) {
         x.y = settings.area_height - 1 - index;
         if (settings.area_height <= index) {
             x.y = settings.area_height - (index - settings.area_height * calc_help + 1);
-        }
+        }Нет работы
         return x;
     });
 
