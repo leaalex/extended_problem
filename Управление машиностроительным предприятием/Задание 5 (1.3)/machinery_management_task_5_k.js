@@ -86,7 +86,7 @@ function MachineryManagement5(user_settings) {
                             <li>второе изделие – {{companion_data.products_count[1]}} шт.</li>
                             <li>третье изделие – {{companion_data.products_count[2]}} шт.</li>
                         </ul>
-                        <p>Вместе с этим имеются следующие исходные данные.</p>
+                        <p>Вместе с этим имеются следующие исходные данные в таблицах 1,2, 3 и 4.</p>
 
                         <table class="source-table" id="source_table_1">
                             <caption>Таблица 1. Данные по выпускаемым изделиям</caption>
@@ -270,14 +270,29 @@ function MachineryManagement5(user_settings) {
                             </tr>
                         </table>
                         
-                        <p>Предполагается, что предприятие будет работать при двухсменном режиме работы. Плановый коэффициент загрузки оборудования – \\({{companion_data.load_coeff*100}} \ \\% \\). Плановый коэффициент выполнения норм времени – \\({{companion_data.time_coeff}}\\).</p>
+                        <table class="source-table" id="source_table_4">
+                        <caption>Таблица 4. Коэффициенты для расчётов</caption>
+                            <tr>
+                                <th>Наименование коэффициента</th>
+                                <th style="width: 200px;">Значение</th>
+                            </tr>
+                            <tr>
+                                <td class="centered-cell">Плановый коэффициент загрузки оборудования</td>
+                                <td class="centered-cell">\\({{companion_data.load_coeff*100}}  \\% \\)</td>
+                            </tr>
+                            <tr>
+                                <td class="centered-cell">Плановый коэффициент выполнения норм времени</td>
+                                <td class="centered-cell">\\({{companion_data.time_coeff}}\\)</td>
+                            </tr>
+                         </table>
                     
+                        
                         <h2>Задание:</h2>
                         <ol>
-                            <li>Определить перечень требуемого оборудования</li>
-                            <li>Определить перечень требуемых профессий с разрядами</li>
-                            <li>Рассчитать потребное количество оборудования</li>
-                            <li>Рассчитать потребное количество персонала</li>
+                            <li>Определите перечень требуемого оборудования</li>
+                            <li>Определите перечень требуемых профессий с разрядами</li>
+                            <li>Определите потребное количество оборудования</li>
+                            <li>Определите потребное количество персонала</li>
                         </ol>
                          
                     </div>
