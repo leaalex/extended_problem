@@ -1,0 +1,283 @@
+<problem>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import json
+import math
+import random
+
+variants = [
+    {
+    "answer": "Вирусы как и бактерии являются клеточными организмами",
+    "is_true": False
+},
+{
+    "answer": "Прокариотические клетки характерны для бактерий и грибов",
+    "is_true": False
+},
+{
+    "answer": "Темновая фаза фотосинтеза сопровождается выделением кислорода",
+    "is_true": False
+},
+{
+    "answer": "Ферменты – ингибиторы метаболических процессов в живых организмах",
+    "is_true": False
+},
+{
+    "answer": "Функция рибосом – это синтез аминокислот",
+    "is_true": False
+},
+{
+    "answer": "Первичная структура белка - спираль",
+    "is_true": False
+},
+{
+    "answer": "Мономером полисахарида гликоген является фруктоза",
+    "is_true": False
+},
+{
+    "answer": "Грибная клетка – это прокариотическая клетка",
+    "is_true": False
+},
+{
+    "answer": "Одномембранные органоиды характерны для прокариотических клеток" ,
+    "is_true": False
+},
+{
+    "answer": "Хромопласты способны превращаться в любые другие типы пластид",
+    "is_true": False
+},
+{
+    "answer": "Гладкие и шероховатые участки ЭПС могут превращаться друг в друга",
+    "is_true": False
+},
+{
+    "answer": "Место образования лизосом – это ЭПС",
+    "is_true": False
+},
+{
+    "answer": "Функции химической модификации веществ, синтеза лизосом, транспорта веществ осуществляют вакуоли",
+    "is_true": False
+},
+{
+    "answer": "Синтез белка происходит в лизосомах",
+    "is_true": False
+},
+{
+    "answer": "Впячивания плазматической мембраны прокариотической клетки называются кристы",
+    "is_true": False
+},
+{
+    "answer": "Впячивания мембраны митохондрий называются мезосомы",
+    "is_true": False
+},
+{
+    "answer": "Пластиды, которые синтезируют крахмал – это пропластиды",
+    "is_true": False
+},
+{
+    "answer": "ДНК прокариотической клетки имеет линейную структуру",
+    "is_true": False
+},
+{
+    "answer": "Образование липидов происходит на гранулярной ЭПС",
+    "is_true": False
+},
+{
+    "answer": "Образование белков происходит на гладкой ЭПС",
+    "is_true": False
+},
+{
+    "answer": "Цитоскелет – обязательный органоид любой клетки",
+    "is_true": False
+},
+{
+    "answer": "Стопки мембранных мешочков в хлоропластах называются тилакоиды",
+    "is_true": False
+},
+{
+    "answer": "Антони ван Левенгук является первооткрывателем животных клеток",
+    "is_true": True
+},
+{
+    "answer": "Обязательным органоидом клеток любого типа является плазматическая мембрана",
+    "is_true": True
+},
+{
+    "answer": "Рибосомы прокариотической клетки мельче рибосом эукариотической клетки",
+    "is_true": True
+},
+{
+    "answer": "У бактерий кольцевая ДНК",
+    "is_true": True
+},
+{
+    "answer": "Реакции окислительного фосфорилирования происходят на кристах митохондрий",
+    "is_true": True
+},
+{
+    "answer": "Реакции окислительного фосфорилирования происходят на мембранах тилакоидов",
+    "is_true": True
+},
+{
+    "answer": "Функция рибосом – это сшивание аминокислот в белковую цепочку",
+    "is_true": True
+},
+{
+    "answer": "Рибосомы состоят из молекул белка и рибосомальной РНК",
+    "is_true": True
+},
+{
+    "answer": "Растительная клетка – это эукариотическая клетка",
+    "is_true": True
+},
+{
+    "answer": "Бактериальная клетка – это прокариотическая клетка",
+    "is_true": True
+},
+{
+    "answer": "Двумембранные органоиды характерны только для эукариотических клеток",
+    "is_true": True
+},
+{
+    "answer": "Осенняя окраска плодов и листьев объясняется образованием хромопластов в результате разрушения других типов пластид",
+    "is_true": True
+},
+{
+    "answer": "Пигмент хлорофилл есть только в хлоропластах",
+    "is_true": True
+},
+{
+    "answer": "Пропластиды являются первичной формой пластид",
+    "is_true": True
+},
+{
+    "answer": "Хромосомы – это максимально спирализованный хроматин",
+    "is_true": True
+},
+{
+    "answer": "Тонопласт – это мембрана вакуоли",
+    "is_true": True
+},
+{
+    "answer": "В клетках высших растений отсутствует клеточный центр",
+    "is_true": True
+},
+{
+    "answer": "Место образования пузырьков Гольджи – это ЭПС",
+    "is_true": True
+},
+{
+    "answer": "Место образования клеточных мембран – это ЭПС",
+    "is_true": True
+},
+{
+    "answer": "Клетка была открыта Робертом Гуком в 1665 году",
+    "is_true": True
+},
+{
+    "answer": "Основоположники клеточной теории – ботаник Шлейден и зоолог Шванн",
+    "is_true": True
+},
+{
+    "answer": "Эндоплазматическая сеть может быть гладкой и шероховатой",
+    "is_true": True
+},
+{
+    "answer": "Внутренняя полость пластид заполнена полужидким матриксом – стромой",
+    "is_true": True
+},
+{
+    "answer": "Пластиды, которые не способны превращаться в другие типы пластид – это хромопласты",
+    "is_true": True
+},
+{
+    "answer": "Пластиды, в которых запасается крахмал – это амилопласты",
+    "is_true": True
+},
+{
+    "answer": "Пластиды, в которых происходят реакции фотосинтеза – это хлоропласты",
+    "is_true": True
+},
+{
+    "answer": "Митохондрии и пластиды являются полуавтономными органоидами",
+    "is_true": True
+},
+{
+    "answer": "Ядерная ДНК имеет линейную структуру",
+    "is_true": True
+},
+{
+    "answer": "Структурно поляризованный органоид, состоящий из стопок дисковидных цистерн, окруженных мелкими пузырьками называется Аппарат Гольджи",
+    "is_true": True
+},
+{
+    "answer": "Синтез липидов происходит на гладкой ЭПС",
+    "is_true": True
+},
+{
+    "answer": "Клеточные мембраны образуются эндоплазматической сетью",
+    "is_true": True
+},
+{
+    "answer": "Зона бактериальной клетки, содержащая ДНК, называется нуклеоид",
+    "is_true": True
+},
+{
+    "answer": "Пластиды меристематической клетки называются пропластиды",
+    "is_true": True
+}]
+
+random.shuffle(variants)
+
+variant_1_text, variant_1_correct = variants[0]["answer"], variants[0]["is_true"]
+variant_2_text, variant_2_correct = variants[1]["answer"], variants[1]["is_true"]
+variant_3_text, variant_3_correct = variants[2]["answer"], variants[2]["is_true"]
+variant_4_text, variant_4_correct = variants[3]["answer"], variants[3]["is_true"]
+variant_5_text, variant_5_correct = variants[4]["answer"], variants[4]["is_true"]
+variant_6_text, variant_6_correct = variants[5]["answer"], variants[5]["is_true"]
+variant_7_text, variant_7_correct = variants[6]["answer"], variants[6]["is_true"]
+variant_8_text, variant_8_correct = variants[7]["answer"], variants[7]["is_true"]
+variant_9_text, variant_9_correct = variants[8]["answer"], variants[8]["is_true"]
+variant_10_text, variant_10_correct = variants[9]["answer"], variants[9]["is_true"]
+variant_11_text, variant_11_correct = variants[10]["answer"], variants[10]["is_true"]
+variant_12_text, variant_12_correct = variants[11]["answer"], variants[11]["is_true"]
+variant_13_text, variant_13_correct = variants[12]["answer"], variants[12]["is_true"]
+variant_14_text, variant_14_correct = variants[13]["answer"], variants[13]["is_true"]
+variant_15_text, variant_15_correct = variants[14]["answer"], variants[14]["is_true"]
+variant_16_text, variant_16_correct = variants[15]["answer"], variants[15]["is_true"]
+variant_17_text, variant_17_correct = variants[16]["answer"], variants[16]["is_true"]
+variant_18_text, variant_18_correct = variants[17]["answer"], variants[17]["is_true"]
+variant_19_text, variant_19_correct = variants[18]["answer"], variants[18]["is_true"]
+variant_20_text, variant_20_correct = variants[19]["answer"], variants[19]["is_true"]
+
+</script>
+
+    <div>
+        <p>Выберите верные утверждения:</p>
+    </div>
+
+    <choiceresponse partial_credit="EDC">
+        <checkboxgroup>
+            <choice correct="$variant_1_correct">$variant_1_text</choice>
+            <choice correct="$variant_2_correct">$variant_2_text</choice>
+            <choice correct="$variant_3_correct">$variant_3_text</choice>
+            <choice correct="$variant_4_correct">$variant_4_text</choice>
+            <choice correct="$variant_5_correct">$variant_5_text</choice>
+            <choice correct="$variant_6_correct">$variant_6_text</choice>
+            <choice correct="$variant_7_correct">$variant_7_text</choice>
+            <choice correct="$variant_8_correct">$variant_8_text</choice>
+            <choice correct="$variant_9_correct">$variant_9_text</choice>
+            <choice correct="$variant_10_correct">$variant_10_text</choice>
+            <choice correct="$variant_11_correct">$variant_11_text</choice>
+            <choice correct="$variant_12_correct">$variant_12_text</choice>
+            <choice correct="$variant_13_correct">$variant_13_text</choice>
+            <choice correct="$variant_14_correct">$variant_14_text</choice>
+            <choice correct="$variant_15_correct">$variant_15_text</choice>
+            <choice correct="$variant_16_correct">$variant_16_text</choice>
+            <choice correct="$variant_17_correct">$variant_17_text</choice>
+            <choice correct="$variant_18_correct">$variant_18_text</choice>
+            <choice correct="$variant_19_correct">$variant_19_text</choice>
+            <choice correct="$variant_20_correct">$variant_20_text</choice>
+        </checkboxgroup>
+    </choiceresponse>
+</problem>
