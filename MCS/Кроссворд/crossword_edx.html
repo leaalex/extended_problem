@@ -238,6 +238,8 @@ else:
         new_item = item.copy()
         student_data.append(new_item)
 
+# for new edX remove: ensure_ascii=False and .replace("\"", "'")
+
 student_data_json = json.dumps({"student_data":student_data, "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
 student_answer_json = json.dumps({"student_data":json.loads(json.dumps(source_data)), "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
 

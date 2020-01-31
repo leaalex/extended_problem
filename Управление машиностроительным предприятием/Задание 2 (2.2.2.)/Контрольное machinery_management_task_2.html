@@ -342,6 +342,7 @@ def check_answer(exp, ans):
 
 
 student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "'")
+student_data_json = json.dumps(student_data).replace("\"", "'")
 
 answer_data = {
     "data": get_answer(structure),
@@ -350,6 +351,7 @@ answer_data = {
 }
 
 student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", "'")
+student_answer_json = json.dumps(answer_data).replace("\"", "'")
 
     </script>
 

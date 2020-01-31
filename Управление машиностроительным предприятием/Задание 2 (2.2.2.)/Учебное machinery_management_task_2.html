@@ -342,6 +342,7 @@ def check_answer(exp, ans):
 
 
 student_data_json = json.dumps(student_data, ensure_ascii=False).replace("\"", "'")
+student_data_json = json.dumps(student_data).replace("\"", "'")
 
 answer_data = {
     "data": get_answer(structure),
@@ -350,6 +351,7 @@ answer_data = {
 }
 
 student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", "'")
+student_answer_json = json.dumps(answer_data).replace("\"", "'")
 
     </script>
 
@@ -375,7 +377,7 @@ student_answer_json = json.dumps(answer_data, ensure_ascii=False).replace("\"", 
 
     <div id="machinery_management_task_2-container">
         <div>
-            <p>Для выполнения данного задания <strong>прежде всего</strong> необходимо <strong>внимательно ознакомиться</strong> с решением <strong>аналогичной</strong> задачи, которое приведено в следующем лекционном материале: <a href="/jump_to_id/fadd5aa734cf444c8ed34a6079b75d67">2.2.4. Управление сложными процессами. Цикловой график</a></p>
+            <p>Для выполнения данного задания <strong>прежде всего</strong> необходимо <strong>внимательно ознакомиться</strong> с решением <strong>аналогичной</strong> задачи, которое приведено в следующем лекционном материале: <a target="_blank" href="/jump_to_id/fadd5aa734cf444c8ed34a6079b75d67">2.2.4. Управление сложными процессами. Цикловой график</a></p>
             <p>Там представлен <strong>весь порядок</strong> решения подобной задачи <strong>на примере с конкретными исходными данными</strong> и самыми подробными <strong>пояснениями</strong> по поводу каждого отдельного действия.</p>
             <p>К выполнению данного задания следует переходить <strong>только после освоения</strong> указанного материала.</p>
             <h2>Исходные данные:</h2>
