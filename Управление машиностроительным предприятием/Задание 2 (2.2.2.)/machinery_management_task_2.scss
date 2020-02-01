@@ -21,6 +21,8 @@ $machine_element_opacity: 0.76;
 
   .task_table {
 
+    //margin: 0 auto;
+
     .dividing-line {
       border-left: 3px dashed black;
       height: 100%;
@@ -90,6 +92,8 @@ $machine_element_opacity: 0.76;
   .x_axis_labels {
     margin-top: -1px;
     margin-left: 1px;
+
+    //margin: 0 auto;
 
     .axis-label {
       border: none;
