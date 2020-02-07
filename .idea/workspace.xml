@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="китайский календарь">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.css" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCS/Кроссворд/crossword.scss" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Кроссворд/crossword.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2 (2.2.2.)/machinery_management_task_2.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2 (2.2.2.)/machinery_management_task_2.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2 (2.2.2.)/machinery_management_task_2.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2 (2.2.2.)/machinery_management_task_2.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5 (1.3)/machinery_management_task_5_u.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5 (1.3)/machinery_management_task_5_u.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +54,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../openedu_Inclus_M2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../notv-app" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="web.server" />
@@ -302,7 +299,7 @@
       <workItem from="1577088550820" duration="25118000" />
       <workItem from="1577425370102" duration="1575000" />
       <workItem from="1578743889918" duration="11148000" />
-      <workItem from="1580131378982" duration="12603000" />
+      <workItem from="1580131378982" duration="17594000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -361,14 +358,14 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="838" y="329" width="843" height="807" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1577345733586" />
-    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580556091662">
+    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581067980959">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1580556091662" />
-    <state x="467" y="488" width="762" height="538" key="find.popup" timestamp="1580212016526">
+    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1581067980959" />
+    <state x="467" y="488" width="779" height="538" key="find.popup" timestamp="1580887421473">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="467" y="488" width="762" height="538" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1580212016526" />
+    <state x="467" y="488" width="779" height="538" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1580887421473" />
     <state x="847" y="352" width="672" height="677" key="run.anything.popup" timestamp="1577260056920">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
