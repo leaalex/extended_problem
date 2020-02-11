@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="китайский календарь">
+      <change afterPath="$PROJECT_DIR$/Основы проектной деятельности/3.3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5 (1.3)/machinery_management_task_5_u.js" beforeDir="false" afterPath="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5 (1.3)/machinery_management_task_5_u.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Философия/crit_think_diagnostic/crit_think_diagnostic.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/crit_think_diagnostic/crit_think_diagnostic.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +300,9 @@
       <workItem from="1577088550820" duration="25118000" />
       <workItem from="1577425370102" duration="1575000" />
       <workItem from="1578743889918" duration="11148000" />
-      <workItem from="1580131378982" duration="17594000" />
+      <workItem from="1580131378982" duration="18199000" />
+      <workItem from="1581084529308" duration="599000" />
+      <workItem from="1581320196778" duration="4400000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -358,10 +361,10 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="838" y="329" width="843" height="807" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1577345733586" />
-    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581067980959">
+    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581071074319">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1581067980959" />
+    <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1581071074319" />
     <state x="467" y="488" width="779" height="538" key="find.popup" timestamp="1580887421473">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
