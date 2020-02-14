@@ -1,0 +1,80 @@
+.xblock {
+  overflow-x: unset !important;
+}
+
+.modal-words-wrapper {
+  padding-bottom: 100px;
+
+  .modal-words-task {
+    margin: 80px 40px;
+    position: relative;
+    text-align: center;
+    width: 800px;
+
+    .sentence-part {
+      font-weight: 600;
+      font-size: 14px;
+      padding: 4px 0px;
+      line-height: 1.7;
+
+      &.can-select {
+        cursor: pointer;
+        color: #2222c5;
+
+        &.default {
+            color: rgb(0, 117, 180);;
+            background: #f7f7f7;
+            &:hover{
+              color: #00539c;
+              background: #fbfbfb;
+
+            }
+        }
+        &.active {
+          background: azure;
+        }
+        &.correct {
+          background: none;
+          color: green;
+        }
+        &.incorrect {
+          //background: none;
+          color: red;
+        }
+      }
+
+    }
+
+    .modal-choice {
+      text-align: left;
+      //max-width: 400px;
+      width: 400px;
+      font-size: 14px;
+      position: absolute;
+      background: #f9f9f9;
+      padding: 10px;
+      border: 2px solid lightgray;
+      border-radius: 3px;
+
+      &.hidden {
+        display: none;
+      }
+
+      .variant {
+        border: 2px solid #e4e4e4;
+        background: aliceblue;
+        z-index: 9999;
+        margin: 4px 0px;
+        padding: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background: #daeaf9;
+        }
+      }
+
+    }
+
+
+  }
+}

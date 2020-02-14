@@ -1,0 +1,280 @@
+<problem>
+    <style>
+        .economic-choice {
+            /*padding-bottom: 20px;*/
+        }
+        .economic-choice .hint-label, .economic-choice .indicator-container, .economic-choice .explanation-title {
+            display: none !important;
+        }
+        .economic-choice .field {
+            word-break: keep-all;
+        }
+        .economic-choice.height100px .field {
+            min-height: 100px;
+        }
+        .economic-choice.two .field {
+            width: 50%;
+            float: left;
+            margin: 0 auto;
+        }
+
+        .economic-choice.two .field input[type="radio"]{
+            left: 42% !important;
+            position: absolute;
+            transform: scale(1.4);
+            top: 40% !important;
+        }
+
+        .economic-choice.two .field label{
+            padding: 30% !important;
+            padding-left: 60% !important;
+            width: 50%;
+            float: left;
+            margin: 0 auto;
+            height: 100px;
+            margin-bottom: 0px !important;
+            border-radius: 0px !important;
+        }
+
+
+        .economic-choice.two .hint-text{
+            font-size: 80%;
+            margin: 0px 4px 8px;
+            padding: 4px;
+            background: #ffebeb;
+        }
+
+        .economic-choice.two {
+            width: 30%
+        }
+
+
+        table.project_task {
+            margin-bottom: -2px !important;
+        }
+        .economic-choice.two .field:nth-child(odd) {
+            background: #ececec !important;
+        }
+
+        .economic-choice.two .field:nth-child(even) {
+            background: gainsboro !important;
+        }
+
+        table.project_task td {
+            border: 2px solid lightgrey;
+            width: 15%;
+            font-style: italic;
+            text-align: center !important;
+            padding: 10px !important;
+        }
+        table.project_task th {
+            border: 2px solid lightgrey;
+            /*font-style: italic;*/
+            text-align: center !important;
+            padding: 10px !important;
+        }
+
+        table.project_task td:nth-child(odd) {
+
+            background: #ececec !important;
+
+        }
+
+        table.project_task td:nth-child(even) {
+            background: gainsboro !important;
+        }
+
+
+        .project_task-wrap{
+            width: calc(100% - 4px);
+            display: inline-flex;
+            border: 2px solid lightgrey;
+            margin-bottom: -2px !important;
+        }
+
+        .project_task-question{
+            width: calc(40% - 20px);
+            padding: 10px
+        }
+
+
+    </style>
+
+    <p>Посмотрите и попробуйте определить, чем является деятельность приведенная ниже проектом или процессом:</p>
+    <ul>
+        <li>Модернизация технологической линии предприятия</li>
+        <li>Выпуск продукции предприятия</li>
+    </ul>
+    <p>В своих рассуждениях отталкивайтесь от рассмотренного в лекциях материала и попробуйте ответить на следующие вопросы:</p>
+    <ol>
+        <li>Какая технология используется при реализации (уникальная или стандартная)?
+            <ul>
+                <li>Если технология реализации уникальна, отметьте наличие одного из признаков проекта.</li>
+                <li>Если применяется повторяющаяся (стандартная) последовательность исполнения, отметьте наличие признака процесса.</li>
+            </ul>
+        </li>
+        <li>Как можно охарактеризовать требования к результату (стандартизированы или нет)?
+            <ul>
+                <li>Если требования к результату связаны с изменениями (не производящийся ранее продукт), отметьте наличие признака проекта.</li>
+                <li>Если требования к результату стандартизированы, результат предсказуем (один и тот же продукт с теми же свойствами), отметьте наличие признака процесса.</li>
+            </ul>
+        </li>
+        <li>Какова степень неопределенности?
+            <ul>
+                <li>Если степень неопределенности высокая, отметьте наличие признака проекта.</li>
+                <li>Если степень неопределенности низкая, отметьте наличие признака процесса.</li>
+            </ul>
+        </li>
+        <li>Участники постоянны или команда сформирована под конкретную задачу?
+            <ul>
+                <li>Если команда формируется на период реализации проекта, отметьте наличие признака проекта.</li>
+                <li>Если участники относительно постоянны, отметьте наличие признака процесса.</li>
+            </ul>
+        </li>
+        <li>Каковы временные рамки (требует ли цикл повторения)?
+            <ul>
+                <li>Если временные рамки обозначены (цикл не требует повторения), отметьте наличие признака проекта.</li>
+                <li>Если временные рамки не обозначены (цикл повторяющийся), отметьте наличие признака процесса.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div style="max-width: 900px">
+        <table class="project_task">
+            <tr>
+                <th rowspan="2" style="width: 40%">Вопрос</th>
+                <th colspan="2">Модернизация технологической линии предприятии</th>
+                <th colspan="2">Выпуск продукции предприятия</th>
+            </tr>
+            <tr>
+                <td>Наличие признака проекта</td>
+                <td>Наличие признака процесса</td>
+                <td>Наличие признака проекта</td>
+                <td>Наличие признака процесса</td>
+            </tr>
+        </table>
+
+        <div class="project_task-wrap">
+            <div class="project_task-question"><strong>1.</strong> Какая технология используется при реализации (уникальная или стандартная)?</div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="true"></choice>
+                        <choice correct="false"><choicehint>Для модернизации технологической линии предприятии потребуется применять уникальную технологию, при этом скорее всего данный проект на данном предприятии не будет схож с похожими проектами других предприятий, при реализации решаются вопросы каких исполнителей привлечь, какое оборудование использовать и т.д.</choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="false"><choicehint>При выпуске продукции предприятия используется повторяющаяся (стандартная) последовательность исполнения, уже есть определенный технологический процесс производства</choicehint></choice>
+                        <choice correct="true"></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+        </div>
+
+
+        <div class="project_task-wrap">
+            <div class="project_task-question"><strong>2.</strong> Как можно охарактеризовать требования к результату (стандартизированы или нет)?</div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="true"></choice>
+                        <choice correct="false"><choicehint>Требования к результату модернизации технологической линии предприятии связаны с изменениями (ранее такой производственной линии не существовало на предприятии), значит необходимо отметить наличие признака проекта</choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="false"><choicehint>Результат процесса выпуске продукции предприятия предсказуем, каждый раз должен производиться один и тот же продукт с теми же свойствами</choicehint></choice>
+                        <choice correct="true"></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+        </div>
+
+        <div class="project_task-wrap">
+            <div class="project_task-question"><strong>3.</strong> Какова степень неопределенности?</div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="true"></choice>
+                        <choice correct="false"><choicehint>Модернизация технологической линии предприятии имеет высокую степень неопределенности. Поскольку, деятельность является уникальной (предполагает создание нового продукта), нет чёткого понимания последовательности действий, имеется высокая степень риска неудачи от реализации</choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="false"><choicehint>Выпуск продукции предприятия имеет низкую степень неопределенности, так как понятен конечный продукт, технологические процедуры стандартны, известны риски и меры их предотвращения</choicehint></choice>
+                        <choice correct="true"></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+        </div>
+
+
+        <div class="project_task-wrap">
+            <div class="project_task-question"><strong>4.</strong> Участники постоянны или команда сформирована под конкретную задачу?</div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="true"></choice>
+                        <choice correct="false"><choicehint>Для осуществления модернизации технологической линии предприятия необходимо формирование новой команды, которая обладает необходимым набором компетенций в этом направлении, помимо этого скорее всего потребуется привлекать внешних исполнителей, которые не работают в штате предприятия</choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="false"><choicehint>Для осуществления выпуска продукции предприятию не требуется формирование новой команды. Деятельность выполняется сотрудниками предприятия, занимающими определенные должности в организационной структуре, на постоянной основе</choicehint></choice>
+                        <choice correct="true"></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+        </div>
+
+
+        <div class="project_task-wrap">
+            <div class="project_task-question"><strong>5.</strong> Каковы временные рамки (требует ли цикл повторения)</div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="true"></choice>
+                        <choice correct="false"><choicehint>Модернизация технологической линии предприятия представляет собой временную деятельность, которая имеет установленные даты начала и окончания. После осуществления данная деятельность завершается</choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+            <div class="economic-choice two">
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice">
+                        <choice correct="false"><choicehint>Выпуск продукции предприятия характеризуется цикличностью операций. Данная деятельность имеет повторяющийся характер выполнения в соответствии с программой производства. Цикл от запуска сырья и материалов в производство до момента выхода готовой продукции постоянно повторяется</choicehint></choice>
+                        <choice correct="true"></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 20px;">
+        <label>Модернизация технологической линии предприятия является:</label>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice">
+                <choice correct="true">проектом</choice>
+                <choice correct="false">процессом</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <label>Выпуск продукции предприятия является:</label>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice">
+                <choice correct="false">проектом</choice>
+                <choice correct="true">процессом</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>

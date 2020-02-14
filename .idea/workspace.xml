@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="китайский календарь">
-      <change afterPath="$PROJECT_DIR$/Основы проектной деятельности/3.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/modal-words/vue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Основы проектной деятельности/1.2 учебное.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Философия/crit_think_diagnostic/crit_think_diagnostic.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/crit_think_diagnostic/crit_think_diagnostic.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="SCSS File" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -55,25 +58,25 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../notv-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/engines/modal-words" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/engines/modal-words" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Экономическая эффективность технических решений" />
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static" />
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan" />
       <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
       <recent name="$PROJECT_DIR$/electric" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1" />
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5" />
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3" />
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
-      <recent name="$PROJECT_DIR$/Экономическая эффективность технических решений/Учебные задания" />
     </key>
   </component>
   <component name="RunManager">
@@ -302,7 +305,7 @@
       <workItem from="1578743889918" duration="11148000" />
       <workItem from="1580131378982" duration="18199000" />
       <workItem from="1581084529308" duration="599000" />
-      <workItem from="1581320196778" duration="4400000" />
+      <workItem from="1581320196778" duration="29248000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -357,6 +360,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="китайский календарь" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="861" y="462" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581605841793">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="861" y="462" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1581605841793" />
     <state x="838" y="329" width="843" height="807" key="CommitChangelistDialog2" timestamp="1577345733586">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
@@ -365,14 +372,14 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1581071074319" />
-    <state x="467" y="488" width="779" height="538" key="find.popup" timestamp="1580887421473">
+    <state x="467" y="488" width="779" height="538" key="find.popup" timestamp="1581682586317">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="467" y="488" width="779" height="538" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1580887421473" />
-    <state x="847" y="352" width="672" height="677" key="run.anything.popup" timestamp="1577260056920">
+    <state x="467" y="488" width="779" height="538" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1581682586317" />
+    <state x="847" y="352" width="672" height="677" key="run.anything.popup" timestamp="1581685289103">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="847" y="352" width="672" height="677" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1577260056920" />
+    <state x="847" y="352" width="672" height="677" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1581685289103" />
     <state x="526" y="438" width="672" height="678" key="search.everywhere.popup" timestamp="1576247556906">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>

@@ -1,0 +1,83 @@
+<link rel="stylesheet" type="text/css" href="./modal_words.css" ></link>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>
+<script type="text/javascript" src="./modal_words.js"></script>
+<script type="text/javascript" src="./vue.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="/static/modal_words.css" ></link>-->
+<!--<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>-->
+<!--<script type="text/javascript" src="/static/modal_words.js"></script>-->
+<!--<script type="text/javascript" src="/static/modal_words.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    window.__define = window.define;-->
+<!--    window.__require = window.require;-->
+<!--    window.define = undefined;-->
+<!--    window.require = undefined;-->
+<!--</script>-->
+<!--<script type="text/javascript" src="/static/vue.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    window.define = window.__define;-->
+<!--    window.require = window.__require;-->
+<!--    window.__define = undefined;-->
+<!--    window.__require = undefined;-->
+<!--</script>-->
+
+
+<div id="modal_words_test">
+
+</div>
+
+<script type="text/javascript">
+
+    let student_data = [
+        "Как, ",
+        {
+            default: "<роль>",
+            help_text: "Укажите роль:",
+            id: "word_place_01",
+            variants: [
+                { text: "работодатель",
+                    id: "word_01_01"
+                },
+                { text: "заинтересованная сторона",
+                    id: "word_01_02"
+                }
+            ]
+        },
+        ", я ",
+        {
+            default: "<хочу получить>",
+            help_text: "Укажите хочу получить:",
+            id: "word_place_02",
+            variants: [
+                { text: "хочу получать всю информацию о студентах УрФУ",
+                    id: "word_02_01"
+                },
+                { text: "хочу иметь доступ в личном кабинете работодателя к спискам студентов, обучающихся на программах с проектным обучением, с возможностью просмотра результатов",
+                    id: "word_02_02"
+                }
+            ]
+        },
+        ", ",
+        {
+            default: "<с такой-то целью>",
+            help_text: "Укажите цель:",
+            id: "word_place_03",
+            variants: [
+                { text: "для удобства",
+                    id: "word_03_01"
+                },
+                { text: "для доступа к информации о потенциальных сотрудниках",
+                    id: "word_03_02"
+                }
+            ]
+        },
+        ".",
+        ];
+
+    new ModalWords({
+        element: document.getElementById("modal_words_test"),
+        data: student_data,
+        input: document.querySelector("#machinery_management_task_2_input"),
+    });
+
+</script>

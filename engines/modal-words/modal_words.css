@@ -1,0 +1,67 @@
+.xblock {
+  overflow-x: unset !important;
+}
+
+.modal-words-wrapper {
+  padding-bottom: 100px;
+}
+.modal-words-wrapper .modal-words-task {
+  margin: 80px 40px;
+  position: relative;
+  text-align: center;
+  width: 800px;
+}
+.modal-words-wrapper .modal-words-task .sentence-part {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 4px 0px;
+  line-height: 1.7;
+}
+.modal-words-wrapper .modal-words-task .sentence-part.can-select {
+  cursor: pointer;
+  color: #2222c5;
+}
+.modal-words-wrapper .modal-words-task .sentence-part.can-select.default {
+  color: #0075b4;
+  background: #f7f7f7;
+}
+.modal-words-wrapper .modal-words-task .sentence-part.can-select.default:hover {
+  color: #00539c;
+  background: #fbfbfb;
+}
+.modal-words-wrapper .modal-words-task .sentence-part.can-select.active {
+  background: azure;
+}
+.modal-words-wrapper .modal-words-task .sentence-part.can-select.correct {
+  background: none;
+  color: green;
+}
+.modal-words-wrapper .modal-words-task .sentence-part.can-select.incorrect {
+  color: red;
+}
+.modal-words-wrapper .modal-words-task .modal-choice {
+  text-align: left;
+  width: 400px;
+  font-size: 14px;
+  position: absolute;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 2px solid lightgray;
+  border-radius: 3px;
+}
+.modal-words-wrapper .modal-words-task .modal-choice.hidden {
+  display: none;
+}
+.modal-words-wrapper .modal-words-task .modal-choice .variant {
+  border: 2px solid #e4e4e4;
+  background: aliceblue;
+  z-index: 9999;
+  margin: 4px 0px;
+  padding: 4px;
+  cursor: pointer;
+}
+.modal-words-wrapper .modal-words-task .modal-choice .variant:hover {
+  background: #daeaf9;
+}
+
+/*# sourceMappingURL=modal_words.css.map */
