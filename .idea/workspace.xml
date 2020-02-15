@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="китайский календарь">
-      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/modal-words/vue.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Основы проектной деятельности/1.2 учебное.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/modal-words/modal_words_edx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/modal-words/modal_words.css" beforeDir="false" afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/modal-words/modal_words.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/modal-words/modal_words.html" beforeDir="false" afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/modal-words/modal_words.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engines/modal-words/modal_words.scss" beforeDir="false" afterPath="$PROJECT_DIR$/engines/modal-words/modal_words.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +306,7 @@
       <workItem from="1578743889918" duration="11148000" />
       <workItem from="1580131378982" duration="18199000" />
       <workItem from="1581084529308" duration="599000" />
-      <workItem from="1581320196778" duration="29248000" />
+      <workItem from="1581320196778" duration="41136000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
