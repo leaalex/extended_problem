@@ -1,9 +1,4 @@
 <problem>
-<!--<link rel="stylesheet" type="text/css" href="./modal_words.css" ></link>-->
-<!--<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>-->
-<!--<script type="text/javascript" src="./modal_words.js"></script>-->
-<!--<script type="text/javascript" src="./vue.js"></script>-->
-
 <script type="loncapa/python">
 # -*- coding: utf-8 -*-
 import json
@@ -31,7 +26,7 @@ source_data = [
         ", я ",
         {
             "default": u"хочу получить",
-            "help_text": u"Укажите хочу получить:",
+            "help_text": u"Укажите потребность:",
             "variants": [
                 {
                     "text": "хочу получать всю информацию о студентах УрФУ",
@@ -97,6 +92,9 @@ for item in source_data:
 
 student_data_json = json.dumps(student_data).replace("\"", "'")
 
+# check types: partial, binary
+check_type = 'partial'
+
 def check_answer(exp, ans):
     student_answer = json.loads(ans)["answer"]
     max_grade = len(correct_answer.keys())
@@ -109,6 +107,12 @@ def check_answer(exp, ans):
             if student_answer[an] == correct_answer[an]:
                 correctness[an] = True
                 grade += 1
+
+    if check_type == 'binary':
+        if grade != max_grade:
+            grade = 0
+            for cc in correctness.keys():
+                correctness[cc] = False
 
     grade = grade / max_grade
     msg = json.dumps(correctness)
@@ -138,7 +142,7 @@ def check_answer(exp, ans):
     window.__require = undefined;
 </script>
 
-
+<div>Составьте пользовательские истории, используя предложенные фразы. При составлении помните про правила составления историй.</div>
 <div id="modal_words_block_01">
 </div>
 
@@ -152,25 +156,26 @@ def check_answer(exp, ans):
 <script type="text/javascript">
 
     let student_data = $student_data_json;
-    console.log(student_data);
+
     new ModalWords({
         element: document.getElementById("modal_words_block_01"),
         data: student_data,
         input: document.getElementById("modal_words_input_01"),
+        task_text: "", /* можно не заполнять*/
+        default_signs: [], /*массив, содержащий 2 элемента: 1 - до фразы, 2 - после */
     });
 
 </script>
 
     <solution>
 
-        <div id="machinery_management_task_2-answer">
-            <h2>Правильный ответ:</h2>
-            <div>
+        <div class="modal-words-answer">
+            <div class="modal-words-answer-header"><h2>Правильный ответ:</h2></div>
+            <div class="modal-words-answer-body">
                 <p>$display_correct_answer_str</p>
             </div>
         </div>
 
     </solution>
-
 
 </problem>

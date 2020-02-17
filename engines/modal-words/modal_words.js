@@ -2,12 +2,6 @@ function ModalWords(user_settings) {
 
     let user_data = {};
 
-    // user_data = {
-    //     word_place_01: "",
-    //     word_place_02: "word_02_02",
-    //     word_place_03: ""
-    // };
-
     function Answer(elementField) {
         this.elementField = elementField;
         this.fieldValue = "";
@@ -57,11 +51,18 @@ function ModalWords(user_settings) {
         }
     }
 
+    let default_signs = ["<", ">"];
+    if (Object.keys(user_settings).includes('default_signs')){
+        if (user_settings.default_signs.length === 2){
+            default_signs[0] = user_settings.default_signs[0].toString();
+            default_signs[1] = user_settings.default_signs[1].toString();
+        }
+    }
+
     if (Object.keys(user_data).length === 0){
         user_settings.data.filter(item => typeof (item) != 'string').forEach(obj => user_data[obj.id] = "");
     }
 
-    console.log("correctness: ", correctness_state);
 
     let ModalWordsInit = {
         init: function () {
@@ -96,13 +97,13 @@ function ModalWords(user_settings) {
             new Vue({
                 template: `
                     <div class="modal-words-wrapper">
-                        <div class="task">Составьте пользовательские истории, используя предложенные фразы. При составлении помните про правила составления историй.</div>
+                        <div class="task" v-html="task_text"></div>
                         <div class="modal-words-task" style="position: relative">
                             <template v-for="(op,index) in main_data">
                                 <span v-if="typeof(op)=='string'" class="sentence-part" v-html="op"></span>
                                 <span ref="can_select_button" v-else :id="op.id" class="can-select sentence-part" @click="show_modal(op, $event)" :class="calculate_select_button_classes(op.id)" >
                                     <template v-if="user_data[op.id] != ''">{{op.variants.filter(v => v.id == user_data[op.id])[0].text}}</template>
-                                    <template v-else ><{{op.default}}></template>
+                                    <template v-else >{{default_signs[0]}}{{op.default}}{{default_signs[1]}}</template>
                                 </span>
                             </template>
                             <div ref="modalChoice" class="modal-choice" v-bind:style="modal_position" :class="{'hidden': !modal_data.is_show}" v-closable="{exclude: ['can_select_button'], handler: 'close_modal' }">
@@ -124,6 +125,9 @@ function ModalWords(user_settings) {
                     },
                     modal_position: {},
                     correctness: correctness_state,
+                    default_signs: default_signs,
+                    task_text: user_settings.task_text || "",
+                    can_change_correct: true, // можно ли менять значения верных ответов
                 },
                 methods: {
                     close_modal() {
@@ -131,12 +135,23 @@ function ModalWords(user_settings) {
                         this.modal_data.is_show = false;
                     },
                     show_modal: function (op, event) {
+                        if (!this.can_change_correct) {
+                            if (this.correctness !== undefined) {
+                                if (Object.keys(this.correctness).includes(op.id)) {
+                                    if (this.correctness[op.id]) {
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+
                         this.modal_data.item = op;
                         this.modal_data.is_show = true;
 
                         let modalLeft = event.offsetX - 400/2;
                         modalLeft = modalLeft > 0 ? modalLeft:0;
                         // let modalBottom = event.target.parentNode.getBoundingClientRect().height - event.offsetY + 18;
+
                         let modalTop = event.offsetY + 18;
                         this.modal_position = {
                             left: modalLeft + 'px',
@@ -144,7 +159,6 @@ function ModalWords(user_settings) {
                         };
                     },
                     select_variant: function (id) {
-                        console.log(this.modal_data.item.id)
                         if(user_data[this.modal_data.item.id] !== id){
                             if(this.correctness !== undefined){
                                 if (Object.keys(this.correctness).includes(this.modal_data.item.id)) {
@@ -152,9 +166,6 @@ function ModalWords(user_settings) {
                                 }
                             }
                         }
-
-                        console.log("this.correctness: ", this.correctness);
-
                         user_data[this.modal_data.item.id] = id;
 
                         this.close_modal();
@@ -162,16 +173,13 @@ function ModalWords(user_settings) {
                     },
                     set_answer: function(event){
                         answer.setJSON({answer: this.user_data});
-                        console.log(JSON.stringify({answer: this.user_data}));
                     },
                     calculate_select_button_classes: function(id){
                         let class_list = {
                             'default': this.user_data[id] === '',
                             'active': this.modal_data.item && this.modal_data.item.id === id
                         };
-                        // console.log("DFGHJKL")
                         if(this.correctness !== undefined){
-                            console.log(this.correctness)
                             if (Object.keys(this.correctness).includes(id)){
                                 if (this.correctness[id]){
                                     class_list['correct'] = true;
@@ -181,8 +189,7 @@ function ModalWords(user_settings) {
                                 }
                             }
                         }
-                        console.log(class_list)
-
+                        if (!this.can_change_correct) class_list['no-change'] = true;
                         return class_list;
                     },
                 },

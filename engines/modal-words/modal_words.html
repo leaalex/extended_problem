@@ -3,6 +3,8 @@
 <script type="text/javascript" src="./modal_words.js"></script>
 <script type="text/javascript" src="./vue.js"></script>
 
+<div>Составьте пользовательские истории, используя предложенные фразы. При составлении помните про правила составления историй.</div>
+
 <div id="modal_words_block_01">
 </div>
 
@@ -18,7 +20,7 @@
     let student_data = [
         "Как, ",
         {
-            "default": "<роль>",
+            "default": "роль",
             "help_text": "Укажите роль:",
             "id": "gfdsg",
             "variants": [
@@ -35,7 +37,7 @@
         ", я ",
         {
             "default": "хочу получить",
-            "help_text": "Укажите хочу получить:",
+            "help_text": "Укажите потебность:",
             "id": "gfdsggfggg",
             "variants": [
                 {
@@ -50,7 +52,7 @@
         },
         ", ",
         {
-            "default": "<с такой-то целью>",
+            "default": "с такой-то целью",
             "help_text": "Укажите цель:",
             "id": "gdfhjfcgh456gg",
             "variants": [
@@ -72,6 +74,8 @@
         element: document.getElementById("modal_words_block_01"),
         data: student_data,
         input: document.getElementById("modal_words_input_01"),
+        task_text: "",
+        default_signs: [], /*массив, содержащий 2 элемента: 1 - до фразы, 2 - после */
     });
 
 </script>
