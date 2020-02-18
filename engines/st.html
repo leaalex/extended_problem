@@ -1,0 +1,518 @@
+<problem>
+
+    <style type="text/css">
+
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+
+        .question-text{
+            position: relative;
+            display: flex;
+        }
+
+        .inputs-block{
+            position: absolute;
+            width: 90%;
+            background: #ffffffe0;
+            bottom: 0;
+            left: 5%;
+            color: #474747;
+            font-size: 96%;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        .inputs-block p{
+            margin-bottom: 0px !important;
+        }
+
+        .question-input-wrap input{
+            margin-top: -1px;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+
+        .question-input-wrap label{
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .question-input-wrap{
+            padding: 10px 10px;
+            margin: 6px 8px;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .question-input-wrap.correct-answer, .question-input-wrap.correct-answer:hover {
+            border: 2px solid #009b01;
+        }
+
+        .question-input-wrap.incorrect-answer, .question-input-wrap.incorrect-answer:hover{
+            border: 2px solid #cb0711;
+        }
+
+        .question-input-wrap:hover{
+            border: 2px solid #009fe6;
+        }
+
+
+        #crit_think_diagnostic_input{
+            display: none !important;
+        }
+
+        #crit_think_diagnostic_diagram{
+        }
+
+    </style>
+
+
+    <script type="loncapa/python">
+import json
+
+check_btn_label = "Проверить"
+next_btn_label = "Дальше"
+
+savvy_label = "Смекалка"
+interpretation_label = "Интерпретация"
+analysis_label = "Анализ"
+logic_label = "Логика"
+
+correct_answers = {
+    "question_0": {
+        "answer": "c",
+        "progress": {
+            "logic": 1,
+            "analysis": 2,
+            "savvy": 2,
+            "interpretation": 0
+        }
+    },
+    "question_1": {
+        "answer": "a",
+        "progress": {
+            "logic": 0,
+            "analysis": 0,
+            "savvy": 2,
+            "interpretation": 0
+        }
+    },
+    "question_2": {
+        "answer": "b",
+        "progress": {
+            "logic": 1,
+            "analysis": 0,
+            "savvy": 0,
+            "interpretation": 0
+        }
+    },
+    "question_3": {
+        "answer": "f",
+        "progress": {
+            "logic": 0,
+            "analysis": 2,
+            "savvy": 0,
+            "interpretation": 3
+        }
+    },
+    "question_4": {
+        "answer": "a",
+        "progress": {
+            "logic": 1,
+            "analysis": 0,
+            "savvy": 0,
+            "interpretation": 0
+        }
+    }
+}
+
+progress = {
+            "logic": 0,
+            "analysis": 0,
+            "savvy": 0,
+            "interpretation": 0
+        }
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    grade = 0
+    response = {}
+    # current_step_id = "question_" + str(student_answer["step"])
+    student_answers = student_answer["answers"]
+
+    if student_answer["send_type"]["checked"] is False:
+        current_step_id = "question_" + str(student_answer["step"] - 1)
+    else:
+        current_step_id = "question_" + str(student_answer["step"])
+
+    for ans in range(0, len(correct_answers.keys())):
+        ans = "question_" + str(ans)
+        if student_answers[ans]["answer"] == correct_answers[ans]["answer"]:
+            progress["logic"] += correct_answers[ans]["progress"]["logic"]
+            progress["analysis"] += correct_answers[ans]["progress"]["analysis"]
+            progress["savvy"] += correct_answers[ans]["progress"]["savvy"]
+            progress["interpretation"] += correct_answers[ans]["progress"]["interpretation"]
+        if current_step_id == ans:
+            break
+
+
+    if student_answer["send_type"]["checked"]:
+        response["correct"] = {}
+        response["correct"][current_step_id] = correct_answers[current_step_id]["answer"]
+
+
+
+    response["progress"] = progress
+
+    return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': grade}, ]}
+
+</script>
+
+    <script type="text/javascript">
+
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function() {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function(value) {
+                if (value == undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function() {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function(object) {
+                if (object == undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object))
+            };
+            this.isJsonString = function(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        var check_btn_label = '$check_btn_label'
+        var next_btn_label = '$next_btn_label'
+        var savvy_label = '$savvy_label'
+        var interpretation_label = '$interpretation_label'
+        var analysis_label = '$analysis_label'
+        var logic_label = '$logic_label'
+
+        $("#crit_think_diagnostic").closest(".problem").parent().find(".problem-progress").hide();
+        var notification = $(".problem .notification.notification-submit").hide();
+
+        var submit_button = $("#crit_think_diagnostic").closest(".problem").find('button.submit');
+        $(submit_button).css('text-transform','none');
+
+        $(submit_button).attr("disabled", "disabled");
+        $(submit_button).addClass("disabled");
+
+        function build_result(){
+            $(submit_button).hide();
+            $("#crit_think_diagnostic_diagram").prepend("<h2>Ваш результат: </h2>");
+            $("#crit_think_diagnostic_diagram").append("<p>Тут какой-то вывод, например</p>");
+            // var scriptcore = document.createElement('script');
+            // scriptcore.onload = function() {
+            // var scriptcharts = document.createElement('script');
+            // scriptcharts.src = "https://www.amcharts.com/lib/4/charts.js";
+            // document.getElementsByTagName('head')[0].appendChild(scriptcharts);
+
+            // scriptcharts.onload = function() {
+            // $("#crit_think_diagnostic_diagram").show();
+            // var scriptanimated = document.createElement('script');
+            // scriptanimated.src = "https://www.amcharts.com/lib/4/themes/animated.js";
+            // document.getElementsByTagName('head')[0].appendChild(scriptanimated);
+
+            // scriptanimated.onload = function() {
+
+            // var chart = am4core.create("chartdiv", am4charts.RadarChart);
+            // 	chart.data = [{
+            // 	  "diagnostic": savvy_label,
+            // 	  "points": user_state.correctness["progress"]["savvy"]
+            // 	}, {
+            // 	  "diagnostic": interpretation_label,
+            // 	  "points": user_state.correctness["progress"]["interpretation"]
+            // 	}, {
+            // 	  "diagnostic": analysis_label,
+            // 	  "points": user_state.correctness["progress"]["analysis"]
+            // 	}, {
+            // 	  "diagnostic": logic_label,
+            // 	  "points": user_state.correctness["progress"]["logic"]
+            // 	},
+            // 	];
+
+            // var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            // categoryAxis.dataFields.category = "diagnostic";
+
+            // var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            // valueAxis.min = 0;
+            // valueAxis.max = 9;
+            // valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
+            // valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+
+            // var series = chart.series.push(new am4charts.RadarSeries());
+            // series.dataFields.valueY = "points";
+            // series.dataFields.categoryX = "diagnostic";
+            // // series.name = "Sales";
+            // series.strokeWidth = 5;
+            // }
+            // }
+
+            // };
+            // scriptcore.src = "https://www.amcharts.com/lib/4/core.js";
+            // document.getElementsByTagName('head')[0].appendChild(scriptcore);
+        }
+
+        function enableSubmitButton(){
+            $(submit_button).removeClass("disabled");
+            $(submit_button).removeAttr("disabled");
+        }
+
+        function setSubmitText(text){
+            $(submit_button).find('span.submit-label').text(text);
+        }
+
+        var answer = new Answer(document.querySelector("#crit_think_diagnostic_input").querySelector("input[type='text']"));
+
+        var questions = {
+            "question_0" :{
+                "html": "<p>Сегодня второй день спринта, команда собирается в офисе. Когда вы проведете Stand-Up?</p>",
+                "img": "https://cdn.openedu.ru/6a058c/courseware/v1/dd0c900d6b247ef236f02443884adb9b/asset-v1:urfu+PROJ+fall_2019+type@asset+block/PROJ_4_3_2_img_01.jpg",
+                "answers": [
+                    {
+                        "let": "a",
+                        "text": "Через 2 дня"
+                    },
+                    {
+                        "let": "b",
+                        "text": "В конце спринта, лучше вечером"
+                    },
+                    {
+                        "let": "c",
+                        "text": "Сегодня, лучше утром"
+                    }
+                ]
+            },
+            "question_1" :{
+                "html": "<p>Где провести?</p>",
+                "img": "https://cdn.openedu.ru/6a058c/courseware/v1/dd0c900d6b247ef236f02443884adb9b/asset-v1:urfu+PROJ+fall_2019+type@asset+block/PROJ_4_3_2_img_02.jpg",
+                "answers": [
+                    {
+                        "let": "a",
+                        "text": "Собрать команду вместе, лучше расставить в круг"
+                    },
+                    {
+                        "let": "b",
+                        "text": "Все могут оставаться за рабочими местами"
+                    }
+                ]
+            },
+            "question_2" :{
+                "html": "<p>Кто участвует в Stand-Up?</p>",
+                "img": "https://cdn.openedu.ru/6a058c/courseware/v1/dd0c900d6b247ef236f02443884adb9b/asset-v1:urfu+PROJ+fall_2019+type@asset+block/PROJ_4_3_2_img_02.jpg",
+                "answers": [
+                    {
+                        "let": "a",
+                        "text": "Часть команды, у которой есть нерешенные вопросы по выполнению проекта"
+                    },
+                    {
+                        "let": "b",
+                        "text": "Вся команда и, возможно, пригласить заинтересованных сторон"
+                    }
+                ]
+            },
+            "question_3" :{
+                "html": "<p>Кому должен организовать и начать Stand-Up?</p>",
+                "img": "https://cdn.openedu.ru/6a058c/courseware/v1/dd0c900d6b247ef236f02443884adb9b/asset-v1:urfu+PROJ+fall_2019+type@asset+block/PROJ_4_3_2_img_01.jpg",
+                "answers": [
+                    {
+                        "let": "d",
+                        "text": "Владелец продукта"
+                    },
+                    {
+                        "let": "e",
+                        "text": "Пользователь продукта проекта"
+                    },
+                    {
+                        "let": "f",
+                        "text": "Скрам-мастер"
+                    }
+
+                ]
+            },
+            "question_4" :{
+                "html": "<p>Что вам понадобится?</p>",
+                "img": "https://cdn.openedu.ru/6a058c/courseware/v1/dd0c900d6b247ef236f02443884adb9b/asset-v1:urfu+PROJ+fall_2019+type@asset+block/PROJ_4_3_2_img_02.jpg",
+                "answers": [
+                    {
+                        "let": "a",
+                        "text": "Канбан-доска"
+                    },
+                    {
+                        "let": "b",
+                        "text": "Инкремент предыдущего спринта, который можно продемонстрировать"
+                    },
+                    {
+                        "let": "c",
+                        "text": "Бэклог продукта"
+                    }
+
+                ]
+            }
+        }
+
+        var user_state = new Object();
+        user_state.step = 0;
+        user_state.send_type = {
+            "checked": false,
+        }
+        user_state.answers = {
+            "question_0":
+                { "answer": "a",
+                },
+            "question_1":
+                { "answer": "a",
+                },
+            "question_2":
+                { "answer": "a",
+                },
+            "question_3":
+                { "answer": "a",
+                },
+            "question_4":
+                { "answer": "a",
+                }
+        }
+
+
+        if(answer.get()){
+            user_state = answer.getJSON()["answer"];
+            user_state.correctness = JSON.parse($("#crit_think_diagnostic_input .message").html());
+            // createQuestion();
+            // console.log(user_state)
+            if(user_state.step == Object.keys(questions).length){
+                build_result();
+                $(submit_button).attr("disabled", "disabled");
+                $(submit_button).addClass("disabled");
+            }
+            else{
+                createQuestion();
+            }
+        }
+        else{
+            createQuestion();
+        }
+
+
+        function createQuestion(){
+            setSubmitText(check_btn_label);
+            $("#crit_think_diagnostic_question").html("");
+            $("#crit_think_diagnostic_question").append("<p>Попробуйте спланировать сценарий проведения Stand-Up.</p>")
+            $("#crit_think_diagnostic_question").append("<h2> Вопрос " + (user_state.step + 1).toString() + " из " + Object.keys(questions).length + "</h2>");
+            var current_question_id = "question_" + user_state.step.toString();
+            var current_question = questions[current_question_id];
+            var question_text = $("<div/>", {
+                class: "question-text",
+                // html:
+            });
+
+            $(question_text).prepend($("<div/>", {style: "", html: $("<img/>", {src: current_question["img"], style: "width:100%"})}))
+
+            var inputs_block = $("<div/>", {
+                class: "inputs-block"
+            });
+
+            inputs_block.append($("<div/>", {style: "font-weight: 600;padding: 10px 10px;border-radius: 4px;background: #ffffffc9;", html:current_question["html"]}));
+
+            current_question["answers"].forEach(function(element, index) {
+                var input_wrap = $("<div/>", {
+                    class: "question-input-wrap"
+                });
+                var input = $("<input/>",{
+                    type: "radio",
+                    name: "question_choice",
+                    value: element["let"],
+                });
+                input_wrap.append(input);
+                input_wrap.append(element["text"]);
+                inputs_block.append(input_wrap);
+
+                if (user_state.send_type["checked"] == false){
+                    input_wrap.click(function(e) {
+                        $('input', $(e.target)).prop('checked', true);
+                        var val = $("input[name='question_choice']:checked").val();
+                        user_state.answers[current_question_id]["answer"] = val;
+                        user_state.send_type["checked"] = true;
+                        answer.setJSON({answer: user_state});
+                        enableSubmitButton();
+                    });
+                }
+                else{
+                    $(input).prop('disabled', true);
+                    $(input_wrap).css('cursor', 'not-allowed');
+                }
+            });
+
+            if (user_state.send_type["checked"] == true){
+                setSubmitText(next_btn_label);
+                $("input[value=" + user_state.answers[current_question_id]["answer"] + "]" , inputs_block).prop('checked', true);
+                var selected_input = $("input[value=" + user_state.answers[current_question_id]["answer"] + "]" , inputs_block);
+                user_state.send_type = {"checked": false};
+                if (user_state.correctness["correct"][current_question_id] == user_state.answers[current_question_id]["answer"]){
+                    selected_input.closest('.question-input-wrap').addClass("correct-answer");
+                }
+                else{
+                    inputs_block.append('<p style="padding: 0px 10px 10px 10px;"> Правильный ответ: <b>' + questions[current_question_id]["answers"].filter(function(item) {return item["let"] == user_state.correctness["correct"][current_question_id]})[0].text + "</b></p>")
+                    selected_input.closest('.question-input-wrap').addClass("incorrect-answer");
+                }
+                enableSubmitButton();
+
+                user_state.step += 1;
+            }
+            // else{
+
+            // }
+
+            // user_state.answers[current_question_id]["checked"] = true;
+
+            $("#crit_think_diagnostic_question").append(question_text);
+            $(question_text).append(inputs_block);
+            answer.setJSON({answer: user_state});
+
+        }
+
+    </script>
+
+    <div id="crit_think_diagnostic">
+
+        <div id="crit_think_diagnostic_question">
+
+        </div>
+
+        <div id="crit_think_diagnostic_diagram">
+        </div>
+
+        <div id="crit_think_diagnostic_input">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$unique_id" />
+                <br/>
+            </customresponse>
+        </div>
+
+    </div>
+
+</problem>
+
