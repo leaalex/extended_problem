@@ -1,0 +1,31 @@
+$correct-color: #009b00;
+//$correct-color: white;
+$incorrect-color: #cb0712;
+
+#triangles_task_container {
+
+  #triangles_task_text {
+
+  }
+
+    .triangles-input {
+      border-radius: 3px;
+      padding: 3px;
+      outline: 0;
+      box-shadow: none;
+      background-color: white;
+      border: 2px solid #cecece;
+
+      &.correct {
+        border: 2px solid $correct-color;
+      }
+
+      &.incorrect {
+        border: 2px solid $incorrect-color;
+      }
+
+    }
+
+
+
+}

@@ -1,0 +1,116 @@
+<problem>
+<script type="python/loncapa">
+import json
+
+def comparison_numbers(correct_number, student_number, tol=0.005):
+    if type(student_number) == str:
+        student_number = student_number.replace(",", ".")
+    try:
+        st_num = float(student_number)
+        return tol >= abs(st_num - correct_number)
+    except ValueError:
+        return False
+
+
+def check_triangles(expect, answer_given):
+    student_answer = json.loads(answer_given)["answer"]
+    side_1 = student_answer["side_1"]
+    side_2 = student_answer["side_2"]
+    side_3 = student_answer["side_3"]
+    h_1 = student_answer["h_1"]
+    h_2 = student_answer["h_2"]
+    h_3 = student_answer["h_3"]
+
+    s_1 = student_answer["S_1"]
+    s_2 = student_answer["S_2"]
+    s_3 = student_answer["S_3"]
+    s_avg = student_answer["S_avg"]
+
+    correct_s_1 = side_1 * h_1 * 0.5
+    correct_s_2 = side_2 * h_2 * 0.5
+    correct_s_3 = side_3 * h_3 * 0.5
+
+    correct_s_avg = (correct_s_1 + correct_s_2 + correct_s_3) / 3
+
+    grade = 0
+    max_grade = 4
+
+    response = {"S_1": False, "S_2": False, "S_3": False, "S_avg": False}
+
+    if s_1 > 0 and comparison_numbers(correct_s_1, s_1):
+        grade += 1
+        response["S_1"] = True
+
+    if s_2 > 0 and comparison_numbers(correct_s_2, s_2):
+        grade += 1
+        response["S_2"] = True
+
+    if s_3 > 0 and comparison_numbers(correct_s_3, s_3):
+        grade += 1
+        response["S_3"] = True
+
+    if s_1 > 0 and s_2 > 0 and s_3 > 0 and s_avg > 0 and comparison_numbers(correct_s_avg, s_avg):
+        grade += 1
+        response["S_avg"] = True
+
+    result_grade = grade / float(max_grade)
+
+    msg = json.dumps(response)
+    if result_grade == 1:
+        return {'input_list': [{'ok': True, 'msg': msg, 'grade_decimal': 1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok': False, 'msg': msg, 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': result_grade}]}
+</script>
+
+<!--                <script type="text/javascript" src="./vue.min.js"></script>-->
+<!--        <script type="text/javascript" src="./triangles.js"></script>-->
+<!--        <link rel="stylesheet" href="./triangles.css"></link>-->
+
+
+        <script type="text/javascript">
+                window.__define = window.define;
+                window.__require = window.require;
+                window.define = undefined;
+                window.require = undefined;
+        </script>
+        <script type="text/javascript" src="/static/vue.min.js"></script>
+        <script type="text/javascript" src="/static/triangles.js"></script>
+        <script type="text/javascript">
+                window.define = window.__define;
+                window.require = window.__require;
+                window.__define = undefined;
+                window.__require = undefined;
+        </script>
+        <link rel="stylesheet" href="/static/triangles.css"></link>
+
+        <div id="triangles_task_container">
+                <div id="triangles_task_text">
+                </div>
+                <div id="triangles_task">
+                </div>
+                </div>
+
+        <div id="triangles_task_3_input" style="display: none; text-align: center;">
+                <customresponse cfn="check_triangles">
+                        <textline size="40" value="$taskId" />
+                        <br/>
+                </customresponse>
+        </div>
+
+        <script type="text/javascript">
+
+                // let student_data = $student_data_json;
+
+                console.log("student_data");
+
+                new TrianglesTask({
+                        // data: student_data,
+                        // element: document.getElementById('#triangles_task_container'),
+                        input: document.querySelector("#triangles_task_3_input"),
+                });
+
+        </script>
+
+</problem>
