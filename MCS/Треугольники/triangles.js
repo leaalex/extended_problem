@@ -11,6 +11,7 @@ function TrianglesTask(user_settings) {
         h_3: 0,
         S_3: 0,
         S_avg: 0,
+        S_err: 0,
     };
 
     function Answer(elementField) {
@@ -80,13 +81,16 @@ function TrianglesTask(user_settings) {
                 <div>
 
                     <div>
-                        <h2>Расчет 1</h2>
+                        <h2>Шаг 1</h2>
+                        
+                        <p>Ваша задача начертить треугольник на листе бумаги и провести измерение трех высот: высота 1, высота 2, высота 3 и соответствующих трех оснований: основание 1, основание 2, основание 3. По приведенной формуле рассчитать площадь треугольника: площадь 1, площадь 2, площадь 3. Все значения занести в поля ввода данных.</p>
+                        <p><i>Числовые значения должны быть в <strong>сантиметрах</strong> с точностью до <strong>первого</strong> десятичного знака, целое значение отделяется от дробного только точкой!</i></p>
                         <table>
                         <tr>
                             <td><label>Основание 1 \\( (a_1) \\) =</label></td>
                             <td><input @change="set_answer" v-model.number="user_data.side_1" type="number" class="triangles-input"></td>
-                        </tr><tr>
-                        
+                        </tr>
+                        <tr>
                            <td> <label>Высота 1 \\( (h_1) \\) =</label></td>
                             <td><input @change="set_answer" v-model.number="user_data.h_1" type="number" class="triangles-input"></td>
                         </tr>
@@ -96,8 +100,8 @@ function TrianglesTask(user_settings) {
                          </tr>
                          </table>
                     </div>
+                    <hr>
                     <div>
-                        <h2>Расчет 2</h2>
                         <table>
                         <tr>
                             <td><label>Основание 2 \\( (a_2) \\) =</label></td>
@@ -113,8 +117,8 @@ function TrianglesTask(user_settings) {
                          </tr>
                          </table>
                     </div>
+                    <hr>
                     <div>
-                        <h2>Расчет 3</h2>
                         <table>
                         <tr>
                             <td><label>Основание 3 \\( (a_3) \\) =</label></td>
@@ -130,10 +134,17 @@ function TrianglesTask(user_settings) {
                          </tr>
                          </table>
                     </div>
-                    
-                    
                     <div>
-                        <h2>Расчет среднего значения площади</h2>
+                    <p>Обратите внимание треугольник один, а значения площади в каждом из трех случаев несколько отличаются. Значит каждый расчет содержит погрешность (неопределённость).</p> 
+                    <p>Можно ли оценить эту погрешность и как?</p>
+                    <p>Оказывается, можно и делается это так! Далее приводится упрощенный расчет погрешности.</p>
+                    </div>
+                    <div>
+                        <h2>Шаг 2</h2>
+                       <p>Нужно подсчитать среднее значение площади треугольника из трех полученных значений по формуле:</p> 
+                      \\[  S_{ср} = \\frac{S_1 + S_2 + S_3}{3} = ? \\] 
+                        <p>Сделайте это и значение занесите в соответствующее поле.</p>  
+                        <p><i>Числовые значения должны быть в <strong>см.</strong> с точностью до <strong>второго</strong> десятичного знака, целое значение отделяется от дробного только точкой!</p>
                         <table>
                         <tr>
                         <tr>
@@ -143,6 +154,53 @@ function TrianglesTask(user_settings) {
                          </table>
                     </div>
                     
+                    <div>
+                        <h2>Шаг 3</h2>
+                        
+                        <p>Найти разницу между каждым значением рассчитанной площади и средним значением площади <i>(без учета знака, ведь в каких-то случаях частное значение площади будет меньше среднего, в каких-то – больше)</i></p>
+                        <p>Разница 1 = \\(S_1 – S_{ср} = ?\\)</p>
+                        <p>Разница 2 = \\(S_2 – S_{ср} = ?\\)</p>
+                        <p>Разница 3 = \\(S_3 – S_{ср} = ?\\)</p>
+                        <p><i>Числовые значения площади должны быть в <strong>квадратных сантиметрах</strong> с точностью до <strong>второго</strong> десятичного знака, целое значение отделяется от дробного только точкой!</i></p>
+
+                    </div>
+                    
+                    <div>
+                        <h2>Шаг 4</h2>                    
+                        <p>Найти среднее значение трех подсчитанных разниц.</p>
+                        <p>Разница средняя = (Разница 1+ Разница 2+ Разница 3)/3=?</p>
+                        <p>Сделайте это и значение занесите в соответствующее поле.</p>
+                        <p><i>Числовые значения должны быть в <strong>квадратных сантиметрах</strong> с точностью до <strong>второго</strong> десятичного знака, целое значение отделяется от дробного только точкой!</i></p>
+
+                        <table>
+                        <tr>
+                        <tr>
+                            <td><label>Погрешность измерения площади =</label></td>
+                            <td><input @input="remove_class(event)" @change="set_answer" v-model.number="user_data.S_err" type="number" class="triangles-input" :class="get_correctness_class('S_err')"></td>
+                         </tr>
+                         </table>
+                         
+                         <p>Полученное значение и будет грубо оцененной  погрешностью определения площади треугольника \\( \\Delta S \\).</p>
+
+                         <p>Тогда площадь треугольника, измеренная Вами, будет выглядеть следующим образом:</p>
+                        \\[ S = S_{ср}  \\pm \\Delta S (см^{2}) \\]
+                    </div>
+                    <div>
+                        <h2>Вывод</h2> 
+                        <p>Любое измерение и построенные на нем расчеты содержат погрешность. </p>
+                    </div>                    
+                    <div>
+                        <h2>Вопросы к зачету</h2> 
+                        <ol>
+                            <li>Что такое прямые и косвенные измерения? Какие измерения проводили Вы?</li>
+                            <li>Какие причины приводят к возникновению погрешностей измерения?</li>
+                            <li>Объясните, как Вы проводили измерения площади?</li>
+                        </ol>
+                    </div>
+                    
+                    <div v-if="message.length != 0" class="triangles-comment">
+                        {{message}}
+                    </div>
                     </div>
 <!--                    <div>-->
 <!--                        <h2>Расчет 1</h2>-->
@@ -163,11 +221,13 @@ function TrianglesTask(user_settings) {
                 `,
                 data: {
                     user_data: user_data,
+                    message: ""
                 },
                 methods:{
                     set_answer: function(event){
                         event.target.classList.remove('correct');
                         event.target.classList.remove('incorrect');
+                        this.message = "";
                         Object.keys(user_data).forEach(
                             item=>user_data[item] = this.parseNumber(user_data[item])
                         );
@@ -188,7 +248,6 @@ function TrianglesTask(user_settings) {
 
                     get_correctness_class(elem){
                         if (correctness != undefined){
-                            console.log(elem, correctness[elem])
                             if (correctness[elem]){
                                 return "correct"
                             }
@@ -197,7 +256,13 @@ function TrianglesTask(user_settings) {
                             }
                         }
                     },
-                }
+                },
+
+                mounted(){
+                    if (correctness != undefined){
+                        this.message = correctness["comment"]
+                    }
+                },
 
             })
         }

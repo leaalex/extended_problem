@@ -2,6 +2,7 @@
 <script type="python/loncapa">
 import json
 
+
 def comparison_numbers(correct_number, student_number, tol=0.005):
     if type(student_number) == str:
         student_number = student_number.replace(",", ".")
@@ -25,17 +26,24 @@ def check_triangles(expect, answer_given):
     s_2 = student_answer["S_2"]
     s_3 = student_answer["S_3"]
     s_avg = student_answer["S_avg"]
+    s_err = student_answer["S_err"]
 
     correct_s_1 = side_1 * h_1 * 0.5
     correct_s_2 = side_2 * h_2 * 0.5
     correct_s_3 = side_3 * h_3 * 0.5
-
     correct_s_avg = (correct_s_1 + correct_s_2 + correct_s_3) / 3
 
-    grade = 0
-    max_grade = 4
+    correct_s_err = (abs(correct_s_avg-correct_s_1) + abs(correct_s_avg-correct_s_2) + abs(correct_s_avg-correct_s_3))/3
 
-    response = {"S_1": False, "S_2": False, "S_3": False, "S_avg": False}
+    print correct_s_1
+    print correct_s_2
+    print correct_s_3
+    print correct_s_err
+
+    grade = 0
+    max_grade = 5
+
+    response = {"S_1": False, "S_2": False, "S_3": False, "S_avg": False, "S_err": False, "comment": ""}
 
     if s_1 > 0 and comparison_numbers(correct_s_1, s_1):
         grade += 1
@@ -52,6 +60,25 @@ def check_triangles(expect, answer_given):
     if s_1 > 0 and s_2 > 0 and s_3 > 0 and s_avg > 0 and comparison_numbers(correct_s_avg, s_avg):
         grade += 1
         response["S_avg"] = True
+
+    if s_1 > 0 and s_2 > 0 and s_3 > 0 and s_avg > 0 and comparison_numbers(correct_s_err, s_err):
+        grade += 1
+        response["S_err"] = True
+
+    if s_1 == 0 or s_2 == 0 or s_3 == 0 or s_avg == 0:
+        response = {"S_1": False, "S_2": False, "S_3": False, "S_avg": False, "S_err": False, "comment": ""}
+        response["comment"] = "Площадь треугольника не может быть равна нулю!"
+        grade = 0
+
+    if side_3 > side_1 + side_2 or side_2 > side_1 + side_3 or side_1 > side_2 + side_3:
+        response = {"S_1": False, "S_2": False, "S_3": False, "S_avg": False, "S_err": False, "comment": ""}
+        response["comment"] = "Измерения треугольника проведены не верно! Проверьте ход Ваших действий."
+        grade = 0
+
+    if abs((s_2 - s_1)) > s_2 * 0.1 or abs((s_2 - s_3)) > s_2 * 0.1:
+        response = {"S_1": False, "S_2": False, "S_3": False, "S_avg": False, "S_err": False, "comment": ""}
+        response["comment"] = "Площади треугольников посчитаны не верно! Проверьте ход Ваших действий."
+        grade = 0
 
     result_grade = grade / float(max_grade)
 

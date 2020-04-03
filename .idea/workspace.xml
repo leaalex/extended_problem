@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="китайский календарь">
-      <change afterPath="$PROJECT_DIR$/MCS/Треугольники/triangles.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Треугольники/triangles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Треугольники/triangles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Треугольники/vue.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Треугольники/vue.min.js" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="задание с треугольниками">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Треугольники/triangles.html" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Треугольники/triangles.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Треугольники/triangles.js" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Треугольники/triangles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCS/Треугольники/triangles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/MCS/Треугольники/triangles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,7 +306,7 @@
       <workItem from="1580131378982" duration="18199000" />
       <workItem from="1581084529308" duration="599000" />
       <workItem from="1581320196778" duration="50111000" />
-      <workItem from="1585734917393" duration="13599000" />
+      <workItem from="1585734917393" duration="21115000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -324,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560265997372</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="задание с треугольниками">
+      <created>1585760213219</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585760213219</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,17 +365,19 @@
     <MESSAGE value="Кроссворд" />
     <MESSAGE value="вфкфр" />
     <MESSAGE value="китайский календарь" />
-    <option name="LAST_COMMIT_MESSAGE" value="китайский календарь" />
+    <MESSAGE value="задание с треугольниками" />
+    <option name="LAST_COMMIT_MESSAGE" value="задание с треугольниками" />
   </component>
   <component name="WindowStateProjectService">
     <state x="861" y="462" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581605841793">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="861" y="462" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1581605841793" />
-    <state x="445" y="199" width="843" height="807" key="CommitChangelistDialog2" timestamp="1585748035444">
-      <screen x="0" y="23" width="1440" height="825" />
+    <state x="445" y="41" width="843" height="807" key="CommitChangelistDialog2" timestamp="1585760212947">
+      <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state x="445" y="199" key="CommitChangelistDialog2/0.23.1440.825@0.23.1440.825" timestamp="1585748035444" />
+    <state x="445" y="41" key="CommitChangelistDialog2/0.23.1440.828@0.23.1440.828" timestamp="1585760212947" />
     <state x="838" y="329" width="843" height="807" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1577345733586" />
     <state x="1091" y="700" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581071074319">
       <screen x="67" y="27" width="2493" height="1413" />
@@ -380,6 +387,10 @@
       <screen x="0" y="23" width="1440" height="827" />
     </state>
     <state x="221" y="74" key="SettingsEditor/0.23.1440.827@0.23.1440.827" timestamp="1585736086989" />
+    <state x="320" y="224" key="Vcs.Push.Dialog.v2" timestamp="1585760215086">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="320" y="224" key="Vcs.Push.Dialog.v2/0.23.1440.828@0.23.1440.828" timestamp="1585760215086" />
     <state x="595" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585755711141">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
@@ -392,10 +403,11 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="847" y="352" width="672" height="677" key="run.anything.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1581685289103" />
-    <state x="265" y="262" width="670" height="395" key="search.everywhere.popup" timestamp="1585742405393">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state x="265" y="263" width="670" height="397" key="search.everywhere.popup" timestamp="1585930661071">
+      <screen x="0" y="23" width="1440" height="827" />
     </state>
     <state x="265" y="262" width="670" height="395" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1585742405393" />
+    <state x="265" y="263" width="670" height="397" key="search.everywhere.popup/0.23.1440.827@0.23.1440.827" timestamp="1585930661071" />
     <state x="526" y="438" width="672" height="678" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1581934412981" />
   </component>
   <component name="masterDetails">
