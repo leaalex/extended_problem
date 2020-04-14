@@ -1,0 +1,96 @@
+<problem>
+    <style>
+        .hint-label, .explanation-title{
+            display: none !important;
+        }
+        .task-hint-block{
+            background: #fcfcfc;
+            margin: 0 -10px;
+            padding: 10px;
+        }
+
+        .task-hint-block table td{
+            text-align: center;
+            border: 2px solid #20323c;
+            padding: 0.75rem !important;
+            vertical-align: middle !important;
+        }
+
+        .task-hint-block table{
+            margin: 18px auto !important;
+        }
+
+    </style>
+    <multiplechoiceresponse>
+        <label>Ген, отвечающий за восприятие цвета, находится в \(X\)-хромосоме. Отец является дальтоником. Мать является здоровой и не носительницей данного аллеля. Какой генотип возможен у детей?</label>
+        <choicegroup type="MultipleChoice" shuffle="true">
+            <choice correct="false">\(XX\) и \(X’Y\)</choice>
+            <choice correct="true">\(X’X\) и \(XY\) <choicehint>
+                <div class="task-hint-block">
+                    <p class="correct-header"><strong>Верно: \(X’X\) и \(XY\)</strong></p>
+
+                    <p>У отца – только одна \(X\) хромосома и она несет дефектный аллель. Обозначим ее как \(X’\). У матери обе \(X\) хромосомы несут нормальный аллель. Запишем гаметы, которые могут произвести родители в решетку Пеннета. Совмещением аллелей в ячейках можно определить генотипы детей. Поскольку аллель – рецессивный, все девочки будут здоровы, но являться носителями. Все мальчики будут здоровы.</p>
+
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td style="border: none;">
+                            </td>
+                            <td style="border: none;"></td>
+                            <td style="text-align: center;" colspan="2">
+                                Отец-дальтоник
+                            </td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <td style="border: none;">
+
+                            </td>
+                            <td style="border: none;">
+                            </td>
+                            <td style="text-align: center;">
+                                \(X’\)
+                            </td>
+                            <td style="text-align: center;">
+                                \(Y\)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" style="text-align: center;">
+                                Мать - не носитель
+                            </td>
+                            <td style="text-align: center;">
+                                \(X\)
+                            </td>
+                            <td style="text-align: center;">
+                                \(X’X\) <br />
+                                Девочка- носитель
+                            </td>
+                            <td style="text-align: center;">
+                                \(XY\) <br />
+                                Здоровый мальчик
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                \(X\)
+                            </td>
+                            <td style="text-align: center;">
+                                \(X’X\) <br />
+                                Девочка- носитель
+                            </td>
+                            <td style="text-align: center;">
+                                \(XY\) <br />
+                                Здоровый мальчик
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </choicehint>
+            </choice>
+            <choice correct="false">\(X’X\) и \(X’Y\)</choice>
+            <choice correct="false">\(X’X’\) и \(X’Y\)</choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+</problem>
