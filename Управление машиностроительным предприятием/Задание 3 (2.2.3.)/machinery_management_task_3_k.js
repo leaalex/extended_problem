@@ -196,7 +196,7 @@ function MachineryManagement3(user_settings) {
                             
                             <div id="tact_value">
                             <!-- input.tact-input" -->
-                            <p>Время такта = <input class="tact-input" v-model.number="user_data.tact" @change="validate_tact" type="number"> мин./шт. <i>(округлить до <strong>десятых</strong>)</i></p>
+                            <p>Время такта = <input class="tact-input" v-model.number="user_data.tact" @change="validate_tact" type="number" step="0.1"> мин./шт. <i>(округлить до <strong>десятых</strong>)</i></p>
                             </div>
 
                              
@@ -242,7 +242,7 @@ function MachineryManagement3(user_settings) {
 <!--                                                </td>-->
                                                 <td class="auto-calculated-cell center-cell">{{calculate_workplace_num(workplace, ind)}}</td>
                                                 <td :class="{'percentage-greater-than': workplace.congestion > 100, 'percentage-less-than': workplace.congestion < 0}" class="input-cell">
-                                                    <input type="number" v-model.number="workplace.congestion" @change="validate_congestion"  :disabled="!workplace.type /*|| !workplace.employee*/">
+                                                    <input type="number" step="0.01" v-model.number="workplace.congestion" @change="validate_congestion"  :disabled="!workplace.type /*|| !workplace.employee*/">
                                                 </td>
                                                 <td :class="get_employee_class(workplace.employee)">
                                                     <select class="input-cell" v-model="workplace.employee" @change="set_answer">
@@ -337,11 +337,11 @@ function MachineryManagement3(user_settings) {
                                             </tr>
                                             <tr class="out_1">
                                             <!-- td.correct -->
-                                                <td colspan="2" class="title-cell">выход 1</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input @change="validate_out" @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[0].out[n]" type="number"></td>
+                                                <td colspan="2" class="title-cell">выход 1</td><td class="input-cell" v-for="n in array_0_n(periods_len)"><input @change="validate_out" @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[0].out[n]" type="number" step="0.01"></td>
                                             </tr>
                                             <tr class="out_2">
                                             <!-- td.correct -->
-                                                <td colspan="2" class="title-cell">выход 2</td><td class="input-cell" incorrect v-for="n in array_0_n(periods_len)"><input @change="validate_out" @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[1].out[n]" type="number"></td>
+                                                <td colspan="2" class="title-cell">выход 2</td><td class="input-cell" incorrect v-for="n in array_0_n(periods_len)"><input @change="validate_out" @input="calculate_change" v-model.number="user_data.operations_pairs[index].pair[1].out[n]" type="number" step="0.01"></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="title-cell">изменение</td>
@@ -352,7 +352,7 @@ function MachineryManagement3(user_settings) {
                                             <tr class="dynamic">
                                                 <td class="title-cell" style="">Динамика</td>
                                                 <!-- td.correct -->
-                                                <td class="input-cell"><input v-model.number="user_data.operations_pairs[index].dynamic_value" @change="validate_dynamic_value" @input="calculate_change" type="number"></td>
+                                                <td class="input-cell"><input v-model.number="user_data.operations_pairs[index].dynamic_value" @change="validate_dynamic_value" @input="calculate_change" type="number" step="0.01"></td>
                                                 <td v-for="n in array_0_n(periods_len)" class="auto-calculated-cell">
                                                     {{user_data.operations_pairs[index].dynamics[n]}}
                                                 </td>

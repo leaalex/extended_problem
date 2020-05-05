@@ -600,7 +600,7 @@ function MachineryManagement5(user_settings) {
                     equipments: settings.equipments,
                     employees: settings.employees,
                     user_data: user_data,
-                    ranks: [2, 3, 4],
+                    ranks: [2, 3, 4, 5],
                     select_equipment_label: "Выберите оборудование для этой позиции!",
                     select_employee_label: "Выберите профессию для этой позиции!",
                 },
