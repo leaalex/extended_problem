@@ -1,0 +1,54 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="lonacapa/python">
+import random
+import math
+variants = [
+    {
+        "title": "Каким количеством способов можно выбрать $k$ разных наименований пирожных в кондитерской, где есть $n$ разных сортов?",
+        "range_n": [3, 4, 5, 6, 7],
+        "range_k": [2, 3, 4, 5, 6]
+    },
+    {
+        "title": "В гараже имеются болты, гайки и шурупы в неограниченном количестве. Сколько существует способов выбрать из них $k$ деталей?",
+        "range_n": [3],
+        "range_k": [2, 3, 4, 5, 6]
+    },
+    {
+        "title": "В цветочном магазине имеются розы, гвоздики, хризантемы и гладиолусы. Сколькими способами можно собрать букет из $k$ цветов?",
+        "range_n": [4],
+        "range_k": [3, 5, 7, 12, 24]
+    },
+    {
+        "title": "Имеется коробка с бесконечным количеством шахматных фигур. Ивану нужно взять из нее $k$ шахматных фигур. Сколькими способами это можно сделать?",
+        "range_n": [12],
+        "range_k": [2, 3, 4, 5, 6, 7]
+    },
+    {
+        "title": "В канцелярском магазине имеется $n$ различных типов шариковых ручек. Мария хочет купить $k$ ручек. Сколько возможно вариантов?",
+        "range_n": [5, 6, 7, 8, 9],
+        "range_k": [2, 3, 4, 5]
+    },
+]
+
+variant = random.choice(variants)
+k = random.choice(variant["range_k"])
+n = random.choice(variant["range_n"])
+title = variant["title"].replace("$n$", str(n)).replace("$k$", str(k))
+
+answer = int(math.factorial(int(n+k-1))/(math.factorial(int(k))*math.factorial(int(n-1))))
+
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$answer">
+        <p>$title</p>
+        <responseparam type="tolerance" default="5"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>

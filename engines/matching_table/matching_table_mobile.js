@@ -6,7 +6,6 @@
 
 if (MatchingTableObjects == undefined) var MatchingTableObjects = {};
 
-
 function MatchingTableActivation(selector) {
     Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
         return element.dataset.status == undefined
@@ -131,7 +130,7 @@ function MatchingTableObjects(element, data){
     sortable.on('drag:stop', (evt) => {
         setAnswer();
         $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
-    })
+    });
     sortable.on('sortable:sort', (evt) => {
         var capacity = evt.data.dragEvent.data.overContainer.getAttribute("capacity");
         var count = sortable.getDraggableElementsForContainer(evt.data.dragEvent.data.overContainer).length;

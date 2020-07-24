@@ -1,0 +1,53 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+variants = [
+    {
+        "title": "Сколько возможно раскрасок множества чисел \(A = \{1,2,...,$n$\}\) в два цвета?",
+        "range_n": [3, 4, 5, 6, 7, 8, 9, 10],
+        "range_k": [2]
+    },
+    {
+        "title": "В конкурсе по $n$ номинациям участвуют $k$ книг. Сколько всего существует распределений призов, если по каждой номинации установлены разные премии?",
+        "range_n": [3, 4, 5, 6],
+        "range_k": [2, 3, 4, 5]
+    },
+    {
+        "title": "Сколькими способами можно $k$ шариков перераспределить по $n$ лункам, если каждая лунка может вместить все $k$ шариков?",
+        "range_n": [3, 4, 5, 6],
+        "range_k": [2, 3, 4, 5]
+    },
+    {
+        "title": "Сколько различных семизначных номеров можно составить из цифр 1, 2, 9?",
+        "range_n": [7],
+        "range_k": [3]
+    },
+    {
+        "title": "Сколько возможно способов переложить $k$ книг в три различных шкафа?",
+        "range_n": [3],
+        "range_k": [2, 3, 4, 5]
+    },
+]
+
+variant = random.choice(variants)
+n = random.choice(variant["range_n"])
+k = random.choice(variant["range_k"])
+title = variant["title"].replace("$n$", str(n)).replace("$k$", str(k))
+
+answer = math.pow(int(k), int(n))
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$answer">
+            <p>$title</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

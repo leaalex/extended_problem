@@ -1,0 +1,30 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+n_range = [3, 4, 5, 6, 7, 8, 9, 10]
+k_range = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+n = random.choice(n_range)
+k = random.choice(k_range)
+
+a = random.randint(1, n-1)
+b = random.randint(1, k-1)
+
+answer = int(((math.factorial(n))/(math.factorial(a)*math.factorial(n-a)))*((math.factorial(k))/(math.factorial(b)*math.factorial(k-b))))
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$answer">
+            <p>Имеется <strong>$n</strong> гаек и <strong>$k</strong> болтов. Найти число способов выбрать <strong>$a</strong> гаек и <strong>$b</strong> болтов из имеющихся деталей.</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

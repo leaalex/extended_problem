@@ -1,0 +1,53 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+variants = [
+    {
+        "title": "Найти число способов взять на руки $k$ карт из колоды в $n$ карт.",
+        "range_n": [3, 4, 5, 6, 7],
+        "range_k": [2, 3, 4, 5, 6]
+    },
+    {
+        "title": "В роте $n$ солдат. На дежурство выдвигается $k$ из них. Сколькими способами это возможно сделать?",
+        "range_n": [45, 46, 47],
+        "range_k": [2, 3, 4]
+    },
+    {
+        "title": "В академической группе $n$ студентов. Найти число способов выбрать $k$ из них для участия в художественной самодеятельности.",
+        "range_n": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+        "range_k": [2, 3, 4, 5]
+    },
+    {
+        "title": "На парте написано $n$ различных букв. Найти число способов собрать из них $k$-буквенные слова (даже не имеющие семантического смысла). ",
+        "range_n": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+        "range_k": [2, 3, 4, 5]
+    },
+    {
+        "title": "В личной библиотеке $n$ различных книг. Сколькими способами можно выбрать $k$ из них для прочтения в отпуске?",
+        "range_n": [20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55],
+        "range_k": [2, 3, 4]
+    },
+]
+
+variant = random.choice(variants)
+k = random.choice(variant["range_k"])
+n = random.choice(variant["range_n"])
+title = variant["title"].replace("$n$", str(n)).replace("$k$", str(k))
+
+answer = int(math.factorial(int(n))/(math.factorial(int(k))*math.factorial(int(n-k))))
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$answer">
+            <p>$title</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>
