@@ -1,0 +1,49 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+ab = sorted(random.sample(range(1, 20), 2))
+a = ab[0]
+b = ab[1]
+
+C = 1/(a+b*(math.log(b/a)-1))
+
+C = round(C, 2)
+
+</script>
+    <div class="no-equation">
+        <p>Установить, задает ли приведенная функция плотность вероятности некоторой непрерывной случайной величины, и, если задает, то при каком значении параметра \(C\)?</p>
+        \[ f(x) = \left\{
+        \begin{array}{ll}
+        C \ ln(\frac{x}{$a}), &amp; $a \lt x \le $b, \\
+        0, &amp; x \le $a, x \gt $b
+        \end{array}
+        \right.\]
+        <multiplechoiceresponse>
+            <label>Задает ли приведенная функция плотность вероятности некоторой непрерывной случайной величины?</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="true">Да</choice>
+                <choice correct="false">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <numericalresponse answer="$C">
+            <label>Если задает, то при каком значении? Если нет, то введите -1</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+
+        <demandhint>
+            <hint>Плотность вероятности должна быть всюду неотрицательной, постоянная \(c\) находится из условия нормировки:
+                \(\displaystyle \int_{-\infty}^{\infty} f(x)dx = 1\)
+            </hint>
+        </demandhint>
+    </div>
+</problem>

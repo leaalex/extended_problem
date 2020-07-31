@@ -1,0 +1,37 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+import scipy.special
+
+n = random.randint(6, 15)
+k = random.randint(1, n-3)
+#n=10
+#k=3
+if k == 1:
+    F = 1
+elif k == n-3:
+    F = scipy.special.binom(k, 1)/scipy.special.binom(n, 4)
+else:
+    F = (scipy.special.binom(n-k, 4)/scipy.special.binom(n, 4)) + (scipy.special.binom(n-k, 3) * scipy.special.binom(k, 1)/scipy.special.binom(n, 4))
+
+F = round(F, 2)
+
+sinie = n-2-k
+</script>
+    <div class="no-equation">
+        <p>В урне находятся \($n\) шаров: \(2\) красных, \($k\) зеленых, \($sinie\) синих. Наудачу берется \(4\) шара. \(X\) – число зеленых шаров среди выбранных. \(F(x)\) – функция распределения \(X\). Найти значение \(F(x)\) на промежутке \(1 \lt x \le 2\).</p>
+
+        <numericalresponse answer="$F">
+            <label>Значение \(F(x)\) на промежутке \(1 \lt x \le 2\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

@@ -2,16 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="маш предприятие">
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 7.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.1/Конторльные задания/Задание 9.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания/Задание 3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания/Задание 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания/Задание 5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания/Задание 6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Контрольные задания/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Контрольные задания/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Контрольные задания/Задание 3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Контрольные задания/Задание 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Контрольные задания/Задание 5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Контрольные задания/Задание 6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.10.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.12.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2/Задание 2.9.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2/Задание 2.7.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Основы проектной деятельности/1.2 учебное.html" beforeDir="false" afterPath="$PROJECT_DIR$/Основы проектной деятельности/1.2 учебное.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,25 +89,25 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3 (2.2.3.)" />
-      <recent name="$PROJECT_DIR$/MCS/Треугольники" />
-      <recent name="$PROJECT_DIR$/engines/modal-words" />
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 1" />
-      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 5" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Экономическая эффективность технических решений" />
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static" />
       <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan" />
       <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 2" />
       <recent name="$PROJECT_DIR$/electric" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Теория вероятности/2.2/Задание 2" />
+      <recent name="$PROJECT_DIR$/Теория вероятности/2.1/Учебные задания/Задание 2" />
+      <recent name="$PROJECT_DIR$/Теория вероятности/1.2/Контрольные задания" />
+      <recent name="$PROJECT_DIR$/Управление машиностроительным предприятием/Задание 3 (2.2.3.)" />
+      <recent name="$PROJECT_DIR$/MCS/Треугольники" />
     </key>
   </component>
   <component name="RunManager">
@@ -234,7 +258,9 @@
       <workItem from="1594062673451" duration="16000" />
       <workItem from="1594378168937" duration="531000" />
       <workItem from="1595358892854" duration="706000" />
-      <workItem from="1595609853727" duration="2940000" />
+      <workItem from="1595609853727" duration="3523000" />
+      <workItem from="1595847624931" duration="16365000" />
+      <workItem from="1596232731026" duration="909000" />
     </task>
     <task id="LOCAL-00001" summary="munsterberg_test">
       <created>1552316318472</created>
@@ -292,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588708557437</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="маш предприятие">
+      <created>1595618015214</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1595618015214</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,28 +375,30 @@
       <screen x="0" y="23" width="1440" height="807" />
     </state>
     <state x="463" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.807@0.23.1440.807" timestamp="1595610809155" />
-    <state x="463" y="264" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.815@0.23.1440.815" timestamp="1587067812068" />
-    <state x="445" y="30" width="843" height="807" key="CommitChangelistDialog2" timestamp="1588708557070">
-      <screen x="0" y="23" width="1440" height="797" />
+    <state x="445" y="23" width="843" height="807" key="CommitChangelistDialog2" timestamp="1595618014909">
+      <screen x="0" y="23" width="1440" height="807" />
     </state>
     <state x="445" y="30" key="CommitChangelistDialog2/0.23.1440.797@0.23.1440.797" timestamp="1588708557070" />
-    <state x="445" y="32" key="CommitChangelistDialog2/0.23.1440.815@0.23.1440.815" timestamp="1587137865219" />
+    <state x="445" y="23" width="843" height="807" key="CommitChangelistDialog2/0.23.1440.807@0.23.1440.807" timestamp="1595618014909" />
     <state x="262" y="58" key="SettingsEditor" timestamp="1594633777867">
       <screen x="0" y="23" width="1440" height="803" />
     </state>
     <state x="262" y="58" key="SettingsEditor/0.23.1440.803@0.23.1440.803" timestamp="1594633777867" />
-    <state x="320" y="217" key="Vcs.Push.Dialog.v2" timestamp="1588708559352">
-      <screen x="0" y="23" width="1440" height="797" />
+    <state x="320" y="219" key="Vcs.Push.Dialog.v2" timestamp="1595618026753">
+      <screen x="0" y="23" width="1440" height="807" />
     </state>
     <state x="320" y="217" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1588708559352" />
-    <state x="320" y="221" key="Vcs.Push.Dialog.v2/0.23.1440.815@0.23.1440.815" timestamp="1587137867737" />
+    <state x="320" y="219" key="Vcs.Push.Dialog.v2/0.23.1440.807@0.23.1440.807" timestamp="1595618026753" />
     <state x="231" y="281" width="826" height="486" key="find.popup" timestamp="1589968297132">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="231" y="281" width="826" height="486" key="find.popup/0.23.1440.793@0.23.1440.793" timestamp="1589968297132" />
     <state x="231" y="286" width="710" height="486" key="find.popup/0.23.1440.807@0.23.1440.807" timestamp="1587994464693" />
     <state x="231" y="287" width="826" height="486" key="find.popup/0.23.1440.810@0.23.1440.810" timestamp="1587994762563" />
-    <state x="231" y="288" width="710" height="486" key="find.popup/0.23.1440.813@0.23.1440.813" timestamp="1587065224068" />
+    <state x="843" y="152" width="670" height="676" key="search.everywhere.popup" timestamp="1596223225515">
+      <screen x="0" y="23" width="1440" height="805" />
+    </state>
+    <state x="843" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1596223225515" />
   </component>
   <component name="masterDetails">
     <states>

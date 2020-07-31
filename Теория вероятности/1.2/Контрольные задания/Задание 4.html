@@ -1,0 +1,26 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+n = random.randint(5, 10)
+k = random.randint(3, 15)
+
+P = 2*n*k/((n+k-1)*(n+k))
+
+P = round(P, 3)
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$P">
+            <p>Из урны, содержащей \($n\) белых и \($k\) черных шаров, вынули один за другим два шара. Найти вероятность того, что шары разного цвета. Ответ округлить до тысячных.</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

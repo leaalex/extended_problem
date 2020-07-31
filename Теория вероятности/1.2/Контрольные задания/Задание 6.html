@@ -1,0 +1,34 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+R = random.randint(5, 26)
+r = random.randint(1, R-1)
+
+P = math.pow(r, 2)/math.pow(R, 2)
+P = round(P, 3)
+
+incorrect_1 = round(P+(random.randint(10, 100)*0.001)*random.choice([1,-1]),3)
+incorrect_2 = round(P+(random.randint(10, 100)*0.001)*random.choice([1,-1]),3)
+incorrect_3 = round(P+(random.randint(10, 100)*0.001)*random.choice([1,-1]),3)
+
+
+</script>
+    <div class="no-equation">
+        <p>В круг радиусом \(R = $R\) помещен меньший круг радиусом \(r = $r\). Найти вероятность того, что точка, наудачу брошенная в больший круг, попадет также и в меньший круг. Предполагается, что вероятность попадания точки в круг пропорциональна площади круга и не зависит от его расположения.</p>
+
+        <multiplechoiceresponse>
+            <label></label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="true">$P</choice>
+                <choice correct="false">$incorrect_1</choice>
+                <choice correct="false">$incorrect_2</choice>
+                <choice correct="false">$incorrect_3</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+</problem>

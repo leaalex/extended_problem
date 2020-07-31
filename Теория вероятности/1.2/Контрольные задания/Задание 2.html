@@ -1,0 +1,29 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+n = random.randint(5, 10)
+a = random.randint(2, n-1)
+
+k = random.randint(5, 15)
+b = random.randint(3, k-1)
+
+P = (math.factorial(n)*math.factorial(k)*math.factorial(n+k-a-b)*math.factorial(a+b))/(math.factorial(a)*math.factorial(n-a)*math.factorial(b)*math.factorial(k-b)*math.factorial(n+k))
+
+P = round(P, 3)
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$P">
+            <p>В ящике содержится \($n\) стандартных деталей и \($k\) нестандартных. Найти вероятность того, что наудачу вытянутые детали будут состоять из \($a\) стандартных и \($b\) нестандартных. Ответ округлить до тысячных.</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

@@ -1,0 +1,58 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+
+def randrange_float(start, stop, step):
+    return random.randint(0, int((stop - start) / step)) * step + start
+
+
+lambda_ = randrange_float(0.5, 10, 0.5)
+
+x_tr = 0
+M = 0
+sigma = round(math.sqrt(2)/lambda_, 2)
+x_med = 0
+
+</script>
+    <div class="no-equation">
+        <p>Приведенная функция задает плотность вероятности некоторой непрерывной случайной величины. Определить ее наиболее вероятное значение \(x_{m.p}\). (если их несколько, то указать наименьшее), математическое ожидание \(M\), среднеквадратичное отклонение \(\sigma\) и медиану \(x_{med}\).</p>
+        \[f(x) = C \ e^{-$lambda_ |x|}, \ x \in R\]
+
+        <numericalresponse answer="$x_tr">
+            <label>\(x_{m.p} = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$M">
+            <label>\(M = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>\(\sigma = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$x_med">
+            <label>\(x_{med} = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <demandhint>
+            <hint>
+                Величина находится из условия нормировки вероятности: \(\int_{-\infty}^{\infty} f(x)dx = 1,\) математическое ожидание – суть среднее по вероятности: \( M = \int_{-\infty}^{\infty} x \ f(x)dx, \) дисперсия \( D = \int_{-\infty}^{\infty} x^2 f(x)dx - M^2,\) СКО: \( \sigma = \sqrt{D}, \) медиана – геометрический центр распределения: \( \int_{-\infty}^{x_{med}} f(x)dx = \int^{+\infty}_{x_{med}} f(x)dx = 1/2\)
+            </hint>
+        </demandhint>
+    </div>
+</problem>

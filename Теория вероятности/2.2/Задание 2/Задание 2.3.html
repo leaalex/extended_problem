@@ -1,0 +1,69 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+ab = sorted(random.sample(range(-30, 30), 2))
+a = round(ab[0]*0.1, 1)
+b = round(ab[1]*0.1, 1)
+
+if math.pow(b, 2) > math.pow(a, 2):
+    x_tr = b
+else:
+    x_tr = a
+
+M = 0.75 * (math.pow(a,3) + math.pow(a,2)*b + math.pow(b,2)*a + math.pow(b,3))/(math.pow(a,2)+a*b+math.pow(b,2))
+M = round(M, 2)
+
+sigma = math.sqrt(3/5 * (math.pow(b, 5) - math.pow(a, 5))/(math.pow(b, 3) - math.pow(a, 3)) - math.pow(M, 2))
+sigma = round(sigma, 2)
+
+x_med = math.pow((math.pow(a, 3) + math.pow(b, 3))/2, 1/3)
+x_med = round(x_med, 2)
+
+</script>
+    <div class="no-equation">
+        <p>Приведенная функция задает плотность вероятности некоторой непрерывной случайной величины. Определить ее наиболее вероятное значение \(x_{m.p}\). (если их несколько, то указать наименьшее), математическое ожидание \(M\), среднеквадратичное отклонение \(\sigma\) и медиану \(x_{med}\).</p>
+        \[ f(x) = \left\{
+        \begin{array}{ll}
+        C \ x^2, &amp;$a \lt x \le $b, \\
+        0, &amp; x \le $a, x \gt $b
+        \end{array}
+        \right.\]
+
+        <numericalresponse answer="$x_tr">
+            <label>\(x_{m.p} = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$M">
+            <label>\(M = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>\(\sigma = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$x_med">
+            <label>\(x_{med} = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <demandhint>
+            <hint>
+                Величина находится из условия нормировки вероятности: \(\int_{-\infty}^{\infty} f(x)dx = 1,\) математическое ожидание – суть среднее по вероятности: \( M = \int_{-\infty}^{\infty} x \ f(x)dx, \) дисперсия \( D = \int_{-\infty}^{\infty} x^2 f(x)dx - M^2,\) СКО: \( \sigma = \sqrt{D}, \) медиана – геометрический центр распределения: \( \int_{-\infty}^{x_{med}} f(x)dx = \int^{+\infty}_{x_{med}} f(x)dx = 1/2\)
+            </hint>
+        </demandhint>
+    </div>
+</problem>

@@ -1,0 +1,52 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+people = [
+    {
+        "title": "шахтером",
+        "count": random.randint(5, 10)
+    },
+    {
+        "title": "экономистом",
+        "count": 6
+    },
+    {
+        "title": "ученым",
+        "count": 3
+    },
+    {
+        "title": "кинорежиссером",
+        "count": random.randint(2, 11)
+    }
+]
+
+variants = [ 1,0, 2, 3]
+random.shuffle(variants)
+
+P = people[variants[0]]["count"]/(people[variants[0]]["count"] + people[variants[1]]["count"] + people[variants[2]]["count"] + people[variants[3]]["count"])
+# print(people[variants[0]]["count"], people[variants[1]]["count"], people[variants[2]]["count"], people[variants[3]]["count"])
+P = round(P, 3)
+
+aim_title = people[variants[0]]["title"]
+
+n = people[0]["count"]
+m = people[1]["count"]
+k = people[2]["count"]
+l = people[3]["count"]
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$P">
+            <p>В поход собрались \($n\) шахтеров, \($m\) экономистов, \($k\) ученых и \($l\) кинорежиссеров. Найти вероятность, что наугад выбранный дежурный окажется $aim_title. Ответ округлить до тысячных.</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

@@ -1,0 +1,24 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+n = random.randint(3, 9)
+type = random.choice(["орел", "решка"])
+P = 1 - math.pow(0.5, n)
+P = round(P, 3)
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$P">
+            <p>Монета подброшена \($n\) раз, найти вероятность того, что хотя бы один раз выпадет «$type». Ответ округлить до тысячных.</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

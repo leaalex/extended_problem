@@ -1,0 +1,33 @@
+import random
+import math
+import scipy.special
+
+# X = sorted(random.sample(range(-20, 20), 5))
+a_plus_bc = random.sample(range(-20, 20), 6)
+
+a_array = sorted(a_plus_bc[2:])
+p_array = [round(x * 0.01, 2) for x in sorted(random.sample(range(1, 99), 3))]
+
+a_array = [1,3,6,10]
+p_array = [1/14,0.5,13/14]
+
+a_k_num = random.randint(0, 3)
+
+a_k_num = 2
+
+if a_k_num == 0:
+answer_1 = p_array[0]
+elif a_k_num == 1:
+answer_1 = p_array[1] - p_array[0]
+elif a_k_num == 2:
+answer_1 = p_array[2] - p_array[1]
+else: #a_k_num == 3
+answer_1 = 1 - p_array[2]
+answer_1 = round(answer_1, 2)
+
+answer_2 = 0
+
+bc = sorted(a_plus_bc[:2])
+b = bc[0]
+c = bc[1]
+

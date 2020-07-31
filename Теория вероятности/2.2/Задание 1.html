@@ -1,0 +1,74 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+
+def randrange_float(start, stop, step):
+    return random.randint(0, int((stop - start) / step)) * step + start
+
+
+X = [1, 2, 5, 10]
+p2 = 0.2
+p4 = 0.3
+
+p1 = round(randrange_float(0.1, 0.49, 0.01), 2)
+# p1 = 0.24
+p5 = round(1 - 0.5 - p1, 2)
+M = round(X[0] * p1 + X[1] * p2 + X[2] * p5 + X[3] * p4, 2)
+
+sigma = round(math.sqrt(pow(X[0],2) * p1 + pow(X[1],2) * p2 + pow(X[2],2) * p5 + pow(X[3],2) * p4 - math.pow(M, 2)), 2)
+
+</script>
+    <div class="no-equation">
+        <p>Таблица задает закон распределения некоторой случайной величины. Определить ее математическое ожидание и среднеквадратичное отклонение.</p>
+        <table>
+            <tr>
+                <td>\(X\)</td>
+                <td>\(1\)</td>
+                <td>\(2\)</td>
+                <td>\(5\)</td>
+                <td>\(10\)</td>
+            </tr>
+            <tr>
+                <td>\(P\)</td>
+                <td>\($p1\)</td>
+                <td>\(0.2\)</td>
+                <td>\(p_5\)</td>
+                <td>\(0.3\)</td>
+            </tr>
+        </table>
+
+        <numericalresponse answer="$p5">
+            <label>Величина \(p_5\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \((M)\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение \((\sigma)\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+
+        <p>Величина \(p_5\) находится из условия нормировки вероятности: \( \sum_{i} p_i = 1, \)
+            математическое ожидание суть среднее по вероятности \(M = \sum_{i} p_i x_i, \)
+            дисперсия \(D = \sum_{i} p_i x_i^2 - M^2,\) СКО: \(\sigma = \sqrt{D}\)
+        </p>
+
+
+    </div>
+</problem>
+

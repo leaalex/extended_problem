@@ -1,0 +1,70 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+import numpy as np, numpy.random
+
+P = list((np.random.dirichlet(np.ones(5), size=1))[0])
+
+for index, x in enumerate(P):
+    P[index] = round(x, 2)
+
+p1 = P[0]
+p2 = P[1]
+p3 = P[2]
+p4 = P[3]
+p5 = P[4]
+
+
+X = sorted(random.sample(range(-10, 10), 5))
+
+a1 = X[0]
+a2 = X[1]
+a3 = X[2]
+a4 = X[3]
+a5 = X[4]
+
+prom = random.randint(2, 5)
+
+prom_1 = X[prom-2]
+prom_2 = X[prom-1]
+
+
+answer = round(sum(P[:prom-1]),2)
+
+</script>
+    <div class="no-equation">
+        <p>Дискретная случайная величина задана таблицей распределения.</p>
+        <table>
+            <tr>
+                <td>\(X\)</td>
+                <td>\($a1\)</td>
+                <td>\($a2\)</td>
+                <td>\($a3\)</td>
+                <td>\($a4\)</td>
+                <td>\($a5\)</td>
+            </tr>
+            <tr>
+                <td>\(P\)</td>
+                <td>\($p1\)</td>
+                <td>\($p2\)</td>
+                <td>\($p3\)</td>
+                <td>\($p4\)</td>
+                <td>\($p5\)</td>
+            </tr>
+        </table>
+        <p>Определить значение функции распределения на промежутке \(($prom_1; $prom_2]\).</p>
+        <numericalresponse answer="$answer">
+            <label>Значение функции распределения на промежутке \(($prom_1; $prom_2]\) равно</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <p>$comment</p>
+    </div>
+</problem>

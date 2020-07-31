@@ -1,0 +1,55 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+variants = [
+    {
+        "number": 3,
+        "title": "Найти вероятность того, что наудачу выбранный из мешка кубик имеет три окрашенных стороны.",
+    },
+    {
+        "number": 2,
+        "title": "Найти вероятность того, что наудачу выбранный из мешка кубик имеет две окрашенных стороны.",
+    },
+    {
+        "number": 1,
+        "title": "Найти вероятность того, что наудачу выбранный из мешка кубик имеет одну окрашенную сторону.",
+    },
+    {
+        "number": 0,
+        "title": "Найти вероятность того, что наудачу выбранный из мешка кубик не имеет ни одной окрашенной стороны.",
+    }
+]
+n = random.choice([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+variant = random.choice(variants)
+
+P = 0
+
+if variant["number"] == 0:
+    P = (math.pow(n-2,3))/math.pow(n, 3)
+elif variant["number"] == 1:
+    P = (6 * math.pow(n-2,2))/math.pow(n, 3)
+elif variant["number"] == 2:
+    P = (12*(n-2))/math.pow(n, 3)
+elif variant["number"] == 3:
+    P = 8/math.pow(n, 3)
+
+P = round(P, 3)
+
+n_pow_3 = int(math.pow(n, 3))
+title = variant["title"]
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$P">
+            <p>Кубик размером \($n \times $n \times $n\), все стороны которого окрашены, распилен на \($n_pow_3\) кубиков одинакового размера. Полученные кубики тщательно перемешаны и помещены в мешок. $title</p>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

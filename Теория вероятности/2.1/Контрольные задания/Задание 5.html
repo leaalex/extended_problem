@@ -1,0 +1,55 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+p = random.randint(2, 8) * 0.1
+m = random.randint(0, 10)
+
+C = 1 - p
+
+answer_p = 0
+
+if m > 0:
+    answer_p = round(p * math.pow((1 - p), m-1), 6)
+</script>
+    <div class="no-equation">
+        <p>При каком значении \(C\) функция:</p>
+        \[ F(x) = \left\{
+        \begin{array}{ll}
+        0, &amp;x\le1 \\
+        $p \left(\frac{1-C^k}{1-C}\right), &amp; k \lt x \le k+1,
+        \end{array}
+        \right.\]
+        <p>где \(k = 1, 2, 3 ...\), – является функцией распределения дискретной случайной величины?</p>
+        <numericalresponse answer="$C">
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <p>Определить вероятность того, что значение случайной величины равно \($m\):</p>
+        <numericalresponse answer="$answer_p">
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <multiplechoiceresponse>
+            <label>Как называется распределение этой случайной величины?</label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">индикатор</choice>
+                <choice correct="false">распределение Бернулли</choice>
+                <choice correct="false">распределение Пуассона</choice>
+                <choice correct="true">геометрическое распределение</choice>
+                <choice correct="false">нормальное распределение</choice>
+                <choice correct="false">показательное распределение</choice>
+                <choice correct="false" fixed="true">среди приведенного списка нет верного ответа</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+</problem>

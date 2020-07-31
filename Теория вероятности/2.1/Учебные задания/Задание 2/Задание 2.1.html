@@ -1,0 +1,45 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+
+def randrange_float(start, stop, step):
+    return random.randint(0, int((stop - start) / step)) * step + start
+
+lambda_ = randrange_float(0.5, 10, 0.5)
+
+C = lambda_/2
+
+
+</script>
+    <div class="no-equation">
+        <p>Установить, задает ли приведенная функция плотность вероятности некоторой непрерывной случайной величины, и, если задает, то при каком значении параметра \(C\)?</p>
+        \[f(x) = C \ e^{-$lambda_ |x|}, \ x \in R\]
+        <multiplechoiceresponse>
+            <label>Задает ли приведенная функция плотность вероятности некоторой непрерывной случайной величины?</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="true">Да</choice>
+                <choice correct="false">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <numericalresponse answer="$C">
+            <label>Если задает, то при каком значении? Если нет, то введите -1</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+
+        <demandhint>
+            <hint>Плотность вероятности должна быть всюду неотрицательной, постоянная \(c\) находится из условия нормировки:
+                \(\displaystyle \int_{-\infty}^{\infty} f(x)dx = 1\)
+            </hint>
+        </demandhint>
+    </div>
+</problem>

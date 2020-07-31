@@ -1,0 +1,79 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+
+def randrange_float(start, stop, step):
+    return random.randint(0, int((stop - start) / step)) * step + start
+
+
+X = [1, 2, 5, 10]
+p2 = 0.2
+p4 = 0.3
+
+p1 = round(randrange_float(-2.0, 2.0, 0.01), 2)
+
+comment = ""
+
+yes_answer = False
+no_answer = False
+
+p5 = 0
+
+if 0 > p1:
+    no_answer = True
+    comment = "Комментарий: вероятности должны быть неотрицательными"
+elif p1 >= 0 and 0.5 >= p1:
+    yes_answer = True
+    p5 = round(0.5 - p1, 2)
+    comment = "Комментарий: все вероятности должны быть в интервале,сумма всех вероятностей равна единице.”"
+elif p1 > 0.5 and 1 >= p1:
+    no_answer = True
+    comment = "Сумма вероятностей должна быть равной единице, при данном наборе P(X = 1), P(X = 2), P(X = 10) этому равенству невозможноудовлетворить ни при каких значениях p5"
+else:
+    comment = "Вероятности не должны превышать \\\(1\\\)"
+    no_answer = True
+
+</script>
+    <div class="no-equation">
+        <p>Установить, задает ли таблица закон распределения некоторой случайной величины, и если задает, то при каком значении \(p_5\)?</p>
+        <table>
+            <tr>
+                <td>\(X\)</td>
+                <td>\(1\)</td>
+                <td>\(2\)</td>
+                <td>\(5\)</td>
+                <td>\(10\)</td>
+            </tr>
+            <tr>
+                <td>\(P\)</td>
+                <td>\($p1\)</td>
+                <td>\(0.2\)</td>
+                <td>\(p_5\)</td>
+                <td>\(0.3\)</td>
+            </tr>
+        </table>
+
+        <multiplechoiceresponse>
+            <label>Задает ли таблица закон распределения некоторой случайной величины?</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="$yes_answer">Да</choice>
+                <choice correct="$no_answer">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <numericalresponse answer="$p5">
+            <label>Если задает, то при каком значении? ЕСли нет, то введите 0</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <p>$comment</p>
+    </div>
+</problem>
