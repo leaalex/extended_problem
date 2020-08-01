@@ -3,7 +3,44 @@
         .no-equation .equation{
             display: none !important;
         }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
     </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_1_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
     <script type="lonacapa/python">
 import random
 import math
@@ -24,26 +61,24 @@ comment = ""
 yes_answer = False
 no_answer = False
 
-p5 = 0
+p5 = -1
 
 if 0 > p1:
     no_answer = True
-    comment = "Комментарий: вероятности должны быть неотрицательными"
 elif p1 >= 0 and 0.5 >= p1:
     yes_answer = True
     p5 = round(0.5 - p1, 2)
-    comment = "Комментарий: все вероятности должны быть в интервале,сумма всех вероятностей равна единице.”"
 elif p1 > 0.5 and 1 >= p1:
     no_answer = True
-    comment = "Сумма вероятностей должна быть равной единице, при данном наборе P(X = 1), P(X = 2), P(X = 10) этому равенству невозможноудовлетворить ни при каких значениях p5"
 else:
-    comment = "Вероятности не должны превышать \\\(1\\\)"
     no_answer = True
 
+
 </script>
-    <div class="no-equation">
+    <div class="no-equation" id="section_2_1_training_1">
+
         <p>Установить, задает ли таблица закон распределения некоторой случайной величины, и если задает, то при каком значении \(p_5\)?</p>
-        <table>
+        <table class="distribution-table">
             <tr>
                 <td>\(X\)</td>
                 <td>\(1\)</td>
@@ -69,11 +104,15 @@ else:
         </multiplechoiceresponse>
 
         <numericalresponse answer="$p5">
-            <label>Если задает, то при каком значении? ЕСли нет, то введите 0</label>
+            <label>Если задает, то при каком значении? Если не задает, то введите -1</label>
             <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput/>
         </numericalresponse>
 
-        <p>$comment</p>
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>вероятности каждого значения должны быть неотрицательными и не большими единицы, сумма вероятностей должна быть равна единице.</span>
+        </div>
+
     </div>
 </problem>

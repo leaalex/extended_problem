@@ -3,6 +3,24 @@
         .no-equation .equation{
             display: none !important;
         }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
     </style>
     <script type="lonacapa/python">
 import random
@@ -13,7 +31,15 @@ L = 5
 C = 1/L
 
 </script>
-    <div class="no-equation">
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_1_training_2_4");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <div class="no-equation" id="section_2_1_training_2_4">
         <p>Установить, задает ли приведенная функция плотность вероятности некоторой непрерывной случайной величины, и, если задает, то при каком значении параметра \(C\)?</p>
         \[ f(x) = \left\{
         \begin{array}{ll}
@@ -35,11 +61,9 @@ C = 1/L
             <formulaequationinput/>
         </numericalresponse>
 
-
-        <demandhint>
-            <hint>Плотность вероятности должна быть всюду неотрицательной, постоянная \(c\) находится из условия нормировки:
-                \(\displaystyle \int_{-\infty}^{\infty} f(x)dx = 1\)
-            </hint>
-        </demandhint>
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>плотность вероятности должна быть всюду неотрицательной, постоянная \(c\) находится из условия нормировки: \(\displaystyle \int_{-\infty}^{\infty} f(x)dx = 1\)</span>
+        </div>
     </div>
 </problem>

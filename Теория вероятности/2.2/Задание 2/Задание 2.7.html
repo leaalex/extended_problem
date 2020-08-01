@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
 
-</body>
-</html>
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+a = random.randint(2, 20)
+
+x_tr = 0
+
+M = a / 4
+M = round(M, 2)
+
+sigma = a * math.sqrt(7) / 12
+sigma = round(sigma, 2)
+
+x_med = 0.187 * a
+x_med = round(x_med, 2)
+
+</script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_2_training_2_7");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <div class="no-equation" id="section_2_2_training_2_7">
+        <p>Приведенная функция задает плотность вероятности некоторой непрерывной случайной величины. Определить ее наиболее вероятное значение \(x_{m.p}\). (если их несколько, то указать наименьшее), математическое ожидание \(M\), среднеквадратичное отклонение \(\sigma\) и медиану \(x_{med}\).</p>
+        \[ f(x) = \left\{
+        \begin{array}{ll}
+        C \ ln(\frac{x}{$a}), &amp; 0 \lt x \le $a, \\
+        0, &amp; x \le 0, x \gt $a
+        \end{array}
+        \right.\]
+
+        <numericalresponse answer="$x_tr">
+            <label>\(x_{m.p} = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$M">
+            <label>\(M = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>\(\sigma = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$x_med">
+            <label>\(x_{med} = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>величина находится из условия нормировки вероятности: \(\int_{-\infty}^{\infty} f(x)dx = 1,\) математическое ожидание – суть среднее по вероятности: \( M = \int_{-\infty}^{\infty} x \ f(x)dx, \) дисперсия \( D = \int_{-\infty}^{\infty} x^2 f(x)dx - M^2,\) СКО: \( \sigma = \sqrt{D}, \) медиана – геометрический центр распределения: \( \int_{-\infty}^{x_{med}} f(x)dx = \int^{+\infty}_{x_{med}} f(x)dx = 1/2\)</span>
+        </div>
+    </div>
+</problem>

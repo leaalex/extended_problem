@@ -3,7 +3,40 @@
         .no-equation .equation{
             display: none !important;
         }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
     </style>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_2_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
     <script type="lonacapa/python">
 import random
 import math
@@ -25,9 +58,9 @@ M = round(X[0] * p1 + X[1] * p2 + X[2] * p5 + X[3] * p4, 2)
 sigma = round(math.sqrt(pow(X[0],2) * p1 + pow(X[1],2) * p2 + pow(X[2],2) * p5 + pow(X[3],2) * p4 - math.pow(M, 2)), 2)
 
 </script>
-    <div class="no-equation">
+    <div class="no-equation" id="section_2_2_training_1">
         <p>Таблица задает закон распределения некоторой случайной величины. Определить ее математическое ожидание и среднеквадратичное отклонение.</p>
-        <table>
+        <table class="distribution-table">
             <tr>
                 <td>\(X\)</td>
                 <td>\(1\)</td>
@@ -62,11 +95,12 @@ sigma = round(math.sqrt(pow(X[0],2) * p1 + pow(X[1],2) * p2 + pow(X[2],2) * p5 +
             <formulaequationinput/>
         </numericalresponse>
 
-
-        <p>Величина \(p_5\) находится из условия нормировки вероятности: \( \sum_{i} p_i = 1, \)
-            математическое ожидание суть среднее по вероятности \(M = \sum_{i} p_i x_i, \)
-            дисперсия \(D = \sum_{i} p_i x_i^2 - M^2,\) СКО: \(\sigma = \sqrt{D}\)
-        </p>
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>величина \(p_5\) находится из условия нормировки вероятности: \( \sum_{i} p_i = 1, \)
+            математическое ожидание суть - среднее по вероятности \(M = \sum_{i} p_i x_i, \)
+            дисперсия \(D = \sum_{i} p_i x_i^2 - M^2,\) СКО: \(\sigma = \sqrt{D}\)</span>
+        </div>
 
 
     </div>
