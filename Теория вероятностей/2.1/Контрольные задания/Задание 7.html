@@ -1,0 +1,47 @@
+import random
+import math
+
+p_0 = round(random.randint(5, 95) * 0.01, 2)
+T_1 = round(random.randint(5, 50) * 0.01, 2)
+alpha = round(random.randint(1, 9) * 0.1, 2)
+
+t_1, t_2 = sorted(random.sample(range(int(-T_1*100), int(2*T_1*100)), 2))
+t_1 = t_1 * 0.01
+t_2 = t_2 * 0.01
+
+p_0 = 0.3
+T_1 = 3.5
+alpha = 0.6
+
+F = p_0 + (1 - p_0) * alpha
+
+# не сходится
+# если t1 = 0.5, t2 = 2.5, то P = 0.2
+# если t1 = 3.25, t2 = 4.5, то P = 0.
+
+t_1 = 3.25
+t_2 = 4.5
+
+if 0 > t_2 > t_1:
+P = 0
+elif T_1 > t_2 > 0 > t_1:
+P = p_0 + ((1-p_0)/(T_1)) * t_2
+elif t_2 > T_1 > 0 > t_1:
+P = 1
+elif T_1 > t_2 > t_1 > 0:
+P = ((1-p_0)/(T_1)) * (t_2 - t_1)
+elif t_2 > T_1 > t_1 > 0:
+P = 1 - p_0 - ((1-p_0)/(T_1)) * t_1
+elif t_2 > t_1 > T_1:
+P = 0
+else:
+P = 0
+
+P = round(P, 2)
+
+print(F)
+print(P)
+
+# print("T_1 = ", T_1)
+# print("t_1 = ", t_1)
+# print("t_2 = ", t_2)

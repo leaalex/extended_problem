@@ -7,78 +7,52 @@
     <script type="lonacapa/python">
 import random
 import math
-import scipy.special
 
-k = random.randint(2, 5)
-m = random.randint(0, k-1)
+p = random.randint(35, 65) * 0.01
+m = random.randint(0, 5)
 
+C = round(1 - p, 2)
 
-p_1 = 28/323
-p_2 = 160/323
-p_3 = 135/323
+answer_p = 0
 
-situation = random.choice(["4x4", "3x1", "2x2"])
-
-if situation == "4x4":
-    p_k_2 = scipy.special.binom(k, k-2) * math.pow(p_1, k-2) * math.pow(p_2 + p_3, 2)
-    p_k_2 = round(p_k_2, 4)
-    p_k_1 = scipy.special.binom(k, k-1) * math.pow(p_1, k-1) * (p_2 + p_3)
-    p_k_1 = round(p_k_1, 4)
-    F = 0
-    for i in list(range(0, m+1)):
-        F += scipy.special.binom(k, i) * math.pow(p_1, i) * math.pow(p_2+p_3, k-i)
-    F = round(F, 4)
-
-
-elif situation == "3x1":
-    p_k_2 = scipy.special.binom(k, k-2) * math.pow(p_2, k-2) * math.pow(p_1 + p_3, 2)
-    p_k_2 = round(p_k_2, 4)
-    p_k_1 = scipy.special.binom(k, k-1) * math.pow(p_2, k-1) * (p_1 + p_3)
-    p_k_1 = round(p_k_1, 4)
-    F = 0
-    for i in list(range(0, m+1)):
-        F += scipy.special.binom(k, i) * math.pow(p_2, i) * math.pow(p_1+p_3, k-i)
-    F = round(F, 4)
-
-else: # "2x2"
-    p_k_2 = scipy.special.binom(k, k-2) * math.pow(p_3, k-2) * math.pow(p_1 + p_2, 2)
-    p_k_2 = round(p_k_2, 4)
-    p_k_1 = scipy.special.binom(k, k-1) * math.pow(p_3, k-1) * (p_1 + p_2)
-    p_k_1 = round(p_k_1, 4)
-    F = 0
-    for i in list(range(0, m+1)):
-        F += scipy.special.binom(k, i) * math.pow(p_3, i) * math.pow(p_1+p_2, k-i)
-    F = round(F, 4)
-
-k_minus_1 = k-1
-k_minus_2 = k-2
-m_plus_1 = m+1
-
+if m > 0:
+    answer_p = round(p * math.pow((1 - p), m-1), 2)
 </script>
     <div class="no-equation">
-        <p>
-            В карточной игре "Преферанс" после "торговли" у игрока на руках оказалось 4 козыря из 8. Вероятность того, что все остальные 4 козыря на руках у одного из противников игрока ("4 на 4") составляет \(p_1 = \frac{28}{323}\), вероятность того, что у одного из противников 3 козыря ("3:1"), равна \(p_2 = \frac{160}{323} \), и вероятность того, что у каждого из противников по 2 козыря ("2:2"), равна \(p_3 = \frac{135}{323} \). Всего сыграно \($k\) игр, при которых у "играющего" после торговли оказывалось 4 козыря. \(X\) – число игр, при которых реализована ситуация <strong>$situation</strong>.
-        </p>
-
-        <numericalresponse answer="$p_k_2">
-            <label>Определить вероятность того, что ситуация <strong>$situation</strong> реализуется \($k_minus_2\) раз:</label>
-            <responseparam type="tolerance" default="0.01"/>
-            <formulaequationinput/>
-        </numericalresponse>
-
-        <numericalresponse answer="$p_k_1">
-            <label>Определить вероятность того, что ситуация <strong>$situation</strong> реализуется \($k_minus_1\) раз:</label>
-            <responseparam type="tolerance" default="0.01"/>
-            <formulaequationinput/>
-        </numericalresponse>
-
-        <numericalresponse answer="$F">
-            <label>Чему равно значение функции распределения \(F(x) \ СВ \ X\) на промежутке \($m \lt x \le $m_plus_1\):</label>
+        <p>Задана функция</p>
+        \[ F(x) = \left\{
+        \begin{array}{ll}
+        0, &amp;x\le1 \\
+        $p \left(\frac{1-C^k}{1-C}\right), &amp; k \lt x \le k+1,
+        \end{array}
+        \right.\]
+        <p>где \(k = 1, 2, 3 ...\)</p>
+        <numericalresponse answer="$C">
+            <label>При каком значении \(C\) она является функцией распределения дискретной случайной величины?</label>
             <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput/>
         </numericalresponse>
 
 
+        <numericalresponse answer="$answer_p">
+            <label>Определить вероятность того, что значение случайной величины равно \($m\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <multiplechoiceresponse>
+            <label>Как называется распределение этой случайной величины?</label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="false">индикатор</choice>
+                <choice correct="false">распределение Бернулли</choice>
+                <choice correct="false">распределение Пуассона</choice>
+                <choice correct="true">геометрическое распределение</choice>
+                <choice correct="false">нормальное распределение</choice>
+                <choice correct="false">показательное распределение</choice>
+                <choice correct="false" fixed="true">среди приведенного списка нет верного ответа</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
 
     </div>
 </problem>
+

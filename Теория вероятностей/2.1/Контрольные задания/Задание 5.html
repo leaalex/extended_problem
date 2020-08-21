@@ -1,55 +1,35 @@
-<problem>
-    <style>
-        .no-equation .equation{
-            display: none !important;
-        }
-    </style>
-    <script type="lonacapa/python">
 import random
 import math
 
-p = random.randint(2, 8) * 0.1
-m = random.randint(0, 10)
 
-C = 1 - p
+def randrange_float(start, stop, step):
+return random.randint(0, int((stop - start) / step)) * step + start
 
-answer_p = 0
 
-if m > 0:
-    answer_p = round(p * math.pow((1 - p), m-1), 6)
-</script>
-    <div class="no-equation">
-        <p>При каком значении \(C\) функция:</p>
-        \[ F(x) = \left\{
-        \begin{array}{ll}
-        0, &amp;x\le1 \\
-        $p \left(\frac{1-C^k}{1-C}\right), &amp; k \lt x \le k+1,
-        \end{array}
-        \right.\]
-        <p>где \(k = 1, 2, 3 ...\), – является функцией распределения дискретной случайной величины?</p>
-        <numericalresponse answer="$C">
-            <responseparam type="tolerance" default="5"/>
-            <formulaequationinput/>
-        </numericalresponse>
+# a = round(random.randint(10, 50) * 0.1, 2)
+# q = random.choice([2, 3, 4, 5])
+# _lambda = random.choice([0.5, 1, 1.5, 2, 2.5])
+# m = random.choice([2, 3, 4, 5])
+# b = round(random.randint(-50, a*10) * 0.1, 2)
+# c = round(randrange_float(a+0.5, a+5, 0.1), 2)
+# d = round(randrange_float(a+0.1, a+2, 0.1), 2)
 
-        <p>Определить вероятность того, что значение случайной величины равно \($m\):</p>
-        <numericalresponse answer="$answer_p">
-            <responseparam type="tolerance" default="5"/>
-            <formulaequationinput/>
-        </numericalresponse>
 
-        <multiplechoiceresponse>
-            <label>Как называется распределение этой случайной величины?</label>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">индикатор</choice>
-                <choice correct="false">распределение Бернулли</choice>
-                <choice correct="false">распределение Пуассона</choice>
-                <choice correct="true">геометрическое распределение</choice>
-                <choice correct="false">нормальное распределение</choice>
-                <choice correct="false">показательное распределение</choice>
-                <choice correct="false" fixed="true">среди приведенного списка нет верного ответа</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
+a = 1.3
+q = 4
+_lambda = 1.5
+m = 3
+b = 0
+c = 2.5
+d = 1.8
 
-    </div>
-</problem>
+f_max = round(_lambda * math.log(q), 2)
+P1 = 1 - math.pow(q, (-1) * _lambda * a * (m - 1))
+P2 = 1 - math.pow(q, -_lambda * (c - a))
+P3 = math.pow(q, -_lambda * (d - a))
+
+print(f_max)
+print(P1)
+print(P2)
+print(P3)
+

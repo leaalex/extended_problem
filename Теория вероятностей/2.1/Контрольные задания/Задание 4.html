@@ -1,33 +1,97 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
 import random
 import math
-import scipy.special
 
-# X = sorted(random.sample(range(-20, 20), 5))
-a_plus_bc = random.sample(range(-20, 20), 6)
+def randrange_float(start, stop, step):
+    return random.randint(0, int((stop - start) / step)) * step + start
 
-a_array = sorted(a_plus_bc[2:])
-p_array = [round(x * 0.01, 2) for x in sorted(random.sample(range(1, 99), 3))]
+a = round(randrange_float(-2, -1, 0.1), 2)
+b = round(randrange_float(1, 2, 0.1), 2)
+k = randrange_float(0.5, 5, 0.5)
 
-a_array = [1,3,6,10]
-p_array = [1/14,0.5,13/14]
+#a = -1.3
+#b = 1.5
+#k = 7/2
 
-a_k_num = random.randint(0, 3)
+cd_2 = sorted(random.sample(range(int(a*10)+1,int(b*10)-1), 2))
 
-a_k_num = 2
+c_2 = cd_2[0]/10
+d_2 = cd_2[1]/10
 
-if a_k_num == 0:
-answer_1 = p_array[0]
-elif a_k_num == 1:
-answer_1 = p_array[1] - p_array[0]
-elif a_k_num == 2:
-answer_1 = p_array[2] - p_array[1]
-else: #a_k_num == 3
-answer_1 = 1 - p_array[2]
-answer_1 = round(answer_1, 2)
+#c_2 = 0.1
+#d_2 = 1.3
 
-answer_2 = 0
+c_3 = round(randrange_float(-10, -2, 0.1), 2)
+d_3 = round(randrange_float(a, b, 0.1), 2)
 
-bc = sorted(a_plus_bc[:2])
-b = bc[0]
-c = bc[1]
+#c_3 = -3.5
+#d_3 = 0.3
 
+c_4 = round(randrange_float(a, b, 0.1), 2)
+d_4 = round(randrange_float(2, 10, 0.1), 2)
+
+#c_4 = 0.7
+#d_4 = 5.2
+
+X = round((a+b)/2,2)
+
+C = 1/math.pow(b-a, k)
+C = round(C, 2)
+
+P_2 = (math.pow(d_2-a, k) - math.pow(c_2-a,k))/(math.pow(b-a, k))
+P_2 = round(P_2, 2)
+P_3 = math.pow(d_3-a, k)/math.pow(b-a, k)
+P_3 = round(P_3, 2)
+P_4 = 1 - math.pow(c_4-a, k)/math.pow(b-a, k)
+P_4 = round(P_4, 2)
+P_5 = 0
+
+</script>
+    <div class="no-equation">
+        <p>Задана функция</p>
+        \[ F(x) = \left\{
+        \begin{array}{ll}
+        0, &amp;x\le $a, \\
+        C (x - ($a))^{$k}, &amp; $a \lt x \le $b, \\
+        1, &amp;  $b \lt x.
+        \end{array}
+        \right.\]
+
+        <numericalresponse answer="$C">
+            <label>При каком значении параметра \(C\) приведенная функция является функцией распределения непрерывной случайной величины?</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P_2">
+            <label>Определить вероятность попадания случайной величины в интервал \( $c_2 \lt x \lt $d_2  \):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P_3">
+            <label>Определить вероятность попадания случайной величины в интервал \( $c_3 \lt x \lt $d_3  \):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P_4">
+            <label>Определить вероятность попадания случайной величины в интервал \( $c_4 \lt x \lt $d_4  \):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P_5">
+            <label>Определить вероятность того, что случайная величина окажется строго посередине интервала \($X\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>
