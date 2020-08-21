@@ -1,47 +1,52 @@
 <problem>
     <style>
+        #id$taskId input[type=text]{
+            display:none !important;
+        }
     </style>
-<script type="loncapa/python">
+    <script type="loncapa/python">
 from random import shuffle
 import json
 import hashlib
 
 taskId = hashlib.md5(str(random.randrange(100))).hexdigest()[:5]
 taskObject = {}
-  
+
 state_items = [
             {
-	            "id": "eKlipf4K5",
-	            "title": "С этого момента можно подать международную заявку",
+                "id": "eKlipf4K5",
+                "title": u"С этого момента можно подать международную заявку",
                 "correct_value": 6,
-	        },
-	        {
-	            "id": "AAlsgf9di",
-	            "title": "Окончание срока конвенционного приоритета, в течение которого можно подать международную заявку",
-  "correct_value": 12,
-	        },
-	        {
-	            "id": "pud75sLKi",
-	            "title": "Срок публикации материалов заявки. До истечения этого срока заявку можно отозвать и она будет считаться не поданной. Это может пригодиться, если Вы, например, не успели подать",
-  "correct_value": 18,
-	        },
-	        {
-	            "id": "Drd34gwKi",
-	            "title": "Срок, в течение которого можно подать ходатайство на проведение экспертизы по существу",
+            },
+            {
+                "id": "AAlsgf9di",
+                "title": u"Окончание срока конвенционного приоритета, в течение которого можно подать международную заявку",
+                "correct_value": 12,
+            },
+            {
+                "id": "pud75sLKi",
+                "title": u"Срок публикации материалов заявки. До истечения этого срока заявку можно отозвать и она будет считаться не поданной. Это может пригодиться, если Вы, например, не успели подать международную заявку",
+                "correct_value": 18,
+            },
+            {
+                "id": "Drd34gwKi",
+                "title": u"Срок, в течение которого можно подать ходатайство на проведение экспертизы по существу",
                 "correct_value": 36,
-	        }
-	    ]
+            }
+        ]
+
 SVG_width = 800
-SVG_height = 660
+SVG_height = 560
 taskObject["settings"] = {}
-taskObject["settings"]["days"] = 37
-taskObject["settings"]["timelineWidth"] = 600 
+taskObject["settings"]["days_values"] = list(range(1, 37))
+taskObject["settings"]["days"] = len(taskObject["settings"]["days_values"])
+taskObject["settings"]["timelineWidth"] = 600
 taskObject["settings"]["SVG_width"] = SVG_width
 taskObject["settings"]["SVG_height"] = SVG_height
 taskObject["settings"]["items_background_height"] = 140
 taskObject["settings"]["item_width"] = 180
 taskObject["settings"]["item_height"] = 104
-taskObject["settings"]["timeline_signature"] = "Время, месяцы"
+taskObject["settings"]["timeline_signature"] = u"Время, месяцы"
 taskObject["settings"]["margin_binding_lines"] = 100
 taskObject["settings"]["timeline_marker_line_width"] = 20
 taskObject["settings"]["up_bottom_toggle"] = 32
@@ -52,10 +57,13 @@ for item in state_items:
     state_items_to_template.append({
     "id": item["id"],
     "title": item["title"],
-    }) 
+    })
 shuffle(state_items_to_template)
 taskObject["state_items"] = state_items_to_template
-taskObject_template = json.dumps(taskObject, ensure_ascii=False).replace("\"", "'")
+
+#taskObject_template = json.dumps(taskObject, ensure_ascii=False).replace("\"", "'")
+
+taskObject_template = str(taskObject)
 
 def check(correct_answer, student_answer):
     max_points = len(correct_answer)
@@ -72,50 +80,57 @@ def check(correct_answer, student_answer):
                         pass
         checks += 1
     return points/float(max_points)
-  
+
 def check_answer(expect, ans):
     student_answer = json.loads(ans)
     grade_decimal = check(state_items, student_answer)
     if grade_decimal == 1:
         return_grade = {'input_list': [{'ok': True, 'grade_decimal': 1}]}
-    elif 1 > grade_decimal > 0:
+    elif 1 &gt; grade_decimal &lt; 0:
         return_grade = {'input_list': [{'ok': 'Partial', 'grade_decimal': grade_decimal}]}
     elif grade_decimal == 0:
         return_grade = {'input_list': [{'ok': False, 'grade_decimal': grade_decimal}]}
     else:
-        return_grade = {'input_list': [{'ok': False, 'grade_decimal': grade_decimal}]}
+        return_grade = {'input_list': [{'ok': 'Partial', 'grade_decimal': grade_decimal}]}
     return return_grade
- 
-</script>
-<script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/timeline_task/timeline_task.js"></script>
-<script type="text/javascript">
-window.onload = function() {
-    var submitButton = document.querySelector("#id$taskId").parentNode.parentNode.querySelector("button.submit");
-    submitButton.disabled = false;
-}
+
 
 </script>
+    <script type="text/javascript" src="https://openedu.urfu.ru/files/mengine/timeline_task/timeline_task.js"/>
+    <script type="text/javascript">
+        window.onload = function() {
+            var submitButton = document.querySelector("#id$taskId").parentNode.parentNode.querySelector("button.submit");
+            submitButton.disabled = false;
+        }
 
-<div class="timeline_task" id="id$taskId" data='$taskObject_template'>
-  <p><strong>Задание.</strong> </p>
-    <div class="svg_object"></div>
 
-    <div id="input_id">
-        <customresponse cfn="check_answer">
-            <textline size="40" value="$taskId" />
-            <br/>
-        </customresponse>
+        let f = "$taskObject_template"
+        let x = f.replace(/\u\'/gi, "'");
+
+        $('#id$taskId').attr("data", x);
+
+    </script>
+
+    <p></p>
+
+    <div style="padding: 20px;" class="timeline_task" id="id$taskId">
+        <p><strong>Задание.</strong> На временной шкале разместите основные этапы прохождения заявки на изобретение в Патентном ведомстве Российской Федерации.</p>
+        <div class="svg_object" style="margin: 0 auto;"/>
+        <div id="input_id">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$taskId"/>
+                <br/>
+            </customresponse>
+        </div>
     </div>
+    <style>
+        #id$taskId .capa_inputtype {
+            text-align: center;
+        }
 
-</div>  
-  <style>
-    #id$taskId #input_id {
-       display: none !important;
-    }
-
-    #id$taskId .svg_object { 
-        width: $SVG_widthpx;
-        height: $SVG_heightpx;
-    }
-  </style>
+        #id$taskId .svg_object {
+            width: $SVG_widthpx;
+            height: $SVG_heightpx;
+        }
+    </style>
 </problem>

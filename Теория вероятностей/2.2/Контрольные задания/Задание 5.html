@@ -1,0 +1,70 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+alpha = round(random.randint(10, 40) * 0.01, 2)
+gamma = round(random.randint(6, 29) * 0.01, 2)
+a = round(random.randint(10, 50) * 0.1, 1)
+q = random.choice([2, 3, 4, 5])
+_lambda = random.choice([0.5, 1, 1.5, 2, 2.5])
+
+alpha = 0.12
+gamma = 0.07
+a = 1.3
+q = 4
+_lambda = 1.5
+
+M = round(a + 1/(_lambda * math.log(q)), 2)
+x_med = round(a + math.log(2)/(_lambda * math.log(q)), 2)
+x_alpha = round(a - math.log(1-alpha)/(_lambda*math.log(q)), 2)
+x_gamma = round(a - (math.log(gamma)/(_lambda*math.log(q))), 2)
+
+</script>
+    <div class="no-equation">
+        <p>Задана плотность вероятности непрерывно распределенной случайной величины:</p>
+        \[ f(x) = \left\{
+        \begin{array}{ll}
+        0, &amp; x \le $a, \\
+
+        C \cdot $q^{-$_lambda x}, &amp; x \gt $a.
+        \end{array}
+        \right.\]
+        <p>Вопросы задачи:</p>
+        <p>Определить математическое ожидание \(M\) случайной величины.</p>
+        <p>Определить медиану \(x_{med}\) случайной величины.</p>
+        <p>Определить квантиль уровня \(\alpha = $alpha\) случайной величины.</p>
+        <p>Определить нижнюю границу \(x_{\gamma}\) области правосторонней критической значимости \((x_{\gamma}; \ +\infty )\) уровня \(\gamma = $gamma\).</p>
+
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \(M\) случайной величины =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$x_med">
+            <label>Медиана \(x_{med}\) случайной величины =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$x_alpha">
+            <label>Квантиль уровня \(\alpha = $alpha\) случайной величины =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$x_gamma">
+            <label>Нижняя граница \(x_{\gamma}\) области правосторонней критической значимости \((x_{\gamma}; \ +\infty )\) уровня \(\gamma = $gamma\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

@@ -1,0 +1,68 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+p = round(random.randint(20, 80) * 0.01, 2)
+
+x = 1
+M = round(1/p, 2)
+sigma = round(math.sqrt(1-p)/p, 2)
+A = round((2-p)/(math.sqrt(1-p)), 2)
+E = round(6 + math.pow(p,2)/(1-p), 2)
+
+</script>
+    <div class="no-equation">
+        <p>Задана функция распределения некоторой дискретной случайной величины:</p>
+        \[ F(x) = \left\{
+        \begin{array}{ll}
+        0, &amp; x \le 1 \\
+        p \left(\frac{1-q^k}{1-q}\right), &amp; k \lt x \le k+1,
+        \end{array}
+        \right.\]
+        <p>где \(k = 1, 2, 3 . . ., p + q = 1\). Полагая \(p = $p\), определить следующие числовые характеристики:</p>
+        <ul>
+            <li>наиболее вероятное значение \(x_{н.в.}\);</li>
+            <li>математическое ожидание \(M\);</li>
+            <li>среднеквадратичное отклонение \(\sigma\);</li>
+            <li>асимметрию \(A\);</li>
+            <li>эксцесс \(E\).</li>
+        </ul>
+
+
+        <numericalresponse answer="$x">
+            <label>Наиболее вероятное значение \(x_{н.в.}\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \(M\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение \(\sigma\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$A">
+            <label>Асимметрия \(A\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$E">
+            <label>Эксцесс \(E\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

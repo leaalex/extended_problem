@@ -1,0 +1,41 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+p_1 = round(random.randint(2, 8) * 0.1, 1)
+p_2 = round(random.randint(2, 8) * 0.1, 1)
+
+M = round(2 * (p_1 + p_2), 2)
+D = round(2 * p_1 * (1 - p_1) + 2 * p_2 * (1 - p_2), 2)
+C = round(2 * p_1 * (1 - p_1), 2)
+
+</script>
+    <div class="no-equation">
+        <p>В домашней контрольной работе 4 задачи. Два студента договорились их решать совместными усилиями: две задачи решает первый студент, и оставшиеся две – второй. Вероятность верного решения каждой из задач для первого студента равна \($p_1\), а для второго студента \($p_2\). \(X\) – число верно решенных задач первым студентом, \(Y\) – общее число верно решенных задач. Определить математическое ожидание общего числа правильно решенных задач \( M(Y) \), дисперсию общего числа верно решенных задач \( D(Y) \), и ковариацию случайных величин \(X, Y\) \( C(X,Y) \).</p>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание общего числа правильно решенных задач \( M(Y) \) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$D">
+            <label>Дисперсия общего числа верно решенных задач \( D(Y) \) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$C">
+            <label>Ковариация случайных величин \(X, Y\) \( C(X,Y) \) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

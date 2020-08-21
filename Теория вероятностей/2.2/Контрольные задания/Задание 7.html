@@ -1,0 +1,48 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
+import random
+import math
+
+p_0 = round(random.randint(6, 44) * 0.01, 2)
+T_0 = round(random.randint(6, 49) * 0.1, 1)
+
+M = round(0.5 * (1 - p_0) * T_0, 2)
+sigma = round(T_0 * math.sqrt(((1+3*p_0)*(1-p_0))/12), 2)
+t_nv = 0
+t_med = round(T_0 * ((1-2*p_0)/(2*(1-p_0))), 2)
+
+</script>
+    <div class="no-equation">
+        <p>Поезд приходит на станцию вовремя с вероятностью \($p_0\), однако в некоторых случаях в силу неконтролируемых причин он может опаздывать. Установлено, что максимально возможное время задержки поезда составляет \($T_0\) часов (т. е. опоздание на время \(t \ge $T_0\) невозможно), а все времена задержки \(t\) из интервала \( 0 \lt t \lt $T_0  \) равновозможны.</p>
+        <p>Вопросы задачи:</p>
+
+        <numericalresponse answer="$M">
+            <label>Найти математическое ожидание случайной величины \(T\) – времени задержки поезда.</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Найти СКО времени задержки поезда.</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$t_nv">
+            <label>Найти наиболее вероятное значение времени задержки поезда.</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$t_med">
+            <label>Найти медиану времени ожидания поезда.</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>
