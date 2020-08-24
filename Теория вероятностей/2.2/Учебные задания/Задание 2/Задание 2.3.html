@@ -42,8 +42,10 @@ M = round(M, 2)
 sigma = math.sqrt(3/5 * (math.pow(b, 5) - math.pow(a, 5))/(math.pow(b, 3) - math.pow(a, 3)) - math.pow(M, 2))
 sigma = round(sigma, 2)
 
-x_med = math.pow((math.pow(a, 3) + math.pow(b, 3))/2, 1/3)
+a_2_minus_b2 = (math.pow(a, 3) + math.pow(b, 3))
+x_med = math.pow(a_2_minus_b2/2, 1/3) if a_2_minus_b2 > 0 else (-1) * math.pow(math.fabs(a_2_minus_b2/2), 1/3)
 x_med = round(x_med, 2)
+
 
 </script>
     <script type="text/javascript">

@@ -1,3 +1,10 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
 import random
 import math
 
@@ -12,36 +19,43 @@ t_2 = t_2 * 0.01
 p_0 = 0.3
 T_1 = 3.5
 alpha = 0.6
+t_1 = -2
+t_2 = 1.5
 
 F = p_0 + (1 - p_0) * alpha
 
-# не сходится
-# если t1 = 0.5, t2 = 2.5, то P = 0.2
-# если t1 = 3.25, t2 = 4.5, то P = 0.
-
-t_1 = 3.25
-t_2 = 4.5
-
 if 0 > t_2 > t_1:
-P = 0
+    P = 0
 elif T_1 > t_2 > 0 > t_1:
-P = p_0 + ((1-p_0)/(T_1)) * t_2
+    P = p_0 + ((1-p_0)/(T_1)) * t_2
 elif t_2 > T_1 > 0 > t_1:
-P = 1
+    P = 1
 elif T_1 > t_2 > t_1 > 0:
-P = ((1-p_0)/(T_1)) * (t_2 - t_1)
+    P = ((1-p_0)/(T_1)) * (t_2 - t_1)
 elif t_2 > T_1 > t_1 > 0:
-P = 1 - p_0 - ((1-p_0)/(T_1)) * t_1
+    P = 1 - p_0 - ((1-p_0)/(T_1)) * t_1
 elif t_2 > t_1 > T_1:
-P = 0
+    P = 0
 else:
-P = 0
+    P = 0
 
 P = round(P, 2)
+</script>
+    <div class="no-equation">
+        <p>Поезд приходит на станцию вовремя с вероятностью \(p\), однако в некоторых случаях в силу неконтролируемых причин он может опаздывать. Установлено, что максимально возможное время задержки по езда составляет \(T_0\) часов (т. е. опоздание на время \(t ≥ T_0\) невозможно), а все времена задержки \(t\) из интервала \((0 \lt t \lt T_0)\) равновозможны.</p>
 
-print(F)
-print(P)
+        <p>Найти значение функции распределения \(F(t)\) случайной величины \(T\) – времени задержки поезда, при \(t = $alpha \cdot T_0\), если \(p = $p_0\), \(T_0 = $T_1\):</p>
+        <numericalresponse answer="$ac">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
 
-# print("T_1 = ", T_1)
-# print("t_1 = ", t_1)
-# print("t_2 = ", t_2)
+        <numericalresponse answer="$int_left">
+            <label>Найти вероятность того, что опоздание поезда составит от \($t_1\) до \($t_2\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>
+

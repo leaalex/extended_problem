@@ -1,35 +1,76 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="lonacapa/python">
 import random
 import math
 
 
 def randrange_float(start, stop, step):
-return random.randint(0, int((stop - start) / step)) * step + start
+    return random.randint(0, int((stop - start) / step)) * step + start
 
 
-# a = round(random.randint(10, 50) * 0.1, 2)
-# q = random.choice([2, 3, 4, 5])
-# _lambda = random.choice([0.5, 1, 1.5, 2, 2.5])
-# m = random.choice([2, 3, 4, 5])
-# b = round(random.randint(-50, a*10) * 0.1, 2)
-# c = round(randrange_float(a+0.5, a+5, 0.1), 2)
-# d = round(randrange_float(a+0.1, a+2, 0.1), 2)
+a = round(random.randint(10, 50) * 0.1, 2)
+q = random.choice([2, 3, 4, 5])
+_lambda = random.choice([0.5, 1, 1.5, 2, 2.5])
+m = random.choice([2, 3, 4, 5])
+b = round(random.randint(-50, a*10) * 0.1, 2)
+c = round(randrange_float(a+0.5, a+5, 0.1), 2)
+d = round(randrange_float(a+0.1, a+2, 0.1), 2)
 
+# a = 1.3
+# q = 4
+# _lambda = 1.5
+# m = 3
+# b = 0
+# c = 2.5
+# d = 1.8
 
-a = 1.3
-q = 4
-_lambda = 1.5
-m = 3
-b = 0
-c = 2.5
-d = 1.8
+ma = m*a
 
 f_max = round(_lambda * math.log(q), 2)
-P1 = 1 - math.pow(q, (-1) * _lambda * a * (m - 1))
-P2 = 1 - math.pow(q, -_lambda * (c - a))
-P3 = math.pow(q, -_lambda * (d - a))
+P1 = round(1 - math.pow(q, (-1) * _lambda * a * (m - 1)), 2)
+P2 = round(1 - math.pow(q, -_lambda * (c - a)), 2)
+P3 = round(math.pow(q, -_lambda * (d - a)), 2)
 
-print(f_max)
-print(P1)
-print(P2)
-print(P3)
+</script>
+    <div class="no-equation">
+        <p>Функция \(f(x)\) заданная следующим образом:</p>
+        \[ f(x) = \left\{
+        \begin{array}{ll}
+        0, &amp; x \le $a, \\
+        C ( $q^{ -$_lambda x}), &amp;  x \gt $a
+        \end{array}
+        \right.\]
+    <p>при определенном значении \(C\) является плотностью вероятности некоторой случайной величины \(X\).</p>
+        <p>Вопросы задачи</p>
+        <numericalresponse answer="$f_max">
+            <label>Определить точную верхнюю границу функции плотности вероятности \(f(x)\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
 
+        <numericalresponse answer="$P1">
+            <label>Определить вероятность попадания \(X\) в интервал \(($a, $ma)\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P2">
+            <label>Определить вероятность попадания \(X\) в интервал \(($b, $c)\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P3">
+            <label>Определить вероятность попадания \(X\) в интервал \(($d, +\infty)\):</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+
+    </div>
+</problem>
