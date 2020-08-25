@@ -1,0 +1,26 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+
+n = random.randint(4, 29)
+m = random.randint(5, 39)
+
+k = random.randint(1, n-1)
+l = random.randint(1, m-1)
+
+P = round(0.5 * ((k/n) + (l/m)), 3)
+
+</script>
+    <div class="no-equation">
+        <p>В первой урне содержится \($n\) шаров, из которых \($k\) белых, во второй урне содержится \($m\) шаров, \($l\) из которых белые. Из каждой урны случайным образом извлекается один шар, а затем из данных двух шаров случайным образом извлекается один шар. Какова вероятность того, что этот шар является белым? Ответ округлить с точностью до тысячных.</p>
+        <numericalresponse answer="$P">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

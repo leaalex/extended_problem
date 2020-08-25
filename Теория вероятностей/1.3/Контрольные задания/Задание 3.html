@@ -1,0 +1,28 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+p = random.randint(1, 98)
+p1 = random.randint(1, 100 - p)
+p2 = p + p1
+
+p = round(p * 0.01, 2)
+p1 = round(p1 * 0.01, 2)
+p2 = round(p2 * 0.01, 2)
+
+</script>
+    <div class="no-equation">
+        <p>Найти \(P(A \overline{B})\), если известно \( P(A) = $p, \ P(B) = $p1, \ P(A+B) = $p2 \).</p>
+        <numericalresponse answer="$p">
+            <label>\(P(A \overline{B}) = \)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

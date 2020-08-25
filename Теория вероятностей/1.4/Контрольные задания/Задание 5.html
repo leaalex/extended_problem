@@ -1,0 +1,30 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+
+n = random.randint(4, 29)
+m = random.randint(5, 39)
+k = random.randint(7, 24)
+
+p1 = round(random.randint(1, 99) * 0.01, 2)
+p2 = round(random.randint(1, 99) * 0.01, 2)
+p3 = round(random.randint(1, 99) * 0.01, 2)
+
+P = 1 - ((m/(m+n+k))*p1 + (n/(m+n+k))*p2 + (k/(m+n+k))*p3)
+P = round(P, 3)
+
+</script>
+    <div class="no-equation">
+        <p>В группе легкоатлетов \($m\) прыгунов в длину, \($n\) прыгунов с шестом и \($m\) бегунов.
+Вероятность выполнить квалификацию такова: для прыгуна в длину – \($p1\), для прыгуна с шестом – \($p2\), для бегуна – \($p3\). Найти вероятность того, что выбранный наудачу спортсмен не выполнит норму.</p>
+        <numericalresponse answer="$P">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

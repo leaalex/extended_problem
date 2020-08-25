@@ -1,0 +1,56 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        .status, .trailing_text{
+            display: none !important;
+        }
+
+        .xmodule_display.xmodule_CapaModule .problem .inputtype.formulaequationinput input{
+            width: 60px !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+arr_sum = 0
+while arr_sum != 1.0:
+    random_arr = random.sample(range(1, 99), 4)
+    P_arr = [round(x/sum(random_arr), 2) for x in random_arr]
+    arr_sum = sum(P_arr)
+
+a, b, c, d = P_arr
+
+</script>
+    <div class="no-equation">
+        <p>Заполнить пробел в таблице</p>
+        <table class="distribution-table">
+            <tr>
+                <td>\(p(AB)\)</td>
+                <td>\(p(\overline{A}B)\)</td>
+                <td>\(p(A\overline{B})\)</td>
+                <td>\(p(\overline{A}\overline{B})\)</td>
+            </tr>
+            <tr>
+                <td>\($a\)</td>
+                <td>\($b\)</td>
+                <td>
+                    <numericalresponse answer="$c">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>\($d\)</td>
+            </tr>
+        </table>
+
+    </div>
+</problem>

@@ -1,0 +1,23 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+n = random.randrange(10, 100, 2)
+P = ((n/2 - 1)*(n/2 - 2))/((n - 1)*(n-2))
+P = round(P, 3)
+
+</script>
+    <div class="no-equation">
+        <p>В урне \( $n \) белых и \( $n \) черных шаров. Наудачу вытягивают \(3\) шара (не возвращая обратно). Найти вероятность того, что все вытянутые шары одного цвета. Вычислить с точностью до тысячных.</p>
+        <numericalresponse answer="$P">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

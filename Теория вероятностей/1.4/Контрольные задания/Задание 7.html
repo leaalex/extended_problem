@@ -1,0 +1,27 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+
+p1 = round(random.randint(1, 99) * 0.01, 2)
+p2 = round(random.randint(1, 99) * 0.01, 2)
+
+p11 = round(random.randint(1, 99), 2)
+p22 = round(random.randint(p11, 100) * 0.01, 2)
+p11 = round(p11 * 0.01, 2)
+
+P = p22*p1*p2 + p11*(p1*(1-p2) + p2*(1-p1))
+P = round(P, 3)
+</script>
+    <div class="no-equation">
+        <p>Производится два выстрела по цели. Вероятность попадания в цель при первом выстреле \($p1\), при втором — \($p2\). Вероятность разрушения цели при одном попадании \($p11\), при двух — \($p22\). Найдите вероятность того, что цель будет разрушена.</p>
+        <numericalresponse answer="$P">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

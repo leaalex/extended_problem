@@ -1,0 +1,31 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+p1 = round(random.randint(1, 100) * 0.01, 2)
+p2 = round(random.randint(1, 100) * 0.01, 2)
+
+P = round(round(1 - p1, 2) * p2 + round(1 - p2, 2) * p1, 3)
+
+variants = [
+    "Два стрелка стреляют по мишени. Вероятность  попадания при одном выстреле для первого стрелка - равна \($p1\), второго –  равна \($p2\). Найти вероятность того, что один стрелок попадет в мишень при одном залпе. Вычислить с точностью до тысячных.",
+    "В электрическую цепь включены последовательно два элемента, которые работают независимо друг от друга. Вероятность отказа первого из них равна - \($p1\), второго –  равна \($p2\). Найти вероятность того, что откажет один из двух элементов. Вычислить с точностью до тысячных. "
+]
+
+variant = random.choice(variants).replace('$p1', str(p1)).replace('$p2', str(p2))
+
+</script>
+    <div class="no-equation">
+        <numericalresponse answer="$P">
+            <label>$variant</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>
