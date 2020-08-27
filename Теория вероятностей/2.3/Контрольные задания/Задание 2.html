@@ -1,0 +1,37 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+m = random.choice([1, 2, 3, 4, 5, 6, 7])
+A = round(random.randint(200, 500) * 0.01, 2)
+p = 1/A
+
+sigma = round(math.sqrt(1-p)/p, 2)
+P = round(math.pow(1-p, m), 2)
+
+</script>
+    <div class="no-equation">
+        <p>
+            На тренировке по стрельбе из лука стрельба ведется сериями до первого попадания в "десятку". По результатам многих серий установлено, что среднее значение длины серии для выбранного спортсмена равно \($A\). Чему равно среднеквадратичное отклонение \(\sigma\) случайной величины \(X\) – длины серии? Чему равна вероятность того, что в данной серии ему потребуется сделать больше \($m\) выстрелов?
+        </p>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение \(\sigma\) случайной величины \(X\) – длины серии =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P">
+            <label>Вероятность того, что в данной серии спортсмену потребуется сделать больше \($m\) выстрелов =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

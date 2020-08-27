@@ -1,0 +1,117 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+k = random.randint(10, 90)
+x_2 = round(random.randint(50, 150) * 0.01, 2)
+#k = 74
+#x_2 = 1.4
+
+p = round(k/100, 2)
+x_1 = round((1-p)/(1+p) * x_2, 2)
+
+a = round((x_1 + x_2)/2 - (x_2 - x_1)/(2*p), 2)
+b = round((x_1 + x_2)/2 + (x_2 - x_1)/(2*p), 2)
+
+M = round((x_1 + x_2) / 2, 2)
+sigma = round((x_2 - x_1)/(2 * math.sqrt(3) * p), 2)
+
+variants = ["Ошибку, получаемою при измерении определенной характеристики объекта при помощи специального оборудования, можно считать равномерно распределенной случайной величиной. Известно, что ошибка оказывается в интервале \(($x_1, $x_2)\) в \($k \%\) измерений, и этот интервал симметричен относительно математического ожидания. Определить возможные границы \((a, b)\) величины ошибки, ее математическое ожидание \(M\) и среднеквадратичное отклонение \(\sigma\).",
+"Расстояние от точки, в которую планирует попасть парашютист при прыжке, до фактической точки приземления можно считать равномерно распределенной случайной величиной. Известно, что в \($k \%\) прыжков это расстояние оказывается в интервале \(($x_1, $x_2)\) (м), и этот интервал симметричен относительно математического ожидания. Определить возможные границы \((a, b)\) удаленности точки приземления от запланированной точки, ее математическое ожидание \(M\) и среднеквадратичное отклонение \(\sigma\).",
+"Пусть \(X\) – время отставания участников соревнований в беге на \(100\) м от мирового рекорда. По результатам установлено, что для \($k \%\) бегунов величина \(X\) оказалась заключенной в интервале \(($x_1, $x_2)\) с, и этот интервал симметричен относительно математического ожидания. Определить возможные границы \((a, b)\) случайной величины \(X\), ее математическое ожидание \(M\) и среднеквадратичное отклонение \(\sigma\), полагая, что она подчиняется равномерному закону распределения.",
+"Погрешность массы деталей, изготовленных на станке, является равномерно распределенной случайной величиной. Установлено, что для \($k \%\) деталей величина погрешности оказалась заключенной в интервале \(($x_1, $x_2)\) г, и этот интервал симметричен относительно математического ожидания. Определить возможные границы \((a, b)\) погрешности массы, ее математическое ожидание \(M\) и среднеквадратичное отклонение \(\sigma\).",
+"Согласно статистике, большая часть автомобилей при движении за городом часто едет немного быстрее разрешенной скорости \(90\) км/ч. Пусть \(X\) – величина превышения скорости. Установлено, что для \($k \%\) автомобилей величина превышения заключена в интервале \(($x_1, $x_2)\) км/ч, и этот интервал симметричен относительно математического ожидания. Определить возможные границы \((a, b)\) превышения скорости, его математическое ожидание \(M\) и среднеквадратичное отклонение \(\sigma\), полагая, что оно подчиняется равномерному распределению."]
+
+variant = random.choice(variants)
+
+variant = variant.replace('$k', str(k)).replace('$x_1', str(x_1)).replace('$x_2', str(x_2))
+
+</script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_3_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <div class="no-equation" id="section_2_3_training_2">
+        <p>$variant</p>
+
+
+        <p><strong>(1) </strong>Определить возможные границы \((a, b)\).</p>
+
+        <table>
+            <tr>
+                <td>
+                    <span>Граница \(a\) =</span>
+                </td>
+                <td>
+        <numericalresponse answer="$a">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <span>Граница \(b\) =</span>
+                </td>
+                <td>
+                    <numericalresponse answer="$b">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <p><strong>(2) </strong>Определить математическое ожидание \(M\).</p>
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <p><strong>(3) </strong>Определить среднеквадратичное отклонение \(\sigma\).</p>
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>Для нахождения \(a\), \(b\) воспользуйтесь тем, что <strong>(1)</strong> интервал \(($x_1, $x_1)\) симметричен относительно математического ожидания, <strong>(2)</strong> вероятность попадания в интервал \(($x_1, $x_1)\) равна \(F($x_2)−F($x_1)\), где \(F(x)\) – функция распределения равномерной случайной величины.</span>
+        </div>
+
+    </div>
+</problem>

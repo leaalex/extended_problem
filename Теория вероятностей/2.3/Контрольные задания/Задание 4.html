@@ -1,0 +1,43 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+p = round(random.randint(20, 80) * 0.01, 2)
+m = random.choice([2, 3, 4, 5, 6, 7, 8])
+k = random.choice([2, 3, 4, 5, 6, 7, 8])
+
+M = round(m / math.log(1/p), 2)
+X = round((m*math.log(2))/(math.log(1/p)), 2)
+P = round(1 - math.pow(p, k/m), 2)
+
+</script>
+    <div class="no-equation">
+        <p>
+            Длительность телефонного разговора подчиняется показательному закону. Найти математическое ожидание \(M\), среднюю длительность разговора \(X\), и вероятность \(P\) того, что разговор продлится менее \($k\) минут, если вероятность того, что разговор продлится более \($m\) минут, равна \($p\).
+        </p>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \(M\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$X">
+            <label>Средняя длительность разговора \(X\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$P">
+            <label>Вероятность \(P\) того, что разговор продлится менее \($k\) минут =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>

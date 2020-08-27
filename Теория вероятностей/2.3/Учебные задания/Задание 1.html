@@ -1,0 +1,99 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+p = random.choice([0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
+n = random.choice([2, 3, 4, 5, 6, 7, 8])
+
+#p = 0.42
+#n = 5
+
+q = round(1-p, 2)
+M1 = round((1-math.pow(q, n))/p, 2)
+sigma1 = math.sqrt(1 - ((2*n*math.pow(q, n))/p) + (((3*q)-math.pow(q, n))/p) + ((2*math.pow(q, 2) - math.pow(1 - math.pow(q, n), 2) - 2*math.pow(q, n+1))/math.pow(p, 2)))
+sigma1 = round(sigma1, 2)
+
+M2 = round(1/p, 2)
+sigma2 = round(math.sqrt(q)/p, 2)
+
+variants = ["Автомобиль проезжает через \(n = $n0\) светофоров. Вероятность того, что при подъезде к каждому из них будет гореть запрещающий сигнал, равна \($p\). Случайная величина \(X\) – это число светофоров, пройденных до первой остановки (\(X = 1\) – остановка на первом светофоре, \(X = 2\) – на втором, и т. д.).",
+"На устном экзамене преподаватель задает студенту дополнительные вопросы до тех пор, пока студент правильно на них отвечает. Экзамен прекращается после первого неверного ответа, или после того, как студент верно ответит на n = n0 вопросов. Вероятность неверного ответа на каждый из вопросов одинакова и равна \($p\). Случайная величина \(X\) – это число заданных вопросов.",
+"В доме \(n = $n0\) этажей и один подземный этаж – выход на парковку. Лифт едет с верхнего этажа до парковки. Вероятность остановки лифта на каждом этаже одинакова и равна \($p\). Случайная величина \(X\) – это число этажей, пройденных до первой остановки.",
+"По маршруту движения поезда имеется \(n = $n0\) станций. Вероятность прихода поезда с опозданием на каждую из них одинакова и равна \($p\). Случайная величина \(X\) – это число станций, пройденных поездом от начала маршрута до первого опоздания. (\(X = 1\) – опоздание на первой станции, \(X = 2\) – на второй, и т. д.).",
+"Баскетболист кидает мяч в кольцо до первого промаха, но делает не более \(n = $n0\) бросков. Вероятность промаха при каждом броске одинакова и равна \($p\). Случайная величина \(X\) – это число бросков.",
+"Артиллерийский расчет ведет огонь по позициям неприятеля до его поражения, но делает не более \(n = $n0\) залпов. Вероятность поражения при каждом залпе одинакова и равна \($p\). Случайная величина \(X\) – это число залпов.",
+"Самолет совершает полеты для поиска корабля, терпящего бедствие. Вероятность обнаружения корабля в каждом полете равна \($p\). Самолет может сделать не более \(n = $n0\) вылетов. Случайная величина \(X\) – это число проведенных полетов."]
+
+variant = random.choice(variants)
+variant = variant.replace('$n0', str(n)).replace('$p', str(p))
+
+</script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_3_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <div class="no-equation" id="section_2_3_training_1">
+        <p>$variant</p>
+
+        <p><strong>(1) </strong>Чему равно математическое ожидание и среднеквадратичное отклонение величины \(X\)?</p>
+        <numericalresponse answer="$M1">
+            <label>Математическое ожидание = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+        <numericalresponse answer="$sigma1">
+            <label>Среднеквадратичное отклонение величины \(X\) = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+       <hr style ="margin-top: 20px !important;" />
+        <p><strong>(2) </strong>Чему будут равны указанные характеристики при \(n \to \infty\)?</p>
+        <numericalresponse answer="$M2">
+            <label>Математическое ожидание = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+        <numericalresponse answer="$sigma2">
+            <label>Среднеквадратичное отклонение = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>Задача сводится к геометрическому распределению, в случае <strong>(1)</strong> число испытаний ограниченно, в случае <strong>(2)</strong> бесконечно.
+</span>
+        </div>
+
+    </div>
+</problem>

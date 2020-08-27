@@ -1,0 +1,52 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+n = random.choice([4, 5, 8, 10])
+p0 = round(random.randint(1, 95) * 0.01, 2)
+
+M = 100 * p0
+sigma = round(100 * math.sqrt((p0*(1-p0))/n), 2)
+
+x1 = round((n + 1) * p0 - 1, 4)
+x2 = round((n + 1) * p0, 4)
+
+if x1.is_integer() and x2.is_integer():
+    y = x2
+else:
+    y = float(math.floor(x2))
+
+X_tr = (100/n) * y
+
+</script>
+    <div class="no-equation">
+        <p>
+            В экзаменационном билете содержится \(n = $n\) вопросов по изучаемому предмету. Вероятность того, что студент знает ответ, одинакова для каждого вопроса и равна \(p\). Оценка \(X\) за экзамен определяется как \((100/n) m\), где \(m\) – число верных ответов (максимум 100 баллов). Определить математическое ожидание \(M\), среднеквадратичное отклонение \(\sigma\), и наиболее вероятную оценку \(X_{m.p.}\) студента, если \(p = $p0\) (если наиболее вероятных оценок несколько, то выбрать <strong>наибольшую</strong>).
+        </p>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \(M\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение \(\sigma\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$X_tr">
+            <label>Наиболее вероятная оценка \(X_{m.p.}\) студента =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

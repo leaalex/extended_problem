@@ -1,0 +1,29 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+sigma = round(random.randint(5, 50) * 0.1, 1)
+eps = round(random.randint(1, int(round(2 * math.sqrt(3) * sigma, 1) * 10) - 1) * 0.1, 1)
+
+P = round(1 - eps/(2 * math.sqrt(3) * sigma), 2)
+
+</script>
+    <div class="no-equation">
+        <p>
+            Считается, что величина ошибки измерения прибора (по абсолютной величине) является равномерно распределенной случайной величиной, причем минимальная ошибка равна нулю, а среднеквадратичное отклонение величины ошибки равно \($sigma\). Определить вероятность того, что ошибка измерения прибора окажется не меньше, чем \($eps\).
+        </p>
+
+        <numericalresponse answer="$P">
+            <label>Вероятность того, что ошибка измерения прибора окажется не меньше, чем \($eps\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>
