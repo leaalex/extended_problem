@@ -1,0 +1,170 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+variants = [
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_01.png",
+        "answer": 0.672
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.8, 0.8, 0.8],
+        "img": "1.3.2_img_02.png",
+        "answer": 0.937
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_03.png",
+        "answer": 0.426
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.1],
+        "img": "1.3.2_img_04.png",
+        "answer": 0.36
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.9],
+        "img": "1.3.2_img_05.png",
+        "answer": 0.934
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.1, 0.9],
+        "img": "1.3.2_img_06.png",
+        "answer": 0.917
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.1, 0.1, 0.9],
+        "img": "1.3.2_img_07.png",
+        "answer": 0.913
+    },
+    {
+        "value": [0.9, 0.5, 0.5, 0.1, 0.1, 0.9],
+        "img": "1.3.2_img_08.png",
+        "answer": 0.923
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_09.png",
+        "answer": 0.219
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.9],
+        "img": "1.3.2_img_10.png",
+        "answer": 0.394
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_11.png",
+        "answer": 0.383
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.9, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_12.png",
+        "answer": 0.689
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_13.png",
+        "answer": 813
+    },
+    {
+        "value": [0.9, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_14.png",
+        "answer": 0.963
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_15.png",
+        "answer": 0.660
+    },
+    {
+        "value": [0.1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_16.png",
+        "answer": 0.583
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_17.png",
+        "answer": 0.766
+    },
+    {
+        "value": [0.9, 0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_18.png",
+        "answer": 0.853
+    },
+    {
+        "value": [0.5, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_19.png",
+        "answer": 0.969
+    },
+    {
+        "value": [0.1, 0.5, 0.5, 0.5, 0.5],
+        "img": "1.3.2_img_20.png",
+        "answer": 0.944
+    },
+]
+
+variant = random.choice(variants)
+
+text = ""
+if len(variant["value"]) == 4:
+    p1, p2, p3, p4 = variant["value"]
+    str_2 = '\(p_1 = {0},\)\( \ p_2 = {1},\)\( \ p_3 = {2},\)\( \ p_4 = {3}\)'.format(str(p1), str(p2), str(p3), str(p4))
+    str_1 = 'Задана схема электрической цепи, вероятность безотказной работы первого элемента, второго, третьего и четвертого равны'
+
+elif len(variant["value"]) == 5:
+    p1, p2, p3, p4, p5 = variant["value"]
+    str_2 = '\(p_1 = {0},\)\( \ p_2 = {1},\)\( \ p_3 = {2},\)\( \ p_4 = {3},\)\( \ p_5 = {4}\)'.format(str(p1), str(p2), str(p3), str(p4), str(p5))
+    str_1 = 'Задана схема электрической цепи, вероятность безотказной работы первого элемента, второго, третьего, четвертого и пятого равны'
+
+elif len(variant["value"]) == 6:
+    p1, p2, p3, p4, p5, p6 = variant["value"]
+    str_2 = '\(p_1 = {0},\)\( \ p_2 = {1},\)\( \ p_3 = {2},\)\( \ p_4 = {3},\)\( \ p_5 = {4},\)\( \ p_6 = {5}\)'.format(str(p1), str(p2), str(p3), str(p4), str(p5), str(p6))
+    str_1 = 'Задана схема электрической цепи, вероятность безотказной работы первого элемента, второго, третьего, четвертого, пятого и шестого равны'
+
+elif len(variant["value"]) == 7:
+    p1, p2, p3, p4, p5, p6, p7 = variant["value"]
+    str_2 = '\(p_1 = {0},\)\( \ p_2 = {1},\)\( \ p_3 = {2},\)\( \ p_4 = {3},\)\( \ p_5 = {4},\)\( \ p_6 = {5},\)\( \ p_7 = {6}\)'.format(str(p1), str(p2), str(p3), str(p4), str(p5), str(p6), str(p7))
+    str_1 = 'Задана схема электрической цепи, вероятность безотказной работы первого элемента, второго, третьего, четвертого, пятого, шестого и седьмого равны'
+
+elif len(variant["value"]) == 8:
+    p1, p2, p3, p4, p5, p6, p7, p8 = variant["value"]
+    str_2 = '\(p_1 = {0},\)\( \ p_2 = {1},\)\( \ p_3 = {2},\)\( \ p_4 = {3},\)\( \ p_5 = {4},\)\( \ p_6 = {5},\)\( \ p_7 = {6},\)\( \ p_8 = {7}\)'.format(str(p1), str(p2), str(p3), str(p4), str(p5), str(p6), str(p7), str(p8))
+    str_1 = 'Задана схема электрической цепи, вероятность безотказной работы первого элемента, второго, третьего, четвертого, пятого, шестого, седьмого и восьмого равны'
+
+str_3 = 'соответственно. Найти вероятность работы всей цепи. Ответ округлить до тысячных.'
+
+result_str = str_1 + ' ' + str_2 + ' ' + str_3
+
+img = variant["img"]
+answer = variant["answer"]
+
+</script>
+    <div class="no-equation">
+        <p>$result_str</p>
+        <figure style="text-align:center;">
+			  <img src="/static/$img" alt="" style="max-width: 500px;"/>
+			  <figcaption></figcaption>
+        </figure>
+        <table>
+            <tr>
+                <td>
+                    <label>\(P =\)</label>
+                </td>
+                <td>
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

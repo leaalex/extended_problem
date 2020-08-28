@@ -3,6 +3,48 @@
         .no-equation .equation{
             display: none !important;
         }
+        .distribution-table {
+   border-spacing: 0;
+
+   border-collapse: collapse;
+   overflow: hidden;
+   background-color: white;
+}
+
+.distribution-table td, .distribution-table th {
+   position: relative;
+                margin: 10px 0;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        padding: 4px 12px !important;
+            /*padding: 10px !important;*/
+}
+
+.distribution-table tr:hover{
+   background-color: rgba(0, 0, 0, 0.15);
+}
+
+.distribution-table td:hover::after,.distribution-table th:hover::after {
+   background-color: rgba(0, 0, 0, 0.15);
+   content: '\00a0';
+   height: 10000px;
+   left: 0;
+   position: absolute;
+   top: -5000px;
+   width: 100%;
+}
+
+        div[hidden] {
+            margin: -37px -40px 24px;
+            padding: 20px 40px 4px;
+            border-top: solid 1px #C8C8C8;
+            border-bottom: solid 1px #C8C8C8;
+            /*background: #F4F8FF none repeat scroll 0% 0%;*/
+        }
+
+        .trailing_text, .status{
+          display: none !important;
+        }
     </style>
     <script type="loncapa/python">
 import random
@@ -37,16 +79,171 @@ y_1 = round(a * x_1 + b, 2)
 y_2 = round(a * x_2 + b, 2)
 
 </script>
+
     <div class="no-equation">
         <p>
             Случайная величина \(Y\) определяется соотношением \(Y = $aX + $b\), а случайная величина \(X\) распределена по закону \(\chi^2\) c \($n\) степенями свободы. Определить границы симметричного по вероятности интервала, в который попадет величина \(Y\) с вероятностью \($p\).
         </p>
 
-        <numericalresponse answer="$M">
-            <label>Математическое ожидание \(M\) =</label>
+        <p><a class=" button exemple" onclick="$(this).parent().next().toggle()">Таблица правосторонней критической значимости для распределения \(\chi^2\)</a></p>
+        <div hidden="">
+        <table class="distribution-table">
+<tbody>
+<tr>
+<td>\(n\)</td>
+<td>\(0.005\)</td>
+<td>\(0.01\)</td>
+<td>\(0.025\)</td>
+<td>\(0.05\)</td>
+<td>\(0.1\)</td>
+<td>\(0.9\)</td>
+<td>\(0.95\)</td>
+<td>\(0.975\)</td>
+<td>\(0.99\)</td>
+<td>\(0.995\)</td>
+</tr>
+<tr>
+<td>\(2\)</td>
+<td>\(10.60\)</td>
+<td>\(9.210\)</td>
+<td>\(7.378\)</td>
+<td>\(5.991\)</td>
+<td>\(4.605\)</td>
+<td>\(0.211\)</td>
+<td>\(0.103\)</td>
+<td>\(0.051\)</td>
+<td>\(0.020\)</td>
+<td>\(0.010\)</td>
+</tr>
+<tr>
+<td>\(3\)</td>
+<td>\(12.84\)</td>
+<td>\(11.35\)</td>
+<td>\(9.349\)</td>
+<td>\(7.815\)</td>
+<td>\(6.252\)</td>
+<td>\(0.584\)</td>
+<td>\(0.352\)</td>
+<td>\(0.216\)</td>
+<td>\(0.115\)</td>
+<td>\(0.072\)</td>
+</tr>
+<tr>
+<td>\(4\)</td>
+<td>\(14.86\)</td>
+<td>\(13.28\)</td>
+<td>\(11.14\)</td>
+<td>\(9.488\)</td>
+<td>\(7.779\)</td>
+<td>\(1.064\)</td>
+<td>\(0.711\)</td>
+<td>\(0.484\)</td>
+<td>\(0.297\)</td>
+<td>\(0.207\)</td>
+</tr>
+<tr>
+<td>\(5\)</td>
+<td>\(16.75\)</td>
+<td>\(15.09\)</td>
+<td>\(12.83\)</td>
+<td>\(11.07\)</td>
+<td>\(9.236\)</td>
+<td>\(1.610\)</td>
+<td>\(1.145\)</td>
+<td>\(0.831\)</td>
+<td>\(0.554\)</td>
+<td>\(0.412\)</td>
+</tr>
+<tr>
+<td>\(6\)</td>
+<td>\(18.55\)</td>
+<td>\(16.81\)</td>
+<td>\(14.45\)</td>
+<td>\(12.59\)</td>
+<td>\(10.64\)</td>
+<td>\(2.204\)</td>
+<td>\(1.635\)</td>
+<td>\(1.237\)</td>
+<td>\(0.872\)</td>
+<td>\(0.676\)</td>
+</tr>
+<tr>
+<td>\(7\)</td>
+<td>\(20.28\)</td>
+<td>\(18.49\)</td>
+<td>\(16.01\)</td>
+<td>\(14.07\)</td>
+<td>\(12.02\)</td>
+<td>\(2.833\)</td>
+<td>\(2.167\)</td>
+<td>\(1.690\)</td>
+<td>\(1.239\)</td>
+<td>\(0.989\)</td>
+</tr>
+<tr>
+<td>\(8\)</td>
+<td>\(21.95\)</td>
+<td>\(20.09\)</td>
+<td>\(17.53\)</td>
+<td>\(15.51\)</td>
+<td>\(13.36\)</td>
+<td>\(3.490\)</td>
+<td>\(2.733\)</td>
+<td>\(2.180\)</td>
+<td>\(1.646\)</td>
+<td>\(1.344\)</td>
+</tr>
+<tr>
+<td>\(9\)</td>
+<td>\(23.59\)</td>
+<td>\(21.67\)</td>
+<td>\(19.02\)</td>
+<td>\(16.92\)</td>
+<td>\(14.68\)</td>
+<td>\(4.168\)</td>
+<td>\(3.325\)</td>
+<td>\(2.700\)</td>
+<td>\(2.088\)</td>
+<td>\(1.735\)</td>
+</tr>
+<tr>
+<td>\(10\)</td>
+<td>\(25.19\)</td>
+<td>\(23.21\)</td>
+<td>\(20.48\)</td>
+<td>\(18.31\)</td>
+<td>\(15.99\)</td>
+<td>\(4.865\)</td>
+<td>\(3.940\)</td>
+<td>\(3.247\)</td>
+<td>\(2.558\)</td>
+<td>\(2.156\)</td>
+</tr>
+</tbody>
+</table>
+        </div>
+
+        <table>
+            <tr>
+                <td>
+        <numericalresponse answer="$y_1">
             <responseparam type="tolerance" default="0.1"/>
             <formulaequationinput/>
         </numericalresponse>
+                </td>
+                <td>
+                        \(\lt Y \lt\)
+                </td>
+                <td>
+                            <numericalresponse answer="$y_2">
+            <responseparam type="tolerance" default="0.1"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+
 
     </div>
 </problem>

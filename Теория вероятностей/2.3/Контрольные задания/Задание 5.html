@@ -1,0 +1,46 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+variants = [[0.1, 9.6, 9.9, 0.63],
+            [0.2, 9.7, 10.4, 0.13],
+            [0.3, 9.8, 9.6, 0.85],
+            [0.4, 9.9, 9.4, 0.94],
+            [0.6, 10.2, 10.8, 0.16],
+            [0.7, 10.2, 9.2, 0.98],
+            [0.8, 10.3, 9.8, 0.71],
+            [0.9, 10.5, 9.7, 0.78]]
+
+variant = random.choice(variants)
+alpha = variant[0]
+M_1 = variant[1]
+M_2 = variant[2]
+answer = variant[3]
+
+</script>
+    <div class="no-equation">
+        <p>
+            Массу детали, изготавливаемой на станке, можно считать нормально распределенной случайной величиной с математическим ожиданием \(10\) г. Определить вероятность того,что наудачу выбранная деталь имеет массу, большую \($M_2\), если известно, что доля деталей с массой меньшей \($M_1\) составляет \($alpha\).
+        </p>
+
+        <table>
+            <tr>
+                <td>
+                    <label>\(P(X > M2) =\)</label>
+                </td>
+                <td>
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>
