@@ -1,0 +1,149 @@
+<problem>
+<script type="loncapa/python">
+import math
+import random
+
+variants = [
+{
+	"img": "training_task_1.1.2_img_01",
+	"answer": "\(A \cap B \setminus C\)"
+},
+{
+	"img": "training_task_1.1.2_img_02",
+	"answer": "\((A \setminus B) \cup C\)"
+},
+{
+	"img": "training_task_1.1.2_img_03",
+	"answer": "\( A \setminus B \setminus C\)"
+},
+{
+	"img": "training_task_1.1.2_img_04",
+	"answer": "\( A \cap C \cup B\)"
+},
+{
+	"img": "training_task_1.1.2_img_05",
+	"answer": "\( C \cup B \setminus A\)"
+},
+{
+	"img": "training_task_1.1.2_img_06",
+	"answer": "\( A \cup B \setminus C\)"
+},
+{
+	"img": "training_task_1.1.2_img_07",
+	"answer": "\( A \Delta B \cap C  \)"
+},
+{
+	"img": "training_task_1.1.2_img_08",
+	"answer": "\( A \cap B \cap C \)"
+},
+{
+	"img": "training_task_1.1.2_img_09",
+	"answer": "\( A \cap B \cup C \)"
+},
+{
+	"img": "training_task_1.1.2_img_10",
+	"answer": "\( B \)"
+},
+{
+	"img": "training_task_1.1.2_img_11",
+	"answer": "\( A \cap C \setminus B \)"
+},
+{
+	"img": "training_task_1.1.2_img_12",
+	"answer": "\( A \cup B \cup C \)"
+},
+{
+	"img": "training_task_1.1.2_img_13",
+	"answer": "\( A \cap C \cup B \)"
+},
+{
+	"img": "training_task_1.1.2_img_14",
+	"answer": "\( A \cup B \cup C - A \cap B \cap C\)"
+},
+{
+	"img": "training_task_1.1.2_img_15",
+	"answer": "\( A \cap C \cup A \cap B \cap C\)"
+},
+{
+	"img": "training_task_1.1.2_img_16",
+	"answer": "\( B \cap C \setminus A\)"
+},
+{
+	"img": "training_task_1.1.2_img_17",
+	"answer": "\( (A \setminus C) \cup B\)"
+},
+{
+	"img": "training_task_1.1.2_img_18",
+	"answer": "\( A \cup B \cap C\)"
+},
+{
+	"img": "training_task_1.1.2_img_19",
+	"answer": "\( A \cap B \cup A \cap B \cap C \)"
+},
+{
+	"img": "training_task_1.1.2_img_20",
+	"answer": "\( A \cup B \)"
+}]
+
+
+random.shuffle(variants)
+
+img_1 = variants[0]["img"]
+answer_1 = variants[0]["answer"]
+answer_1_1 = variants[2]["answer"]
+answer_1_2 = variants[3]["answer"]
+answer_1_3 = variants[4]["answer"]
+answer_1_4 = variants[5]["answer"]
+
+img_2 = variants[1]["img"]
+answer_2 = variants[1]["answer"]
+answer_2_1 = variants[6]["answer"]
+answer_2_2 = variants[7]["answer"]
+answer_2_3 = variants[8]["answer"]
+answer_2_4 = variants[9]["answer"]
+  </script>
+<div>
+  <p>На диаграммах <i>Эйлера-Венна</i> графически представлены множества \(A, \ B, \ C\).</p>
+  <p>Определите операции над заданными множествами, которые позволяют получить заштрихованное на каждом рисунке подмножество.</p>
+  <p>Замечаниe. В алгебре множеств приоритет операций следующий:</p>
+  <ol>
+    <li>\( \overline{A} \)</li>
+    <li>\( A \cap B \)</li>
+    <li>\( A \cup B \)</li>
+    <li>\( A \setminus B \)</li>
+</ol>
+</div>
+    <div>
+        <h2>Задание 1</h2>
+<multiplechoiceresponse>
+    <figure style="text-align:center;">
+      <img src="/static/$img_1.png" alt="" style="width: 250px;"/>
+      <figcaption></figcaption>
+    </figure>
+<choicegroup type="MultipleChoice" shuffle="true">
+    <choice correct="true">$answer_1</choice>
+    <choice correct="false">$answer_1_1</choice>
+    <choice correct="false">$answer_1_2</choice>
+    <choice correct="false">$answer_1_3</choice>
+    <choice correct="false">$answer_1_4</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+  </div>
+<hr />
+    <div>
+        <h2>Задание 2</h2>
+<multiplechoiceresponse>
+    <figure style="text-align:center;">
+      <img src="/static/$img_1.png" alt="" style="width: 250px;"/>
+      <figcaption></figcaption>
+    </figure>
+<choicegroup type="MultipleChoice" shuffle="true">
+    <choice correct="true">$answer_2</choice>
+    <choice correct="false">$answer_2_1</choice>
+    <choice correct="false">$answer_2_2</choice>
+    <choice correct="false">$answer_2_3</choice>
+    <choice correct="false">$answer_2_4</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+  </div>
+</problem>
