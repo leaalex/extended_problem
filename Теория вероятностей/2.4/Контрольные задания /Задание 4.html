@@ -1,0 +1,34 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+a = random.randint(165, 175)
+b = random.randint(150, 190)
+
+answer = round(a/b, 2) if b > a else 1
+
+</script>
+    <div class="no-equation">
+        <p>Средний рост студентов в группе составляет \($a\) см. Оценить с помощью первого неравенства Чебышева вероятность того, что у наудачу выбранного студента рост окажется не меньше \($b\) см.
+        </p>
+        <table>
+            <tr>
+                <td>
+                    \(P(X \le $b ) \le\)
+                </td>
+                <td>
+        <numericalresponse answer="$answer">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

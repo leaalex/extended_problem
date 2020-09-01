@@ -1,0 +1,43 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+l = random.randint(2, 20)
+k = random.choice([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5])
+
+M = ((math.pi*math.pi + 2 * math.pow(k, 2)) * (math.pow(math.e, k) - math.pow(math.e, -k)))/( 2 * k * (math.pi*math.pi + math.pow(k, 2)) )
+M = round(M, 2)
+
+sigma = math.sqrt(((math.pi*math.pi + 8 * math.pow(k, 2)) * (math.pow(math.e, 2*k) - math.pow(math.e, -2 * k)))/(4 * k * (math.pi*math.pi + 4 * math.pow(k, 2))) - math.pow(M, 2))
+sigma = round(sigma, 2)
+
+</script>
+    <div class="no-equation">
+        <p> Плотность вероятности случайной величины \(X\) задана функцией</p>
+        \[ f(x) = \left\{
+        \begin{array}{ll}
+        \frac{1}{L} \left( sin(\frac{\pi x}{2L})\right)^2, &amp; x \in [-$l, $l], \\
+        0, &amp; x \notin [-$l, $l].
+        \end{array}
+        \right.\]
+        <p>Определить математическое ожидание и среднеквадратичное отклонение функции \( Y = exp \frac{$k X}{$l} \). </p>
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \(M\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

@@ -1,0 +1,34 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+a = random.randint(165, 175)
+b = random.randint(100, 400)
+c = random.randint(10, 30)
+
+answer = round(b/math.pow(c, 2), 2) if c*c > b else 1
+
+</script>
+    <div class="no-equation">
+        <p>Средний рост студентов в группе составляет \($a\) см, а дисперсия равна \($b \ см^2\). Оценить с помощью второго неравенства Чебышева вероятность того, что у наудачу выбранного студента рост отличается от среднего не меньше, чем на \($c\) см.</p>
+        <table>
+            <tr>
+                <td>
+                    \(P(X \ge $b ) \le\)
+                </td>
+                <td>
+        <numericalresponse answer="$answer">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

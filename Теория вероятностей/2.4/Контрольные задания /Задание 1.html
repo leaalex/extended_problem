@@ -1,0 +1,65 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+n = random.choice([4, 5, 8, 10])
+p0 = round(random.randint(1, 95) * 0.01, 2)
+Y0 = random.randint(20, 40)
+
+M = round(60 * p0 + Y0, 2)
+sigma = round(60 * math.sqrt((p0*(1-p0))/n), 2)
+
+x1 = round((n + 1) * p0 - 1, 4)
+x2 = round((n + 1) * p0, 4)
+
+if x1.is_integer() and x2.is_integer():
+    y = x2
+else:
+    y = float(math.floor(x2))
+
+Z_tr = (60/n) * y + Y0
+
+grade = 1
+
+if 40 > Z_tr:
+    grade = 2
+elif 60 > Z_tr >= 40:
+    grade = 3
+elif 80 > Z_tr >= 60:
+    grade = 4
+elif Z_tr >= 80:
+    grade = 5
+
+</script>
+    <div class="no-equation">
+        <p>В экзаменационном билете содержится \(n = $n\) вопросов по изучаемому предмету. Вероятность того, что студент знает ответ, одинакова для каждого вопроса и равна \(p\). Оценка \(X\) за экзамен определяется как \((100/n) \cdot m\), где \(m\) – число верных ответов. Итоговое количество баллов за семестр складывается из оценки \(Y\) – результата работы студента в течение семестра (максимум \(40\) баллов), и оценки за экзамен с весовым множителем \(0.6\):</p>
+        \[Z = Y + 0.6X.\]
+        <p>Если \(Z \lt 40\), то студент получает оценку "2" ("неудовлетворительно"), если \(40 \le Z \lt 60\) – то "3" ("удовлетворительно"), если \(60 \le Z \lt 80\) – то "4" ("хорошо"), и при \(Z \ge 80\) – "5" ("отлично").</p>
+        <p>Определить математическое ожидание \(M\) и среднеквадратичное отклонение \(\sigma\) суммы баллов \(Z\), и наиболее вероятную оценку студента \(K\), если \(p = $p0, \ Y = $Y0\). Если наиболее вероятных оценок несколько, то указать большую из них.</p>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание \(M\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение \(\sigma\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$grade">
+            <label>Наиболее вероятная оценка \(K\) студента =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

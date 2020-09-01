@@ -21,7 +21,7 @@ def getRule(answer, splitSymbols):
         entryCount = symbols.count(elem)
         entryNumbers.append(entryCount)
         minEntryList.append("1")
-        maxEntryList.append(str(int(symbols.count(elem))+1))  
+        maxEntryList.append(str(int(symbols.count(elem))+1))
     
     rule = ','.join(uniqList)
     rule = rule + "@"
@@ -54,6 +54,7 @@ rule = getRule(answer, splitSymbols)
           inlineMath: [["$","$"],["\\(","\\)"]]
         }
       });
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub,"$taskId_MathOutput"]);
 </script>
 
 <script type="text/javascript">

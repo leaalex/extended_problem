@@ -1,0 +1,37 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+a = round(random.randint(-9, 9) * 0.1, 1)
+b = round(random.randint(11, 29) * 0.1, 1)
+c = round(random.randint(31, 59) * 0.1, 1)
+
+M = (5/18) * (3 * math.pow(a, 2) + 1) + (1/6) * (3 * math.pow(b, 2) + 1) + (5/9) * (3 * math.pow(c, 2) + 1)
+M = round(M, 2)
+
+sigma = (5/18) * math.pow((3 * math.pow(a, 2) + 1), 2) + (1/6) * math.pow((3 * math.pow(b, 2) + 1), 2) + (5/9) * math.pow((3 * math.pow(c, 2) + 1), 2) - math.pow(M, 2)
+sigma = round(math.sqrt(sigma), 2)
+
+</script>
+    <div class="no-equation">
+        <p>Бросаются две игральные кости. Случайная величина \(X\) равна \($a\), если выпала сумма, не большая \(5\), \($b\), если сумма больше \(9\), и \($c\) в оставшихся случаях. Определить математическое ожидание и среднеквадратичное отклонение функции \(Y = 3X^2 + 1\).</p>
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

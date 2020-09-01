@@ -1,0 +1,47 @@
+<problem>
+  <style>
+    .no-equation .equation{
+        display: none !important;
+    }
+.custom-code{
+    background: #f9f9f9;
+    overflow: auto;
+    padding: 16px 10px;
+    margin: 10px 0px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: .9em;
+    font-family: Monaco, monospace;
+    line-height: 1.4;
+}
+  </style>
+<script type="loncapa/python">
+import random
+import numpy as np
+X_w_len = random.randint(8, 15)
+X_w_len = 10
+
+X = []
+w = []
+for x in range(X_w_len):
+    X.append(random.randint(-25, 25))
+    w.append(round(random.randint(-20, 20)*0.1, 2))
+X = np.array(X)
+w = np.array(w)
+answer = np.round(np.sum(X * w, axis=0), 1)
+X = X.tolist()
+w = w.tolist()
+</script>
+    <div class="no-equation">
+  <p>Дан вектор входных данных и вектор весов нейрона. Применить сумматорную функцию и ввести верный ответ</p>
+  <div class="custom-code">
+    <span>X = <strong>$X</strong></span> <br />
+      <span>w = <strong>$w</strong></span>
+  </div>
+  <numericalresponse answer="$answer">
+  <responseparam type="tolerance" default="0.01"/>
+  <formulaequationinput/>
+</numericalresponse>
+    </div>
+</problem>
