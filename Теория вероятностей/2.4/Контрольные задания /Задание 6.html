@@ -1,0 +1,34 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+a = round(random.randint(200, 800) * 0.01, 2)
+b = round(random.randint(round(round(0.1*math.sqrt(a), 2) * 100), round(round(0.5*math.sqrt(a), 2) * 100)) * 0.01, 2)
+p = round(random.randint(70, 99) * 0.01, 2)
+
+N = round(a/(math.pow(b, 2) * (1-p)), 5)
+
+if N.is_integer():
+    n = math.ceil(N)
+else:
+    n = round(N+1)
+
+</script>
+    <div class="no-equation">
+        <p>
+            Студенты в учебной лаборатории проводят измерение массы тела с помощью пружинного маятника. Измерения проводятся независимо друг от друга. Известно, что дисперсия результатов каждого из измерений не превышает \($a \ г^{2}\). Найти число измерений, при котором вероятность отклонения среднего арифметического результатов от среднего арифметического их математических ожиданий не более чем на \($b \ г\) превысит \($p\)
+        </p>
+        <numericalresponse answer="$n">
+            <label>Число измерений \(n\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

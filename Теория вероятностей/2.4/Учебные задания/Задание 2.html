@@ -1,0 +1,81 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+sigma = round(random.randint(500, 2500) * 0.01, 2)
+a = round(random.randint(round(sigma * 0.1 * 100), round(sigma * 0.5 * 100)) * 0.01, 2)
+p = round(random.randint(70, 99) * 0.01, 2)
+
+N = math.pow(sigma, 2) / (math.pow(a, 2) * (1 - p))
+n = math.ceil(N)
+
+variants = ["Глубина моря измеряется прибором, не имеющим систематической ошибки. Среднеквадратичное отклонение измерений не превосходит \($sigma\) м. Сколько нужно сделать независимых измерений, чтобы с вероятностью, не меньшей \($p\), можно было утверждать, что среднее арифметическое этих измерений отличается от среднего значения глубины моря по модулю меньше, чем на \($a\) м?",
+"Среднеквадратичное отклонение расстояния от точки, в которую планирует попасть парашютист при прыжке, до фактической точки приземления не превышает \($sigma\) м. Сколько нужно сделать прыжков, чтобы с вероятностью, не меньшей \($p\), утверждать, что среднее расстояние между запланированной и фактической точками приземления меньше \($a\) м?",
+"На автотрассе проводится весовой контроль грузовых автомобилей. Известно, что среднеквадратичное отклонение разницы между фактической массой автомобиля и его нормативной массой не больше \($sigma\) т. Сколько нужно проверить автомобилей, чтобы с вероятностью, не меньшей \($p\), утверждать, что среднее арифметическое фактических масс проверенных автомобилей от среднего значения их нормативных масс по абсолютной величине меньше \($a\) т?",
+"На автотрассе установлена камера контроля скорости автомобилей. Известно, что в среднем автомобили двигаются со скоростью \(90\) км/ч, а среднеквадратичное отклонение их скорости не превышает \($sigma\) км/ч. Скорость скольких автомобилей должна зафиксировать камера, чтобы с вероятностью, не меньшей \($p\), утверждать, что среднее арифметическое их скоростей отличается от \(90\) км/ч по абсолютной величине менее, чем на \($a\) км/ч?",
+"На велогонке «Садовое кольцо» элитные гонщики проезжают \(109\) км за \(2\) часа \(35\) минут. Допустим, что среднеквадратичное отклонение их времени не превышает \($sigma\) мин. Сколько велогонщиков должно финишировать, чтобы с вероятностью, не меньшей \($p\), утверждать, что среднее арифметическое их времен отличается от \(2\) часов \(35\) минут по абсолютной величине менее, чем на \($a\) мин?"]
+
+variant = random.choice(variants).replace("$p", str(p)).replace("$sigma", str(sigma)).replace("$a", str(a))
+
+</script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_4_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <div class="no-equation" id="section_2_4_training_2">
+        <p>$variant</p>
+        <table>
+            <tr>
+                <td>
+                    \(n \ge \)
+                </td>
+                <td>
+        <numericalresponse answer="$n">
+            <responseparam type="tolerance" default="1.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>
+                для оценки требуемой вероятности воспользуйтесь теоремой Чебышева:
+                \( P(|\overline{X} - \overline{M}| \lt \varepsilon) \ge 1 - \frac{C}{n \varepsilon^{2}},\) где \( C = max\{D_1, D_2,...,D_n\} \).
+
+            </span>
+        </div>
+
+    </div>
+</problem>

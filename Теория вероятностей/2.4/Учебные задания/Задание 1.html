@@ -1,0 +1,99 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+                .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+p1 = round(random.randint(10, 49) * 0.01, 2)
+p1 = 0.24
+
+p5 = 1 - 0.5 - p1
+
+M = - p1/math.sqrt(2) - (27 * p5)/math.sqrt(2) + 153.6
+sigma = math.sqrt(p1/2 + (729*p5)/2 + 0.3 * math.pow(8, 6) - math.pow(M, 2) )
+
+M = round(M, 2)
+sigma = round(sigma, 2)
+
+</script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_4_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <div class="no-equation" id="section_2_4_training_1">
+        <p>Таблица задает закон распределения некоторой случайной величины \(X\).</p>
+        <table class="distribution-table">
+            <tr>
+                <td>\(X\)</td>
+                <td>\(1\)</td>
+                <td>\(2\)</td>
+                <td>\(5\)</td>
+                <td>\(10\)</td>
+            </tr>
+            <tr>
+                <td>\(P\)</td>
+                <td>\($p1\)</td>
+                <td>\(0.2\)</td>
+                <td>\(p_5\)</td>
+                <td>\(0.5\)</td>
+            </tr>
+        </table>
+
+        <p>Определить математическое ожидание и среднеквадратичное отклонение величины \( Y = (X - 2)^3 sin \left(\frac{\pi X}{4}\right)  \). Ответ привести с точностью до сотых.</p>
+
+        <numericalresponse answer="$M">
+            <label>Математическое ожидание = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+        <numericalresponse answer="$sigma">
+            <label>Среднеквадратичное отклонение = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>
+Величина \(p_5\) находится из условия нормировки вероятности: \( \sum_i p_i = 1 \), математическое ожидание – суть среднее по вероятности: \( M(Y) = \sum_i p_i y_i \), дисперсия \( D(Y) = \sum_i p_i y_i^2 - M(Y)^2\), СКО: \( \sigma_Y = \sqrt{D(Y)} \).
+
+
+</span>
+        </div>
+
+    </div>
+</problem>
