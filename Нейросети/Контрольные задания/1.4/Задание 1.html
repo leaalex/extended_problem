@@ -1,0 +1,136 @@
+<problem>
+  <style>
+    .no-equation .equation{
+        display: none !important;
+    }
+.custom-code{
+    background: #f9f9f9;
+    overflow: auto;
+    padding: 16px 10px;
+    margin: 10px 0px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: .9em;
+    font-family: Monaco, monospace;
+    line-height: 1.4;
+}
+  </style>
+<script type="loncapa/python">
+import math
+import random
+
+kit_len = random.randint(3, 10)
+#kit_len = 4
+flowers = ["розы", "тюльпаны", "одуванчики", "орхидеи", "ромашки", "ландыши", "лилии", "маки", "ирисы", "пионы", "герберы"]
+random.shuffle(flowers)
+student_flowers = flowers[:kit_len]
+
+student_flowers_text = ""
+
+for index, flower in enumerate(student_flowers):
+    student_flowers_text += flower
+    if index != len(student_flowers) - 1:
+        student_flowers_text += ", "
+
+one_hot_encoding = [0 for x in range(kit_len)]
+one_hot_encoding[0] = 1
+N = random.randrange(28, 64, 2)
+#N = 32
+is_colored = random.choice([True, False])
+
+#is_colored = False
+
+if is_colored:
+    is_colored_text = "цветные"
+else:
+    is_colored_text = "черно-белые"
+
+size = N*N*3 if is_colored else N*N
+
+
+
+def check_answer(expect, ans):
+    student_answer = ans.replace("]", "").replace("[", "").replace(" ", "")
+    try:
+        student_answer = [float(x) for x in student_answer.split(",")]
+    except:
+        return {
+            'input_list': [
+                {'ok': False, 'msg': "Не все элементы массива являются числами", 'grade_decimal': 0.0}, ]}
+
+    if len(student_answer) != len(one_hot_encoding):
+        return {
+            'input_list': [
+                {'ok': False, 'msg': "Неверная длина массива", 'grade_decimal': 0.0}, ]}
+    res = []
+    for index, ans in enumerate(one_hot_encoding):
+        res.append(ans == student_answer[index])
+
+    if all(res):
+        return {
+            'input_list': [
+                {'ok': True, 'msg': "", 'grade_decimal': 1.0}, ]}
+    else:
+        return {
+            'input_list': [
+                {'ok': False, 'msg': "", 'grade_decimal': 0.0}, ]}
+
+</script>
+    <div class="no-equation">
+        <p>По заданным параметрам набора данных (характеристики изображения и количество уникальных объектов в наборе изображений) определить параметры архитектуры нейронной сети.</p>
+        <p>Кодировку <i>One Hot Encoding</i> писать в виде стандартного листа из python: [0, 0, 1, 0]</p>
+        <p>Наименования функций активации писать без кавычек.</p>
+
+  <p>Дан набор изображений цветков. В наборе есть: $student_flowers_text. Размер каждого изображения \($N \times $N \). Изображения $is_colored_text.</p>
+
+      <table>
+        <tr>
+          <td>Размерность входных данных</td>
+          <td>
+            <numericalresponse answer="$size">
+              <responseparam type="tolerance" default="0.1"/>
+              <formulaequationinput/>
+            </numericalresponse>
+          </td>
+        </tr>
+        <tr>
+          <td>Количество нейронов выходного слоя</td>
+          <td>
+            <numericalresponse answer="$kit_len">
+              <responseparam type="tolerance" default="0.1"/>
+              <formulaequationinput/>
+            </numericalresponse>
+          </td>
+        </tr>
+        <tr>
+          <td>Функция активации входного слоя</td>
+          <td>
+                <stringresponse answer="relu" type="ci">
+                  <textline size="20"/>
+                </stringresponse>
+          </td>
+        </tr>
+        <tr>
+          <td>Функция активации выходного слоя</td>
+          <td>
+                <stringresponse answer="softmax" type="ci">
+                  <textline size="20"/>
+                </stringresponse>
+          </td>
+        </tr>
+        <tr>
+            <td>Кодировка первого класса выходных <br /> данных в формате <i>One Hot Encoding</i></td>
+          <td>
+              <customresponse cfn="check_answer">
+                <textline size="20" value=""/>
+                <br/>
+              </customresponse>
+                      <solution>
+                          <span><strong>Ответ: $one_hot_encoding</strong></span>
+                    </solution>
+          </td>
+        </tr>
+      </table>
+    </div>
+</problem>

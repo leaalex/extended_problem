@@ -1,10 +1,16 @@
 <problem>
+<style>
+.no-equation .equation{
+    display: none !important;
+}
+</style>
   <script type="text/javascript">
   let nums_str = '$nums_str';
     let element = document.querySelector("#download_z_n");
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(nums_str));
 
   </script>
+
 <script type="loncapa/python">
 import math
 import random
@@ -14,10 +20,12 @@ a = random.randint(7, 15)
 l = random.randint(5, a-1)
 a = round(a * 0.1, 1)
 l = round(l * 0.1, 1)
+r = random.randint(10000, 100000)
 
-a= 1.5
-l = 1.5
-r = 100000
+# a = 1.5
+# l =.5
+# r = 100000
+# print(r)
 
 ax2 = 2 * a
 lx2 = 2 * l
@@ -25,17 +33,41 @@ nums = np.random.randint(2, size=r)
 nums = nums.tolist()
 nums_str = str(nums).replace('[', '').replace(']', '')
 n = sum(nums)
-n = 63500
+#n = 21210
+# print(n)
+math_pi = 3.1415927
 
-p_theor = 2*l/math.pi * a
-p_eksp = n / r
-PI = (2*l)/(a/r * n)
+p_theor = round((2*l)/(math_pi * a), 6)
+p_stat = round(n / r, 6)
+PI = round((2*l)/(a/r * n), 6)
 
 </script>
-<div>
+
+    <div class="no-equation">
     <p>На плоскости начерчены параллельные прямые, находящиеся друг от друга на расстоянии \($ax2\). На плоскость наудачу брошена игла длины \($lx2\).</p>
-    <p> <a href='' download="Результаты бросков.txt" id="download_z_n">Результаты $r бросков</a></p>
-    <p><strong>1.</strong> Какова вероятность того, что игла пересечёт какую-нибудь прямую?</p>
-    <p><strong>2.</strong> Рассчитать число \(\pi\) при \($r\) бросков. </p>
+        <p><i>В качестве десятичного разделителя используйте только точку. Ответы привести с точностью до шести знаков (после точки).</i></p>
+<!--    <p> </p>-->
+
+<!--    <p><strong>2.</strong> Рассчитать число \(\pi\) при \($r\) бросков. </p>-->
+
+  <numericalresponse answer="$p_theor">
+      <label><strong>1.</strong> Какова <strong>теоретическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую? При расчете изпользовать \(\pi = 3.1415927\).</label>
+  <responseparam type="tolerance" default="0.0001"/>
+  <formulaequationinput/>
+</numericalresponse>
+
+  <numericalresponse answer="$p_stat">
+      <label><strong>2.</strong> Какова <strong>статистическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую?</label>
+  <responseparam type="tolerance" default="0.0001"/>
+  <formulaequationinput/>
+</numericalresponse>
+
+  <numericalresponse answer="$PI">
+      <label><strong>3.</strong> Проведен эксперимент по бросанию иглы на расчерченную поверхность. Экспериментальные данные приведены в файле, где каждой единице соответствует пересечение прямой при одном броске, а нулю - непересечение. Рассчитайте число \(\pi\) при \($r\) бросков.<br />
+      <a href='' download="Результаты бросков.txt" id="download_z_n">Скачать результаты $r бросков</a></label>
+  <responseparam type="tolerance" default="0.0001"/>
+  <formulaequationinput/>
+</numericalresponse>
+
   </div>
 </problem>

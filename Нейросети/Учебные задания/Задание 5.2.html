@@ -1,0 +1,95 @@
+<problem>
+  <style>
+    .no-equation .equation{
+        display: none !important;
+    }
+.custom-code{
+    background: #f9f9f9;
+    overflow: auto;
+    padding: 16px 10px;
+    margin: 10px 0px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: .9em;
+    font-family: Monaco, monospace;
+    line-height: 1.4;
+}
+  </style>
+<script type="loncapa/python">
+import random
+import numpy as np
+
+x = random.randint(1, 5000)
+np.random.seed(x)
+
+
+def convolution1D(M, kernel):
+    padding = kernel.shape[0] // 2
+    M_shape = M.shape[0]
+    answer = np.zeros(M_shape - 2 * padding)
+    for i in range(0 + padding, M_shape - padding):
+        answer[i - padding] = np.round(np.sum(M[i - padding: i + padding + 1] * kernel), 1)
+    return answer
+
+M_len = random.randint(12, 15)
+M = []
+for x in range(M_len):
+    M.append(random.randint(-25, 30))
+kernel = np.round(np.random.normal(0.0, 1.0, 3), 1)
+answer_arr = convolution1D(np.array(M), kernel).tolist()
+kernel = kernel.tolist()
+
+# print(M, "длина", len(M))
+# print(kernel)
+# print(answer_arr, len(answer_arr))
+
+def check_answer(expect, ans):
+    student_answer = ans.replace("]", "").replace("[", "").replace(" ", "")
+    try:
+        student_answer = [float(x) for x in student_answer.split(",")]
+    except:
+        return {
+            'input_list': [
+                {'ok': False, 'msg': "Не все элементы массива являются числами", 'grade_decimal': 0.0}, ]}
+    tol = 0.1
+    if len(student_answer) != len(answer_arr):
+        return {
+            'input_list': [
+                {'ok': False, 'msg': "Неверная длина массива", 'grade_decimal': 0.0}, ]}
+    res = []
+    for index, ans in enumerate(answer_arr):
+        res.append(tol >= ans - student_answer[index])
+
+    if all(res):
+        return {
+            'input_list': [
+                {'ok': True, 'msg': "", 'grade_decimal': 1.0}, ]}
+    else:
+        return {
+            'input_list': [
+                {'ok': False, 'msg': "", 'grade_decimal': 0.0}, ]}
+
+</script>
+    <div class="no-equation">
+  <p>Примените свертку с заданным ядром к заданной последовательности. Выходную последовательность чисел запишите в виде списка. Значения в списке вводите с точностью до \(1\) знака после точки.</p>
+  <div class="custom-code">
+      <p>
+      <span>Заданная последовательность:</span> <br />
+    <span><strong>$M</strong></span> <br />
+      </p>
+      <span>Заданное ядро:</span> <br />
+      <span><strong>$kernel</strong></span>
+  </div>
+      <customresponse cfn="check_answer">
+        <textline size="60" value=""/>
+        <br/>
+      </customresponse>
+        <solution>
+           <div class="custom-code">
+              <span>Правильный ответ:</span> <br />
+            <span><strong>$answer_arr</strong></span>
+          </div>
+        </solution>
+    </div>
+</problem>

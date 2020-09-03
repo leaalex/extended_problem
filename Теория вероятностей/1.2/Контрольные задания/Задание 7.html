@@ -1,0 +1,27 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+import numpy as np
+
+R = random.randint(2, 20)
+r = random.randint(1, R-1)
+P = round((math.pow(R, 2) - math.pow(r, 2))/math.pow(R, 2), 3)
+
+
+
+</script>
+    <div class="no-equation">
+        <p>На плоскости начерчены две концентрические окружности, радиусы которых \($r\) и \($R\) м соответственно \((R \gt r)\). Найти вероятность того, что точка, брошенная наудачу в большой круг, попадет в кольцо, образованное построенными окружностями. Предполагается, что вероятность попадания точки в плоскую фигуру пропорциональна площади этой фигуры и не зависит от ее расположения относительно большого круга. Ответ округлить до тысячных.</p>
+
+        <numericalresponse answer="$P">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</problem>
