@@ -9,6 +9,11 @@
     let element = document.querySelector("#download_z_n");
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(nums_str));
 
+    let element_1 = document.querySelector("#download_z_n_1");
+    element_1.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(nums_str));
+
+
+
   </script>
 
 <script type="loncapa/python">
@@ -50,18 +55,20 @@ PI = round((2*l)/(a/r * n), 6)
   <formulaequationinput/>
 </numericalresponse>
 
-  <numericalresponse answer="$p_stat">
-      <label><strong>2.</strong> Какова <strong>статистическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую?</label>
-  <responseparam type="tolerance" default="0.0001"/>
-  <formulaequationinput/>
-</numericalresponse>
-
   <numericalresponse answer="$PI">
-      <label><strong>3.</strong> Проведен эксперимент по бросанию иглы на расчерченную поверхность. Экспериментальные данные приведены в файле, где каждой единице соответствует пересечение прямой при одном броске, а нулю - непересечение. Рассчитайте число \(\pi\) при \($r\) бросков.<br />
+      <label><strong>2.</strong> Проведен эксперимент по бросанию иглы на расчерченную поверхность. Экспериментальные данные приведены в <a href='' download="Результаты бросков.txt" id="download_z_n_1">файле</a>, где каждой единице соответствует пересечение прямой при одном броске, а нулю - непересечение. Рассчитайте число \(\pi\) при \($r\) бросков.<br />
       <a href='' download="Результаты бросков.txt" id="download_z_n">Скачать результаты $r бросков</a></label>
   <responseparam type="tolerance" default="0.0001"/>
   <formulaequationinput/>
 </numericalresponse>
+
+  <numericalresponse answer="$p_stat">
+      <label><strong>3.</strong> Какова <strong>статистическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую?</label>
+  <responseparam type="tolerance" default="0.0001"/>
+  <formulaequationinput/>
+</numericalresponse>
+
+
 
   </div>
 </problem>

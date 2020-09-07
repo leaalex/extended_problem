@@ -1,0 +1,112 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+a = round(random.randint(0, 1700) * 0.01, 2)
+b = round(random.randint(-120, 120) * 0.01, 2)
+
+function_table = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 0.1, 0.3, 0.3, 0.4, 0.5],
+    [0, 0.15, 0.5, 0.52, 0.62, 0.82],
+    [0, 0.15, 0.5, 0.55, 0.7, 1]
+]
+
+index_0 = 0
+if -1 > b:
+    index_0 = 0
+elif 0 >= b > -1:
+    index_0 = 1
+elif 1 >= b > 0:
+    index_0 = 2
+elif b > 1:
+    index_0 = 3
+else:
+    print("No index 0")
+
+index_1 = 0
+if 1 > a:
+    index_1 = 0
+elif 2 >= a > 1:
+    index_1 = 1
+elif 4 >= a > 2:
+    index_1 = 2
+elif 8 >= a > 4:
+    index_1 = 3
+elif 16 >= a > 8:
+    index_1 = 4
+elif a > 16:
+    index_1 = 5
+else:
+    print("No index 1")
+
+F = function_table[index_0][index_1]
+
+</script>
+    <div class="no-equation">
+        <p>Задана таблица распределения случайного вектора \((X, Y)\).</p>
+
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 100px !important;">\(Y \backslash X\)</td>
+                <td style="width: 120px !important;">\(1\)</td>
+                <td style="width: 120px !important;">\(2\)</td>
+                <td style="width: 120px !important;">\(4\)</td>
+                <td style="width: 120px !important;">\(8\)</td>
+                <td style="width: 120px !important;">\(16\)</td>
+            </tr>
+            <tr>
+                <td>\(-1\)</td>
+                <td>\(0.1\)</td>
+                <td>\(0.2\)</td>
+                <td>\(0\)</td>
+                <td>\(0.1\)</td>
+                <td>\(0.1\)</td>
+            </tr>
+            <tr>
+                <td>\(0\)</td>
+                <td>\(0.05\)</td>
+                <td>\(0.15\)</td>
+                <td>\(0.02\)</td>
+                <td>\(0\)</td>
+                <td>\(0.1\)</td>
+            </tr>
+            <tr>
+                <td>\(1\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0.03\)</td>
+                <td>\(0.05\)</td>
+                <td>\(0.1\)</td>
+            </tr>
+
+        </table>
+
+        <p>Определить значение ее функции распределения в точке \(($a, $b)\).</p>
+
+        <table>
+            <tr>
+                <td> \( F ($a, $b) = \)</td>
+                <td>
+                    <numericalresponse answer="$F">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</problem>

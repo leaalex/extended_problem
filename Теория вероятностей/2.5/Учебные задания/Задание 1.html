@@ -1,0 +1,192 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        #section_2_5_training_1 .trailing_text, .status{
+          display: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_5_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <script type="loncapa/python">
+import random
+
+arr_sum = 0
+while arr_sum != 1.0:
+    random_arr = random.sample(range(1, 99), 4)
+    P_arr = [round(x/sum(random_arr), 2) for x in random_arr]
+    arr_sum = sum(P_arr)
+
+#P_arr = [0.1, 0.05, 0.3, 0.55]
+
+p11, p12, p21, p22 = P_arr
+
+ans_1 = p11
+ans_2 = round(p11 + p21, 2)
+ans_3 = round(p11 + p12, 2)
+ans_4 = 1
+
+ans_5 = round(p21/(p21 + p22), 2)
+ans_6 = round(p22/(p21 + p22), 2)
+
+</script>
+    <div class="no-equation" id="section_2_5_training_1">
+        <p>Таблица задает закон распределения случайного вектора \((X, Y)\).</p>
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 120px !important;">\(Y \backslash X\)</td>
+                <td style="width: 150px !important;">\(x_1\)</td>
+                <td style="width: 150px !important;">\(x_2\)</td>
+            </tr>
+            <tr>
+                <td>\(y_1\)</td>
+                <td>\($p11\)</td>
+                <td>\($p12\)</td>
+            </tr>
+            <tr>
+                <td>\(y_2\)</td>
+                <td>\($p21\)</td>
+                <td>\($p22\)</td>
+            </tr>
+        </table>
+
+        <p>Построить ее функцию распределения (заполнить таблицу для \(F(x, y)\)), и таблицу условной вероятности \(P(X|Y = y_2)\).</p>
+
+        <p>Функция распределения \(F(x, y)\):</p>
+            <table class="distribution-table">
+            <tr>
+                <td style="width: 120px !important;">\(Y \backslash X\)</td>
+                <td>\(( -\infty; x_1]\)</td>
+                <td>\((x_1;x_2]\)</td>
+                <td>\((x_2;\infty)\)</td>
+            </tr>
+            <tr>
+                <td>\(( -\infty; x_1]\)</td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\((y_1;y_2]\)</td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$ans_1">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$ans_2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\((y_2;\infty)\)</td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$ans_3">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$ans_4">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <p>Таблица условной вероятности \(P(X|Y = y_2)\):</p>
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 120px !important;">\(X\)</td>
+                <td>\(x_1\)</td>
+                <td>\(x_2\)</td>
+            </tr>
+            <tr>
+                <td style="width: 120px !important;">\(P (X|Y = y_2) \)</td>
+                <td>
+                    <numericalresponse answer="$ans_5">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$ans_6">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>двумерная функция распределения строится по правилу \(F(x, y) = P(X \lt x; Y \lt y) \), условные вероятности находятся по правилу \( P (X=a|Y=b) = \frac{X=a;Y=b}{P(Y=b)} \)</span>
+        </div>
+
+
+    </div>
+</problem>
+

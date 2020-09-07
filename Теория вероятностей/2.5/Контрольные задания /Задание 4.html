@@ -1,0 +1,56 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+variants = [{"title": "x \gt 0, y \gt 0, x + y \lt 1", "answer": 5},
+{"title": "x \gt 0, y \gt 0, x \lt 1, y \lt 1", "answer": 3.17},
+{"title": "x \lt 1, y \lt 1, x + y \gt 1", "answer": 8.65},
+{"title": "x \gt 0, y \gt 0, 1 \lt x + y \lt 2", "answer": 4.56},
+{"title": "x \gt 1, y \gt 0, x + y \lt 2", "answer": 19.32},
+{"title": "x \gt 0, y \gt 1, x + y \lt 2", "answer": 19.32},
+{"title": "x \gt 1/2, y \gt 1/2, x \lt 1, y \lt 1", "answer": 24.57},
+{"title": "x \gt 1/2, y \gt 1/2, x + y \lt 2", "answer": 18.13}]
+
+variant = random.choice(variants)
+
+title = variant["title"]
+answer = variant["answer"]
+
+</script>
+    <div class="no-equation">
+        <p>При каком значении параметра \(C\) функция</p>
+        \[ f(x) = \left\{
+            \begin{array}{ll}
+            C e^{-x-y} sin \frac{\pi(x+y)}{2}, &amp; x \in D, \\
+            0, &amp; x \notin D,
+            \end{array}
+        \right.\]
+
+        <p>задает плотность вероятности некоторого непрерывного случайного вектора \((X, Y)\)? Область \(D\) задана следующим выражением: \($title\). </p>
+
+        <table>
+            <tr>
+                <td> \( C = \)</td>
+                <td>
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</problem>

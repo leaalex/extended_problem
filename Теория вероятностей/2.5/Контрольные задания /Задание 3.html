@@ -1,0 +1,104 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+a = random.choice([2, 3, 4])
+b = random.choice([1, 2, 3, 4, 5])
+
+answer_1 = [2.80, 2.84, 4.39][a - 2]
+answer_2 = [0.47, 0.49, 0.49, 0.94, 0.82][b - 1]
+answer_3 = 0.38
+
+</script>
+    <div class="no-equation">
+        <p>Задана таблица распределения \(F(x,y)\) случайного вектора \((X, Y)\).</p>
+
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 22% !important;">\(Y \backslash X\)</td>
+                <td style="width: 13% !important;">\((-\infty;1]\)</td>
+                <td style="width: 13% !important;">\( (1;2] \)</td>
+                <td style="width: 13% !important;">\( (2;3] \)</td>
+                <td style="width: 13% !important;">\( (3;4] \)</td>
+                <td style="width: 13% !important;">\( (4;5] \)</td>
+                <td style="width: 13% !important;">\( (5;\infty) \)</td>
+            </tr>
+            <tr>
+                <td>\( (-\infty; 2] \)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+            </tr>
+            <tr>
+                <td>\( (2; 3] \)</td>
+                <td>\(0\)</td>
+                <td>\(0.1\)</td>
+                <td>\(0.3\)</td>
+                <td>\(0.3\)</td>
+                <td>\(0.4\)</td>
+                <td>\(0.5\)</td>
+            </tr>
+            <tr>
+                <td>\( (3; 4] \)</td>
+                <td>\(0\)</td>
+                <td>\(0.15\)</td>
+                <td>\(0.5\)</td>
+                <td>\(0.52\)</td>
+                <td>\(0.62\)</td>
+                <td>\(0.82\)</td>
+            </tr>
+            <tr>
+                <td>\( (1; +\infty) \)</td>
+                <td>\(0\)</td>
+                <td>\(0.15\)</td>
+                <td>\(0.5\)</td>
+                <td>\(0.55\)</td>
+                <td>\(0.7\)</td>
+                <td>\(1\)</td>
+            </tr>
+
+        </table>
+        <p></p>
+        <multiplechoiceresponse>
+            <label>Являются ли величины зависимыми?</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="true">Являются</choice>
+                <choice correct="false">Не являются</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <numericalresponse answer="$answer_1">
+            <label>Математическое ожидание величины \(X\) при условии \(Y = $a\) </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$answer_2">
+            <label>Среднеквадратичное отклонение величины \(Y\) при условии \(X = $b\)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$answer_3">
+            <label>Ковариация \(C_{XY}\)</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

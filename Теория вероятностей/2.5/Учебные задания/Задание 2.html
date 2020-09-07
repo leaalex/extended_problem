@@ -1,0 +1,99 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_5_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <script type="loncapa/python">
+import random
+
+variants = [{"title": "D: x \gt 0, y \gt 0, x + y \lt 1",
+"answer": 2.94},
+{"title": "D: x \gt 0, y \gt 0, x \lt 1, y \lt 1",
+"answer": 1.66},
+{"title": "D: x \lt 1, y \lt 1, x + y \gt 1",
+"answer": 3.81},
+{"title": "D: x \gt 0, y \gt 0, 1 \lt x + y \lt 2",
+"answer": 1.21},
+{"title": "D: x \gt 1, y \gt 0, x + y \lt 2",
+"answer": 3.55},
+{"title": "D: x \gt 0, y \gt 1, x + y \lt 2",
+"answer": 3.55},
+{"title": "D: x \gt 1/2, y \gt 1/2, x \lt 1, y \lt 1",
+"answer": 8.34},
+{"title": "D: x \gt 1/2, y \gt 1/2, x + y \lt 2",
+"answer": 5.94},
+{"title": "D: 0 \lt x \lt \infty, 0 \lt y \lt 1",
+"answer": 0.49},
+{"title": "D: 0 \lt x \lt 1, 0 \lt y \lt \infty",
+"answer": 0.49},
+{"title": "D: 0 \lt x \lt \infty, 1 \lt y \lt 2",
+"answer": 0.84},
+{"title": "D: 0 \lt x \lt \infty, 0 \lt y \lt \infty",
+"answer": 0.2}]
+
+variant = random.choice(variants)
+title = variant["title"]
+answer = variant["answer"]
+
+</script>
+    <div class="no-equation" id="section_2_5_training_2">
+        <p>При каком значении параметра \(C\) функция</p>
+        \[ f(x) = \left\{
+            \begin{array}{ll}
+            C e^{-x-y} (1 + x^2 + y^2), &amp; x \in D, \\
+            0, &amp; x \notin D,
+            \end{array}
+        \right.\]
+
+        <p>задает плотность вероятности некоторого непрерывного случайного вектора \((X, Y)\)? Область \(D\) задана следующим выражением \($title\). Ответ приводить с точностью до сотых.</p>
+        <numericalresponse answer="$answer">
+            <label>Постоянная \(C\) = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>
+            Постоянная \(C\) находится из условия нормировки: \( \iint_{(x,y) \in \mathbb{R}^2} f(x,y) dxdy = 1 \).
+            </span>
+        </div>
+
+
+    </div>
+</problem>
+

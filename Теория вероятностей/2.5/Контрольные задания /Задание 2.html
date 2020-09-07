@@ -1,0 +1,136 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+a = random.choice([2, 3, 4])
+x0 = random.choice([0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5])
+c = random.choice([1, 2, 3, 4, 5])
+
+table_1 = [
+    [0.1, 0.2, 0, 0.1, 0.1, 0.5],
+    [0.05, 0.15, 0.02, 0, 0.1, 0.32],
+    [0, 0, 0.03, 0.05, 0.1, 0.18],
+    [0.15, 0.35, 0.05, 0.15, 0.3]
+]
+
+table_2 = [
+    [0.2, 0.4, 0, 0.2, 0.2],
+    [0.16, 0.47, 0.06, 0, 0.31],
+    [0, 0, 0.17, 0.28, 0.56],
+]
+
+table_3 = [
+    [0, 0.2, 0.6, 0.6, 0.8, 1.0],
+    [0, 0.16, 0.63, 0.69, 0.69, 1.0],
+    [0, 0, 0, 0.17, 0.44, 1.0],
+]
+
+index_0 = a - 2
+
+index_1 = 0
+if 1 > x0:
+    index_1 = 0
+elif 2 >= x0 > 1:
+    index_1 = 1
+elif 3 >= x0 > 2:
+    index_1 = 2
+elif 4 >= x0 > 3:
+    index_1 = 3
+elif 5 >= x0 > 4:
+    index_1 = 4
+elif x0 > 5:
+    index_1 = 5
+
+answer_1 = table_3[index_0][index_1]
+index_2 = c - 1
+answer_2 = table_2[index_0][index_2]
+answer_3 = table_1[3][index_2]
+
+
+</script>
+    <div class="no-equation">
+        <p>Задана таблица распределения \(F(x,y)\) случайного вектора \((X, Y)\).</p>
+
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 22% !important;">\(Y \backslash X\)</td>
+                <td style="width: 13% !important;">\((-\infty;1]\)</td>
+                <td style="width: 13% !important;">\( (1;2] \)</td>
+                <td style="width: 13% !important;">\( (2;3] \)</td>
+                <td style="width: 13% !important;">\( (3;4] \)</td>
+                <td style="width: 13% !important;">\( (4;5] \)</td>
+                <td style="width: 13% !important;">\( (5;\infty) \)</td>
+            </tr>
+            <tr>
+                <td>\( (-\infty; 2] \)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+                <td>\(0\)</td>
+            </tr>
+            <tr>
+                <td>\( (2; 3] \)</td>
+                <td>\(0\)</td>
+                <td>\(0.1\)</td>
+                <td>\(0.3\)</td>
+                <td>\(0.3\)</td>
+                <td>\(0.4\)</td>
+                <td>\(0.5\)</td>
+            </tr>
+            <tr>
+                <td>\( (3; 4] \)</td>
+                <td>\(0\)</td>
+                <td>\(0.15\)</td>
+                <td>\(0.5\)</td>
+                <td>\(0.52\)</td>
+                <td>\(0.62\)</td>
+                <td>\(0.82\)</td>
+            </tr>
+            <tr>
+                <td>\( (1; +\infty) \)</td>
+                <td>\(0\)</td>
+                <td>\(0.15\)</td>
+                <td>\(0.5\)</td>
+                <td>\(0.55\)</td>
+                <td>\(0.7\)</td>
+                <td>\(1\)</td>
+            </tr>
+
+        </table>
+
+        <p>Определить значение условной функции распределения \(F_{X|Y=$a}(x)\) в точке \($x0\), условную вероятность \(P(X = $c|Y = $a)\) того, что \(X = $c\) при условии \(Y = $a\), безусловную вероятность того, что \(X = $c\).</p>
+
+        <numericalresponse answer="$answer_1">
+            <label>Значение условной функции распределения \(F_{X|Y=$a}(x)\) в точке \($x0\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$answer_2">
+            <label>Условная вероятность \(P(X = $c|Y = $a)\) того, что \(X = $c\) при условии \(Y = $a\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <numericalresponse answer="$answer_3">
+            <label>Безусловная вероятность того, что \(X = $c\) =</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>
