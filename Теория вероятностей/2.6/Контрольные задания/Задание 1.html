@@ -1,0 +1,44 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+d = 0.25
+a = 0.3
+D = round(random.randint(20, 80) * 0.01, 2)
+
+P1 = round(math.pow(d, 2)/math.pow(D, 2), 2) if D > d else 1
+
+P2 = 1
+alpha = D/a
+if a >= D:
+    P2 = 1
+elif a*math.sqrt(2) >= D > a:
+    P2 = (4 * math.sqrt(math.pow(alpha, 2) - 1))/(math.pi*math.pow(alpha, 2)) + (2/math.pi) * (math.atan(1/math.sqrt(math.pow(alpha, 2) - 1)) - math.atan(math.sqrt(math.pow(alpha, 2) - 1)))
+elif D > a*math.sqrt(2):
+    P2 = (4*math.pow(a, 2))/(math.pi * math.pow(D, 2))
+
+P2 = round(P2, 2)
+
+</script>
+    <div class="no-equation">
+        <p>Человек бросает мусор в мусорное ведро, находясь на достаточно большом расстоянии он него. Полагая точку приземления мусора \((X, Y)\) равномерно распределенной случайной величиной внутри круга диаметром \($D\) м с центром посередине мусорного ведра, определить вероятность попадания мусора в ведро для случаев круглого ведра диаметром \(d = 0.25 \ м\) и квадратного ведра со стороной \(a = 0.3 \ м\).</p>
+
+        <numericalresponse answer="$P1">
+            <label>Вероятность попадания мусора в ведро для случаев <strong>круглого</strong> ведра диаметром \(d = 0.25 \ м\) </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+        <numericalresponse answer="$P2">
+            <label>Вероятность попадания мусора в ведро для случаев <strong>квадратного</strong> ведра со стороной \(a = 0.3 \ м\) </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>

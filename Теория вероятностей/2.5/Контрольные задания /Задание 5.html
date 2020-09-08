@@ -1,0 +1,48 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+alpha = random.randint(0, 12)
+beta = random.randint(alpha, 20)
+alpha = round(alpha * 0.1, 1)
+beta = round(beta * 0.1, 1)
+
+P = 0
+if 1 > alpha and 1 >= beta:
+    P = (math.pow(math.e, -alpha)-math.pow(math.e, -beta)) / (1 - math.pow(math.e, -1))
+elif 1 > alpha and beta > 1:
+    P = (math.pow(math.e, -alpha)-math.pow(math.e, -1)) / (1 - math.pow(math.e, -1))
+P = round(P, 2)
+
+</script>
+    <div class="no-equation">
+        <p>Задана плотность вероятности \(f(x, y)\) случайного вектора \((X, Y)\):</p>
+        \[ f(x) = \left\{
+            \begin{array}{ll}
+            \frac{1}{2\pi a b (1 - e^{-1})} exp  \left(-\frac{x^2}{a^2} - \frac{y^2}{b^2} \right), &amp; \frac{x^2}{a^2} + \frac{y^2}{b^2} \le 1, \\
+            0, &amp; \frac{x^2}{a^2} + \frac{y^2}{b^2} \gt 1.
+            \end{array}
+        \right.\]
+
+        <p>Определить вероятность попадания случайной величины \((X, Y)\) в эллиптическое кольцо</p>
+        \[ $alpha \lt \frac{x^2}{a^2} + \frac{y^2}{b^2} \le $beta \]
+        <table>
+            <tr>
+                <td> \( P = \)</td>
+                <td>
+                    <numericalresponse answer="$P">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</problem>

@@ -1,0 +1,44 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+a = random.randint(1, 20)
+b = random.randint(1, 20)
+
+answer = (3 * (a + 2*b) * (a+b))/((a + 3*b) * (3*a + 2*b))
+answer = round(answer, 2)
+
+a_plus_b = a + b
+
+</script>
+    <div class="no-equation">
+        <p>Плотность вероятности случайного вектора \((X, Y)\) имеет вид</p>
+        \[ f(x) = \left\{
+            \begin{array}{ll}
+            \frac{3($a x^2 + $b y^2)}{$a_plus_b L^4}, &amp; x \in D, \\
+            0, &amp; x \notin D,
+            \end{array}
+        \right.\]
+
+        <p>где \(D\) – квадрат \(0 \le x \le L\), \(0 \le y \le L\). Обозначим \(M(x)\) – математическое ожидание \(X\), а \(M(X|Y)\) – математические ожидания \(X\) при условии заданного \(Y\). Определить, во сколько раз минимальное значение условного математического ожидания величины \(X\) отличается от ее безусловного математического ожидания.</p>
+
+        <table>
+            <tr>
+                <td> \( C = \)</td>
+                <td>
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</problem>

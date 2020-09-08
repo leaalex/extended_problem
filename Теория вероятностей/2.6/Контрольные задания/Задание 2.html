@@ -1,0 +1,74 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+p11 = random.randint(10, 60)
+p12 = random.randint(10, 80 - p11)
+p11 = round(p11 * 0.01, 2)
+p12 = round(p12 * 0.01, 2)
+
+p21 = round(p11 * (1/(p11+p12) - 1), 2)
+p22 = round(p12 * (1/(p11+p12) - 1), 2)
+
+</script>
+    <div class="no-equation">
+        <p>Таблица задает закон распределения случайного вектора \((X, Y)\).</p>
+
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 80px !important;">\(Y \backslash X\)</td>
+                <td style="width: 100px !important;">\(1\)</td>
+                <td style="width: 100px !important;">\(3\)</td>
+            </tr>
+            <tr>
+                <td>\( 2 \)</td>
+                <td>\($p11\)</td>
+                <td>\($p12\)</td>
+
+            </tr>
+            <tr>
+                <td>\( 4 \)</td>
+                <td>\(p_{21}\)</td>
+                <td>\(p_{22}\)</td>
+            </tr>
+        </table>
+
+        <p>Определить, при каких значениях \(p_{21}, p_{22}\) случайные величины \(X\) и \(Y\) будут независимыми.</p>
+
+        <table>
+            <tr>
+                <td> \( p_{22} = \)</td>
+                <td>
+                    <numericalresponse answer="$p22">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td> \( p_{21} = \)</td>
+                <td>
+                    <numericalresponse answer="$p21">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

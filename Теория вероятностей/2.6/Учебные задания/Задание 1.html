@@ -1,0 +1,165 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_2_6_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+    <script type="loncapa/python">
+import random
+import math
+
+variants = [
+    {
+        "data": [[0.2, 0.13, 0.07], [0.3, 0.195, 0.105]],
+        "is_dependent": False,
+        "is_correlate": False
+    },
+    {
+        "data": [[0.4, 0.25, 0.15], [0.1, 0.0625, 0.0375]],
+        "is_dependent": False,
+        "is_correlate": False
+    },
+    {
+        "data": [[0.16, 0.04, 0.05], [0.48, 0.12, 0.15]],
+        "is_dependent": False,
+        "is_correlate": False
+    },
+    {
+        "data": [[0.1, 0.18, 0.195], [0.1, 0.22, 0.205]],
+        "is_dependent": True,
+        "is_correlate": False
+    },
+    {
+        "data": [[0.2, 0.17, 0.2], [0.11, 0.21, 0.11]],
+        "is_dependent": True,
+        "is_correlate": False
+    },
+    {
+        "data": [[0.09, 0.11, 0.38], [0.1, 0.01, 0.31]],
+        "is_dependent": True,
+        "is_correlate": False
+    },
+    {
+        "data": [[0.1, 0.18, 0.1], [0.1, 0.22, 0.3]],
+        "is_dependent": True,
+        "is_correlate": True
+    },
+    {
+        "data": [[0.2, 0.17, 0.1], [0.11, 0.21, 0.21]],
+        "is_dependent": True,
+        "is_correlate": True
+    },
+    {
+        "data": [[0.09, 0.11, 0.48], [0.1, 0.01, 0.21]],
+        "is_dependent": True,
+        "is_correlate": True
+    }]
+
+variant = random.choice(variants)
+
+if variant["is_dependent"]:
+    question_1_dependent = True
+    question_1_no_dependent = False
+else:
+    question_1_dependent = False
+    question_1_no_dependent = True
+
+if variant["is_correlate"]:
+    question_2_correlate = True
+    question_2_no_correlate = False
+else:
+    question_2_correlate = False
+    question_2_no_correlate = True
+
+x1 = variant["data"][0][0]
+x2 = variant["data"][0][1]
+x3 = variant["data"][0][2]
+
+x4 = variant["data"][1][0]
+x5 = variant["data"][1][1]
+x6 = variant["data"][1][2]
+
+
+</script>
+    <div class="no-equation" id="section_2_6_training_1">
+        <p>Таблица задает закон распределения случайного вектора \((X, Y)\).</p>
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 100px !important;">\(Y \backslash X\)</td>
+                <td style="width: 120px !important;">\(1\)</td>
+                <td style="width: 120px !important;">\(2\)</td>
+                <td style="width: 120px !important;">\(3\)</td>
+            </tr>
+            <tr>
+                <td>\(1\)</td>
+                <td>\($x1\)</td>
+                <td>\($x2\)</td>
+                <td>\($x3\)</td>
+            </tr>
+            <tr>
+                <td>\(2\)</td>
+                <td>\($x4\)</td>
+                <td>\($x5\)</td>
+                <td>\($x6\)</td>
+            </tr>
+        </table>
+
+        <multiplechoiceresponse>
+          <label>Являются величины \(X\) и \(Y\) зависимыми или независимыми?</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$question_1_dependent">величины зависимы</choice>
+            <choice correct="$question_1_no_dependent">величины независимы</choice>
+          </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+          <label>Коррелируют ли эти величины?</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$question_2_correlate">величины коррелируют</choice>
+            <choice correct="$question_2_no_correlate">величины не коррелируют</choice>
+          </choicegroup>
+        </multiplechoiceresponse>
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>величины \(X\), \(Y\) независимы, если ряды условной вероятности \((X, P(X|y_1))\), \((X, P(X|y_2))\) совпадают и равны безусловному ряду \((X, P(X))\). Величины \(X, Y\) коррелируют, если их ковариация \(C(X, Y)\) отлична от нуля.</span>
+        </div>
+
+
+    </div>
+</problem>
+
