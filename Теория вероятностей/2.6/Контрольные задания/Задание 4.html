@@ -1,0 +1,110 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+arr_sum = 0
+while arr_sum != 1.0:
+    random_arr = random.sample(range(1, 99), 4)
+    P_arr = [round(x/sum(random_arr), 2) for x in random_arr]
+    arr_sum = sum(P_arr)
+
+p11, p12, p21, p22 = P_arr
+
+M_X = p11 + 3 * p12 + p21 + 3 * p22
+M_Y = 2 * p11 + 2 * p12 + 4 * p21 + 4 * p22
+sigma_X = math.sqrt(p11 + 9 * p12 + p21 + 9 * p22 - math.pow(M_X, 2))
+sigma_Y = math.sqrt(4 * p11 + 4 * p12 + 16 * p21 + 16 * p22 - math.pow(M_Y, 2))
+r_XY = (2 * p11 + 6 * p12 + 4 * p21 + 12 * p22 - M_X*M_Y)/(sigma_X*sigma_Y)
+
+M_X = round(M_X, 2)
+M_Y = round(M_Y, 2)
+sigma_X = round(sigma_X, 2)
+sigma_Y = round(sigma_Y, 2)
+r_XY = round(r_XY, 2)
+
+</script>
+    <div class="no-equation">
+        <p>Таблица задает закон распределения случайного вектора \((X, Y)\).</p>
+
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 80px !important;">\(Y \backslash X\)</td>
+                <td style="width: 100px !important;">\(1\)</td>
+                <td style="width: 100px !important;">\(3\)</td>
+            </tr>
+            <tr>
+                <td>\( 2 \)</td>
+                <td>\($p11\)</td>
+                <td>\($p12\)</td>
+
+            </tr>
+            <tr>
+                <td>\( 4 \)</td>
+                <td>\($p21\)</td>
+                <td>\($p22\)</td>
+            </tr>
+        </table>
+
+        <p>Определить числовые характеристики величин \(X\) и \(Y\): математические ожидания, среднеквадратичные отклонения и коэффициент корреляции.</p>
+
+        <table>
+            <tr>
+                <td>\( M(X) = \)</td>
+                <td>
+                    <numericalresponse answer="$M_X">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\( M(Y) = \)</td>
+                <td>
+                    <numericalresponse answer="$M_Y">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\( \sigma(X) = \)</td>
+                <td>
+                    <numericalresponse answer="$sigma_X">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\( \sigma(Y) = \)</td>
+                <td>
+                    <numericalresponse answer="$sigma_Y">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\( r_{xy} = \)</td>
+                <td>
+                    <numericalresponse answer="$r_XY">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

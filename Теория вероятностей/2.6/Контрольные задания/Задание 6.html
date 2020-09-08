@@ -1,0 +1,126 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        #task_2_6_06.no-equation input {
+            min-width: 68px !important;
+            height: 36px !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        #task_2_6_06 .trailing_text, .status{
+          display: none !important;
+        }
+        .executive-table td {
+            padding: 0px !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+p1 = round(random.randint(20, 80) * 0.01, 2)
+p2 = round(random.randint(20, 80) * 0.01, 2)
+
+p1 = 0.8
+p2 = 0.7
+
+M_X, M_Y = [2 * p1, 2 * (p1 + p2)]
+a = 1
+b = 2 * p2
+c = (p1 * (1 - p1))/(p1 * (1 - p1) + p2 * (1 - p2))
+d = (2 * p1 * p2 * (p1 - p2))/(p1 * (1 - p1) + p2 * (1 - p2))
+
+b = round(b, 2)
+c = round(c, 2)
+d = round(d, 2)
+
+</script>
+    <div class="no-equation" id="task_2_6_06">
+        <p>В домашней контрольной работе \(4\) задачи. Два студента договорились их решать совместными усилиями: две задачи решает первый студент, и оставшиеся две – второй. Вероятность верного решения каждой из задач для первого студента равна \($p1\), а для второго студента \($p2\). \(X\) – число верно решенных задач первым студентом, \(Y\) – общее число верно решенных задач. Определить координаты центра рассеяния случайного вектора \((X, Y)\) и найдите коэффициенты \(a, b, c, d\) линий регрессии \(Y\) на \(X\): \(Y = aX + b\), и \(X\) на \(Y\): \(X = cY + d\).</p>
+
+        <table class="distribution-table">
+            <tr>
+                <td style="width: 80px !important;">\(Y \backslash X\)</td>
+                <td style="width: 100px !important;">\(1\)</td>
+                <td style="width: 100px !important;">\(3\)</td>
+            </tr>
+            <tr>
+                <td>\( 2 \)</td>
+                <td>\($p11\)</td>
+                <td>\($p12\)</td>
+
+            </tr>
+            <tr>
+                <td>\( 4 \)</td>
+                <td>\($p21\)</td>
+                <td>\($p22\)</td>
+            </tr>
+        </table>
+
+        <p>Определить числовые характеристики величин \(X\) и \(Y\): математические ожидания, среднеквадратичные отклонения и коэффициент корреляции.</p>
+
+        <table class="executive-table">
+            <tr>
+                <td>\((M(X), M(Y)) = ( \)</td>
+                <td>
+                    <numericalresponse answer="$M_X">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+                <td>\(;\)</td>
+                <td>
+                    <numericalresponse answer="$M_Y">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+                <td>\();\)</td>
+            </tr>
+        </table>
+
+        <table class="executive-table">
+            <tr>
+                <td>\(Y = \)</td>
+                <td>
+                    <numericalresponse answer="$a">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot X + \)</td>
+                <td>
+                    <numericalresponse answer="$b">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <table class="executive-table">
+            <tr>
+                <td>\(X = \)</td>
+                <td>
+                    <numericalresponse answer="$c">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot Y + \)</td>
+                <td>
+                    <numericalresponse answer="$d">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

@@ -1,0 +1,87 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        #task_2_6_07.no-equation input {
+            min-width: 68px !important;
+            height: 36px !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+        #task_2_6_07 .trailing_text, .status{
+          display: none !important;
+        }
+        .executive-table td {
+            padding: 0px !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+a = random.randint(1, 10)
+b = random.randint(1, 10)
+
+A = round(-(9*b)/(11*a), 2)
+B = round(8*b/11, 2)
+C = round(-(9*a)/(11*b), 2)
+D = round(8*a/11, 2)
+
+
+
+</script>
+    <div class="no-equation" id="task_2_6_07">
+        <p>Задана плотность вероятности \(f(x, y)\) случайного вектора \((X, Y)\):</p>
+        \[ f(x) = \left\{
+            \begin{array}{ll}
+            \frac{6}{ab} \left( \frac{x^2}{a^2} + \frac{y^2}{b^2} \right), &amp; x \in D, \\
+            0, &amp; x \notin D,
+            \end{array}
+        \right.\]
+
+        <p>где область \(D\) ограниченна треугольником \(x \ge 0\), \(y \ge 0\), \( \frac{x}{a} + \frac{y}{b} \le 1\). Определить коэффициенты линий регрессии \(Y\) на \(X\): \(Y = AX + B\), и \(X\) на \(Y\): \(X = CY + D\). Принять \(a = $a, b = $b\).</p>
+
+        <table class="executive-table">
+            <tr>
+                <td>\(Y = \)</td>
+                <td>
+                    <numericalresponse answer="$A">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot X + \)</td>
+                <td>
+                    <numericalresponse answer="$B">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <table class="executive-table">
+            <tr>
+                <td>\(X = \)</td>
+                <td>
+                    <numericalresponse answer="$C">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot Y + \)</td>
+                <td>
+                    <numericalresponse answer="$D">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

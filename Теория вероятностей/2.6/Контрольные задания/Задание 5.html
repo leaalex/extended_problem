@@ -1,0 +1,212 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+phi_1_arr = [
+    {
+        "text": [1, 9],
+        "number":1/9
+    },
+    {
+        "text": [2, 9],
+        "number":2/9
+    },
+    {
+        "text": [1, 8],
+        "number":1/8
+    },
+    {
+        "text": [1, 7],
+        "number":1/7
+    },
+    {
+        "text": [1, 6],
+        "number":1/6
+    },
+    {
+        "text": [1, 5],
+        "number":1/5
+    },
+    {
+        "text": [1, 10],
+        "number":1/10
+    },
+]
+phi_2_arr = [
+    {
+        "text": [4, 9],
+        "number": 4/9
+    },
+    {
+        "text": [5, 9],
+        "number": 5/9
+    },
+    {
+        "text": [7, 9],
+        "number": 7/9
+    },
+    {
+        "text": [8, 9],
+        "number": 8/9
+    },
+    {
+        "text": [3, 8],
+        "number": 3/8
+    },
+    {
+        "text": [5, 8],
+        "number": 5/8
+    },
+    {
+        "text": [7, 8],
+        "number": 7/8
+    },
+    {
+        "text": [2, 7],
+        "number": 2/7
+    },
+    {
+        "text": [3, 7],
+        "number": 3/7
+    },
+    {
+        "text": [4, 7],
+        "number": 4/7
+    },
+    {
+        "text": [5, 7],
+        "number": 5/7
+    },
+    {
+        "text": [6, 7],
+        "number": 6/7
+    },
+    {
+        "text": [2, 5],
+        "number": 2/5
+    },
+    {
+        "text": [3, 5],
+        "number": 3/5
+    },
+    {
+        "text": [4, 5],
+        "number": 4/5
+    },
+    {
+        "text": [5, 6],
+        "number": 5/6
+    },
+    {
+        "text": [3, 4],
+        "number": 3/4
+    },
+    {
+        "text": [1, 2],
+        "number": 1/2
+    },
+    {
+        "text": [1, 3],
+        "number": 1/3
+    },
+    {
+        "text": [2, 3],
+        "number": 2/3
+    },
+]
+
+phi_1 = random.choice(phi_1_arr)
+phi_2 = random.choice(phi_2_arr)
+
+phi_1_val = phi_1["number"] * math.pi
+phi_2_val = phi_2["number"] * math.pi
+
+M_X_S = math.sqrt(math.pi/2) * (math.sin(phi_2_val) - math.sin(phi_1_val))/(phi_2_val - phi_1_val)
+M_Y_S = math.sqrt(math.pi/2) * (math.cos(phi_1_val) - math.cos(phi_2_val))/(phi_2_val - phi_1_val)
+
+sigma_X_S = math.sqrt(1 + (math.sin(2 * phi_2_val) - math.sin(2 * phi_1_val))/( 2 * (phi_2_val - phi_1_val)) - math.pow(M_X_S, 2))
+sigma_Y_S = math.sqrt(1 - (math.sin(2 * phi_2_val) - math.sin(2 * phi_1_val))/( 2 * (phi_2_val - phi_1_val)) - math.pow(M_Y_S, 2))
+
+r_xy = ((math.cos(2 * phi_1_val) - math.cos(2 * phi_2_val))/(2 * (phi_2_val - phi_1_val)) - M_X_S * M_Y_S) / (sigma_X_S * sigma_X_S)
+
+M_X_S = round(M_X_S, 2)
+M_Y_S = round(M_Y_S, 2)
+sigma_X_S = round(sigma_X_S, 2)
+sigma_Y_S = round(sigma_Y_S, 2)
+r_xy = round(r_xy, 2)
+
+phi_1_numerator = phi_1["text"][0]
+phi_1_denominator = phi_1["text"][1]
+
+phi_2_numerator = phi_2["text"][0]
+phi_2_denominator = phi_2["text"][1]
+
+</script>
+    <div class="no-equation" id="task_2_6_05">
+        <p>Плотность вероятности двумерной случайной величины задана функцией</p>
+
+        \[ f(x) = \left\{
+            \begin{array}{ll}
+            C \ exp \left( - \frac{x^2 + y^2}{2 S^2} \right), &amp; x \in D, \\
+            0, &amp; x \notin D,
+            \end{array}
+        \right.\]
+
+        <p>
+        где область \(D\) заключена между лучам, выходящими под углами \( \varphi_1 = \frac{$phi_1_numerator}{$phi_1_denominator} \pi \) (радиан) и \( \varphi_2 = \frac{$phi_2_numerator}{$phi_2_denominator} \pi \) (радиан) из начала координат. Определить математические ожидания, среднеквадратичные отклонения и корреляцию величин \(X, Y\). Ответ приводить в единицах \(S\) и округлять до сотых, например, \(M(X)/S = 0.32\).
+        </p>
+        <table>
+            <tr>
+                <td>\( \frac{M(X)}{S} = \)</td>
+                <td>
+                    <numericalresponse answer="$M_X_S">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\( \frac{M(Y)}{S} = \)</td>
+                <td>
+                    <numericalresponse answer="$M_Y_S">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+           <tr>
+                <td>\( \frac{\sigma(X)}{S} = \)</td>
+                <td>
+                    <numericalresponse answer="$sigma_X_S">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+           </tr>
+           <tr>
+                <td>\( \frac{\sigma(Y)}{S} = \)</td>
+                <td>
+                    <numericalresponse answer="$sigma_Y_S">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+           <tr>
+                <td>\( r_{xy} = \)</td>
+                <td>
+                    <numericalresponse answer="$r_xy">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="1"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>
