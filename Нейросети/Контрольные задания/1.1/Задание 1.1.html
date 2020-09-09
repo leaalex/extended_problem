@@ -1,0 +1,27 @@
+<problem>
+<script type="text/javascript">
+        let show_secondly = document.getElementsByClassName("vert")[1];
+        let show_firstly = document.getElementById("show_firstly");
+        console.log("show_secondly: ", show_secondly);
+        show_secondly.closest(".vert").style.display = "none";
+        if (show_firstly.getElementsByClassName("correct").length !== 0){
+            show_secondly.closest(".vert").style.display = "block";
+        }
+</script>
+<div id="show_firstly">
+<choiceresponse>
+  <label>Выбрать факторы, которые именно сейчас способствовали активному практическому применению искусственных  нейронных сетей при решении разного спектра задач.</label>
+<checkboxgroup>
+    <choice correct="false">Создание модели искусственного нейрона</choice>
+    <choice correct="true">Наборы данных и тесты</choice>
+    <choice correct="false">Изобретение рекуррентной нейронной сети</choice>
+    <choice correct="true">Библиотеки обучения нейронных сетей</choice>
+    <choice correct="true">Оборудование</choice>
+    <choice correct="false">Изобретение сверточной нейронной сети</choice>
+    <choice correct="false">Появились задачи, для которых стало возможно применить нейронные сети</choice>
+    <choice correct="true">Усовершенствованные алгоритмы</choice>
+    <choice correct="false">Нейронные сети стали обучаться быстрее классических алгоритмов машинного обучения</choice>
+  </checkboxgroup>
+</choiceresponse>
+  </div>
+</problem>

@@ -1,0 +1,114 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+
+variants = [
+    {
+        "img": 'PYDNN_1_2_1_img_01.png',
+        "total_number": 3,
+        "hidden_layers": 1,
+        "neurons_input_layer": 5,
+        "neurons_output_layer": 3,
+        "neurons_hidden_layer": 8,
+        "network_is_deep": True
+    },
+    {
+        "img": 'PYDNN_1_2_1_img_02.png',
+        "total_number": 2,
+        "hidden_layers": 0,
+        "neurons_input_layer": 4,
+        "neurons_output_layer": 7,
+        "neurons_hidden_layer": 0,
+        "network_is_deep": False
+    }
+]
+
+variant = random.choice(variants)
+
+img = variant["img"]
+total_number = variant["total_number"]
+hidden_layers = variant["hidden_layers"]
+neurons_input_layer = variant["neurons_input_layer"]
+neurons_output_layer = variant["neurons_output_layer"]
+neurons_hidden_layer = variant["neurons_hidden_layer"]
+
+if variant["network_is_deep"]:
+    network_is_deep_yes = True
+    network_is_deep_no = False
+else:
+    network_is_deep_yes = False
+    network_is_deep_no = True
+
+</script>
+    <div class="no-equation">
+        <p>По рисунку архитектуры нейронной сети определить: общее количество слоев нейронной сети, количество скрытых слоев, количество нейронов во входном слое, количество нейронов в выходном слое, количество нейронов в скрытом слое, является ли нейронная сеть глубокой?</p>
+        <figure style="text-align:center;">
+          <img src="/static/$img" alt="" style="max-width: 300px;"/>
+          <figcaption></figcaption>
+        </figure>
+
+        <table>
+            <tr>
+                <td>Общее количество слоев нейронной сети:</td>
+                <td>
+                    <numericalresponse answer="$total_number">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Количество скрытых слоев:</td>
+                <td>
+                    <numericalresponse answer="$hidden_layers">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Количество нейронов во входном слое:</td>
+                <td>
+                    <numericalresponse answer="$neurons_input_layer">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Количество нейронов в выходном слое:</td>
+                <td>
+                    <numericalresponse answer="$neurons_output_layer">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Количество нейронов в скрытом слое:</td>
+                <td>
+                    <numericalresponse answer="$neurons_hidden_layer">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <multiplechoiceresponse>
+            <label>Является ли нейронная сеть глубокой?</label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="$network_is_deep_yes">Да</choice>
+                <choice correct="$network_is_deep_no">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+</problem>
+

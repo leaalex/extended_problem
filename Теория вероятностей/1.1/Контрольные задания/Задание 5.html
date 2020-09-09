@@ -7,45 +7,22 @@
     <script type="loncapa/python">
 import random
 import math
-variants = [
-    {
-        "title": "Сколько возможно раскрасок множества чисел \(A = \{1,2,...,$n$\}\) в два цвета?",
-        "range_n": [3, 4, 5, 6, 7, 8, 9, 10],
-        "range_k": [2]
-    },
-    {
-        "title": "В конкурсе по \($n$\) номинациям участвуют \($k$\) книг. Сколько всего существует распределений призов, если по каждой номинации установлены разные премии?",
-        "range_n": [3, 4, 5, 6],
-        "range_k": [2, 3, 4, 5]
-    },
-    {
-        "title": "Сколькими способами можно \($k$\) шариков перераспределить по \($n$\) лункам, если каждая лунка может вместить все $k$ шариков?",
-        "range_n": [3, 4, 5, 6],
-        "range_k": [2, 3, 4, 5]
-    },
-    {
-        "title": "Сколько различных семизначных номеров можно составить из цифр \(1, 2, 9\)?",
-        "range_n": [7],
-        "range_k": [3]
-    },
-    {
-        "title": "Сколько возможно способов переложить \($k$\) книг в три различных шкафа?",
-        "range_n": [3],
-        "range_k": [2, 3, 4, 5]
-    },
-]
 
-variant = random.choice(variants)
-n = random.choice(variant["range_n"])
-k = random.choice(variant["range_k"])
-title = variant["title"].replace("$n$", str(n)).replace("$k$", str(k))
+n_range = [3, 4, 5, 6, 7, 8, 9, 10]
+k_range = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-answer = math.pow(int(k), int(n))
+n = random.choice(n_range)
+k = random.choice(k_range)
+
+a = random.randint(1, n-1)
+b = random.randint(1, k-1)
+
+answer = int(((math.factorial(n))/(math.factorial(a)*math.factorial(n-a)))*((math.factorial(k))/(math.factorial(b)*math.factorial(k-b))))
 
 </script>
     <div class="no-equation">
         <numericalresponse answer="$answer">
-            <p>$title</p>
+            <p>Имеется \($n\) гаек и \($k\) болтов. Найти число способов выбрать \($a\) гаек и \($b\) болтов из имеющихся деталей.</p>
             <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput/>
         </numericalresponse>

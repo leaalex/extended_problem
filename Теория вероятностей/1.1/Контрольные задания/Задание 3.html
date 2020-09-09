@@ -1,0 +1,47 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
+import random
+import math
+variants = [
+    {
+        "title": "На прямой в ряд выложено \($n$\) шаров все различного цвета. Сколькими различными способами это можно выполнить?",
+        "range_n": [5,6,7,8,9]
+    },
+    {
+        "title": "Сколькими способами можно рассадить \($n$\) людей на \($n$\) различных пронумерованных местах?",
+        "range_n": [6,7,8,9,10]
+    },
+    {
+        "title": "На полке \($n$\) различных книг. Найти число различных вариантов расстановки этих книг на полке.",
+        "range_n": [3,4,5,6,7,8,9,10]
+    },
+    {
+        "title": "Сколькими способами можно переставить буквы в слове БУЛЕАН, учитывая, что число букв не изменится?",
+        "range_n": [6],
+    },
+    {
+        "title": "На столе лежат \($n$\) карт из одной колоды. Найти число способов последовательно выложить их в ряд.",
+        "range_n": [3,4,5,6,7,8,9,10],
+    },
+]
+
+variant = random.choice(variants)
+n = random.choice(variant["range_n"])
+title = variant["title"].replace("$n$", str(n))
+
+answer = int(math.factorial(int(n)))
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$answer">
+        <p>$title</p>
+        <responseparam type="tolerance" default="0.01"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>
