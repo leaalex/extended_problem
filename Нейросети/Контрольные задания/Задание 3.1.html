@@ -1,0 +1,87 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+.custom-code{
+    background: #f9f9f9;
+    overflow: auto;
+    padding: 16px 10px;
+    margin: 10px 0px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: .9em;
+    font-family: Monaco, monospace;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+</style>
+<script type="loncapa/python">
+import random
+import math
+import numpy as np
+
+
+def convolution2D(M, kernel):
+    padding = kernel.shape[0] // 2
+    M_shape = M.shape[0]
+    answer = np.zeros((M_shape - 2 * padding, M_shape - 2 * padding))
+    for i in range(0 + padding, M_shape - padding):
+        for j in range(0 + padding, M_shape - padding):
+            answer[i - padding, j - padding] = np.round(np.sum(M[i - padding: i + padding + 1, j - padding: j + padding + 1] * kernel), 1)
+    return answer
+
+
+def display_2nd_array(array):
+    arr_str = ""
+    for index, sub_arr in enumerate(array):
+        if index == 0:
+            arr_str += "["
+        arr_str += str(sub_arr)
+        if index + 1 != len(array):
+            arr_str += ",\n"
+        else:
+            arr_str += "]"
+    return arr_str
+
+
+M_x = random.randint(7, 10)
+M_y = random.randint(7, 10)
+
+M_arr = []
+for ii in range(M_x):
+    M_arr.append([])
+    for jj in range(M_y):
+        M_arr[ii].append(random.randint(0, 255))
+
+kernel_arr = []
+for k in range(3):
+    kernel_arr.append([])
+    for l in range(3):
+        kernel_arr[k].append(round(random.randint(-10, 10) * 0.1, 1))
+
+# M_arr =
+# kernel_arr =
+
+answer = convolution2D(np.array(M_arr), np.array(kernel_arr)).tolist()
+
+M_str = display_2nd_array(M_arr)
+kernel_str = display_2nd_array(kernel_arr)
+
+
+# test_answer = "[[-111.0, -214.9, 43.5, -120.3, 4.8], [248.9, -1.3, -107.7, -5.0, -38.3], [-151.4, -125.3, -85.0, -333.2, -241.9], [-343.1, -219.8, -72.2, 57.8, -63.1], [-72.1, 146.5, -159.7, 47.9, 76.2]]"
+#
+# import json
+# x = json.loads(test_answer)
+# print(x[0])
+</script>
+<div>
+    <p>Дана матрица изображения, ядро свертки (для сверточного слоя) Примените к изображению слой свертки. Результат запишите в виде списка списков. Значения элементов векторов вводить с точностью до 1-го знака после точки, в качестве разделителя используйте запятую.</p>
+    <div class="custom-code"><span><strong>Матрица изображения</strong></span><br /><span>$M_str</span><br /><br /><span><strong>Ядро свертки</strong></span><br /><span>$kernel_str</span></div>
+
+    <solution>
+        <div class="custom-code"><span><strong>Правильный ответ:</strong></span> <br /><span><strong>$answer_str</strong></span></div>
+    </solution>
+  </div>
+</problem>
