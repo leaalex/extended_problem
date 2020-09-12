@@ -3,6 +3,32 @@
 .no-equation .equation{
     display: none !important;
 }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .training_task_01_02_answer label{
+                margin-bottom: 6px !important;
+        }
+        .training_task_01_02_answer {
+                margin-bottom: 40px !important;
+        }
 </style>
   <script type="text/javascript">
   let nums_str = '$nums_str';
@@ -13,7 +39,26 @@
     element_1.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(nums_str));
 
 
+    let training_task_01_02_answer_01 = document.getElementById("training_task_01_02_answer_01");
+    if (training_task_01_02_answer_01.getElementsByClassName("incorrect").length !== 0){
+        for (let item of training_task_01_02_answer_01.getElementsByClassName("custom-comment")) {
+            item.style.display = 'block';
+        }
+    }
 
+    let training_task_01_02_answer_02 = document.getElementById("training_task_01_02_answer_02");
+    if (training_task_01_02_answer_02.getElementsByClassName("incorrect").length !== 0) {
+        for (let item of training_task_01_02_answer_02.getElementsByClassName("custom-comment")) {
+            item.style.display = 'block';
+        }
+    }
+
+    let training_task_01_02_answer_03 = document.getElementById("training_task_01_02_answer_03");
+    if (training_task_01_02_answer_03.getElementsByClassName("incorrect").length !== 0){
+        for (let item of training_task_01_02_answer_03.getElementsByClassName("custom-comment")) {
+            item.style.display = 'block';
+        }
+    }
   </script>
 
 <script type="loncapa/python">
@@ -44,30 +89,55 @@ PI = round((2*l)/(a/r * n), 6)
 
     <div class="no-equation">
     <p>На плоскости начерчены параллельные прямые, находящиеся друг от друга на расстоянии \($ax2\). На плоскость наудачу брошена игла длины \($lx2\).</p>
-        <p><i>В качестве десятичного разделителя используйте только точку. Ответы привести с точностью до шести знаков (после точки).</i></p>
-<!--    <p> </p>-->
+<!--        <p><i>В качестве десятичного разделителя используйте только точку. Ответы привести с точностью до шести знаков (после точки).</i></p>-->
 
 <!--    <p><strong>2.</strong> Рассчитать число \(\pi\) при \($r\) бросков. </p>-->
-
+        <div id="training_task_01_02_answer_01" class="training_task_01_02_answer">
   <numericalresponse answer="$p_theor">
-      <label><strong>1.</strong> Какова <strong>теоретическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую? При расчете изпользовать \(\pi = 3.1415927\).</label>
-  <responseparam type="tolerance" default="0.0001"/>
+      <label><strong>1.</strong>
+          Для выполнения данного задания необходимо решить <i>задачу Бюффона</i> при заданных длине иглы и расстоянии между параллельными прямыми. Используйте геометрическое понимание вероятности.
+<!--          Какова <strong>теоретическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую?-->
+          При расчете изпользовать \(\pi = 3.1415927\).</label>
+  <responseparam type="tolerance" default="0.00001"/>
   <formulaequationinput/>
 </numericalresponse>
 
+    <div class="custom-comment">
+        <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Подсказка: </strong>Вспомнить задачу Бюффона.</span>
+        </div>
+    </div>
+
+        <div id="training_task_01_02_answer_02" class="training_task_01_02_answer">
   <numericalresponse answer="$PI">
-      <label><strong>2.</strong> Проведен эксперимент по бросанию иглы на расчерченную поверхность. Экспериментальные данные приведены в <a href='' download="Результаты бросков.txt" id="download_z_n_1">файле</a>, где каждой единице соответствует пересечение прямой при одном броске, а нулю - непересечение. Рассчитайте число \(\pi\) при \($r\) бросков.<br />
-      <a href='' download="Результаты бросков.txt" id="download_z_n">Скачать результаты $r бросков</a></label>
-  <responseparam type="tolerance" default="0.0001"/>
+      <label><strong>2.</strong>
+          Теперь проведем виртуальный эксперимент и будем бросать виртуальную иглу на разлинованную поверхность. За вас это сделает виртуальный экспериментатор. В <a href='' download="Результаты бросков.txt" id="download_z_n_1">файле</a> можно найти результаты этого эксперимента. Замените вероятность на «число благоприятных исходов поделить на общее число исходов». Выразите \(\pi\) из формулы, которую вы получили и использовали в <strong>пункте 1</strong>, округлите с требуемой точностью и впишите в ячейку. Что является благоприятным исходом для данного эксперимента?<br />
+<!--          Проведен эксперимент по бросанию иглы на расчерченную поверхность. Экспериментальные данные приведены в <a href='' download="Результаты бросков.txt" id="download_z_n_1">файле</a>, где каждой единице соответствует пересечение прямой при одном броске, а нулю - непересечение. Рассчитайте число \(\pi\) при \($r\) бросков.<br />-->
+          <a href='' download="Результаты бросков.txt" id="download_z_n">Скачать результаты $r бросков</a></label>
+  <responseparam type="tolerance" default="0.00001"/>
   <formulaequationinput/>
 </numericalresponse>
+    <div class="custom-comment">
+        <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Подсказка: </strong>Благоприятный исход – игла пересекает прямую.</span>
+        </div>
 
+        </div>
+
+        <div id="training_task_01_02_answer_03" class="training_task_01_02_answer">
   <numericalresponse answer="$p_stat">
-      <label><strong>3.</strong> Какова <strong>статистическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую?</label>
-  <responseparam type="tolerance" default="0.0001"/>
+      <label><strong>3.</strong>
+          А теперь вспомните, что такое <strong>статистическая</strong> вероятность и посчитайте ее для вашего эксперимента, все данные – в файле.
+<!--          Какова <strong>статистическая</strong> вероятность того, что игла пересечёт какую-нибудь прямую?-->
+          </label>
+  <responseparam type="tolerance" default="0.00001"/>
   <formulaequationinput/>
 </numericalresponse>
-
+                <div class="custom-comment">
+        <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Подсказка: </strong>Неверно посчитано число благоприятных исходов, то есть единиц, записанных в файле.</span>
+        </div>
+        </div>
 
 
   </div>

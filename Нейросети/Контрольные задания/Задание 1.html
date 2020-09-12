@@ -16,6 +16,11 @@
     line-height: 1.4;
     white-space: pre-wrap;
 }
+
+#control_task_04_01 span.message{
+    padding: 12px 0px;
+    font-weight: bold;
+}
 </style>
 <script type="loncapa/python">
 import random
@@ -63,44 +68,12 @@ for k in range(3):
     for l in range(3):
         kernel_arr[k].append(round(random.randint(-10, 10) * 0.1, 1))
 
-M_arr = [[201, 137, 156, 153, 159, 55, 189, 28, 174, 237],
-         [241, 200, 153, 44, 189, 51, 244, 150, 154, 0],
-         [124, 241, 127, 95, 101, 237, 13, 128, 252, 119],
-         [48, 100, 50, 140, 183, 40, 65, 142, 227, 239],
-         [164, 240, 82, 186, 179, 208, 107, 127, 236, 64],
-         [242, 81, 218, 182, 2, 134, 199, 195, 12, 53],
-         [225, 172, 95, 17, 252, 45, 98, 192, 100, 148]]
-
-kernel_arr = [[0.7, 0.6, 0.2],
-              [-0.3, 0.2, 0.8],
-              [-1.0, -0.9, -0.9]]
-
 answer = convolution2D(np.array(M_arr), np.array(kernel_arr)).tolist()
 
-answer = [[-111.0, -214.9, 43.5, -120.3, 4.8],
-          [248.9, -1.3, -107.7, -5.0, -38.3],
-          [-151.4, -125.3, -85.0, -333.2, -241.9],
-          [-343.1, -219.8, -72.2, 57.8, -63.1],
-          [-72.1, 146.5, -159.7, 47.9, 76.2]]
 
-
+answer_str = display_2nd_array(answer)
 M_str = display_2nd_array(M_arr)
 kernel_str = display_2nd_array(kernel_arr)
-
-test_answer = '''
-    [[-111.0, -214.9, 43.5, -120.3, 4.8],
-    [248.9, -1.3, -107.7, -5.0, -38.3],
-    [-151.4, -125.3, -85.0, -333.2, -241.9],
-    [-343.1, -219.8, -72.2, 57.8, -63.1],
-    [-72.1, 146.5, -159.7, 47.9, 76.2]]
-'''
-
-test_answer = json.loads(test_answer)
-
-tol = 0.01
-# [[print(u, answer[index_z][index_u]) for index_u, u in enumerate(z)] for index_z, z in enumerate(test_answer)]
-
-print(abs(-2))
 
 
 def check_answer(expect, ans):
@@ -116,41 +89,48 @@ def check_answer(expect, ans):
                     if all((e == len(answer[0])) for e in
                            [len(q) for q in student_answer]):  # проверка что все массивы внутри одинаковой длины
                         if all([all([isinstance(d, (int, float)) for d in t]) for t in student_answer]):
-                            print("Все ок")
+                            if all([all([tol > abs(answer[index_z][index_u] - u) for index_u, u in enumerate(z)]) for index_z, z in enumerate(student_answer)]):
+                                grade = 1
+                                msg = "Верно!"  # все верно
+                                # print("Все ок")
+                            else:
+                                msg = "Присутствуют неверные значения."  # Неверный массив просто
+                                # print("")
                         else:
-                            print("Не все цифры")
+                            msg = "Проверьте, что все элементы являются численными."
+                            # print("Не все цифры")
                     else:
-                        print("Не все внутренние массивы одинаковой длины либо что то не число")
+                        msg = "Проверьте длины полученных массивов."
+                        # print("Не все внутренние массивы одинаковой длины либо что то не число")
                 else:
-                    print("Не все внутренние элементы это массивы")
+                    msg = "Проверьте, что введенный массив является двумерным."
+                    # print("Не все внутренние элементы это массивы")
             else:
-                print("Длина общего не совпала")
+                msg = "Проверьте длину полученного массива."
+                # print("Длина общего не совпала")
         else:
-            print("Не список")
+            msg = "Проверьте тип введенных данных."
+            # print("Не список")
     except:
-        print("Ошибка парсинга")
-
+        msg = "Ошибка парсинга введенных данных. Убедитесь, что в качестве разделителя используется запятая."
+        # print("Ошибка парсинга")
 
     return {
         'input_list': [
             {
-                'ok': True,
-                'msg': "1234567890",
-                'grade_decimal': 0
+                'ok': True if grade == 1 else False,
+                'msg': msg,
+                'grade_decimal': grade
             },
         ]
     }
 
-
-# print(x == answer)
-
-
 </script>
-<div>
+<div id="control_task_04_01">
     <p>Дана матрица изображения, ядро свертки (для сверточного слоя) Примените к изображению слой свертки. Результат запишите в виде списка списков. Значения элементов векторов вводить с точностью до 1-го знака после точки, в качестве разделителя используйте запятую.</p>
     <div class="custom-code"><span><strong>Матрица изображения</strong></span><br /><span>$M_str</span><br /><br /><span><strong>Ядро свертки</strong></span><br /><span>$kernel_str</span></div>
       <customresponse cfn="check_answer">
-        <textline size="40" value=""/>
+        <textline size="100" value=""/>
         <br/>
       </customresponse>
     <solution>
