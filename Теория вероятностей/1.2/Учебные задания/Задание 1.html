@@ -74,9 +74,11 @@ r = random.randint(10000, 100000)
 
 ax2 = 2 * a
 lx2 = 2 * l
-nums = np.random.randint(2, size=r)
-nums = nums.tolist()
+# nums = np.random.randint(2, size=r)
+# nums = nums.tolist()
+nums = [random.choice([1, 0]) for x in range(r)]
 nums_str = str(nums).replace('[', '').replace(']', '')
+
 n = sum(nums)
 
 math_pi = 3.1415927
@@ -88,6 +90,7 @@ PI = round((2*l)/(a/r * n), 6)
 </script>
 
     <div class="no-equation">
+        <p>$n</p>
     <p>На плоскости начерчены параллельные прямые, находящиеся друг от друга на расстоянии \($ax2\). На плоскость наудачу брошена игла длины \($lx2\).</p>
 <!--        <p><i>В качестве десятичного разделителя используйте только точку. Ответы привести с точностью до шести знаков (после точки).</i></p>-->
 
