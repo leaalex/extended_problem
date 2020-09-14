@@ -7,6 +7,7 @@
     <script type="loncapa/python">
 import random
 import math
+import numpy as np
 variants = [
     {
         "title": "Найти число способов взять на руки \($k$\) карт из колоды в \($n$\) карт.",
@@ -40,7 +41,7 @@ k = random.choice(variant["range_k"])
 n = random.choice(variant["range_n"])
 title = variant["title"].replace("$n$", str(n)).replace("$k$", str(k))
 
-answer = int(math.factorial(int(n))/(math.factorial(int(k))*math.factorial(int(n-k))))
+answer = int(np.math.factorial(int(n))/(np.math.factorial(int(k))*np.math.factorial(int(n-k))))
 
 </script>
     <div class="no-equation">

@@ -7,6 +7,8 @@
     <script type="loncapa/python">
 import random
 import math
+import numpy as np
+
 variants = [
     {
         "title": "На прямой в ряд выложено \($n$\) шаров все различного цвета. Сколькими различными способами это можно выполнить?",
@@ -34,7 +36,7 @@ variant = random.choice(variants)
 n = random.choice(variant["range_n"])
 title = variant["title"].replace("$n$", str(n))
 
-answer = int(math.factorial(int(n)))
+answer = int(np.math.factorial(int(n)))
 
 </script>
     <div class="no-equation">

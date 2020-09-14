@@ -7,6 +7,7 @@
     <script type="loncapa/python">
 import random
 import math
+import numpy as np
 variants = [
     {
         "title": "Каким количеством способов можно выбрать \($k$\) разных наименований пирожных в кондитерской, где есть \($n$\) разных сортов?",
@@ -40,7 +41,7 @@ k = random.choice(variant["range_k"])
 n = random.choice(variant["range_n"])
 title = variant["title"].replace("$n$", str(n)).replace("$k$", str(k))
 
-answer = int(math.factorial(int(n+k-1))/(math.factorial(int(k))*math.factorial(int(n-1))))
+answer = int(np.math.factorial(int(n+k-1))/(np.math.factorial(int(k))*np.math.factorial(int(n-1))))
 
 
 </script>
