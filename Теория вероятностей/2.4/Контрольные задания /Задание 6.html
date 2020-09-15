@@ -15,9 +15,9 @@ p = round(random.randint(70, 99) * 0.01, 2)
 N = round(a/(math.pow(b, 2) * (1-p)), 5)
 
 if N.is_integer():
-    n = math.ceil(N)
-else:
     n = round(N+1)
+else:
+    n = math.ceil(N)
 
 </script>
     <div class="no-equation">
@@ -26,7 +26,7 @@ else:
         </p>
         <numericalresponse answer="$n">
             <label>Число измерений \(n\) =</label>
-            <responseparam type="tolerance" default="0.01"/>
+            <responseparam type="tolerance" default="1"/>
             <formulaequationinput/>
         </numericalresponse>
 

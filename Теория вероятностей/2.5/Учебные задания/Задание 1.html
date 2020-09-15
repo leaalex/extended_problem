@@ -49,13 +49,11 @@ while arr_sum != 1.0:
     P_arr = [round(x/sum(random_arr), 2) for x in random_arr]
     arr_sum = sum(P_arr)
 
-#P_arr = [0.1, 0.05, 0.3, 0.55]
-
 p11, p12, p21, p22 = P_arr
 
 ans_1 = p11
-ans_2 = round(p11 + p21, 2)
-ans_3 = round(p11 + p12, 2)
+ans_2 = round(p11 + p12, 2)
+ans_3 = round(p11 + p21, 2)
 ans_4 = 1
 
 ans_5 = round(p21/(p21 + p22), 2)

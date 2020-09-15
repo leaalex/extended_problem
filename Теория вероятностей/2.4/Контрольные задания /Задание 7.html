@@ -24,14 +24,14 @@ arr_tp = [1.036, 1.103, 1.175, 1.254, 1.341, 1.440, 1.555, 1.695, 1.881, 2.170]
 p_index = random.randint(0, 9)
 p = arr_p[p_index]
 
-n = 70
-p0 = 0.6
-p1 = 0.45
-p2 = 0.25
-p3 = 0.07
-alpha = 65
-p_index = 5
-p = 0.85
+# n = 70
+# p0 = 0.6
+# p1 = 0.45
+# p2 = 0.25
+# p3 = 0.07
+# alpha = 65
+# p_index = 5
+# p = 0.85
 
 x1 = (math.sqrt(n) * (alpha/100 - p0))/(math.sqrt(p0 * (1 - p0)))
 x2 = (math.sqrt(n) * (1 - p0))/(math.sqrt(p0 * (1 - p0)))
@@ -55,7 +55,7 @@ else:
     y2 = math.floor(alpha_2)
 
 laplace = lambda x: erf(x/2**0.5)/2
-P = round(laplace(x2) - laplace(x1), 3)
+P = round(laplace(x2) - laplace(x1), 2)
 
 n_x_3 = 3 * n
 
@@ -78,8 +78,8 @@ n_x_3 = 3 * n
         <p><strong>Требуется:</strong> определить вероятность того, что в бою будет сбито не менее \( $alpha \%\) бомбардировщиков (ответ округлять до сотых), оценить границы, в которых с вероятностью \($p\) будет заключено число \(Y\) сбитых истребителей.
         </p>
         <p>Вероятность того, что в бою будет сбито не менее \( $alpha \%\) бомбардировщиков = </p>
-        <numericalresponse answer="$y1">
-            <responseparam type="tolerance" default="1.01"/>
+        <numericalresponse answer="$P">
+            <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput size="10"/>
         </numericalresponse>
 
@@ -88,7 +88,7 @@ n_x_3 = 3 * n
             <tr>
                 <td>
         <numericalresponse answer="$y1">
-            <responseparam type="tolerance" default="1.01"/>
+            <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput size="10"/>
         </numericalresponse>
                 </td>
@@ -97,7 +97,7 @@ n_x_3 = 3 * n
                 </td>
                 <td>
         <numericalresponse answer="$y2">
-            <responseparam type="tolerance" default="1.01"/>
+            <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput size="10"/>
         </numericalresponse>
                 </td>
