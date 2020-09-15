@@ -86,7 +86,7 @@ variants = [
         "is_correlate": True
     },
     {
-        "formula": "\\[ f(x) = \\left\\{ \\begin{array}{ll} \\frac{6}{ab(a+b)}, &amp; (x, y) \\in D, \\\\ 0, &amp; (x, y) \\notin D, \\end{array} \\right.\]",
+        "formula": "\\[ f(x) = \\left\\{ \\begin{array}{ll} \\frac{6(x+y)}{ab(a+b)}, &amp; (x, y) \\in D, \\\\ 0, &amp; (x, y) \\notin D, \\end{array} \\right.\]",
         "D": "где \(D\) – треугольник \( x \gt 0, y \gt 0, \\frac{x}{a} + \\frac{y}{b} \lt 1 (a \gt 0, b \gt 0)\).",
         "is_dependent": True,
         "is_correlate": True
@@ -100,6 +100,7 @@ variants = [
 ]
 
 variant = random.choice(variants)
+
 formula = variant["formula"]
 D = variant["D"]
 
@@ -119,7 +120,7 @@ else:
 
 </script>
     <div class="no-equation" id="section_2_6_training_2">
-        <p>Таблица задает закон распределения случайного вектора \((X, Y)\).</p>
+        <p>Плотность вероятности случайного вектора \((X, Y)\) задана функцией.</p>
         $formula
         <p>$D</p>
 
