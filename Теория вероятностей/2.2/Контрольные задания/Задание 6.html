@@ -20,13 +20,12 @@ x_2 = round(M + 1.96*sigma, 2)
     <div class="no-equation">
         <p>Функция</p>
         \[
-            f(x) = C \ exp( -$b^{2} + ($c \cdot x))
+            f(x) = C \ \text{exp}( -$b \cdot x^{2} + ($c \cdot x))
         \]
         <p>Вопросы задачи:</p>
         <p>Определить математическое ожидание случайной величины.</p>
         <p>Определить среднеквадратичное отклонение случайной величины</p>
-        <p>Определить границы симметричной относительно математического ожидания области двусторонней критической значимости уровня \(0.05\).
-        </p>
+        <p>Определить границы \( (x_1, x_2) \) симметричной относительно математического ожидания области двусторонней критической значимости уровня \(0.05\), \( (-\infty \lt x \lt x_1); (x_2 \lt x \lt +\infty) \).</p>
 
 
         <numericalresponse answer="$M">
@@ -41,16 +40,27 @@ x_2 = round(M + 1.96*sigma, 2)
             <formulaequationinput/>
         </numericalresponse>
 
-        <numericalresponse answer="$x_1">
-            <label>Верхня граница симметричной относительно математического ожидания области двусторонней критической значимости уровня \(0.05\) =</label>
-            <responseparam type="tolerance" default="0.01"/>
-            <formulaequationinput/>
-        </numericalresponse>
+        <p>Границы \( (x_1, x_2) \) симметричной относительно математического ожидания области двусторонней критической значимости уровня \(0.05\)</p>
+        <table>
+            <tr>
+                <td>\(x_1\) =</td>
+                <td>
+                    <numericalresponse answer="$x_1">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
 
-        <numericalresponse answer="$x_2">
-            <label>Нижняя граница симметричной относительно математического ожидания области двусторонней критической значимости уровня \(0.05\) =</label>
-            <responseparam type="tolerance" default="0.01"/>
-            <formulaequationinput/>
-        </numericalresponse>
+            <tr>
+                <td>\(x_2\) =</td>
+                <td>
+                    <numericalresponse answer="$x_2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
     </div>
 </problem>
