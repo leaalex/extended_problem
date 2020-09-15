@@ -45,12 +45,12 @@ P = round(P, 2)
         <p>Поезд приходит на станцию вовремя с вероятностью \(p\), однако в некоторых случаях в силу неконтролируемых причин он может опаздывать. Установлено, что максимально возможное время задержки по езда составляет \(T_0\) часов (т. е. опоздание на время \(t ≥ T_0\) невозможно), а все времена задержки \(t\) из интервала \((0 \lt t \lt T_0)\) равновозможны.</p>
 
         <p>Найти значение функции распределения \(F(t)\) случайной величины \(T\) – времени задержки поезда, при \(t = $alpha \cdot T_0\), если \(p = $p_0\), \(T_0 = $T_1\):</p>
-        <numericalresponse answer="$ac">
+        <numericalresponse answer="$F">
             <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput/>
         </numericalresponse>
 
-        <numericalresponse answer="$int_left">
+        <numericalresponse answer="$P">
             <label>Найти вероятность того, что опоздание поезда составит от \($t_1\) до \($t_2\):</label>
             <responseparam type="tolerance" default="0.01"/>
             <formulaequationinput/>
