@@ -111,7 +111,7 @@ variants = [
     },
 ]
 
-variant = random.choice(variants)
+variant = random.choice(variants[0:10])
 
 text = ""
 if len(variant["value"]) == 4:
