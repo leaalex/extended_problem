@@ -1,0 +1,137 @@
+<problem>
+<script type="loncapa/python">
+import random
+import json
+
+answer_str = """
+model = Sequential()
+model.add(Convolution2D(32, 3, 3, input_shape=(3, 56, 56), activation="relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+model.add(Convolution2D(64, 3, 3, activation="relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+model.add(Convolution2D(128, 3, 3, activation="relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+model.add(Flatten())
+model.add(Dense(128, activation="relu"))
+model.add(Dropout(0.5))
+model.add(Dense(3, activation="softmax"))
+"""
+
+answer_arr = []
+
+for index, answer_item in enumerate(answer_str.split("\n")):
+    if answer_item.replace(" ", "") != "":
+        answer_arr.append(answer_item.replace(" ", "").replace("'", '"'))
+
+
+def check_answer(expect, ans):
+    # ans = ans.replace('\"', "'").replace('\n', "$$")
+    print(ans)
+    student_answer = json.loads(ans)
+    print(student_answer)
+
+    # return {
+    #     'input_list': [
+    #         {
+    #             # true, false partially
+    #             'ok': response['ok'],
+    #             # string - отображаения под Input'ом
+    #             # как проавило сюда отправляется json со всеми дополнительными данными
+    #             'msg': str(json.dumps(response)),
+    #             # number [0, 1] - оценка за задание
+    #             'grade_decimal': response['grade']
+    #         },
+    #     ]
+    # }
+
+
+test_answer = '''
+{"answer":["model = xxx","model.add(Convolution2D(32, 3, 3, input_shape=(3, 56, 56), activation='relu'))","model.add(MaxPooling2D(pool_size=(2,2)))","model.add(Dropout(0.25))","model.add(Convolution2D(64, 3, 3, activation=“relu“))","model.add(MaxPooling2D(pool_size=(2,2)))","model.add(Dropout(0.25))","model.add(Convolution2D(128, 3, 3, activation=“relu“))","model.add(MaxPooling2D(pool_size=(2,2)))","model.add(Dropout(0.25))","model.add(Flatten)","model.add(Dense(128, activation='relu'))","model.add(Dense(3, activation='softmax'))"]}
+'''
+check_answer(False, test_answer)
+
+#def check_answer(ex, answer):
+#    return True
+
+</script>
+
+<script type="text/javascript">
+String.prototype.replaceAll = function(search, replace){
+  return this.split(search).join(replace);
+}
+function Answer(elementField) {
+    this.elementField = elementField;
+    this.fieldValue = "";
+    this.fieldObject = {};
+    this.get = function() {
+        this.fieldValue = elementField.value;
+        return this.fieldValue;
+    };
+    this.set = function(value) {
+        if (value == undefined) value = this.fieldValue;
+        elementField.value = value;
+    };
+    this.getJSON = function() {
+        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+        return this.fieldObject;
+    };
+    this.setJSON = function(object) {
+        if (object == undefined) object = this.fieldObject;
+        this.set(JSON.stringify(object))
+    };
+    this.isJsonString = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
+};
+let answer_input = new Answer(document.querySelector("#answer_block input[type='text']"));
+
+
+var myCodeMirror = CodeMirror(document.querySelector("#myTextArea"), {
+  value: "model = Sequential() \nmodel.add(Convolution(6, 5, 5, input_shape=(1, 32, 32)) \nmodel.add(AveragePooling2D(pool_size=(2, 2))) \nmodel.add(Convolution2D(16, 5, 5) \nmodel.add(AveragePooling2D(pool_size=(2, 2))) \nmodel.add(Flatten()) \nmodel.add(Dense(84)) \nmodel.add(Dense(10, activation='softmax')) \n"
+  ,
+  mode:  "python",
+  lineWrapping: true,
+	lineNumbers: true,
+	// readOnly: true
+});
+
+if (answer_input.get()){
+	myCodeMirror.setValue(answer_input.getJSON()["answer"].join("\n"));
+	setTimeout(function() {
+		myCodeMirror.refresh();
+	},1);
+}
+
+
+myCodeMirror.on("change", function() {
+
+    answer_input.setJSON({answer: myCodeMirror.getValue().split("\n").map(function(element){return element.replaceAll('"', "'")})});
+});
+
+
+</script>
+
+
+
+<div>
+	<div id="myTextArea"></div>
+</div>
+
+  <div id="answer_block">
+
+        <customresponse cfn="check_answer">
+        <textline size="40"/>
+        <br/>
+    </customresponse>
+
+  </div>
+
+</problem>
