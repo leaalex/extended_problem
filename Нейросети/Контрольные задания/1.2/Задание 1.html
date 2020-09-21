@@ -10,22 +10,31 @@ import math
 
 variants = [
     {
-        "img": 'PYDNN_1_2_1_img_01.png',
+        "img": 'PYDNN_1_2_1_img_1.png',
         "total_number": 3,
         "hidden_layers": 1,
         "neurons_input_layer": 5,
         "neurons_output_layer": 3,
         "neurons_hidden_layer": 8,
-        "network_is_deep": True
+        "network_is_deep": False
     },
     {
-        "img": 'PYDNN_1_2_1_img_02.png',
+        "img": 'PYDNN_1_2_1_img_2.png',
         "total_number": 2,
         "hidden_layers": 0,
         "neurons_input_layer": 4,
         "neurons_output_layer": 7,
         "neurons_hidden_layer": 0,
         "network_is_deep": False
+    },
+    {
+        "img": 'PYDNN_1_2_1_img_3.png',
+        "total_number": 4,
+        "hidden_layers": 2,
+        "neurons_input_layer": 3,
+        "neurons_output_layer": 4,
+        "neurons_hidden_layer": 5,
+        "network_is_deep": True
     }
 ]
 
@@ -49,7 +58,7 @@ else:
     <div class="no-equation">
         <p>По рисунку архитектуры нейронной сети определить: общее количество слоев нейронной сети, количество скрытых слоев, количество нейронов во входном слое, количество нейронов в выходном слое, количество нейронов в скрытом слое, является ли нейронная сеть глубокой?</p>
         <figure style="text-align:center;">
-          <img src="/static/$img" alt="" style="max-width: 300px;"/>
+          <img src="/static/$img" alt="" style="max-width: 350px;"/>
           <figcaption></figcaption>
         </figure>
 
@@ -103,7 +112,7 @@ else:
 
         <multiplechoiceresponse>
             <label>Является ли нейронная сеть глубокой?</label>
-            <choicegroup type="MultipleChoice" shuffle="true">
+            <choicegroup type="MultipleChoice">
                 <choice correct="$network_is_deep_yes">Да</choice>
                 <choice correct="$network_is_deep_no">Нет</choice>
             </choicegroup>

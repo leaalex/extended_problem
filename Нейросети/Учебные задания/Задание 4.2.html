@@ -3,8 +3,24 @@
 import random
 import json
 
-answer_str = """
+filters_Convolution2D = 32
+filters_Convolution2Dx2 = filters_Convolution2D * 2
+filters_Convolution2Dx4 = filters_Convolution2D * 4
+image_size = 56
+Dropout = 0.25
+Dropout_last = 0.5
+Dense = 128
+
+example_str = """model.add(Dropout(_))
+model.add(Convolution2D(_, 3, 3, activation='relu')
+model.add(Dense(_, activation='softmax'))
 model = Sequential()
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dense(_, activation='relu'))
+model.add(Flatten())
+model.add(Convolution(_, 3, 3, input_shape=(_, _, _), activation='relu'))"""
+
+answer_str = """model = Sequential()
 model.add(Convolution2D(32, 3, 3, input_shape=(3, 56, 56), activation="relu"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(0.25))
@@ -17,46 +33,87 @@ model.add(Dropout(0.25))
 model.add(Flatten())
 model.add(Dense(128, activation="relu"))
 model.add(Dropout(0.5))
-model.add(Dense(3, activation="softmax"))
-"""
+model.add(Dense(3, activation="softmax"))""".format(filters_Convolution2D, filters_Convolution2Dx2, filters_Convolution2Dx4, image_size, Dropout, Dropout_last, Dense)
 
-answer_arr = []
+correct_answer = []
 
 for index, answer_item in enumerate(answer_str.split("\n")):
     if answer_item.replace(" ", "") != "":
-        answer_arr.append(answer_item.replace(" ", "").replace("'", '"'))
+        correct_answer.append(answer_item.replace(" ", "").replace("'", '"'))
 
 
 def check_answer(expect, ans):
-    # ans = ans.replace('\"', "'").replace('\n', "$$")
-    print(ans)
-    student_answer = json.loads(ans)
-    print(student_answer)
+    grade = 0
+    max_grade = len(correct_answer)
+    ans = json.loads(ans)["answer"]
+    student_answer = []
+    for ans_index, sa in enumerate(ans):
+        if sa.replace(" ", "") != "":
+            student_answer.append(sa.replace(" ", "").replace("'", '"'))
 
-    # return {
-    #     'input_list': [
-    #         {
-    #             # true, false partially
-    #             'ok': response['ok'],
-    #             # string - отображаения под Input'ом
-    #             # как проавило сюда отправляется json со всеми дополнительными данными
-    #             'msg': str(json.dumps(response)),
-    #             # number [0, 1] - оценка за задание
-    #             'grade_decimal': response['grade']
-    #         },
-    #     ]
-    # }
+    wrong_items = []
+    for corr_index, corr_item in enumerate(correct_answer):
+        if len(student_answer) > corr_index:
+            if corr_item == student_answer[corr_index]:
+                grade += 1
+            else:
+                wrong_items.append(corr_index)
+                break
 
+    if len(student_answer) != len(correct_answer):
+        return {'input_list': [{'ok': False, 'msg': str(wrong_items), 'grade_decimal': 0}, ]}  #  Неверное количество строк
 
-test_answer = '''
-{"answer":["model = xxx","model.add(Convolution2D(32, 3, 3, input_shape=(3, 56, 56), activation='relu'))","model.add(MaxPooling2D(pool_size=(2,2)))","model.add(Dropout(0.25))","model.add(Convolution2D(64, 3, 3, activation=“relu“))","model.add(MaxPooling2D(pool_size=(2,2)))","model.add(Dropout(0.25))","model.add(Convolution2D(128, 3, 3, activation=“relu“))","model.add(MaxPooling2D(pool_size=(2,2)))","model.add(Dropout(0.25))","model.add(Flatten)","model.add(Dense(128, activation='relu'))","model.add(Dense(3, activation='softmax'))"]}
-'''
-check_answer(False, test_answer)
+    if grade == max_grade:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}, ]}
+    else:
+        return {'input_list': [{'ok': False, 'msg': str(wrong_items), 'grade_decimal': 0}, ]}
 
-#def check_answer(ex, answer):
-#    return True
 
 </script>
+
+<style>
+#pydnn_task_4_2 .CodeMirror-gutter.CodeMirror-linenumbers{
+    width: 24px !important;
+}
+#pydnn_task_4_2 .CodeMirror-linenumber.CodeMirror-gutter-elt{
+    left: -6px !important;
+}
+
+.task_block .CodeMirror-lines, .correct_answer_block .CodeMirror-lines {
+    padding: 4px 2px !important;
+}
+
+.example_block .CodeMirror-lines {
+    padding: 4px 6px !important;
+}
+
+.CodeMirror{
+    border: 1px solid #d0d0d0 !important;
+}
+
+.example_block {
+    margin: 20px 0;
+}
+.example_block .CodeMirror{
+      border: 1px solid #eee !important;
+  height: auto;
+}
+.wrong-line{
+    background: #ff7070 !important;
+}
+.detailed-solution-header{
+    border-left: 5px solid #009b01;
+    padding: 10px;
+    color: #009b01;
+    background: whitesmoke;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.detailed-solution-header h1{
+    margin-bottom: 0.11575em !important;
+}
+</style>
 
 <script type="text/javascript">
 String.prototype.replaceAll = function(search, replace){
@@ -91,16 +148,19 @@ function Answer(elementField) {
         return true;
     };
 };
+
 let answer_input = new Answer(document.querySelector("#answer_block input[type='text']"));
 
+var myCodeMirror = CodeMirror(document.querySelector("#answer_textarea"), {
+    mode:  "python",
+    lineWrapping: true,
+    lineNumbers: true,
+});
 
-var myCodeMirror = CodeMirror(document.querySelector("#myTextArea"), {
-  value: "model = Sequential() \nmodel.add(Convolution(6, 5, 5, input_shape=(1, 32, 32)) \nmodel.add(AveragePooling2D(pool_size=(2, 2))) \nmodel.add(Convolution2D(16, 5, 5) \nmodel.add(AveragePooling2D(pool_size=(2, 2))) \nmodel.add(Flatten()) \nmodel.add(Dense(84)) \nmodel.add(Dense(10, activation='softmax')) \n"
-  ,
-  mode:  "python",
-  lineWrapping: true,
-	lineNumbers: true,
-	// readOnly: true
+
+myCodeMirror.on("change", function() {
+    answer_input.setJSON({answer: myCodeMirror.getValue().split("\n").map(function(element){return element.replaceAll('"', "'")})});
+    myCodeMirror.getDoc().findMarksAt({ch: 0, line: myCodeMirror.getDoc().cm.getCursor().line}).forEach(function(mark){mark.clear()});
 });
 
 if (answer_input.get()){
@@ -108,30 +168,79 @@ if (answer_input.get()){
 	setTimeout(function() {
 		myCodeMirror.refresh();
 	},1);
+
+	if ($("span.message", $("#answer_block"))) {
+            if ($("span.message", $("#answer_block")).text() != "") {
+                let wrongLines = JSON.parse($("span.message", $("#answer_block")).text());
+                wrongLines.forEach(function (line_num){
+                  myCodeMirror.getDoc().markText({
+                  line: line_num,
+                  ch: 0
+                }, {
+                  line: line_num,
+                  ch: myCodeMirror.getDoc().getLine(line_num).length
+                }, {
+                  className: "wrong-line"
+                });
+                });
+            }
+    }
 }
 
-
-myCodeMirror.on("change", function() {
-
-    answer_input.setJSON({answer: myCodeMirror.getValue().split("\n").map(function(element){return element.replaceAll('"', "'")})});
+let example_textarea = CodeMirror(document.querySelector("#example_textarea"), {
+    value: `$example_str`,
+    mode:  "python",
+	readOnly: true
 });
-
 
 </script>
 
+<div id="pydnn_task_4_2">
 
+<p>Выбрать необходимые структурные элементы, сверточной нейронной сети и построить архитектуру по заданным параметрам.</p>
+    <p>Дан набор изображений размерностью \($image_size х $image_size \). В наборе три типа изображений: автомобиль, велосипед, человек. Из данных элементов необходимо собрать архитектуру сверточной нейронной сети с указанием верных параметров.</p>
+    <p>Дополнительные договоренности, необходимые для верного решения:</p>
+    <ul>
+        <li>слой Dropout в сверточных блоках ставим \($Dropout\), в полносвязном слое \($Dropout_last\);</li>
+        <li>количество фильтров в первом сверточном блоке \($filters_Convolution2D\) и дальше с каждым слоем увеличивается в два раза;</li>
+        <li>в каждом сверточном блоке обязательно используем три элемента: <i>Dropout</i>, слой <i>Convolution</i>, слой <i>MaxPooling</i> — в верном порядке;</li>
+        <li>используем лишь два полносвязных слоя;</li>
+        <li>промежуточный полносвязный слой будет содержать \($Dense\) нейронов;</li>
+        <li>используем три сверточных блока.</li>
+    </ul>
 
-<div>
-	<div id="myTextArea"></div>
-</div>
-
-  <div id="answer_block">
-
+    <div class="example_block">
+        <div id="example_textarea"></div>
+    </div>
+    <div class="task_block">
+        <div id="answer_textarea"></div>
+    </div>
+    <div id="answer_block" style="display: none;">
         <customresponse cfn="check_answer">
-        <textline size="40"/>
-        <br/>
-    </customresponse>
+            <textline size="40"/>
+            <br/>
+        </customresponse>
+    </div>
 
-  </div>
+    <solution>
+                    <div class="detailed-solution">
+                <div class="detailed-solution-header">
+                    <h1>Решение задачи</h1>
+                </div>
+            <div class="correct_answer_block">
+                <div id="correct_answer_textarea"></div>
+            </div>
+                    </div>
+        <script type="text/javascript">
+            let correct_answer_textarea = CodeMirror(document.querySelector("#correct_answer_textarea"), {
+            value: `$answer_str`,
+            mode:  "python",
+            readOnly: true,
+            lineNumbers: true,
+        });
+        </script>
+    </solution>
+
+</div>
 
 </problem>

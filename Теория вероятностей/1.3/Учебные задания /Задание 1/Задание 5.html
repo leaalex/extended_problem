@@ -1,0 +1,50 @@
+<problem>
+<style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+<script type="text/javascript">
+    let elem = document.getElementById("section_1_3_training_1_5");
+    if (elem.getElementsByClassName("incorrect").length !== 0){
+        for (let item of elem.getElementsByClassName("custom-comment")) {
+            item.style.display = 'block';
+        }
+    }
+</script>
+  <div class="no-equation" id="section_1_3_training_1_5">
+
+<numericalresponse answer="0.1262626">
+  <label>
+В урне находятся \(5\) белых, \(2\) красных и \(5\) зеленых шаров. Наудачу вынули \(5\) шаров. Найти вероятность того, что среди них \(3\) белых, \(1\) красный и \(1\) зеленый.
+  </label>
+<responseparam type="tolerance" default="0.0001"/>
+  <formulaequationinput/>
+</numericalresponse>
+
+  <div class="custom-comment">
+    <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+    <span class="custom-comment-content"><strong>Комментарий: </strong>Использовать комбинаторное понятие сочетаний. Использовать умножение сочетаний без повторений.</span>
+  </div>
+
+  </div>
+</problem>

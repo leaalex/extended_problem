@@ -1,0 +1,123 @@
+<problem>
+<style>
+.economic-choice {
+    padding-bottom: 20px;
+}
+
+.economic-choice .field{
+	display:inline-block;
+	background: #ececec;
+    border-radius: 3px;
+}
+
+.economic-choice .field label{
+	box-sizing: border-box;
+    border: none !important;
+    padding: 0px !important;
+    padding-left: 0px !important;
+    margin-bottom: 0px !important;
+    position: relative;
+    font-size: 1em;
+    line-height: normal;
+    cursor: pointer;
+    width: auto;
+}
+
+.economic-choice .field label input[type="radio"]{
+	display: none !important;
+}
+
+.economic-choice input[type="radio"]:checked ~ span {
+    color: red;
+    text-decoration: line-through;
+}
+
+.economic-choice input[type="radio"]:hover ~ span {
+	        color: red;
+}
+
+.economic-choice .field label .status{
+	display: none !important;
+}
+
+</style>
+<script type="text/javascript">
+// let items_disables = [];
+// let items_disables = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
+let items_disables = [0, 2];
+
+
+
+items_disables.forEach(function(item){
+	document.querySelectorAll("#PROJ_task_3_1_03.economic-choice .field")[item].style.pointerEvents = "none";
+	document.querySelectorAll("#PROJ_task_3_1_03.economic-choice .field")[item].style.background = "none";
+});
+
+
+</script>
+		<!--
+		<choice correct="false"><span>Критерии успешности проекта</span></choice>
+		<choice correct="false"><span>для всех заинтересованных сторон (стейкхолдеров)</span></choice>
+		<choice correct="true"><span>одинаковы.</span></choice>
+		-->
+
+		<!--
+		<choice correct="false"><span>Руководитель проекта</span></choice>
+		<choice correct="false"><span>должен </span></choice>
+		<choice correct="false"><span>при </span></choice>
+		<choice correct="false"><span>планировании </span></choice>
+		<choice correct="false"><span>проекта </span></choice>
+		<choice correct="false"><span>определить </span></choice>
+		<choice correct="false"><span>ожидания </span></choice>
+		<choice correct="false"><span>ключевых </span></choice>
+		<choice correct="false"><span>его </span></choice>
+		<choice correct="false"><span>участников </span></choice>
+		<choice correct="false"><span>и показатели </span></choice>
+		<choice correct="false"><span>(критерии успешности), </span></choice>
+		<choice correct="false"><span>по которым </span></choice>
+		<choice correct="false"><span>будет </span></choice>
+		<choice correct="false"><span>формироваться </span></choice>
+		<choice correct="false"><span>вывод </span></choice>
+		<choice correct="false"><span>об </span></choice>
+		<choice correct="false"><span>успехе </span></choice>
+		<choice correct="false"><span>проекта, </span></choice>
+		<choice correct="false"><span>в ходе </span></choice>
+		<choice correct="false"><span>реализации </span></choice>
+		<choice correct="false"><span>проекта </span></choice>
+		<choice correct="false"><span>осуществлять </span></choice>
+		<choice correct="false"><span>контроль </span></choice>
+		<choice correct="false"><span>и анализ </span></choice>
+		<choice correct="false"><span>этих </span></choice>
+		<choice correct="false"><span>показателей </span></choice>
+		<choice correct="true"><span>не требуется.</span></choice>
+		-->
+
+	  	<!--
+	  	<choice correct="false"><span>В процессе реализации проекта </span></choice>
+	    <choice correct="true"><span>не допускается</span></choice>
+	  	<choice correct="false"><span>корректировка </span></choice>
+	    <choice correct="false"><span>критериев успешности проекта.</span></choice>
+	    -->
+
+<div class="economic-choice" id="PROJ_task_3_1_03">
+
+<p><i>Отметьте ошибку в приведенном ниже утверждении.</i></p>
+
+	<multiplechoiceresponse>
+	  <choicegroup type="MultipleChoice">
+	  	<choice correct="false"><span>В процессе реализации проекта </span></choice>
+	    <choice correct="true"><span>не допускается</span></choice>
+	  	<choice correct="false"><span>корректировка </span></choice>
+	    <choice correct="false"><span>критериев успешности проекта.</span></choice>
+	  </choicegroup>
+	</multiplechoiceresponse>
+
+	<solution>
+		<h2>Правильный вариант</h2>
+		<!-- <p>Критерии успешности проекта для различных заинтересованных сторон (стейкхолдеров) <span style="color:green;">могут отличаться.</span></p> -->
+		<!-- <p>Руководитель проекта должен при планировании проекта определить ожидания ключевых его участников и показатели (критерии успешности), по которым будет формироваться вывод об успехе проекта, <span style="color:green;">в ходе реализации проекта осуществлять контроль и анализ этих показателей.</span></p> -->
+		<p>В процессе реализации проекта <span style="color:green;">может происходить</span> корректировка критериев успешности проекта.</p>
+
+	</solution>
+</div>
+</problem>

@@ -36,116 +36,64 @@
             display: inline-flex;
             min-width: 200px;
         }
+.economic-choice .field label input[type="radio"]{
+	display: none !important;
+}
+        .economic-choice .field label{
+padding-left: 0px !important;
+            text-align: center;
+                margin: 10px;
+    padding-right: 0px;
+    padding-left: 0px !important;
+}
+
+        background: aquamarine;
+    border: 2px solid blue;
     </style>
 
-    <p><strong>Какому виду инвестиций соответствуют?</strong></p>
-
-    <div class="economic-choice two">
+    <p><strong>Длительность проекта</strong></p>
+    <div class="economic-choice three height80px">
         <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">финансовые</choice>
-                <choice correct="true">реальные</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-    <hr />
-    <div class="economic-choice two">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">краткосрочные</choice>
-                <choice correct="true">долгосрочные</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-    <hr />
-    <div class="economic-choice two">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">косвенные</choice>
-                <choice correct="true">прямые</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-    <hr />
-    <div class="economic-choice two">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">производные</choice>
-                <choice correct="true">автономные</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-    <hr />
-    <div class="economic-choice two">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">государственные</choice>
-                <choice correct="true">частные</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-    <hr />
-    <div class="economic-choice four height100px">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="true">
-                <choice correct="false">в повышение эффективности производства</choice>
-                <choice correct="false">в расширение производства</choice>
-                <choice correct="false">в создание новых производств</choice>
-                <choice correct="true">вынужденные</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-<!--    <hr />-->
-
-    <p><strong>Какому уровню риска соответствуют?</strong></p>
-
-    <div class="economic-choice four">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="false">
-                <choice correct="true">очень низкий</choice>
-                <choice correct="false">низкий</choice>
-                <choice correct="false">средний</choice>
-                <choice correct="false">высокий</choice>
-            </choicegroup>
-        </multiplechoiceresponse>
-    </div>
-<!--    <hr />-->
-
-    <p><strong>Использование метода сравнительной экономической эффективности?</strong></p>
-
-    <div class="economic-choice three height100px">
-        <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="false">
-                <choice correct="true">Данный метод мог быть использован "локально" при выборе технологии очистки</choice>
-                <choice correct="false">Данный метод является основным при определении эффективности проекта</choice>
-                <choice correct="false">Использовать данный метод не имеет смысла на любом этапе расчетов эффективности</choice>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="true"><strong>Краткосрочные</strong><br /> (до 0,5 года)</choice>
+                <choice correct="false"><strong>Среднесрочные</strong><br /> (от 0,5 года до 2 лет)</choice>
+                <choice correct="false"><strong>Долгосрочные</strong><br /> (больше 2 лет)</choice>
             </choicegroup>
         </multiplechoiceresponse>
     </div>
 
-    <p><strong>Рассчитывалась ли для данного проекта его коммерческая эффективность?</strong></p>
-
-    <div class="economic-choice three height120px">
+    <p><strong>Сложность проекта</strong></p>
+    <div class="economic-choice three height80px">
         <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="false">
-                <choice correct="false">Нет, потому что проектом не предполагается выпуск продукции (работ, услуг)</choice>
-                <choice correct="false">Да, потому что проект реализуется коммерческой организацией</choice>
-                <choice correct="true">Да, потому что реализация проекта приведет к изменению прибыли предприятия</choice>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="true"><strong>Простые</strong></choice>
+                <choice correct="false"><strong>Сложные</strong></choice>
+                <choice correct="false"><strong>Очень сложные</strong></choice>
             </choicegroup>
         </multiplechoiceresponse>
     </div>
 
-    <p><strong>При расчете коэффициента дисконтирования устанавливается значение нормы доходности:</strong></p>
-
-    <div class="economic-choice three">
+    <p><strong>Бюджет проекта</strong></p>
+    <div class="economic-choice three height80px">
         <multiplechoiceresponse>
-            <choicegroup type="MultipleChoice" shuffle="false">
-                <choice correct="true">низкое</choice>
-                <choice correct="false">среднее</choice>
-                <choice correct="false">высокое</choice>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="true"><strong>До 100 000 руб.</strong></choice>
+                <choice correct="false"><strong>От 500 000 руб. до 1 000 000 руб.</strong></choice>
+                <choice correct="false"><strong>Более 1 000 000 руб.</strong></choice>
             </choicegroup>
         </multiplechoiceresponse>
     </div>
 
+
+    <p><strong>Бюджет проекта</strong></p>
+    <div class="economic-choice three height80px">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="true"><div style="position: absolute;top: 0;bottom: 0;right: 0;left: 0;">До 100 000 руб.</div></choice>
+                <choice correct="false"><div style="position: absolute;top: 0;bottom: 0;right: 0;left: 0;">От 500 000 руб. до 1 000 000 руб.</div></choice>
+                <choice correct="false"><div style="position: absolute;top: 0;bottom: 0;right: 0;left: 0;">Более 1 000 000 руб.</div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
 
 </problem>

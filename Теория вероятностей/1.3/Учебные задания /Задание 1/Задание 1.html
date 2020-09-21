@@ -1,0 +1,48 @@
+<problem>
+<style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+<script type="text/javascript">
+    let elem = document.getElementById("section_1_3_training_1_1");
+    if (elem.getElementsByClassName("incorrect").length !== 0){
+        for (let item of elem.getElementsByClassName("custom-comment")) {
+            item.style.display = 'block';
+        }
+    }
+</script>
+  <div class="no-equation" id="section_1_3_training_1_1">
+
+<numericalresponse answer="0.0899101">
+  <label>В коробке \(15\) шайб, среди которых две с диаметром \(7\), три с диаметром \(10\), остальные с диаметром \(8\). Наудачу взяты \(5\) шайб. Определить вероятность того, что среди них одна с диаметром \(7\), две с диаметром \(10\) и две с диаметром \(8\).</label>
+<responseparam type="tolerance" default="0.0001"/>
+  <formulaequationinput/>
+</numericalresponse>
+
+  <div class="custom-comment">
+    <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+    <span class="custom-comment-content"><strong>Комментарий: </strong>Использовать комбинаторное понятие сочетаний. Использовать умножение сочетаний без повторений.</span>
+  </div>
+
+  </div>
+</problem>
