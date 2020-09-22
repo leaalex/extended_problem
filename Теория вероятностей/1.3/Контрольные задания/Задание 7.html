@@ -9,6 +9,7 @@ import random
 import math
 
 n = random.randrange(10, 100, 2)
+n_2 = int(n / 2)
 P = ((n/2 - 1)*(n/2 - 2))/((n - 1)*(n-2))
 P = round(P, 3)
 
@@ -21,7 +22,7 @@ if int(str(n)[-1]) in [1]:
 
 </script>
     <div class="no-equation">
-        <p>В урне \( $n \) бел$ending и \( $n \) черн$ending $sphere_text. Наудачу вытягивают \(3\) шара (не возвращая обратно). Найти вероятность того, что все вытянутые шары одного цвета.</p>
+        <p>В урне \( $n_2 \) бел$ending и \( $n_2 \) черн$ending $sphere_text. Наудачу вытягивают \(3\) шара (не возвращая обратно). Найти вероятность того, что все вытянутые шары одного цвета.</p>
         <numericalresponse answer="$P">
             <responseparam type="tolerance" default="0.001"/>
             <formulaequationinput/>

@@ -4,14 +4,13 @@ import random
 import json
 
 example_str = """model.add(Dropout(_))
-model.add(Convolution2D(_, _, _)
+model.add(Convolution2D(_, 3, 3, activation='relu')
 model.add(Dense(_, activation='softmax'))
 model = Sequential()
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dense(128))
+model.add(Dense(_, activation='relu'))
 model.add(Flatten())
-model.add(AveragePooling2D(pool_size=(_, _)))
-model.add(Convolution(_, _, _, input_shape=(_, _, _))"""
+model.add(Convolution(_, 3, 3, input_shape=(_, _, _), activation='relu'))"""
 
 is_colored = random.choice([{"color": "цветные", "color_num": 3}, {"color": "черно-белые", "color_num": 1}])
 
@@ -81,10 +80,10 @@ def check_answer(expect, ans):
 </script>
 
 <style>
-#pydnn_task_4_2 .CodeMirror-gutter.CodeMirror-linenumbers{
+#pydnn_task_4_1 .CodeMirror-gutter.CodeMirror-linenumbers{
     width: 24px !important;
 }
-#pydnn_task_4_2 .CodeMirror-linenumber.CodeMirror-gutter-elt{
+#pydnn_task_4_1 .CodeMirror-linenumber.CodeMirror-gutter-elt{
     left: -6px !important;
 }
 
@@ -204,7 +203,7 @@ let example_textarea = CodeMirror(document.querySelector("#example_textarea"), {
 
 </script>
 
-<div id="pydnn_task_4_2">
+<div id="pydnn_task_4_1">
 
     <p>Выбрать необходимые структурные элементы, сверточной нейронной сети и построить архитектуру по заданным параметрам.</p>
     <p>Дан набор изображений размерностью \($image_size х $image_size \). В наборе \($classes_count\) классов изображений. Изображения $color.</p>

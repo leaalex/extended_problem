@@ -1,0 +1,161 @@
+<problem>
+<script type="loncapa/python">
+import random
+
+variants = [
+    {
+      "title": "Разработка корпоративного сайта торговой компании для предоставления информации о компании, ее товаров и услуг, ориентированного на целевую аудиторию. Проект рассчитан на 3 месяца. Бюджет проекта составляет 100 000 руб.",
+      "len": [0, ],  # 0 - краткосрочный, 1 - среднесрочный, 2 - долгосрочный
+      "comp": [0, ],  # 0 - простые, 1 - сложные, 2 - очень сложные
+      "budget": [0, ],  # 0 - до 100000 руб., 1 - от 500000 руб. до 1000000 руб., 2 - Более 1000000 руб.
+      "sum": [0, ]  # 0 - типовой проект, 1 - крупный страт. проект
+    },
+]
+
+variant = random.choice(variants)
+
+title = variant["title"]
+
+len_variant_0 = True if 0 in variant["len"] else False
+len_variant_1 = True if 1 in variant["len"] else False
+len_variant_2 = True if 2 in variant["len"] else False
+
+comp_variant_0 = True if 0 in variant["comp"] else False
+comp_variant_1 = True if 1 in variant["comp"] else False
+comp_variant_2 = True if 2 in variant["comp"] else False
+
+budget_variant_0 = True if 0 in variant["budget"] else False
+budget_variant_1 = True if 1 in variant["budget"] else False
+budget_variant_2 = True if 2 in variant["budget"] else False
+
+category_variant_0 = True if 0 in variant["sum"] else False
+category_variant_1 = True if 1 in variant["sum"] else False
+</script>
+<style>
+.project-types-task {
+    padding-bottom: 40px;
+}
+.project-types-task .hint-label, .project-types-task .indicator-container, .project-types-task .explanation-title {
+    display: none !important;
+}
+.project-types-task .field {
+    word-break: keep-all;
+}
+.project-types-task.height70px .field {
+    min-height: 70px;
+}
+.project-types-task.height80px .field {
+    min-height: 80px;
+}
+.project-types-task.height100px .field {
+    min-height: 100px;
+}
+.project-types-task.height120px .field {
+    min-height: 120px;
+}
+.project-types-task.height150px .field {
+    min-height: 150px;
+}
+.project-types-task.two .field {
+    width: calc(100% / 2 - 4px);
+    display: inline-flex;
+    min-width: 200px;
+}
+.project-types-task.three .field {
+    width: calc(100% / 3 - 4px);
+    display: inline-flex;
+    min-width: 250px;
+}
+.project-types-task.four .field {
+    width: calc(100% / 4 - 4px);
+    display: inline-flex;
+    min-width: 200px;
+}
+.project-types-task .field label input[type="radio"]{
+	display: none !important;
+}
+
+.project-types-task .field {
+
+}
+
+.project-types-task .field label{
+    padding-left: 0px !important;
+    text-align: center;
+    padding-right: 0px;
+    padding-left: 0px !important;
+    padding: 0px !important;
+    margin: 2px !important;
+}
+
+.my-class-1{
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.my-class-2{
+}
+
+.project-types-task input[type="radio"]:checked ~ .my-class-1 {
+ 	background: #f1f1f1;
+}
+
+.status-icon{
+	display: none;
+}
+
+    </style>
+
+    <p>$title</p>
+
+    <p>Укажите <i>длительность проекта</i>:</p>
+    <div class="project-types-task three height70px">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="$len_variant_0"><div class="my-class-1"><div class="my-class-2">Краткосрочные<br /> (до 0,5 года)</div></div></choice>
+                <choice correct="$len_variant_1"><div class="my-class-1"><div class="my-class-2">Среднесрочные<br /> (от 0,5 года до 2 лет)</div></div></choice>
+                <choice correct="$len_variant_2"><div class="my-class-1"><div class="my-class-2">Долгосрочные<br /> (больше 2 лет)</div></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <p>Укажите <i>сложность проекта</i>:</p>
+    <div class="project-types-task three height70px">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="$comp_variant_0"><div class="my-class-1"><div class="my-class-2">Простые</div></div></choice>
+                <choice correct="$comp_variant_1"><div class="my-class-1"><div class="my-class-2">Сложные</div></div></choice>
+                <choice correct="$comp_variant_2"><div class="my-class-1"><div class="my-class-2">Очень сложные</div></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+    <p>Укажите <i>бюджет проекта</i>:</p>
+    <div class="project-types-task three height70px">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="$budget_variant_0"><div class="my-class-1"><div class="my-class-2">До 100 000 руб.</div></div></choice>
+                <choice correct="$budget_variant_1"><div class="my-class-1"><div class="my-class-2">От 500 000 руб. до 1 000 000 руб.</div></div></choice>
+                <choice correct="$budget_variant_2"><div class="my-class-1"><div class="my-class-2">Более 1 000 000 руб.</div></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+
+
+    <p>Сделайте вывод, к какой <i>категории</i> относится этот проект:</p>
+    <div class="project-types-task two height70px">
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" >
+                <choice correct="$category_variant_0"><div class="my-class-1"><div class="my-class-2"><strong>Типовой проект</strong></div></div></choice>
+                <choice correct="$category_variant_1"><div class="my-class-1"><div class="my-class-2"><strong>Крупный стратегический проект</strong></div></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+</problem>
