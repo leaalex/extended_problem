@@ -5,7 +5,7 @@ import json
 
 example_str = """model.add(Dropout(_))
 model.add(Convolution2D(_, _, _)
-model.add(Dense(_, activation='softmax'))
+model.add(Dense(_, activation="softmax"))
 model = Sequential()
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dense(128))
@@ -13,36 +13,22 @@ model.add(Flatten())
 model.add(AveragePooling2D(pool_size=(_, _)))
 model.add(Convolution(_, _, _, input_shape=(_, _, _))"""
 
-is_colored = random.choice([{"color": "цветные", "color_num": 3}, {"color": "черно-белые", "color_num": 1}])
+is_colored = random.choice([{"color": "цветных", "color_num": 3}, {"color": "черно-белых", "color_num": 1}])
 
 color = is_colored["color"]
 color_num = is_colored["color_num"]
 
-filters_Convolution2D = random.choice([4, 8, 16, 32, 64])  # количество фильтров в первом сверточном блоке
-filters_Convolution2Dx2 = filters_Convolution2D * 2  # количество фильтров в первом сверточном блоке * два
-filters_Convolution2Dx4 = filters_Convolution2D * 4  # количество фильтров в первом сверточном блоке * четыре
-classes_count = random.choice([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])  # количество классов
-image_size = random.choice([28, 32, 36, 42, 46, 50, 56, 64])  # размерность изображения
-Dropout = random.choice([0.1, 0.15, 0.20, 0.25, 0.3, 0,35, 0.4, 0.45, 0.5])  # слой Dropout в сверточных блоках ставим
-Dropout_last = random.choice([0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8])  # слой Dropout в полносвязном слое
-Dense = random.choice([128, 256, 512, 1024])  # промежуточный полносвязный слой будет содержать
-
+image_size = random.choice([28, 32, 48, 64, 70])  # размерность изображения
+signs_count = random.choice([5, 6, 7, 8, 9, 10, 11, 12])  # количество иероглифов
 
 answer_str = """model = Sequential()
-model.add(Convolution2D({0}, 3, 3, input_shape=({1}, {1}, {2}), activation="relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout({3}))
-model.add(Convolution2D({6}, 3, 3, activation="relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout({3}))
-model.add(Convolution2D({7}, 3, 3, activation="relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout({3}))
+model.add(Convolution(4, 5, 5, input_shape=({0}, {0}, {1}))
+model.add(AveragePooling2D(pool_size=(2, 2)))
+model.add(Convolution2D(12, 5, 5)
+model.add(AveragePooling2D(pool_size=(2, 2)))
 model.add(Flatten())
-model.add(Dense({8}, activation="relu"))
-model.add(Dropout({4}))
-model.add(Dense({5}, activation="softmax"))""".format(filters_Convolution2D, image_size, color_num, Dropout, Dropout_last, classes_count, filters_Convolution2Dx2, filters_Convolution2Dx4, Dense)
-
+model.add(Dense(128))
+model.add(Dense({2}, activation="softmax"))""".format(image_size, color_num, signs_count)
 
 correct_answer = []
 
@@ -205,21 +191,15 @@ let example_textarea = CodeMirror(document.querySelector("#example_textarea"), {
 </script>
 
 <div id="pydnn_task_4_2">
-
-    <p>Выбрать необходимые структурные элементы, сверточной нейронной сети и построить архитектуру по заданным параметрам.</p>
-    <p>Дан набор изображений размерностью \($image_size х $image_size \). В наборе \($classes_count\) классов изображений. Изображения $color.</p>
-    <p>Из данных элементов необходимо собрать архитектуру сверточной нейронной сети с указанием верных параметров.</p>
-    <p>Дополнительные договоренности, необходимые для верного решения:</p>
-    <ul>
-        <li>слой <i>Dropout</i> в сверточных блоках ставим \($Dropout\), в полносвязном слое \($Dropout_last\);</li>
-        <li>количество фильтров в первом сверточном блоке \($filters_Convolution2D\) и дальше с каждым слоем увеличивается в два раза;</li>
-        <li>в каждом сверточном блоке обязательно используем три элемента: <i>Dropout</i>, слой <i>Convolution</i>, слой <i>MaxPooling</i> — в верном порядке;</li>
-        <li>используем лишь два полносвязных слоя;</li>
-        <li>промежуточный полносвязный слой будет содержать \($Dense\) нейронов;</li>
-        <li>используем три сверточных блока.</li>
-    </ul>
+    <p>Выбрать из перечня структурных блоков необходимые и построить архитектуру нейронной сети <i>LeNet-5</i>.</p>
+    <p>Начальные данные:</p>
+<ul>
+    <li>дан набор $color изображений \($signs_count\) иероглифов размером \($image_size \times $image_size \);</li>
+    <li>дан набор элементов нейронной сети, часть из которых может повторяться с различными параметрами, часть может быть излишней.</li>
+</ul>
 
     <div class="example_block">
+        <p>Элементы:</p>
         <div id="example_textarea"></div>
     </div>
     <div class="task_block">
