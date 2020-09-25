@@ -1,0 +1,39 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
+import math
+import random
+import scipy.stats
+
+def laplace(param):
+    return 1/math.sqrt(2 * math.pi) * math.pow(math.e, -(param*param)/2 )
+
+
+#k1 = 90
+#k2 = 400
+#n = 800
+#p = 0.1
+
+n = random.randint(200, 800)
+k2 = random.randint(101, n)
+k1 = random.randint(100, k2)
+p = round(random.randrange(10, 100, 5) * 0.01, 3)
+
+P1 = scipy.stats.norm.cdf((k2 - n * p)/math.sqrt(n * p * (1-p)))
+P2 = scipy.stats.norm.cdf((k1 - n * p)/math.sqrt(n * p * (1-p)))
+
+answer = round(P1 - P2, 5)
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$answer">
+        <p>Используя <i>интегральную теорему Муавра-Лапласа</i>, найти вероятность того, что некое событие наступит от \($k1\) до \($k2\) раз в \($n\) испытаниях, если вероятность появления этого события при одном испытании равна \($p\).</p>
+        <responseparam type="tolerance" default="0.00001"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>

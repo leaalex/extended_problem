@@ -1,0 +1,107 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+def gen_line(line_array):
+    return_str = ""
+    for la_ind, la in enumerate(line_array):
+        if la_ind+1 != len(line_array):
+            return_str += str(la) + " &amp; "
+        else:
+            return_str += str(la) + ""
+    return return_str
+
+
+arr_len1 = random.randint(4, 6)
+X_arr1 = []
+N_arr1 = []
+arr_1_unknown_num = random.randint(1, arr_len1)
+for x in range(arr_len1):
+    N_arr1.append(random.randint(5, 15))
+    if x == 0:
+        X_arr1.append(random.randint(-10, 10))
+    else:
+        X_arr1.append(X_arr1[-1] + random.randint(1, 5))
+N_sum_1 = sum(N_arr1)
+answer_1 = N_arr1[arr_1_unknown_num-1]
+X_arr1_display = gen_line(X_arr1)
+N_arr1[arr_1_unknown_num-1] = "x_" + str(arr_1_unknown_num)
+N_arr1_display = gen_line(N_arr1)
+
+arr_len2 = random.randint(4, 6)
+X_arr2 = []
+N_arr2 = []
+arr_2_unknown_num = random.randint(1, arr_len2)
+for x in range(arr_len2):
+    N_arr2.append(random.randint(5, 15))
+    if x == 0:
+        X_arr2.append(random.randint(-10, 10))
+    else:
+        X_arr2.append(X_arr2[-1] + random.randint(1, 5))
+arr_2_unknown_val = N_arr2[arr_2_unknown_num - 1]
+answer_2 = round(N_arr2[arr_2_unknown_num - 1]/sum(N_arr2), 3)
+X_arr2_display = gen_line(X_arr2)
+N_arr2_display = gen_line(N_arr2)
+
+</script>
+    <div class="no-equation">
+        <p><strong>1. </strong> Из генеральной совокупности извлечена выборка объема \(n = $N_sum_1\):</p>
+        <p>
+            \[
+            \begin{array}{|c|c|c|c|}
+                \hline
+                x_i &amp; $X_arr1_display \\ \hline
+                n_i &amp; $N_arr1_display \\ \hline
+            \end{array}
+            \]
+        </p>
+        <table>
+            <tr>
+                <td>
+                   Тогда значение \(x_{$arr_1_unknown_num}\) равно
+                </td>
+                <td>
+                    <numericalresponse answer="$answer_1">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+        <div class="no-equation">
+        <p><strong>2. </strong>Статистическое распределение выборки имеет вид:</p>
+        <p>
+            \[
+            \begin{array}{|c|c|c|c|}
+                \hline
+                x_i &amp; $X_arr2_display \\ \hline
+                n_i &amp; $N_arr2_display \\ \hline
+            \end{array}
+            \]
+        </p>
+        <table>
+            <tr>
+                <td>
+                   Тогда значение \(x_{$arr_2_unknown_num} = $arr_2_unknown_val\), равна
+                </td>
+                <td>
+                    <numericalresponse answer="$answer_2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</problem>

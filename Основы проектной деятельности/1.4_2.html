@@ -102,7 +102,8 @@ category_variant_1 = True if 1 in variant["sum"] else False
 }
 
 .project-types-task input[type="radio"]:checked ~ .my-class-1 {
- 	background: #f1f1f1;
+ 	background-color: #41aef7;
+    color: #fff;
 }
 
 .status-icon{
@@ -113,7 +114,7 @@ category_variant_1 = True if 1 in variant["sum"] else False
 
     <p>$title</p>
 
-    <p>Укажите <i>длительность проекта</i>:</p>
+    <p>Определите тип проекта по <i>длительности:</i></p>
     <div class="project-types-task three height70px">
         <multiplechoiceresponse>
             <choicegroup type="MultipleChoice" >
@@ -124,7 +125,7 @@ category_variant_1 = True if 1 in variant["sum"] else False
         </multiplechoiceresponse>
     </div>
 
-    <p>Укажите <i>сложность проекта</i>:</p>
+    <p>Определите тип прокта по <i>сложности:</i></p>
     <div class="project-types-task three height70px">
         <multiplechoiceresponse>
             <choicegroup type="MultipleChoice" >
@@ -135,7 +136,7 @@ category_variant_1 = True if 1 in variant["sum"] else False
         </multiplechoiceresponse>
     </div>
 
-    <p>Укажите <i>бюджет проекта</i>:</p>
+    <p>Определите тип прокта по <i>бюджету:</i></p>
     <div class="project-types-task three height70px">
         <multiplechoiceresponse>
             <choicegroup type="MultipleChoice" >
@@ -148,12 +149,12 @@ category_variant_1 = True if 1 in variant["sum"] else False
 
 
 
-    <p>Сделайте вывод, к какой <i>категории</i> относится этот проект:</p>
+    <p>Сделайте вывод, к какой <i>категории:</i> относится этот проект:</p>
     <div class="project-types-task two height70px">
         <multiplechoiceresponse>
             <choicegroup type="MultipleChoice" >
-                <choice correct="$category_variant_0"><div class="my-class-1"><div class="my-class-2"><strong>Типовой проект</strong></div></div></choice>
-                <choice correct="$category_variant_1"><div class="my-class-1"><div class="my-class-2"><strong>Крупный стратегический проект</strong></div></div></choice>
+                <choice correct="$category_variant_0"><div class="my-class-1"><div class="my-class-2">Типовой проект</div></div></choice>
+                <choice correct="$category_variant_1"><div class="my-class-1"><div class="my-class-2">Крупный стратегический проект</div></div></choice>
             </choicegroup>
         </multiplechoiceresponse>
     </div>

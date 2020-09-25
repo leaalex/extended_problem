@@ -1,0 +1,37 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
+import math
+import random
+import scipy.special
+
+n = random.randint(10, 40)
+
+n_x_2 = n * 2
+n_plus_3 = n + 3
+n2_plus_3 = 2 * (n + 3)
+
+variants = [
+    "Два равносильных шахматиста играют в шахматы. Найти отношение вероятности выиграть \($n\) партий из \($n_x_2\) сыгранных партий и вероятности выиграть \($n_plus_3\) партии из \($n2_plus_3\) сыгранных партий?",
+    "Вероятность поразить мишень при одном выстреле для стрелка равна \(0.5\). Найти отношение вероятности попадания \($n\) раз при \($n_x_2\) выстрелах и вероятности попадания \($n_plus_3\) раз при \($n2_plus_3\) выстрелах?",
+    "Найти отношение вероятности выпадения орла точно \($n\) раз при \($n_x_2\) подбрасываниях монеты и \($n_plus_3\) раза при \($n2_plus_3\) подбрасываниях монеты."
+]
+
+title = random.choice(variants)
+title = title.replace("$n2_plus_3",str(n2_plus_3)).replace("$n_plus_3", str(n_plus_3)).replace("$n_x_2", str(n_x_2)).replace("$n", str(n))
+answer = scipy.special.binom(n_x_2, n) / scipy.special.binom(n2_plus_3, n_plus_3) * math.pow(2, 6)
+answer = round(answer, 6)
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$answer">
+        <p>$title</p>
+        <responseparam type="tolerance" default="0.001"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>

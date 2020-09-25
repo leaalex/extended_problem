@@ -1,0 +1,94 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+
+def gen_line(line_array):
+    return_str = ""
+    for la_ind, la in enumerate(line_array):
+        if la_ind+1 != len(line_array):
+            return_str += str(la) + " &amp; "
+        else:
+            return_str += str(la) + ""
+    return return_str
+
+
+arr_len = random.randint(4, 6)
+X_arr = []
+N_arr = []
+arr_unknown_num = random.randint(3, arr_len)
+for x in range(arr_len):
+    if x == 0:
+        X_arr.append(random.randint(-10, 10))
+    else:
+        X_arr.append(X_arr[-1] + random.randint(1, 5))
+    N_arr.append(random.randint(0, 35))
+
+#arr_len = 4
+#X_arr = [1, 4, 6, 7]
+#N_arr = [10, 15, 20, 5]
+#arr_unknown_num = 4
+
+X_arr_display = gen_line(X_arr)
+N_arr_display = gen_line(N_arr)
+N_sum = sum(N_arr)
+answer = round(sum(N_arr[:arr_unknown_num-1])/N_sum, 2)
+
+display_formula = ""
+for t_ind, t in enumerate([0] + N_arr):
+    line = str(round(sum(N_arr[:t_ind])/N_sum, 2)) + ", "
+    if t_ind == arr_unknown_num-1:
+        line = "a,"
+    if t_ind == 0:
+        line = "0, "
+        line += "  &amp; x \\le " + str(X_arr[0]) + ", \\\\"
+    elif t_ind == len(N_arr):
+        line = "1, "
+        line += "  &amp; x \\gt " + str(X_arr[t_ind-1]) + "."
+    else:
+        line += "  &amp; " + str(X_arr[t_ind-1]) + " \\lt x \\le " + str(X_arr[t_ind]) + ", \\\\"
+    display_formula += line
+
+</script>
+    <div class="no-equation">
+        <p>Дано распределение выборки:</p>
+        <p>
+            \[
+            \begin{array}{|c|c|c|c|}
+                \hline
+                x_i &amp; $X_arr_display \\ \hline
+                n_i &amp; $N_arr_display \\ \hline
+            \end{array}
+            \]
+        </p>
+
+        <p>Эмпирическая функция по данному распределению:</p>
+        \[ F(x) = \left\{
+        \begin{array}{ll}
+        $display_formula
+        \end{array}
+        \right.\]
+
+        <table>
+            <tr>
+                <td>
+                   Тогда значение \(a\) равно
+                </td>
+                <td>
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</problem>

@@ -1,0 +1,50 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
+import math
+import random
+
+
+def laplace(param):
+    return 1/math.sqrt(2 * math.pi) * math.pow(math.e, -(param*param)/2 )
+
+
+variants = [
+"Используя локальную теорему Лапласа, найти вероятность того, что некое событие наступит точно \($k\) раз в \($n\) испытаниях, если вероятность появления этого события при одном испытании равна \($p\).",
+"Стрелок стреляет \($n\) раз. Найти вероятность того, что он попадет точно \($k\) раз, если вероятность поразить мишень при одном выстреле равна \($p\). Используйте Локальную теорему Лапласа.",
+"Монета подбрасывается \($n\) раз. Найти вероятность того, что точно \($k\) раз выпадет герб. Используйте Локальную теорему Лапласа.",
+"Игральную шестигранную кость подбрасывают \($n\) раз. Найти вероятность того, что точно \($k\) раз выпадет шесть очков. Используйте Локальную теорему Лапласа.",
+]
+
+n = random.randint(200, 500)
+k = random.randint(50, 400)
+p = round(random.randint(2, 8) * 0.1, 2)
+
+variant_num = random.choice([0, 1, 2, 3])
+
+if variant_num == 2:
+    p = 0.5
+
+if variant_num == 3:
+    p = 1/6
+
+P1 = 1/(math.sqrt(n * p * (1-p)))
+P2 = laplace((k - n*p)/(math.sqrt(n * p * (1-p))))
+
+answer = P1 * P2
+
+title = variants[variant_num].replace("$n", str(n)).replace("$k", str(k)).replace("$p", str(p))
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$answer">
+        <p>$title</p>
+        <responseparam type="tolerance" default="0.00001"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>

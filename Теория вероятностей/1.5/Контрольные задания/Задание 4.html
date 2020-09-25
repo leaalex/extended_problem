@@ -1,0 +1,18 @@
+import math
+import random
+import scipy.stats
+
+alpha = random.choice([0, 0.01, 0.02, 0.03, 0.04, 0.05])
+n = random.randint(200, 800)
+p = round(random.randrange(10, 100, 5) * 0.01, 3)
+
+alpha = 0.05
+n = 800
+p = 0.4
+
+print(alpha * math.sqrt(n / p * (1-p)))
+answer = scipy.stats.norm.cdf( 0.001 )
+print(answer)
+
+# Fi = 0.99611 / 2
+# print(Fi)

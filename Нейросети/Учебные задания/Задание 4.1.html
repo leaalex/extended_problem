@@ -4,13 +4,13 @@ import random
 import json
 
 example_str = """model.add(Dropout(_))
-model.add(Convolution2D(_, 3, 3, activation='relu')
+model.add(Conv2D(_, 3, 3, activation='relu'))
 model.add(Dense(_, activation='softmax'))
 model = Sequential()
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dense(_, activation='relu'))
 model.add(Flatten())
-model.add(Convolution(_, 3, 3, input_shape=(_, _, _), activation='relu'))"""
+model.add(Conv2D(_, 3, 3, input_shape=(_, _, _), activation='relu'))"""
 
 is_colored = random.choice([{"color": "цветные", "color_num": 3}, {"color": "черно-белые", "color_num": 1}])
 
@@ -28,13 +28,13 @@ Dense = random.choice([128, 256, 512, 1024])  # промежуточный по�
 
 
 answer_str = """model = Sequential()
-model.add(Convolution2D({0}, 3, 3, input_shape=({1}, {1}, {2}), activation="relu"))
+model.add(Conv2D({0}, 3, 3, input_shape=({1}, {1}, {2}), activation="relu"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout({3}))
-model.add(Convolution2D({6}, 3, 3, activation="relu"))
+model.add(Conv2D({6}, 3, 3, activation="relu"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout({3}))
-model.add(Convolution2D({7}, 3, 3, activation="relu"))
+model.add(Conv2D({7}, 3, 3, activation="relu"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout({3}))
 model.add(Flatten())

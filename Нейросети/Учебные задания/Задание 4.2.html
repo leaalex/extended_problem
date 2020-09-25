@@ -4,14 +4,14 @@ import random
 import json
 
 example_str = """model.add(Dropout(_))
-model.add(Convolution2D(_, _, _)
+model.add(Conv2D(_, _, _))
 model.add(Dense(_, activation="softmax"))
 model = Sequential()
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dense(128))
 model.add(Flatten())
 model.add(AveragePooling2D(pool_size=(_, _)))
-model.add(Convolution(_, _, _, input_shape=(_, _, _))"""
+model.add(Conv2D(_, _, _, input_shape=(_, _, _))"""
 
 is_colored = random.choice([{"color": "цветных", "color_num": 3}, {"color": "черно-белых", "color_num": 1}])
 
@@ -22,9 +22,9 @@ image_size = random.choice([28, 32, 48, 64, 70])  # размерность из�
 signs_count = random.choice([5, 6, 7, 8, 9, 10, 11, 12])  # количество иероглифов
 
 answer_str = """model = Sequential()
-model.add(Convolution(4, 5, 5, input_shape=({0}, {0}, {1}))
+model.add(Conv2D(4, 5, 5, input_shape=({0}, {0}, {1}))
 model.add(AveragePooling2D(pool_size=(2, 2)))
-model.add(Convolution2D(12, 5, 5)
+model.add(Conv2D(12, 5, 5))
 model.add(AveragePooling2D(pool_size=(2, 2)))
 model.add(Flatten())
 model.add(Dense(128))
@@ -194,7 +194,7 @@ let example_textarea = CodeMirror(document.querySelector("#example_textarea"), {
     <p>Выбрать из перечня структурных блоков необходимые и построить архитектуру нейронной сети <i>LeNet-5</i>.</p>
     <p>Начальные данные:</p>
 <ul>
-    <li>дан набор $color изображений \($signs_count\) иероглифов размером \($image_size \times $image_size \);</li>
+    <li>дан набор $color изображений размером \($image_size \times $image_size \), в котором \($signs_count\) типов иероглифов;</li>
     <li>дан набор элементов нейронной сети, часть из которых может повторяться с различными параметрами, часть может быть излишней.</li>
 </ul>
 

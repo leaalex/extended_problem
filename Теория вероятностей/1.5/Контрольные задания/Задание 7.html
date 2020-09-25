@@ -1,0 +1,40 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
+import math
+import random
+
+variant = random.choice(["двух очков", "одного очка", "трех очков", "четырех очков", "пяти очков", "шести очков"])
+n = random.randint(50, 350)
+
+p = 1/6
+q = 5/6
+
+if round(n*p - q, 12).is_integer():
+    answer = 2 * n * p - q + p
+else:
+    answer = math.floor(n*p+p)
+
+</script>
+    <div class="no-equation">
+        <p>Найти наивероятнейшее число \(m_0\) выпадения $variant при \($n\) подбрасываниях шестигранной игральной кости либо их сумму, если таких чисел несколько.</p>
+
+        <table>
+            <tr>
+                <td>
+                    \(m_0 = \)
+                </td>
+                <td>
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.000001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

@@ -1,0 +1,26 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
+import math
+import random
+
+n = random.randint(1000, 5000)
+p = 0.001
+m = random.randint(1, 15)
+
+P = (math.pow(n*p, m) * math.pow(math.e, -n * p)) / math.factorial(m)
+P = round(P, 7)
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$P">
+        <p>Вероятность изготовления нестандартной детали равна \($p\). Найти вероятность того, что среди \($n\) деталей окажется \($m\) нестандартных.</p>
+        <responseparam type="tolerance" default="0.000001"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>
