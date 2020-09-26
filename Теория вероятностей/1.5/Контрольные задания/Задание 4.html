@@ -1,18 +1,42 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+    <script type="loncapa/python">
 import math
 import random
 import scipy.stats
 
-alpha = random.choice([0, 0.01, 0.02, 0.03, 0.04, 0.05])
+alpha = random.choice([0.01, 0.02, 0.03, 0.04, 0.05])
 n = random.randint(200, 800)
-p = round(random.randrange(10, 100, 5) * 0.01, 3)
+p = round(random.randrange(10, 90, 5) * 0.01, 3)
 
-alpha = 0.05
-n = 800
-p = 0.4
+variants = [
+    "Вероятность появления события в каждом из \($n\) независимых испытаний равна \($p\). Найти вероятность того, что относительная частота появления события отклонится от вероятности по абсолютной величине не более чем на \($alpha\).",
+    "Монету подбрасывают \($n\) раз. Найти вероятность того, что относительная частота появления герба отклонится от вероятности по абсолютной величине не более чем на \($alpha\)."
+]
 
-print(alpha * math.sqrt(n / p * (1-p)))
-answer = scipy.stats.norm.cdf( 0.001 )
-print(answer)
+title_num = random.choice([0, 1])
+if title_num == 1:
+    p = 0.5
+title = variants[title_num]
+title = title.replace("$n", str(n)).replace("$alpha", str(alpha)).replace("$p", str(p))
 
-# Fi = 0.99611 / 2
-# print(Fi)
+#alpha = 0.05
+#n = 800
+#p = 0.4
+
+answer = 2*(scipy.stats.norm.cdf(alpha * math.sqrt(n / (p * (1-p)))) - 0.5)
+answer = round(answer, 5)
+
+</script>
+    <div class="no-equation">
+    <numericalresponse answer="$answer">
+        <p>$title</p>
+        <responseparam type="tolerance" default="0.0001"/>
+        <formulaequationinput/>
+    </numericalresponse>
+    </div>
+</problem>

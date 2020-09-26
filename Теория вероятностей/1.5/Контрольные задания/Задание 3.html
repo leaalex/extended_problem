@@ -35,7 +35,7 @@ if variant_num == 3:
 P1 = 1/(math.sqrt(n * p * (1-p)))
 P2 = laplace((k - n*p)/(math.sqrt(n * p * (1-p))))
 
-answer = P1 * P2
+answer = round(P1 * P2, 5)
 
 title = variants[variant_num].replace("$n", str(n)).replace("$k", str(k)).replace("$p", str(p))
 

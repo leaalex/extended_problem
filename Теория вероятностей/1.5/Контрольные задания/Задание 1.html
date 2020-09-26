@@ -24,10 +24,23 @@ k = random.randint(2, n)
 # P = (get_factorial(n))/(get_factorial(k) * get_factorial(n-k) * math.pow(2, n))
 P = round(scipy.special.binom(n, k)*math.pow(0.5, k)*math.pow(0.5, n-k), 5)
 
+times_1 = "раза"
+times_2 = "раза"
+
+if int(str(n)[-1]) in [0, 1, 5, 6, 7, 8, 9]:
+    times_1 = "раз"
+if n in [12, 13, 14]:
+    times_1 = "раз"
+
+if int(str(k)[-1]) in [0, 1, 5, 6, 7, 8, 9]:
+    times_2 = "раз"
+if k in [12, 13, 14]:
+    times_2 = "раз"
+
 </script>
     <div class="no-equation">
     <numericalresponse answer="$P">
-        <p>Монетка подбрасывается \($n\) раз. Какова вероятность, что точно \($k\) раз выпадет орел?</p>
+        <p>Монетка подбрасывается \($n\) $times_1. Какова вероятность, что точно \($k\) $times_2 выпадет орел?</p>
         <responseparam type="tolerance" default="0.00001"/>
         <formulaequationinput/>
     </numericalresponse>

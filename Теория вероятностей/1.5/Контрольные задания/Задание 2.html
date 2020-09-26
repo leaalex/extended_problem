@@ -24,13 +24,13 @@ variants = [
 title = random.choice(variants)
 title = title.replace("$n2_plus_3",str(n2_plus_3)).replace("$n_plus_3", str(n_plus_3)).replace("$n_x_2", str(n_x_2)).replace("$n", str(n))
 answer = scipy.special.binom(n_x_2, n) / scipy.special.binom(n2_plus_3, n_plus_3) * math.pow(2, 6)
-answer = round(answer, 6)
+answer = round(answer, 5)
 
 </script>
     <div class="no-equation">
     <numericalresponse answer="$answer">
         <p>$title</p>
-        <responseparam type="tolerance" default="0.001"/>
+        <responseparam type="tolerance" default="0.0001"/>
         <formulaequationinput/>
     </numericalresponse>
     </div>
