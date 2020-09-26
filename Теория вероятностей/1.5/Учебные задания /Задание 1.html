@@ -7,10 +7,16 @@
     <script type="loncapa/python">
 import math
 import random
-import scipy.stats
 import numpy as np
-
 from scipy.stats import norm
+
+
+def integers(a, b):
+    return list(range(a, b + 1))
+
+
+random_percent = [round(0.01*rp, 2) for rp in integers(-20,-8) + integers(8, 20)]
+random.shuffle(random_percent)
 
 a = random.randint(7, 15)
 l = random.randint(5, a-1)
@@ -18,31 +24,50 @@ l = random.randint(5, a-1)
 a = round(a * 0.1, 1)
 l = round(l * 0.1, 1)
 
+a = 0.7  #
+l = 0.6  #
+
 ax2 = 2 * a  # расстояние м/у прямыми
 lx2 = 2 * l  # длина иглы
+
+
 
 r = random.randint(10000, 100000)
 nums = [random.choice([1, 0]) for x in range(r)]
 n = sum(nums)
 math_pi = 3.141592
 
-P = random.choice([0.95, 0.96, 0.97, 0.98, 0.99])
+r = 68685  #
+n = 34555  #
 
+P = random.choice([0.95, 0.96, 0.97, 0.98, 0.99])
+P = 0.98  #
 qnorm = norm.ppf(P/2 + 0.5, loc=0, scale=1)
-znam = math.sqrt(r/(((2*l)/(math_pi*a)) * (1 - (2*l)/(math_pi*a)) ))
+znam = math.sqrt(r/(((2*l)/(math_pi*a)) * (1 - (2*l)/(math_pi*a))))
+
+answer_1_round_num = 5
 
 answer_1 = qnorm/znam
-answer_1 = round(answer_1, 5)
+answer_1 = round(answer_1, answer_1_round_num)
 
-
-#P1 = random.choice([0.95, 0.96, 0.97, 0.98, 0.99])
 eps = random.choice([0.1,0.01,0.001,0.0001, 0.2,0.02,0.002,0.0002, 0.3,0.03,0.003,0.0003])
+eps = 0.002  #
 
-p = (2 * l)/(math_pi * a)
-q = 1 - p
+answer_2 = (qnorm/eps)**2 * ((2*l)/(math_pi*a)) * (1 - (2*l)/(math_pi*a))
+answer_2 = int(math.ceil(answer_2))
 
-answer_2 = 2 * scipy.stats.norm.cdf(eps * math.sqrt(n/(p*q)))
-answer_2 = round(answer_2, 5)
+
+answer_1_incorrect_1 = round(answer_1 + (answer_1 * random_percent[0]), answer_1_round_num)
+answer_1_incorrect_2 = round(answer_1 + (answer_1 * random_percent[1]), answer_1_round_num)
+answer_1_incorrect_3 = round(answer_1 + (answer_1 * random_percent[2]), answer_1_round_num)
+answer_1_incorrect_4 = round(answer_1 + (answer_1 * random_percent[3]), answer_1_round_num)
+answer_1_incorrect_5 = round(answer_1 + (answer_1 * random_percent[4]), answer_1_round_num)
+
+answer_2_incorrect_1 = int(math.ceil(answer_2 + (answer_2 * random_percent[5])))
+answer_2_incorrect_2 = int(math.ceil(answer_2 + (answer_2 * random_percent[6])))
+answer_2_incorrect_3 = int(math.ceil(answer_2 + (answer_2 * random_percent[7])))
+answer_2_incorrect_4 = int(math.ceil(answer_2 + (answer_2 * random_percent[8])))
+answer_2_incorrect_5 = int(math.ceil(answer_2 + (answer_2 * random_percent[9])))
 
 </script>
     <div class="no-equation">
@@ -51,16 +76,32 @@ answer_2 = round(answer_2, 5)
         <p>Длина иглы: $lx2</p>
         <p>Расстояние между прямыми: $ax2</p>
 
-        <p>Найти погрешность нахождения числа \(\pi\), используя понятие отклонения относительной частоты от вероятности появления события при \($r\) независимых испытаниях.</p>
+        <p>1. Найти погрешность нахождения числа \(\pi\), используя понятие отклонения относительной частоты от вероятности появления события при \($r\) независимых испытаниях.</p>
         <p>Принять данную вероятность за \( P = $P\).</p>
 
-        <p><strong>Ответ: Получили погрешность числа пи равную $answer_1</strong></p>
-<!--    <numericalresponse answer="$P">-->
-<!--        <responseparam type="tolerance" default="0.001"/>-->
-<!--        <formulaequationinput/>-->
-<!--    </numericalresponse>-->
-        <p>Найти минимальное количество бросков иглы, которые нужно произвести, чтоб с вероятностью \($P\) точность определения числа ПИ была не больше \(ε=$eps\)</p>
-        <p><strong>Ответ: минимальное количество бросков иглы $answer_2</strong></p>
+        <multiplechoiceresponse>
+            <label>Погрешность числа \(\pi\) равна:</label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="true">$answer_1</choice>
+                <choice correct="false">$answer_1_incorrect_1</choice>
+                <choice correct="false">$answer_1_incorrect_2</choice>
+                <choice correct="false">$answer_1_incorrect_3</choice>
+                <choice correct="false">$answer_1_incorrect_4</choice>
+                <choice correct="false">$answer_1_incorrect_5</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
 
+        <p>2. Найти минимальное количество бросков иглы, которые нужно произвести, чтоб с вероятностью \($P\) точность определения числа ПИ была не больше \(ε=$eps\)</p>
+        <multiplechoiceresponse>
+            <label>Минимальное количество бросков иглы:</label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="true">$answer_2</choice>
+                <choice correct="false">$answer_2_incorrect_1</choice>
+                <choice correct="false">$answer_2_incorrect_2</choice>
+                <choice correct="false">$answer_2_incorrect_3</choice>
+                <choice correct="false">$answer_2_incorrect_4</choice>
+                <choice correct="false">$answer_2_incorrect_5</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
     </div>
 </problem>

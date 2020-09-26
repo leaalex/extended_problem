@@ -1,0 +1,41 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+<script type="loncapa/python">
+import math
+import random
+import numpy as np
+from scipy.stats import norm
+from scipy.integrate import quad
+
+
+def sin_x(x, _a):
+    return math.sin(_a*x)/x
+
+
+a = round(random.randrange(20, 100, 2) * 0.1, 1)
+
+a = 2  #
+N = 100000
+sum_of_1 = 94600
+math_pi = 3.141592
+
+top = math_pi/a
+
+I = quad(sin_x, 0, top, a)[0]
+
+print(I)
+print((sum_of_1/N)/(N*math_pi/a))
+
+
+print((sum_of_1/N) * math_pi)
+
+</script>
+    <div class="no-equation">
+        <p></p>
+
+    </div>
+</problem>
