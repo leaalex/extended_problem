@@ -13,29 +13,45 @@ from scipy.integrate import quad
 
 
 def sin_x(x, _a):
-    return math.sin(_a*x)/x
+    return math.sin(_a*x)
 
 
 a = round(random.randrange(20, 100, 2) * 0.1, 1)
-
-a = 2  #
-N = 100000
-sum_of_1 = 94600
+a = random.randint(2, 10)
+N = random.randint(100000, 300000)
+nums = [random.choice([1, 0]) for x in range(N)]
+sum_of_1 = sum(nums)
 math_pi = 3.141592
+
+# N = 100000
+# sum_of_1 = 94600
 
 top = math_pi/a
 
 I = quad(sin_x, 0, top, a)[0]
 
-print(I)
-print((sum_of_1/N)/(N*math_pi/a))
+# print(I)
+pogr = (sum_of_1/N)/(N*math_pi/a)
 
+answer_1 = I - pogr
 
-print((sum_of_1/N) * math_pi)
+answer_2 = (sum_of_1/N) * math_pi
+
+print(answer_1)
+print(answer_2)
 
 </script>
     <div class="no-equation">
-        <p></p>
+        <p>Число точек \(N = $N\)</p>
+        <p>Число попавших точек \(\sum 1 = $sum_of_1\)</p>
+        <p>\(a = $a\)</p>
 
+        <p>Решение:</p>
+        <p><strong>Вопрос 1.</strong></p>
+        <p>
+            \( \int^{\frac{\pi}{$a}}_0 sin($a x)dx - \frac{\sum 1}{N} \cdot \frac{\pi}{a} = ($I - $pogr) = $answer_1\)
+        </p>
+        <p><strong>Вопрос 2.</strong></p>
+        <p>\( \frac{\sum 1}{N} \cdot \pi = $answer_2\)</p>
     </div>
 </problem>

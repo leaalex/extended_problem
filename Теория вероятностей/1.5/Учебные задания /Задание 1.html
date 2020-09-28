@@ -24,8 +24,8 @@ l = random.randint(5, a-1)
 a = round(a * 0.1, 1)
 l = round(l * 0.1, 1)
 
-a = 0.7  #
-l = 0.6  #
+#a = 0.7  #
+#l = 0.6  #
 
 ax2 = 2 * a  # расстояние м/у прямыми
 lx2 = 2 * l  # длина иглы
@@ -37,8 +37,8 @@ nums = [random.choice([1, 0]) for x in range(r)]
 n = sum(nums)
 math_pi = 3.141592
 
-r = 68685  #
-n = 34555  #
+#r = 68685  #
+#n = 34555  #
 
 P = random.choice([0.95, 0.96, 0.97, 0.98, 0.99])
 P = 0.98  #
@@ -51,7 +51,7 @@ answer_1 = qnorm/znam
 answer_1 = round(answer_1, answer_1_round_num)
 
 eps = random.choice([0.1,0.01,0.001,0.0001, 0.2,0.02,0.002,0.0002, 0.3,0.03,0.003,0.0003])
-eps = 0.002  #
+#eps = 0.002  #
 
 answer_2 = (qnorm/eps)**2 * ((2*l)/(math_pi*a)) * (1 - (2*l)/(math_pi*a))
 answer_2 = int(math.ceil(answer_2))
