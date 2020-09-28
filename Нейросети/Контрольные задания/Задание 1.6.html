@@ -1,0 +1,46 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+
+        .answer-block{
+            background: whitesmoke;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-block label {
+            margin-bottom: 6px !important;
+        }
+    </style>
+    <div class="no-equation">
+<p>Перейдите по ссылке <a href="https://www.kaggle.com/t/993ac81ad69a477580bd8cf1beca9a32" target="_blank">https://www.kaggle.com/t/993ac81ad69a477580bd8cf1beca9a32</a> из предыдущего соревнования.</p>
+<p>На вкладке <i>«Notebooks»</i> в разделе <i>«Public»</i> находится базовое решение с примером кода <i>«BaseLine_1_6»</i>.</p>
+<p>Скопируйте себе базовое решение. Запустите его и определите на основе данных обучения, кривых обучения и разницы в оценках на тренировочном, проверочном и тестовом наборах данных переобучилась ли нейронная сеть? Если да, то меняя количество эпох обучения (<strong>epochs</strong>) добейтесь того, чтобы ваша <strong>«accuracy»</strong> на тренировочных данных и на тестовых (на <i>LeaderBoard</i>) отличалась не более чем на \(2\%\) \((0.02)\).</p>
+
+    <div class="answer-block">
+    <numericalresponse answer="49">
+        <label>Номер последней эпохи, на которой выполняется требование отклонения точности на тренировочном и тестовом наборах:</label>
+        <formulaequationinput />
+    </numericalresponse>
+    </div>
+
+    <div class="answer-block">
+    <numericalresponse answer="0.8996">
+        <label>Значение <strong>«accuracy»</strong> на последней эпохе (на тренировочных данных) с точностью до 4 знаков после запятой:</label>
+        <responseparam type="tolerance" default="0.001" />
+        <formulaequationinput />
+    </numericalresponse>
+    </div>
+
+    <div class="answer-block">
+
+    <numericalresponse answer="0.8810">
+        <label>Значение <strong>«accuracy»</strong> на тесте (на <i>LeaderBoard</i>) с точностью до 4 знаков после запятой:</label>
+        <responseparam type="tolerance" default="0.001" />
+        <formulaequationinput />
+    </numericalresponse>
+    </div>
+    </div>
+</problem>
