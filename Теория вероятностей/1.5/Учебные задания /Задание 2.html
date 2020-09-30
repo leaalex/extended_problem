@@ -11,47 +11,121 @@ import numpy as np
 from scipy.stats import norm
 from scipy.integrate import quad
 
+python_seed = random.randint(1, 1000000)
+np.random.seed(python_seed)
+math_pi = 3.141592
 
 def sin_x(x, _a):
     return math.sin(_a*x)
 
 
-a = round(random.randrange(20, 100, 2) * 0.1, 1)
-a = random.randint(2, 10)
-N = random.randint(100000, 300000)
-nums = [random.choice([1, 0]) for x in range(N)]
-sum_of_1 = sum(nums)
-math_pi = 3.141592
+def sin_x_dev_x(x, _a):
+    return math.sin(_a*x)/x
 
-# N = 100000
-# sum_of_1 = 94600
+a = random.randint(2,10)
+N = random.randint(10000, 100000)
+#a = 9
+#N = 100000
+y_1 = np.random.rand(N).tolist()
+x_1 = np.random.uniform(low=0, high=math_pi/a, size=N)
+z_1 = []
+for y_index, y_n in enumerate(y_1):
+    if  math.sin(a * x_1[y_index]) >= y_n:
+        z_1.append(1)
+    else:
+        z_1.append(0)
+z_1_sum = sum(z_1)
+z_1_str = str(z_1).replace('[', '').replace(']', '')
 
-top = math_pi/a
+# z_1_sum = 6444
+I_1 = round(quad(sin_x, 0, math_pi/a, a)[0], 5)
+pogr_1 = round((z_1_sum/N) * (math_pi/a), 5)
+answer_1 = round(I_1 - pogr_1, 5)
 
-I = quad(sin_x, 0, top, a)[0]
 
-# print(I)
-pogr = (sum_of_1/N)/(N*math_pi/a)
+y_2 = np.random.uniform(low=0, high=a, size=N)
+x_2 = np.random.uniform(low=0, high=math_pi/a, size=N)
+z_2 = []
+for y_index, y_n in enumerate(y_2):
+    if (math.sin(a * x_2[y_index])/x_2[y_index]) >= y_n:
+        z_2.append(1)
+    else:
+        z_2.append(0)
+z_2_sum = sum(z_2)
+z_2_str = str(z_2).replace('[', '').replace(']', '')
 
-answer_1 = I - pogr
-
-answer_2 = (sum_of_1/N) * math_pi
-
-print(answer_1)
-print(answer_2)
+#z_2_sum = 58921
+I_2 = round(quad(sin_x_dev_x, 0, math_pi/a, a)[0], 5)
+pogr_2 = round((z_2_sum/N) * math_pi, 5)
 
 </script>
-    <div class="no-equation">
-        <p>Число точек \(N = $N\)</p>
-        <p>Число попавших точек \(\sum 1 = $sum_of_1\)</p>
-        <p>\(a = $a\)</p>
 
-        <p>Решение:</p>
-        <p><strong>Вопрос 1.</strong></p>
-        <p>
-            \( \int^{\frac{\pi}{$a}}_0 sin($a x)dx - \frac{\sum 1}{N} \cdot \frac{\pi}{a} = ($I - $pogr) = $answer_1\)
-        </p>
-        <p><strong>Вопрос 2.</strong></p>
-        <p>\( \frac{\sum 1}{N} \cdot \pi = $answer_2\)</p>
+<script type="text/javascript">
+let z_1_str = '$z_1_str';
+let z_1_element = document.querySelector("#download_z_1");
+z_1_element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(z_1_str));
+
+let z_2_str = '$z_2_str';
+let z_2_element = document.querySelector("#download_z_2");
+z_2_element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(z_2_str));
+
+</script>
+
+    <div class="no-equation">
+        <div style="padding: 10px; background: lightgrey">
+            <p><strong>Техническая информация, уберем перед открытием</strong></p>
+            <p>\(a = $a\)</p>
+            <p>Всего точек \(N = $N\)</p>
+            <p>Точек попало в эксперименте 1: \($z_1_sum\)</p>
+            <p>Точек попало в эксперименте 2: \($z_2_sum\)</p>
+            <p>Расчеты: </p>
+            <p>Часть 1:</p>
+            <p>
+                \( \int^{\frac{\pi}{$a}}_0 sin($a x)dx - \frac{\sum 1}{N} \cdot \frac{\pi}{a} = $I_1 - \frac{$z_1_sum}{$N} \cdot \frac{$math_pi}{$a}  = ($I_1 - $pogr_1) = $answer_1\)
+            </p>
+            <p>Часть 2:</p>
+            <p>\( \frac{\sum 1}{N} \cdot \pi = \frac{$z_2_sum}{$N} \cdot $math_pi = $pogr_2\)</p>
+        </div>
+
+        <p>Удивительно, но введение случайных процессов позволяет решить такие проблемы математического анализа как, например, вычисление определенных интегралов. </p>
+
+        <p><strong>Часть 1.</strong></p>
+        <p>Найдите значение определенного интеграла \( \int^{\frac{\pi}{$a}}_0 sin($a x)dx \) аналитически. А теперь это же значение, с некоторой погрешностью, конечно, можно получить посредством равномерного покрытия прямоугольника, в котором расположена подынтегральная функция в заданных пределах, точками. Тогда, посчитав число точек, лежащих внутри дуги кривой подынтегральной функции, можно найти долю точек, попавших внутрь фигуры, ограниченной дугой подынтегральной функции и после этого найти площадь, которая и есть значение определенного интеграла.</p>
+
+        <p>Проводится виртуальный эксперимент по равномерному заполнению прямоугольника \( 0 \lt x \lt \frac{\pi}{$a} \), \( 0 \lt y \lt 1 \) точками.</p>
+        <p>Вы получите файл, в котором только нули и единицы. За единицу обозначена точка, которая попала внутрь фигуры, за нуль – точка, которая попала в прямоугольник, но находится снаружи фигуры, площадь которой находится как определенный интеграл. Найдите площадь фигуры, посредством обработки данных этого виртуального эксперимента с точностью до пятого знака после запятой. А ответом будет абсолютная величина разности вычисления интеграла аналитически и посредством эксперимента (тоже с точностью до 5 знака). В расчетах принимать \(\pi = $math_pi\).</p>
+        <p><a href='' download="Результаты эксперимента 1'.txt" id="download_z_1">Скачать данные виртуального эксперимента №1</a></p>
+
+        <table>
+            <tr>
+                <td>Ответ: </td>
+                <td>
+        <numericalresponse answer="$answer_1">
+            <responseparam type="tolerance" default="0.0001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+
+
+
+        <p><strong>Часть 2.</strong></p>
+
+        <p>Теперь рассчитайте неберущийся в элементарных функциях интеграл \( \int^{\frac{\pi}{$a}}_0 \frac{sin($a x)}{x} dx \) таким же методом. Проводится виртуальный эксперимент по равномерному заполнению прямоугольника \( 0 \lt x \lt \frac{\pi}{$a} \), \( 0 \lt y \lt $a \) точками.  Вы получите файл, в котором только нули и единицы. За единицу обозначена точка, которая попала внутрь фигуры, за нуль – точка, которая попала в прямоугольник, но находится снаружи фигуры, площадь которой находится как определенный интеграл. Найдите площадь фигуры, посредством обработки данных этого виртуального эксперимента с точностью до пятого знака после запятой. Ответом послужит рассчитанное значение с точностью до пяти знаков после запятой. В расчетах принимать \(\pi = $math_pi\).</p>
+        <p><a href='' download="Результаты эксперимента 2'.txt" id="download_z_2">Скачать данные виртуального эксперимента №2</a></p>
+        <table>
+            <tr>
+                <td>Ответ: </td>
+                <td>
+        <numericalresponse answer="$pogr_2">
+            <responseparam type="tolerance" default="0.0001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
     </div>
 </problem>
