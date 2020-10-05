@@ -1,5 +1,5 @@
 <problem>
-<style>
+  <style>
     .no-equation .equation{
         display: none !important;
     }
@@ -14,7 +14,7 @@
     font-size: .9em;
     font-family: Monaco, monospace;
     line-height: 1.4;
-    white-space: pre-wrap;
+    /*white-space: pre-wrap;*/
 }
 
 #control_task_04_01 span.message{
@@ -22,7 +22,7 @@
     font-weight: bold;
 }
 </style>
-<script type="loncapa/python">
+  <script type="loncapa/python">
 import random
 import math
 import json
@@ -47,7 +47,7 @@ def display_2nd_array(array):
             arr_str += "["
         arr_str += str(sub_arr)
         if index + 1 != len(array):
-            arr_str += ",\n"
+            arr_str += ", \n"
         else:
             arr_str += "]"
     return arr_str
@@ -89,7 +89,7 @@ def check_answer(expect, ans):
                     if all((e == len(answer[0])) for e in
                            [len(q) for q in student_answer]):  # проверка что все массивы внутри одинаковой длины
                         if all([all([isinstance(d, (int, float)) for d in t]) for t in student_answer]):
-                            if all([all([tol > abs(answer[index_z][index_u] - u) for index_u, u in enumerate(z)]) for index_z, z in enumerate(student_answer)]):
+                            if all([all([tol &gt; abs(answer[index_z][index_u] - u) for index_u, u in enumerate(z)]) for index_z, z in enumerate(student_answer)]):
                                 grade = 1
                                 msg = "Верно!"  # все верно
                                 # print("Все ок")
@@ -126,15 +126,34 @@ def check_answer(expect, ans):
     }
 
 </script>
-<div id="control_task_04_01">
+  <div id="control_task_04_01">
     <p>Дана матрица изображения, ядро свертки (для сверточного слоя) Примените к изображению слой свертки. Результат запишите в виде списка списков. Значения элементов векторов вводить с точностью до 1-го знака после точки, в качестве разделителя используйте запятую.</p>
-    <div class="custom-code"><span><strong>Матрица изображения</strong></span><br /><span>$M_str</span><br /><br /><span><strong>Ядро свертки</strong></span><br /><span>$kernel_str</span></div>
-      <customresponse cfn="check_answer">
-        <textline size="100" value=""/>
-        <br/>
-      </customresponse>
+    <div class="custom-code">
+      <span>
+        <strong>Матрица изображения</strong>
+      </span>
+      <br/>
+      <span style="white-space: pre-wrap;">$M_str</span>
+      <br/>
+      <br/>
+      <span>
+        <strong>Ядро свертки</strong>
+      </span>
+      <br/>
+      <span style="white-space: pre-wrap;">$kernel_str</span>
+    </div>
+    <customresponse cfn="check_answer">
+      <textline size="100" value=""/>
+      <br/>
+    </customresponse>
     <solution>
-        <div class="custom-code"><span><strong>Правильный ответ:</strong></span> <br /><span><strong>$answer_str</strong></span></div>
+      <div class="custom-code">
+        <span>
+          <strong>Правильный ответ:</strong>
+        </span>
+        <br/>
+        <span style="white-space: pre-wrap;"><strong>$answer_str</strong></span>
+      </div>
     </solution>
   </div>
 </problem>
