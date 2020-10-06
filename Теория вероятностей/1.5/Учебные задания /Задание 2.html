@@ -40,7 +40,7 @@ z_1_str = str(z_1).replace('[', '').replace(']', '')
 # z_1_sum = 6444
 I_1 = round(quad(sin_x, 0, math_pi/a, a)[0], 5)
 pogr_1 = round((z_1_sum/N) * (math_pi/a), 5)
-answer_1 = round(I_1 - pogr_1, 5)
+answer_1 = abs(round(I_1 - pogr_1, 5))
 
 
 y_2 = np.random.uniform(low=0, high=a, size=N)
