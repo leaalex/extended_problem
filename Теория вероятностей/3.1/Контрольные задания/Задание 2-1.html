@@ -1,0 +1,127 @@
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+<script type="text/javascript" src="/static/TheorVerCharts.js"></script>
+
+<script type="loncapa/python">
+import math
+import random
+
+
+def ranks(sample):
+    indices = sorted(range(len(sample)), key=lambda i: sample[i])
+    return sorted(indices, key=lambda i: indices[i])
+
+
+def sample_with_minimum_distance(n=40, k=4, d=10):
+    """
+    Sample of k elements from range(n), with a minimum distance d.
+    """
+    sample = random.sample(range(1, n-(k-1)*(d-1)), k)
+    return [s + (d-1)*r for s, r in zip(sample, ranks(sample))]
+
+
+# интервал 4 - 7
+steps_count = random.randint(4, 7)
+#steps_count = 7
+w_i = sample_with_minimum_distance(n=50, k=steps_count, d=3)
+ost = 10 - sum(w_i) % 10
+max_idx = w_i.index(max(w_i))
+w_i[max_idx] = w_i[max_idx] + ost
+n = sum(w_i)
+
+# интервал 1 - 6
+step = random.randint(1, 6)
+#step = 6
+student_data = []
+for item_idx, item in enumerate(w_i):
+    student_data.append({
+      "x": (item_idx + 1) * step,
+      "y": round(item * 0.01, 2)
+    })
+
+need_to_find_index = random.randint(0, steps_count - 1)
+x_1 = step * (need_to_find_index+1)
+need_to_find_index_plus_1 = need_to_find_index+1
+hide_indexes = {"x": {}, "y": {need_to_find_index: {"replace_with": ""}}}
+
+answer = w_i[need_to_find_index]
+</script>
+<div class="no-equation">
+    <p>Из генеральной совокупности извлечена выборка объема \(n = $n\), полигон относительных частот которой имеет вид:</p>
+    <div style="text-align: center;">
+        <div id="graphic_item_03_01_2_1"></div>
+    </div>
+        <numericalresponse answer="$answer">
+            <label>Тогда число вариант \(x_{$need_to_find_index_plus_1} = $x_1\) в выборке равно</label>
+        <responseparam type="tolerance" default="0.01"/>
+        <formulaequationinput/>
+    </numericalresponse>
+</div>
+<script type="text/javascript">
+let student_data = $student_data;
+let hide_indexes = $hide_indexes;
+
+let config = {
+    base: {
+        width: 380,
+        height: 380,
+        background: {
+            color: "white",
+            stroke: "#e5e5e5",
+            stroke_width: 2,
+        },
+        font_size: 16,
+    },
+    chart: {
+        data: student_data,
+        type: "line",
+        margin: 46,
+        padding: 56,
+        points: {
+            style:{
+                color: "#3D4473",
+                size: 6,
+            }
+        },
+        projection: {
+            show: true,
+            style: {
+                color: "black",
+                size: 1.6,
+                dasharray: "6 3",
+            }
+        },
+        style: {
+            color: "#C70449",
+            size: 3,
+        }
+    },
+    axis: {
+        labels: {
+            x: {
+                text: "\\(x_i\\)",
+                size: 20,
+            },
+            y: {
+                text: "\\(w_i\\)",
+                size: 20,
+            }
+        },
+        style: {
+            color: "black",
+            size: 2.0,
+        },
+        before_zero: 30,
+        nick_size: 6,
+    },
+    hide_indexes: hide_indexes
+}
+
+new Chart(document.querySelector("#graphic_item_03_01_2_1"), config);
+
+</script>
+</problem>

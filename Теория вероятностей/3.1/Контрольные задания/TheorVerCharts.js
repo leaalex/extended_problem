@@ -185,15 +185,15 @@ let x_axis_label = createElementSVG('foreignObject', null, 'axis-label', {
     "width": "100%",
     "height":(font_size * 2) + "px",
 });
-x_axis_label.innerHTML = '<div style="font-size:' + font_size + 'px">' + axis_labels.x.text + '</div>'
+x_axis_label.innerHTML = '<div style="text-align: left; font-size:' + font_size + 'px">' + axis_labels.x.text + '</div>'
 
 let y_axis_label = createElementSVG('foreignObject', null, 'axis-label', {
-    "x": margins - axis_labels.y.size - 6,
-    "y": margins,
+    "x": margins - axis_labels.y.size - 8,
+    "y": margins - 10,
     "width": "100%",
     "height":(font_size * 2) + "px",
 });
-y_axis_label.innerHTML = '<div style="font-size:' + font_size + 'px">' + axis_labels.y.text + '</div>'
+y_axis_label.innerHTML = '<div style="text-align: left; font-size:' + font_size + 'px">' + axis_labels.y.text + '</div>'
 
 let zero_label = createTextSVG(margins - num_width-4, SVG_height - margins + num_height + 4, "0", {"class":"zero-label", "font-size": font_size + "px",})
 
@@ -295,22 +295,23 @@ if (chart_type === "line"){
             graphic_point_group.append(to_y_projection);
         }
 
-
-
-
         points_group.append(graphic_point_group)
         let x_label_text =  point.x.toString();
+        let additional_label_class = ""
         if (Object.keys(hide_indexes.x).includes(index.toString())) {
+            additional_label_class = "hide-index-label"
             x_label_text = hide_indexes.y[index].replace_with;
         }
-        let label_x = createTextSVG(point_x -  ((x_label_text).toString().replace(".","").length * num_width/3), SVG_height - margins + num_height + 4 + nick_size/2, x_label_text, {"class":"axis-label", "font-size": font_size + "px",});
+        let label_x = createTextSVG(point_x -  ((x_label_text).toString().replace(".","").length * num_width/3), SVG_height - margins + num_height + 4 + nick_size/2, x_label_text, {"class":"axis-label " + additional_label_class, "font-size": font_size + "px",});
         graphic_group.append(label_x);
 
+        additional_label_class = "";
         let y_label_text =  point.y.toString();
         if (Object.keys(hide_indexes.y).includes(index.toString())) {
+            additional_label_class = "hide-index-label"
             y_label_text = hide_indexes.y[index].replace_with;
         }
-        let label_y = createTextSVG(margins - ((y_label_text).toString().replace(".", "").length * num_width) - 4 - nick_size/2, point_y + num_height / 2, y_label_text, {"class":"axis-label", "font-size": font_size + "px",});
+        let label_y = createTextSVG(margins - ((y_label_text).toString().replace(".", "").length * num_width) - 4 - nick_size/2, point_y + num_height / 2, y_label_text, {"class":"axis-label " + additional_label_class, "font-size": font_size + "px",});
         graphic_group.append(label_y);
     });
     graphic_group.append(lines_group);
@@ -331,7 +332,9 @@ else{
             "width": index == 0 ? bar_step * (point.x - 0) : bar_step * (point.x - points_arr[index - 1].x),
             "height": (free_space/Math.max(...points_arr.map(function(p){return p.y})) * point.y),
             "stroke": line_style.color || "black",
-            "fill":"url(#pattern_yPourJ)",
+            "fill": line_style.color || "blue",
+            "fill-opacity": "0.24",
+            // "fill":"url(#pattern_yPourJ)",
             "stroke-width": line_style.size || 2,
         });
 
@@ -356,19 +359,22 @@ else{
             "stroke-width": axis_style.size*1.2,
         });
 
-
+        let additional_label_class = "";
         let y_label_text =  point.y.toString();
         if (Object.keys(hide_indexes.y).includes(index.toString())) {
+            additional_label_class = "hide-index-label"
             y_label_text = hide_indexes.y[index].replace_with;
         }
-        let label_y = createTextSVG(margins - ((y_label_text).toString().replace(".", "").length * num_width) - 4- nick_size/2, bar_y + num_height / 2, y_label_text, {"class":"axis-label", "font-size": font_size + "px",})
+        let label_y = createTextSVG(margins - ((y_label_text).toString().replace(".", "").length * num_width) - 4- nick_size/2, bar_y + num_height / 2, y_label_text, {"class":"axis-label " + additional_label_class, "font-size": font_size + "px",})
         graphic_group.append(label_y)
 
+        additional_label_class = "";
         let x_label_text =  point.x.toString();
         if (Object.keys(hide_indexes.x).includes(index.toString())) {
+            additional_label_class = "hide-index-label"
             x_label_text = hide_indexes.x[index].replace_with;
         }
-        let label_x = createTextSVG(margins + (bar_step * point.x) - ((x_label_text).toString().replace(".", "").length * num_width)/2, SVG_height - margins + num_height + 4 + nick_size/2, x_label_text, {"class":"axis-label", "font-size": font_size + "px",})
+        let label_x = createTextSVG(margins + (bar_step * point.x) - ((x_label_text).toString().replace(".", "").length * num_width)/2, SVG_height - margins + num_height + 4 + nick_size/2, x_label_text, {"class":"axis-label " + additional_label_class, "font-size": font_size + "px",})
         graphic_group.append(label_x)
 
         bar_group.append(bar)
@@ -398,15 +404,21 @@ else{
             stroke: black;
             stroke-width: ${projection_style.size * 2.2};
         }
-        .axis-label, zero-label{
+        .axis-label, .zero-label{
             -webkit-touch-callout: none; /* iOS Safari */
-                -webkit-user-select: none; /* Safari */
-                 -khtml-user-select: none; /* Konqueror HTML */
-                   -moz-user-select: none; /* Old versions of Firefox */
-                    -ms-user-select: none; /* Internet Explorer/Edge */
-                        user-select: none;
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+             user-select: none;
+        }
+        
+        .hide-index-label{
+            font-style: italic;
+            font-weight: bold;
         }
     `
+    element.style["margin-bottom"] = "30px";
     let style = document.createElement("style")
     if (style.styleSheet) {
         style.styleSheet.cssText = css;
