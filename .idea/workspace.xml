@@ -2,31 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="маш предприятие">
-      <change afterPath="$PROJECT_DIR$/Основы проектной деятельности/1.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 10.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 11.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 12.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 13.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 14.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 15.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 16.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 17.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 18.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 19.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 20.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 7.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1/Задание 9.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/OVZ/file_1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/OVZ/file_2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/OVZ/file_3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Нейросети/Контрольные задания/1.2/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Нейросети/Контрольные задания/1.2/Задание 1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Нейросети/Учебные задания/Задание 4.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Нейросети/Учебные задания/Задание 4.2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Экономическая эффективность технических решений/KZ_1_1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Теория вероятностей/3.1/Контрольные задания/Задание 6.html" beforeDir="false" afterPath="$PROJECT_DIR$/Теория вероятностей/3.1/Контрольные задания/Задание 6.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
+        <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
@@ -68,6 +49,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -77,26 +59,26 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/engines/OVZ" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания /Задание 1" />
-      <recent name="$PROJECT_DIR$/Теория вероятностей/1.3/Учебные задания " />
-      <recent name="$PROJECT_DIR$/Нейросети/Контрольные задания/1.1" />
-      <recent name="$PROJECT_DIR$/Теория вероятностей/2.6/Контрольные задания" />
-      <recent name="$PROJECT_DIR$/Теория вероятностей/1.1/Учебные задания" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Нейросети/Kaggle/1.3" />
+      <recent name="$PROJECT_DIR$/Нейросети/Kaggle" />
       <recent name="$PROJECT_DIR$/Нейросети/Контрольные задания" />
       <recent name="$PROJECT_DIR$/Теория вероятностей/1.1/Учебные задания" />
       <recent name="$PROJECT_DIR$/Теория вероятностей/2.2/Учебные задания" />
-      <recent name="$PROJECT_DIR$/Экономическая эффективность технических решений" />
-      <recent name="$PROJECT_DIR$/Личная безопасность/evacuation_plan/static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/engines/OVZ" />
+      <recent name="$PROJECT_DIR$/Теория вероятностей/3.1/Контрольные задания" />
+      <recent name="$PROJECT_DIR$/Нейросети" />
+      <recent name="$PROJECT_DIR$/Нейросети/Kaggle/4.4" />
+      <recent name="$PROJECT_DIR$/Нейросети/Kaggle/4.2" />
     </key>
   </component>
   <component name="RunManager">
@@ -247,70 +229,15 @@
       <workItem from="1599130729129" duration="65093000" />
       <workItem from="1599829325845" duration="92065000" />
       <workItem from="1600337728358" duration="5276000" />
-      <workItem from="1600505775966" duration="23603000" />
-    </task>
-    <task id="LOCAL-00001" summary="munsterberg_test">
-      <created>1552316318472</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1552316318472</updated>
-    </task>
-    <task id="LOCAL-00002" summary="tsts">
-      <created>1560265997372</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1560265997372</updated>
-    </task>
-    <task id="LOCAL-00003" summary="задание с треугольниками">
-      <created>1585760213219</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1585760213219</updated>
-    </task>
-    <task id="LOCAL-00004" summary="задание с треугольниками">
-      <created>1585938973455</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1585938973455</updated>
-    </task>
-    <task id="LOCAL-00005" summary="задание с треугольниками">
-      <created>1586120843079</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1586120843079</updated>
-    </task>
-    <task id="LOCAL-00006" summary="вопросы с поясненияеми">
-      <created>1586900641883</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1586900641883</updated>
-    </task>
-    <task id="LOCAL-00007" summary="маш предприятие">
-      <created>1587137865525</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1587137865526</updated>
-    </task>
-    <task id="LOCAL-00008" summary="маш предприятие">
-      <created>1588708557437</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1588708557437</updated>
-    </task>
-    <task id="LOCAL-00009" summary="маш предприятие">
-      <created>1595618015214</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1595618015214</updated>
+      <workItem from="1600505775966" duration="56923000" />
+      <workItem from="1601040125997" duration="9432000" />
+      <workItem from="1601125095947" duration="15689000" />
+      <workItem from="1601290864760" duration="17784000" />
+      <workItem from="1601476282626" duration="1796000" />
+      <workItem from="1601478986221" duration="12916000" />
+      <workItem from="1601709624909" duration="42613000" />
+      <workItem from="1601996286785" duration="477000" />
+      <workItem from="1601996866012" duration="13573000" />
     </task>
     <task id="LOCAL-00010" summary="маш предприятие">
       <created>1596233940281</created>
@@ -543,7 +470,119 @@
       <option name="project" value="LOCAL" />
       <updated>1600509873205</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="маш предприятие">
+      <created>1600702311856</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1600702311856</updated>
+    </task>
+    <task id="LOCAL-00044" summary="маш предприятие">
+      <created>1600787871277</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1600787871277</updated>
+    </task>
+    <task id="LOCAL-00045" summary="маш предприятие">
+      <created>1600875213336</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1600875213359</updated>
+    </task>
+    <task id="LOCAL-00046" summary="маш предприятие">
+      <created>1601050765967</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1601050765967</updated>
+    </task>
+    <task id="LOCAL-00047" summary="маш предприятие">
+      <created>1601135152187</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1601135152187</updated>
+    </task>
+    <task id="LOCAL-00048" summary="маш предприятие">
+      <created>1601270632634</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1601270632634</updated>
+    </task>
+    <task id="LOCAL-00049" summary="маш предприятие">
+      <created>1601305064679</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1601305064679</updated>
+    </task>
+    <task id="LOCAL-00050" summary="маш предприятие">
+      <created>1601392416022</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1601392416023</updated>
+    </task>
+    <task id="LOCAL-00051" summary="маш предприятие">
+      <created>1601480841512</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1601480841514</updated>
+    </task>
+    <task id="LOCAL-00052" summary="маш предприятие">
+      <created>1601537328698</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1601537328698</updated>
+    </task>
+    <task id="LOCAL-00053" summary="маш предприятие">
+      <created>1601562712067</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1601562712067</updated>
+    </task>
+    <task id="LOCAL-00054" summary="маш предприятие">
+      <created>1601650229424</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1601650229424</updated>
+    </task>
+    <task id="LOCAL-00055" summary="маш предприятие">
+      <created>1601723011943</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1601723011943</updated>
+    </task>
+    <task id="LOCAL-00056" summary="маш предприятие">
+      <created>1601902892294</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1601902892294</updated>
+    </task>
+    <task id="LOCAL-00057" summary="маш предприятие">
+      <created>1601999440853</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1601999440853</updated>
+    </task>
+    <task id="LOCAL-00058" summary="маш предприятие">
+      <created>1602073323794</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1602073323794</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,6 +623,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="маш предприятие" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="989" y="372" width="800" height="712" key="#Plugins" timestamp="1602070383476">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="989" y="372" width="800" height="712" key="#Plugins/67.27.2493.1413@67.27.2493.1413" timestamp="1602070383476" />
     <state x="706" y="241" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598605890033">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
@@ -593,12 +636,12 @@
       <screen x="0" y="23" width="1440" height="807" />
     </state>
     <state x="463" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.807@0.23.1440.807" timestamp="1595610809155" />
-    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2" timestamp="1600698191091">
+    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2" timestamp="1602073322608">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="269" y="23" key="CommitChangelistDialog2/0.23.1440.804@0.23.1440.804" timestamp="1596319684296" />
     <state x="445" y="23" width="843" height="807" key="CommitChangelistDialog2/0.23.1440.807@0.23.1440.807" timestamp="1595618014909" />
-    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1600698191091" />
+    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1602073322608" />
     <state x="1151" y="751" width="424" height="484" key="FileChooserDialogImpl" timestamp="1600264738232">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
@@ -607,25 +650,25 @@
       <screen x="0" y="23" width="1440" height="803" />
     </state>
     <state x="262" y="58" key="SettingsEditor/0.23.1440.803@0.23.1440.803" timestamp="1594633777867" />
-    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1600509874378">
+    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1602073325306">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="320" y="218" key="Vcs.Push.Dialog.v2/0.23.1440.804@0.23.1440.804" timestamp="1596319691158" />
     <state x="320" y="219" key="Vcs.Push.Dialog.v2/0.23.1440.807@0.23.1440.807" timestamp="1595618026753" />
-    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.2493.1413@67.27.2493.1413" timestamp="1600509874378" />
-    <state x="782" y="398" width="1431" height="866" key="find.popup" timestamp="1600692609455">
+    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.2493.1413@67.27.2493.1413" timestamp="1602073325306" />
+    <state x="782" y="398" width="1431" height="866" key="find.popup" timestamp="1601902105669">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="782" y="398" width="1431" height="866" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1600692609455" />
+    <state x="782" y="398" width="1431" height="866" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1601902105669" />
     <state x="430" y="172" key="run.anything.popup" timestamp="1596320407704">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="430" y="172" key="run.anything.popup/0.23.1440.804@0.23.1440.804" timestamp="1596320407704" />
-    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup" timestamp="1600685199114">
+    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup" timestamp="1601125338102">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="843" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1596223225515" />
-    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1600685199114" />
+    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1601125338102" />
   </component>
   <component name="masterDetails">
     <states>

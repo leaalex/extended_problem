@@ -64,29 +64,18 @@ variants = [[11, 10, 10, 11, 9, 11, 15, 10, 12, 11],
 
 vars = list(range(50))
 random.shuffle(vars)
-median_lst_1, median_lst_2 = sorted(variants[vars[0]]), sorted(variants[vars[1]])
+median_lst_1 = variants[vars[0]]
 
 median_1 = np.median(median_lst_1)
-median_2 = np.median(median_lst_2)
 
 median_lst_1 = str(median_lst_1).replace("[","").replace("]","")
-median_lst_2 = str(median_lst_2).replace("[","").replace("]","")
 
 </script>
-        <div class="no-equation">
-      <numericalresponse answer="$median_1">
-        <label>Медиана вариационного ряда \($median_lst_1\) равна:</label>
-        <responseparam type="tolerance" default="0.01"/>
-          <formulaequationinput/>
-      </numericalresponse>
-
-                  <numericalresponse answer="$median_2">
-        <label>Медиана вариационного ряда \($median_lst_2\) равна:</label>
-        <responseparam type="tolerance" default="0.01"/>
-          <formulaequationinput/>
-      </numericalresponse>
-
-    </div>
-
-
+<div class="no-equation">
+  <numericalresponse answer="$median_1">
+    <label>Медиана вариационного ряда \($median_lst_1\) равна:</label>
+    <responseparam type="tolerance" default="0.01"/>
+      <formulaequationinput/>
+  </numericalresponse>
+</div>
 </problem>
