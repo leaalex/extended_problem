@@ -8,7 +8,7 @@ model.add(Conv2D(_, _, _))
 model.add(Dense(_, activation="softmax"))
 model = Sequential()
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dense(128))
+model.add(Dense(84))
 model.add(Flatten())
 model.add(AveragePooling2D(pool_size=(_, _)))
 model.add(Conv2D(_, _, _, input_shape=(_, _, _))"""
@@ -18,16 +18,16 @@ is_colored = random.choice([{"color": "цветных", "color_num": 3}, {"color
 color = is_colored["color"]
 color_num = is_colored["color_num"]
 
-image_size = random.choice([28, 32, 48, 64, 70])  # размерность изображения
+image_size = random.choice([32])  # размерность изображения
 signs_count = random.choice([5, 6, 7, 8, 9, 10, 11, 12])  # количество иероглифов
 
 answer_str = """model = Sequential()
-model.add(Conv2D(4, 5, 5, input_shape=({0}, {0}, {1}))
+model.add(Conv2D(6, 5, 5, input_shape=({0}, {0}, {1}))
 model.add(AveragePooling2D(pool_size=(2, 2)))
-model.add(Conv2D(12, 5, 5))
+model.add(Conv2D(16, 5, 5))
 model.add(AveragePooling2D(pool_size=(2, 2)))
-model.add(Flatten())
-model.add(Dense(128))
+model.add(Conv2D(120, 5, 5))
+model.add(Dense(84))
 model.add(Dense({2}, activation="softmax"))""".format(image_size, color_num, signs_count)
 
 correct_answer = []
