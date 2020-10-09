@@ -174,6 +174,9 @@ css = `
         font-style: italic !important;
     }
 
+    .${settings.audio_class} .${settings.audio_class}-icon:hover{
+        color: blue;
+    }
     .${settings.audio_class} .${settings.audio_class}-icon i.fa{
           font-style: normal !important;
           margin-right: 5px !important;
@@ -183,7 +186,7 @@ css = `
     .problem{ padding-top: 0px !important; }
     .div.problem .action{ margin-top: 0px !important; }
     .indicator-container{ display:none !important; }
-    /*.course-wrapper .seq_content .vert-mod h3 {margin-top: 0px !important; }*/
+    .course-wrapper .vert-mod h3 {margin-top: 0px !important; }
 `
     let style = createElement("style", "", {type: 'text/css'})
     style.innerHTML = css;
