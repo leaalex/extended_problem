@@ -1,0 +1,156 @@
+<script type="text/javascript">
+// div.task-wrapper - обертка для всего задания
+
+let settings = {
+    default_tracks: {
+        correct: "/static/05.mp3",
+        incorrect: "/static/06.mp3"
+    },
+    classes: {
+        correct: ".notification.success.notification-submit",
+        incorrect: ".notification.error.notification-submit"
+    }
+
+}
+
+let apps = {
+    tasks: AudioApp
+}
+
+function checkUrlExists(url) {
+    let http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status!==404;
+}
+
+function createElement(tag, classList, attrs, children){
+	let element = document.createElement(tag);
+	if (classList) element.className = classList;
+	if (attrs) {
+        for (let key in attrs) {
+            element.setAttribute(key, attrs[key])
+        }
+    }
+    if (children) {
+	    children.forEach(function (child) {
+	        element.appendChild(child)
+	    });
+	}
+    return element;
+}
+
+function AudioApp (block) {
+    let audio_blocks = block.querySelectorAll(".ovz-audio");
+    audio_blocks.forEach(function (audio_block){
+        let main_btn = createElement("button", "ovz-audio-button")
+        let icon = createElement("span", "ovz-audio-icon");
+        let icon_i = createElement("i", "fa fa-play");
+        icon.append(icon_i);
+        main_btn.append(icon);
+        audio_block.childNodes.forEach(child_node => main_btn.append(child_node.cloneNode(true)))
+        let hidden_audio = createElement("audio", "", {src:audio_block.dataset.src});
+        main_btn.append(hidden_audio);
+
+        hidden_audio.onpause = hidden_audio.onended = function (){
+            icon_i.classList.add('fa-play')
+            icon_i.classList.remove('fa-pause')
+        }
+
+        hidden_audio.onplay = function (){
+            icon_i.classList.add('fa-pause')
+            icon_i.classList.remove('fa-play')
+        }
+
+        audio_block.onclick = function (){
+           if (hidden_audio.duration > 0 && !hidden_audio.paused) { // проигрывается, ставим на паузу
+               hidden_audio.pause();
+           } else { // на паузе, включаем
+               Array.from(document.querySelectorAll("audio")).filter(a=>a!==hidden_audio).forEach(x => {x.pause(); x.currentTime = 0});
+               hidden_audio.play();
+            }
+        }
+        audio_block.innerHTML = "";
+        audio_block.append(main_btn);
+    });
+
+    let correctness_src = "";
+    if (block.closest(".problem").querySelector(settings.classes.correct)){
+        correctness_src = settings.default_tracks.correct;
+    }
+    if (block.closest(".problem").querySelector(settings.classes.incorrect)){
+        correctness_src = settings.default_tracks.incorrect;
+    }
+    let correctness_audio = createElement("audio", "", {autoplay: "autoplay", src: correctness_src});
+    if (correctness_src) block.append(correctness_audio);
+
+    // Если файла не существует
+    block.querySelectorAll("audio").forEach(function (d){
+        if (checkUrlExists(d.src) === false){
+            alert(`Не можем найти файл ${d.src.split("/").slice(-1)[0]}. Убедитесь, что он загружен!`);
+        }
+    });
+}
+
+
+function appsActivation (selectors, i) {
+  let appBlocks = [];
+  selectors.forEach(
+    selector => {
+      appBlocks = [...appBlocks, ...document.querySelectorAll(selector)]
+    }
+  )
+  appBlocks.filter(block => {
+    return block.dataset.status === undefined
+  }).forEach(block => {
+    new apps["tasks"](block)
+    block.dataset.status = 'activate'
+  })
+    setTimeout(function () {
+        appsActivation(selectors, i)
+    }, 200)
+
+}
+appsActivation(['.task-wrapper'], 0)
+
+
+css = `
+    .ovz-audio{
+        width: fit-content;
+        display: inline-block;
+    }
+
+   .ovz-audio button.ovz-audio-button {
+      background-color: #ffffff;
+      border: none;
+      padding: 0px !important;
+      font-weight: normal !important;
+      margin: 0px 0px 0px !important;
+      text-align: left !important;
+      text-decoration: none;
+      display: inherit !important;
+      font-size: 1em;
+      background-image: none !important;
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+      border-radius: 0px !important;
+    }
+
+    .ovz-audio .ovz-audio-icon i.fa{
+          font-style: normal !important;
+          margin-right: 5px !important;
+          width: 16px;
+    }
+
+    .problem{ padding-top: 0px !important; }
+    .div.problem .action{ margin-top: 0px !important; }
+    .indicator-container{ display:none !important; }
+    /*.course-wrapper .seq_content .vert-mod h3 {margin-top: 0px !important; }*/
+`
+    let style = createElement("style", "", {type: 'text/css'})
+    style.innerHTML = css;
+    document.querySelector("head").appendChild(style);
+
+</script>

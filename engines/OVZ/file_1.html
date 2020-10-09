@@ -4,10 +4,10 @@ audio_buttons = document.querySelectorAll(".ovz-audio")
 
 console.log(audio_buttons);
 
-/*
+
 audio_button = audio_buttons[0];
-let main_btn = undefined;
-main_btn = document.createElement("button");
+let main_btn = document.createElement("button");
+main_btn.innerHTML  = "";
 main_btn.classList.add('btn');
 let icon = document.createElement("span");
 icon.innerHTML = '<i class="fa fa-play ovz-icon"></i>';
@@ -17,8 +17,9 @@ let hidden_audio = document.createElement("audio");
 hidden_audio.src = audio_button.dataset.src;
 main_btn.append(hidden_audio);
 audio_button.innerHTML = "";
+console.log(audio_button);
 audio_button.innerHTML = main_btn.innerHTML;
 console.log(main_btn);
-*/
+
 
 </script>
