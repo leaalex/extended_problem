@@ -4,7 +4,8 @@
 let settings = {
     default_tracks: {
         correct: "/static/05.mp3",
-        incorrect: "/static/06.mp3"
+        incorrect: "/static/06.mp3",
+        partially: "/static/04.mp3",
     },
     classes: {
         correct: ".notification.success.notification-submit",
@@ -76,7 +77,14 @@ function AudioApp (block) {
 
     let correctness_src = "";
     if (block.closest(".problem").querySelector(settings.classes.correct)){
-        correctness_src = settings.default_tracks.correct;
+        let msg_block = block.closest(".problem").querySelector(settings.classes.correct).querySelector(".notification-message")
+        let msg_text  = (msg_block.textContent || msg_block.innerText || "").toLowerCase();
+        if (msg_text.indexOf("частично верно") !== -1 || msg_text.indexOf("partially") !== -1){
+            correctness_src = settings.default_tracks.partially;
+        }
+        else{
+            correctness_src = settings.default_tracks.correct;
+        }
     }
     if (block.closest(".problem").querySelector(settings.classes.incorrect)){
         correctness_src = settings.default_tracks.incorrect;
