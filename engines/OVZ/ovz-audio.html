@@ -30,6 +30,7 @@ function checkAudiosExists(task_block) {
     });
 
 }
+
 function focusOnNextElement () {
     let focusableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
     if (document.activeElement) {
@@ -188,8 +189,8 @@ css = `
     .indicator-container{ display:none !important; }
     .course-wrapper .vert-mod h3 {margin-top: 0px !important; }
 `
-    let style = createElement("style", "", {type: 'text/css'})
-    style.innerHTML = css;
-    document.querySelector("head").appendChild(style);
+let style = createElement("style", "", {type: 'text/css'})
+style.innerHTML = css;
+document.querySelector("head").appendChild(style);
 
 </script>
