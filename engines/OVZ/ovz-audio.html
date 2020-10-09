@@ -2,6 +2,8 @@
 // div.task-wrapper - обертка для всего задания
 
 let settings = {
+    activation_class: "ovz-wrapper",
+    audio_class: "ovz-audio",
     default_tracks: {
         correct: "/static/05.mp3",
         incorrect: "/static/06.mp3",
@@ -10,19 +12,34 @@ let settings = {
     classes: {
         correct: ".notification.success.notification-submit",
         incorrect: ".notification.error.notification-submit"
+    },
+    font_size: "",
+}
+
+function checkAudiosExists(task_block) {
+    function checkUrlExists(url){
+        let http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status!==404;
     }
+    task_block.querySelectorAll("audio").forEach(function (d){
+        if (checkUrlExists(d.src) === false){
+            alert(`Не можем найти файл ${d.src.split("/").slice(-1)[0]}. Убедитесь, что он загружен в "Файлы и загрузки"!`);
+        }
+    });
 
 }
-
-let apps = {
-    tasks: AudioApp
-}
-
-function checkUrlExists(url) {
-    let http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    return http.status!==404;
+function focusOnNextElement () {
+    let focusableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
+    if (document.activeElement) {
+        let focusable = Array.from(document.querySelectorAll(focusableElements));
+        let index = focusable.indexOf(document.activeElement);
+        if(index > -1) {
+            let nextElement = focusable[index + 1] || focusable[0];
+            nextElement.focus();
+        }
+    }
 }
 
 function createElement(tag, classList, attrs, children){
@@ -42,32 +59,36 @@ function createElement(tag, classList, attrs, children){
 }
 
 function AudioApp (block) {
-    let audio_blocks = block.querySelectorAll(".ovz-audio");
+    let audio_blocks = block.querySelectorAll(`.${settings.audio_class}`);
     audio_blocks.forEach(function (audio_block){
-        let main_btn = createElement("button", "ovz-audio-button")
-        let icon = createElement("span", "ovz-audio-icon");
+        let main_btn = createElement("button", `${settings.audio_class}-button`)
+        let icon = createElement("span", `${settings.audio_class}-icon`);
         let icon_i = createElement("i", "fa fa-play");
         icon.append(icon_i);
         main_btn.append(icon);
         audio_block.childNodes.forEach(child_node => main_btn.append(child_node.cloneNode(true)))
-        let hidden_audio = createElement("audio", "", {src:audio_block.dataset.src});
+        let hidden_audio = createElement("audio", "", {src: audio_block.dataset.src});
         main_btn.append(hidden_audio);
 
-        hidden_audio.onpause = hidden_audio.onended = function (){
+        hidden_audio.onpause = function (){
             icon_i.classList.add('fa-play')
             icon_i.classList.remove('fa-pause')
         }
-
+        hidden_audio.onended = function (){
+            icon_i.classList.add('fa-play')
+            icon_i.classList.remove('fa-pause')
+            // автофокус на следующий элемент
+            // focusOnNextElement();
+        }
         hidden_audio.onplay = function (){
             icon_i.classList.add('fa-pause')
             icon_i.classList.remove('fa-play')
         }
-
         audio_block.onclick = function (){
            if (hidden_audio.duration > 0 && !hidden_audio.paused) { // проигрывается, ставим на паузу
                hidden_audio.pause();
            } else { // на паузе, включаем
-               Array.from(document.querySelectorAll("audio")).filter(a=>a!==hidden_audio).forEach(x => {x.pause(); x.currentTime = 0});
+               Array.from(document.querySelectorAll("audio")).filter(a => a!==hidden_audio).forEach(x => {x.pause(); x.currentTime = 0});
                hidden_audio.play();
             }
         }
@@ -75,9 +96,13 @@ function AudioApp (block) {
         audio_block.append(main_btn);
     });
 
+    /*
+    * Звуковая индикация правильности/напрвильности
+    * */
     let correctness_src = "";
-    if (block.closest(".problem").querySelector(settings.classes.correct)){
-        let msg_block = block.closest(".problem").querySelector(settings.classes.correct).querySelector(".notification-message")
+    let problem = block.closest(".problem");
+    if (problem.querySelector(settings.classes.correct)){
+        let msg_block = problem.querySelector(settings.classes.correct).querySelector(".notification-message")
         let msg_text  = (msg_block.textContent || msg_block.innerText || "").toLowerCase();
         if (msg_text.indexOf("частично верно") !== -1 || msg_text.indexOf("partially") !== -1){
             correctness_src = settings.default_tracks.partially;
@@ -86,28 +111,25 @@ function AudioApp (block) {
             correctness_src = settings.default_tracks.correct;
         }
     }
-    if (block.closest(".problem").querySelector(settings.classes.incorrect)){
+    if (problem.querySelector(settings.classes.incorrect)){
         correctness_src = settings.default_tracks.incorrect;
     }
     let correctness_audio = createElement("audio", "", {autoplay: "autoplay", src: correctness_src});
     if (correctness_src) block.append(correctness_audio);
 
-    // Если файла не существует
-    block.querySelectorAll("audio").forEach(function (d){
-        if (checkUrlExists(d.src) === false){
-            alert(`Не можем найти файл ${d.src.split("/").slice(-1)[0]}. Убедитесь, что он загружен!`);
-        }
-    });
+    /*
+    * Алерты если какой-то файл не может подтянуться
+    * */
+    checkAudiosExists(block);
 }
 
+let apps = {
+    tasks: AudioApp
+}
 
-function appsActivation (selectors, i) {
+function appsActivation (selector, i) {
   let appBlocks = [];
-  selectors.forEach(
-    selector => {
-      appBlocks = [...appBlocks, ...document.querySelectorAll(selector)]
-    }
-  )
+  appBlocks = [...appBlocks, ...document.querySelectorAll(selector)]
   appBlocks.filter(block => {
     return block.dataset.status === undefined
   }).forEach(block => {
@@ -115,23 +137,22 @@ function appsActivation (selectors, i) {
     block.dataset.status = 'activate'
   })
     setTimeout(function () {
-        appsActivation(selectors, i)
+        appsActivation(selector, i)
     }, 200)
 
 }
-appsActivation(['.task-wrapper'], 0)
-
+appsActivation(`.${settings.activation_class}`, 0)
 
 css = `
-    .ovz-audio{
+    .${settings.audio_class}{
         width: fit-content;
         display: inline-block;
     }
 
-   .ovz-audio button.ovz-audio-button {
+   .${settings.audio_class} button.${settings.audio_class}-button {
       background-color: #ffffff;
       border: none;
-      padding: 0px !important;
+      padding: 0px 2px !important;
       font-weight: normal !important;
       margin: 0px 0px 0px !important;
       text-align: left !important;
@@ -146,7 +167,14 @@ css = `
       border-radius: 0px !important;
     }
 
-    .ovz-audio .ovz-audio-icon i.fa{
+    .${settings.audio_class}.bold button.${settings.audio_class}-button {
+        font-weight: bold !important;
+    }
+    .${settings.audio_class}.italic button.${settings.audio_class}-button {
+        font-style: italic !important;
+    }
+
+    .${settings.audio_class} .${settings.audio_class}-icon i.fa{
           font-style: normal !important;
           margin-right: 5px !important;
           width: 16px;
