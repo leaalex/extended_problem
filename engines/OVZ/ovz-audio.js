@@ -1,5 +1,4 @@
-<script type="text/javascript" data-static="/static/script" id="ovz_audio_script">
-// <script type="text/javascript" data-static="/static/script" id="ovz_audio_script" src="/static/ovz-audio.js">
+// <script type="text/javascript" data-static="/static/script" id="ovz_audio_script" src="/static/ovz-audio.js"></script>
 // div.task-wrapper - обертка для всего задания
 
 let currentScript = document.querySelector("script#ovz_audio_script");
@@ -172,7 +171,7 @@ css = `
     .${settings.audio_class}.italic button.${settings.audio_class}-button { font-style: italic !important; }
     .${settings.audio_class} .${settings.audio_class}-icon:hover{ color: blue; }
     .${settings.audio_class} .${settings.audio_class}-icon i.fa{ font-style: normal !important; margin-right: 5px !important; width: 16px; }
-
+    
     .problem{ padding-top: 0px !important; }
     .div.problem .action{ margin-top: 0px !important; }
     .indicator-container{ display:none !important; }
@@ -181,4 +180,3 @@ css = `
 let style = createElement("style", "", {type: 'text/css'})
 style.innerHTML = css;
 document.querySelector("head").appendChild(style);
-</script>
