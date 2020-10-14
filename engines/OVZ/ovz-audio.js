@@ -34,6 +34,9 @@ function checkAudiosExists(task_block) {
 
 }
 
+/*
+* Переключает фокус на следующий элемент
+* */
 function focusOnNextElement () {
     let focusableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
     if (document.activeElement) {
