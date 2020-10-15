@@ -1,0 +1,25 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            /*display: none !important;*/
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+
+m = random.randint(4, 15)
+n = random.randint(3, m-1)
+answer = m - n
+
+</script>
+    <div class="no-equation">
+        <p>Дана система из \($m\) линейных уравнений с \($n\) неизвестными.</p>
+        <p>Известно, что система имеет бесконечное множество решений.</p>
+        <numericalresponse answer="$answer">
+            <label>Указать минимально возможное количество свободных неизвестных для общего решения системы уравнений.</label>
+            <responseparam type="tolerance" default="0.0001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>
