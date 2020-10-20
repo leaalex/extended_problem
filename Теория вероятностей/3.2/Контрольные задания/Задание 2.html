@@ -1,0 +1,43 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+dr_arr = sorted(random.sample(list(range(1, 9)), 5))
+arr = []
+rand_int = random.randint(1,9)
+for x in list(range(0,5)):
+    arr.append(round(rand_int + dr_arr[x]*0.1,1))
+
+x_position = random.randint(0, 4)
+x_position_plus_1 = x_position + 1
+m_x = round(sum(arr)/5, 2)
+
+answer = arr[x_position]
+
+arr_display = ""
+for ind, y in enumerate(arr):
+    if ind != x_position:
+        arr_display += str(y)
+    else:
+        arr_display += "x_" + str(x_position_plus_1)
+    if ind+1 != len(arr):
+        arr_display += "; "
+
+</script>
+    <div class="no-equation">
+        <p>Проведено пять измерений (без систематических ошибок) некоторой случайной величины (в мм): \($arr_display.\)</p>
+        <numericalresponse answer="$answer">
+            <label>Если несмещенная оценка математического ожидания равна \($m_x\), то \(x_$x_position_plus_1\) равно</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+
+</problem>

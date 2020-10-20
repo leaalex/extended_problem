@@ -1,0 +1,42 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+n = random.choice([4, 5])
+x = random.randint(1, 90)
+arr = sorted(random.sample(list(range(x, x+10)), n))
+m_x = sum(arr)/n
+D = 1/n * sum([s*s - m_x*m_x for s in arr])
+
+x_position = random.randint(0, n-1)
+x_position_plus_1 = x_position + 1
+
+answer = arr[x_position]
+
+arr_display = ""
+for ind, y in enumerate(arr):
+    if ind != x_position:
+        arr_display += str(y)
+    else:
+        arr_display += "x_" + str(x_position_plus_1)
+    if ind+1 != len(arr):
+        arr_display += "; "
+
+</script>
+    <div class="no-equation">
+        <p>Несмещенная оценка математического ожидания случайной величины равна \($m_x\). Проведено четыре измерения: \($arr_display.\)</p>
+        <numericalresponse answer="$answer">
+            <label>Выборочная дисперсия будет равна</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+
+</problem>

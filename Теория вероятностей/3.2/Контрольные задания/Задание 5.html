@@ -1,0 +1,17 @@
+import math
+import random
+
+a = round(random.randint(-1900, 1900) * 0.01, 2)
+b = round(random.randint(0, 99) * 0.01, 2)
+
+a = 0.57
+b = 0.85
+
+int_a = round(a - b, 2)
+int_b = round(a + b, 2)
+
+print(int_a, int_b)
+
+cv_a, cv_b = a-0.8*b, a+0.8*b
+
+print(cv_a, cv_b)
