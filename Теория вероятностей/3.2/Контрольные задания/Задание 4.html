@@ -1,0 +1,59 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+x_n_len = random.choice([4, 5])
+x = random.randint(1, 90)
+n = 10
+
+x_i = sorted(random.sample(list(range(x, x+10)), x_n_len))
+n_i = []
+n_i_sum = 0
+while n_i_sum != 10:
+    random_arr = random.sample(range(1, 9), x_n_len)
+    n_i = [int(round(x/(sum(random_arr)/10))) for x in random_arr]
+    n_i_sum = sum(n_i)
+
+D1 = sum([xj1*xj1*nj1 for nj1, xj1 in zip(n_i, x_i)])/n
+D2 = math.pow(sum([xj2*nj2 for nj2, xj2 in zip(n_i, x_i)]) / n, 2)
+D = round(D1 - D2, 2)
+
+def gen_line(line_array):
+    return_str = ""
+    for la_ind, la in enumerate(line_array):
+        if la_ind+1 != len(line_array):
+            return_str += str(la) + " &amp; "
+        else:
+            return_str += str(la) + ""
+    return return_str
+
+x_i_display = gen_line(x_i)
+n_i_display = gen_line(n_i)
+
+</script>
+    <div class="no-equation">
+        <p>Из генеральной совокупности извлечена выборка объема \( n = $n \):</p>
+        <p>
+            \[
+                \begin{array}{|c|c|c|c|}
+                    \hline
+                    x_i &amp; $x_i_display \\ \hline
+                    n_i &amp; $n_i_display \\ \hline
+                \end{array}
+            \]
+        </p>
+        <numericalresponse answer="$D">
+            <label>Тогда выборочная дисперсия равна</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+
+</problem>

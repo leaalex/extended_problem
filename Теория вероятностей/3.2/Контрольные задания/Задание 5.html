@@ -1,4 +1,10 @@
-import math
+<problem>
+<style>
+    .no-equation .equation{
+        display: none !important;
+    }
+</style>
+<script type="loncapa/python">
 import random
 
 a = round(random.randint(-1900, 1900) * 0.01, 2)
@@ -10,8 +16,23 @@ b = 0.85
 int_a = round(a - b, 2)
 int_b = round(a + b, 2)
 
-print(int_a, int_b)
+ci_a, ci_b = round(a - 0.8 * b, 2), round(a + 0.8 * b, 2)
+ii1_a, ii1_b = round(a - 1.25 * b, 2), round(a + 1.25 * b, 2)
+ii2_a, ii2_b = round(a - 1.25 * b, 2), round(a + 0.8 * b, 2)
+ii3_a, ii3_b = round(a - 0.8 * b, 2), round(a + b, 2)
+ii4_a, ii4_b = round(a - b, 2), round(a + 0.8 * b, 2)
 
-cv_a, cv_b = a-0.8*b, a+0.8*b
-
-print(cv_a, cv_b)
+</script>
+<div class="no-equation">
+    <multiplechoiceresponse>
+    <label>Дан доверительный интервал \(($int_a; $int_b)\) для оценки математического ожидания нормально распределенного количественного признака. Тогда при уменьшении надежности (доверительной вероятности) оценки доверительный интервал может принять вид: </label>
+    <choicegroup type="MultipleChoice" shuffle="true">
+        <choice correct="true">\(($ci_a; $ci_b)\)</choice>
+        <choice correct="false">\(($ii1_a; $ii1_b)\)</choice>
+        <choice correct="false">\(($ii2_a; $ii2_b )\)</choice>
+        <choice correct="false">\(($ii3_a; $ii3_b)\)</choice>
+        <choice correct="false">\(($ii4_a; $ii4_b)\)</choice>
+      </choicegroup>
+    </multiplechoiceresponse>
+</div>
+</problem>

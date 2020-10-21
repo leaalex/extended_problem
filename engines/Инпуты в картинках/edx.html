@@ -1,0 +1,61 @@
+<problem>
+<script type="loncapa/python">
+import json
+task_id = "q111kekKeK111"
+image_src = "kaggle_instruction_26.png"
+background_width = str(500) + "px"
+background_height = str(500) + "px"
+inputs = [
+  {
+  	"x": 400,
+  	"y": 400,
+  },
+  {
+  	"x": 20,
+  	"y": 100,
+  },
+]
+</script>
+<script type="text/javascript">
+let inputs_list = $inputs;
+
+document.querySelectorAll("#$task_id .background_input").forEach(function(item, index){
+  if (inputs_list[index]){
+  	item.style.left = inputs_list[index].x + "px"
+    item.style.top = inputs_list[index].y + "px"
+  }
+})
+</script>
+<style>
+
+.background_image{
+    width: $background_width;
+    height: $background_height;
+    position: relative;
+}
+
+.background_input{
+    position: absolute;
+}
+
+.background_input .status{
+	display: none !important;
+}
+</style>
+<div id="$task_id">
+
+  <div class="background_image" style="background-image: url(https://courses.openedu.urfu.ru/asset-v1:edX+DemoX+Demo_Course+type@asset+block@$image_src)">
+  <div class="background_input">
+    <stringresponse answer="the correct answer" type="ci">
+      	<textline size="20"/>
+    </stringresponse>
+  </div>
+  <div class="background_input">
+    <stringresponse answer="the correct answer" type="ci">
+    	<textline size="20"/>
+  	</stringresponse>
+  </div>
+</div>
+
+  </div>
+</problem>
