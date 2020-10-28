@@ -20,25 +20,26 @@
 <p>Скопируйте себе базовое решение. Запустите его и определите на основе данных обучения, кривых обучения и разницы в оценках на тренировочном, проверочном и тестовом наборах данных переобучилась ли нейронная сеть? Если да, то меняя количество эпох обучения (<strong>epochs</strong>) добейтесь того, чтобы ваша <strong>«accuracy»</strong> на тренировочных данных и на тестовых (на <i>LeaderBoard</i>) отличалась не более чем на \(2\%\) \((0.02)\).</p>
 
     <div class="answer-block">
-    <numericalresponse answer="49">
+    <numericalresponse answer="50">
         <label>Номер последней эпохи, на которой выполняется требование отклонения точности на тренировочном и тестовом наборах:</label>
+        <responseparam type="tolerance" default="2" />
         <formulaequationinput />
     </numericalresponse>
     </div>
 
     <div class="answer-block">
-    <numericalresponse answer="0.8996">
+    <numericalresponse answer="0.8995">
         <label>Значение <strong>«accuracy»</strong> на последней эпохе (на тренировочных данных) с точностью до 4 знаков после запятой:</label>
-        <responseparam type="tolerance" default="0.001" />
+        <responseparam type="tolerance" default="0.0025" />
         <formulaequationinput />
     </numericalresponse>
     </div>
 
     <div class="answer-block">
 
-    <numericalresponse answer="0.8810">
+    <numericalresponse answer="0.8850">
         <label>Значение <strong>«accuracy»</strong> на тесте (на <i>LeaderBoard</i>) с точностью до 4 знаков после запятой:</label>
-        <responseparam type="tolerance" default="0.001" />
+        <responseparam type="tolerance" default="0.005" />
         <formulaequationinput />
     </numericalresponse>
     </div>

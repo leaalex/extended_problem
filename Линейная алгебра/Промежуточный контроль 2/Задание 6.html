@@ -1,0 +1,110 @@
+<problem>
+    <style>
+        #no_equation_6 .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+nums_range = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+a11 = random.choice(nums_range)
+a12 = random.choice(nums_range)
+a13 = random.choice(nums_range)
+a14 = random.choice(nums_range)
+a22 = random.choice(nums_range)
+a23 = random.choice(nums_range)
+a24 = random.choice(nums_range)
+a33 = random.choice(nums_range)
+a34 = random.choice(nums_range)
+a41 = random.choice(nums_range)
+a42 = random.choice(nums_range)
+a43 = random.choice(nums_range)
+a44 = random.choice(nums_range)
+
+check_d = a11*(a22*(a33*a44-a34*a43)-a23*(-a34*a42)+a24*(0-a33*a42))-a41*(a12*(a23*a34 - a24*a33)-a13*(a22*a34)+a14*a22*a33)
+while check_d == 0:
+    a11 = random.choice(nums_range)
+    a12 = random.choice(nums_range)
+    a13 = random.choice(nums_range)
+    a14 = random.choice(nums_range)
+    a22 = random.choice(nums_range)
+    a23 = random.choice(nums_range)
+    a24 = random.choice(nums_range)
+    a33 = random.choice(nums_range)
+    a34 = random.choice(nums_range)
+    a41 = random.choice(nums_range)
+    a42 = random.choice(nums_range)
+    a43 = random.choice(nums_range)
+    a44 = random.choice(nums_range)
+    check_d = a11 * (a22 * (a33 * a44 - a34 * a43) - a23 * (-a34 * a42) + a24 * (0 - a33 * a42)) - a41 * (
+                a12 * (a23 * a34 - a24 * a33) - a13 * (a22 * a34) + a14 * a22 * a33)
+
+x1 = random.choice(nums_range)
+x2 = random.choice(nums_range)
+x3 = random.choice(nums_range)
+x4 = random.choice(nums_range)
+
+b1 = a11*x1 + a12*x2 + a13*x3 + a14*x4
+b2 = a22*x2 + a23*x3 + a24*x4
+b3 = a33*x3 + a34*x4
+b4 = a41*x1 + a42*x2 + a43*x3 + a44*x4
+
+equation_1 = str(a11) + " x_1 " + ("+ " if a12 > 0 else "") + str(a12) + " x_2" + (" + " if a13 > 0 else " ") + str(a13) + " x_3" + (" + " if a14 > 0 else " ") + str(a14) + " x_4" + " = " + str(b1)
+equation_2 = str(a22) + " x_2" + (" + " if a23 > 0 else " ") + str(a23) + " x_3" + (" + " if a24 > 0 else " ") + str(a24) + " x_4" + " = " + str(b2)
+equation_3 = str(a33) + " x_3" + (" + " if a34 > 0 else " ") + str(a34) + " x_4" + " = " + str(b3)
+equation_4 = str(a41) + " x_1 " + ("+ " if a42 > 0 else "") + str(a42) + " x_2" + (" + " if a43 > 0 else " ") + str(a43) + " x_3" + (" + " if a44 > 0 else " ") + str(a44) + " x_4" + " = " + str(b4)
+
+</script>
+    <div id="no_equation_6">
+        <p>Решить систему:</p>
+        \[ \left\{\begin{array}{ll}
+           $equation_1, \\
+           $equation_2, \\
+           $equation_3,  \\
+           $equation_4.  \\
+        \end{array}\right.\]
+
+<table>
+    <tr>
+        <td>\(x_1 = \)</td>
+        <td>
+            <numericalresponse answer="$x1">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(x_2 = \)</td>
+        <td>
+            <numericalresponse answer="$x2">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(x_3 = \)</td>
+        <td>
+            <numericalresponse answer="$x3">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(x_4 = \)</td>
+        <td>
+            <numericalresponse answer="$x4">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+</table>
+
+    </div>
+</problem>

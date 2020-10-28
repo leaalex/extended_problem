@@ -1,0 +1,129 @@
+<problem>
+    <style>
+        #no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import math
+import random
+
+range = [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10]
+
+a11 = random.choice(range)
+a21 = random.choice(range)
+a31 = random.choice(range)
+a12 = random.choice(range)
+a22 = random.choice(range)
+a32 = random.choice(range)
+a13 = random.choice(range)
+a23 = random.choice(range)
+a33 = random.choice(range)
+
+check_d = a11 * (a22*a33 - a23*a32) - a12*(a21*a33 - a23*a31) + a13*(a21*a32 - a22*a31)
+while check_d == 0:
+    a11 = random.choice(range)
+    a21 = random.choice(range)
+    a31 = random.choice(range)
+    a12 = random.choice(range)
+    a22 = random.choice(range)
+    a32 = random.choice(range)
+    a13 = random.choice(range)
+    a23 = random.choice(range)
+    a33 = random.choice(range)
+    check_d = a11 * (a22*a33 - a23*a32) - a12*(a21*a33 - a23*a31) + a13*(a21*a32 - a22*a31)
+
+x1 = random.choice(range)
+x2 = random.choice(range)
+x3 = random.choice(range)
+
+b1 = a11*x1 + a12*x2 + a13*x3
+b2 = a21*x1 + a22*x2 + a23*x3
+b3 = a31*x1 + a32*x2 + a33*x3
+
+d = a11 * (a22*a33 - a23*a32) - a12*(a21*a33 - a23*a31) + a13*(a21*a32 - a22*a31)
+d1 = b1 * (a22*a33 - a23*a32) - a12*(b2*a33 - a23*b3) + a13 * (b2*a32 - a22*b3)
+d2 = a11*(b2*a33 - a23*b3) - b1*(a21*a33 - a23*a31) + a13*(a21*b3 - b2*a31)
+d3 = a11*(a22*b3 - b2*a32) - a12*(a21*b3-b2*a31) + b1*(a21*a32 - a22*a31)
+
+equation_1 = str(a11) + " x_1 " + ( "+ " if a12 > 0 else "") + str(a12) + " x_2" + (" + " if a13 > 0 else " ") + str(a13) + " x_3" + " = " + str(b1)
+equation_2 = str(a21) + " x_1 " + ( "+ " if a22 > 0 else "") + str(a22) + " x_2" + (" + " if a23 > 0 else " ") + str(a23) + " x_3" + " = " + str(b2)
+equation_3 = str(a31) + " x_1 " + ( "+ " if a32 > 0 else "") + str(a32) + " x_2" + (" + " if a33 > 0 else " ") + str(a33) + " x_3" + " = " + str(b3)
+
+</script>
+    <div id="no-equation">
+        <p>Найти определители \(\Delta\), \(\Delta_1\), \(\Delta_2\), \(\Delta_3\) в формулах Крамера и значения неизвестных для системы:</p>
+        \[ \left\{\begin{array}{ll}
+           $equation_1, \\
+           $equation_2, \\
+           $equation_3  \\
+\end{array}\right.\]
+
+<table>
+    <tr>
+        <td>\(\Delta = \)</td>
+        <td>
+            <numericalresponse answer="$d">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(\Delta_1 = \)</td>
+        <td>
+            <numericalresponse answer="$d1">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(\Delta_2 = \)</td>
+        <td>
+            <numericalresponse answer="$d2">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(\Delta_3 = \)</td>
+        <td>
+            <numericalresponse answer="$d3">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(x_1 = \)</td>
+        <td>
+            <numericalresponse answer="$x1">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(x_2 = \)</td>
+        <td>
+            <numericalresponse answer="$x2">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+    <tr>
+        <td>\(x_3 = \)</td>
+        <td>
+            <numericalresponse answer="$x3">
+                <responseparam type="tolerance" default="0.001"/>
+                <formulaequationinput/>
+            </numericalresponse>
+        </td>
+    </tr>
+</table>
+
+    </div>
+</problem>

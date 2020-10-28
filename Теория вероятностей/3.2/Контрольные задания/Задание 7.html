@@ -1,0 +1,38 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+
+a = round(random.randint(1500, 3500) * 0.01, 2)
+b = round(random.randint(100, 300) * 0.01, 2)
+
+int_a = round(a - b, 2)
+int_b = round(a + b, 2)
+
+correct = b
+incorrect_1 = round(2 * b, 2)
+incorrect_2 = round(a + b, 2)
+incorrect_3 = round(a - b, 2)
+incorrect_4 = round(b/2, 2)
+</script>
+    <div class="no-equation">
+<multiplechoiceresponse>
+<label>Точность оценки при наличии доверительного интервала \(($int_a; $int_b)\) для оценки математического ожидания нормально распределенного количественного признака – толщины шпунтованных досок – равна:</label>
+<choicegroup type="MultipleChoice" shuffle="true">
+    <choice correct="true">\( $correct \)</choice>
+    <choice correct="false">\( $incorrect_1 \)</choice>
+    <choice correct="false">\( $incorrect_2 \)</choice>
+    <choice correct="false">\( $incorrect_3 \)</choice>
+    <choice correct="false">\( $incorrect_4 \)</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+
+
+    </div>
+
+
+</problem>

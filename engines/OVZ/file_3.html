@@ -8,29 +8,26 @@ function play_func(audio_btn) {
   };
 
   function start_stop(){
-    console.log("Запускаем старт стоп")
-        if (!audio_block.paused) {
-            audio_block.pause();
-            icon_i.classList.remove('fa-pause')
-            icon_i.classList.add('fa-play')
-        }else{
-
-            audio_block.play();
-            icon_i.classList.add('fa-pause')
-            icon_i.classList.remove('fa-play')
+      console.log("Запускаем старт стоп")
+      if (!audio_block.paused) {
+          audio_block.pause();
+          icon_i.classList.remove('fa-pause')
+          icon_i.classList.add('fa-play')
+      }else{
+          audio_block.play();
+          icon_i.classList.add('fa-pause')
+          icon_i.classList.remove('fa-play')
         }
   }
 
-  // audio_btn.addEventListener("click",  function (){
     if (getSelectionText().replace(" ", "") !== ''){
       if( audio_btn.innerText.includes(getSelectionText())){
         console.log("не запускаем")
         return;
       }
     }
-      start_stop();
-    // }
-  // });
+    start_stop();
+
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {

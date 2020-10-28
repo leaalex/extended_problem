@@ -1,0 +1,62 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+
+
+def gen_line(line_array):
+    return_str = ""
+    for la_ind, la in enumerate(line_array):
+        if la_ind+1 != len(line_array):
+            return_str += str(la) + " &amp; "
+        else:
+            return_str += str(la) + ""
+    return return_str
+
+n = random.randint(4, 6)
+
+kr = random.choice([{"x_kr": 10, "sum_kr": 20},{"x_kr": 5, "sum_kr": 10}])
+x_i = [x * kr["x_kr"] for x in range(1, 15)]
+random.shuffle(x_i)
+x_i = sorted(x_i[:n])
+
+n_i = []
+n_i_sum = 0
+while n_i_sum != kr["sum_kr"]:
+    random_arr = random.sample(range(1, 9), n)
+    n_i = [int(round(x/(sum(random_arr)/kr["sum_kr"]))) for x in random_arr]
+    n_i_sum = sum(n_i)
+
+#x_i = [10,20,30,40]
+#n_i = [2,5,2,1]
+
+m_x = sum([x * y for x, y in zip(x_i, n_i)])/sum(n_i)
+
+n_i_display = gen_line(n_i)
+x_i_display = gen_line(x_i)
+
+</script>
+    <div class="no-equation">
+        <p>Несмещенная и состоятельная оценка средней высоты сечения рельефа (в метрах) по данным выборки, представленной в таблице, равна:</p>
+        <p>
+            \[
+            \begin{array}{|c|c|c|c|}
+                \hline
+                x_i &amp; $x_i_display \\ \hline
+                n_i &amp; $n_i_display \\ \hline
+            \end{array}
+            \]
+        </p>
+        <numericalresponse answer="$m_x">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+
+</problem>

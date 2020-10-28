@@ -1,0 +1,299 @@
+<problem>
+<script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_kvEWer8tKsf"
+
+correct_answer = {"a1": ["b1"], "a2": ["b2"], "a3": ["b3"], "a4": ["b4"], "a5": ["b5"], "a6": ["b6"], "a7": ["b7"], "a8": ["b8"], "a9": ["b9"], "a10":[{"b10", "b11", "b12"}], "a11":[{"b10", "b11", "b12"}], "a12":[{"b10", "b11", "b12"}], "a13":[{"b13", "b14"}], "a14":[{"b13", "b14"}], "a15": ["b15"], "a16": ["b16"]}
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+    elif check_type == 'check_or':
+        response = check_or(correct_answer, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+</script>
+
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+
+<script type="text/javascript" src="/static/sortable.js"></script>
+
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+ </script>
+<style>
+    #$unique_id .text-fixed-width{
+        width: 18%;
+    }
+
+    #$unique_id .text-fixed-height{
+        height: 80px;
+    }
+
+    #$unique_id .conf-item{
+/*        padding: 3px;
+        margin: 3px;
+        font-size: 90%;*/
+    }
+
+    #$unique_id .conf-table{
+          /* border-collapse: separate !important;
+          border-spacing: 2px !important; */
+        }
+
+    .conf-table td {
+        /*border: none;*/
+    }
+
+    .input-place{
+        border: 1px solid #bbbebe !important;
+    }
+
+    </style>
+
+<script type="text/javascript" src="/static/matching_table_mobile.js"></script>
+
+<div class="matching_table disable-marker" id="$unique_id">
+
+
+<p>Приведена таблица профессиональных организаций в области управления проектами. Необходимо правильно соотнести основной стандарт/свод знаний, страну, уровень (национальный или международный) и характеристику стандарта с соответствующей организацией-разработчиком.</p>
+
+<table class="conf-table">
+        <tr>
+            <th class="conf-text conf-header text-fixed-width">Организация</th>
+            <th class="conf-text conf-header" style="width:26%">Основной стандарт/свод знаний</th>
+            <th class="conf-text conf-header text-fixed-width" style="">Страна</th>
+            <th class="conf-text conf-header text-fixed-width" style="">Уровень стандарта</th>
+            <th class="conf-text conf-header text-fixed-width" style="">Характеристика</th>
+        </tr>
+        <tr>
+            <td class="conf-text conf-header text-fixed-height">Международная Ассоциация управления проектами, IPMA<br/><img src="/static/PROJ_02_02_training_task_img_01.png"></img></td>
+            <td id="a1" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a5" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a9" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a13" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr>
+            <td class="conf-text conf-header text-fixed-height">Ассоциация управления проектами "СОВНЕТ"<br/><img src="/static/PROJ_02_02_training_task_img_02.png"></img></td>
+            <td id="a2" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a6" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a10" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a14" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr>
+            <td class="conf-text conf-header text-fixed-height">Институт управления проектами PMI<br/><img src="/static/PROJ_02_02_training_task_img_03.png"></img></td>
+            <td id="a3" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a7" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a11" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a15" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+        <tr>
+            <td class="conf-text conf-header text-fixed-height">Ассоциация проектных менеджеров Японии (PMAJ)<br/><img src="/static/PROJ_02_02_training_task_img_04.png"></img></td>
+            <td id="a4" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a8" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a12" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+            <td id="a16" capacity="2" class="conf-answers-place conf-inputable input-place"></td>
+        </tr>
+</table>
+
+<p>Основные стандарты:</p>
+<div class="conf-answers-place conf-inputable conf-all-answers fourths">
+    <div id="b1" class="conf-item conf-draggable" style="overflow: hidden !important;">Individual Competence Baseline (ICB)<br/><div><img style="width: 100px;" src="/static/PROJ_02_02_training_task_img_05.png"></img></div></div>
+    <div id="b2" class="conf-item conf-draggable" style="font-size: 12px !important; overflow: hidden !important;">Национальные требования к компетентности специалистов по Управлению проектами (НТК)<br/><div><img style="width: 54px;" src="/static/PROJ_02_02_training_task_img_06.png"></img></div></div>
+    <div id="b3" class="conf-item conf-draggable" style="overflow: hidden !important;">PMBOK® Guide<br/><div><img style="width: 100px;" src="/static/PROJ_02_02_training_task_img_07.png"></img></div></div>
+    <div id="b4" class="conf-item conf-draggable" style="overflow: hidden !important;">P2M<br/><div><img style="width: 100px;" src="/static/PROJ_02_02_training_task_img_08.png"></img></div></div>
+</div>
+<p></p>
+<div style="display: flex;">
+
+<div style="width: 33%;margin-right: 4px;">
+  <p style="text-align:center;">Страны:</p>
+
+
+  <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+
+    <div id="b5" class="conf-item conf-draggable">Швейцария</div>
+    <div id="b6" class="conf-item conf-draggable">Россия</div>
+    <div id="b7" class="conf-item conf-draggable">США</div>
+    <div id="b8" class="conf-item conf-draggable">Япония</div>
+  </div>
+
+</div>
+
+<div style="width: 33%;margin-right: 4px;">
+  <p style="text-align:center;">Уровни стандарта:</p>
+
+  <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+    <div id="b9" class="conf-item conf-draggable">Международный</div>
+    <div id="b10" class="conf-item conf-draggable">Национальный</div>
+    <div id="b11" class="conf-item conf-draggable">Национальный</div>
+    <div id="b12" class="conf-item conf-draggable">Национальный</div>
+  </div>
+
+</div>
+
+<div style="width: 33%">
+  <p style="text-align:center;">Характеристики:</p>
+
+  <div class="conf-answers-place conf-inputable conf-all-answers ones ">
+    <div id="b13" class="conf-item conf-draggable">Компетентностный подход</div>
+    <div id="b14" class="conf-item conf-draggable">Компетентностный подход</div>
+    <div id="b15" class="conf-item conf-draggable">Процессный подход</div>
+    <div id="b16" class="conf-item conf-draggable">Ценностно-ориентированный подход</div>
+  </div>
+
+</div>
+
+</div>
+
+
+<div id="matching_table_input" style="display: none !important;">
+    <customresponse cfn="check_answer">
+        <textline size="40" value="$taskId" />
+        <br/>
+    </customresponse>
+
+     <div class="message-about-grade"></div>
+</div>
+
+<solution>
+    <div class="detailed-solution">
+
+        <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
+
+            <table class="conf-table">
+                    <tr>
+                        <th class="conf-text conf-header text-fixed-width">Организация</th>
+                        <th class="conf-text conf-header" style="width:26%">Основной стандарт/свод знаний</th>
+                        <th class="conf-text conf-header text-fixed-width" style="">Страна</th>
+                        <th class="conf-text conf-header text-fixed-width" style="">Уровень стандарта</th>
+                        <th class="conf-text conf-header text-fixed-width" style="">Характеристика</th>
+                    </tr>
+                    <tr>
+                        <td class="conf-text conf-header text-fixed-height">Международная Ассоциация управления проектами, IPMA<br/><img src="/static/PROJ_02_02_training_task_img_01.png"></img></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item" style="overflow: hidden !important;">Individual Competence Baseline (ICB)<br/><div><img style="width: 100px;" src="/static/PROJ_02_02_training_task_img_05.png"></img></div></div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Швейцария</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Международный</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Компетентностный подход</div></td>
+                    </tr>
+                    <tr>
+                        <td class="conf-text conf-header text-fixed-height">Ассоциация управления проектами "СОВНЕТ"<br/><img src="/static/PROJ_02_02_training_task_img_02.png"></img></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item" style="font-size: 12px !important; overflow: hidden !important;">Национальные требования к компетентности специалистов по Управлению проектами (НТК)<br/><div><img style="width: 54px;" src="/static/PROJ_02_02_training_task_img_06.png"></img></div></div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Россия</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Национальный</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Компетентностный подход</div></td>
+                    </tr>
+                    <tr>
+                        <td class="conf-text conf-header text-fixed-height">Институт управления проектами PMI<br/><img src="/static/PROJ_02_02_training_task_img_03.png"></img></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item" style="overflow: hidden !important;">PMBOK® Guide<br/><div><img style="width: 100px;" src="/static/PROJ_02_02_training_task_img_07.png"></img></div></div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">США</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Национальный</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Процессный подход</div></td>
+                    </tr>
+                    <tr>
+                        <td class="conf-text conf-header text-fixed-height">Ассоциация проектных менеджеров Японии (PMAJ)<br/><img src="/static/PROJ_02_02_training_task_img_04.png"></img></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item" style="overflow: hidden !important;">P2M<br/><div><img style="width: 100px;" src="/static/PROJ_02_02_training_task_img_08.png"></img></div></div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Япония</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Национальный</div></td>
+                        <td class="conf-answers-place input-place"><div class="conf-item">Ценностно-ориентированный подход</div></td>
+                    </tr>
+            </table>
+
+    </div>
+
+</solution>
+
+</div>
+</problem>

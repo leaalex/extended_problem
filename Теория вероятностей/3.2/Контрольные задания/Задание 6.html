@@ -1,0 +1,40 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+
+a = round(random.randint(10000, 20000) * 0.01, 2)
+b = round(random.randint(500, 1000) * 0.01, 2)
+
+int_a = round(a - b, 2)
+int_b = round(a + b, 2)
+
+ci_a, ci_b = round(a - 1.25 * b, 2), round(a + 1.25 * b, 2)
+ii1_a, ii1_b = round(a - 0.8 * b, 2), round(a + 0.8 * b, 2)
+ii2_a, ii2_b = round(a - 1.25 * b, 2), round(a + 0.8 * b, 2)
+ii3_a, ii3_b = round(a - 0.8 * b, 2), round(a + b, 2)
+ii4_a, ii4_b = round(a - b, 2), round(a + 0.8 * b, 2)
+
+
+</script>
+    <div class="no-equation">
+<multiplechoiceresponse>
+<label>Для оценки нормально распределенного признака – глубины промерзания почвы в зависимости от средней температуры – дан доверительный интервал \(($int_a; $int_b)\). Тогда при увеличении доверительной вероятности оценки доверительный интервал может иметь вид:</label>
+<choicegroup type="MultipleChoice" shuffle="true">
+    <choice correct="true">\(($ci_a; $ci_b)\)</choice>
+    <choice correct="false">\(($ii1_a; $ii1_b)\)</choice>
+    <choice correct="false">\(($ii2_a; $ii2_b )\)</choice>
+    <choice correct="false">\(($ii3_a; $ii3_b)\)</choice>
+    <choice correct="false">\(($ii4_a; $ii4_b)\)</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+
+
+    </div>
+
+
+</problem>

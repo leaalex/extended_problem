@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="маш предприятие">
-      <change afterPath="$PROJECT_DIR$/engines/OVZ/file_1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/OVZ/file_2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/OVZ/file_3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/Инпуты в картинках/edx.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Основы проектной деятельности/2.2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Теория вероятностей/3.1/Контрольные задания/Задание 6.html" beforeDir="false" afterPath="$PROJECT_DIR$/Теория вероятностей/3.1/Контрольные задания/Задание 6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Теория вероятностей/3.2/Контрольные задания/Задaние 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Теория вероятностей/3.2/Контрольные задания/Задание 4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Теория вероятностей/3.2/Контрольные задания/Задание 5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Теория вероятностей/3.2/Контрольные задания/Задание 5.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/engines/OVZ" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Теория вероятностей/3.2/Контрольные задания" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -74,11 +74,11 @@
       <recent name="$PROJECT_DIR$/Теория вероятностей/2.2/Учебные задания" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Теория вероятностей/3.2/Контрольные задания" />
+      <recent name="$PROJECT_DIR$/Нейросети/Kaggle" />
+      <recent name="$PROJECT_DIR$/Нейросети/Kaggle/5.1" />
       <recent name="$PROJECT_DIR$/engines/OVZ" />
       <recent name="$PROJECT_DIR$/Теория вероятностей/3.1/Контрольные задания" />
-      <recent name="$PROJECT_DIR$/Нейросети" />
-      <recent name="$PROJECT_DIR$/Нейросети/Kaggle/4.4" />
-      <recent name="$PROJECT_DIR$/Нейросети/Kaggle/4.2" />
     </key>
   </component>
   <component name="RunManager">
@@ -237,70 +237,14 @@
       <workItem from="1601478986221" duration="12916000" />
       <workItem from="1601709624909" duration="42613000" />
       <workItem from="1601996286785" duration="477000" />
-      <workItem from="1601996866012" duration="13573000" />
-    </task>
-    <task id="LOCAL-00010" summary="маш предприятие">
-      <created>1596233940281</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1596233940281</updated>
-    </task>
-    <task id="LOCAL-00011" summary="маш предприятие">
-      <created>1596319492658</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1596319492658</updated>
-    </task>
-    <task id="LOCAL-00012" summary="маш предприятие">
-      <created>1596319684479</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1596319684479</updated>
-    </task>
-    <task id="LOCAL-00013" summary="sdf">
-      <created>1598011395848</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1598011395848</updated>
-    </task>
-    <task id="LOCAL-00014" summary="маш предприятие">
-      <created>1598020510519</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1598020510519</updated>
-    </task>
-    <task id="LOCAL-00015" summary="маш предприятие">
-      <created>1598282105048</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1598282105076</updated>
-    </task>
-    <task id="LOCAL-00016" summary="маш предприятие">
-      <created>1598368509667</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1598368509667</updated>
-    </task>
-    <task id="LOCAL-00017" summary="маш предприятие">
-      <created>1598541882610</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1598541882610</updated>
-    </task>
-    <task id="LOCAL-00018" summary="маш предприятие">
-      <created>1598629574888</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1598629574888</updated>
+      <workItem from="1601996866012" duration="14333000" />
+      <workItem from="1602143015680" duration="2637000" />
+      <workItem from="1602150990826" duration="942000" />
+      <workItem from="1602152038625" duration="281000" />
+      <workItem from="1602152454793" duration="122000" />
+      <workItem from="1602157191561" duration="37642000" />
+      <workItem from="1602762838779" duration="9732000" />
+      <workItem from="1603100204792" duration="14129000" />
     </task>
     <task id="LOCAL-00019" summary="маш предприятие">
       <created>1598886470077</created>
@@ -582,7 +526,70 @@
       <option name="project" value="LOCAL" />
       <updated>1602073323794</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="маш предприятие">
+      <created>1602084073253</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1602084073253</updated>
+    </task>
+    <task id="LOCAL-00060" summary="маш предприятие">
+      <created>1602152135003</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1602152135004</updated>
+    </task>
+    <task id="LOCAL-00061" summary="маш предприятие">
+      <created>1602152556263</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1602152556263</updated>
+    </task>
+    <task id="LOCAL-00062" summary="маш предприятие">
+      <created>1602261257979</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1602261257980</updated>
+    </task>
+    <task id="LOCAL-00063" summary="маш предприятие">
+      <created>1602317695868</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1602317695868</updated>
+    </task>
+    <task id="LOCAL-00064" summary="маш предприятие">
+      <created>1602334414964</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1602334414964</updated>
+    </task>
+    <task id="LOCAL-00065" summary="маш предприятие">
+      <created>1602690107476</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1602690107476</updated>
+    </task>
+    <task id="LOCAL-00066" summary="маш предприятие">
+      <created>1602772442563</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1602772442564</updated>
+    </task>
+    <task id="LOCAL-00067" summary="маш предприятие">
+      <created>1603208704573</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1603208704588</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,39 +643,43 @@
       <screen x="0" y="23" width="1440" height="807" />
     </state>
     <state x="463" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.807@0.23.1440.807" timestamp="1595610809155" />
-    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2" timestamp="1602073322608">
+    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2" timestamp="1603208703032">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="269" y="23" key="CommitChangelistDialog2/0.23.1440.804@0.23.1440.804" timestamp="1596319684296" />
     <state x="445" y="23" width="843" height="807" key="CommitChangelistDialog2/0.23.1440.807@0.23.1440.807" timestamp="1595618014909" />
-    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1602073322608" />
-    <state x="1151" y="751" width="424" height="484" key="FileChooserDialogImpl" timestamp="1600264738232">
+    <state x="533" y="27" width="1352" height="1139" key="CommitChangelistDialog2/67.27.2493.1413@67.27.2493.1413" timestamp="1603208703032" />
+    <state x="67" y="54" width="1994" height="1160" key="DiffContextDialog" timestamp="1602084097222">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="1151" y="751" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1600264738232" />
+    <state x="67" y="54" width="1994" height="1160" key="DiffContextDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1602084097222" />
+    <state x="1151" y="751" width="424" height="484" key="FileChooserDialogImpl" timestamp="1602764049577">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="1151" y="751" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1602764049577" />
     <state x="262" y="58" key="SettingsEditor" timestamp="1594633777867">
       <screen x="0" y="23" width="1440" height="803" />
     </state>
     <state x="262" y="58" key="SettingsEditor/0.23.1440.803@0.23.1440.803" timestamp="1594633777867" />
-    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1602073325306">
+    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1603208709811">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="320" y="218" key="Vcs.Push.Dialog.v2/0.23.1440.804@0.23.1440.804" timestamp="1596319691158" />
     <state x="320" y="219" key="Vcs.Push.Dialog.v2/0.23.1440.807@0.23.1440.807" timestamp="1595618026753" />
-    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.2493.1413@67.27.2493.1413" timestamp="1602073325306" />
-    <state x="782" y="398" width="1431" height="866" key="find.popup" timestamp="1601902105669">
+    <state x="621" y="370" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.2493.1413@67.27.2493.1413" timestamp="1603208709811" />
+    <state x="596" y="416" width="1845" height="866" key="find.popup" timestamp="1603285826307">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state x="782" y="398" width="1431" height="866" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1601902105669" />
+    <state x="596" y="416" width="1845" height="866" key="find.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1603285826307" />
     <state x="430" y="172" key="run.anything.popup" timestamp="1596320407704">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="430" y="172" key="run.anything.popup/0.23.1440.804@0.23.1440.804" timestamp="1596320407704" />
-    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup" timestamp="1601125338102">
+    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup" timestamp="1602253049381">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="843" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1596223225515" />
-    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1601125338102" />
+    <state x="1526" y="253" width="1160" height="1187" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1602253049381" />
   </component>
   <component name="masterDetails">
     <states>

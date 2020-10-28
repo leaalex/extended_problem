@@ -1,0 +1,23 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            /*display: none !important;*/
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+
+n = random.randint(1, 25)
+answer = n + 1
+
+</script>
+    <div class="no-equation">
+        <p>Ранг основной матрицы системы линейных уравнений равен \($n\).</p>
+        <numericalresponse answer="$answer">
+            <label>Определить значение ранга расширенной матрицы этой системы, если известно, что система несовместна.</label>
+            <responseparam type="tolerance" default="0.0001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+    </div>
+</problem>
