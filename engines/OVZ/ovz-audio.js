@@ -151,9 +151,9 @@ function AudioApp(block) {
     if (problem.querySelector("button.show")){
         problem.querySelector("button.show").onclick = function () {
             const id = setInterval(() => {
-                    if (problem.querySelector("solution")) {
-                        clearInterval(id);
-                        block.removeAttribute("data-status");
+                if (problem.querySelector("solution")) {
+                    clearInterval(id);
+                    block.removeAttribute("data-status");
                 }
             }, 100)
         }
