@@ -1,0 +1,36 @@
+<problem>
+    <div id="wrap_step_6">
+        <div class="step_table">
+            <div class="thoughts">Джон с Машей уставились на непонятный объект современного искусства. Маша: «И что хотел сказать автор?»</div>
+            <div class="emotions"></div>
+            <div class="actions"></div>
+        </div>
+        <div class="step_answers">
+            <choiceresponse>
+                <label>
+                    6. Экспозиция
+                </label>
+                <checkboxgroup>
+                    <choice correct="true">Аудиогид по экспонатам</choice>
+                    <choice correct="true">QR-код с доступом к информации об объекте</choice>
+                    <choice correct="false">Рядом с экспозицией приведен список специализированной литературы</choice>
+                    <choice correct="false">Двухчасовой фильм об экспонатах</choice>
+                </checkboxgroup>
+                <hintgroup hintfn="hint_fn"/>
+            </choiceresponse>
+        </div>
+    </div>
+    <script type="text/python">
+def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
+    correct_choices = ['choice_0', 'choice_1']
+    js_when_correct = '''
+            let table_id = "wrap_step_6";
+            document.querySelector('#' + table_id + " .actions").innerHTML = "Маша и Джон поняли всю глубину авторского замысла и радостно пошли дальше"
+    '''
+    aid = answer_ids[0]
+    hint = ''
+    if sorted(student_answers[aid]) == correct_choices:
+        hint = "&lt;script type='text/javascript'&gt;"+ js_when_correct +"&lt;/script&gt;"
+    new_cmap.set_hint_and_mode(aid, hint, 'always')
+</script>
+</problem>

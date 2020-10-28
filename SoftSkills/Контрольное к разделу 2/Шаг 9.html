@@ -1,0 +1,36 @@
+<problem>
+    <div id="wrap_step_9">
+        <div class="step_table">
+            <div class="thoughts">На последнем этаже музея Джон подвернул ногу, наступать больно, хромать неприятно – грустно…</div>
+            <div class="emotions"></div>
+            <div class="actions"></div>
+        </div>
+        <div class="step_answers">
+            <choiceresponse>
+                <label>
+                    9. Доступная среда
+                </label>
+                <checkboxgroup>
+                    <choice correct="true">Установка лифтов</choice>
+                    <choice correct="true">На каждом этаже можно взять средство передвижения для маломобильных людей</choice>
+                    <choice correct="false">Организация команды спасателей</choice>
+                    <choice correct="false">На каждом этаже аптечки первой помощи размещены в свободном доступе</choice>
+                </checkboxgroup>
+                <hintgroup hintfn="hint_fn"/>
+            </choiceresponse>
+        </div>
+    </div>
+    <script type="text/python">
+def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
+    correct_choices = ['choice_0', 'choice_1']
+    js_when_correct = '''
+            let table_id = "wrap_step_9";
+            document.querySelector('#' + table_id + " .actions").innerHTML = "Джон взглянул на мир по-новому, от человеческого отношения нога Джона передумала и готова танцевать чечетку"
+    '''
+    aid = answer_ids[0]
+    hint = ''
+    if sorted(student_answers[aid]) == correct_choices:
+        hint = "&lt;script type='text/javascript'&gt;"+ js_when_correct +"&lt;/script&gt;"
+    new_cmap.set_hint_and_mode(aid, hint, 'always')
+</script>
+</problem>

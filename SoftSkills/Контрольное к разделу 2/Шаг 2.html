@@ -1,0 +1,36 @@
+<problem>
+    <div id="wrap_step_2">
+        <div class="step_table">
+            <div class="thoughts">«Блииин, билет в этот музей стоит как помада от MAC…»</div>
+            <div class="emotions"></div>
+            <div class="actions"></div>
+        </div>
+        <div class="step_answers">
+            <choiceresponse>
+                <label>
+                    2. Стоимость посещений
+                </label>
+                <checkboxgroup>
+                    <choice correct="true">Во дворе музея ХХХ – еженедельный открытый лекторий</choice>
+                    <choice correct="true">Таргетированная реклама догоняет всех посетителей сайта, сообщая о бесплатных мероприятиях музея</choice>
+                    <choice correct="false">Абонемент с разным количеством посещений</choice>
+                    <choice correct="false">Акция «Сдай помаду – получи билет»</choice>
+                </checkboxgroup>
+                <hintgroup hintfn="hint_fn"/>
+            </choiceresponse>
+        </div>
+    </div>
+    <script type="text/python">
+def hint_fn(answer_ids, student_answers, new_cmap, old_cmap):
+    correct_choices = ['choice_0', 'choice_1']
+    js_when_correct = '''
+            let table_id = "wrap_step_2";
+            document.querySelector('#' + table_id + " .actions").innerHTML = "Маша пришла на лекцию, была поражена качеством мероприятия и приняла решение купить абонемент и пойти в музей"
+    '''
+    aid = answer_ids[0]
+    hint = ''
+    if sorted(student_answers[aid]) == correct_choices:
+        hint = "&lt;script type='text/javascript'&gt;"+ js_when_correct +"&lt;/script&gt;"
+    new_cmap.set_hint_and_mode(aid, hint, 'always')
+</script>
+</problem>

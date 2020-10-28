@@ -1,27 +1,27 @@
 <problem>
   <style>
     .no-equation .equation{
-        display: none !important;
+      display: none !important;
     }
-.custom-code{
-    background: #f9f9f9;
-    overflow: auto;
-    padding: 16px 10px;
-    margin: 10px 0px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: #f9f9f9;
-    font-size: .9em;
-    font-family: Monaco, monospace;
-    line-height: 1.4;
-    /*white-space: pre-wrap;*/
-}
+    .custom-code{
+      background: #f9f9f9;
+      overflow: auto;
+      padding: 16px 10px;
+      margin: 10px 0px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #f9f9f9;
+      font-size: .9em;
+      font-family: Monaco, monospace;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
 
-#control_task_04_01 span.message{
-    padding: 12px 0px;
-    font-weight: bold;
-}
-</style>
+    #control_task_04_01 span.message{
+      padding: 12px 0px;
+      font-weight: bold;
+    }
+  </style>
   <script type="loncapa/python">
 import random
 import math
@@ -31,10 +31,9 @@ import numpy as np
 
 def convolution2D(M, kernel):
     padding = kernel.shape[0] // 2
-    M_shape = M.shape[0]
-    answer = np.zeros((M_shape - 2 * padding, M_shape - 2 * padding))
-    for i in range(0 + padding, M_shape - padding):
-        for j in range(0 + padding, M_shape - padding):
+    answer = np.zeros((M.shape[0] - 2 * padding, M.shape[1] - 2 * padding))
+    for i in range(0 + padding, M.shape[0] - padding):
+        for j in range(0 + padding, M.shape[1] - padding):
             answer[i - padding, j - padding] = np.round(
                 np.sum(M[i - padding: i + padding + 1, j - padding: j + padding + 1] * kernel), 1)
     return answer
@@ -47,7 +46,7 @@ def display_2nd_array(array):
             arr_str += "["
         arr_str += str(sub_arr)
         if index + 1 != len(array):
-            arr_str += ", \n"
+            arr_str += ",\n"
         else:
             arr_str += "]"
     return arr_str
@@ -89,7 +88,7 @@ def check_answer(expect, ans):
                     if all((e == len(answer[0])) for e in
                            [len(q) for q in student_answer]):  # проверка что все массивы внутри одинаковой длины
                         if all([all([isinstance(d, (int, float)) for d in t]) for t in student_answer]):
-                            if all([all([tol &gt; abs(answer[index_z][index_u] - u) for index_u, u in enumerate(z)]) for index_z, z in enumerate(student_answer)]):
+                            if all([all([tol > abs(answer[index_z][index_u] - u) for index_u, u in enumerate(z)]) for index_z, z in enumerate(student_answer)]):
                                 grade = 1
                                 msg = "Верно!"  # все верно
                                 # print("Все ок")
@@ -127,33 +126,14 @@ def check_answer(expect, ans):
 
 </script>
   <div id="control_task_04_01">
-    <p>Дана матрица изображения, ядро свертки (для сверточного слоя) Примените к изображению слой свертки. Результат запишите в виде списка списков. Значения элементов векторов вводить с точностью до 1-го знака после точки, в качестве разделителя используйте запятую.</p>
-    <div class="custom-code">
-      <span>
-        <strong>Матрица изображения</strong>
-      </span>
-      <br/>
-      <span style="white-space: pre-wrap;">$M_str</span>
-      <br/>
-      <br/>
-      <span>
-        <strong>Ядро свертки</strong>
-      </span>
-      <br/>
-      <span style="white-space: pre-wrap;">$kernel_str</span>
-    </div>
+    <p>Дана матрица изображения, ядро свертки (для сверточного слоя) Примените к изображению слой свертки. Результат запишите в виде списка списков. Значения элементов векторов вводить с точностью до 1-го знака после точки, в качестве разделителя используйте запятую. Если вы при вычислениях используете библиотеку <i>numpy</i>, то для корректного отображения результатов можно использовать функцию <i>numpy</i> <i><strong>"your_array.tolist()"</strong></i>.</p>
+    <div class="custom-code"><span><strong>Матрица изображения</strong></span><br /><span>$M_str</span><br /><br /><span><strong>Ядро свертки</strong></span><br /><span>$kernel_str</span></div>
     <customresponse cfn="check_answer">
       <textline size="100" value=""/>
       <br/>
     </customresponse>
     <solution>
-      <div class="custom-code">
-        <span>
-          <strong>Правильный ответ:</strong>
-        </span>
-        <br/>
-        <span style="white-space: pre-wrap;"><strong>$answer_str</strong></span>
-      </div>
+      <div class="custom-code"><span><strong>Правильный ответ:</strong></span> <br /><span><strong>$answer_str</strong></span></div>
     </solution>
   </div>
 </problem>
