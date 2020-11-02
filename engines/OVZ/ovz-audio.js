@@ -188,25 +188,29 @@ appsActivation(`.${settings.activation_class}`, 0)
 
 
 css = `
-    .${settings.activation_class} p.answer {visibility:hidden !important;}
+    .${settings.activation_class} p.answer {
+        width: 20px;
+        position: absolute;
+        visibility:hidden !important;
+    }
     
     .${settings.audio_class} button.${settings.audio_class}-button {
-    background-color: #ffffff;
-    border: none;
-    padding: 0px 2px !important;
-    font-weight: normal !important;
-    margin: 0px 0px 0px !important;
-    text-align: left !important;
-    text-decoration: none;
-    display: inherit !important;
-    font-size: 1em;
-    background-image: none !important;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-    border-radius: 0px !important;
-}
+        background-color: #ffffff;
+        border: none;
+        padding: 0px 2px !important;
+        font-weight: normal !important;
+        margin: 0px 0px 0px !important;
+        text-align: left !important;
+        text-decoration: none;
+        display: inherit !important;
+        font-size: 1em;
+        background-image: none !important;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+        border-radius: 0px !important;
+    }
 
     .${settings.audio_class}{ width: fit-content; display: inline-block; }
     .${settings.audio_class}.bold button.${settings.audio_class}-button, .${settings.text_class}.bold { font-weight: bold !important; }
