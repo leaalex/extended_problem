@@ -1,0 +1,93 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_2_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <script type="loncapa/python">
+import random
+import math
+
+eps = 0.13
+n = 62
+
+</script>
+    <div class="no-equation" id="section_3_2_training_1">
+
+        <p>По выборке объема \(n = 9\) найдено среднее значение \(\overline{X}_В\). Из предыдущих измерений известно, что генеральная совокупность распределена по нормальному закону с известным \(\sigma = 0.2\).</p>
+        <ol>
+            <li>Определить точность оценки \(\varepsilon\) для математического ожидания с надежностью \(\gamma = 0.95\).</li>
+            <li>Найти минимальный объём выборки \((n)\), при котором точность \(\varepsilon \le 0.05\) при той же надежности оценки.</li>
+        </ol>
+        <p>Дробные числа округлить до двух знаков после запятой.</p>
+
+
+
+        <table>
+            <tr>
+                <td>\(\varepsilon = \)</td>
+                <td>
+                    <numericalresponse answer="$eps">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\(n \ge \)</td>
+                <td>
+                    <numericalresponse answer="$n">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>
+            Доверительная вероятность \(\gamma\), точность оценки \(\varepsilon\), среднее квадратическое отклонение \(\sigma\) и объем выборки \(n\) связаны соотношением \( 2\Phi \frac{\varepsilon \sqrt{n}}{\sigma} = \gamma \), где \(\Phi(x)\) – функция Лапласа. Решение уравнения ищем с помощью статистических таблиц.
+            </span>
+        </div>
+
+    </div>
+</problem>

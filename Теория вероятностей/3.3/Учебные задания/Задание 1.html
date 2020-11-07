@@ -1,0 +1,63 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_3_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <div class="no-equation" id="section_3_3_training_1">
+
+        <multiplechoiceresponse>
+            <label>При проверке гипотезы о нормальном распределении генеральной совокупности при заданном уровне значимости \(\alpha\) определено критическое значение критерия \(\chi^2_{крит} = 14.4\). Тогда эмпирические и теоретические данные будут различаться значимо, если наблюдаемое значение статистического критерия \(\chi^2_{набл}\) будет равно: </label>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="true">14.6</choice>
+                <choice correct="false">14.3</choice>
+                <choice correct="false">14.0</choice>
+                <choice correct="false">13.7</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>рассмотреть применение критерия Пирсона для проверки непараметрических гипотез.</span>
+        </div>
+
+    </div>
+</problem>

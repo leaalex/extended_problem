@@ -1,0 +1,226 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+    <script type="text/javascript" src="/static/TheorVerCharts.js"></script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_1_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <script type="loncapa/python">
+import random
+import math
+
+student_data = [
+    {
+        "x": 2,
+        "y": 22
+    },
+    {
+        "x": 4,
+        "y": 13
+    },
+    {
+        "x": 6,
+        "y": 38
+    },
+    {
+        "x": 8,
+        "y": 30
+    },
+    {
+        "x": 10,
+        "y": 7
+    },
+]
+
+n = 200
+
+hide_indexes = {'y': {'2': {'replace_with': 'a'}}, 'x': {}}
+
+a = 38
+W_cum_4 = 0.936
+X_avg = 4.764
+D_v = 5.726
+S_v = 2.393
+
+</script>
+    <div class="no-equation" id="section_3_1_training_2">
+
+        <p>Из генеральной совокупности извлечена выборка объема \(n = 220\), гистограмма частот которой имеет вид:</p>
+
+        <div style="text-align: center;">
+            <div id="graphic_item_03_01_training_02"></div>
+        </div>
+
+
+        <p>Найдите:</p>
+        <ul>
+            <li>Значение \(a\);</li>
+            <li>накопленную относительную частоту, соответствующую интервалу \([6,8]\);</li>
+            <li>среднее значение \(\overline{X}_В\);</li>
+            <li>выборочную дисперсию \(D_В\);</li>
+            <li>выборочное СКО \(\sigma_В\).</li>
+        </ul>
+        <p>Дробные значения привести в десятичной форме, округлив до трех знаков после запятой.</p>
+
+
+        <table>
+            <tr>
+                <td>значение \(a\)</td>
+                <td>
+                    <numericalresponse answer="$a">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Накопленная относительная частота,<br /> соответствующая интервалу \([6,8]\)</td>
+                <td>
+                    <numericalresponse answer="$W_cum_4">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Среднее значение \(\overline{X}_В\)</td>
+                <td>
+                    <numericalresponse answer="$X_avg">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Выборочная дисперсия \(D_В\)</td>
+                <td>
+                    <numericalresponse answer="$D_v">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Выборочное СКО \(\sigma_В\)</td>
+                <td>
+                    <numericalresponse answer="$S_v">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong><br />
+                Площадь гистограммы равна объему выборки.<br />
+                Накопленная относительная частота, соответствующую интервалу \([a,b]\) – доля элементов выборки, не превосходящих \(b\).<br />
+                Для нахождения числовых характеристик построить вспомогательный дискретный статистический ряд.
+            </span>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        let student_data = $student_data;
+        let hide_indexes = $hide_indexes;
+
+        let config = {
+            base: {
+                width: 380,
+                height: 380,
+                background: {
+                    color: "white",
+                    stroke: "#e5e5e5",
+                    stroke_width: 2,
+                },
+                font_size: 16,
+            },
+            chart: {
+                data: student_data,
+                type: "bar",
+                margin: 46,
+                padding: 56,
+                points: {
+                    style:{
+                        color: "blue",
+                        size: 6,
+                    }
+                },
+                projection: {
+                    show: true,
+                    style: {
+                        color: "black",
+                        size: 1.6,
+                        dasharray: "6 3",
+                    }
+                },
+                style: {
+                    color: "#0075b4",
+                    size: 2,
+                }
+            },
+            axis: {
+                labels: {
+                    x: {
+                        text: "\\(x_i\\)",
+                        size: 20,
+                    },
+                    y: {
+                        text: "\\(\\frac{n_j}{h}\\)",
+                        size: 20,
+                    }
+                },
+                style: {
+                    color: "black",
+                    size: 2.0,
+                },
+                before_zero: 30,
+                nick_size: 6,
+            },
+            hide_indexes: hide_indexes
+        }
+
+        new Chart(document.querySelector("#graphic_item_03_01_training_02"), config);
+
+    </script>
+</problem>

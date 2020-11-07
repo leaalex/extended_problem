@@ -1,0 +1,80 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_2_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <script type="loncapa/python">
+import random
+import math
+
+D_v = 7
+
+</script>
+    <div class="no-equation" id="section_3_2_training_2">
+
+        <p>Выборочная совокупность задана таблицей распределения</p>
+
+        <p>
+            \[
+            \begin{array}{|c|c|c|c|}
+            \hline
+            X_i &amp; 1 &amp; 3 &amp; x_3 &amp; 7 &amp; 9 \\ \hline
+            N_i &amp; 6 &amp; 5 &amp; 4 &amp; 3 &amp; 2 \\ \hline
+            \end{array}
+            \]
+        </p>
+
+        <numericalresponse answer="$D_v">
+            <label>Если несмещенная оценка математического ожидания равна \(4\), то выборочная дисперсия будет равна</label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>
+            Дисперсия выборки вычисляется как среднее по выборке от квадрата отклонения: \( D_В = \frac{1}{n} \sum^{n}_{i=1} (x_i - \overline{x}_В)^2 = \frac{1}{n} \sum^{k}_{i=1} n_i(x_i - \overline{x}_В)^2\).
+            </span>
+        </div>
+
+    </div>
+</problem>

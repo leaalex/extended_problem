@@ -1,0 +1,43 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+from scipy.stats import norm
+
+x_1_avg = round(30+1*(random.uniform(0, 1)-0.5), 2)
+x_2_avg = round(30+1*(random.uniform(0, 1)-0.5), 2)
+N1 = random.randint(3, 6) * 25 + 100
+N2 = random.randint(3, 6) * 25 + 100
+x_1_s_2 = round(3+(0.5*(random.uniform(0, 1)-0.5)), 2)
+x_2_s_2 = round(3+(0.5*(random.uniform(0, 1)-0.5)), 2)
+alpha = random.choice([0.01, 0.02, 0.05, 0.1])
+
+T_norm = round(norm.ppf(1 - (alpha/2)), 4)
+T_exp = round(abs(x_1_avg - x_2_avg)/math.sqrt(x_1_s_2/N1 + x_2_s_2/N2), 4)
+
+if T_norm > T_exp:
+    answer_1 = True
+    answer_2 = False
+else:
+    answer_1 = False
+    answer_2 = True
+    </script>
+    <div class="no-equation">
+
+        <multiplechoiceresponse>
+            <label>Сравниваются прочностные характеристики сталей марок \(A\) и \(B\). Для этого испытаны на предел прочности \($N1\) образцов марки \(A\) и \($N2\) образцов марки \(B\). В результате получили \(\overline{x}_1 = $x_1_avg\), \(S^1_2 = $x_1_s_2\), \(\overline{x}_2 = $x_2_avg\), \(S^2_2 = $x_2_s_2\). Можно ли на уровне значимости \(\alpha = $alpha\) считать, что стали имеют разные прочностные характеристики? Контролируемый признак имеет нормальное распределение.</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1">Да</choice>
+                <choice correct="$answer_2">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+
+
+</problem>

@@ -1,0 +1,65 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+
+n = 15
+a_1 = 0.1
+a_2 = 0.01
+
+s_0 = random.choice([350, 400, 450])
+k = round(random.randint(12, 24) * 0.1, 1)
+
+s_1 = int(round(k * s_0))
+
+k_01 = 1.5045817
+k_001 = 2.081517
+
+if k_01 > k:
+    answer_1_1 = False
+    answer_1_2 = True
+    answer_2_1 = False
+    answer_2_2 = True
+elif k_001 > k > k_01:
+    answer_1_1 = False
+    answer_1_2 = True
+    answer_2_1 = True
+    answer_2_2 = False
+else:
+    answer_1_1 = True
+    answer_1_2 = False
+    answer_2_1 = True
+    answer_2_2 = False
+
+    </script>
+    <div class="no-equation">
+        <p>Точность наладки станка-автомата, производящего некоторые детали, характеризуется дисперсией длины деталей. Если эта величина будет больше \($s_0\) мкм<sup style="font-size: 0.8em;">2</sup>, станок останавливается для наладки. Значение выборочной дисперсии, найденное по \($n\) случайно отобранным деталям из продукции станка, оказалось равным \( \sigma^2 = $s_1\) мкм<sup style="font-size: 0.8em;">2</sup>. Определите, нужна ли наладка станка, если:</p>
+        <ul>
+            <li>\(\alpha = $a_1\);</li>
+            <li>\(\alpha = $a_2\).</li>
+        </ul>
+        <p>Контролируемый признак имеет нормальное распределение. </p>
+        <multiplechoiceresponse>
+            <label>Определите, нужна ли наладка станка, если \(\alpha = $a_1\)</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1_1">Да</choice>
+                <choice correct="$answer_1_2">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+            <label>Определите, нужна ли наладка станка, если \(\alpha = $a_2\)</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_2_1">Да</choice>
+                <choice correct="$answer_2_2">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+
+
+</problem>

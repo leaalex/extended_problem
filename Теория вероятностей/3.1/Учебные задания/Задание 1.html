@@ -1,0 +1,175 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_1_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <script type="loncapa/python">
+import random
+import math
+
+points = [7, 3, 10, 7, 4, 4, 9, 8, 8, 11, 13, 5, 12, 4, 6, 7,13, 14, 6, 7]
+
+X_min = 3
+X_max = 14
+Var = 11
+Mo = 7
+Me = 7
+W_mod = 0.20
+X_avg = 7.90
+D_v = 10.49
+S_v = 3.24
+
+points_display = str(points).replace("[","").replace("]","")
+
+</script>
+    <div class="no-equation" id="section_3_1_training_1">
+
+        <p>Студенты получили следующие баллы по тесту:</p>
+        <p style="text-align: center;"><strong>$points_display.</strong></p>
+        <ol>
+            <li>Найти наименьший и наибольший элементы и размах(вариацию) выборки.</li>
+            <li>Построив вариационный ряд, найти выборочные моду и медиану.</li>
+            <li>Построив статистический ряд, найти:
+                <ul>
+                    <li>относительную частоту выборочной моды;</li>
+                    <li>выборочное среднее;</li>
+                    <li>выборочную дисперсию;</li>
+                    <li>выборочное среднее квадратическое отклонение.</li>
+                </ul>
+            </li>
+        </ol>
+        <p>Дробные значения привести в десятичной форме, округлив до двух знаков после запятой.</p>
+        <table>
+            <tr>
+                <td>Наименьший элемент</td>
+                <td>
+                    <numericalresponse answer="$X_min">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Наибольший элемент</td>
+                <td>
+                    <numericalresponse answer="$X_max">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Размах (вариация) выборки</td>
+                <td>
+                    <numericalresponse answer="$Var">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Мода</td>
+                <td>
+                    <numericalresponse answer="$Mo">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Медиана</td>
+                <td>
+                    <numericalresponse answer="$Me">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Относительная частота выборочной моды</td>
+                <td>
+                    <numericalresponse answer="$W_mod">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Выборочное среднее</td>
+                <td>
+                    <numericalresponse answer="$X_avg">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Выборочная дисперсия</td>
+                <td>
+                    <numericalresponse answer="$D_v">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Выборочное среднее квадратическое отклонение</td>
+                <td>
+                    <numericalresponse answer="$S_v">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong><br />
+                <strong>Размах (вариация) выборки</strong> – разность между максимальным и минимальным элементами выборки.<br />
+                <strong>Мода</strong> – наиболее часто встречающееся значение в вариационном ряду.<br />
+                <strong>Медиана вариационного ряда</strong> –– серединная точка в вариационном ряду, которая делит вариационный ряд на две равные по числу членов части.
+            </span>
+        </div>
+
+    </div>
+</problem>

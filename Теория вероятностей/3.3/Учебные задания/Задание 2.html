@@ -1,0 +1,63 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_3_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <div class="no-equation" id="section_3_3_training_2">
+
+        <multiplechoiceresponse>
+            <label>До наладки станка была проверена точность изготовления \(10\) изделий и найдена оценка дисперсии контролируемого признака \(s_{1}^{2} = 9.6\). После наладки измерено еще \(15\) изделий и получена оценка дисперсии \(s_{2}^{2} = 5.7 \). Можно ли считать, что точность изготовления изделий после наладки повысилась? (Назначить уровень значимости \(\alpha = 0.05\), считать, что контролируемый признак имеет нормальное распределение).</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="false">можно считать, что повысилась</choice>
+                <choice correct="true">нет оснований считать, что повысилась</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong>
+            Проверить гипотезу о равенстве дисперсий \(H_0\): \(s_{1}^{2} = s_{2}^{2}\) при альтернативной гипотезе \(H_2\): \(s_{1}^{2} \gt s_{2}^{2}\), используя статистический критерий Фишера \(F = \frac{s_{1}^{2}}{s_{2}^{2}}\).
+            </span>
+        </div>
+
+    </div>
+</problem>
