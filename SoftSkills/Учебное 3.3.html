@@ -1,0 +1,417 @@
+<problem>
+    <style>
+        .custom_h200 {
+            height: 150px !important;
+        }
+
+        .motivation-status{
+            font-size: 1.2em;
+            padding: 5px 0px;
+        }
+        .motivation-status.full-motivation{
+            color: #078103;
+        }
+
+        .motivation-status.partially-motivation{
+            color: #4c4c4c;
+        }
+    </style>
+    <script type="loncapa/python">
+import json
+import random
+import string
+
+# mot_1 = Работа из дома
+# mot_2 = Сделать наставником новичка
+# mot_3 = Пригласить экспертом в новый проект
+# mot_4 = Проводить с сотрудником регулярные индивидуальные встречи
+# mot_5 = Свободный график
+# mot_6 = Отправить на обучение
+# mot_7 = Сделать докладчиком на конференции
+# mot_8 = Публичная благодарность в корпоративной социальной сети
+# mot_9 = Сделать ответственным за корпоративной
+
+data = {
+    "content": {
+        "body": "",
+        "answers_title": "**Доступные мотиваторы:**"
+    },
+    "table": [
+        [
+            'МАРИЯ', 'ЕКАТЕРИНА', 'НИКОЛАЙ',
+        ],
+        [
+            [{
+                "title": "Работа из дома",
+                "id": "mot_1"
+            }, {
+                "title": "Пригласить экспертом в новый проект",
+                "id": "mot_3"
+            }, {
+                "title": "Сделать докладчиком на конференции",
+                "id": "mot_7"
+            },
+            ], [
+            {
+                "title": "Проводить с сотрудником регулярные индивидуальные встречи",
+                "id": "mot_4"
+            }, {
+                "title": "Отправить на обучение",
+                "id": "mot_6"
+            }, {
+                "title": "Сделать ответственным за корпоратив",
+                "id": "mot_9"
+            },
+        ], [
+            {
+                "title": "Сделать наставником новичка",
+                "id": "mot_2"
+            }, {
+                "title": "Свободный график",
+                "id": "mot_5"
+            }, {
+                "title": "Публичная благодарность в корпоративной социальной сети",
+                "id": "mot_8"
+            }
+        ],
+        ],
+    ],
+    "settings": {
+        "is_exist_markdown": True,
+        "is_exist_advanced_style": True,
+        'is_exist_mathjax': True,
+        'is_exist_image': True,
+        'show_incorrect': False,
+        'capacity': 4,
+    },
+    "style": {
+        'rows': ['', 'custom_h200'],
+        'colls': []
+    }
+}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
+data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+data["settings"] = data["settings"] if "settings" in data.keys() else {}
+data["style"] = data["style"] if "style" in data.keys() else {}
+correct_answer = {}
+student_data = {
+    "table": [],
+    "answers": [],
+    "settings": data["settings"],
+    "style": data["style"],
+    "content": data["content"]
+}
+
+all_answers_obj = {}
+
+for row_index, row in enumerate(data["table"]):
+    student_data["table"].append([])
+    for column_index, cell in enumerate(row):
+        student_cell = {}
+        if not isinstance(cell, str):
+            student_cell["id"] = ["maria", "ekaterina", "nikolay"][column_index]
+            student_cell["isFixed"] = False
+            correct_answer[student_cell["id"]] = []
+
+            for cell_answer in cell:
+                cell_answer_id = cell_answer["id"]
+
+                student_data["answers"].append({"title": cell_answer["title"], "id": cell_answer_id})
+                correct_answer[student_cell["id"]].append(cell_answer_id)
+        else:
+            student_cell["value"] = [cell]
+            student_cell["isFixed"] = True
+        student_data["table"][row_index].append(student_cell)
+
+for distractor in data["distractors"]:
+    student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+random.shuffle(student_data["answers"])
+
+def check_partially(c_a, s_a):
+    result = {
+        "grade": 0.0,
+        "wrong_answers": [],
+    }
+    local_grade = 0
+    for ans in c_a:
+        if ans in s_a:
+            local_grade += 1
+    for ans in s_a:
+        if ans not in c_a:
+            result["wrong_answers"].append(ans)
+    result["grade"] = local_grade
+
+    return result
+
+def get_response(grade_decimal, wrong_answers=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_answers is not None:
+        response["wrong_answers"] = wrong_answers
+    if grade_decimal == 1:
+        response["ok"] = True
+    elif grade_decimal == 0:
+        response["ok"] = False
+    else:
+        response["ok"] = 'Partial'
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = 30
+    grade = 0
+    wrong_answers = []
+
+    motivation = {
+        "maria": {
+            "points": 0,
+            "msg": ""
+        },
+        "ekaterina": {
+            "points": 0,
+            "msg": ""
+        },
+        "nikolay": {
+            "points": 0,
+            "msg": ""
+        },
+    }
+    print(max_grade)
+
+    for correct_cell_id in correct_answer.keys():
+        correct_cell = correct_answer[correct_cell_id]
+        if correct_cell_id == "maria":
+            if "mot_1" in student_answer[correct_cell_id]:  # Работа из дома
+                grade += 5
+                motivation["maria"]["points"] += 5
+            if "mot_3" in student_answer[correct_cell_id]:  # Пригласить экспертом в новый проект
+                grade += 3
+                motivation["maria"]["points"] += 3
+            if "mot_7" in student_answer[correct_cell_id]:  # Сделать докладчиком на конференции
+                grade += 2
+                motivation["maria"]["points"] += 2
+            if "mot_9" in student_answer[correct_cell_id]:  # Сделать ответственным за корпоративной
+                grade -= 2
+                motivation["maria"]["points"] -= 2
+            if "mot_2" in student_answer[correct_cell_id]:  # Сделать наставником новичка
+                grade -= 1
+                motivation["maria"]["points"] -= 1
+
+        if correct_cell_id == "ekaterina":
+            if "mot_4" in student_answer[correct_cell_id]:  # Проводить с сотрудником регулярные индивидуальные встречи
+                grade += 5
+                motivation["ekaterina"]["points"] += 5
+            if "mot_6" in student_answer[correct_cell_id]:  # Отправить на обучение
+                grade += 3
+                motivation["ekaterina"]["points"] += 3
+            if "mot_9" in student_answer[correct_cell_id]:  # Сделать ответственным за корпоративной
+                grade += 2
+                motivation["ekaterina"]["points"] += 2
+
+            if "mot_1" in student_answer[correct_cell_id]:  # Работа из дома
+                grade -= 1
+                motivation["ekaterina"]["points"] -= 1
+            if "mot_2" in student_answer[correct_cell_id]:  # Сделать наставником новичка
+                grade -= 2
+                motivation["ekaterina"]["points"] -= 2
+
+        if correct_cell_id == "nikolay":
+            if "mot_2" in student_answer[correct_cell_id]:  # Сделать наставником новичка
+                grade += 5
+                motivation["nikolay"]["points"] += 5
+            if "mot_5" in student_answer[correct_cell_id]:  # Свободный график
+                grade += 3
+                motivation["nikolay"]["points"] += 3
+            if "mot_8" in student_answer[correct_cell_id]:  # Публичная благодарность в корпоративной социальной сети
+                grade += 2
+                motivation["nikolay"]["points"] += 2
+
+            if "mot_7" in student_answer[correct_cell_id]:  # Сделать докладчиком на конференции
+                grade -= 2
+                motivation["nikolay"]["points"] -= 2
+            if "mot_9" in student_answer[correct_cell_id]:  # Сделать ответственным за корпоративной
+                grade -= 1
+                motivation["nikolay"]["points"] -= 1
+
+        # mot_1 = Работа из дома
+        # mot_2 = Сделать наставником новичка
+        # mot_3 = Пригласить экспертом в новый проект
+        # mot_4 = Проводить с сотрудником регулярные индивидуальные встречи
+        # mot_5 = Свободный график
+        # mot_6 = Отправить на обучение
+        # mot_7 = Сделать докладчиком на конференции
+        # mot_8 = Публичная благодарность в корпоративной социальной сети
+        # mot_9 = Сделать ответственным за корпоративной
+
+        res = check_partially(correct_cell, student_answer[correct_cell_id])
+
+
+        # grade += res["grade"]
+        if show_incorrect:
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+    # print(grade)
+
+    if 0 > grade:
+        grade = 0
+
+    response = get_response(float(grade / max_grade), wrong_answers, )
+
+    if motivation["maria"]["points"] == 10:
+        motivation["maria"]["msg"] = "Вам удалось замотивировать Марию на 100%!"
+    else:
+        motivation["maria"]["msg"] = "Мария замотивирована на " + str(motivation["maria"]["points"] * 10) + " %"
+
+    if motivation["ekaterina"]["points"] == 10:
+        motivation["ekaterina"]["msg"] = "Вам удалось замотивировать Екатерину на 100%!"
+    else:
+        motivation["ekaterina"]["msg"] = "Екатерина замотивирована на " + str(motivation["ekaterina"]["points"] * 10) + " %"
+
+    if motivation["nikolay"]["points"] == 10:
+        motivation["nikolay"]["msg"] = "Вам удалось замотивировать Николая на 100%!"
+    else:
+        motivation["nikolay"]["msg"] = "Николай замотивирован на " + str(motivation["nikolay"]["points"] * 10) + " %"
+
+    response["motivation"] = motivation
+    print(response)
+
+    return {
+        'input_list': [
+            {
+                # true, false partially
+                'ok': response['ok'],
+                # string - отображаения под Input'ом
+                # как проавило сюда отправляется json со всеми дополнительными данными
+                'msg': str(json.dumps(response)),
+                # number [0, 1] - оценка за задание
+                'grade_decimal': response['grade']
+            },
+        ]
+    }
+
+s_a = '{"answer":{"maria":["mot_1","mot_3","mot_7"],"ekaterina":["mot_4","mot_6","mot_9"],"nikolay":["mot_8","mot_2","mot_5"]}}'
+check_answer(False, s_a)
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+correct_table = []
+for _row_idx, _row in enumerate(data["table"]):
+    correct_table.append([])
+    for _cell_idx, _cell in enumerate(_row):
+        if isinstance(_cell, str):
+            correct_table[_row_idx].append(_cell)
+        else:
+            correct_table[_row_idx].append([])
+            for _cell_item in _cell:
+                correct_table[_row_idx][_cell_idx].append(_cell_item["title"])
+
+data['table'] = correct_table
+correct_data = json.dumps(data)
+correct_data = correct_data.replace('"', "'")
+
+
+</script>
+
+    <div>
+        <p>Представь, что ты руководитель небольшой команды. В твоём подчинении 3 человека, они очень разные. В последнее время ты чувствуешь, что твои ребята немного подуныли, и ты решаешь их замотивировать. Действовать собираешься исключительно нематериальными способами.</p>
+        <p>В твоём распоряжении есть следующие <strong>мотиваторы:</strong></p>
+        <ul>
+            <li>Работа из дома</li>
+            <li>Сделать наставником новичка</li>
+            <li>Пригласить экспертом в новый проект</li>
+            <li>Проводить с сотрудником регулярные индивидуальные встречи</li>
+            <li>Свободный график</li>
+            <li>Отправить на обучение</li>
+            <li>Сделать докладчиком на конференции</li>
+            <li>Публичная благодарность в корпоративной социальной сети</li>
+            <li>Сделать ответственным за корпоратив</li>
+        </ul>
+        <p>Узнай получше характер и интересы своих сотрудников, а после этого подбери для каждого по три подходящих мотиватора.</p>
+        <p><strong>Сотрудники: </strong></p>
+        <p><strong>Мария.</strong> Опытный сотрудник. Живет далеко от офиса и вынуждена тратить много времени на дорогу, что ее очень расстраивает. Ценит свою экспертность, любит выступать на публике, не хочет развиваться вертикально и нести ответственность за кого-то еще, ей интереснее прокачивать свой профессионализм, решать новые задачи и доказывать свою экспертность другим.</p>
+        <p><strong>Екатерина.</strong> Работает не так давно, но вполне успешно зарекомендовала себя в команде. Пока не чувствует себя сильным экспертом. Любит организовывать разные мероприятия, и это у нее хорошо получается. Очень любознательна и тяготеет к новым знаниям. Нуждается в индивидуальном внимании, регулярной обратной связи по своей работе. Обожает работать в офисе, потому что нравится атмосфера.</p>
+        <p><strong>Николай.</strong> Работает давно, хотел бы развиваться вертикально, так как есть управленческие амбиции. Не ненавидит выступать на публике и организовывать мероприятия. Любит работать в офисе, однако тяжело даются ранние подъемы, а продуктивность нарастает ближе к вечеру. Ценит индивидуальный подход и признательность его работы.</p>
+        <p><strong>Важно:</strong> Каждый мотиватор имеет определённый вес для конкретного сотрудника. Если ты правильно подберешь все три мотиватора, то повысишь мотивацию подчиненного на 100%. Если ты выберешь неподходящий мотиватор, то он может иметь обратный эффект — расстроить и демотивировать сотрудника, будь внимателен.</p>
+    </div>
+
+    <div class='adv-app' data-type='MatchingTableVueApp' data-initial-data='$student_data' data-static='/static/_'>
+        <span class="loadingspinner"></span>
+
+
+        <style>
+            .loadingspinner {
+                display: block;
+                margin: 0 auto;
+                pointer-events: none;
+                width: 2.5em;
+                height: 2.5em;
+                border: 0.4em solid transparent;
+                border-color: #eee;
+                border-top-color: #3E67EC;
+                border-radius: 50%;
+                animation: loadingspin 1s linear infinite;
+            }
+
+            @keyframes loadingspin {
+                100% {
+                    transform: rotate(360deg)
+                }
+            }
+        </style>
+    </div>
+    <div style="display: none;" id="answer_block"><customresponse cfn="check_answer"><textline size="120"/></customresponse>
+        <solution data-initial-data='$correct_data'></solution>
+    </div>
+
+    <div id="motivation_status">
+    </div>
+    <script type="text/javascript">
+        function createElement(tag, classList, attrs, children) {
+            let element = document.createElement(tag);
+            if (classList) element.className = classList;
+            if (attrs) {
+                for (let key in attrs) {
+                    element.setAttribute(key, attrs[key])
+                }
+            }
+            if (children) {
+                children.forEach(function (child) {
+                    element.appendChild(child)
+                });
+            }
+            return element;
+        }
+
+        if($("span.message", document.querySelector("#answer_block"))){
+            let span_msg = $("span.message", document.querySelector("#answer_block"))
+            if( span_msg.text() != ""){
+                var message = JSON.parse(span_msg.text());
+                let maria_status = createElement("div", "motivation-status", {});
+                let ekaterina_status = createElement("div", "motivation-status", {});
+                let nikolay_status = createElement("div", "motivation-status", {});
+
+                maria_status.innerHTML = message["motivation"]["maria"]["msg"];
+                ekaterina_status.innerHTML = message["motivation"]["ekaterina"]["msg"];
+                nikolay_status.innerHTML = message["motivation"]["nikolay"]["msg"];
+
+                maria_status.classList.add(message["motivation"]["maria"]["points"] === 10 ? "full-motivation" : "partially-motivation");
+                ekaterina_status.classList.add(message["motivation"]["ekaterina"]["points"] === 10 ? "full-motivation" : "partially-motivation");
+                nikolay_status.classList.add(message["motivation"]["nikolay"]["points"] === 10 ? "full-motivation" : "partially-motivation");
+
+                document.querySelector("#motivation_status").append(maria_status);
+                document.querySelector("#motivation_status").append(ekaterina_status);
+                document.querySelector("#motivation_status").append(nikolay_status);
+                console.log(message)
+            }
+        }
+    </script>
+
+</problem>

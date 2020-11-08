@@ -1,0 +1,297 @@
+<problem>
+    <div>
+        <div>
+            <p>Ты главный редактор студенческой газеты. В твоей команде три человека:</p>
+            <ul>
+                <li><strong>Лиза</strong>, она журналист;</li>
+                <li><strong>Стас</strong>, он фотограф;</li>
+                <li><strong>Олег</strong>, он дизайнер-верстальщик.</li>
+            </ul>
+            <p>Ребята хорошо знают свою работу, твоя задача – грамотно их организовать.</p>
+            <p>В пятницу с 9 до 10 утра тебе нужно забрать напечатанный номер студенческой газеты. Чтобы все получилось, тебе нужно составить <em>«График проекта»</em>, учитывая все задачи, которые необходимо выполнить, а также те ограничения, которые могут встретиться.</p>
+            <p>Важно! Тебе необходимо планировать с тем учетом, что вся работа, связанная с газетой, должна начинаться не раньше 9 утра и заканчиваться не позднее 18.00, а также не мешать учебе членов твоей команды.</p>
+            <p><strong><strong>Для начала изучи график своих ребят:</strong></strong></p>
+            <ul>
+                <li>Лиза. Освобождается с пар: ПН, СР, ПТ – в 13:45, ВТ, ЧТ – в 12:45.</li>
+                <li>Стас. Занят на парах: ПН, ВТ, СР, ПТ – с 10:00 до 12:45, в ЧТ – с 12:00 до 16:00. Стас ходит на все интервью вместе с Лизой, чтобы сделать фотографии.</li>
+                <li>Олег каждый день занят учебой с 13:00 до 18:00.</li>
+            </ul>
+            <p></p>
+            <p><strong><strong>Задачи, которые нужно распределить в графике: </strong></strong></p>
+            <ol>
+                <li>Взять интервью у ректора (Лиза и Стас). Часы приема у ректора по вторникам с 12:00 до 14:00. Важное условие — написать статью в тот же день, до 16:00, чтобы помощник могла вычитать статью и одобрить ее до своего ухода домой в 17:00.</li>
+                <li>Посетить день первокурсника, чтобы взять там интервью у ребят. Мероприятие пройдет в понедельник, с 16:00 и продлится 2 часа. Важно учитывать, что дорога туда занимает час.</li>
+                <li>Сверстать номер газеты (Олег). Занимает 3 часа, возможно только после того, как написаны все статьи и вычитаны, а также обработаны фотографии.</li>
+                <li>Вычитать все три статьи перед тем, как отдать на верстку номера (Лиза), занимает 1 час.</li>
+                <li>Напечатать газету в типографии. Занимает 4 часа, типография работает каждый день до 16:00</li>
+                <li>Вычитать номер после верстки и отправить в типографию (ты сам), занимает 1 час.</li>
+                <li>Написать статью про ректора (Лиза) 2 часа с учетом дороги до кабинета.</li>
+                <li>Написать статью про посвящение первокурсников (Лиза) 2 часа с учетом дороги до кабинета.</li>
+                <li>Взять интервью у преподавателя, у которого в этом году трудовой Юбилей — 20 лет. Она может встретиться с ребятами в промежуток с 14:00 до 16:00 во вторник или в среду. Встреча занимает 1 час. (Лиза и Стас).</li>
+                <li>Написать статью про преподавателя (Лиза) 2 часа с учетом дороги до кабинета.</li>
+                <li>Провести встречу-мозговой штурм, чтобы придумать конкурс в номер (встреча с Лизой и Стасом), 1 час.</li>
+                <li>Обработать фотографии со всех интервью (Стас) 3 часа.</li>
+            </ol>
+
+            <p>Чтобы внести задачу в командное расписание, необходимо взять блок задачи из пула задач и перенести в общий календарь на нужное время. Важно: блоки с задачами можно растягивать на несколько часов, а также технически возможно разместить несколько задач в один временной слот.</p>
+        </div>
+
+
+        <div data-type="PlanningTaskApp" class="adv-app" data-initial-data='$student_state_str'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+import json
+import math
+
+correct_state = [
+    {
+        "title": "Лиза пишет статью про ректора",
+        "height": 2,
+        "width": 2,
+        "y": 5,
+        "x": 2,
+        "id":
+        "task_04"
+    },
+    {
+        "title": "Лиза пишет статью про посвящение первокурсников",
+        "height": 2,
+        "width": 2,
+        "y": 7,
+        "x": 2,
+        "id": "task_05"
+    },
+    {
+        "title": "Лиза пишет статью про преподавателя",
+        "height": 2,
+        "width": 1,
+        "y": 6,
+        "x": 4,
+        "id": "task_07"
+    },
+    {
+        "title": "Проверяешь номер и отправляешь в типографию",
+        "height": 1,
+        "width": 2,
+        "y": 3,
+        "x": 6,
+        "id": "task_10"
+    },
+    {
+        "title": "Лиза вычитывает все статьи перед версткой номера",
+        "height": 1,
+        "width": 1,
+        "y": 8,
+        "x": 4,
+        "id": "task_12"
+    },
+    {
+        "title": "Посвящение первокурсников: Лиза и Стас",
+        "height": 2,
+        "width": 2,
+        "y": 7,
+        "x": 0,
+        "id": "task_02"
+    },
+    {
+        "title": "Лиза берет интервью у ректора, Стас фотографирует",
+        "height": 1,
+        "width": 2,
+        "y": 4,
+        "x": 2,
+        "id": "task_03"
+    },
+     {
+        "title": "Встреча с Лизой и Стасом — мозговой штурм о конкурсе в номер",
+        "height": 1,
+        "width": 2,
+        "y": 5, "x": 0,
+        "id": "task_01",
+        "background": "#4a5ab1f5",
+    },
+    {
+        "title": "Интервью с преподавателем: Лиза и Стас",
+        "height": 1,
+        "width": 2,
+        "y": 5,
+        "x": 4,
+        "id": "task_06"
+    },
+    {
+        "title": "Стас обрабатывает все фотографии",
+        "height": 3,
+        "width": 1,
+        "y": 6,
+        "x": 5,
+        "id": "task_08"
+    },
+    {
+        "title": "Печать газеты в типографии",
+        "height": 4,
+        "width": 2,
+        "y": 4,
+        "x": 6,
+        "id": "task_11"
+    },
+    {
+        "title": "Верстка газеты, Олег",
+        "height": 3,
+        "width": 2,
+        "y": 0,
+        "x": 6,
+        "id": "task_09"
+    },
+]
+
+student_state = {
+        "area_height": 10,
+        "area_width": 10,
+        "x_pixel_step": 88,
+        "y_pixel_step": 44,
+        "first_column_size": 30,
+        "free_rows": 3,
+        "days": [
+            {
+                "title": "Понедельник"
+            },{
+                "title": "Вторник"
+            },{
+                "title": "Среда"
+            },{
+                "title": "Четверг"
+            },{
+                "title": "Пятница"
+            }
+        ],
+        "times": [
+            {
+                "title": "09:00"
+            },{
+                "title": "10:00"
+            },{
+                "title": "11:00"
+            },{
+                "title": "12:00"
+            },{
+                "title": "13:00"
+            },{
+                "title": "14:00"
+            },{
+                "title": "15:00"
+            },{
+                "title": "16:00"
+            },{
+                "title": "17:00"
+            }
+        ],
+        "fixed_tasks": [
+            {
+                "title": "Здесь ни Лиза, ни Стас не могут (у них дорога на мероприятие)",
+                "width": 2,
+                "height": 1,
+                "x": 0,
+                "y": 6,
+            },
+            {
+                "title": "Газета готова, ее нужно забрать из типографии.",
+                "width": 2,
+                "height": 3,
+                "x": 4,
+                "y": 0,
+            },
+            {
+                "title": "ЗАДАЧИ:",
+                "width": 10,
+                "height": 1,
+                "x": 0,
+                "y": 9,
+            }
+        ],
+        "tasks": []
+}
+
+
+for task_index, task in enumerate(correct_state):
+    student_task = {
+        "title": task["title"],
+        "height": 1,
+        "width": 2,
+        "y": len(student_state["times"]) + 1 + math.floor(task_index/(student_state["area_width"]/2)),
+        "x": int(task_index % (student_state["area_width"]/2)) * 2,
+        "id": task["id"]
+    }
+    if "background" in task.keys():
+        student_task["background"] = task["background"]
+    student_state["tasks"].append(student_task)
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    grade = 0
+    max_grade = len(correct_state)
+    incorrect_items = []
+    detailed_response = {}
+
+    for correct_item in correct_state:
+        student_item = student_answer[correct_item["id"]]
+
+        height_correct = False
+        y_correct = False
+        x_correct = False
+
+        if student_item["height"] == correct_item["height"]:
+            height_correct = True
+
+        if student_item["y"] == correct_item["y"]:
+            y_correct = True
+
+        if student_item["width"] == 2:
+            if student_item["x"] == correct_item["x"]:
+                x_correct = True
+        else:  # длина блока равно 1
+            trusted_x = correct_item["x"] + 1 if correct_item["x"] % 2 == 0 else correct_item["x"] - 1
+            if student_item["x"] in [correct_item["x"], trusted_x]:
+                x_correct = True
+
+        item_correct = all([height_correct, y_correct, x_correct])
+
+        if item_correct:
+            grade += 1
+        else:
+            if len(student_state["times"]) >= student_item["y"]:
+                detailed_response[student_item["id"]] = {"errors": [], "title":student_item["title"]}
+                if not height_correct:
+                    detailed_response[student_item["id"]]["errors"].append("неверная длительность задачи")
+                if not y_correct:
+                    detailed_response[student_item["id"]]["errors"].append("неверное время начала задачи")
+                if not x_correct:
+                    detailed_response[student_item["id"]]["errors"].append("неверно выбран день исполения задачи")
+                incorrect_items.append(student_item["id"])
+    msg = json.dumps({"incorrect_items": incorrect_items, "detailed_response": detailed_response})
+
+    grade_decimal = grade/max_grade
+    if grade_decimal == 1:
+        return {'input_list': [{'ok': True, 'msg': msg, 'grade_decimal': 1}]}
+    elif grade_decimal == 0:
+        return {'input_list': [{'ok': False, 'msg': msg, 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': grade_decimal}]}
+
+
+student_state_str = json.dumps(student_state)
+student_state_str = student_state_str.replace('"', "'")
+correct_data = json.dumps(correct_state)
+correct_data = correct_data.replace('"', "'")
+</script>
+
+
+</problem>
