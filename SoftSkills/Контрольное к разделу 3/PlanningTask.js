@@ -65,8 +65,6 @@ function PlanningTask(settings) {
             }
         }
     });
-
-
     new Vue({
         template: `
 <div class='task_table' v-bind:style="areaStyle" >
@@ -107,7 +105,6 @@ function PlanningTask(settings) {
             free_rows: settings.free_rows,
             settings: settings,
             first_column_size: settings.first_column_size,
-            z_indexes: {machine: 1, aggregate: 10, node: 20, detail: 30},
             extra_cells_count: settings.extra_cells_count,
             days: settings.days,
             times: settings.times,
