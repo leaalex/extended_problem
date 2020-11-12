@@ -22,23 +22,21 @@ def gen_line(line_array):
 arr_len = random.randint(4, 6)
 X_arr = []
 N_arr = []
-arr_unknown_num = random.randint(3, arr_len)
+arr_unknown_num = random.randint(4, arr_len)
+N_sum = random.choice([50, 100,])
 for x in range(arr_len):
     if x == 0:
         X_arr.append(random.randint(-10, 10))
     else:
         X_arr.append(X_arr[-1] + random.randint(1, 5))
-    N_arr.append(random.randint(0, 35))
+    N_arr.append(random.randint(1, int(N_sum/arr_len)))
 
-#arr_len = 4
-#X_arr = [1, 4, 6, 7]
-#N_arr = [10, 15, 20, 5]
-#arr_unknown_num = 4
+while sum(N_arr) != N_sum:
+    N_arr[random.randint(0, arr_len-1)] += 1
 
 X_arr_display = gen_line(X_arr)
 N_arr_display = gen_line(N_arr)
-N_sum = sum(N_arr)
-answer = round(sum(N_arr[:arr_unknown_num-1])/N_sum, 2)
+answer = round(sum(N_arr[:arr_unknown_num-1])/N_sum, 3)
 
 display_formula = ""
 for t_ind, t in enumerate([0] + N_arr):
@@ -61,9 +59,9 @@ for t_ind, t in enumerate([0] + N_arr):
         <p>
             \[
             \begin{array}{|c|c|c|c|}
-                \hline
-                x_i &amp; $X_arr_display \\ \hline
-                n_i &amp; $N_arr_display \\ \hline
+            \hline
+            x_i &amp; $X_arr_display \\ \hline
+            n_i &amp; $N_arr_display \\ \hline
             \end{array}
             \]
         </p>
@@ -78,7 +76,7 @@ for t_ind, t in enumerate([0] + N_arr):
         <table>
             <tr>
                 <td>
-                   Тогда значение \(a\) равно
+                    Тогда значение \(a\) равно
                 </td>
                 <td>
                     <numericalresponse answer="$answer">

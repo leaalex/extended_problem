@@ -1,0 +1,71 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+import math
+from scipy.stats import norm
+
+p = 0.5
+q = round(1 - p, 1)
+n = 100
+#m = 40
+m = int(n/2 + random.randint(-25, 25))
+
+p_sh = m/n
+
+D = p*q/n
+S = math.sqrt(D)
+
+Z_exp = round((abs(p - p_sh)/S),2)
+
+alpha_1 = 0.1
+alpha_2 = 0.01
+
+Z_norm_1 = round(norm.ppf(1 - alpha_1), 6)
+Z_norm_2 = round(norm.ppf(1 - alpha_2), 6)
+
+#answer_1_1 - принимается
+#answer_1_2 - не принимается
+
+if Z_exp >= Z_norm_1:
+    answer_1_1 = True
+    answer_1_2 = False
+else:
+    answer_1_1 = False
+    answer_1_2 = True
+
+
+if Z_exp >= Z_norm_2:
+    answer_2_1 = True
+    answer_2_2 = False
+else:
+    answer_2_1 = False
+    answer_2_2 = True
+
+    </script>
+    <div class="no-equation">
+        <p>При \($n\) подбрасываниях монеты «герб» появился \($m\) раз. Можно ли считать, что процент появления «герба» <strong>не</strong> равен \(50\)?</p>
+        <multiplechoiceresponse>
+            <label>Определите, можно ли принять данную гипотезу при уровне значимости \(\alpha = $alpha_1\)?</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1_1">Гипотеза принимается</choice>
+                <choice correct="$answer_1_2">Гипотеза не принимается</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+            <label>Определите, можно ли принять данную гипотезу при уровне значимости \(\alpha = $alpha_2\)?</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_2_1">Гипотеза принимается</choice>
+                <choice correct="$answer_2_2">Гипотеза не принимается</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+
+
+</problem>

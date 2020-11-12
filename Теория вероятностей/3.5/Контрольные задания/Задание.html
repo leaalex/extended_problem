@@ -1,0 +1,629 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .input-table td {
+            border: 1px solid lightgrey;
+            padding: 5px !important;
+            word-break: normal;
+            text-align: center !important;
+        }
+        .input-table td p.answer, .input-table td .trailing_text, .super-table td p.answer, .super-table td .trailing_text, .executive-table td p.answer, .executive-table td .trailing_text{
+            display: none !important;
+        }
+        .input-table td input, .executive-table td input {
+            min-width: 50px !important;
+        }
+        .executive-table td {
+            padding: 0px !important;
+            margin: 0px !important;
+            border: none !important;
+        }
+        .executive-table {
+            margin: 0px !important;
+        }
+        .super-table td {
+            border: 1px solid lightgrey;
+            padding: 5px !important;
+            word-break: normal;
+            text-align: center !important;
+        }
+        .task_step{
+            margin-bottom: 20px;
+            padding-top: 10px;
+            border-bottom: 4px solid lightgrey;
+        }
+
+        #main_n_i table td {
+            border: 1px solid lightgrey;
+            padding: 5px !important;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+        }
+        #main_n_i table{
+            margin: 0 auto;
+        }
+        #main_n_i {
+            padding-bottom: 20px;
+        }
+    </style>
+    <script type="loncapa/python">
+import math
+import random
+import numpy as np
+from scipy import stats
+
+N_series_len = 10
+N_arr = [1, 7, 3, 6, 0, 6, 6, 4, 4, 5, 6, 3, 5, 5, 8, 5, 3, 7, 4, 6, 4, 2, 6, 6, 6, 5, 6, 6, 3, 4, 5, 4, 8, 4, 5, 5, 5, 5, 7, 5, 4, 4, 5, 5, 6, 5, 6, 6, 3, 6, 6, 5, 3, 2, 3, 3, 7, 5, 5, 3, 4, 4, 1, 7, 5, 5, 7, 5, 4, 5, 4, 6, 7, 5, 7, 6, 6, 6, 5, 2, 2, 5, 3, 5, 5, 6, 6, 5, 6, 4, 4, 7, 7, 2, 3, 6, 5, 7, 5, 5]
+
+N_arr = []
+for r in list(range(0, N_series_len*N_series_len)):
+    lr = sum([int(random.uniform(0, 1) > 0.5) for t in list(range(0, N_series_len))])
+    N_arr.append(lr)
+
+
+mode = stats.mode(N_arr)[0][0]
+median = float(np.median(N_arr))
+X_i = list(range(0, N_series_len+1))  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+N_i = [N_arr.count(x) for x in X_i]  # в ответ
+X_i_x_N_i = [x*N_i[x] for x in X_i]
+N_avg = sum(X_i_x_N_i)/len(N_arr)  # в ответ
+
+D = sum([(x*x)*N_i[x] for x in X_i])/len(N_arr) - math.pow(N_avg, 2)  # в ответ
+sigma = round(math.sqrt(D), 3)  # в ответ
+
+s2 = len(N_arr)/(len(N_arr)-1)*D  # в ответ
+s = math.sqrt(s2)  # в ответ
+
+X_kr_1 = stats.chi2.isf(0.05, 10)  # в ответ
+X_kr_2 = stats.chi2.isf(0.05, 8)  # в ответ
+
+P_binom_1 = [stats.binom.pmf(k=x, n=N_series_len, p=0.5) for x in X_i]
+Ni_Ni_tb_1 = [math.pow(N_i[x] - P_binom_1[x]*sum(N_i), 2)/(P_binom_1[x]*sum(N_i)) for x in X_i]
+X_nabl_1 = round(sum(Ni_Ni_tb_1), 4)  # в ответ
+
+P_binom_2 = [stats.norm(N_avg, s).pdf(x) for x in X_i]
+Ni_Ni_tb_2 = [math.pow(N_i[x] - P_binom_2[x]*sum(N_i), 2)/(P_binom_2[x]*sum(N_i)) for x in X_i]
+X_nabl_2 = round(sum(Ni_Ni_tb_2), 4)  # в ответ
+
+
+if X_kr_1 > X_nabl_1:
+    answer_1_1 = True  # Не отвергается
+    answer_1_2 = False  # Отвергается
+else:
+    answer_1_1 = False  # Не отвергается
+    answer_1_2 = True  # Отвергается
+
+if X_kr_2 > X_nabl_2:
+    answer_2_1 = True  # Не отвергается
+    answer_2_2 = False  # Отвергается
+else:
+    answer_2_1 = False  # Не отвергается
+    answer_2_2 = True  # Отвергается
+
+t_a = 1.98397151852356
+i_left = N_avg - s*t_a/math.sqrt(N_series_len)  # в ответ
+i_right = N_avg + s*t_a/math.sqrt(N_series_len)  # в ответ
+
+int_1_left = N_avg - s  # в ответ
+int_1_right = N_avg + s  # в ответ
+
+int_2_left = N_avg - 2*s  # в ответ
+int_2_right = N_avg + 2*s  # в ответ
+
+int_3_left = N_avg - 3*s  # в ответ
+int_3_right = N_avg + 3*s  # в ответ
+
+P_1 = stats.norm(N_avg, s).cdf(int_1_right) - stats.norm(N_avg, s).cdf(int_1_left)  # в ответ
+P_2 = stats.norm(N_avg, s).cdf(int_2_right) - stats.norm(N_avg, s).cdf(int_2_left)  # в ответ
+P_3 = stats.norm(N_avg, s).cdf(int_3_right) - stats.norm(N_avg, s).cdf(int_3_left)  # в ответ
+
+W_i = [round(N_i[x]/100, 2) for x in X_i]
+W_1 = round(sum([round(N_i[x]/100, 2) for x in X_i][int(math.ceil(int_1_left)): int(math.floor(int_1_right)+1)]), 4)  # в ответ
+W_2 = round(sum([round(N_i[x]/100, 2) for x in X_i][int(math.ceil(int_2_left)): int(math.floor(int_2_right)+1)]), 4)  # в ответ
+W_3 = round(sum([round(N_i[x]/100, 2) for x in X_i][int(math.ceil(int_3_left)): int(math.floor(int_3_right)+1)]), 4)  # в ответ
+
+########## В ОТВЕТЫ ###########
+
+# 1
+mode = round(mode, 2)
+median = round(median, 2)
+
+# 2
+N_i_0 = N_i[0]
+N_i_1 = N_i[1]
+N_i_2 = N_i[2]
+N_i_3 = N_i[3]
+N_i_4 = N_i[4]
+N_i_5 = N_i[5]
+N_i_6 = N_i[6]
+N_i_7 = N_i[7]
+N_i_8 = N_i[8]
+N_i_9 = N_i[9]
+
+# 3
+N_avg = round(N_avg, 3)
+D = round(D, 3)
+sigma = round(sigma, 3)
+s2 = round(s2, 3)
+s = round(s, 3)
+
+# 4
+X_nabl_1 = round(X_nabl_1, 3)
+X_kr_1 = round(X_kr_1, 3)
+
+# 5
+X_nabl_2 = round(X_nabl_2, 3)
+X_kr_2 = round(X_kr_2, 3)
+
+# 6
+i_left = round(i_left, 3)
+i_right = round(i_right, 3)
+
+# 7
+
+int_1_left = round(int_1_left, 5)
+int_1_right = round(int_1_right, 5)
+int_2_left = round(int_2_left, 5)
+int_2_right = round(int_2_right, 5)
+int_3_left = round(int_3_left, 5)
+int_3_right = round(int_3_right, 5)
+
+P_1 = round(P_1, 5)
+P_2 = round(P_2, 5)
+P_3 = round(P_3, 5)
+
+W_1 = round(W_1, 2)
+W_2 = round(W_2, 2)
+W_3 = round(W_3, 2)
+
+</script>
+
+    <script type="text/javascript">
+        let N_arr = "$N_arr";
+        let N_series_len = "$N_series_len";
+
+        N_arr = JSON.parse(N_arr);
+        N_series_len = parseInt(N_series_len);
+
+        let tbl = document.createElement("table");
+        Array.from(Array(N_series_len).keys()).forEach(function (tr, tr_idx){
+            let tr_block = document.createElement("tr")
+            Array.from(Array(N_series_len).keys()).forEach(function (td, td_idx){
+                let td_block = document.createElement("td");
+                td_block.innerHTML = N_arr[((tr_idx*N_series_len)+td_idx)];
+                tr_block.append(td_block);
+            })
+            tbl.append(tr_block);
+        })
+
+        document.querySelector("#main_n_i").append(tbl);
+        document.querySelector("#spare_n_i").style.display = "none";
+    </script>
+    <div class="no-equation">
+        <div class="task_step">
+            <p><strong>1.</strong> Единичный эксперимент состоит в выкладывании на стол хорошо перемешанных \($N_series_len\) монет одинакового достоинства и подсчёте количества гербов. Этот опыт повторяется \(100\) раз, результат приведен ниже.</p>
+            <p id="spare_n_i"><strong>$N_arr</strong></p>
+            <div id="main_n_i"></div>
+            <p>Постройте вариационный ряд, найдите выборочную моду \(Mo_В\) и выборочную медиану \(Me_В\).</p>
+
+            <table>
+                <tr>
+                    <td> \( Mo_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$mode">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( Me_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$median">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="task_step">
+            <p><strong>2.</strong> По вариационному ряду постройте статистический ряд:</p>
+            <table class="input-table">
+                <tbody>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td style="text-align: center;" colspan="11">
+                        Случайная величина \(X\) – число выпадений гербов
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">\(x_i\)</td>
+                    <td style="text-align: center;">
+                        \(0\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(1\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(2\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(3\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(4\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(5\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(6\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(7\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(8\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(9\)
+                    </td>
+                    <td style="text-align: center;">
+                        \(10\)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; width: 100px;">Частота \(n_i\)</td>
+                    <td>
+                        <numericalresponse answer="$N_i_0">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_1">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_2">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_3">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_4">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_5">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_6">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_7">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_8">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_9">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$N_i_0">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="4"/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="task_step">
+            <p><strong>3. </strong>Вычислите числовые характеристики выборочного распределения: математическое ожидание \(\overline{X}_В\) случайной величины  \(X\), ее дисперсию \(D_В\), среднее квадратическое отклонение \(\sigma_В\), исправленную выборочную дисперсию \(s^2_В\), исправленное выборочное СКО \(s_В\). Результат округлите до тысячных.</p>
+            <table>
+                <tr>
+                    <td style="width: 80px;"> \( \overline{X}_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$N_avg">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( D_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$D">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( \sigma_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$sigma">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( s^2_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$s2">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( s_В = \)</td>
+                    <td>
+                        <numericalresponse answer="$s">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="task_step">
+            <p><strong>4. </strong>Используя критерий \(\chi^2\) Пирсона, проверьте гипотезу о биномиальном характере распределения случайной величины \(X\), приняв доверительную вероятность \(\gamma = 0.95\).</p>
+            <p>В ответе приведите экспериментальное и теоретическое значения критерия \(\chi^2_{набл}\) и \(\chi^2_{кр} (\alpha;v)\) и сделайте вывод о принятии/непринятии гипотезы.</p>
+            <table>
+                <tr>
+                    <td> \( \chi^2_{набл} = \)</td>
+                    <td>
+                        <numericalresponse answer="$X_nabl_1">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( \chi^2_{кр} = \)</td>
+                    <td>
+                        <numericalresponse answer="$X_kr_1">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+            </table>
+            <multiplechoiceresponse>
+                <label>Гипотеза о биномиальном характере распределения случайной величины \(X\):</label>
+                <choicegroup type="MultipleChoice" shuffle="false">
+                    <choice correct="$answer_1_1">Не отвергается</choice>
+                    <choice correct="$answer_1_2">Отвергается</choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+        <div class="task_step">
+            <p><strong>5.</strong> Используя критерий \(\chi^2\) Пирсона, проверьте гипотезу о нормальном характере распределения случайной величины \(X\), приняв доверительную вероятность \(\gamma = 0.95\). Параметры нормального распределения возьмите из оценок по выборке: среднее значение \(\alpha \approx \overline{X}_В\), СКО \(\sigma \approx s_В\). В ответе приведите экспериментальное и теоретическое значения критерия и вывод о принятии/непринятии гипотезы.</p>
+            <table>
+                <tr>
+                    <td> \( \chi^2_{набл} = \)</td>
+                    <td>
+                        <numericalresponse answer="$X_nabl_2">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td> \( \chi^2_{кр} = \)</td>
+                    <td>
+                        <numericalresponse answer="$X_kr_2">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+            </table>
+            <multiplechoiceresponse>
+                <label>Гипотеза о нормальном характере распределения случайной величины \(X\):</label>
+                <choicegroup type="MultipleChoice" shuffle="false">
+                    <choice correct="$answer_2_1">Не отвергается</choice>
+                    <choice correct="$answer_2_2">Отвергается</choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+        <div class="task_step">
+            <p><strong>6. </strong>Постройте доверительный интервал для математического ожидания случайной величины \(X\) при доверительной вероятности \(\gamma = 0.95\), рассматривая ее как распределенную по нормальному закону. Параметры нормального распределения возьмите из оценок по выборке: среднее значение \(\alpha \approx \overline{X}_В\), СКО \(\sigma \approx s_В\).</p>
+            <p>Ответ: среднее количество гербов в серии из \($N_series_len\) выбрасываний с вероятностью \(0.95\) лежит в интервале:</p>
+            <table class="executive-table">
+                <tr>
+                    <td>\(I_{0.95} = ( \)</td>
+                    <td>
+                        <numericalresponse answer="$i_left">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="8"/>
+                        </numericalresponse>
+                    </td>
+                    <td>\(;\)</td>
+                    <td>
+                        <numericalresponse answer="$i_right">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="8"/>
+                        </numericalresponse>
+                    </td>
+                    <td>\();\)</td>
+                </tr>
+            </table>
+            <p></p>
+        </div>
+        <div class="task_step">
+            <p><strong>7. </strong>Вычислите вероятности попадания случайной величины \(X\) в интервалы \([\alpha - \sigma; \alpha + \sigma]\), \([\alpha - 2\sigma; \alpha + 2\sigma]\),\([\alpha - 3\sigma; \alpha + 3\sigma]\) рассматривая ее как распределенную по нормальному закону и сравните с экспериментальными данными. Параметры нормального распределения возьмите из оценок по выборке: среднее значение \(\alpha \approx \overline{X}_В\), СКО \(\sigma \approx s_В\).</p>
+            <table class="super-table">
+                <tbody>
+                <tr>
+                    <td style="text-align: center;" colspan="2">
+                        Интервалы
+                    </td>
+                    <td style="text-align: center;">
+                        Экспериментальная относительная частота
+                    </td>
+                    <td style="text-align: center;">
+                        Теоретическая вероятность
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        \([\alpha - \sigma; \alpha + \sigma]\)
+                    </td>
+                    <td style="text-align: center;">
+                        <table class="executive-table">
+                            <tr>
+                                <td>\((\)</td>
+                                <td>
+                                    <numericalresponse answer="$int_1_left">
+                                        <responseparam type="tolerance" default="0.01"/>
+                                        <formulaequationinput size="8"/>
+                                    </numericalresponse>
+                                </td>
+                                <td>\(;\)</td>
+                                <td>
+                                    <numericalresponse answer="$int_1_right">
+                                        <responseparam type="tolerance" default="0.01"/>
+                                        <formulaequationinput size="8"/>
+                                    </numericalresponse>
+                                </td>
+                                <td>\();\)</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="text-align: center;">
+                        <numericalresponse answer="$W_1">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="20"/>
+                        </numericalresponse>
+                    </td>
+                    <td style="text-align: center;">
+                        <numericalresponse answer="$P_1">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="20"/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        \([\alpha - 2\sigma; \alpha + 2\sigma]\)
+                    </td>
+                    <td style="text-align: center;">
+                        <table class="executive-table">
+                            <tr>
+                                <td>\((\)</td>
+                                <td>
+                                    <numericalresponse answer="$int_2_left">
+                                        <responseparam type="tolerance" default="0.01"/>
+                                        <formulaequationinput size="8"/>
+                                    </numericalresponse>
+                                </td>
+                                <td>\(;\)</td>
+                                <td>
+                                    <numericalresponse answer="$int_2_right">
+                                        <responseparam type="tolerance" default="0.01"/>
+                                        <formulaequationinput size="8"/>
+                                    </numericalresponse>
+                                </td>
+                                <td>\();\)</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="text-align: center;">
+                        <numericalresponse answer="$W_2">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="20"/>
+                        </numericalresponse>
+                    </td>
+                    <td style="text-align: center;">
+                        <numericalresponse answer="$P_2">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="20"/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        \([\alpha - 3\sigma; \alpha + 3\sigma]\)
+                    </td>
+                    <td style="text-align: center;">
+                        <table class="executive-table">
+                            <tr>
+                                <td>\((\)</td>
+                                <td>
+                                    <numericalresponse answer="$int_3_left">
+                                        <responseparam type="tolerance" default="0.01"/>
+                                        <formulaequationinput size="8"/>
+                                    </numericalresponse>
+                                </td>
+                                <td>\(;\)</td>
+                                <td>
+                                    <numericalresponse answer="$int_3_right">
+                                        <responseparam type="tolerance" default="0.01"/>
+                                        <formulaequationinput size="8"/>
+                                    </numericalresponse>
+                                </td>
+                                <td>\();\)</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="text-align: center;">
+                        <numericalresponse answer="$W_3">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="20"/>
+                        </numericalresponse>
+                    </td>
+                    <td style="text-align: center;">
+                        <numericalresponse answer="$P_3">
+                            <responseparam type="tolerance" default="0.01"/>
+                            <formulaequationinput size="20"/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <solution>
+        <style>
+            .input-table td p.answer, .input-table td .trailing_text, .super-table td p.answer, .super-table td .trailing_text, .executive-table td p.answer, .executive-table td .trailing_text{
+                display: inline-block !important;
+            }
+        </style>
+    </solution>
+</problem>

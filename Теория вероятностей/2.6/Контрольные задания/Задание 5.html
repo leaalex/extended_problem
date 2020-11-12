@@ -133,7 +133,7 @@ M_Y_S = math.sqrt(math.pi/2) * (math.cos(phi_1_val) - math.cos(phi_2_val))/(phi_
 sigma_X_S = math.sqrt(1 + (math.sin(2 * phi_2_val) - math.sin(2 * phi_1_val))/( 2 * (phi_2_val - phi_1_val)) - math.pow(M_X_S, 2))
 sigma_Y_S = math.sqrt(1 - (math.sin(2 * phi_2_val) - math.sin(2 * phi_1_val))/( 2 * (phi_2_val - phi_1_val)) - math.pow(M_Y_S, 2))
 
-r_xy = ((math.cos(2 * phi_1_val) - math.cos(2 * phi_2_val))/(2 * (phi_2_val - phi_1_val)) - M_X_S * M_Y_S) / (sigma_X_S * sigma_X_S)
+r_xy = ((math.cos(2 * phi_1_val) - math.cos(2 * phi_2_val))/(2 * (phi_2_val - phi_1_val)) - M_X_S * M_Y_S) / (sigma_Y_S * sigma_X_S)
 
 M_X_S = round(M_X_S, 2)
 M_Y_S = round(M_Y_S, 2)

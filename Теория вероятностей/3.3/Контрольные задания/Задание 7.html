@@ -1,0 +1,84 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+from scipy.stats import norm
+
+p = 0.1667
+q = round(1 - p, 4)
+
+n = 150
+n = int(round(15 + 10 * (random.uniform(0, 1) - 0.5)) * 10)
+
+alpha_1 = 0.01
+alpha_2 = 0.1
+
+Z_norm_1 = round(norm.ppf(1 - alpha_1/2), 6)
+Z_norm_2 = round(norm.ppf(1 - alpha_2/2), 6)
+
+d_n_1 = round(Z_norm_1 * math.sqrt(n*5)/6, 6)
+d_n_2 = round(Z_norm_2 * math.sqrt(n*5)/6, 6)
+
+n_1_minus = round(n / 6-d_n_1, 4)
+n_2_minus = round(n / 6-d_n_2, 4)
+
+n_1_plus = round(n / 6+d_n_1, 4)
+n_2_plus = round(n / 6+d_n_2, 4)
+
+int_1 = [math.floor(n_1_minus)-5, math.floor(n_1_minus)]
+int_2 = [math.ceil(n_1_minus), math.floor(n_2_minus)]
+
+int_3 = [math.ceil(n_2_minus), math.floor(n_2_plus)]
+
+int_4 = [math.ceil(n_2_plus), math.floor(n_1_plus)]
+int_5 = [math.ceil(n_1_plus), math.ceil(n_1_plus)+5]
+
+interval = random.choice([1, 2, 3, 4, 5])
+
+if interval in [1, 5]:
+    answer_1_1 = False
+    answer_1_2 = True
+    answer_2_1 = False
+    answer_2_2 = True
+    m_int = random.choice([int_1, int_5])
+elif interval in [3]:
+    answer_1_1 = True
+    answer_1_2 = False
+    answer_2_1 = True
+    answer_2_2 = False
+    m_int = int_3
+else:
+    answer_1_1 = False
+    answer_1_2 = True
+    answer_2_1 = True
+    answer_2_2 = False
+    m_int = random.choice([int_2, int_4])
+
+m = random.randint(m_int[0], m_int[1])
+</script>
+    <div class="no-equation">
+        <p>При \($n\) бросаниях игральной кости «шестерка» выпала \($m\) раз.</p>
+        <multiplechoiceresponse>
+            <label><strong>а)</strong> Согласуется ли этот результат с утверждением, что кость «правильная», если уровень значимости принять равным \($alpha_1\)?</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1_1">Да</choice>
+                <choice correct="$answer_1_2">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+            <label><strong>б)</strong> Согласуется ли этот результат с утверждением, что кость «правильная», если уровень значимости принять равным \($alpha_2\)?</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_2_1">Да</choice>
+                <choice correct="$answer_2_2">Нет</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+
+
+</problem>
