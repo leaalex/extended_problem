@@ -1,0 +1,442 @@
+<problem>
+
+    <script type="loncapa/python">
+import random
+import math
+import scipy.stats
+
+main_arr = []
+for j in [0, 1, 2, 3]:
+    tmp_j = []
+    for i in [0, 1, 2, 3, 4, 5, 6]:
+        tmp_j.append(random.randint(80, 90) + (j+1) + random.randint(-5, 5))
+    main_arr.append(tmp_j)
+
+remove_indexes = [0, 1, 2, 3]
+random.shuffle(remove_indexes)
+
+# два последних эл-та в ноль
+main_arr[remove_indexes[0]][-1] = 0
+main_arr[remove_indexes[0]][-2] = 0
+
+# один последний элемент в ноль
+main_arr[remove_indexes[1]][-1] = 0
+
+# один последний элемент в ноль
+main_arr[remove_indexes[2]][-1] = 0
+
+#main_arr = [
+#[84,	85,	94,	83,	94, 0 , 0],
+#[90,	93,	90,	88,	97,	95,	0],
+#[91,	86,	84,	90,	95,	82,	91],
+#[97,	98,	90,	100,	94,	88,	0]
+#]
+
+p = 4
+alpha = 0.05
+
+N_j_1 = sum([x > 0 for x in main_arr[0]])
+N_j_2 = sum([x > 0 for x in main_arr[1]])
+N_j_3 = sum([x > 0 for x in main_arr[2]])
+N_j_4 = sum([x > 0 for x in main_arr[3]])
+N_j_sum = sum([N_j_1, N_j_2, N_j_3, N_j_4])
+
+Q_j_1 = sum(main_arr[0])
+Q_j_2 = sum(main_arr[1])
+Q_j_3 = sum(main_arr[2])
+Q_j_4 = sum(main_arr[3])
+Q_j_sum = sum([Q_j_1, Q_j_2, Q_j_3, Q_j_4])
+
+X_j_1 = Q_j_1 / N_j_1
+X_j_2 = Q_j_2 / N_j_2
+X_j_3 = Q_j_3 / N_j_3
+X_j_4 = Q_j_4 / N_j_4
+X_j_sum = Q_j_sum / N_j_sum
+
+Q2 = math.pow(sum([sum(x) for x in main_arr]), 2)
+Q2N = Q2 / N_j_sum
+SS_2 = (sum([math.pow(sum(x), 2) / sum([y > 0 for y in x]) for x in main_arr]) - Q2 / N_j_sum)
+SS_0 = sum([sum([math.pow(y, 2) for y in x]) for x in main_arr]) - Q2 / N_j_sum
+SS_1 = SS_0 - SS_2
+
+free_deg_1 = p - 1
+free_deg_2 = N_j_sum - p
+free_deg_3 = N_j_sum - 1
+
+grade_disp_1 = SS_2 / free_deg_1
+grade_disp_2 = SS_1 / free_deg_2
+
+F_nabl = grade_disp_1/ grade_disp_2
+F_krit = scipy.stats.f.isf(alpha, free_deg_1, free_deg_2)
+
+
+if F_krit > F_nabl:
+    answer_1 = True  # принимается
+    answer_2 = False  # отвергается
+else:
+    answer_1 = False  # принимается
+    answer_2 = True  # отвергается
+
+# ВЫВОД
+
+X_1_1 = main_arr[0][0]
+X_2_1 = main_arr[0][1]
+X_3_1 = main_arr[0][2]
+X_4_1 = main_arr[0][3]
+X_5_1 = main_arr[0][4]
+X_6_1 = main_arr[0][5] if main_arr[0][5] > 0 else ""
+X_7_1 = main_arr[0][6] if main_arr[0][6] > 0 else ""
+
+X_1_2 = main_arr[1][0]
+X_2_2 = main_arr[1][1]
+X_3_2 = main_arr[1][2]
+X_4_2 = main_arr[1][3]
+X_5_2 = main_arr[1][4]
+X_6_2 = main_arr[1][5] if main_arr[1][5] > 0 else ""
+X_7_2 = main_arr[1][6] if main_arr[1][6] > 0 else ""
+
+X_1_3 = main_arr[2][0]
+X_2_3 = main_arr[2][1]
+X_3_3 = main_arr[2][2]
+X_4_3 = main_arr[2][3]
+X_5_3 = main_arr[2][4]
+X_6_3 = main_arr[2][5] if main_arr[2][5] > 0 else ""
+X_7_3 = main_arr[2][6] if main_arr[2][6] > 0 else ""
+
+X_1_4 = main_arr[3][0]
+X_2_4 = main_arr[3][1]
+X_3_4 = main_arr[3][2]
+X_4_4 = main_arr[3][3]
+X_5_4 = main_arr[3][4]
+X_6_4 = main_arr[3][5] if main_arr[3][5] > 0 else ""
+X_7_4 = main_arr[3][6] if main_arr[3][6] > 0 else ""
+
+# ВВОД СТУДЕНТА
+
+X_j_1 = round(X_j_1, 3)
+X_j_2 = round(X_j_2, 3)
+X_j_3 = round(X_j_3, 3)
+X_j_4 = round(X_j_4, 3)
+X_j_sum = round(X_j_sum, 3)
+
+SS_0 = round(SS_0, 3)
+SS_1 = round(SS_1, 3)
+SS_2 = round(SS_2, 3)
+
+grade_disp_1 = round(grade_disp_1, 3)
+grade_disp_2 = round(grade_disp_2, 3)
+
+F_nabl = round(F_nabl, 3)
+F_krit = round(F_krit, 3)
+
+
+</script>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .task_3_4_01 table td{
+            border: 1px solid #e6e6e6;
+            padding: 4px 6px !important;
+            word-break: normal;
+        }
+        .task_3_4_01 table td input{
+            min-width: 100px !important;
+            height: 34px !important;
+            padding: 5px !important;
+            box-shadow: none !important;
+        }
+        .task_3_4_01 table td p.answer, .task_3_4_01 table td .trailing_text, .task_3_4_01 table td .status{
+            display: none !important;
+        }
+
+        .task_3_4_01 table .italic-and-background {
+            background: #f3f3f3;
+            font-style: italic !important;
+        }
+    </style>
+
+    <div class="no-equation task_3_4_01">
+        <p>В цехе установлены станки четырех различных фирм, изготавливающие одинаковые детали. Количества деталей, произведенные каждым станком за смену, приведены в таблице.</p>
+        <table>
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;" rowspan="2">Фирма, \(j\) \(=\) \(1, 2, 3, 4 \)</td>
+                <td style="text-align: center;" colspan="7">Производительность отдельного станка \(X_{ij}\), шт., \(i\) - номер станка в группе</td>
+            </tr>
+            <tr class="italic-and-background">
+                <td style="text-align: center;">\(1\)</td>
+                <td style="text-align: center;">\(2\)</td>
+                <td style="text-align: center;">\(3\)</td>
+                <td style="text-align: center;">\(4\)</td>
+                <td style="text-align: center;">\(5\)</td>
+                <td style="text-align: center;">\(6\)</td>
+                <td style="text-align: center;">\(7\)</td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(1\)</td>
+                <td style="text-align: center;">$X_1_1</td>
+                <td style="text-align: center;">$X_2_1</td>
+                <td style="text-align: center;">$X_3_1</td>
+                <td style="text-align: center;">$X_4_1</td>
+                <td style="text-align: center;">$X_5_1</td>
+                <td style="text-align: center;">$X_6_1</td>
+                <td style="text-align: center;">$X_7_1</td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(2\)</td>
+                <td style="text-align: center;">$X_1_2</td>
+                <td style="text-align: center;">$X_2_2</td>
+                <td style="text-align: center;">$X_3_2</td>
+                <td style="text-align: center;">$X_4_2</td>
+                <td style="text-align: center;">$X_5_2</td>
+                <td style="text-align: center;">$X_6_2</td>
+                <td style="text-align: center;">$X_7_2</td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(3\)</td>
+                <td style="text-align: center;">$X_1_3</td>
+                <td style="text-align: center;">$X_2_3</td>
+                <td style="text-align: center;">$X_3_3</td>
+                <td style="text-align: center;">$X_4_3</td>
+                <td style="text-align: center;">$X_5_3</td>
+                <td style="text-align: center;">$X_6_3</td>
+                <td style="text-align: center;">$X_7_3</td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(4\)</td>
+                <td style="text-align: center;">$X_1_4</td>
+                <td style="text-align: center;">$X_2_4</td>
+                <td style="text-align: center;">$X_3_4</td>
+                <td style="text-align: center;">$X_4_4</td>
+                <td style="text-align: center;">$X_5_4</td>
+                <td style="text-align: center;">$X_6_4</td>
+                <td style="text-align: center;">$X_7_4</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Проверить гипотезу \(H_{0}\): <strong>производительности станков различных фирм одинаковы.</strong></p>
+        <p>Принять уровень значимости \(\alpha = 0.05\).</p>
+
+        <table>
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;" rowspan="2">Уровень фактора \(A\)</td>
+                <td style="text-align: center;">Число станков</td>
+                <td style="text-align: center;">Суммарная выработка, шт.</td>
+                <td style="text-align: center;">Групповое среднее</td>
+            </tr>
+            <tr class="italic-and-background">
+                <td style="text-align: center; width: 160px;">\(N_j\)</td>
+                <td style="text-align: center; width: 160px;">\(Q_j\)</td>
+                <td style="text-align: center; width: 160px;">\(Xср_{j}\)</td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(1\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$N_j_1">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Q_j_1">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_j_1">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(2\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$N_j_2">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Q_j_2">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_j_2">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(3\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$N_j_3">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Q_j_3">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_j_3">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">\(4\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$N_j_4">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Q_j_4">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_j_4">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">Сумма</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$N_j_sum">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Q_j_sum">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_j_sum">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Результаты вычислений оформить в виде таблицы дисперсионного анализа:</p>
+
+        <table>
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;">Характер вариации</td>
+                <td style="text-align: center;" colspan="2">Сумма квадратов</td>
+                <td style="text-align: center;">Число степеней свободы</td>
+                <td style="text-align: center;">Оценка дисперсии</td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">Систематическая (межгрупповая)</td>
+                <td style="text-align: center; min-width: 80px;">\(SS_2 =\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$SS_2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;    width: 160px;">
+                    <numericalresponse answer="$free_deg_1">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;    width: 160px;">
+                    <numericalresponse answer="$grade_disp_1">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">Остаточная (внутригрупповая)</td>
+                <td style="text-align: center;">\(SS_1 =\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$SS_1">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$free_deg_2">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$grade_disp_2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td class="italic-and-background" style="text-align: center;">Итого:</td>
+                <td style="text-align: center;">\(SS_0 =\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$SS_0">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$free_deg_3">
+                        <responseparam type="tolerance"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <numericalresponse answer="$F_nabl">
+            <label>Наблюдаемое значение критерия \(F^*\) = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput size="10"/>
+        </numericalresponse>
+        <numericalresponse answer="$F_krit">
+            <label>Критическое значение критерия \(F(\alpha, v_1, v_2) \) = </label>
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput size="10"/>
+        </numericalresponse>
+
+        <multiplechoiceresponse>
+            <label>Гипотеза \(H_0\) об отсутствии влияния фактора \(A\) (фирма) на % брака выпускаемой продукции:</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1">Принимается</choice>
+                <choice correct="$answer_2">Отвергается</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+    </div>
+    <solution>
+        <style>
+            .task_3_4_01 table td p.answer, .task_3_4_01 table td .trailing_text{
+                display: inline-block !important;
+            }
+        </style>
+    </solution>
+</problem>

@@ -1,0 +1,102 @@
+import random
+import math
+import scipy.stats
+
+main_arr = [
+[2.0, 1.5, 3.0, 6.0, 0.2, 0.0, 1.0],
+[1.5, 4.0, 4.0, 0.0, 0.0, 2.5, 1.5],
+[1.5, 1.5, 6.0, 6.0, 0.0, 3.0, 1.0]
+]
+
+alpha = 0.05
+p = 3
+n = 7
+N = p * n
+
+Q_j_1 = sum(main_arr[0])
+Q_j_2 = sum(main_arr[1])
+Q_j_3 = sum(main_arr[2])
+Q_j_sum = sum([Q_j_1, Q_j_2, Q_j_3])
+
+X_j_1 = Q_j_1 / n
+X_j_2 = Q_j_2 / n
+X_j_3 = Q_j_3 / n
+X_j_sum = Q_j_sum / N
+
+Q_j2_1 = math.pow(Q_j_1, 2)
+Q_j2_2 = math.pow(Q_j_2, 2)
+Q_j2_3 = math.pow(Q_j_3, 2)
+Q_j2_sum = math.pow(Q_j_sum, 2)
+
+SS_2 = sum([Q_j2_1, Q_j2_2, Q_j2_3])/n - Q_j2_sum/N
+SS_0 = sum([sum([math.pow(y, 2) for y in x]) for x in main_arr]) - Q_j2_sum/N
+SS_1 = SS_0 - SS_2
+
+free_deg_1 = p - 1
+free_deg_2 = N - p
+free_deg_3 = N - 1
+
+grade_disp_1 = SS_2 / free_deg_1
+grade_disp_2 = SS_1 / free_deg_2
+
+F_nabl = grade_disp_1/ grade_disp_2
+F_krit = scipy.stats.f.isf(alpha, free_deg_1, free_deg_2)
+
+if F_krit > F_nabl:
+answer_1 = True  # принимается
+answer_2 = False  # отвергается
+else:
+answer_1 = False  # принимается
+answer_2 = True  # отвергается
+
+#  ВЫВОД
+
+X_1_1 = main_arr[0][0]
+X_2_1 = main_arr[0][1]
+X_3_1 = main_arr[0][2]
+X_4_1 = main_arr[0][3]
+X_5_1 = main_arr[0][4]
+X_6_1 = main_arr[0][5]
+X_7_1 = main_arr[0][6]
+
+X_1_2 = main_arr[1][0]
+X_2_2 = main_arr[1][1]
+X_3_2 = main_arr[1][2]
+X_4_2 = main_arr[1][3]
+X_5_2 = main_arr[1][4]
+X_6_2 = main_arr[1][5]
+X_7_2 = main_arr[1][6]
+
+X_1_3 = main_arr[2][0]
+X_2_3 = main_arr[2][1]
+X_3_3 = main_arr[2][2]
+X_4_3 = main_arr[2][3]
+X_5_3 = main_arr[2][4]
+X_6_3 = main_arr[2][5]
+X_7_3 = main_arr[2][6]
+
+# ВВОД СТУДЕНТА
+Q_j_1 = round(Q_j_1, 3)
+Q_j_2 = round(Q_j_2, 3)
+Q_j_3 = round(Q_j_3, 3)
+Q_j_sum = round(Q_j_sum, 3)
+
+X_j_1 = round(X_j_1, 3)
+X_j_2 = round(X_j_2, 3)
+X_j_3 = round(X_j_3, 3)
+X_j_sum = round(X_j_sum, 3)
+
+Q_j2_1 = round(Q_j2_1, 3)
+Q_j2_2 = round(Q_j2_2, 3)
+Q_j2_3 = round(Q_j2_3, 3)
+Q_j2_sum = round(Q_j2_sum, 3)
+
+SS_0 = round(SS_0, 3)
+SS_1 = round(SS_1, 3)
+SS_2 = round(SS_2, 3)
+
+grade_disp_1 = round(grade_disp_1, 3)
+grade_disp_2 = round(grade_disp_2, 3)
+
+F_nabl = round(F_nabl, 3)
+F_krit = round(F_krit, 3)

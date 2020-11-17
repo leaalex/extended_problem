@@ -1,0 +1,64 @@
+import random
+import math
+import scipy.stats
+
+main_arr = [
+[
+[
+[10, 8],
+[7, 10]
+],
+[
+[8, 12],
+[14, 12]
+],
+[
+[15, 8],
+[10, 10]
+]
+],
+[
+[
+[12, 8],
+[8, 7]
+],
+[
+[12, 13],
+[11, 14]
+],
+[
+[13, 15],
+[12, 10]
+]
+]
+
+]
+
+
+# main_arr = [
+# [10,	8,	8,	12,	15,	8],
+# [7,	10,	14,	12,	10,	10],
+# [12,	8,	12,	13,	13,	15],
+# [8,	7,	11,	14,	12,	10]
+# ]
+
+
+Q_ij = [[sum(y[0]+y[1]) for y in x] for x in main_arr]
+Q_ij2 = [[math.pow(sum(y[0]+y[1]), 2) for y in x] for x in main_arr]
+
+Q_Ai = [0, 0, 0]
+
+for x in main_arr:
+for idx_y, y in enumerate(x):
+Q_Ai[idx_y] += sum(y[0]+y[1])
+Q_Ai2 = [math.pow(x, 2) for x in Q_Ai]
+
+Q_Bi = []
+for x in main_arr:
+Q_Bi_tmp = 0
+for y in x:
+Q_Bi_tmp += sum(y[0]+y[1])
+Q_Bi.append(Q_Bi_tmp)
+Q_Bi2 = [math.pow(x, 2) for x in Q_Bi]
+
+print(Q_Bi2)

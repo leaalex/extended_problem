@@ -165,7 +165,7 @@ cells_3_len = len(cells_3_correct[0])
 durations = [cells_1_len * n, cells_2_len * p, cells_3_len * p]
 
 student_data = {
-    "n": n,
+    "n": round(n/2, 1) if any(x - int(x) for x in t_list) else n,
     "p": p,
     "t1": t1,
     "t2": t2,
