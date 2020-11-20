@@ -26,13 +26,6 @@ main_arr_2 = [
 
 main_arr = random.choice([main_arr_1, main_arr_2])
 
-main_arr = [
-[15.00,	14.00,	19.00,	18.00,	18.00,	19.00],
-[20.00,	17.00,	15.00,	16.00,	14.00,	19.00],
-[18.80,	20.25,	14.90,	20.80,	14.90,	17.80],
-[19.35,	15.90,	19.25,	21.25,	17.80,	19.35]
-]
-
 alpha = 0.05
 p = 3
 q = 2
@@ -238,6 +231,8 @@ F_AB_krit = round(F_AB_krit, 4)
             </tr>
             </tbody>
         </table>
+        <p>В качестве десятичного разделителя используйте <strong>точку</strong>. Итоговые ответы привести с точностью до трех знаков (после точки).</p>
+
         <table>
             <tbody>
             <tr class="italic-and-background">
@@ -258,7 +253,7 @@ F_AB_krit = round(F_AB_krit, 4)
                 <td style="text-align: center;">
                     <numericalresponse answer="$free_deg_1">
                         <responseparam type="tolerance"/>
-                        <formulaequationinput size="10"/>
+                        <formulaequationinput size="20"/>
                     </numericalresponse>
                 </td>
                 <td style="text-align: center;min-width: 100px;">\(S^2_A =\)</td>
@@ -281,7 +276,7 @@ F_AB_krit = round(F_AB_krit, 4)
                 <td style="text-align: center;">
                     <numericalresponse answer="$free_deg_2">
                         <responseparam type="tolerance"/>
-                        <formulaequationinput size="10"/>
+                        <formulaequationinput size="20"/>
                     </numericalresponse>
                 </td>
                 <td style="text-align: center;">\(S^2_B =\)</td>
@@ -304,7 +299,7 @@ F_AB_krit = round(F_AB_krit, 4)
                 <td style="text-align: center;">
                     <numericalresponse answer="$free_deg_3">
                         <responseparam type="tolerance"/>
-                        <formulaequationinput size="10"/>
+                        <formulaequationinput size="20"/>
                     </numericalresponse>
                 </td>
                 <td style="text-align: center;">\(S^2_AB =\)</td>
@@ -327,7 +322,7 @@ F_AB_krit = round(F_AB_krit, 4)
                 <td style="text-align: center;">
                     <numericalresponse answer="$free_deg_4">
                         <responseparam type="tolerance"/>
-                        <formulaequationinput size="10"/>
+                        <formulaequationinput size="20"/>
                     </numericalresponse>
                 </td>
                 <td style="text-align: center;">\(S^2_R =\)</td>
@@ -350,7 +345,7 @@ F_AB_krit = round(F_AB_krit, 4)
                 <td style="text-align: center;">
                     <numericalresponse answer="$free_deg_5">
                         <responseparam type="tolerance"/>
-                        <formulaequationinput size="10"/>
+                        <formulaequationinput size="20"/>
                     </numericalresponse>
                 </td>
                 <td style="text-align: center;"></td>
@@ -359,7 +354,90 @@ F_AB_krit = round(F_AB_krit, 4)
             </tbody>
         </table>
 
+        <table>
+            <tbody>
+            <tr>
+                <td class="italic-and-background" style="text-align:center;" colspan="2">Экспериментальное значение критерия</td>
+                <td style="text-align:center;border: none;width: 50px;"></td>
+                <td class="italic-and-background" style="text-align:center;" colspan="2">Критическое значение критерия</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;min-width: 110px;">\(F_A=\)</td>
+                <td style="text-align:center;">
+                    <numericalresponse answer="$F_A_exp">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align:center;    border: none;"></td>
+                <td style="text-align:center;min-width: 110px;">\(F_A=\)</td>
+                <td style="text-align:center;">
+                    <numericalresponse answer="$F_A_krit">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">\(F_B =\)</td>
+                <td style="text-align:center;">
+                    <numericalresponse answer="$F_B_exp">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align:center;    border: none;"></td>
+                <td style="text-align:center;">\(F_B =\)</td>
+                <td style="text-align:center;">
+                    <numericalresponse answer="$F_B_krit">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">\(F_{A \times B} =\)</td>
+                <td style="text-align:center;">
+                    <numericalresponse answer="$F_AB_exp">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align:center;    border: none;"></td>
+                <td style="text-align:center;">\(F_{A \times B} =\)</td>
+                <td style="text-align:center;">
+                    <numericalresponse answer="$F_AB_krit">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="20"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
+        <multiplechoiceresponse>
+            <label><strong>1. </strong>Гипотеза \(H_{0,A}\) (фактор \(A\) не оказывает влияния на отклик \(X\)):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_A_1">Принимается</choice>
+                <choice correct="$answer_A_2">Отвергается</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+            <label><strong>2. </strong>Гипотеза \(H_{0,B}\) (фактор \(B\) не оказывает влияния на отклик \(X\)):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_B_1">Принимается</choice>
+                <choice correct="$answer_B_2">Отвергается</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+            <label><strong>3. </strong>Гипотеза \(H_{0,A \times B}\) — взаимодействие факторов \(A\) и \(B\) не оказывает влияния на отклик \(X\):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_AB_1">Принимается</choice>
+                <choice correct="$answer_AB_2">Отвергается</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
 
     </div>
     <solution>
