@@ -201,11 +201,24 @@ let questions = [
 let vm = new Vue({
     template: `
     <div>
-    <div v-if="previous_answers.length != 0">
-        Ответы на предыдущие вопросы:
-        <div v-for="answer in previous_answers">
-        {{answer}}
+    <div>
+        <div class="previous-answers">
+            <div class="previous-answers-show" v-on:click="toggleShowPreviousAnswers()">Ответы на предыдущие вопросы ({{previous_answers.length}})
+            <template v-if="show_previous_answers"><i class="fa fa-angle-up"></i></template>
+            <template v-else><i class="fa fa-angle-down"></i></template>
+            </div>
+            <div v-if="show_previous_answers">
+                <div v-if="previous_answers.length != 0">
+                    <div v-for="(answer, answer_idx) in previous_answers" class="previous-answer">
+                    <strong>{{answer_idx+1}}. </strong>Ответ <strong>{{answer.man}}</strong> на вопрос <strong>«{{answer.question}}»</strong>: «{{answer.answer}}»
+                    </div>
+                </div>
+                <div v-else class="no-questions">
+                    Сначала задайте вопросы сотрудникам
+                </div>
+            </div>
         </div>
+        
     </div>
     <div class="people-answers">
     <div v-if="current_man == ''" >
@@ -224,8 +237,10 @@ let vm = new Vue({
         <p>Ответ <strong>{{people[current_man].title_1}}</strong>:</p>
         <div class="answer">«{{people[current_man].answers[current_question]}}»</div>
         
-        <div v-on:click="resetQuestion()">Задать {{people[current_man].title_2}} другой вопрос</div>
-        <div v-on:click="resetAll()">Спросить другого сотрудника</div>
+        <div class="next-questions-block">
+            <div class="next-questions-btn" v-on:click="resetQuestion()">Задать {{people[current_man].title_2}} другой вопрос</div>
+            <div class="next-questions-btn" v-on:click="resetAll()">Спросить другого сотрудника</div>
+        </div>
     </div>
     </div>
     </div>
@@ -237,6 +252,7 @@ let vm = new Vue({
         current_question: "",
         questions: questions,
         previous_answers: [],
+        show_previous_answers: false,
     },
     mounted(){},
     methods: {
@@ -246,16 +262,20 @@ let vm = new Vue({
         setCurrentQuestion(id){
             this.current_question = id;
         },
+        toggleShowPreviousAnswers(){
+            this.show_previous_answers = !this.show_previous_answers;
+        },
         resetAll(){
             this.previous_answers.push(
                 {
-                    question: this.questions.filter(x => x.id === this.current_question).text,
+                    question: this.questions.filter(x => x.id === this.current_question)[0].text,
                     man: this.people[this.current_man].title_1,
                     answer: this.people[this.current_man].answers[this.current_question]
                 }
             )
             this.current_man = "";
             this.current_question = "";
+            this.show_previous_answers = false;
         },
         resetQuestion(){
             this.previous_answers.push(
@@ -266,6 +286,7 @@ let vm = new Vue({
                 }
             )
             this.current_question = "";
+            this.show_previous_answers = false;
         }
     },
     computed: {}

@@ -1,0 +1,143 @@
+<problem>
+    <p>!!!! вот сюда маленькую инструкцию</p>
+    <div>
+        <div data-type="CheckboxTableApp" class="adv-app" data-initial-data='$student_state'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+    </div>
+    <style>
+        .plus-style-custom{
+            background: #00BCD4;
+            color: #fff;
+            font-size: 1.2em;
+        }
+    </style>
+    <script type="loncapa/python">
+import json
+
+settings = {
+    "check_type": "partially",  # "partially" || "full" # тип проверки - частично или все сразу
+    "show_correctness": False,  # отображать правильность
+    "x_headers": True,  # имеются заголовки горизонтальные
+    "y_headers": True,  # имеются заголовки вертикальные
+    "use_checkbox": False,  # Использовать чекбоксы
+
+    # Состояния если не используются чекбоксы
+    "states": [
+        {
+            "name": "plus",
+            "text": "+",  # текст
+            "classes": "plus-style-custom"  # применяемые классы
+        },
+        {
+            "name": "minus",
+            "text": "Поставьте «+», если роль присутствует",
+            "classes": ["default"]
+        }
+    ],
+    # состояние по умолчанию
+    "default": {
+        "text": "Поставьте «+», если роль присутствует",
+        "classes": ["default"]
+    },
+    # состояние используемое по умолчинию
+    "use_default": "minus",
+
+}
+
+correct_state = [
+    ["", "Иван", "Светлана", "Михаил", "Олег", "Мария", "Елена"],
+    ["Мотиватор", "minus", "minus", "minus", "plus", "minus", "minus"],
+    ["Исполнитель", "minus", "plus", "minus", "minus", "minus", "plus"],
+    ["Педант", "minus", "plus", "plus", "minus", "minus", "minus"],
+    ["Координатор", "plus", "minus", "minus", "minus", "minus", "minus"],
+    ["Душа команды", "minus", "minus", "minus", "minus", "minus", "plus"],
+    ["Исследователь ресурсов", "plus", "minus", "minus", "plus", "minus", "minus"],
+    ["Генератор", "minus", "minus", "minus", "minus", "plus", "minus"],
+    ["Критик", "plus", "minus", "plus", "minus", "minus", "minus"],
+    ["Специалист", "minus", "minus", "minus", "minus", "plus", "minus"],
+
+]
+
+student_state = settings.copy()
+
+state = []
+
+for row_index, row in enumerate(correct_state):
+    state.append([])
+    for cell_index, cell in enumerate(row):
+        if settings["x_headers"] and row_index == 0:
+            state[row_index] = row
+        else:
+            if not settings["use_checkbox"]:
+                state[row_index].append(settings["use_default"])
+            else:
+                state[row_index].append(False)
+            if settings["y_headers"] and cell_index == 0:
+                state[row_index][cell_index] = cell
+
+student_state["initial_state"] = state
+student_state = json.dumps(student_state)
+student_state = student_state.replace('"', "'")
+
+correct_data = settings.copy()
+correct_data["initial_state"] = correct_state
+correct_data = json.dumps(correct_data)
+correct_data = correct_data.replace('"', "'")
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    max_grade = sum([len(corr_row) for corr_row in correct_state])
+    max_grade = max_grade - (len(correct_state[0]) if settings["x_headers"] else 0)
+    max_grade = max_grade - (len(correct_state)-1 if settings["y_headers"] else 0)
+    grade = 0
+    result_grade = 0  # от 0 до 1
+    correctness = []
+
+    for row_index, row in enumerate(correct_state):
+        if row_index == 0 and settings["x_headers"]:
+            correctness.append(["" for l in correct_state[0]])
+            continue
+        else:
+            correctness.append([])
+            for cell_index, cell in enumerate(row):
+                if cell_index == 0 and settings["y_headers"]:
+                    correctness[row_index].append("")
+                    continue
+
+                else:
+                    if cell == student_answer[row_index][cell_index]:
+                        grade += 1
+                        correctness[row_index].append(True)
+                    else:
+                        correctness[row_index].append(False)
+
+    msg = {"grade": grade, "correctness": False, "result_grade": result_grade}
+
+    if settings["check_type"] == "full":
+        if grade == max_grade:
+            result_grade = 1
+    else:
+        result_grade = round(grade/max_grade, 9)
+    msg["result_grade"] = result_grade
+
+    if settings["show_correctness"]:
+        msg["correctness"] = correctness
+
+    if result_grade == 1:
+        ok = True
+    elif result_grade == 0:
+        ok = False
+    else:
+        ok = 'Partial'
+
+    return {'input_list': [{'ok': ok, 'msg': json.dumps(msg), 'grade_decimal': result_grade}, ]}
+</script>
+
+
+</problem>

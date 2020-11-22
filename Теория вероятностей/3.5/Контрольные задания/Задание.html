@@ -203,6 +203,8 @@ W_3 = round(W_3, 2)
         document.querySelector("#spare_n_i").style.display = "none";
     </script>
     <div class="no-equation">
+        <p>В качестве десятичного разделителя используйте <strong>точку</strong>. Итоговые ответы привести с точностью минимум до трех знаков (после точки).</p>
+
         <div class="task_step">
             <p><strong>1.</strong> Единичный эксперимент состоит в выкладывании на стол хорошо перемешанных \($N_series_len\) монет одинакового достоинства и подсчёте количества гербов. Этот опыт повторяется \(100\) раз, результат приведен ниже.</p>
             <p id="spare_n_i"><strong>$N_arr</strong></p>
@@ -214,7 +216,7 @@ W_3 = round(W_3, 2)
                     <td> \( Mo_В = \)</td>
                     <td>
                         <numericalresponse answer="$mode">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.0001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -223,7 +225,7 @@ W_3 = round(W_3, 2)
                     <td> \( Me_В = \)</td>
                     <td>
                         <numericalresponse answer="$median">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.0001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -282,67 +284,67 @@ W_3 = round(W_3, 2)
                     <td style="text-align: center; width: 100px;">Частота \(n_i\)</td>
                     <td>
                         <numericalresponse answer="$N_i_0">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_1">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_2">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_3">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_4">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_5">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_6">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_7">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_8">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_9">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
                     <td>
                         <numericalresponse answer="$N_i_0">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="4"/>
                         </numericalresponse>
                     </td>
@@ -357,7 +359,7 @@ W_3 = round(W_3, 2)
                     <td style="width: 80px;"> \( \overline{X}_В = \)</td>
                     <td>
                         <numericalresponse answer="$N_avg">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -366,7 +368,7 @@ W_3 = round(W_3, 2)
                     <td> \( D_В = \)</td>
                     <td>
                         <numericalresponse answer="$D">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -375,7 +377,7 @@ W_3 = round(W_3, 2)
                     <td> \( \sigma_В = \)</td>
                     <td>
                         <numericalresponse answer="$sigma">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -384,7 +386,7 @@ W_3 = round(W_3, 2)
                     <td> \( s^2_В = \)</td>
                     <td>
                         <numericalresponse answer="$s2">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -393,7 +395,7 @@ W_3 = round(W_3, 2)
                     <td> \( s_В = \)</td>
                     <td>
                         <numericalresponse answer="$s">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -408,7 +410,7 @@ W_3 = round(W_3, 2)
                     <td> \( \chi^2_{набл} = \)</td>
                     <td>
                         <numericalresponse answer="$X_nabl_1">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -417,7 +419,7 @@ W_3 = round(W_3, 2)
                     <td> \( \chi^2_{кр} = \)</td>
                     <td>
                         <numericalresponse answer="$X_kr_1">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -438,7 +440,7 @@ W_3 = round(W_3, 2)
                     <td> \( \chi^2_{набл} = \)</td>
                     <td>
                         <numericalresponse answer="$X_nabl_2">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -447,7 +449,7 @@ W_3 = round(W_3, 2)
                     <td> \( \chi^2_{кр} = \)</td>
                     <td>
                         <numericalresponse answer="$X_kr_2">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput/>
                         </numericalresponse>
                     </td>
@@ -469,14 +471,14 @@ W_3 = round(W_3, 2)
                     <td>\(I_{0.95} = ( \)</td>
                     <td>
                         <numericalresponse answer="$i_left">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="8"/>
                         </numericalresponse>
                     </td>
                     <td>\(;\)</td>
                     <td>
                         <numericalresponse answer="$i_right">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="8"/>
                         </numericalresponse>
                     </td>
@@ -510,14 +512,14 @@ W_3 = round(W_3, 2)
                                 <td>\((\)</td>
                                 <td>
                                     <numericalresponse answer="$int_1_left">
-                                        <responseparam type="tolerance" default="0.01"/>
+                                        <responseparam type="tolerance" default="0.001"/>
                                         <formulaequationinput size="8"/>
                                     </numericalresponse>
                                 </td>
                                 <td>\(;\)</td>
                                 <td>
                                     <numericalresponse answer="$int_1_right">
-                                        <responseparam type="tolerance" default="0.01"/>
+                                        <responseparam type="tolerance" default="0.001"/>
                                         <formulaequationinput size="8"/>
                                     </numericalresponse>
                                 </td>
@@ -527,13 +529,13 @@ W_3 = round(W_3, 2)
                     </td>
                     <td style="text-align: center;">
                         <numericalresponse answer="$W_1">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="20"/>
                         </numericalresponse>
                     </td>
                     <td style="text-align: center;">
                         <numericalresponse answer="$P_1">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="20"/>
                         </numericalresponse>
                     </td>
@@ -548,14 +550,14 @@ W_3 = round(W_3, 2)
                                 <td>\((\)</td>
                                 <td>
                                     <numericalresponse answer="$int_2_left">
-                                        <responseparam type="tolerance" default="0.01"/>
+                                        <responseparam type="tolerance" default="0.001"/>
                                         <formulaequationinput size="8"/>
                                     </numericalresponse>
                                 </td>
                                 <td>\(;\)</td>
                                 <td>
                                     <numericalresponse answer="$int_2_right">
-                                        <responseparam type="tolerance" default="0.01"/>
+                                        <responseparam type="tolerance" default="0.001"/>
                                         <formulaequationinput size="8"/>
                                     </numericalresponse>
                                 </td>
@@ -565,13 +567,13 @@ W_3 = round(W_3, 2)
                     </td>
                     <td style="text-align: center;">
                         <numericalresponse answer="$W_2">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="20"/>
                         </numericalresponse>
                     </td>
                     <td style="text-align: center;">
                         <numericalresponse answer="$P_2">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="20"/>
                         </numericalresponse>
                     </td>
@@ -586,14 +588,14 @@ W_3 = round(W_3, 2)
                                 <td>\((\)</td>
                                 <td>
                                     <numericalresponse answer="$int_3_left">
-                                        <responseparam type="tolerance" default="0.01"/>
+                                        <responseparam type="tolerance" default="0.001"/>
                                         <formulaequationinput size="8"/>
                                     </numericalresponse>
                                 </td>
                                 <td>\(;\)</td>
                                 <td>
                                     <numericalresponse answer="$int_3_right">
-                                        <responseparam type="tolerance" default="0.01"/>
+                                        <responseparam type="tolerance" default="0.001"/>
                                         <formulaequationinput size="8"/>
                                     </numericalresponse>
                                 </td>
@@ -603,13 +605,13 @@ W_3 = round(W_3, 2)
                     </td>
                     <td style="text-align: center;">
                         <numericalresponse answer="$W_3">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="20"/>
                         </numericalresponse>
                     </td>
                     <td style="text-align: center;">
                         <numericalresponse answer="$P_3">
-                            <responseparam type="tolerance" default="0.01"/>
+                            <responseparam type="tolerance" default="0.001"/>
                             <formulaequationinput size="20"/>
                         </numericalresponse>
                     </td>
