@@ -1,12 +1,12 @@
 <problem>
-<style>
-    .no-equation .equation{
-        display: none !important;
-    }
-</style>
-<script type="text/javascript" src="/static/TheorVerCharts.js"></script>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <script type="text/javascript" src="/static/TheorVerCharts.js"></script>
 
-<script type="loncapa/python">
+    <script type="loncapa/python">
 import math
 import random
 
@@ -50,78 +50,78 @@ hide_indexes = {"x": {}, "y": {need_to_find_index: {"replace_with": ""}}}
 
 answer = round(w_i[need_to_find_index]/n, 4)
 </script>
-<div class="no-equation">
-    <p>Из генеральной совокупности извлечена выборка объема \(n = $n\), полигон частот которой имеет вид:</p>
+    <div class="no-equation">
+        <p>Из генеральной совокупности извлечена выборка объема \(n = $n\), полигон частот которой имеет вид:</p>
         <div style="text-align: center;">
             <div id="graphic_item_03_01_2_2"></div>
         </div>
         <numericalresponse answer="$answer">
             <label>Тогда относительная частота варианты \(x_{$need_to_find_index_plus_1} = $x_1\) в выборке равна</label>
-        <responseparam type="tolerance" default="0.01"/>
-        <formulaequationinput/>
-    </numericalresponse>
-</div>
-<script type="text/javascript">
-let student_data = $student_data;
-let hide_indexes = $hide_indexes;
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+    <script type="text/javascript">
+        let student_data = $student_data;
+        let hide_indexes = $hide_indexes;
 
-let config = {
-    base: {
-        width: 380,
-        height: 380,
-        background: {
-            color: "white",
-            stroke: "#e5e5e5",
-            stroke_width: 2,
-        },
-        font_size: 16,
-    },
-    chart: {
-        data: student_data,
-        type: "line",
-        margin: 46,
-        padding: 56,
-        points: {
-            style:{
-                color: "#C70449",
-                size: 6,
-            }
-        },
-        projection: {
-            show: true,
-            style: {
-                color: "black",
-                size: 1.6,
-                dasharray: "6 3",
-            }
-        },
-        style: {
-            color: "#3D4473",
-            size: 3,
-        }
-    },
-    axis: {
-        labels: {
-            x: {
-                text: "\\(x_i\\)",
-                size: 20,
+        let config = {
+            base: {
+                width: 380,
+                height: 380,
+                background: {
+                    color: "white",
+                    stroke: "#e5e5e5",
+                    stroke_width: 2,
+                },
+                font_size: 16,
             },
-            y: {
-                text: "\\(n_i\\)",
-                size: 20,
-            }
-        },
-        style: {
-            color: "black",
-            size: 2.0,
-        },
-        before_zero: 30,
-        nick_size: 6,
-    },
-    hide_indexes: hide_indexes
-}
+            chart: {
+                data: student_data,
+                type: "line",
+                margin: 46,
+                padding: 56,
+                points: {
+                    style:{
+                        color: "#C70449",
+                        size: 6,
+                    }
+                },
+                projection: {
+                    show: true,
+                    style: {
+                        color: "black",
+                        size: 1.6,
+                        dasharray: "6 3",
+                    }
+                },
+                style: {
+                    color: "#3D4473",
+                    size: 3,
+                }
+            },
+            axis: {
+                labels: {
+                    x: {
+                        text: "\\(x_i\\)",
+                        size: 20,
+                    },
+                    y: {
+                        text: "\\(n_i\\)",
+                        size: 20,
+                    }
+                },
+                style: {
+                    color: "black",
+                    size: 2.0,
+                },
+                before_zero: 30,
+                nick_size: 6,
+            },
+            hide_indexes: hide_indexes
+        }
 
-new Chart(document.querySelector("#graphic_item_03_01_2_2"), config);
+        new Chart(document.querySelector("#graphic_item_03_01_2_2"), config);
 
-</script>
+    </script>
 </problem>

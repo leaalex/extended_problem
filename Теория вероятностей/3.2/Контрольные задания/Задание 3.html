@@ -17,7 +17,7 @@ D = 1/n * sum([s*s - m_x*m_x for s in arr])
 x_position = random.randint(0, n-1)
 x_position_plus_1 = x_position + 1
 
-answer = arr[x_position]
+answer = round(D, 2)
 
 arr_display = ""
 for ind, y in enumerate(arr):
@@ -28,9 +28,13 @@ for ind, y in enumerate(arr):
     if ind+1 != len(arr):
         arr_display += "; "
 
+if n == 5:
+    title = "пять измерений"
+else:
+    title = "четыре измерения"
 </script>
     <div class="no-equation">
-        <p>Несмещенная оценка математического ожидания случайной величины равна \($m_x\). Проведено четыре измерения: \($arr_display.\)</p>
+        <p>Несмещенная оценка математического ожидания случайной величины равна \($m_x\). Проведено $title: \($arr_display.\)</p>
         <numericalresponse answer="$answer">
             <label>Выборочная дисперсия будет равна</label>
             <responseparam type="tolerance" default="0.01"/>

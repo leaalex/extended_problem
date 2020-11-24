@@ -1,0 +1,215 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .output-table td{
+            border: 1px solid #d2c9c9;
+            padding: 6px 12px !important;
+            min-width: 50px !important;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_5_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+<script type="loncapa/python">
+import random
+import math
+
+n = 10
+X_i = [3, 1, 4, 2, 8, 6, 9, 5, 10, 7]
+Y_i = [2, 1, 7, 4, 5, 3, 9, 8, 10, 6]
+i = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+alpha = 0.05
+
+i_sum = sum([math.pow(X_i[x] - Y_i[x], 2) for x in i])
+R_s = 1 - 6 * i_sum/(n * (math.pow(n, 2) - 1))
+
+t_exp = R_s * math.sqrt((n - 2)/(1 - math.pow(R_s, 2)))
+t_krit = 1.859548038
+
+if t_exp > t_krit:
+    answer_1 = True  # статистически значима
+    answer_2 = False  # статистически незначима
+else:
+    answer_1 = False  # статистически значима
+    answer_2 = True  # статистически незначима
+
+# ВЫВОД
+
+X_i_0, Y_i_0 = X_i[0], Y_i[0]
+X_i_1, Y_i_1 = X_i[1], Y_i[1]
+X_i_2, Y_i_2 = X_i[2], Y_i[2]
+X_i_3, Y_i_3 = X_i[3], Y_i[3]
+X_i_4, Y_i_4 = X_i[4], Y_i[4]
+X_i_5, Y_i_5 = X_i[5], Y_i[5]
+X_i_6, Y_i_6 = X_i[6], Y_i[6]
+X_i_7, Y_i_7 = X_i[7], Y_i[7]
+X_i_8, Y_i_8 = X_i[8], Y_i[8]
+X_i_9, Y_i_9 = X_i[9], Y_i[9]
+
+# ВВОД студента
+
+R_s = round(R_s, 5)
+t_exp = round(t_exp, 5)
+t_krit = round(t_krit, 5)
+
+</script>
+    <div class="no-equation" id="section_3_5_training_2">
+
+        <p>Преподавателю и студенту было предложено расположить \($n\) профессий в порядке их общественной значимости. Ответы приведены в таблице ниже.</p>
+        <p>Какова корреляция рангов между двумя рядами оценок? Одинаково ли мнение преподавателя и студента по этому вопросу?</p>
+        <p>Ответы привести с точностью минимум до четырех знаков (после точки).</p>
+
+        <table class="output-table">
+            <tbody>
+            <tr>
+                <td><em>Профессия</em></td>
+                <td style="width: 130px;text-align: center;"><em>Оценка преподавателя, \(X_i\)</em></td>
+                <td style="width: 130px;text-align: center;"><em>Оценка студента, \(Y_i\)</em></td>
+            </tr>
+            <tr>
+                <td>Профессор</td>
+                <td style="text-align: center;">$X_i_0</td>
+                <td style="text-align: center;">$Y_i_0</td>
+            </tr>
+            <tr>
+                <td>Врач</td>
+                <td style="text-align: center;">$X_i_1</td>
+                <td style="text-align: center;">$Y_i_1</td>
+            </tr>
+            <tr>
+                <td>Учитель</td>
+                <td style="text-align: center;">$X_i_2</td>
+                <td style="text-align: center;">$Y_i_2</td>
+            </tr>
+            <tr>
+                <td>Директор магазина</td>
+                <td style="text-align: center;">$X_i_3</td>
+                <td style="text-align: center;">$Y_i_3</td>
+            </tr>
+            <tr>
+                <td>Бухгалтер</td>
+                <td style="text-align: center;">$X_i_4</td>
+                <td style="text-align: center;">$Y_i_4</td>
+            </tr>
+            <tr>
+                <td>Банкир</td>
+                <td style="text-align: center;">$X_i_5</td>
+                <td style="text-align: center;">$Y_i_5</td>
+            </tr>
+            <tr>
+                <td>Водитель</td>
+                <td style="text-align: center;">$X_i_6</td>
+                <td style="text-align: center;">$Y_i_6</td>
+            </tr>
+            <tr>
+                <td>Журналист</td>
+                <td style="text-align: center;">$X_i_7</td>
+                <td style="text-align: center;">$Y_i_7</td>
+            </tr>
+            <tr>
+                <td>Ди-джей</td>
+                <td style="text-align: center;">$X_i_8</td>
+                <td style="text-align: center;">$Y_i_8</td>
+            </tr>
+            <tr>
+                <td>Программист</td>
+                <td style="text-align: center;">$X_i_9</td>
+                <td style="text-align: center;">$Y_i_9</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p><strong>1. </strong>Вычислить коэффициент ранговой корреляции Спирмена.</p>
+        <table>
+            <tr>
+                <td>\(R_{s} = \)</td>
+                <td>
+                    <numericalresponse answer="$R_s">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <p><strong>2. </strong>Проверить статистическую значимость полученной оценки, используя критерий Стьюдента. Рассмотреть нулевую гипотезу \(H_0\):\(R_s = 0\) при альтернативной гипотезе \(H_1\):\(R_s > 0\). Принять уровень значимости \(\alpha = $alpha\).</p>
+        <table>
+            <tr>
+                <td>\(t_{экпс} = \)</td>
+                <td>
+                    <numericalresponse answer="$t_exp">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\(t_{крит} = \)</td>
+                <td>
+                    <numericalresponse answer="$t_krit">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <multiplechoiceresponse>
+            <label>Связь между мнениями преподавателя и студента:</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1">статистически значима</choice>
+                <choice correct="$answer_2">статистически незначима</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+
+        <div class="custom-comment">
+            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+            <span class="custom-comment-content"><strong>Комментарий: </strong><br />
+                <strong>1. </strong>Формула для коэффициента Спирмена может быть приведена к виду:
+                \[ R_s = 1 - \frac{6}{n(n^2 - 1)} \sum_{i=1}^{n} (Rx_i - Ry_i)^2 \]
+
+                <strong>2. </strong>При проверке статистической гипотезы \(H_0\):\(R_s = 0\) (т.е. гипотезы о том, что нормально распределенные случайные величины \(X\) и \(Y\) независимы) используют критерий:
+                \[ t = \frac{r^{*}(x_i,y_j) \sqrt{n - 2}}{\sqrt{1 - \left(r^{*}(x_i,y_j) \right)^2}} \]
+                Эта случайная величина имеет распределение Стьюдента с \(n - 2\) степенями свободы.				.
+            </span>
+        </div>
+
+    </div>
+</problem>

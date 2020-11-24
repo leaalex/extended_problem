@@ -1,0 +1,189 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .output-table td{
+            border: 1px solid #d2c9c9;
+            padding: 6px 12px !important;
+            min-width: 50px !important;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        let elem = document.getElementById("section_3_5_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            // for (let item of elem.getElementsByClassName("custom-comment")) {
+            //     item.style.display = 'block';
+            // }
+        }
+    </script>
+<script type="loncapa/python">
+import random
+import math
+
+X_1 = [10, 20, 30]
+Y_1 = [15, 25]
+
+N_xy = [[8, 54, 10], [12, 0, 16]]
+
+three = [0, 1, 2]
+two = [0, 1]
+N_x = [N_xy[0][0] + N_xy[1][0], N_xy[0][1] + N_xy[1][1], N_xy[0][2] + N_xy[1][2]]
+N_y = [sum(x) for x in N_xy]
+Y_avg_x = [sum([N_xy[y][x] * Y_1[y] for y in two])/N_x[x] for x in three]
+X_avg_y = [sum([N_xy[x][y] * X_1[y] for y in three])/N_y[x] for x in two]
+
+Y_avg = sum([N_y[x] * Y_1[x] for x in two]) / sum(N_y)
+X_avg = sum([N_x[x] * X_1[x] for x in three]) / sum(N_x)
+
+DY_tot = sum([math.pow(Y_1[x] - Y_avg, 2) * N_y[x] for x in two])/sum(N_y)
+DX_tot = sum([math.pow(X_1[x] - X_avg, 2) * N_x[x] for x in three])/sum(N_x)
+
+DY_ig = sum([math.pow(Y_avg_x[x] - Y_avg, 2) * N_x[x] for x in three]) / sum(N_y)
+DX_ig = sum([math.pow(X_avg_y[x] - X_avg, 2) * N_y[x] for x in two]) / sum(N_x)
+
+I_yx = math.sqrt(DY_ig)/math.sqrt(DY_tot)
+I_xy = math.sqrt(DX_ig)/math.sqrt(DX_tot)
+
+Y_W_y = sum([Y_1[x] * N_y[x]/sum(N_y) for x in two])
+Y_2_W_y = sum([math.pow(Y_1[x], 2) * N_y[x]/sum(N_y) for x in two])
+SY = math.sqrt(Y_2_W_y - math.pow(Y_W_y, 2))
+
+X_W_x = sum([X_1[x] * N_x[x]/sum(N_x) for x in three])
+X_2_W_x = sum([math.pow(X_1[x], 2) * N_x[x]/sum(N_x) for x in three])
+SX = math.sqrt(X_2_W_x - math.pow(X_W_x, 2))
+
+X_Y = sum([sum([sum([X_1[y]*N_xy[x][y]/sum(N_x)]) * Y_1[x] for y in three]) for x in two])
+K_xy = X_Y - X_W_x * Y_W_y
+R_xy = K_xy/(SX * SY)
+
+# ВЫВОД
+
+X_1_1 = X_1[0]
+X_1_2 = X_1[1]
+X_1_3 = X_1[2]
+
+Y_1_1 = Y_1[0]
+Y_1_2 = Y_1[1]
+
+N_xy_1_1 = N_xy[0][0]
+N_xy_1_2 = N_xy[0][1]
+N_xy_1_3 = N_xy[0][2]
+
+N_xy_2_1 = N_xy[1][0]
+N_xy_2_2 = N_xy[1][1]
+N_xy_2_3 = N_xy[1][2]
+
+# ОТВЕТ СТУДЕНТА
+
+I_yx = round(I_yx, 5)
+I_xy = round(I_xy, 5)
+R_xy = round(R_xy, 5)
+
+</script>
+    <div class="no-equation" id="section_3_5_training_1">
+
+        <p>По данным корреляционной таблицы вычислить:</p>
+        <ul>
+            <li>корреляционные отношения \(I_{yx}\) и \(I_{xy}\);</li>
+            <li>коэффициент корреляции \(R_{xy}\).</li>
+        </ul>
+        <p>Ответы привести с точностью минимум до четырех знаков (после точки).</p>
+
+        <table class="output-table">
+            <tbody>
+            <tr>
+                <td style="text-align: center; min-width: 80px;" colspan="2" rowspan="2">\(N_{xy}\)</td>
+                <td style="text-align: center;" colspan="4">\(X\)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">$X_1_1</td>
+                <td style="text-align: center;">$X_1_2</td>
+                <td style="text-align: center;">$X_1_3</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" rowspan="2">\(Y\)</td>
+                <td style="text-align: center;">$Y_1_1</td>
+                <td style="text-align: center;">$N_xy_1_1</td>
+                <td style="text-align: center;">$N_xy_1_2</td>
+                <td style="text-align: center;">$N_xy_1_3</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">$Y_1_2</td>
+                <td style="text-align: center;">$N_xy_2_1</td>
+                <td style="text-align: center;">$N_xy_2_2</td>
+                <td style="text-align: center;">$N_xy_2_3</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <table>
+            <tr>
+                <td>\(I_{yx} = \)</td>
+                <td>
+                    <numericalresponse answer="$I_yx">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\(I_{xy} = \)</td>
+                <td>
+                    <numericalresponse answer="$I_xy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\(R_{xy} = \)</td>
+                <td>
+                    <numericalresponse answer="$R_xy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong>-->
+<!--                -->
+<!--            </span>-->
+<!--        </div>-->
+
+    </div>
+</problem>
