@@ -1,0 +1,727 @@
+<problem>
+
+    <script type="loncapa/python">
+import random
+import math
+from scipy import stats
+
+source = [{'X': [1.0, 2.86, 4.718, 6.914, 8.835, 10.866, 12.879, 14.848, 16.87, 19.0], 'Y1': [1.0, 3.358, 3.758, 6.009, 7.236, 8.44, 12.833, 12.837, 19.0, 11.54], 'Y2': [1.0, 7.06, 4.536, 3.124, 5.556, 15.874, 19.0, 4.691, 14.051, 18.263], 'Y3': [19.0, 10.973, 6.227, 2.576, 1.0, 1.384, 4.282, 6.425, 14.7, 15.739]}, {'X': [1.0, 2.935, 5.155, 7.002, 8.98, 11.095, 13.196, 15.231, 17.072, 19.0], 'Y1': [1.0, 3.612, 4.709, 8.009, 10.58, 12.962, 16.395, 11.025, 19.0, 18.845], 'Y2': [1.0, 3.084, 3.332, 11.706, 15.096, 6.808, 8.239, 13.564, 13.194, 19.0], 'Y3': [19.0, 11.206, 4.637, 2.334, 1.0, 1.284, 2.689, 3.966, 11.913, 17.248]}, {'X': [1.0, 2.712, 4.769, 6.847, 8.936, 11.0, 12.679, 15.013, 16.675, 19.0], 'Y1': [1.0, 2.139, 2.717, 5.044, 9.497, 8.944, 11.327, 18.567, 17.809, 19.0], 'Y2': [1.0, 3.04, 2.47, 5.42, 8.362, 4.749, 11.044, 13.429, 19.0, 9.983], 'Y3': [17.644, 12.164, 5.676, 2.308, 2.09, 1.0, 2.122, 7.925, 11.203, 19.0]}, {'X': [1.0, 2.66, 4.929, 6.858, 8.788, 10.941, 12.993, 14.729, 16.943, 19.0], 'Y1': [1.0, 7.587, 2.189, 7.864, 8.794, 16.415, 17.418, 17.503, 14.77, 19.0], 'Y2': [1.0, 6.866, 1.334, 2.512, 2.399, 6.514, 18.321, 19.0, 14.085, 18.714], 'Y3': [19.0, 13.515, 4.684, 3.263, 1.0, 3.425, 4.923, 7.494, 11.078, 18.813]}, {'X': [1.0, 3.047, 5.04, 7.147, 9.088, 11.027, 13.095, 14.853, 16.993, 19.0], 'Y1': [1.0, 4.441, 9.924, 5.448, 12.228, 8.063, 9.214, 19.0, 14.722, 18.536], 'Y2': [2.754, 9.334, 15.624, 1.0, 13.457, 13.332, 8.836, 9.485, 19.0, 7.751], 'Y3': [18.055, 12.338, 9.384, 2.434, 3.416, 1.0, 2.277, 8.154, 10.907, 19.0]}, {'X': [1.0, 2.995, 4.711, 6.808, 9.012, 10.831, 12.988, 14.878, 16.683, 19.0], 'Y1': [1.0, 6.022, 5.006, 7.215, 10.86, 15.492, 12.942, 13.24, 19.0, 18.49], 'Y2': [1.0, 5.226, 7.793, 17.229, 18.948, 12.565, 10.175, 15.544, 19.0, 9.66], 'Y3': [15.366, 12.447, 5.837, 2.043, 1.0, 1.876, 2.87, 5.268, 11.818, 19.0]}, {'X': [1.0, 2.69, 4.854, 6.978, 8.895, 11.045, 13.202, 15.19, 16.991, 19.0], 'Y1': [1.0, 5.836, 7.619, 12.065, 9.722, 14.126, 13.653, 16.531, 19.0, 13.773], 'Y2': [1.0, 6.92, 5.176, 8.913, 9.436, 7.604, 15.46, 18.32, 16.892, 19.0], 'Y3': [17.877, 14.151, 8.343, 5.382, 1.0, 3.149, 4.087, 8.796, 15.711, 19.0]}, {'X': [1.0, 2.939, 4.987, 6.826, 8.887, 11.128, 13.169, 14.938, 17.137, 19.0], 'Y1': [1.02, 1.0, 2.204, 4.722, 9.448, 13.295, 10.535, 14.17, 15.495, 19.0], 'Y2': [1.0, 5.272, 7.667, 10.88, 7.029, 18.442, 17.639, 5.701, 14.076, 19.0], 'Y3': [16.648, 8.901, 3.406, 1.0, 1.099, 1.567, 1.961, 5.711, 11.495, 19.0]}, {'X': [1.0, 3.116, 5.161, 7.253, 9.075, 11.155, 13.089, 14.767, 17.09, 19.0], 'Y1': [1.0, 5.945, 3.769, 9.377, 10.476, 12.117, 15.532, 17.804, 15.074, 19.0], 'Y2': [1.0, 5.314, 1.968, 2.082, 12.413, 14.691, 2.424, 19.0, 3.993, 5.606], 'Y3': [17.013, 11.825, 4.416, 2.24, 1.056, 1.0, 2.343, 6.668, 10.119, 19.0]}, {'X': [1.0, 3.261, 4.891, 6.972, 8.944, 11.006, 13.063, 14.817, 16.918, 19.0], 'Y1': [1.0, 8.914, 9.016, 10.027, 8.915, 10.177, 18.076, 15.421, 18.369, 19.0], 'Y2': [1.0, 8.85, 10.093, 13.957, 4.101, 13.294, 19.0, 9.081, 13.536, 12.749], 'Y3': [15.397, 12.661, 8.485, 4.789, 1.785, 1.0, 5.718, 7.092, 12.997, 19.0]}, {'X': [1.0, 2.888, 4.887, 7.045, 8.964, 11.051, 12.665, 15.004, 16.969, 19.0], 'Y1': [2.221, 1.612, 1.0, 7.472, 5.336, 7.24, 9.305, 15.188, 19.0, 12.38], 'Y2': [2.908, 1.0, 4.039, 8.708, 9.41, 3.324, 9.669, 19.0, 17.537, 17.509], 'Y3': [19.0, 11.391, 5.307, 4.063, 1.0, 1.6, 2.904, 8.399, 14.262, 15.849]}, {'X': [1.0, 3.184, 5.019, 6.99, 9.079, 10.931, 13.222, 15.032, 17.063, 19.0], 'Y1': [1.0, 4.975, 5.384, 9.005, 7.697, 10.295, 13.362, 12.533, 19.0, 15.461], 'Y2': [1.0, 6.065, 8.988, 10.543, 10.245, 5.805, 19.0, 12.729, 14.115, 12.358], 'Y3': [19.0, 11.6, 6.155, 3.804, 1.0, 1.188, 2.98, 5.335, 11.712, 15.651]}, {'X': [1.0, 2.939, 5.111, 7.123, 9.155, 11.167, 13.152, 15.175, 16.844, 19.0], 'Y1': [1.0, 5.609, 4.97, 5.354, 8.219, 7.424, 11.761, 17.472, 19.0, 15.461], 'Y2': [1.0, 7.907, 7.787, 1.516, 6.91, 9.882, 5.685, 19.0, 18.875, 10.234], 'Y3': [19.0, 15.034, 7.933, 3.642, 2.669, 1.0, 4.932, 10.543, 15.499, 18.902]}, {'X': [1.0, 2.985, 5.314, 6.979, 9.109, 11.26, 12.941, 15.057, 17.205, 19.0], 'Y1': [1.0, 1.503, 7.61, 5.477, 6.252, 10.345, 10.614, 15.328, 13.899, 19.0], 'Y2': [3.901, 1.0, 10.156, 8.229, 11.064, 14.232, 19.0, 18.313, 12.858, 10.507], 'Y3': [17.755, 10.971, 7.59, 3.412, 1.0, 2.907, 2.808, 7.696, 11.52, 19.0]}, {'X': [1.0, 3.17, 5.18, 7.052, 8.933, 10.986, 12.815, 15.035, 17.128, 19.0], 'Y1': [1.0, 2.602, 2.737, 1.205, 7.313, 6.384, 6.869, 13.443, 13.527, 19.0], 'Y2': [2.33, 1.0, 5.191, 3.216, 2.864, 3.975, 5.517, 7.172, 4.272, 19.0], 'Y3': [18.589, 12.524, 6.744, 2.201, 2.317, 1.0, 2.339, 7.507, 11.122, 19.0]}, {'X': [1.0, 2.914, 4.848, 7.141, 9.049, 11.078, 13.151, 15.103, 16.83, 19.0], 'Y1': [1.0, 1.472, 5.843, 6.213, 7.697, 7.01, 16.663, 19.0, 18.03, 17.076], 'Y2': [2.776, 1.0, 5.269, 5.504, 8.351, 2.971, 19.0, 13.238, 7.786, 10.965], 'Y3': [19.0, 12.258, 7.912, 3.174, 1.626, 1.0, 5.326, 8.642, 11.783, 17.409]}, {'X': [1.0, 3.086, 4.833, 6.801, 8.97, 11.037, 13.091, 14.905, 17.049, 19.0], 'Y1': [1.0, 8.465, 7.69, 10.244, 12.42, 11.676, 14.127, 12.954, 19.0, 17.004], 'Y2': [1.0, 7.564, 11.628, 14.86, 11.746, 9.851, 8.023, 19.0, 11.844, 18.441], 'Y3': [17.978, 13.213, 6.954, 4.007, 1.805, 1.0, 2.773, 5.425, 14.624, 19.0]}, {'X': [1.0, 2.93, 5.008, 7.222, 9.185, 11.12, 12.957, 14.915, 17.118, 19.0], 'Y1': [1.631, 1.0, 1.132, 4.725, 7.705, 13.272, 13.05, 9.108, 19.0, 16.419], 'Y2': [3.99, 1.0, 7.121, 10.835, 8.218, 11.955, 6.706, 5.782, 10.497, 19.0], 'Y3': [19.0, 10.509, 4.699, 2.122, 1.0, 1.873, 3.261, 3.905, 12.453, 17.325]}, {'X': [1.0, 2.995, 5.095, 7.285, 9.15, 10.983, 12.961, 15.281, 17.091, 19.0], 'Y1': [3.775, 6.135, 1.0, 5.495, 10.024, 8.441, 11.406, 13.243, 16.59, 19.0], 'Y2': [1.009, 4.912, 1.0, 5.518, 5.14, 3.801, 5.039, 7.251, 9.285, 19.0], 'Y3': [19.0, 12.045, 4.623, 2.93, 2.796, 1.0, 3.065, 6.63, 10.876, 16.595]}, {'X': [1.0, 3.237, 5.008, 6.877, 8.948, 10.858, 13.102, 15.002, 16.972, 19.0], 'Y1': [1.0, 8.097, 5.992, 6.769, 6.909, 12.449, 17.777, 12.16, 12.669, 19.0], 'Y2': [1.0, 13.928, 10.048, 4.528, 14.816, 15.196, 19.0, 7.544, 18.294, 17.108], 'Y3': [17.109, 11.802, 6.504, 2.93, 1.0, 2.158, 5.42, 5.499, 9.651, 19.0]}, {'X': [1.0, 3.114, 4.958, 6.904, 8.877, 11.087, 13.091, 15.029, 17.009, 19.0], 'Y1': [1.0, 3.393, 6.293, 9.086, 9.374, 10.572, 10.936, 13.945, 15.855, 19.0], 'Y2': [1.0, 2.793, 9.875, 9.711, 6.224, 7.299, 13.423, 14.106, 13.49, 19.0], 'Y3': [17.01, 11.541, 6.496, 3.967, 1.0, 2.133, 2.648, 6.561, 12.052, 19.0]}, {'X': [1.0, 2.896, 4.911, 7.003, 8.984, 10.729, 12.762, 15.002, 16.875, 19.0], 'Y1': [1.0, 5.912, 6.183, 3.408, 6.504, 9.281, 12.455, 10.863, 14.986, 19.0], 'Y2': [2.921, 6.775, 6.897, 1.0, 5.767, 10.104, 5.647, 14.3, 19.0, 9.763], 'Y3': [15.03, 12.751, 6.729, 1.757, 1.0, 2.007, 3.94, 5.304, 10.836, 19.0]}, {'X': [1.0, 2.925, 4.998, 7.001, 9.091, 11.01, 13.043, 15.174, 17.209, 19.0], 'Y1': [1.0, 5.386, 9.408, 6.816, 9.206, 12.462, 17.169, 16.669, 19.0, 13.817], 'Y2': [1.0, 4.863, 6.539, 4.124, 11.918, 15.163, 19.0, 13.993, 18.635, 5.261], 'Y3': [19.0, 11.448, 8.464, 2.075, 1.126, 1.0, 4.824, 7.785, 14.475, 16.328]}, {'X': [1.0, 2.892, 4.948, 7.006, 9.011, 11.091, 12.882, 14.792, 16.778, 19.0], 'Y1': [1.0, 3.63, 2.244, 8.25, 7.758, 9.016, 12.85, 11.346, 12.129, 19.0], 'Y2': [4.476, 6.022, 1.0, 11.723, 15.244, 11.454, 19.0, 16.412, 8.997, 15.113], 'Y3': [15.58, 11.105, 5.214, 3.893, 1.0, 1.752, 3.529, 5.31, 9.475, 19.0]}, {'X': [1.0, 2.986, 5.021, 7.004, 9.059, 11.053, 12.853, 15.086, 16.831, 19.0], 'Y1': [1.676, 1.0, 1.016, 5.376, 9.181, 7.7, 13.702, 15.924, 19.0, 11.69], 'Y2': [5.068, 4.574, 1.0, 7.825, 12.658, 7.807, 11.276, 12.165, 19.0, 5.091], 'Y3': [19.0, 11.362, 5.482, 3.143, 3.318, 1.0, 4.746, 9.383, 15.837, 18.078]}, {'X': [1.0, 3.152, 4.786, 6.907, 9.12, 11.005, 13.108, 15.175, 17.183, 19.0], 'Y1': [1.0, 8.602, 5.069, 13.593, 9.245, 10.885, 15.662, 17.151, 19.0, 18.085], 'Y2': [2.11, 4.194, 1.0, 8.876, 3.188, 14.067, 15.489, 19.0, 8.392, 7.005], 'Y3': [19.0, 14.947, 6.935, 6.059, 1.0, 1.732, 4.22, 8.088, 13.787, 18.016]}, {'X': [1.0, 3.17, 4.858, 7.103, 9.128, 11.075, 12.971, 14.995, 16.824, 19.0], 'Y1': [1.0, 6.963, 7.071, 10.762, 8.515, 14.103, 14.236, 15.885, 12.048, 19.0], 'Y2': [1.0, 6.721, 3.854, 9.997, 1.151, 9.861, 7.845, 19.0, 14.483, 17.549], 'Y3': [19.0, 11.716, 7.432, 4.622, 1.0, 3.878, 3.91, 7.495, 9.073, 18.499]}, {'X': [1.0, 2.983, 5.167, 7.06, 8.864, 11.077, 13.092, 14.955, 16.954, 19.0], 'Y1': [1.0, 6.58, 6.875, 7.825, 9.373, 9.883, 15.088, 19.0, 12.78, 13.009], 'Y2': [1.0, 5.943, 7.529, 12.081, 15.736, 5.74, 12.265, 19.0, 6.655, 8.603], 'Y3': [19.0, 15.3, 8.204, 3.929, 2.322, 1.0, 4.648, 9.756, 11.573, 18.132]}, {'X': [1.0, 2.877, 4.757, 6.888, 9.102, 10.854, 13.006, 15.132, 16.797, 19.0], 'Y1': [1.0, 5.003, 4.541, 5.541, 6.381, 13.751, 9.542, 14.006, 18.012, 19.0], 'Y2': [1.0, 7.544, 1.47, 7.175, 3.844, 18.409, 15.782, 15.673, 17.455, 19.0], 'Y3': [17.075, 13.357, 7.142, 3.461, 1.0, 3.702, 2.93, 7.571, 13.036, 19.0]}, {'X': [1.0, 3.033, 5.008, 6.907, 9.006, 10.673, 13.03, 15.018, 16.809, 19.0], 'Y1': [1.0, 6.959, 2.14, 2.473, 5.741, 9.318, 15.296, 12.691, 19.0, 17.287], 'Y2': [2.114, 5.824, 1.957, 3.696, 1.0, 14.386, 6.174, 3.356, 10.895, 19.0], 'Y3': [19.0, 14.985, 7.068, 2.984, 1.922, 1.0, 4.425, 6.395, 11.609, 17.195]}, {'X': [1.0, 2.948, 4.756, 6.729, 8.989, 11.08, 13.09, 14.997, 16.992, 19.0], 'Y1': [1.0, 3.355, 4.514, 7.635, 12.402, 11.6, 10.595, 16.518, 16.528, 19.0], 'Y2': [2.373, 2.3, 1.0, 6.944, 6.24, 7.179, 8.25, 6.201, 17.655, 19.0], 'Y3': [16.513, 9.928, 5.522, 3.226, 2.988, 1.0, 2.404, 7.782, 11.97, 19.0]}, {'X': [1.0, 2.859, 4.695, 6.793, 8.895, 10.862, 12.868, 14.943, 16.654, 19.0], 'Y1': [4.336, 5.274, 1.0, 4.06, 5.281, 11.764, 7.291, 11.668, 10.539, 19.0], 'Y2': [3.527, 6.794, 2.836, 1.315, 1.0, 6.104, 2.784, 10.418, 4.62, 19.0], 'Y3': [15.712, 10.542, 4.302, 2.314, 1.0, 2.887, 1.945, 5.732, 8.457, 19.0]}, {'X': [1.0, 3.092, 5.248, 7.011, 9.014, 10.976, 13.254, 15.055, 17.298, 19.0], 'Y1': [1.0, 5.392, 7.568, 9.493, 10.094, 18.914, 18.824, 9.414, 19.0, 18.223], 'Y2': [1.0, 3.865, 5.914, 1.071, 1.047, 9.228, 15.711, 3.715, 19.0, 1.647], 'Y3': [19.0, 12.302, 6.124, 2.909, 1.0, 2.366, 3.696, 3.27, 11.039, 15.298]}, {'X': [1.0, 3.053, 5.035, 6.986, 8.81, 10.839, 12.793, 14.884, 16.959, 19.0], 'Y1': [1.0, 2.407, 2.411, 5.803, 7.622, 12.551, 8.093, 8.161, 13.596, 19.0], 'Y2': [1.0, 2.743, 3.672, 3.965, 10.178, 10.616, 14.068, 11.146, 19.0, 15.573], 'Y3': [15.083, 9.419, 3.58, 2.185, 1.0, 2.867, 1.551, 3.64, 9.8, 19.0]}, {'X': [1.0, 2.85, 4.807, 7.054, 9.11, 11.11, 12.941, 14.99, 17.278, 19.0], 'Y1': [4.547, 1.0, 3.389, 13.802, 10.084, 10.925, 17.717, 18.166, 19.0, 17.911], 'Y2': [1.0, 2.61, 2.068, 13.374, 7.699, 8.684, 8.863, 11.808, 4.215, 19.0], 'Y3': [19.0, 9.998, 6.296, 5.183, 1.988, 1.0, 4.244, 6.867, 11.963, 15.599]}, {'X': [1.0, 2.89, 4.707, 6.802, 9.034, 10.773, 12.788, 14.875, 16.814, 19.0], 'Y1': [3.362, 4.102, 1.0, 1.856, 6.271, 8.934, 10.425, 9.995, 8.835, 19.0], 'Y2': [5.504, 3.64, 1.0, 2.741, 1.857, 7.726, 12.128, 5.652, 11.75, 19.0], 'Y3': [18.546, 11.085, 5.205, 2.219, 1.0, 2.269, 3.452, 5.491, 8.094, 19.0]}, {'X': [1.0, 2.987, 4.865, 6.805, 9.079, 10.997, 12.807, 15.016, 16.777, 19.0], 'Y1': [2.072, 2.951, 1.0, 2.103, 8.205, 13.202, 14.45, 10.786, 13.645, 19.0], 'Y2': [5.01, 7.227, 1.097, 1.0, 9.493, 8.351, 16.584, 5.934, 19.0, 7.707], 'Y3': [17.498, 12.1, 4.672, 1.06, 1.0, 2.092, 2.906, 4.47, 9.413, 19.0]}, {'X': [1.0, 2.945, 4.813, 6.92, 8.851, 11.012, 12.824, 14.835, 17.111, 19.0], 'Y1': [1.0, 3.838, 6.132, 7.667, 9.717, 10.884, 12.479, 16.528, 12.175, 19.0], 'Y2': [1.0, 3.649, 8.082, 10.183, 4.835, 10.1, 13.052, 8.188, 19.0, 17.064], 'Y3': [13.166, 10.27, 6.117, 2.443, 1.0, 2.022, 3.271, 7.311, 9.438, 19.0]}, {'X': [1.0, 2.807, 5.025, 6.798, 9.105, 10.775, 12.865, 15.043, 16.998, 19.0], 'Y1': [1.0, 7.636, 4.137, 8.804, 7.135, 11.456, 17.701, 19.0, 14.525, 18.87], 'Y2': [1.0, 4.547, 3.382, 2.486, 2.542, 8.052, 14.397, 11.177, 19.0, 13.068], 'Y3': [19.0, 14.433, 6.243, 4.625, 1.0, 2.529, 4.77, 8.278, 10.155, 17.646]}, {'X': [1.0, 3.01, 4.952, 7.01, 8.903, 10.765, 12.924, 14.998, 16.998, 19.0], 'Y1': [4.715, 4.882, 1.0, 8.09, 10.052, 10.491, 13.267, 19.0, 16.743, 15.328], 'Y2': [5.494, 4.053, 1.974, 3.724, 11.458, 15.126, 13.806, 19.0, 5.664, 1.0], 'Y3': [19.0, 11.877, 3.717, 2.897, 1.0, 1.488, 3.38, 7.775, 10.853, 16.497]}, {'X': [1.0, 3.123, 4.916, 6.883, 9.052, 11.068, 13.109, 14.816, 16.916, 19.0], 'Y1': [1.0, 2.251, 5.249, 6.395, 11.072, 11.567, 16.402, 16.462, 19.0, 18.44], 'Y2': [4.093, 1.0, 5.706, 2.957, 18.823, 1.852, 16.861, 8.519, 19.0, 9.126], 'Y3': [19.0, 11.403, 7.153, 3.517, 2.752, 1.0, 3.973, 6.857, 11.956, 17.865]}, {'X': [1.0, 2.982, 4.847, 6.78, 8.727, 11.073, 12.838, 14.929, 17.001, 19.0], 'Y1': [4.32, 1.0, 9.508, 5.005, 13.455, 8.153, 14.176, 11.734, 14.539, 19.0], 'Y2': [3.189, 1.428, 7.167, 1.0, 8.986, 9.065, 15.479, 13.993, 19.0, 9.858], 'Y3': [19.0, 10.302, 8.751, 2.647, 3.876, 1.0, 4.546, 5.47, 10.681, 17.587]}, {'X': [1.0, 2.766, 4.784, 6.976, 8.92, 10.773, 13.021, 15.049, 16.823, 19.0], 'Y1': [1.0, 5.321, 7.884, 5.124, 8.721, 11.508, 10.938, 13.882, 18.538, 19.0], 'Y2': [1.0, 6.602, 7.529, 3.123, 6.607, 11.505, 16.192, 10.832, 19.0, 18.41], 'Y3': [17.253, 12.199, 8.402, 2.535, 1.0, 1.468, 2.546, 6.643, 12.75, 19.0]}, {'X': [1.0, 3.033, 5.137, 7.089, 8.795, 10.791, 12.88, 15.124, 17.005, 19.0], 'Y1': [1.0, 3.285, 10.669, 6.791, 15.235, 15.363, 18.694, 15.554, 19.0, 17.427], 'Y2': [1.0, 3.662, 10.729, 7.092, 8.25, 11.798, 12.874, 11.013, 19.0, 13.219], 'Y3': [19.0, 11.944, 8.319, 1.0, 2.963, 2.091, 4.09, 6.537, 12.873, 18.82]}, {'X': [1.0, 3.02, 5.018, 7.201, 9.115, 11.213, 13.096, 14.939, 16.958, 19.0], 'Y1': [1.0, 6.755, 5.587, 9.415, 12.419, 16.118, 14.282, 11.262, 17.988, 19.0], 'Y2': [1.0, 8.714, 12.676, 12.569, 19.0, 10.445, 5.843, 4.23, 14.595, 9.922], 'Y3': [19.0, 12.057, 5.467, 2.224, 1.0, 1.945, 1.693, 3.698, 10.809, 17.503]}, {'X': [1.0, 2.825, 4.959, 7.006, 8.904, 11.088, 13.037, 14.881, 16.971, 19.0], 'Y1': [2.858, 4.242, 6.668, 1.0, 15.045, 12.049, 12.434, 13.629, 17.739, 19.0], 'Y2': [5.468, 5.184, 5.319, 1.0, 11.79, 4.44, 13.714, 6.955, 19.0, 3.438], 'Y3': [19.0, 12.53, 6.363, 1.0, 1.982, 1.068, 1.741, 4.016, 9.369, 15.551]}, {'X': [1.0, 3.074, 5.19, 6.933, 9.086, 10.92, 12.881, 14.999, 16.819, 19.0], 'Y1': [1.0, 7.895, 5.955, 7.234, 7.75, 14.129, 9.961, 14.341, 18.942, 19.0], 'Y2': [1.541, 6.863, 4.546, 5.061, 1.0, 11.281, 1.492, 12.444, 19.0, 7.451], 'Y3': [19.0, 13.76, 6.833, 4.008, 1.0, 3.323, 2.799, 6.502, 11.665, 18.007]}, {'X': [1.0, 3.127, 5.139, 6.965, 9.103, 11.035, 13.257, 15.24, 16.997, 19.0], 'Y1': [1.0, 2.742, 7.675, 4.037, 5.463, 8.12, 10.019, 14.686, 15.889, 19.0], 'Y2': [1.0, 2.023, 5.03, 6.345, 2.006, 4.654, 8.072, 19.0, 7.598, 17.452], 'Y3': [18.051, 10.714, 7.408, 2.315, 1.0, 1.222, 2.945, 7.543, 11.674, 19.0]}, {'X': [1.0, 3.007, 4.689, 6.801, 8.9, 11.007, 13.131, 14.9, 17.103, 19.0], 'Y1': [1.0, 7.382, 5.922, 7.299, 11.662, 10.905, 8.21, 12.746, 12.319, 19.0], 'Y2': [1.0, 4.259, 3.324, 1.519, 8.828, 2.072, 1.483, 9.629, 11.386, 19.0], 'Y3': [17.269, 13.336, 7.175, 3.556, 3.109, 1.0, 1.655, 5.716, 10.188, 19.0]}, {'X': [1.0, 2.898, 4.932, 6.977, 8.937, 11.011, 12.661, 15.001, 16.782, 19.0], 'Y1': [1.0, 6.934, 4.564, 6.046, 7.612, 9.888, 12.524, 19.0, 18.19, 17.675], 'Y2': [1.0, 11.812, 11.165, 12.514, 17.909, 12.82, 17.539, 16.911, 19.0, 17.503], 'Y3': [18.845, 13.987, 6.357, 2.501, 1.0, 1.853, 3.646, 9.529, 13.417, 19.0]}]
+
+# data = {
+#     "X": [2.17, 3.17, 4.07, 5.17, 6.04, 7.10, 8.18, 9.04, 10.12, 11.17],
+#     "Y1": [20.26, 27.67, 31.86, 27.79, 36.64, 50.69, 44.58, 62.53, 52.14, 52.57],
+#     "Y2": [17.04, 17.02, 30.52, 14.79, 26.89, 31.77, 28.52, 46.57, 51.91, 20.69],
+#     "Y3": [89.74, 70.70, 42.45, 16.87, 16.57, 17.92, 25.89, 46.65, 59.55, 92.48],
+# }
+
+data = random.choice(source)
+n = 10
+
+alpha_1 = 0.05
+alpha_2 = 0.1
+
+X_avg = sum(data["X"])/len(data["X"])
+Y1_avg = sum(data["Y1"])/len(data["Y1"])
+Y2_avg = sum(data["Y2"])/len(data["Y2"])
+Y3_avg = sum(data["Y3"])/len(data["Y3"])
+# print(X_avg, Y1_avg, Y2_avg, Y3_avg)
+
+X_D = sum([math.pow(x, 2) - math.pow(X_avg, 2) for x in data["X"]])/len(data["X"])
+Y1_D = sum([math.pow(x, 2) - math.pow(Y1_avg, 2) for x in data["Y1"]])/len(data["Y1"])
+Y2_D = sum([math.pow(x, 2) - math.pow(Y2_avg, 2) for x in data["Y2"]])/len(data["Y2"])
+Y3_D = sum([math.pow(x, 2) - math.pow(Y3_avg, 2) for x in data["Y3"]])/len(data["Y3"])
+# print(X_D, Y1_D, Y2_D, Y3_D)
+
+X_sko = math.sqrt(X_D)
+Y1_sko = math.sqrt(Y1_D)
+Y2_sko = math.sqrt(Y2_D)
+Y3_sko = math.sqrt(Y3_D)
+# print(X_sko, Y1_sko, Y2_sko, Y3_sko)
+
+Y1_Kxy, Y2_Kxy, Y3_Kxy = [0, 0, 0]
+for idx_x, x in enumerate(data["X"]):
+    Y1_Kxy += (data["Y1"][idx_x] * x - X_avg * Y1_avg)/len(data["Y1"])
+    Y2_Kxy += (data["Y2"][idx_x] * x - X_avg * Y2_avg)/len(data["Y2"])
+    Y3_Kxy += (data["Y3"][idx_x] * x - X_avg * Y3_avg)/len(data["Y3"])
+# print(Y1_Kxy, Y2_Kxy, Y3_Kxy)
+
+Y1_Rxy = Y1_Kxy / math.sqrt(Y1_D * X_D)
+Y2_Rxy = Y2_Kxy / math.sqrt(Y2_D * X_D)
+Y3_Rxy = Y3_Kxy / math.sqrt(Y3_D * X_D)
+# print(Y1_Rxy, Y2_Rxy, Y3_Rxy)
+
+t1_exp = Y1_Rxy * math.sqrt(8/(1 - math.pow(Y1_Rxy, 2)))
+t2_exp = Y2_Rxy * math.sqrt(8/(1 - math.pow(Y2_Rxy, 2)))
+t3_exp = Y3_Rxy * math.sqrt(8/(1 - math.pow(Y3_Rxy, 2)))
+# print(t1_exp, t2_exp, t3_exp)
+
+t_krit_1 = stats.t.ppf(1-(alpha_1/2), n-2)
+t_krit_2 = stats.t.ppf(1-(alpha_2/2), n-2)
+# print(t_krit_1, t_krit_2)
+
+Y1_X_b1 = Y1_Kxy/X_D
+Y1_X_b0 = Y1_avg - Y1_X_b1*X_avg
+X_Y1_b1 = Y1_Kxy/Y1_D
+X_Y1_b0 = X_avg - X_Y1_b1*Y1_avg
+# print(Y1_X_b0, Y1_X_b1, X_Y1_b0, X_Y1_b1)
+
+Y2_X_b1 = Y2_Kxy/X_D
+Y2_X_b0 = Y2_avg - Y2_X_b1*X_avg
+X_Y2_b1 = Y2_Kxy/Y2_D
+X_Y2_b0 = X_avg - X_Y2_b1*Y2_avg
+# print(Y2_X_b0, Y2_X_b1, X_Y2_b0, X_Y2_b1)
+
+Y3_X_b1 = Y3_Kxy/X_D
+Y3_X_b0 = Y3_avg - Y3_X_b1*X_avg
+X_Y3_b1 = Y3_Kxy/Y3_D
+X_Y3_b0 = X_avg - X_Y3_b1*Y3_avg
+# print(Y3_X_b0, Y3_X_b1, X_Y3_b0, X_Y3_b1)
+
+if t1_exp > t_krit_1:
+    answer_alpha_1_pair_1_1 = True  # корреляция существеут
+    answer_alpha_1_pair_1_2 = False  # корреляция не существеут
+else:
+    answer_alpha_1_pair_1_1 = False  # корреляция существеут
+    answer_alpha_1_pair_1_2 = True  # корреляция не существеут
+
+if t2_exp > t_krit_1:
+    answer_alpha_1_pair_2_1 = True  # корреляция существеут
+    answer_alpha_1_pair_2_2 = False  # корреляция не существеут
+else:
+    answer_alpha_1_pair_2_1 = False  # корреляция существеут
+    answer_alpha_1_pair_2_2 = True  # корреляция не существеут
+
+if t3_exp > t_krit_1:
+    answer_alpha_1_pair_3_1 = True  # корреляция существеут
+    answer_alpha_1_pair_3_2 = False  # корреляция не существеут
+else:
+    answer_alpha_1_pair_3_1 = False  # корреляция существеут
+    answer_alpha_1_pair_3_2 = True  # корреляция не существеут
+
+if t1_exp > t_krit_2:
+    answer_alpha_2_pair_1_1 = True  # корреляция существеут
+    answer_alpha_2_pair_1_2 = False  # корреляция не существеут
+else:
+    answer_alpha_1_pair_1_1 = False  # корреляция существеут
+    answer_alpha_1_pair_1_2 = True  # корреляция не существеут
+
+if t2_exp > t_krit_2:
+    answer_alpha_2_pair_2_1 = True  # корреляция существеут
+    answer_alpha_2_pair_2_2 = False  # корреляция не существеут
+else:
+    answer_alpha_2_pair_2_1 = False  # корреляция существеут
+    answer_alpha_2_pair_2_2 = True  # корреляция не существеут
+
+if t3_exp > t_krit_2:
+    answer_alpha_2_pair_3_1 = True  # корреляция существеут
+    answer_alpha_2_pair_3_2 = False  # корреляция не существеут
+else:
+    answer_alpha_2_pair_3_1 = False  # корреляция существеут
+    answer_alpha_2_pair_3_2 = True  # корреляция не существеут
+
+
+# ВЫВОД
+
+X_0 = '{0:.3f}'.format(data["X"][0])
+X_1 = '{0:.3f}'.format(data["X"][1])
+X_2 = '{0:.3f}'.format(data["X"][2])
+X_3 = '{0:.3f}'.format(data["X"][3])
+X_4 = '{0:.3f}'.format(data["X"][4])
+X_5 = '{0:.3f}'.format(data["X"][5])
+X_6 = '{0:.3f}'.format(data["X"][6])
+X_7 = '{0:.3f}'.format(data["X"][7])
+X_8 = '{0:.3f}'.format(data["X"][8])
+X_9 = '{0:.3f}'.format(data["X"][9])
+
+Y1_0 ='{0:.3f}'.format( data["Y1"][0])
+Y1_1 ='{0:.3f}'.format( data["Y1"][1])
+Y1_2 ='{0:.3f}'.format( data["Y1"][2])
+Y1_3 ='{0:.3f}'.format( data["Y1"][3])
+Y1_4 ='{0:.3f}'.format( data["Y1"][4])
+Y1_5 ='{0:.3f}'.format( data["Y1"][5])
+Y1_6 ='{0:.3f}'.format( data["Y1"][6])
+Y1_7 ='{0:.3f}'.format( data["Y1"][7])
+Y1_8 ='{0:.3f}'.format( data["Y1"][8])
+Y1_9 ='{0:.3f}'.format( data["Y1"][9])
+
+Y2_0 = '{0:.3f}'.format(data["Y2"][0])
+Y2_1 = '{0:.3f}'.format(data["Y2"][1])
+Y2_2 = '{0:.3f}'.format(data["Y2"][2])
+Y2_3 = '{0:.3f}'.format(data["Y2"][3])
+Y2_4 = '{0:.3f}'.format(data["Y2"][4])
+Y2_5 = '{0:.3f}'.format(data["Y2"][5])
+Y2_6 = '{0:.3f}'.format(data["Y2"][6])
+Y2_7 = '{0:.3f}'.format(data["Y2"][7])
+Y2_8 = '{0:.3f}'.format(data["Y2"][8])
+Y2_9 = '{0:.3f}'.format(data["Y2"][9])
+
+Y3_0 = '{0:.3f}'.format(data["Y3"][0])
+Y3_1 = '{0:.3f}'.format(data["Y3"][1])
+Y3_2 = '{0:.3f}'.format(data["Y3"][2])
+Y3_3 = '{0:.3f}'.format(data["Y3"][3])
+Y3_4 = '{0:.3f}'.format(data["Y3"][4])
+Y3_5 = '{0:.3f}'.format(data["Y3"][5])
+Y3_6 = '{0:.3f}'.format(data["Y3"][6])
+Y3_7 = '{0:.3f}'.format(data["Y3"][7])
+Y3_8 = '{0:.3f}'.format(data["Y3"][8])
+Y3_9 = '{0:.3f}'.format(data["Y3"][9])
+
+
+#  ВВОД СТУДЕНТА
+
+X_avg = round(X_avg, 4)
+Y1_avg = round(Y1_avg, 4)
+Y2_avg = round(Y2_avg, 4)
+Y3_avg = round(Y3_avg, 4)
+X_D = round(X_D, 4)
+Y1_D = round(Y1_D, 4)
+Y2_D = round(Y2_D, 4)
+Y3_D = round(Y3_D, 4)
+X_sko = round(X_sko, 4)
+Y1_sko = round(Y1_sko, 4)
+Y2_sko = round(Y2_sko, 4)
+Y3_sko = round(Y3_sko, 4)
+Y1_Kxy = round(Y1_Kxy, 4)
+Y2_Kxy = round(Y2_Kxy, 4)
+Y3_Kxy = round(Y3_Kxy, 4)
+Y1_Rxy = round(Y1_Rxy, 4)
+Y2_Rxy = round(Y2_Rxy, 4)
+Y3_Rxy = round(Y3_Rxy, 4)
+t1_exp = round(t1_exp, 4)
+t2_exp = round(t2_exp, 4)
+t3_exp = round(t3_exp, 4)
+t_krit_1 = round(t_krit_1, 4)
+t_krit_2 = round(t_krit_2, 4)
+Y1_X_b1 = round(Y1_X_b1, 4)
+Y1_X_b0 = round(Y1_X_b0, 4)
+X_Y1_b1 = round(X_Y1_b1, 4)
+X_Y1_b0 = round(X_Y1_b0, 4)
+Y2_X_b1 = round(Y2_X_b1, 4)
+Y2_X_b0 = round(Y2_X_b0, 4)
+X_Y2_b1 = round(X_Y2_b1, 4)
+X_Y2_b0 = round(X_Y2_b0, 4)
+Y3_X_b1 = round(Y3_X_b1, 4)
+Y3_X_b0 = round(Y3_X_b0, 4)
+X_Y3_b1 = round(X_Y3_b1, 4)
+X_Y3_b0 = round(X_Y3_b0, 4)
+
+</script>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+
+         table.custom-table td{
+            border: 1px solid #e6e6e6;
+            padding: 4px 6px !important;
+            word-break: normal;
+        }
+        table .italic-and-background {
+            background: #f3f3f3;
+            font-style: italic !important;
+        }
+
+        .task_3_6_01 table td input{
+            min-width: 100px !important;
+            height: 34px !important;
+            padding: 5px !important;
+            box-shadow: none !important;
+        }
+        table.formula-table td{
+            padding: .25rem .25rem .25rem 0 !important;
+        }
+        table.formula-table p.answer::before{
+            content: "" !important;
+        }
+        .task_3_6_01 table td p.answer, .task_3_6_01 table td .trailing_text, .task_3_6_01 table td .status{
+            display: none !important;
+        }
+        .task_3_6_01 .trailing_text {
+            margin-right: 0px !important;
+        }
+        .task_3_6_01 div p.answer {
+            margin-top: 6px !important;
+        }
+    </style>
+
+    <div class="no-equation task_3_6_01">
+        <p>Для каждого из трех приведенных в таблице наборов данных \((X, Y_1)\), \((X, Y_2)\), \((X, Y_3)\) проделайте следующие действия.</p>
+        <p>Ответы привести с точностью минимум до четырех знаков (после точки).</p>
+        <table class="custom-table" style="min-width: 450px;">
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;">№ п/п</td>
+                <td style="text-align: center;">\(X\)</td>
+                <td style="text-align: center;">\(Y_1\)</td>
+                <td style="text-align: center;">\(Y_2\)</td>
+                <td style="text-align: center;">\(Y_3\)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(1\)</td>
+                <td style="text-align: center;">$X_0</td>
+                <td style="text-align: center;">$Y1_0</td>
+                <td style="text-align: center;">$Y2_0</td>
+                <td style="text-align: center;">$Y3_0</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(2\)</td>
+                <td style="text-align: center;">$X_1</td>
+                <td style="text-align: center;">$Y1_1</td>
+                <td style="text-align: center;">$Y2_1</td>
+                <td style="text-align: center;">$Y3_1</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(3\)</td>
+                <td style="text-align: center;">$X_2</td>
+                <td style="text-align: center;">$Y1_2</td>
+                <td style="text-align: center;">$Y2_2</td>
+                <td style="text-align: center;">$Y3_2</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(4\)</td>
+                <td style="text-align: center;">$X_3</td>
+                <td style="text-align: center;">$Y1_3</td>
+                <td style="text-align: center;">$Y2_3</td>
+                <td style="text-align: center;">$Y3_3</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(5\)</td>
+                <td style="text-align: center;">$X_4</td>
+                <td style="text-align: center;">$Y1_4</td>
+                <td style="text-align: center;">$Y2_4</td>
+                <td style="text-align: center;">$Y3_4</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(6\)</td>
+                <td style="text-align: center;">$X_5</td>
+                <td style="text-align: center;">$Y1_5</td>
+                <td style="text-align: center;">$Y2_5</td>
+                <td style="text-align: center;">$Y3_5</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(7\)</td>
+                <td style="text-align: center;">$X_6</td>
+                <td style="text-align: center;">$Y1_6</td>
+                <td style="text-align: center;">$Y2_6</td>
+                <td style="text-align: center;">$Y3_6</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(8\)</td>
+                <td style="text-align: center;">$X_7</td>
+                <td style="text-align: center;">$Y1_7</td>
+                <td style="text-align: center;">$Y2_7</td>
+                <td style="text-align: center;">$Y3_7</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(9\)</td>
+                <td style="text-align: center;">$X_8</td>
+                <td style="text-align: center;">$Y1_8</td>
+                <td style="text-align: center;">$Y2_8</td>
+                <td style="text-align: center;">$Y3_8</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(10\)</td>
+                <td style="text-align: center;">$X_9</td>
+                <td style="text-align: center;">$Y1_9</td>
+                <td style="text-align: center;">$Y2_9</td>
+                <td style="text-align: center;">$Y3_9</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <p><strong>1.</strong> Найдите числовые характеристики (средние, дисперсии, СКО, ковариации, коэффициенты корреляции) выборок и заполните таблицу.</p>
+
+        <table class="custom-table">
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;"></td>
+                <td style="text-align: center;">\(X\)</td>
+                <td style="text-align: center;">\(Y_1\)</td>
+                <td style="text-align: center;">\(Y_2\)</td>
+                <td style="text-align: center;">\(Y_3\)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">Средние</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_avg">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                    </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y1_avg">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y2_avg">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y3_avg">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">Дисперсии</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y1_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y2_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y3_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">СКО</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_sko">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y1_sko">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y2_sko">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y3_sko">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(K_{XY}\)</td>
+                <td style="text-align: center;"></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y1_Kxy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y2_Kxy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y3_Kxy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(r_{XY}\)</td>
+                <td style="text-align: center;"></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y1_Rxy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y2_Rxy">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse></td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y3_Rxy">
+                    <responseparam type="tolerance" default="0.001"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+                    </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p><strong>2. </strong>Для каждого набора проверьте гипотезу \(H_0\) <strong>об отсутствии линейной корреляции</strong> на уровнях значимости \(\alpha = $alpha_1\) и \(\alpha = $alpha_2\), используя для проверки \(t\)-критерий Стьюдента (применить двусторонний \(t\)-критерий к модулю коэффициента корреляции).</p>
+        <p>Вычислите опытные и критические значения критерия для каждого уровня значимости. Приведите найденные значения критерия.</p>
+
+        <table class="custom-table">
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center; min-width: 100px;"></td>
+                <td style="text-align: center;">\((X, Y_1)\)</td>
+                <td style="text-align: center;">\((X, Y_2)\)</td>
+                <td style="text-align: center;">\((X, Y_3)\)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(t_{крит}($alpha_1)\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t_krit_1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                    </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t_krit_1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t_krit_1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(t_{крит}($alpha_2)\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t_krit_2">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t_krit_2">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t_krit_2">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(t_{эксп}\)</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t1_exp">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                    </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t2_exp">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$t3_exp">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0 : r_{XY} = 0\) для набора \((X, Y_1)\) при уровне значимости \( \alpha = $alpha_1 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_alpha_1_pair_1_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция </choice>
+                <choice correct="$answer_alpha_1_pair_1_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0 : r_{XY} = 0\) для набора \((X, Y_2)\) при уровне значимости \( \alpha = $alpha_1 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_alpha_1_pair_2_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция </choice>
+                <choice correct="$answer_alpha_1_pair_2_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0 : r_{XY} = 0\) для набора \((X, Y_3)\) при уровне значимости \( \alpha = $alpha_1 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_alpha_1_pair_3_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция </choice>
+                <choice correct="$answer_alpha_1_pair_3_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0 : r_{XY} = 0\) для набора \((X, Y_1)\) при уровне значимости \( \alpha = $alpha_2 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_alpha_2_pair_1_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция </choice>
+                <choice correct="$answer_alpha_2_pair_1_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0 : r_{XY} = 0\) для набора \((X, Y_2)\) при уровне значимости \( \alpha = $alpha_2 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_alpha_2_pair_2_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция </choice>
+                <choice correct="$answer_alpha_2_pair_2_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0 : r_{XY} = 0\) для набора \((X, Y_3)\) при уровне значимости \( \alpha = $alpha_2 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_alpha_2_pair_3_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция </choice>
+                <choice correct="$answer_alpha_2_pair_3_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <p><strong>3. </strong>Найдите коэффициенты уравнений линейной регрессии \(Y\) на \(X\) и \(X\) на \(Y\):</p>
+            <ul>
+                <li>
+                    уравнение прямой выборочной линейной регрессии \(Y\) на \(X\)
+                    \[y = \beta_0 + \beta_1 x,\]
+                </li>
+                <li>
+                    уравнение прямой выборочной линейной регрессии \(X\) на \(Y\)
+                    \[x = \beta'_0 + \beta'_1 x.\]
+                </li>
+            </ul>
+
+        <p>Для \(Y_1(X)\) и \(X(Y_1)\):</p>
+        <table class="formula-table">
+            <tr>
+                <td>\(y = \)</td>
+                <td>
+                    <numericalresponse answer="$Y1_X_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$Y1_X_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot x;\)</td>
+            </tr>
+        </table>
+        <table class="formula-table">
+            <tr>
+                <td>\(x = \)</td>
+                <td>
+                    <numericalresponse answer="$X_Y1_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$X_Y1_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot y;\)</td>
+            </tr>
+        </table>
+
+        <hr />
+
+        <p>Для \(Y_2(X)\) и \(X(Y_2)\):</p>
+        <table class="formula-table">
+            <tr>
+                <td>\(y = \)</td>
+                <td>
+                    <numericalresponse answer="$Y2_X_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$Y2_X_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot x;\)</td>
+            </tr>
+        </table>
+        <table class="formula-table">
+            <tr>
+                <td>\(x = \)</td>
+                <td>
+                    <numericalresponse answer="$X_Y2_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$X_Y2_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot y;\)</td>
+            </tr>
+        </table>
+
+
+        <hr />
+
+        <p>Для \(Y_3(X)\) и \(X(Y_3)\):</p>
+        <table class="formula-table">
+            <tr>
+                <td>\(y = \)</td>
+                <td>
+                    <numericalresponse answer="$Y3_X_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$Y3_X_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot x;\)</td>
+            </tr>
+        </table>
+        <table class="formula-table">
+            <tr>
+                <td>\(x = \)</td>
+                <td>
+                    <numericalresponse answer="$X_Y3_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$X_Y3_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot y;\)</td>
+            </tr>
+        </table>
+    </div>
+    <solution>
+        <style>
+            .task_3_6_01 table td p.answer, .task_3_6_01 table td .trailing_text{
+                display: inline-block !important;
+            }
+        </style>
+    </solution>
+</problem>

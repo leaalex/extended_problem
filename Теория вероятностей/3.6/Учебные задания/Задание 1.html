@@ -1,0 +1,223 @@
+<problem>
+<script type="loncapa/python">
+import math
+import random
+from scipy import stats
+
+n = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+X = []
+Y = []
+for x in n:
+    new_x = 9*(10+random.randint(0, 13))
+    X.append(new_x)
+    new_y_1 = round(new_x*100/216)
+    new_y_2 = round((99 - new_y_1) * (random.uniform(0, 1) - 0.5))
+    new_y = new_y_1 + new_y_2
+    Y.append(new_y)
+
+X = [135,198,144,153,162,162,90,99,90,207]
+Y = [48,92,81,81,75,83,25,71,25,96]
+
+alpha_1 = 0.05
+alpha_2 = 0.1
+len_n = len(n)
+
+X_avg = sum(X)/len(X)
+Y_avg = sum(Y)/len(Y)
+# print(X_avg, Y_avg)
+
+X_D = sum([x*x for x in X])/len(X) - math.pow(X_avg, 2)
+Y_D = sum([x*x for x in Y])/len(Y) - math.pow(Y_avg, 2)
+# print(X_D, Y_D)
+
+X_corr_D = X_D*len(X)/(len(X) - 1)
+Y_corr_D = Y_D*len(Y)/(len(Y) - 1)
+# print(X_corr_D, Y_corr_D)
+
+X_SKO = math.sqrt(X_D)
+Y_SKO = math.sqrt(Y_D)
+# print(X_SKO, Y_SKO)
+
+X_corr_SKO = math.sqrt(X_corr_D)
+Y_corr_SKO = math.sqrt(Y_corr_D)
+# print(X_corr_SKO, Y_corr_SKO)
+
+kv = []
+for idx_l, l in enumerate(X):
+    kv.append(l * Y[idx_l])
+
+K_xy = sum(kv)/len(n) - X_avg * Y_avg
+K_xy_corr = round(K_xy * len(n) / (len(n) - 1), 10)
+R_xy = K_xy/(X_SKO * Y_SKO)
+
+Y_X_b1 = round(K_xy_corr / X_corr_D, 10)
+Y_X_b0 = round(Y_avg - Y_X_b1 * X_avg, 10)
+# print(Y_X_b0, Y_X_b1)
+
+X_Y_b1 = round(K_xy_corr / Y_corr_D, 10)
+X_Y_b0 = round(X_avg - X_Y_b1 * Y_avg, 10)
+# print(X_Y_b0, X_Y_b1)
+
+t_krit_1 = stats.t.ppf(1-(alpha_1/2), len(n)-2)
+t_krit_2 = stats.t.ppf(1-(alpha_2/2), len(n)-2)
+
+t_exp = R_xy * math.sqrt(8/(1 - math.pow(R_xy, 2)))
+
+if t_exp > t_krit_1:
+    answer_1_1 = True  # корреляция существует
+    answer_1_2 = False  # корреляция не существует
+else:
+    answer_1_1 = False  # корреляция существует
+    answer_1_2 = True  # корреляция не существует
+
+
+if t_exp > t_krit_2:
+    answer_2_1 = True  # корреляция существует
+    answer_2_2 = False  # корреляция не существует
+else:
+    answer_2_1 = False  # корреляция существует
+    answer_2_2 = True  # корреляция не существует
+
+# ВЫВОД
+
+X_0 = X[0]
+X_1 = X[1]
+X_2 = X[2]
+X_3 = X[3]
+X_4 = X[4]
+X_5 = X[5]
+X_6 = X[6]
+X_7 = X[7]
+X_8 = X[8]
+X_9 = X[9]
+
+Y_0 = Y[0]
+Y_1 = Y[1]
+Y_2 = Y[2]
+Y_3 = Y[3]
+Y_4 = Y[4]
+Y_5 = Y[5]
+Y_6 = Y[6]
+Y_7 = Y[7]
+Y_8 = Y[8]
+Y_9 = Y[9]
+
+#  ВВОД СТУДЕНТА
+
+X_avg = round(X_avg, 4)
+Y_avg = round(Y_avg, 4)
+X_D = round(X_D, 4)
+Y_D = round(Y_D, 4)
+X_corr_D = round(X_corr_D, 4)
+Y_corr_D = round(Y_corr_D, 4)
+X_SKO = round(X_SKO, 4)
+Y_SKO = round(Y_SKO, 4)
+X_corr_SKO = round(X_corr_SKO, 4)
+Y_corr_SKO = round(Y_corr_SKO, 4)
+
+K_xy = round(K_xy, 4)
+K_xy_corr = round(K_xy_corr, 4)
+R_xy = round(R_xy, 4)
+
+t_krit_1 = round(t_krit_1, 4)
+t_krit_2 = round(t_krit_2, 4)
+t_exp = round(t_exp, 4)
+
+Y_X_b1 = round(Y_X_b1, 4)
+Y_X_b0 = round(Y_X_b0, 4)
+X_Y_b1 = round(X_Y_b1, 4)
+X_Y_b0 = round(X_Y_b0, 4)
+</script>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+
+         table.custom-table td{
+            border: 1px solid #e6e6e6;
+            padding: 4px 6px !important;
+            word-break: normal;
+        }
+        table .italic-and-background {
+            background: #f3f3f3;
+            font-style: italic !important;
+        }
+
+        .task_3_6_u_01 table td input{
+            min-width: 100px !important;
+            height: 34px !important;
+            padding: 5px !important;
+            box-shadow: none !important;
+        }
+        table.formula-table td{
+            padding: .25rem .25rem .25rem 0 !important;
+        }
+        table.formula-table p.answer::before{
+            content: "" !important;
+        }
+        .task_3_6_u_01 table td p.answer, .task_3_6_u_01 table td .trailing_text, .task_3_6_u_01 table td .status{
+            display: none !important;
+        }
+        .task_3_6_u_01 .trailing_text {
+            margin-right: 0px !important;
+        }
+        .task_3_6_u_01 div p.answer {
+            margin-top: 6px !important;
+        }
+    </style>
+
+    <div class="no-equation task_3_6_u_01">
+        <p>Деканат заинтересовался связью между временем изучения курса (\(4\) зачетных единицы, \(216\) часов, признак \(X\)) и итоговой оценкой (\(100\) баллов, признак \(Y\)). Результаты опроса случайно отобранных \($len_n\) студентов показаны в таблице ниже.</p>
+        <table class="custom-table" style="min-width: 600px;">
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;">№</td>
+                <td style="text-align: center;">\(1\)</td>
+                <td style="text-align: center;">\(2\)</td>
+                <td style="text-align: center;">\(3\)</td>
+                <td style="text-align: center;">\(4\)</td>
+                <td style="text-align: center;">\(5\)</td>
+                <td style="text-align: center;">\(6\)</td>
+                <td style="text-align: center;">\(7\)</td>
+                <td style="text-align: center;">\(8\)</td>
+                <td style="text-align: center;">\(9\)</td>
+                <td style="text-align: center;">\(10\)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(X\)</td>
+                <td style="text-align: center;">$X_0</td>
+                <td style="text-align: center;">$X_1</td>
+                <td style="text-align: center;">$X_2</td>
+                <td style="text-align: center;">$X_3</td>
+                <td style="text-align: center;">$X_4</td>
+                <td style="text-align: center;">$X_5</td>
+                <td style="text-align: center;">$X_6</td>
+                <td style="text-align: center;">$X_7</td>
+                <td style="text-align: center;">$X_8</td>
+                <td style="text-align: center;">$X_9</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">\(Y\)</td>
+                <td style="text-align: center;">$Y_0</td>
+                <td style="text-align: center;">$Y_1</td>
+                <td style="text-align: center;">$Y_2</td>
+                <td style="text-align: center;">$Y_3</td>
+                <td style="text-align: center;">$Y_4</td>
+                <td style="text-align: center;">$Y_5</td>
+                <td style="text-align: center;">$Y_6</td>
+                <td style="text-align: center;">$Y_7</td>
+                <td style="text-align: center;">$Y_8</td>
+                <td style="text-align: center;">$Y_9</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <solution>
+        <style>
+            .task_3_6_u_01 table td p.answer, .task_3_6_u_01 table td .trailing_text{
+                display: inline-block !important;
+            }
+        </style>
+    </solution>
+</problem>
