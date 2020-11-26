@@ -168,6 +168,7 @@ X_Y_b0 = round(X_Y_b0, 4)
 
     <div class="no-equation task_3_6_u_01">
         <p>Деканат заинтересовался связью между временем изучения курса (\(4\) зачетных единицы, \(216\) часов, признак \(X\)) и итоговой оценкой (\(100\) баллов, признак \(Y\)). Результаты опроса случайно отобранных \($len_n\) студентов показаны в таблице ниже.</p>
+
         <table class="custom-table" style="min-width: 600px;">
             <tbody>
             <tr class="italic-and-background">
@@ -211,6 +212,94 @@ X_Y_b0 = round(X_Y_b0, 4)
             </tr>
             </tbody>
         </table>
+
+        <p><strong>1.</strong> Найдите числовые характеристики выборок и заполните таблицу.</p>
+
+        <table class="custom-table">
+            <tbody>
+            <tr class="italic-and-background">
+                <td style="text-align: center;">№ п/п</td>
+                <td style="text-align: center;">\(X\)</td>
+                <td style="text-align: center;">\(Y\)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">Средние</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_avg">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y_avg">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">Дисперсии</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">Исправленные дисперсии</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_corr_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y_corr_D">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">СКО</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_SKO">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y_SKO">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" class="italic-and-background">Исправленные СКО</td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$X_corr_SKO">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td style="text-align: center;">
+                    <numericalresponse answer="$Y_corr_SKO">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
 
     </div>
     <solution>
