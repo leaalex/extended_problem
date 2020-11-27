@@ -39,12 +39,12 @@
     </style>
 
     <script type="text/javascript">
-        let elem = document.getElementById("section_3_5_training_2");
-        if (elem.getElementsByClassName("incorrect").length !== 0){
-            for (let item of elem.getElementsByClassName("custom-comment")) {
-                item.style.display = 'block';
-            }
-        }
+        // let elem = document.getElementById("section_3_5_training_2");
+        // if (elem.getElementsByClassName("incorrect").length !== 0){
+        //     for (let item of elem.getElementsByClassName("custom-comment")) {
+        //         item.style.display = 'block';
+        //     }
+        // }
     </script>
 <script type="loncapa/python">
 import random
@@ -93,7 +93,7 @@ t_krit = round(t_krit, 5)
 
         <p>Преподавателю и студенту было предложено расположить \($n\) профессий в порядке их общественной значимости. Ответы приведены в таблице ниже.</p>
         <p>Какова корреляция рангов между двумя рядами оценок? Одинаково ли мнение преподавателя и студента по этому вопросу?</p>
-        <p>Ответы привести с точностью минимум до четырех знаков (после точки).</p>
+        <p>При необходимости округления результатов в дробной части сохранять 3 значащих цифры (после точки).</p>
 
         <table class="output-table">
             <tbody>
@@ -199,17 +199,28 @@ t_krit = round(t_krit, 5)
         </multiplechoiceresponse>
 
 
-        <div class="custom-comment">
-            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
-            <span class="custom-comment-content"><strong>Комментарий: </strong><br />
-                <strong>1. </strong>Формула для коэффициента Спирмена может быть приведена к виду:
-                \[ R_s = 1 - \frac{6}{n(n^2 - 1)} \sum_{i=1}^{n} (Rx_i - Ry_i)^2 \]
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong><br />-->
+<!--                <strong>1. </strong>Формула для коэффициента Спирмена может быть приведена к виду:-->
+<!--                \[ R_s = 1 - \frac{6}{n(n^2 - 1)} \sum_{i=1}^{n} (Rx_i - Ry_i)^2 \]-->
 
-                <strong>2. </strong>При проверке статистической гипотезы \(H_0\):\(R_s = 0\) (т.е. гипотезы о том, что нормально распределенные случайные величины \(X\) и \(Y\) независимы) используют критерий:
-                \[ t = \frac{r^{*}(x_i,y_j) \sqrt{n - 2}}{\sqrt{1 - \left(r^{*}(x_i,y_j) \right)^2}} \]
-                Эта случайная величина имеет распределение Стьюдента с \(n - 2\) степенями свободы.				.
-            </span>
-        </div>
+<!--                <strong>2. </strong>При проверке статистической гипотезы \(H_0\):\(R_s = 0\) (т.е. гипотезы о том, что нормально распределенные случайные величины \(X\) и \(Y\) независимы) используют критерий:-->
+<!--                \[ t = \frac{r^{*}(x_i,y_j) \sqrt{n - 2}}{\sqrt{1 - \left(r^{*}(x_i,y_j) \right)^2}} \]-->
+<!--                Эта случайная величина имеет распределение Стьюдента с \(n - 2\) степенями свободы.				.-->
+<!--            </span>-->
+<!--        </div>-->
 
     </div>
+    <demandhint>
+        <hint>
+            <p><strong>1. </strong>Формула для коэффициента Спирмена может быть приведена к виду:</p>
+            \[ R_s = 1 - \frac{6}{n(n^2 - 1)} \sum_{i=1}^{n} (Rx_i - Ry_i)^2 \]
+        </hint>
+        <hint>
+            <p><strong>2. </strong>При проверке статистической гипотезы \(H_0\):\(R_s = 0\) (т.е. гипотезы о том, что нормально распределенные случайные величины \(X\) и \(Y\) независимы) используют критерий:</p>
+            \[ t = \frac{r^{*}(x_i,y_j) \sqrt{n - 2}}{\sqrt{1 - \left(r^{*}(x_i,y_j) \right)^2}} \]
+            <p>Эта случайная величина имеет распределение Стьюдента с \(n - 2\) степенями свободы.</p>
+        </hint>
+    </demandhint>
 </problem>

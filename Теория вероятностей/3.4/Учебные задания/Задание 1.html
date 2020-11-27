@@ -149,16 +149,16 @@ F_krit = round(F_krit, 3)
         }
     </style>
     <script type="text/javascript">
-        let elem = document.getElementById("section_3_4_training_1");
-        if (elem.getElementsByClassName("incorrect").length !== 0){
-            for (let item of elem.getElementsByClassName("custom-comment")) {
-                item.style.display = 'block';
-            }
-        }
+        // let elem = document.getElementById("section_3_4_training_1");
+        // if (elem.getElementsByClassName("incorrect").length !== 0){
+        //     for (let item of elem.getElementsByClassName("custom-comment")) {
+        //         item.style.display = 'block';
+        //     }
+        // }
     </script>
     <div class="no-equation task_3_4_u_02" id="section_3_4_training_1">
         <p>На некотором предприятии, работающем в три смены, получены данные о проценте брака выпускаемой продукции в каждой из смен за семь последовательных дней. Данные опыта приведены в таблице.</p>
-        <p>В качестве десятичного разделителя используйте <strong>точку</strong>. Итоговые ответы привести с точностью до трех знаков (после точки).</p>
+        <p>В качестве десятичного разделителя используйте <strong>точку</strong>. При необходимости округления результатов в дробной части сохранять 3 значащих цифры (после точки).</p>
         <table>
             <caption>Данные о браке выпускаемой продукции, %</caption>
             <tbody>
@@ -409,14 +409,15 @@ F_krit = round(F_krit, 3)
             </choicegroup>
         </multiplechoiceresponse>
 
-        <div class="custom-comment">
-            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
-            <span class="custom-comment-content"><strong>Комментарий: </strong> для вычисления сумм удобно воспользоваться формулами: <br />
-                \( SS_0 = \sum_{i, j} x^2_{ij} - \frac{Q^2}{N} \) <br />
-                \( SS_2 = \frac{1}{n} \sum_{j} Q^2_j - \frac{Q^2}{N} \) <br />
-                \( SS_1 =  SS_0 - SS_2 \)
-                </span>
-        </div>
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong> -->
+<!--                Для вычисления сумм удобно воспользоваться формулами: <br />-->
+<!--                \( SS_0 = \sum_{i, j} x^2_{ij} - \frac{Q^2}{N} \) <br />-->
+<!--                \( SS_2 = \frac{1}{n} \sum_{j} Q^2_j - \frac{Q^2}{N} \) <br />-->
+<!--                \( SS_1 =  SS_0 - SS_2 \)-->
+<!--                </span>-->
+<!--        </div>-->
 
     </div>
     <solution>
@@ -426,4 +427,13 @@ F_krit = round(F_krit, 3)
             }
         </style>
     </solution>
+
+    <demandhint>
+        <hint>
+            <p>Для вычисления сумм удобно воспользоваться формулами:</p>
+            <p>\( SS_0 = \sum_{i, j} x^2_{ij} - \frac{Q^2}{N} \)</p>
+            <p>\( SS_2 = \frac{1}{n} \sum_{j} Q^2_j - \frac{Q^2}{N} \)</p>
+            <p>\( SS_1 =  SS_0 - SS_2 \)</p>
+        </hint>
+    </demandhint>
 </problem>

@@ -12,11 +12,11 @@ for x in n:
     X.append(new_x)
     new_y_1 = round(new_x*100/216)
     new_y_2 = round((99 - new_y_1) * (random.uniform(0, 1) - 0.5))
-    new_y = new_y_1 + new_y_2
+    new_y = int(new_y_1 + new_y_2)
     Y.append(new_y)
 
-X = [135,198,144,153,162,162,90,99,90,207]
-Y = [48,92,81,81,75,83,25,71,25,96]
+#X = [135,198,144,153,162,162,90,99,90,207]
+#Y = [48,92,81,81,75,83,25,71,25,96]
 
 alpha_1 = 0.05
 alpha_2 = 0.1
@@ -213,6 +213,9 @@ X_Y_b0 = round(X_Y_b0, 4)
             </tbody>
         </table>
 
+        <p>Существует ли взаимосвязь между временем подготовки к экзамену и полученной оценкой? Если существует, каковы её характеристики?</p>
+        <p>При необходимости округления результатов в дробной части сохранять 3 значащих цифры (после точки).</p>
+
         <p><strong>1.</strong> Найдите числовые характеристики выборок и заполните таблицу.</p>
 
         <table class="custom-table">
@@ -300,8 +303,142 @@ X_Y_b0 = round(X_Y_b0, 4)
             </tbody>
         </table>
 
+        <numericalresponse answer="$K_xy">
+            <label>Ковариация \(K_{XY}\):</label>
+            <responseparam type="tolerance" default="0.001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+        <numericalresponse answer="$K_xy_corr">
+            <label>Исправленная ковариация:</label>
+            <responseparam type="tolerance" default="0.001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+        <numericalresponse answer="$R_xy">
+            <label>Коэффициент корреляции \(r_{XY}\):</label>
+            <responseparam type="tolerance" default="0.001"/>
+            <formulaequationinput/>
+        </numericalresponse>
+
+        <p><strong>2.</strong> Проверьте гипотезу \(H_0\) <strong>об отсутствии линейной корреляции</strong> на уровнях значимости \(\alpha = $alpha_1\) и \(\alpha = $alpha_2\), используя для проверки \(t\)-критерий Стьюдента (применить двусторонний \(t\)-критерий к модулю коэффициента корреляции).</p>
+        <p>Вычислите опытные и критические значения критерия для каждого уровня значимости. Приведите найденные значения критерия.</p>
+
+        <table>
+            <tr>
+                <td>\(t_{крит} ($alpha_1) = \)</td>
+                <td>
+                    <numericalresponse answer="$t_krit_1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\(t_{крит} ($alpha_2) = \)</td>
+                <td>
+                    <numericalresponse answer="$t_krit_2">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\(t_{эксп} = \)</td>
+                <td>
+                    <numericalresponse answer="$t_exp">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0\) при уровне значимости \( \alpha = $alpha_1 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция</choice>
+                <choice correct="$answer_1_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <multiplechoiceresponse>
+            <label>Проверьте гипотезу \(H_0\) при уровне значимости \( \alpha = $alpha_2 \):</label>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$answer_1_1">Между исследуемыми признаками <strong>существует</strong> статистически значимая линейная корреляция</choice>
+                <choice correct="$answer_1_2">Между исследуемыми признаками статистически значимая линейная корреляция <strong>отсутствует</strong></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <p><strong>3. </strong>Найдите коэффициенты уравнений прямых линейной регрессии \(Y\) на \(X\) и \(X\) на \(Y\):</p>
+        <ul>
+            <li>
+                уравнение прямой выборочной линейной регрессии \(Y\) на \(X\)
+                \[y = \beta_0 + \beta_1 x,\]
+            </li>
+            <li>
+                уравнение прямой выборочной линейной регрессии \(X\) на \(Y\)
+                \[x = \beta'_0 + \beta'_1 x.\]
+            </li>
+        </ul>
+
+        <p>\(Y^{*}(X)\):</p>
+        <table class="formula-table">
+            <tr>
+                <td>\(y = \)</td>
+                <td>
+                    <numericalresponse answer="$Y_X_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$Y_X_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot x;\)</td>
+            </tr>
+        </table>
+        <p>\(X^{*}(Y) \):</p>
+        <table class="formula-table">
+            <tr>
+                <td>\(x = \)</td>
+                <td>
+                    <numericalresponse answer="$X_Y_b0">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(+\)</td>
+                <td>
+                    <numericalresponse answer="$X_Y_b1">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\(\cdot y;\)</td>
+            </tr>
+        </table>
 
     </div>
+    <demandhint>
+        <hint>
+            <p>При проверке статистической гипотезы \(H_0: r_{XY} = 0\) (т.е. гипотезы о том, что нормально распределенные случайные величины \(X\) и \(Y\) независимы) используют критерий.</p>
+            \[ t = \frac{|r^{*}(x_i, y_j)|\sqrt{n-2}}{\sqrt{1 - \left( r^{*}(x_i, y_j)\right)^2 }} \]
+            <p>Эта случайная величина имеет распределение Стьюдента с \(n - 2\) степенями свободы.</p>
+            <p>Опытное значение критерия: \( t_{эксп} = r_{XY} \sqrt{\frac{n-2}{1 - r_{XY} ^2}}.\)</p>
+        </hint>
+        <hint>
+            <p>Выборочная линейная регрессия \(Y\) на \(X\) по выборке \((x_i, y_i)\), \(i=1,2,..,n\), определяется уравнением:</p>
+            \[ y = \beta_0 + \beta_1 x = \overline{Y} + r_{XY} \sqrt{\frac{DY}{DX}}(x - \overline{X}), \]
+            <p>где выборочные коэффициенты линейной регрессии \( \beta_1 = \frac{K_{XY}}{DX}\), \(\beta_0 = \overline{Y} - \beta_1 \overline{X}\).</p>
+            <p>Аналогично определяется выборочная линейная регрессия \(X\) на \(Y\):</p>
+            \[ x = \beta'_{0} + \beta'_{1} y = \overline{X} + r_{XY} \sqrt{\frac{DX}{DY}} (y - \overline{Y}), \]
+            <p>где выборочные коэффициенты линейной регрессии \( \beta'_1 = \frac{K_{XY}}{DY}\), \(\beta'_0 = \overline{X} - \beta'_1 \overline{Y}\).</p>
+
+        </hint>
+    </demandhint>
     <solution>
         <style>
             .task_3_6_u_01 table td p.answer, .task_3_6_u_01 table td .trailing_text{

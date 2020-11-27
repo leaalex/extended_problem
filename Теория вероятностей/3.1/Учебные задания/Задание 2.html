@@ -35,9 +35,9 @@
     <script type="text/javascript">
         let elem = document.getElementById("section_3_1_training_2");
         if (elem.getElementsByClassName("incorrect").length !== 0){
-            for (let item of elem.getElementsByClassName("custom-comment")) {
-                item.style.display = 'block';
-            }
+            // for (let item of elem.getElementsByClassName("custom-comment")) {
+            //     item.style.display = 'block';
+            // }
         }
     </script>
 
@@ -149,17 +149,26 @@ S_v = 2.393
         </table>
 
 
-        <div class="custom-comment">
-            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
-            <span class="custom-comment-content"><strong>Комментарий: </strong><br />
-                Площадь гистограммы равна объему выборки.<br />
-                Накопленная относительная частота, соответствующую интервалу \([a,b]\) – доля элементов выборки, не превосходящих \(b\).<br />
-                Для нахождения числовых характеристик построить вспомогательный дискретный статистический ряд.
-            </span>
-        </div>
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong><br />-->
+<!--                Площадь гистограммы равна объему выборки.<br />-->
+<!--                Накопленная относительная частота, соответствующую интервалу \([a,b]\) – доля элементов выборки, не превосходящих \(b\).<br />-->
+<!--                Для нахождения числовых характеристик построить вспомогательный дискретный статистический ряд.-->
+<!--            </span>-->
+<!--        </div>-->
+
 
     </div>
 
+    <demandhint>
+        <hint>
+            <p>Площадь гистограммы равна объему выборки.</p>
+            <p>Накопленная относительная частота, соответствующую интервалу \([a,b]\) – доля элементов выборки, не превосходящих \(b\).</p>
+            <p>Для нахождения числовых характеристик построить вспомогательный дискретный статистический ряд.</p>
+
+        </hint>
+    </demandhint>
     <script type="text/javascript">
         let student_data = $student_data;
         let hide_indexes = $hide_indexes;

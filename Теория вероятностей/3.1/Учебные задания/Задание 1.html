@@ -35,9 +35,9 @@
     <script type="text/javascript">
         let elem = document.getElementById("section_3_1_training_1");
         if (elem.getElementsByClassName("incorrect").length !== 0){
-            for (let item of elem.getElementsByClassName("custom-comment")) {
-                item.style.display = 'block';
-            }
+            // for (let item of elem.getElementsByClassName("custom-comment")) {
+            //     item.style.display = 'block';
+            // }
         }
     </script>
 
@@ -162,14 +162,22 @@ points_display = str(points).replace("[","").replace("]","")
         </table>
 
 
-        <div class="custom-comment">
-            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
-            <span class="custom-comment-content"><strong>Комментарий: </strong><br />
-                <strong>Размах (вариация) выборки</strong> – разность между максимальным и минимальным элементами выборки.<br />
-                <strong>Мода</strong> – наиболее часто встречающееся значение в вариационном ряду.<br />
-                <strong>Медиана вариационного ряда</strong> –– серединная точка в вариационном ряду, которая делит вариационный ряд на две равные по числу членов части.
-            </span>
-        </div>
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong><br />-->
+<!--                <strong>Размах (вариация) выборки</strong> – разность между максимальным и минимальным элементами выборки.<br />-->
+<!--                <strong>Мода</strong> – наиболее часто встречающееся значение в вариационном ряду.<br />-->
+<!--                <strong>Медиана вариационного ряда</strong> –– серединная точка в вариационном ряду, которая делит вариационный ряд на две равные по числу членов части.-->
+<!--            </span>-->
+<!--        </div>-->
 
     </div>
+
+    <demandhint>
+        <hint>
+            <p><strong>Размах (вариация) выборки</strong> – разность между максимальным и минимальным элементами выборки.</p>
+            <p><strong>Мода</strong> – наиболее часто встречающееся значение в вариационном ряду.</p>
+            <p><strong>Медиана вариационного ряда</strong> –– серединная точка в вариационном ряду, которая делит вариационный ряд на две равные по числу членов части.</p>
+        </hint>
+    </demandhint>
 </problem>

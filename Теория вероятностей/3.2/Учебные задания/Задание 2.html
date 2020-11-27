@@ -33,12 +33,12 @@
     </style>
 
     <script type="text/javascript">
-        let elem = document.getElementById("section_3_2_training_2");
-        if (elem.getElementsByClassName("incorrect").length !== 0){
-            for (let item of elem.getElementsByClassName("custom-comment")) {
-                item.style.display = 'block';
-            }
-        }
+        // let elem = document.getElementById("section_3_2_training_2");
+        // if (elem.getElementsByClassName("incorrect").length !== 0){
+        //     for (let item of elem.getElementsByClassName("custom-comment")) {
+        //         item.style.display = 'block';
+        //     }
+        // }
     </script>
 
     <script type="loncapa/python">
@@ -69,12 +69,18 @@ D_v = 7
         </numericalresponse>
 
 
-        <div class="custom-comment">
-            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
-            <span class="custom-comment-content"><strong>Комментарий: </strong>
-            Дисперсия выборки вычисляется как среднее по выборке от квадрата отклонения: \( D_В = \frac{1}{n} \sum^{n}_{i=1} (x_i - \overline{x}_В)^2 = \frac{1}{n} \sum^{k}_{i=1} n_i(x_i - \overline{x}_В)^2\).
-            </span>
-        </div>
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong>-->
+<!--            Дисперсия выборки вычисляется как среднее по выборке от квадрата отклонения: \( D_В = \frac{1}{n} \sum^{n}_{i=1} (x_i - \overline{x}_В)^2 = \frac{1}{n} \sum^{k}_{i=1} n_i(x_i - \overline{x}_В)^2\).-->
+<!--            </span>-->
+<!--        </div>-->
 
     </div>
+
+    <demandhint>
+        <hint>
+            <p>Дисперсия выборки вычисляется как среднее по выборке от квадрата отклонения: \( D_В = \frac{1}{n} \sum^{n}_{i=1} (x_i - \overline{x}_В)^2 = \frac{1}{n} \sum^{k}_{i=1} n_i(x_i - \overline{x}_В)^2\).</p>
+        </hint>
+    </demandhint>
 </problem>

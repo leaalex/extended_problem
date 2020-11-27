@@ -1,281 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style>
+        .no-equation .equation {
+            display: none !important;
+        }
 
-<textarea id="task_text" style="margin: 0px;width: 100%;height: 40rem;"></textArea>
+        .no-equation sup {
+            font-size: 80%;
+        }
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
 
-<script type="text/javascript">
-
-
-let id = Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
-
-let task_wording = "Установите соответствие между историческим деятелем и событием с ним связанным.";
-
-let left_col_name = "Деятель";
-let right_col_name = "Деятельность";
-
-let left_values = [
-
-"Г.А. Явлинский",
-"А.А. Собчак",
-"М.С. Горбачев",
-"Г.И. Янаев",
-"А.Н. Яковлев",
-
-];
-
-
-
-let right_values = [
-
-"разработка программы «500 дней»",
-"создание межрегиональной группы",
-"избрание президентом СССР",
-"образование ГКЧП",
-"формулирование идеологии перестройки",
-
-];
-
-let all_values = "Исторические события:";
-
-let width_val = "50%";
-
-
-
-
-let task =`<problem>
-<script type="loncapa/python">
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
 import math
-import json
 
-unique_id = "task_${id}"
+activity = 1
+time = 30
 
-correct_answer = {"a1":["b1"], "a2":["b2"], "a3":["b3"], "a4":["b4"], "a5":["b5"]}
+change_1 = random.choice([1.5, 2, 2.5, 3])
+change_2 = random.choice([1.5, 2, 2.5, 3])
+activity_change = activity * change_1
+time_change = change_2 * time
 
-# types:
-#     all_items
-#     correct_order
-#     check_or
+OSCH_1 = math.sqrt(change_1)*50
 
-check_type = 'all_items'
-show_wrong_cells = False
+lam = math.log(2)/(6*3600)
 
-
-def get_response(grade_decimal, wrong_cells=None):
-    response = {}
-    response["grade"] = grade_decimal
-    if wrong_cells is not None and show_wrong_cells:
-        response["wrong_cells"] = wrong_cells
-    if grade_decimal == 1:
-        response["ok"] = True
-        response["message"] = 'Correctly'
-    elif grade_decimal == 0:
-        response["ok"] = False
-        response["message"] = 'Incorrectly'
-    else:
-        response["ok"] = 'Partial'
-        response["message"] = 'Partially'
-    return response
-
-def check_or(CA, SA):
-    _max_grade = float(len(CA.keys()))
-    _grade = 0
-    for key in CA.keys():
-        if type(CA[key]).__name__ == "dict":
-            if "or" in CA[key].keys():
-                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
-        else:
-            if (set(CA[key]) == set(SA[key])):
-                _grade += 1
-
-    grade_decimal = _grade / _max_grade
-    response = get_response(grade_decimal)
-    return response
-
-def check_all_items(CA, SA):
-    max_grade = 0
-    grade = 0
-    wrong_cells = []
-    for key in CA.keys():
-        max_grade = max_grade + len(CA[key])
-        for item in CA[key]:
-            if type(item).__name__ == 'set':
-                for subitem in list(item):
-                    wrong_cells.append(key)
-                    if subitem in SA[key]:
-                        grade = grade + 1
-                        wrong_cells = list(set(wrong_cells))
-                        wrong_cells.remove(key)
-                        break
-            else:
-                if item in SA[key]:
-                    grade = grade + 1
-                else:
-                    wrong_cells.append(key)
-    grade_decimal = float(grade) / float(max_grade)
-    response = get_response(grade_decimal, wrong_cells)
-    return response
-
-
-def check_correct_order(CA, SA):
-    grade = 0
-    max_grade = len(CA.keys())
-    grade_decimal = 0
-    for key in CA.keys():
-        if (set(CA[key]) == set(SA[key])):
-            grade = grade + 1
-    if grade == max_grade:
-        grade_decimal = 1
-    response = get_response(grade_decimal)
-    return response
-
-
-def check_answer(expect, ans):
-    student_answer = json.loads(ans)
-    student_answer = student_answer["answer"]
-    if check_type == 'all_items':
-        response = check_all_items(correct_answer, student_answer)
-    elif check_type == 'correct_order':
-        response = check_correct_order(correct_answer, student_answer)
-    elif check_type == 'check_or':
-        response = check_or(correct_answer, student_answer)
-    return {
-        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
-<\/script>
-
-<script type="text/javascript">
-    window.__define = window.define;
-    window.__require = window.require;
-    window.define = undefined;
-    window.require = undefined;
-<\/script>
-
-<script type="text/javascript" src="/static/sortable.js"><\/script>
-
-<script type="text/javascript">
-    window.define = window.__define;
-    window.require = window.__require;
-    window.__define = undefined;
-    window.__require = undefined;
-<\/script>
-<style>
-    #$unique_id .text-fixed-width{
-        width: ${width_val};
-    }
-
-    #$unique_id .text-fixed-height{
-          height: 50px;
-      }
-
-</style>
-
-<script type="text/javascript" src="/static/matching_table_mobile.js"><\/script>
-
-<p>${task_wording}</p>
-<div class="matching_table disable-marker" id="$unique_id">
-    <table class="conf-table">
-        <tr>
-            <th class="conf-text conf-header text-fixed-width">
-                ${left_col_name}</th>
-            <th class="conf-text conf-header">
-                ${right_col_name}
-            </th>
-        </tr>
-        <tr>
-            <td class="conf-text text-fixed-height">${left_values[0]}</td>
-            <td id="a1" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
-        </tr>
-        <tr>
-            <td class="conf-text text-fixed-height">${left_values[1]}</td>
-            <td id="a2" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
-        </tr>
-        <tr>
-            <td class="conf-text text-fixed-height">${left_values[2]}</td>
-            <td id="a3" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
-        </tr>
-        <tr>
-            <td class="conf-text text-fixed-height">${left_values[3]}</td>
-            <td id="a4" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
-        </tr>
-
-        <tr>
-            <td class="conf-text text-fixed-height">${left_values[4]}</td>
-            <td id="a5" capacity="1" class="conf-answers-place conf-inputable input-place"></td>
-        </tr>
-    </table>
-
-    <p><strong>${all_values}</strong></p>
-
-    <div id="conf-id" class="conf-answers-place conf-inputable conf-all-answers ones">
-
-        <div id="b1" class="conf-item conf-draggable">${right_values[0]}</div>
-        <div id="b2" class="conf-item conf-draggable">${right_values[1]}</div>
-        <div id="b3" class="conf-item conf-draggable">${right_values[2]}</div>
-        <div id="b4" class="conf-item conf-draggable">${right_values[3]}</div>
-        <div id="b5" class="conf-item conf-draggable">${right_values[4]}</div>
-
-    </div>
-
-    <div id="matching_table_input" style="display: none !important;">
-        <customresponse cfn="check_answer">
-            <textline size="40" value="$taskId" />
-            <br/>
-        </customresponse>
-
-        <div class="message-about-grade"></div>
-    </div>
-
-    <solution>
-        <div class="detailed-solution">
-
-            <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
-
-            <table class="conf-table">
-                <tr>
-                    <th class="conf-text conf-header text-fixed-width">
-                        ${left_col_name}</th>
-                    <th class="conf-text conf-header">
-                        ${right_col_name}
-                    </th>
-                </tr>
-
-                <tr>
-                    <td class="conf-text text-fixed-height">${left_values[0]}</td>
-                    <td class="input-place"><div class="conf-item">${right_values[0]}</div></td>
-                </tr>
-                <tr>
-                    <td class="conf-text text-fixed-height">${left_values[1]}</td>
-                    <td class="input-place"><div class="conf-item">${right_values[1]}</div></td>
-                </tr>
-                <tr>
-                    <td class="conf-text text-fixed-height">${left_values[2]}</td>
-                    <td class="input-place"><div class="conf-item">${right_values[2]}</div></td>
-                </tr>
-                <tr>
-                    <td class="conf-text text-fixed-height">${left_values[3]}</td>
-                    <td class="input-place"><div class="conf-item">${right_values[3]}</div></td>
-                </tr>
-                <tr>
-                    <td class="conf-text text-fixed-height">${left_values[4]}</td>
-                    <td class="input-place"><div class="conf-item">${right_values[4]}</div></td>
-                </tr>
-            </table>
-        </div>
-    </solution>
-</div>
-
-</problem>`;
-
-// console.log(task)
-
-document.querySelector("#task_text").value = task;
+OSCH_2 = math.sqrt((1 - math.exp((-1) * lam * 60 * time_change))/(1 - math.exp((-1) * lam * 1800))) * 50
 
 </script>
+    <script type="text/javascript">
+        let elem = document.getElementById("section_5_1_training_1");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+        elem = document.getElementById("section_5_1_training_2");
+        if (elem.getElementsByClassName("incorrect").length !== 0){
+            for (let item of elem.getElementsByClassName("custom-comment")) {
+                item.style.display = 'block';
+            }
+        }
+    </script>
+
+    <p>При получении сцинтиграммы с использованием радиофармпрепарата с \(^{99m}\textrm{Tc}_2\) (\(Т_{1/2}\) = 6 ч)
+        отношение сигнал-шум (ОСШ) составило <strong>50:1</strong>. Введенная активность – 1 мКи, время сканирования –
+        <strong>30 мин</strong>.</p>
 
 
-</body>
-</html>
+    <p><strong>1. </strong>Как изменится величина ОСШ при том же времени сканирования, если введенную активность
+        увеличить <strong>в $change_1 раза (до $activity_change мКи)</strong>?</p>
+    <p><strong>2. </strong>Как изменится величина ОСШ при той же начальной введенной активности (1 мКи), если время
+        сканирования увеличить в <strong>$change_2 раза (до $time_change мин)</strong> ?</p>
+    <p>В этом случае рекомендуется найти отношение числа импульсов, зарегистрированных во время разных режимов сканирования. Для этого можно использовать разность активности радионуклида в начальный момент времени и активности радионуклида в момент окончания процедуры.</p>
+    <div class="no-equation">
+
+        <p><i>Оратите внимание, что дробные числа вводятся через точку.</i></p>
+
+        <div id="section_5_1_training_1">
+            <numericalresponse answer="$OSCH_1">
+                <label>Введите новое значение отношения сигнал-шум после увеличения введенной активности в
+                    <strong>$change_1</strong> раза (например, 50:1 или 100:1):</label>
+                <description>Требуется ввести только число перед «:1»</description>
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput trailing_text=":1"/>
+            </numericalresponse>
+            <!-- <p>Ответ: $OSCH_1</p> -->
+                    <div class="custom-comment">
+                        <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+                        <span class="custom-comment-content">Количество зарегистрированных импульсов пропорционально активности радионуклида.
+                            </span>
+                    </div>
+        </div>
+
+        <div id="section_5_1_training_2">
+            <numericalresponse answer="$OSCH_2">
+                <label>Введите новое значение отношения сигнал-шум после увеличения времени сканирования в
+                    <strong>$change_2</strong> раза (например, 50:1 или 100:1):</label>
+                <description>Требуется ввести только число перед «:1»</description>
+                <responseparam type="tolerance" default="0.5"/>
+                <formulaequationinput trailing_text=":1"/>
+            </numericalresponse>
+            <!-- <p>Ответ: $OSCH_2</p> -->
+            <div class="custom-comment">
+                <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
+                <span class="custom-comment-content">
+                Рекомендуется найти отношение числа зарегистрированных импульсов в течение \($time_change\) мин и \($time\) мин. Для этого можно использовать разность активности радионуклида в начальный момент времени и активности радионуклида в момент окончания процедуры.<br/>
+                Рекомендуется использовать значение постоянной распада в с<sup>-1</sup>.
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</problem>

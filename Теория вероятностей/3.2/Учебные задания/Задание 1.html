@@ -33,12 +33,12 @@
     </style>
 
     <script type="text/javascript">
-        let elem = document.getElementById("section_3_2_training_1");
-        if (elem.getElementsByClassName("incorrect").length !== 0){
-            for (let item of elem.getElementsByClassName("custom-comment")) {
-                item.style.display = 'block';
-            }
-        }
+        // let elem = document.getElementById("section_3_2_training_1");
+        // if (elem.getElementsByClassName("incorrect").length !== 0){
+        //     for (let item of elem.getElementsByClassName("custom-comment")) {
+        //         item.style.display = 'block';
+        //     }
+        // }
     </script>
 
     <script type="loncapa/python">
@@ -82,12 +82,17 @@ n = 62
         </table>
 
 
-        <div class="custom-comment">
-            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>
-            <span class="custom-comment-content"><strong>Комментарий: </strong>
-            Доверительная вероятность \(\gamma\), точность оценки \(\varepsilon\), среднее квадратическое отклонение \(\sigma\) и объем выборки \(n\) связаны соотношением \( 2\Phi \frac{\varepsilon \sqrt{n}}{\sigma} = \gamma \), где \(\Phi(x)\) – функция Лапласа. Решение уравнения ищем с помощью статистических таблиц.
-            </span>
-        </div>
+<!--        <div class="custom-comment">-->
+<!--            <span class="icon fa fa-question custom-comment-sign" aria-hidden="true"></span>-->
+<!--            <span class="custom-comment-content"><strong>Комментарий: </strong>-->
+<!--            Доверительная вероятность \(\gamma\), точность оценки \(\varepsilon\), среднее квадратическое отклонение \(\sigma\) и объем выборки \(n\) связаны соотношением \( 2\Phi \frac{\varepsilon \sqrt{n}}{\sigma} = \gamma \), где \(\Phi(x)\) – функция Лапласа. Решение уравнения ищем с помощью статистических таблиц.-->
+<!--            </span>-->
+<!--        </div>-->
 
     </div>
+    <demandhint>
+        <hint>
+            <p>Доверительная вероятность \(\gamma\), точность оценки \(\varepsilon\), среднее квадратическое отклонение \(\sigma\) и объем выборки \(n\) связаны соотношением \( 2\Phi \frac{\varepsilon \sqrt{n}}{\sigma} = \gamma \), где \(\Phi(x)\) – функция Лапласа. Решение уравнения ищем с помощью статистических таблиц.</p>
+        </hint>
+    </demandhint>
 </problem>
