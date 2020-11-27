@@ -21,11 +21,11 @@ T_norm = round(norm.ppf(1 - (alpha/2)), 4)
 T_exp = round(abs(x_1_avg - x_2_avg)/math.sqrt(x_1_s_2/N1 + x_2_s_2/N2), 4)
 
 if T_norm > T_exp:
-    answer_1 = True
-    answer_2 = False
-else:
-    answer_1 = False
     answer_2 = True
+    answer_1 = False
+else:
+    answer_2 = False
+    answer_1 = True
     </script>
     <div class="no-equation">
 
