@@ -261,7 +261,7 @@ let vm = new Vue({
         questions: questions,
         previous_answers: [],
         show_previous_answers: false,
-        max_answers: 5,
+        max_answers: 40,
     },
     mounted(){},
     methods: {
