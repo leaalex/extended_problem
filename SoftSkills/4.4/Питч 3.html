@@ -1,0 +1,132 @@
+<problem>
+    <div>
+        <div data-type="VideoErrorsApp" class="adv-app" data-initial-data='$student_data_str'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+import json
+
+data = {
+    "all_errors": [
+        {"id": "type_1", "name": "Внешний вид"},
+        {"id": "type_2", "name": "Взгляд"},
+        {"id": "type_3", "name": "Жестикуляция"},
+        {"id": "type_4", "name": "Интонация"},
+        {"id": "type_5", "name": "Междометия"},
+        {"id": "type_6", "name": "Слова-паразиты и слишком длинные паузы"},
+        {"id": "type_7", "name": "Содержательные и логические ошибки"}
+    ],
+    "max_answers": 100,
+    "correct_video_link": "https://video-storage.openedu.ru/video/s/p/sp87vzdm9p/hd.mp4",
+    "source_video_link": "https://video-storage.openedu.ru/video/k/q/kq3sj9x1vk/hd.mp4",
+    "video_duration": 80,
+    "errors": [
+        {
+            "time_interval": [0, 80],
+            "error_type": "type_1",
+        }, {
+            "time_interval": [0, 3],
+            "error_type": "type_6",
+        }, {
+            "time_interval": [8, 11],
+            "error_type": "type_5",
+        }, {
+            "time_interval": [12, 16],
+            "error_type": "type_3",
+        }, {
+            "time_interval": [18, 22],
+            "error_type": "type_5",
+        }, {
+            "time_interval": [22, 25],
+            "error_type": "type_6",
+        }, {
+            "time_interval": [29, 33],
+            "error_type": "type_5",
+        }, {
+            "time_interval": [30, 35],
+            "error_type": "type_3",
+        }, {
+            "time_interval": [39, 42],
+            "error_type": "type_6",
+        }, {
+            "time_interval": [45, 50],
+            "error_type": "type_3",
+        }, {
+            "time_interval": [50, 53],
+            "error_type": "type_5",
+        }, {
+            "time_interval": [56, 60],
+            "error_type": "type_6",
+        }, {
+            "time_interval": [72, 80],
+            "error_type": "type_4",
+        }
+    ]
+}
+
+
+student_data_str = json.dumps(
+    {
+        "all_errors": data["all_errors"],
+        "video_duration": data["video_duration"],
+        "max_answers": data["max_answers"],
+        "source_video_link": data["source_video_link"],
+    }
+)
+
+correct_answer_tmp = [x for x in data["errors"]]
+correct_answer = [x for x in data["errors"]]
+
+student_data_str = student_data_str.replace('"', "'")
+correct_answer_str = json.dumps(correct_answer).replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    message = ""
+    max_grade = len(data["errors"])
+    correctness = []
+    for sa in student_answer:
+        current_correctness = False
+        for inx_ca, ca in enumerate(correct_answer_tmp):
+            sa_time = int(sa["time"])
+            if sa['error_type'] == ca['error_type']:
+                if sa_time >= ca['time_interval'][0] and ca['time_interval'][1] >= sa_time:
+                    current_correctness = True
+                    del correct_answer_tmp[inx_ca]
+                    break
+        correctness.append(current_correctness)
+    grade = sum(correctness)
+    if grade != max_grade and all(correctness):
+        message = "Найдены не все ошибки!"
+
+    msg = {
+        "correctness": correctness,
+        "message": message,
+    }
+
+    grade_decimal = grade/max_grade
+
+    if grade_decimal == 1:
+        msg["video"] = data["correct_video_link"]
+        msg["correct_answer"] = correct_answer
+
+    if grade_decimal == 1:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg), 'grade_decimal': 1}]}
+    elif grade_decimal == 0:
+        return {'input_list': [{'ok': False, 'msg': json.dumps(msg), 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(msg), 'grade_decimal': grade_decimal}]}
+
+</script>
+
+
+</problem>

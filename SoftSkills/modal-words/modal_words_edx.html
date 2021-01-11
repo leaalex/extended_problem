@@ -1,0 +1,181 @@
+<problem>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import json
+import math
+import random
+import random
+import string
+
+
+source_data = [
+        "Как, ",
+        {
+            "default": u"роль",
+            "help_text": u"Укажите роль:",
+            "variants": [
+                {
+                    "text": "работодатель",
+                    "correct": True
+                },
+                {
+                    "text": "заинтересованная сторона",
+                }
+            ]
+        },
+        ", я ",
+        {
+            "default": u"хочу получить",
+            "help_text": u"Укажите потребность:",
+            "variants": [
+                {
+                    "text": "хочу получать всю информацию о студентах УрФУ",
+                },
+                {
+                    "text": "хочу иметь доступ в личном кабинете работодателя к спискам студентов, обучающихся на программах с проектным обучением, с возможностью просмотра результатов",
+                    "correct": True
+                }
+            ]
+        },
+        ", ",
+        {
+            "default": u"с такой-то целью",
+            "help_text": u"Укажите цель:",
+            "variants": [
+                {
+                    "text": "для удобства",
+                },
+                {
+                    "text": "для доступа к информации о потенциальных сотрудниках",
+                    "correct": True
+                }
+            ]
+        },
+        ".",
+        ]
+
+
+def random_string(chars=string.ascii_lowercase + string.digits, n=6):
+    return ''.join(random.choice(chars) for _ in range(n))
+
+
+student_data = []
+correct_answer = {}
+
+display_correct_answer = []
+display_correct_answer_str = ""
+
+for item in source_data:
+    if isinstance(item, str):
+        student_data.append(item)
+        display_correct_answer.append(item)
+        display_correct_answer_str += item
+    else:
+        op_id = random_string()
+        new_item = {
+            "default": item["default"],
+            "variants": [],
+            "id": op_id,
+        }
+        if "help_text" in item.keys():
+            new_item["help_text"] = item["help_text"]
+
+        for variant in item["variants"]:
+            variant_id = random_string()
+            new_item["variants"].append({"text": variant["text"],"id": variant_id})
+            if "correct" in variant.keys():
+                if variant["correct"] is True:
+                    correct_answer[op_id] = variant_id
+                    display_correct_answer_str += variant["text"]
+                    display_correct_answer.append({"text": variant["text"]})
+        student_data.append(new_item)
+
+student_data_json = json.dumps(student_data).replace("\"", "'")
+
+# check types: partial, binary
+check_type = 'partial'
+
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    grade = 0
+    correctness = {}
+
+    for an in correct_answer.keys():
+        correctness[an] = False
+        if student_answer[an]:
+            if student_answer[an] == correct_answer[an]:
+                correctness[an] = True
+                grade += 1
+
+    if check_type == 'binary':
+        if grade != max_grade:
+            grade = 0
+            for cc in correctness.keys():
+                correctness[cc] = False
+
+    grade = grade / max_grade
+    msg = json.dumps(correctness)
+    if grade == 1:
+        return {'input_list': [{'ok': True, 'msg': msg, 'grade_decimal': 1}]}
+    elif grade == 0:
+        return {'input_list': [{'ok': False, 'msg': msg, 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': msg, 'grade_decimal': grade}]}
+</script>
+
+<link rel="stylesheet" type="text/css" href="/static/modal_words.css" ></link>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>
+<script type="text/javascript" src="/static/modal_words.js"></script>
+<script type="text/javascript" src="/static/modal_words.js"></script>
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+<script type="text/javascript" src="/static/vue.js"></script>
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+
+<div>Составьте пользовательские истории, используя предложенные фразы. При составлении помните про правила составления историй.</div>
+<div id="modal_words_block_01">
+</div>
+
+<div id="modal_words_input_01" style="display: none!important;">
+    <customresponse cfn="check_answer">
+        <textline size="40" value="$taskId"/>
+        <br/>
+    </customresponse>
+</div>
+
+<script type="text/javascript">
+
+    let student_data = $student_data_json;
+
+    new ModalWords({
+        element: document.getElementById("modal_words_block_01"),
+        data: student_data,
+        input: document.getElementById("modal_words_input_01"),
+        task_text: "", /* можно не заполнять*/
+        default_signs: [], /*массив, содержащий 2 элемента: 1 - до фразы, 2 - после */
+    });
+
+</script>
+
+    <solution>
+
+        <div class="modal-words-answer">
+            <div class="modal-words-answer-header"><h2>Правильный ответ:</h2></div>
+            <div class="modal-words-answer-body">
+                <p>$display_correct_answer_str</p>
+            </div>
+        </div>
+
+    </solution>
+
+</problem>

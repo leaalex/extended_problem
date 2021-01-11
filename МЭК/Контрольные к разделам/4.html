@@ -1,0 +1,59 @@
+<problem>
+    <p>Контрольное задание по разделу 4 предполагает самостоятельный анализ стоп-кадра трафика коммуникационной сети c использованием утилиты <i>WireShark</i> с целью определения параметров синхронизации времени, используемых для согласования работы устройств цифровой подстанции.</p>
+    <p>Для выполнения задания, необходимо скачать .PCAP файл, а также иметь на компьютере установленную утилиту <i>WireShark</i>. Данная утилита относится к свободно распространяемому программному обеспечению. Скачать данную утилиту можно напрямую с платформы онлайн-обучения, а также ее свежую версию для <i>Windows</i> и <i>MacOS</i> можно скачать по ссылке с официального сайта. Кроме того, для анализа параметров стоп-кадра понадобится портал, обеспечивающий расшифровку данных системы описания моментов времени EPOCH.</p>
+
+    <p><strong>Материалы, необходимые для выполнения контрольного задания по разделу 4:</strong></p>
+
+    <p><a href="/static/Sync_PCAP.pcapng">Скачать файл PCAP</a></p>
+
+    <p>Скачать <i>WireShark</i> по ссылке из сети Интернет:<br />
+        [URL] <a href="https://www.wireshark.org/#download" target="_blank">https://www.wireshark.org/#download</a></p>
+    <p>Портал, обеспечивающий расшифровку данных системы описания моментов времени EPOCH:<br />
+        [URL] <a href="https://www.epochconverter.com/" target="_blank">https://www.epochconverter.com/</a></p>
+
+    <p><strong>Задание</strong></p>
+    <p>На основании стоп-кадра существующего трафика в коммуникационной сети определить:</p>
+    <ol>
+        <li>Протокол, использующийся для синхронизации устройств в сети</li>
+        <li>Дату, передаваемую в кадре.</li>
+    </ol>
+    <p>Путем открытия файла PCAP в утилите <i>WireShark</i>, применения соответствующих фильтров и анализа трафика, содержащегося в нем, необходимо дать ответы на эти два подзадания. Ответ на первое подзадание необходимо сформировать путем выбора из соответствующего ниспадающего списка правильного варианта ответа.</p>
+
+    <multiplechoiceresponse>
+        <label>1. Протокол синхронизации:</label>
+        <choicegroup type="MultipleChoice" shuffle="true">
+            <choice correct="true"><strong>PTP</strong>
+            </choice>
+            <choice correct="false"><strong>NTP</strong>
+            </choice>
+            <choice correct="false"><strong>SNTP</strong>
+            </choice>
+            <choice correct="false"><strong>IRIG-B</strong>
+            </choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+    <div id="date-input">
+            <customresponse cfn="check_answer">
+                <label>2. Для ответа на второе подзадание необходимо найти в кадре протокола синхронизации метку времени с зашифрованной в десятизначной последовательности датой в системе EPOCH. Воспользовавшись Интернет-порталом для расшифровки, необходимо набрать в расшифрованном виде дату в соответствующем поле календаря:</label>
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        <solution>$correct_answer_str</solution>
+    </div>
+<script type="loncapa/python">
+from datetime import datetime
+
+correct_answer = datetime.strptime("2020-12-09", "%Y-%m-%d")
+
+
+def check_answer(expect, ans):
+    student_answer = datetime.strptime(ans, "%Y-%m-%d")
+    return correct_answer.date() == student_answer.date()
+
+correct_answer_str = correct_answer.strftime("%d %B, %Y")
+</script>
+    <script type="text/javascript">
+        document.querySelector('#date-input input').setAttribute('type', "date");
+    </script>
+
+</problem>

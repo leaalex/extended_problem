@@ -1,0 +1,82 @@
+<link rel="stylesheet" type="text/css" href="./modal_words.css" ></link>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></link>
+<script type="text/javascript" src="./modal_words.js"></script>
+<script type="text/javascript" src="./vue.js"></script>
+
+<div>Составьте пользовательские истории, используя предложенные фразы. При составлении помните про правила составления историй.</div>
+
+<div id="modal_words_block_01">
+</div>
+
+<div id="modal_words_input_01" style="/*display: none!important;*/">
+<!--    <input type="text" style="width: 100%;" value='{"answer":{"word_place_01":"","word_place_02":"word_02_01","word_place_03":""}}' />-->
+    <customresponse cfn="check_answer">
+        <textline size="40" value="$taskId"/>
+        <br/>
+    </customresponse>
+</div>
+
+<script type="text/javascript">
+    let student_data = [
+        "Как, ",
+        {
+            "default": "роль",
+            "help_text": "Укажите роль:",
+            "id": "gfdsg",
+            "variants": [
+                {
+                    "text": "работодатель",
+                    "id": "wefsdf"
+                },
+                {
+                    "text": "заинтересованная сторона",
+                    "id": "sfgsgsdfs"
+                }
+            ]
+        },
+        ", я ",
+        {
+            "default": "хочу получить",
+            "help_text": "Укажите потебность:",
+            "id": "gfdsggfggg",
+            "variants": [
+                {
+                    "id": "g456gg",
+                    "text": "хочу получать всю информацию о студентах УрФУ",
+                },
+                {
+                    "id": "gfdsgdfxgdfgfggg",
+                    "text": "хочу иметь доступ в личном кабинете работодателя к спискам студентов, обучающихся на программах с проектным обучением, с возможностью просмотра результатов",
+                }
+            ]
+        },
+        ", ",
+        {
+            "default": "с такой-то целью",
+            "help_text": "Укажите цель:",
+            "id": "gdfhjfcgh456gg",
+            "variants": [
+                {
+                    "id": "g456g111g",
+                    "text": "для удобства",
+                },
+                {
+                    "text": "для доступа к информации о потенциальных сотрудниках",
+                    "id": "g4lkjhgf56gg",
+                }
+            ]
+        },
+        ".",
+    ]
+
+    console.log(student_data);
+    new ModalWords({
+        element: document.getElementById("modal_words_block_01"),
+        data: student_data,
+        input: document.getElementById("modal_words_input_01"),
+        task_text: "",
+        default_signs: [], /*массив, содержащий 2 элемента: 1 - до фразы, 2 - после */
+    });
+
+</script>
+</problem>
