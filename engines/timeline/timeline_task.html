@@ -15,38 +15,33 @@ taskObject = {}
 state_items = [
             {
                 "id": "eKlipf4K5",
-                "title": u"С этого момента можно подать международную заявку",
-                "correct_value": 6,
+                "title": u"Момент возникнования события",
+                "correct_value": 20,
             },
             {
                 "id": "AAlsgf9di",
-                "title": u"Окончание срока конвенционного приоритета, в течение которого можно подать международную заявку",
-                "correct_value": 12,
+                "title": u"Момент завершения учащенной передачи данных",
+                "correct_value": 70,
             },
             {
                 "id": "pud75sLKi",
-                "title": u"Срок публикации материалов заявки. До истечения этого срока заявку можно отозвать и она будет считаться не поданной. Это может пригодиться, если Вы, например, не успели подать международную заявку",
-                "correct_value": 18,
+                "title": u"Момент возобновления нормальной передачи",
+                "correct_value": 210,
             },
-            {
-                "id": "Drd34gwKi",
-                "title": u"Срок, в течение которого можно подать ходатайство на проведение экспертизы по существу",
-                "correct_value": 36,
-            }
         ]
 
 SVG_width = 800
 SVG_height = 560
 taskObject["settings"] = {}
-taskObject["settings"]["days_values"] = list(range(1, 37))
+taskObject["settings"]["days_values"] = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240]
 taskObject["settings"]["days"] = len(taskObject["settings"]["days_values"])
 taskObject["settings"]["timelineWidth"] = 600
 taskObject["settings"]["SVG_width"] = SVG_width
 taskObject["settings"]["SVG_height"] = SVG_height
 taskObject["settings"]["items_background_height"] = 140
-taskObject["settings"]["item_width"] = 180
+taskObject["settings"]["item_width"] = 120
 taskObject["settings"]["item_height"] = 104
-taskObject["settings"]["timeline_signature"] = u"Время, месяцы"
+taskObject["settings"]["timeline_signature"] = u"Время, мс"
 taskObject["settings"]["margin_binding_lines"] = 100
 taskObject["settings"]["timeline_marker_line_width"] = 20
 taskObject["settings"]["up_bottom_toggle"] = 32

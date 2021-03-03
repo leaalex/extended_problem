@@ -1,0 +1,169 @@
+<problem>
+
+    <style type="text/css">
+
+        #chart_task{
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+
+        #chart_task .problem-group-label{
+            margin-bottom: 2px !important;
+            margin-top: 20px !important;
+            font-weight: bold;
+        }
+
+        #chart_task .response_message{
+            margin-top: 20px;
+            color: #b21711;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+
+    <script type="text/javascript" src="/static/Chart.min.js"></script>
+
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
+
+
+
+    <script type="text/javascript"  charset="utf-8">
+
+        let labels_text = {
+            label1: "SCADA",
+            label2: "\u041B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0435\20\u0420\u0417\u0438\u0410",
+            label3: "\u0420\u0430\u0441\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u043D\u044B\u0435\20\u0420\u0417\u0438\u0410",
+            label4: "\u0426\u0435\u043D\u0442\u0440\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0435\20\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430",
+        }
+
+        $(document).ready(function () {
+            var ctx = document.getElementById('task_chart').getContext('2d');
+
+            let chart_data = [0,0,0,0]
+            $("#inputs_block input").each(function( index, element ) {
+                chart_data[index] = parseFloat(element.value);
+            });
+
+            window.myPie = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [labels_text.label1, labels_text.label2, labels_text.label3, labels_text.label4],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: chart_data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: true,
+                        position: "top",
+                        align: "middle",
+                        onClick: function(e){e.stopPropagation()}
+                    },
+                    responsive: false,
+                    title: {
+                        display: true,
+                        text: "\u0414\u043E\u043B\u044F \u0432\u043D\u0435\u0434\u0440\u044F\u0435\u043C\u043E\u0441\u0442\u0438 \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432, %",
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var label = data.labels[tooltipItem.index] + ' ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] +   ' %';
+                                return label;
+                            }
+                        },
+                        fontSize: 16,
+                    },
+                }
+            });
+
+            $("#inputs_block input").each(function( index, element ) {
+                $(element).on('input', function() {
+                    $("#inputs_block input").each(function( index, element ) {
+                        chart_data[index] = parseFloat(element.value);
+                    });
+
+                    window.myPie.config.data.datasets[0].data = chart_data;
+                    window.myPie.update();
+                });
+            })
+        })
+    </script>
+
+    <p>Заполнить процентное соотношение каждому из четырех классов устройств в соответствии с их внедряемостью на цифровых энергообъектах. Задание выполняется путем заполнения в соответствующие ячейки рабочего поля целочисленных значений процентов, соответствующих классу устройства.</p>
+
+    <div id="chart_task">
+
+        <div>
+            <customresponse cfn="check">
+                <script type="loncapa/python">
+def check(expect, ans):
+    grades = [False, False, False, False]
+    is_numbers = [False, False, False, False]
+    messages = ['', '', '', '']
+    ranges = [[7, 8, 9], [31, 32, 33], [29, 30, 31], [29, 30, 31]]
+    for answer_index, answer in enumerate(ans):
+        if str(answer).isdigit():
+            is_numbers[answer_index] = True
+            if int(answer) in ranges[answer_index]:
+                grades[answer_index] = True
+        else:
+            messages[answer_index] = 'Указанное значение не является целым числом!'
+
+    overall_message = ''
+    if all(is_numbers):
+        if sum([int(ans[0]), int(ans[1]), int(ans[2]), int(ans[3])]) != 100:
+            overall_message = 'Суммарная доля должна составлять 100 %'
+            grades = [False, False, False, False]
+
+    return {'overall_message': overall_message,
+            'input_list': [
+                {'ok': grades[0], 'msg': messages[0]},
+                {'ok': grades[1], 'msg': messages[1]},
+                {'ok': grades[2], 'msg': messages[2]},
+                {'ok': grades[3], 'msg': messages[3]}]}
+</script>
+
+            <div id="inputs_block">
+                <textline size="20" correct_answer="8" label="SCADA" />
+                <textline size="20" correct_answer="32" label="Локальные РЗиА" />
+                <textline size="20" correct_answer="30" label="Распределенные РЗиА" />
+                <textline size="20" correct_answer="30" label="Централизованные устройства" />
+            </div>
+
+            </customresponse>
+
+        </div>
+
+        <div>
+            <canvas id="task_chart" width="400" height="400"></canvas>
+        </div>
+
+    </div>
+
+</problem>

@@ -1,0 +1,67 @@
+<problem>
+    <style>
+        .scheme-task {
+            display: flex;
+        }
+        .scheme-task label{
+            padding: 0px !important;
+            padding-left: 0px !important;
+            border: 0px solid #e4e4e4 !important;
+            margin-bottom: 0px !important;
+        }
+
+        .scheme-task input[type="radio"]:checked ~ img {
+            box-shadow: 0px 0px 0px 3px #ec6853;
+        }
+
+        .scheme-task .field img:hover {
+            box-shadow: 0px 0px 0px 3px rgb(249 207 152);
+        }
+
+        .scheme-task .field{
+            padding: 3px;
+        }
+        .scheme-task .field:nth-child(2n+1) {
+            pointer-events: none;
+        }
+
+        .scheme-task .field:nth-child(2n+1) img{
+            width: 189px;
+        }
+
+        .scheme-task .field:nth-child(2n) img{
+            width: 56px;
+            border-radius: 2px;
+            margin-left: 65px;
+        }
+
+        .scheme-task input{
+            display: none !important;
+        }
+
+        .scheme-task img{
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+	}
+   </style>
+
+    <p>На приведенной на рисунке схеме, включающей устройство полевого уровня, IED, и HMI пометить ту связь, передача информации по которой должна осуществляться посредством протокола MMS</p>
+    <div class="scheme-task">
+        <div><img style="width: 210px; pointer-events: none;" src="/static/kek_01.png" /></div>
+        <div>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice">
+                    <choice correct="false"><img src="/static/kek_02.png" /></choice>
+                    <choice correct="true"><img src="/static/kek_03.png" /></choice>
+                    <choice correct="false"><img src="/static/kek_04.png" /></choice>
+                    <choice correct="false"><img src="/static/kek_05.png" /></choice>
+                    <choice correct="false"><img src="/static/kek_06.png" /></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+    </div>
+</problem>

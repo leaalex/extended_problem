@@ -1,0 +1,77 @@
+<problem>
+    <style type="text/css">
+        .query-task{
+            min-width: 700px;
+        }
+
+
+        .query-task	table{
+            margin: 0.41575em 0 !important;
+        }
+
+        .query-task	td{
+            padding: 0px !important;
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+        .query-task	input{
+            min-width: 30px !important;
+            height: 32px !important;
+            padding: 0px 4px !important;
+            box-shadow: none !important;
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .query-task	.trailing_text, .query-task .status, .query-task .answer{
+            display: none !important;
+        }
+    </style>
+
+    <div class="query-task">
+        <p>Заполнить недостающие поля фильтра GOOSE сообщений в WireShark по скриншоту окна утилиты.</p>
+        <img style="max-width: 700px;border: 1px solid #e7e7e7;margin-bottom: 10px;" src="/static/BBj4wyfsn42Ncf.png" />
+        <p><strong>Строка фильтра:</strong></p>
+        <table>
+            <tr>
+                <td>
+                    goose.appid==
+                </td>
+                <td>
+                    <stringresponse answer="0000" type="ci">
+                        <textline size="4"/>
+                    </stringresponse>
+                </td>
+                <td>
+                    &amp;&amp;eth.dst==01:0c:cd:01:
+                </td>
+                <td>
+                    <stringresponse answer="01" type="ci">
+                        <textline size="2"/>
+                    </stringresponse>
+                </td>
+                <td>
+                    :
+                </td>
+                <td>
+                    <stringresponse answer="A7" type="ci">
+                        <textline size="2"/>
+                    </stringresponse>
+                </td>
+            </tr>
+        </table>
+        <solution>
+            Правильно скомпонованный фильтр будет выглядеть так:
+            <table>
+                <tr>
+                    <td style="color: #034c01;">
+                        goose.appid==<strong>0000</strong>&amp;&amp;eth.dst==01:0c:cd:01:<strong>01</strong>:<strong>А7</strong>
+                    </td>
+                </tr>
+            </table>
+        </solution>
+    </div>
+
+</problem>
