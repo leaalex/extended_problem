@@ -1,50 +1,50 @@
 <problem>
     <style>
-        .center {text-align: center !important}
-
-        #table_task_coutries .matching-table{
-            width: 960px !important;
-            height: 540px;
-            background-image: url('/static/task_coutries_image.png');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            padding: 90px 105px 78px 95px;
+        img.img{
+            width: 150px;
+            margin: 0 auto;
+            display: block;
         }
-
-
-        /*.mathjax-container{*/
-
-        #table_task_coutries .answer p {
+        .center{
             text-align: center;
         }
-
-        #table_task_coutries .answers .answer{
-            flex-grow: initial !important;
-            min-width: 0px !important;
+        .problem .matching-table tr.fixed td {
+            background: white!important;
+            border-bottom: none!important;
+        }
+        .problem .matching-table tr.fixed td .answer{
+            cursor: not-allowed!important;
         }
 
-        #table_task_coutries .matching-table tr td .answer{
-            margin: 0px 0px 0px 0px !important;
-            min-width: 0px !important;
-            height: 100% !important;
-            max-height: 41px !important;
-            text-align: center;
-            padding: 20px 0px 0px 0px !important
+        .problem .matching-table tr.no-border-top td {
+            border-top: none!important;
+        }
+        .adv-app .answer{
+            background: white !important;
+        }
+        .h80{
+            height: 80px!important;
         }
 
-        #table_task_coutries .matching-table .width90px{
-            border: 1px dashed #292f3b !important;
-            border-top-left-radius: 0px !important;
-            border-top-right-radius: 0px !important;
-            border-bottom-left-radius: 0px !important;
-            border-bottom-right-radius: 0px !important;
+        .matching-table tr .conf-header .answer{
+            background: #fafafa!important;
+        }
+        /*.conf-inputable.input-place{*/
+        .matching-table .h80 td:last-child{
+            display: flex !important;
+            min-height: 150px;
+        }
+
+        .shina {
+            height: auto !important;
+        }
+        .shina td{
+            padding: 0px;
+        }
+        .shina td .answer{
             padding: 0px !important;
-            vertical-align: top;
-            width: 150px !important;
-            height: 61px !important;
-            vertical-align: middle !important;
+            margin: 0px !important;
         }
-
     </style>
     <script type="loncapa/python">
 import json
@@ -53,38 +53,33 @@ import string
 
 data = {
     "content": {
-        "body": "Расставить на диаграмме (с осями: объем рынка/востребованность решений) крупные перспективные рынки Индонезии и Индии с большой конкуренцией.",
+        "body": "Путем перемещения отдельных вторичных устройств распределить их по зонам (уровням) в соответствии с полной иерархией цифровой подстанции. Доступные для перемещения блоки располагаются под рабочей зоной учебного задания. Порядок расположения оборудования в пределах одного уровня не играет роли.",
+        "answers_title" : 'Устройства:',
     },
     "table": [
-    [
-    [],[],[],[],[]
-    ],
-    [
-    [],[],[],['__Индия__'],[]
-    ],
-    [
-    [],[],[],[],[]
-    ],
-    [
-    [],[],[],[],[]
-    ],
-    [
-    [],[],[],[],['__Индонезия__']
-    ],
-    [
-    [],[],[],[],[]
-    ],
-    ],
-  "settings":{
+     [
+      '__Станционный уровень__.{.text-blue-8} .{.center}', ['SCADA.{.center} \n\n ![](/static/task_2_1_img_04.png).{.img}', 'БД УСПД.{.center} \n\n ![](/static/task_2_1_img_05.png).{.img}']
+     ],[
+      'шина станции .{.center}'
+     ],[
+      '__Уровень присоединения__.{.text-blue-8} .{.center}', ['Терминал РЗ.{.center} \n\n ![](/static/task_2_1_img_01.png).{.img}', 'Счетчик ЭЭ.{.center} \n\n ![](/static/task_2_1_img_02.png).{.img}', 'РАС (-П).{.center} \n\n ![](/static/task_2_1_img_03.png).{.img}']
+     ],[
+      'шина процесса .{.center}'
+     ],[
+      '__Полевой уровень__.{.text-blue-8} .{.center}', ['Трансформатор тока.{.center} \n\n ![](/static/task_2_1_img_06.png).{.img}', 'Цифровой выключатель.{.center} \n\n ![](/static/task_2_1_img_07.png).{.img}', 'DMU.{.center} \n\n ![](/static/task_2_1_img_08.png).{.img}']
+     ],
+
+],"settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
         'is_exist_mathjax': True,
         'is_exist_image': True,
-        "capacity": 1,
+        "capacity": 3,
+        "colspan": { 2:{1:2,},4:{1:2,},},
   },
   "style": {
-        'rows': ['', ''],
-        'colls': ['width90px', 'width90px', 'width90px', 'width90px', 'width90px']
+        'rows': ['h80', 'shina', 'h80', 'shina', 'h80'],
+        'colls': ['w30']
     }
 }
 
@@ -224,40 +219,36 @@ student_data = student_data.replace('"', "'")
 
 correct_data = json.dumps(data)
 correct_data = correct_data.replace('"', "'")
-
-image_path = "/static/kek.png"
-
 </script>
-    <div id="table_task_coutries">
+    <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
+        <span class="loadingspinner"/>
+        <style>
+            .loadingspinner {
+                display: block;
+                margin: 0 auto;
+                pointer-events: none;
+                width: 2.5em;
+                height: 2.5em;
+                border: 0.4em solid transparent;
+                border-color: #eee;
+                border-top-color: #3E67EC;
+                border-radius: 50%;
+                animation: loadingspin 1s linear infinite;
+            }
 
-        <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
-            <span class="loadingspinner"/>
-            <style>
-                .loadingspinner {
-                    display: block;
-                    margin: 0 auto;
-                    pointer-events: none;
-                    width: 2.5em;
-                    height: 2.5em;
-                    border: 0.4em solid transparent;
-                    border-color: #eee;
-                    border-top-color: #3E67EC;
-                    border-radius: 50%;
-                    animation: loadingspin 1s linear infinite;
+            @keyframes loadingspin {
+                100% {
+                    transform: rotate(360deg)
                 }
-
-                @keyframes loadingspin {
-                    100% {
-                        transform: rotate(360deg)
-                    }
-                }
-            </style>
-        </div>
-        <div style="display: none">
-            <customresponse cfn="check_answer">
-                <textline size="120"/>
-            </customresponse>
-            <solution data-initial-data="$correct_data"/>
-        </div>
+            }
+        </style>
+    </div>
+    <div style="display: none">
+        <customresponse cfn="check_answer">
+            <textline size="120"/>
+        </customresponse>
+        <solution data-initial-data="$correct_data"/>
     </div>
 </problem>
+
+

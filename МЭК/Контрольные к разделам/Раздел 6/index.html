@@ -1,0 +1,401 @@
+<problem>
+    <script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_HscaDvtDDyd63"
+
+correct_answer = {"or":{"or": ["b1","b2","b3","b4","b5"]},}
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]["a1"]
+    if student_answer == ["b1","b2","b3","b4","b5"] or student_answer == ["b1","b4","b3","b2","b5"]:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}, ]}
+    else:
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': 0}, ]}
+
+</script>
+
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+
+    <script type="text/javascript" src="/static/sortable.js"></script>
+
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
+    <style>
+        #$unique_id .text-fixed-width{
+            width: 33%;
+        }
+
+        #$unique_id .text-fixed-height{
+              height: 200px;
+          }
+
+        #$unique_id .conf-table td{
+              word-break: initial;
+              /*height: 32px;*/
+              padding: 0px !important;
+          }
+
+        #$unique_id .no-border{
+              border: none !important;
+          }
+
+        #$unique_id .fixed-cell{
+              display: flex;
+              align-items: stretch;
+              justify-content: center;
+              min-width: 770px;
+          }
+
+        #$unique_id .conf-item {
+              font-size: 14px;
+              max-width: 190px !important;
+              vertical-align: middle;
+              border: 1px solid #b2b2b2;
+              text-align: center;
+              width: 18%;
+              max-height: 260px !important;
+              display: flex;
+          }
+
+        #$unique_id div.equation, #$unique_id .trailing_text, #$unique_id .status{
+                                                                    display: none !important;
+                                                                }
+
+        .problem #$unique_id .fixed-cell .inputtype.formulaequationinput input, .problem #$unique_id .fixed-cell .capa_inputtype.textline input{
+                                                                                               min-width: 20px !important;
+                                                                                               height: auto !important;
+                                                                                               padding: 2px !important;
+                                                                                               box-shadow: none !important;
+                                                                                               text-align: center;
+                                                                                               margin: 0px 2px !important;
+                                                                                           }
+
+        #$unique_id .my-handle img{
+              max-width: 100%;
+          }
+        .my-handle{
+            cursor: move;
+        }
+
+
+
+        #$unique_id p.answer{
+              display: none !important;
+          }
+
+
+        .range-task input[type=range] {
+            width: 100%;
+            padding: 30px 0.5rem !important;
+            background-color: transparent;
+            -webkit-appearance: none;
+        }
+        .range-task input[type=range]:focus {
+            outline: none;
+        }
+        .range-task input[type=range]::-webkit-slider-runnable-track {
+            background: #ffffff;
+            border: 1px solid #010101;
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+        }
+        .range-task input[type=range]::-webkit-slider-thumb {
+            margin-top: -21px;
+            width: 12px;
+            height: 50px;
+            background: rgba(255, 0, 0, 0.9);
+            border: 1px solid #ff0000;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+        .range-task input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ffffff;
+        }
+        .range-task input[type=range]::-moz-range-track {
+            background: #ffffff;
+            border: 1px solid #010101;
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+        }
+        .range-task input[type=range]::-moz-range-thumb {
+            width: 12px;
+            height: 50px;
+            background: rgba(255, 0, 0, 0.9);
+            border: 1px solid #ff0000;
+            cursor: pointer;
+        }
+        .range-task input[type=range]::-ms-track {
+            background: transparent;
+            border-color: transparent;
+            border-width: 28px 0;
+            color: transparent;
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+        }
+        .range-task input[type=range]::-ms-fill-lower {
+            background: #fcfcfc;
+            border: 1px solid #010101;
+        }
+        .range-task input[type=range]::-ms-fill-upper {
+            background: #ffffff;
+            border: 1px solid #010101;
+        }
+        .range-task input[type=range]::-ms-thumb {
+            width: 12px;
+            height: 50px;
+            background: rgba(255, 0, 0, 0.9);
+            border: 1px solid #ff0000;
+            cursor: pointer;
+            margin-top: 0px;
+            /*Needed to keep the Edge thumb centred*/
+        }
+        .range-task input[type=range]:focus::-ms-fill-lower {
+            background: #ffffff;
+        }
+        .range-task input[type=range]:focus::-ms-fill-upper {
+            background: #ffffff;
+        }
+        /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+        how to remove the virtical space around the range input in IE*/
+        @supports (-ms-ime-align:auto) {
+            /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+            input[type=range] {
+                margin: 0;
+                /*Edge starts the margin from the thumb, not the track as other browsers do*/
+            }
+        }
+
+
+    </style>
+
+    <script type="text/javascript" src="/static/matching_table_mobile_mek.js"></script>
+    <script type="text/javascript">
+        let input_block = document.querySelector(".range-task input");
+        input_block.setAttribute("type", "range")
+        input_block.setAttribute("min", "0")
+        input_block.setAttribute("max", "10")
+        input_block.setAttribute("step", "1")
+
+    </script>
+
+    <div class="matching_table disable-marker" id="$unique_id">
+
+
+
+        <p>Контрольное задание по разделу 6 заключается в составлении модели испытательного стенда для тестирования интеллектуального устройства (IED) c функцией дистанционной защиты, а также внесении параметров, обеспечивающих работоспособность стенда. Кроме того, в рамках задания необходимо определить границу, разделяющую трафик коммуникационной сети испытательного стенда и безопасный трафик.</p>
+        <p><strong>Компоненты испытательного стенда:</strong></p>
+        <p>1. Используя пиктограммы компонентов испытательного стенда, приведенные на рабочей области задания, необходимо верно их расставить на рабочем поле слева направо, начиная с источника тестовых сигналов. Расстановка компонентов испытательного стенда производится их перетаскиваниемм на рабочей области задания. Проверка правильности сборки испытательного стенда осуществляется по завершении всех заданий.</p>
+        <p><strong>Параметры настройки испытаний:</strong></p>
+        <p>2. После завершения расстановки компонентов испытательного стенда, необходимо произвести ввод двух параметров, а именно указать число потоков Sampled Values и вписать значение параметра Sim.stVal в соответствующие поля пиктограмм компонентов испытательного стенда для возможности проведения тестирования устройства. Необходимо указать минимальное и достаточное количество потоков Sampled Values для проведения испытаний устройства (объекта испытаний) в режиме Test. Для Sim.stVal указывается параметр true или false.</p>
+        <p><strong>Граница безопасного трафика:</strong></p>
+        <p>3. Используя ползунок, обозначающий границу, необходимо передвинуть его в горизонтальной области, зафиксировав его в одной из позиций, верно указывающей границу, по которой обеспечивается безопасность прохождения коммуникационных сообщений.</p>
+
+
+        <table class="conf-table">
+            <tbody>
+            <tr>
+                <td style="" class="conf-text no-border range-task">
+                    <h2 style="text-align: center;">Граница безопасного трафика</h2>
+                    <numericalresponse answer="5">
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+
+            <tr>
+                <td id="a1" capacity="1" class="conf-answers-place conf-inputable input-place fixed-cell no-border">
+                    <div id="b3" class="conf-item conf-draggable">
+                        <div class="my-handle">
+                            <img style="" src="/static/lol3.png" />
+                        </div>
+                    </div>
+                    <div id="b1" class="conf-item conf-draggable">
+                        <div class="my-handle">
+                            <img style="" src="/static/lol2.png" />
+                        </div>
+                        <div>
+                            <table style="margin: 0 auto !important;" >
+                                <tr>
+                                    <td class="no-border" style="text-align: center;" colspan="2">Число SV потоков </td>
+                                </tr>
+                                <tr>
+                                    <td class="no-border" style="text-align: right; width: 50%;">n= </td>
+                                    <td class="no-border">
+                                        <numericalresponse answer="2">
+                                            <formulaequationinput size="1"/>
+                                        </numericalresponse>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                    <div id="b5" class="conf-item conf-draggable">
+                        <div class="my-handle">
+                            <img style="" src="/static/lol4.png" />
+                        </div>
+                        <div>
+                            <table style="margin: 0 auto !important;" >
+                                <tr>
+                                    <td class="no-border">Sim.stVal = </td>
+                                    <td class="no-border">
+                                        <stringresponse answer="true" type="ci">
+                                            <textline size="4"/>
+                                        </stringresponse>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="b4" class="conf-item conf-draggable">
+                        <div class="my-handle">
+                            <img style="" src="/static/lol1.png" />
+                        </div>
+                    </div>
+
+                    <div id="b2" class="conf-item conf-draggable">
+                        <div class="my-handle">
+                            <img style="" src="/static/lol1.png" />
+                        </div>
+                    </div>
+
+
+
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+        <!--         <p style="">Этапы коммуникационного диалога:</p>
+                <div class="conf-answers-place conf-inputable conf-all-answers fifths ">
+
+                </div> -->
+
+
+
+        <div id="matching_table_input" style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$taskId" />
+                <br/>
+            </customresponse>
+
+            <div class="message-about-grade"></div>
+        </div>
+
+        <solution>
+            <div class="detailed-solution">
+
+                <div class="detailed-solution-header"><h1>Решение задачи</h1>
+
+                    <figure style="text-align:center;">
+                        <img src="/static/correct_answer_UGHC67dsac.png" alt="" style="max-width: 900px; width: 100%"/>
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+
+
+
+            </div>
+        </solution>
+
+    </div>
+</problem>

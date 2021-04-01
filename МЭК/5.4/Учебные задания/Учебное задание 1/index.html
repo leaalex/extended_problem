@@ -1,50 +1,17 @@
 <problem>
     <style>
-        .center {text-align: center !important}
-
-        #table_task_coutries .matching-table{
-            width: 960px !important;
-            height: 540px;
-            background-image: url('/static/task_coutries_image.png');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            padding: 90px 105px 78px 95px;
+        .custom_h130 {
+            height: 130px !important;
         }
-
-
-        /*.mathjax-container{*/
-
-        #table_task_coutries .answer p {
-            text-align: center;
+        .center  {text-align: center !important;
         }
-
-        #table_task_coutries .answers .answer{
-            flex-grow: initial !important;
-            min-width: 0px !important;
-        }
-
-        #table_task_coutries .matching-table tr td .answer{
-            margin: 0px 0px 0px 0px !important;
-            min-width: 0px !important;
-            height: 100% !important;
-            max-height: 41px !important;
-            text-align: center;
-            padding: 20px 0px 0px 0px !important
-        }
-
-        #table_task_coutries .matching-table .width90px{
-            border: 1px dashed #292f3b !important;
-            border-top-left-radius: 0px !important;
-            border-top-right-radius: 0px !important;
-            border-bottom-left-radius: 0px !important;
-            border-bottom-right-radius: 0px !important;
+        .matching-table tr td{
             padding: 0px !important;
-            vertical-align: top;
-            width: 150px !important;
-            height: 61px !important;
-            vertical-align: middle !important;
         }
-
+        .custom-font{
+            font-family: monospace;
+            font-size: 16px;
+        }
     </style>
     <script type="loncapa/python">
 import json
@@ -53,26 +20,18 @@ import string
 
 data = {
     "content": {
-        "body": "Расставить на диаграмме (с осями: объем рынка/востребованность решений) крупные перспективные рынки Индонезии и Индии с большой конкуренцией.",
+        "body": 'Соотнесите фрагмент xml кода и его наименование: \n\n &lt;Chapter title = "My favourite chapter" page = "42"> In this chapter we… &lt;\Chapter>  .{.custom-font}',
     },
     "table": [
     [
-    [],[],[],[],[]
-    ],
-    [
-    [],[],[],['__Индия__'],[]
-    ],
-    [
-    [],[],[],[],[]
-    ],
-    [
-    [],[],[],[],[]
-    ],
-    [
-    [],[],[],[],['__Индонезия__']
-    ],
-    [
-    [],[],[],[],[]
+      '__Chapter__.{.text-blue-8 .custom-font} .{.center}', '__title__.{.text-blue-8 .custom-font} .{.center}', '__"42"__.{.text-blue-8 .custom-font} .{.center}', '__In this chapter we…__.{.text-blue-8 .custom-font} .{.center}', '__&lt;\Chapter>__.{.text-blue-8 .custom-font} .{.center}',
+     ],
+        [
+['Имя тега'],
+['имя атрибута'],
+['значение тега'],
+['Содержание тега'],
+['Закрывающий тег']
     ],
     ],
   "settings":{
@@ -80,11 +39,11 @@ data = {
         "is_exist_advanced_style": True,
         'is_exist_mathjax': True,
         'is_exist_image': True,
-        "capacity": 1,
+        'capacity': 1,
   },
   "style": {
         'rows': ['', ''],
-        'colls': ['width90px', 'width90px', 'width90px', 'width90px', 'width90px']
+        'colls': ['w20', 'w20', 'w20', 'w20', 'w20']
     }
 }
 
@@ -224,40 +183,34 @@ student_data = student_data.replace('"', "'")
 
 correct_data = json.dumps(data)
 correct_data = correct_data.replace('"', "'")
-
-image_path = "/static/kek.png"
-
 </script>
-    <div id="table_task_coutries">
+    <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
+        <span class="loadingspinner"/>
+        <style>
+            .loadingspinner {
+                display: block;
+                margin: 0 auto;
+                pointer-events: none;
+                width: 2.5em;
+                height: 2.5em;
+                border: 0.4em solid transparent;
+                border-color: #eee;
+                border-top-color: #3E67EC;
+                border-radius: 50%;
+                animation: loadingspin 1s linear infinite;
+            }
 
-        <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
-            <span class="loadingspinner"/>
-            <style>
-                .loadingspinner {
-                    display: block;
-                    margin: 0 auto;
-                    pointer-events: none;
-                    width: 2.5em;
-                    height: 2.5em;
-                    border: 0.4em solid transparent;
-                    border-color: #eee;
-                    border-top-color: #3E67EC;
-                    border-radius: 50%;
-                    animation: loadingspin 1s linear infinite;
+            @keyframes loadingspin {
+                100% {
+                    transform: rotate(360deg)
                 }
-
-                @keyframes loadingspin {
-                    100% {
-                        transform: rotate(360deg)
-                    }
-                }
-            </style>
-        </div>
-        <div style="display: none">
-            <customresponse cfn="check_answer">
-                <textline size="120"/>
-            </customresponse>
-            <solution data-initial-data="$correct_data"/>
-        </div>
+            }
+        </style>
+    </div>
+    <div style="display: none">
+        <customresponse cfn="check_answer">
+            <textline size="120"/>
+        </customresponse>
+        <solution data-initial-data="$correct_data"/>
     </div>
 </problem>

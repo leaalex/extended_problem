@@ -1,0 +1,96 @@
+<problem>
+    <style>
+        #image_select{
+            position:relative;
+            padding-bottom: 20px;
+        }
+        #image_select_choices{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        #image_select_choices .field{
+            position: absolute;
+            white-space: nowrap;
+            user-select: none;
+
+        }
+        #image_select_choices .field:hover{
+            /*background: aliceblue;*/
+        }
+        #image_select_choices .field input{
+            display: none;
+        }
+        #image_select_choices .field label{
+            border: none;
+            border: none;
+            font-size: 20px !important;
+            padding: 0px !important;
+            margin: 0px;
+        }
+
+        #image_select_choices .choicegroup.capa_inputtype{
+            width: 100%;
+            text-align: center;
+        }
+
+        #image_select_choices .indicator-container{
+            position: absolute;
+            bottom: 0;
+        }
+
+        #image_select_choices .field label div{
+            border-radius: 2px;
+        }
+        #image_select_choices .field:nth-child(1){
+            top: 161px;
+            left: 437px;
+        }
+        #image_select_choices .field:nth-child(2){
+            top: 161px;
+            left: 607px;
+        }
+        #image_select_choices .field:nth-child(3){
+            top: 266px;
+            left: 437px;
+        }
+        #image_select_choices .field:nth-child(4){
+            top: 266px;
+            left: 607px;
+        }
+
+        #image_select_choices input[type="checkbox"]:checked ~ div {
+
+            box-shadow: 0px 0px 0px 4px rgb(255 0 0);
+        }
+
+        .commutator_answer{
+            width: 74px;
+            box-shadow: 0 0 0px 2px rgb(0 0 0);
+            height: 19px;
+            background: #ffffff00;
+        }
+
+        .commutator_answer:hover{
+            background: #00c6de4d;
+        }
+    </style>
+    <p>На основании приведенной логической архитектуры цифровой коммуникационной сети с <i>VLAN</i>, через которую передаются потоки <i>Sampled Values</i>, <i>GOOSE</i> сообщения и метки времени по протоколу <i>PTP</i>, отметить коммутаторы на физической архитектуре, участвующие в передаче меток синхронизации от сервера точного времени другим устройствам в сети.</p>
+    <div id="image_select">
+
+        <img style="width: 800px; min-width: 800px;" src="/static/Epr74MdVpm.png"> </img>
+
+        <div id="image_select_choices">
+            <choiceresponse>
+                <checkboxgroup>
+                    <choice correct="true"><div class="commutator_answer"></div></choice>
+                    <choice correct="true"><div class="commutator_answer"></div></choice>
+                    <choice correct="true"><div class="commutator_answer"></div></choice>
+                    <choice correct="false"><div class="commutator_answer"></div></choice>
+                </checkboxgroup>
+            </choiceresponse>
+        </div>
+    </div>
+</problem>

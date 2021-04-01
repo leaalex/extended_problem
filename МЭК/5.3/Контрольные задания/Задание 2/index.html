@@ -1,0 +1,106 @@
+<problem>
+    <style>
+        #mek_image_inputs_block{
+            position: relative;
+            padding-bottom: 20px;
+            width: 800px;
+            margin: 0 auto;
+        }
+        #lel_img{
+            width: 800px;
+            min-width: 800px;
+        }
+        #image_inputs_block{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        #image_inputs_block input[type="text"]{
+            min-width: 70px;
+            height: 36px;
+            padding: 0px 4px;
+            text-align: center;
+        }
+
+        #image_inputs_block .image-input{
+            position: absolute;
+            white-space: nowrap;
+
+        }
+
+        #image_inputs_block .image-input .trailing_text{
+            display: none;
+        }
+
+        #image_inputs_block .image-input p.answer {
+            margin-top: 6px !important;
+            margin-bottom: 0 !important;
+            background: white !important;
+            padding: 0px !important;
+        }
+
+        #image_inputs_block .image-input .status{
+            display: none;
+        }
+
+        #image_inputs_block .image-input:nth-child(1){
+            top: 58px;
+            left: 6px;
+        }
+
+        #image_inputs_block .image-input:nth-child(2){
+            top: 167px;
+            left: 10px;
+        }
+
+        #image_inputs_block .image-input:nth-child(3){
+            top: 128px;
+            left: 358px;
+        }
+
+
+        #image_inputs_block .image-input:nth-child(4){
+            top: 34px;
+            left: 715px;
+        }
+        #image_inputs_block .image-input:nth-child(5){
+            top: 190px;
+            left: 715px;
+        }
+
+    </style>
+    <p>Необходимо заполнить пустые блоки обозначениями логических узлов таким образом, чтобы полученная логическая схема соответствовала простейшей одноступенчатой дифференциальной защите двухобмоточного трансформатора, действующей на отключение со всех сторон. </p>
+
+    <div id="mek_image_inputs_block">
+        <img id="lel_img" src="/static/05_03_task_02_image_01.png"> </img>
+        <div id="image_inputs_block">
+            <div class="image-input">
+                <stringresponse answer="TCTR" type="ci">
+                    <textline size="4"/>
+                </stringresponse>
+            </div>
+            <div class="image-input">
+                <stringresponse answer="TCTR" type="ci">
+                    <textline size="4"/>
+                </stringresponse>
+            </div>
+            <div class="image-input">
+                <stringresponse answer="PDIF" type="ci">
+                    <textline size="4"/>
+                </stringresponse>
+            </div>
+            <div class="image-input">
+                <stringresponse answer="XCBR" type="ci">
+                    <textline size="4"/>
+                </stringresponse>
+            </div>
+            <div class="image-input">
+                <stringresponse answer="XCBR" type="ci">
+                    <textline size="4"/>
+                </stringresponse>
+            </div>
+        </div>
+    </div>
+</problem>

@@ -1,0 +1,90 @@
+<problem>
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+    <script type="text/javascript" src="/static/inputmask.js"></script>
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
+    <script type="text/javascript">
+        var selector = document.querySelector('.mask-mac input');
+        var im = new Inputmask("mac", {clearMaskOnLostFocus: false});
+        im.mask(selector);
+    </script>
+
+    <style type="text/css">
+        .mask-mac p {
+            margin-bottom: 0px !important;
+        }
+
+        .mask-mac .solution-span span {
+            margin: 4px 0 !important;
+        }
+    </style>
+
+    <customresponse cfn="check">
+        <script type="loncapa/python">
+
+def check(expect, ans):
+    mac_addr_0 = ["01", "0C", "CD", "04", "00"]
+    mac_addr_min = int("00", 16)
+    mac_addr_max = int("ff", 16)
+    mac_result = {'ok': True, 'msg': ''}
+    mac_answer = ans[0].split(":")
+    try:
+        if len(mac_answer) == len(mac_addr_0) + 1:
+            last_octet = mac_answer[len(mac_answer ) -1]
+            if not mac_addr_max >= int(last_octet, 16) >= mac_addr_min:
+                mac_result['ok'] = False
+            for octet_idx, octet in enumerate(mac_addr_0):
+                if int(octet, 16) != int(mac_answer[octet_idx], 16):
+                    mac_result['ok'] = False
+                    mac_result['msg'] = ""
+                    break
+        else:
+            mac_result['msg'] = "Неверный формат MAC-адреса"
+            mac_result['ok'] = False
+    except:
+        mac_result['msg'] = "Неверный формат MAC-адреса"
+        mac_result['ok'] = False
+
+    appid_min = int("4000", 16)
+    appid_max = int("5FFF", 16)
+    appid_result = {'ok': True, 'msg': ''}
+    appid_answer = ans[1]
+
+    try:
+        if not appid_max >= int(appid_answer, 16) >= appid_min:
+            appid_result['ok'] = False
+            appid_result['msg'] = ""
+    except:
+        appid_result['msg'] = "Неверный формат APPID"
+        appid_result['ok'] = False
+
+    return {'input_list': [
+                {'ok': mac_result['ok'], 'msg': mac_result['msg']},
+                {'ok': appid_result['ok'], 'msg': appid_result['msg']},
+            ]}
+
+</script>
+
+        <p>Сформируйте MAC адрес и APPID для передачи трех сигналов измерений для нужд релейной защиты и автоматики, опираясь на требования корпоративного профиля МЭК 61850 ПАО «ФСК ЕЭС». Ответ необходимо ввести в HEX формате.</p>
+        <div class="mask-mac">
+            <p>MAC адрес:</p>
+            <textline size="20"/>
+            <solution>Правильный <strong>MAC</strong> адрес должен быть записан в диапазоне от <strong>01:0С:CD:04:00:00</strong> до <strong>01:0С:CD:04:00:FF</strong>.</solution>
+            <br />
+            <p>APPID:</p>
+            <textline size="20"/>
+            <solution>Правильный <strong>APPID</strong> должен быть записан в диапазоне от <strong>4000</strong> до <strong>5FFF</strong>.</solution>
+        </div>
+
+    </customresponse>
+
+</problem>

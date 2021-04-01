@@ -1,0 +1,278 @@
+<problem>
+    <script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_HHg63lfO8f"
+
+correct_answer = {"a1":["b1"], "a2":[{"b2", "b2a"}], "a3":[{"b2", "b2a"}, "b5", "b4", "b3"], "a4":[{"b6", "b6a"}], "a5":[{"b6", "b6a"}], "a6":["b7"]}
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+    elif check_type == 'check_or':
+        response = check_or(correct_answer, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+</script>
+
+    <script type="text/javascript">
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+
+    <script type="text/javascript" src="/static/sortable.js"></script>
+
+    <script type="text/javascript">
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script>
+    <style>
+        #$unique_id .text-fixed-width{
+            width: 33%;
+        }
+
+        #$unique_id .text-fixed-height{
+              height: 200px;
+          }
+
+        .conf-table td{
+            word-break: initial;
+        }
+
+
+    </style>
+
+    <script type="text/javascript" src="/static/matching_table_mobile.js"></script>
+
+    <div class="matching_table disable-marker" id="$unique_id">
+
+        <p>Расположите SCL типовые файлы в соответствии с этапом проектирования цифровой подстанции, с которым они связаны:</p>
+
+        <table class="conf-table top-items">
+            <tr>
+                <th colspan="2" class="conf-text conf-header text-fixed-width">
+                    Первый этап
+                </th>
+                <th colspan="2" class="conf-text conf-header text-fixed-width">
+                    Второй этап
+                </th>
+                <th colspan="2" class="conf-text conf-header">
+                    Третий этап
+                </th>
+            </tr>
+
+            <tr>
+                <td class="conf-text conf-header" style="width: calc(33%/2)">
+                    Исходные данные
+                </td>
+                <td class="conf-text conf-header">
+                    Результат
+                </td>
+                <td class="conf-text conf-header" style="width: calc(33%/2)">
+                    Исходные данные
+                </td>
+                <td class="conf-text conf-header">
+                    Результат
+                </td>
+                <td class="conf-text conf-header" style="width: calc(33%/2)">
+                    Исходные данные
+                </td>
+                <td class="conf-text conf-header">
+                    Результат
+                </td>
+            </tr>
+
+            <tr>
+                <td id="a1" capacity="4" class="conf-answers-place conf-inputable input-place text-fixed-height"></td>
+                <td id="a2" capacity="4" class="conf-answers-place conf-inputable input-place"></td>
+                <td id="a3" capacity="4" class="conf-answers-place conf-inputable input-place"></td>
+                <td id="a4" capacity="4" class="conf-answers-place conf-inputable input-place"></td>
+                <td id="a5" capacity="4" class="conf-answers-place conf-inputable input-place"></td>
+                <td id="a6" capacity="4" class="conf-answers-place conf-inputable input-place"></td>
+            </tr>
+
+        </table>
+
+
+        <p style="">Типовые файлы:</p>
+        <div class="conf-answers-place conf-inputable conf-all-answers fifths ">
+            <div id="b1" class="conf-item conf-draggable">Главная схема ПС</div>
+            <div id="b2" class="conf-item conf-draggable">.SSD</div>
+            <div id="b2a" class="conf-item conf-draggable">.SSD</div>
+            <div id="b3" class="conf-item conf-draggable">.ICD</div>
+            <div id="b4" class="conf-item conf-draggable">.SED</div>
+            <div id="b5" class="conf-item conf-draggable">.IID</div>
+            <div id="b6" class="conf-item conf-draggable">.SCD</div>
+            <div id="b6a" class="conf-item conf-draggable">.SCD</div>
+            <div id="b7" class="conf-item conf-draggable">.CID</div>
+        </div>
+
+
+
+        <div id="matching_table_input" style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$taskId" />
+                <br/>
+            </customresponse>
+
+            <div class="message-about-grade"></div>
+        </div>
+
+        <solution>
+            <div class="detailed-solution">
+
+                <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
+
+                <table class="conf-table top-items">
+                    <tr>
+                        <th colspan="2" class="conf-text conf-header text-fixed-width">
+                            Первый этап
+                        </th>
+                        <th colspan="2" class="conf-text conf-header text-fixed-width">
+                            Второй этап
+                        </th>
+                        <th colspan="2" class="conf-text conf-header">
+                            Третий этап
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td class="conf-text conf-header" style="width: calc(33%/2)">
+                            Исходные данные
+                        </td>
+                        <td class="conf-text conf-header">
+                            Результат
+                        </td>
+                        <td class="conf-text conf-header" style="width: calc(33%/2)">
+                            Исходные данные
+                        </td>
+                        <td class="conf-text conf-header">
+                            Результат
+                        </td>
+                        <td class="conf-text conf-header" style="width: calc(33%/2)">
+                            Исходные данные
+                        </td>
+                        <td class="conf-text conf-header">
+                            Результат
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="conf-answers-place input-place text-fixed-height">
+                            <div class="conf-item">Главная схема ПС</div>
+                        </td>
+                        <td class="conf-answers-place input-place">
+                            <div class="conf-item">.SSD</div>
+                        </td>
+                        <td class="conf-answers-place input-place">
+                            <div class="conf-item">.SSD</div>
+                            <div class="conf-item">.ICD</div>
+                            <div class="conf-item">.SED</div>
+                            <div class="conf-item">.IID</div>
+                        </td>
+                        <td class="conf-answers-place input-place">
+                            <div class="conf-item">.SCD</div>
+                        </td>
+                        <td class="conf-answers-place input-place">
+                            <div class="conf-item">.SCD</div>
+                        </td>
+                        <td class="conf-answers-place input-place">
+                            <div class="conf-item">.CID</div>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </solution>
+
+    </div>
+</problem>

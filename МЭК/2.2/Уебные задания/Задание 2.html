@@ -1,0 +1,78 @@
+<problem>
+    <style>
+        .economic-choice {
+            padding-bottom: 20px;
+        }
+
+        .economic-choice .field{
+            display:inline-block;
+            background: #ececec;
+            border-radius: 3px;
+            font-size: 20px;
+        }
+
+        .economic-choice .field label{
+            box-sizing: border-box;
+            border: none !important;
+            padding: 0px !important;
+            padding-left: 0px !important;
+            margin-bottom: 0px !important;
+            position: relative;
+            font-size: 1em;
+            line-height: normal;
+            cursor: pointer;
+            width: auto;
+        }
+
+        .economic-choice .field label input[type="radio"]{
+            display: none !important;
+        }
+
+        .economic-choice input[type="radio"]:checked ~ span {
+            color: red;
+            text-decoration: line-through;
+        }
+
+        .economic-choice input[type="radio"]:hover ~ span {
+            color: red;
+        }
+
+        .economic-choice .field label .status{
+            display: none !important;
+        }
+
+    </style>
+    <script type="text/javascript">
+        let items_disables = [1, 3, 5, 7, 9];
+
+        items_disables.forEach(function(item){
+            document.querySelectorAll("#PROJ_task_2_2_01.economic-choice .field")[item].style.pointerEvents = "none";
+            document.querySelectorAll("#PROJ_task_2_2_01.economic-choice .field")[item].style.background = "none";
+        });
+
+
+    </script>
+
+    <div class="economic-choice" id="PROJ_task_2_2_01">
+
+        <p>Найдите ошибку в записи приведенного ниже <i>MAC</i> адреса устройства. Необходимо выбрать октет, содержащий ошибку.</p>
+
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice">
+                <choice correct="false"><span>01</span></choice>
+                <choice correct="false"><span>:</span></choice>
+                <choice correct="false"><span>0С</span></choice>
+                <choice correct="false"><span>:</span></choice>
+                <choice correct="true"><span>CH</span></choice>
+                <choice correct="false"><span>:</span></choice>
+                <choice correct="false"><span>01</span></choice>
+                <choice correct="false"><span>:</span></choice>
+                <choice correct="false"><span>00</span></choice>
+                <choice correct="false"><span>:</span></choice>
+                <choice correct="false"><span>FF</span></choice>
+
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+</problem>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="openedu.urfu.ru" id="1031e866-19ca-459e-9242-8c20cda7da6c" port="22" customName="openedu.urfu.ru/files" nameFormat="CUSTOM">
+        <option name="customName" value="openedu.urfu.ru/files" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

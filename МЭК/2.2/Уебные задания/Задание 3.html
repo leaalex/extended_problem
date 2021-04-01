@@ -1,0 +1,72 @@
+<problem>
+
+    <style>
+
+        .task-in-table table td {
+            border: 1px solid #dddddd;
+            padding: 8px !important;
+            word-break: normal;
+        }
+
+        .task-in-table table td input{
+            height: 28px !important;
+            min-width: 110px !important;
+        }
+
+        .task-in-table table td .status, .task-in-table table td .trailing_text{
+            display: none !important;
+        }
+
+    </style>
+    <p>По исходным данным (IP адресу и маске подсети) необходимо рассчитать номер сети. Ответ предоставить в двоичном виде.</p>
+    <div class="task-in-table">
+
+
+        <table>
+            <tbody>
+            <tr>
+                <td style="text-align: center;"><strong>Параметр</strong></td>
+                <td style="text-align: center;"><strong>Вид записи</strong></td>
+                <td style="text-align: center;" colspan="7"><strong>Значение</strong></td>
+            </tr>
+            <tr>
+                <td>IP адрес:</td>
+                <td style="text-align: center;">десятичная</td>
+                <td style="text-align: center;" colspan="7">95.82.221.162</td>
+            </tr>
+            <tr>
+                <td>Маска подсети:</td>
+                <td style="text-align: center;">десятичная</td>
+                <td style="text-align: center;" colspan="7">255.255.255.128</td>
+            </tr>
+            <tr>
+                <td>Номер сети:</td>
+                <td style="text-align: center;">двоичная</td>
+                <td>
+                    <stringresponse answer="01011111" type="ci">
+                        <textline size="5"/>
+                    </stringresponse>
+                </td>
+                <td>.</td>
+                <td>
+                    <stringresponse answer="01010010" type="ci">
+                        <textline size="5"/>
+                    </stringresponse>
+                </td>
+                <td>.</td>
+                <td>
+                    <stringresponse answer="11011101" type="ci">
+                        <textline size="5"/>
+                    </stringresponse>
+                </td>
+                <td>.</td>
+                <td style="width: 110px;text-align: center;">--------</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+</problem>
