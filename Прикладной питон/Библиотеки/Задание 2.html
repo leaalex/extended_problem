@@ -1,0 +1,134 @@
+<problem>
+
+    <p>Вам нужно создать матрицу состоящую из <strong>3-х строк</strong> и <strong>5-и столбцов</strong> заполненную случайными целыми числами в диапазоне <strong>от 10 до 30 включительно</strong>.</p>
+
+    <div id="task_H6wGcy83ggL" class="step_task">
+        <div class="question-step">
+            <label><p>Для решения данной задачи мы применим библиотеку:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false"><code>pandas</code></choice>
+                    <choice correct="true"><code>numpy</code></choice>
+                    <choice correct="false"><code>pillow</code></choice>
+                    <choice correct="false"><code>requests</code></choice>
+                    <choice correct="false"><code>seaborn</code></choice>
+                    <choice correct="false"><code>XGBoost</code></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label><p>Все верно! Библиотека numpy позволяет создавать векторы, матрицы и в целом массивы любой размерности. Можете воспользоваться официальной документацией библиотеки по адресу <a href="https://numpy.org/doc/" target="_blank">https://numpy.org/doc/</a>. Для решения поставленной задачи нужно применить модуль:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false"><code>smaple</code></choice>
+                    <choice correct="true"><code>random</code></choice>
+                    <choice correct="false"><code>choice</code></choice>
+                    <choice correct="false"><code>matrix</code></choice>
+                    <choice correct="false"><code>array</code></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label>
+                <p>А за создание целых случайных чисел отвечает метод:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false"><code>integer()</code></choice>
+                    <choice correct="false"><code>random()</code></choice>
+                    <choice correct="false"><code>sample()</code></choice>
+                    <choice correct="true"><code>randint()</code></choice>
+                    <choice correct="false"><code>normal()</code></choice>
+                    <choice correct="false"><code>choice()</code></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label>
+                <p>Импортируем <code>numpy</code> с помощью следующей строки <code>import numpy as np</code>.</p>
+                <p>Поставленную задачу решит следующий код:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false"><code>np.random.randint(10, 30, (3, 5))</code></choice>
+                    <choice correct="false"><code>np.random.randint(10, 30, (5, 3))</code></choice>
+                    <choice correct="true"><code>np.random.randint(10, 31, (3, 5))</code></choice>
+                    <choice correct="false"><code>np.random.randint(10, 31, (5, 3))</code></choice>
+                    <choice correct="false"><code>np.random.randint((3, 5), 10, 31)</code></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label>
+                <p>Присвойте результат выполнения данного кода любой переменной и проверьте ее тип. Результатом проверки типа стал следующий ответ:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false"><code>list</code></choice>
+                    <choice correct="false"><code>matrix</code></choice>
+                    <choice correct="true"><code>numpy.ndarray</code></choice>
+                    <choice correct="false"><code>numpy.array</code></choice>
+                    <choice correct="false"><code>numpy.matrix</code></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        let task_id_1 = "task_H6wGcy83ggL";
+
+        let problem_1 = $(`#${task_id_1}`).closest(".problem")
+
+        $(`#${task_id_1} .field-input.input-radio`).change(function() {
+            $(".submit.btn-brand", problem_1).removeAttr("disabled")
+        });
+
+        let show_index_1 = 0;
+
+        $(".question-step", problem_1).each(function(index_1, element) {
+            $($(".question-step", problem_1)[index_1]).hide();
+            if ($('.status.correct', $($(".question-step", problem_1)[index_1])).length){
+                if (index_1 === $(".question-step", problem_1).length - 1){
+                    show_index_1 = index_1;
+                }
+                else{
+                    show_index_1 = index_1+1;
+                }
+            }
+        });
+
+        $($(".question-step", problem_1)[show_index_1]).show();
+
+
+    </script>
+    <style>
+
+        .step_task pre{
+            margin: 0px !important;
+            border: none !important;
+            background-color: #3c3c3c !important;
+            text-shadow: none !important;
+            color: whitesmoke !important;
+            font-family: monospace;
+        }
+        .step_task .status-icon{
+            display: none;
+        }
+
+        .step_task legend{
+            margin-bottom: 0px !important;
+        }
+
+        .step_task .question-step p{
+            margin-bottom: 10px !important;
+            margin-top: 10px;
+        }
+
+    </style>
+</problem>

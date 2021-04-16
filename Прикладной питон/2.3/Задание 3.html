@@ -1,0 +1,52 @@
+<problem>
+    <p>С помощью <i>Doctest</i> напишите запуск и тестовый вывод для функции <i>Fibonacci(n)</i> вычисляющей <i>10</i> чисел Фибоначчи, которая на вход принимает количество чисел Фибоначчи, а на выход выдает строку десяти чисел Фибоначчи отделенных друг от друга запятой и пробелом.</p>
+
+        <table>
+            <tr>
+                <td>Запуск функции <i>Fibonacci(n)</i> вычисляющей <i>10</i> чисел Фибоначчи:</td>
+                <td>
+                    <customresponse cfn="check_answer">
+                        <textline size="30"/>
+
+                    </customresponse>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Тестовый вывод функции <i>Fibonacci(n)</i> вычисляющей <i>10</i> чисел Фибоначчи:</td>
+                <td>
+                    <customresponse cfn="check_answer_1">
+                        <textline size="30"/>
+
+                    </customresponse>
+                </td>
+            </tr>
+    </table>
+
+<solution>
+    <p>Ответ:</p>
+    <p>Запуск функции Fibonacci(n) вычисляющей 10 чисел Фибоначчи: <strong>Fibonacci(10)</strong></p>
+    <p>Тестовый вывод функции Fibonacci(n) вычисляющей 10 чисел Фибоначчи: <strong>"1, 1, 2, 3, 5, 8, 13, 21, 34, 55"</strong></p>
+</solution>
+<script type="loncapa/python">
+import json
+
+correct_answer_list = ["Fibonacci(10)", ]
+correct_answer_list_1 = ["“1,1,2,3,5,8,13,21,34,55”", "‘1,1,2,3,5,8,13,21,34,55’", "1,1,2,3,5,8,13,21,34,55", "[1,1,2,3,5,8,13,21,34,55]", "'1,1,2,3,5,8,13,21,34,55'", '"1,1,2,3,5,8,13,21,34,55"']
+
+
+def check_answer(expect, ans):
+    if ans in correct_answer_list:
+        return True
+    else:
+        return False
+
+
+def check_answer_1(expect, ans):
+    if ans.lower().replace(" ", "") in correct_answer_list_1:
+        return True
+    else:
+        return False
+</script>
+</problem>

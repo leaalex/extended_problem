@@ -1,0 +1,26 @@
+<problem>
+    <div class="python_text_input_task">
+        <label>
+            <p>Дан класс:</p>
+            <pre><code>class C:
+    ...:
+        return 42
+c = C()
+print(len(c))</code></pre>
+            <p>Что нужно написать вместо <strong>...</strong>, чтобы код вывел <code>42</code>?</p></label>
+
+        <stringresponse answer="def __len__(self)" type="ci">
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+    <script type="text/javascript">
+        // hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+        document.querySelectorAll('code.inline').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+</problem>

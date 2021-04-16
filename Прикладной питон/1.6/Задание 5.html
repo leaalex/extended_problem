@@ -1,0 +1,27 @@
+<problem>
+    <div class="python_text_input_task">
+        <label>
+            <p>Что напечатает данный код?</p>
+            <pre><code>class C:
+    a = 42
+c1 = C()
+c2 = C()
+c1.a = 43
+print(c2.a)</code></pre>
+            <p></p></label>
+
+        <stringresponse answer="42" type="ci">
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+    <script type="text/javascript">
+        // hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+        document.querySelectorAll('code.inline').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+</problem>

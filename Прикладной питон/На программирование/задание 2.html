@@ -1,0 +1,56 @@
+<problem>
+    <script type="loncapa/python">
+solution_str = """
+    &lt;div&gt;
+      &lt;h2&gt;Решение:&lt;/h2&gt;
+    &lt;pre&gt;&lt;code&gt;import requests
+url = 'https://pokeapi.co/api/v2/pokemon/35'
+res = requests.get(url).json()
+print(res['name'], *[x['ability']['name'] for x in res['abilities']])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+// hljs.initHighlightingOnLoad();
+  document.querySelectorAll('pre code').forEach(function(block) {
+  hljs.highlightBlock(block);
+  });
+  document.querySelectorAll('code.inline').forEach(function(block) {
+  hljs.highlightBlock(block);
+  });
+&lt;/script&gt;
+"""
+</script>
+    <style>
+        .programming-task .explanation-title, .programming-task .hint-label{
+            display: none !important;
+        }
+
+        .programming-task pre {
+            overflow: auto;
+            padding: 0px !important;
+            border: none !important;
+    </style>
+
+
+    <div class="programming-task">
+
+        <p>Используя API (<a href="https://pokeapi.co/docs/v2" target="_blank">https://pokeapi.co/docs/v2</a>) вывести через запятую имя покемона под <i>id 35</i> и его способности.</p>
+
+        <p><strong>Пример ответа (для покемона под номером 5): 'charmeleon', 'blaze', 'solar-power'</strong></p>
+
+
+        <stringresponse answer="'clefairy', 'cute-charm', 'magic-guard', 'friend-guard'" type="ci">
+            <correcthint>$solution_str</correcthint>
+            <additional_answer answer="'clefairy', 'cute-charm', 'magic-guard', 'friend-guard'"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="'clefairy','cute-charm','magic-guard','friend-guard'"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="clefairy cute-charm magic-guard friend-guard"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="clefairy, cute-charm, magic-guard, friend-guard"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="clefairy,cute-charm,magic-guard,friend-guard"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer='"clefairy", "cute-charm", "magic-guard", "friend-guard"'><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer='"clefairy","cute-charm","magic-guard","friend-guard"'><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer='["clefairy", "cute-charm", "magic-guard", "friend-guard"]'><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="['clefairy', 'cute-charm', 'magic-guard', 'friend-guard']"><correcthint>$solution_str</correcthint></additional_answer>
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+</problem>
+

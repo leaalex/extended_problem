@@ -1,0 +1,112 @@
+<problem>
+
+    <p>Напишите номер строки, которая определяет пользовательскую функцию, выполняющуюся дольше всего.</p>
+
+    <table class="task_choice_row">
+        <tbody>
+        <tr>
+            <td style="text-align: left;">0</td>
+            <td style="text-align: right;">ncalls</td>
+            <td style="text-align: right;">tottime</td>
+            <td style="text-align: right;">percall</td>
+            <td style="text-align: right;">cumtime</td>
+            <td style="text-align: right;">percall</td>
+            <td style="text-align: left;">filename:lineno(function)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">1</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">1.621</td>
+            <td style="text-align: right;">1.621</td>
+            <td style="text-align: left;">test.py:1(&lt;module&gt;)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">2</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">0.621</td>
+            <td style="text-align: right;">0.621</td>
+            <td style="text-align: right;">0.621</td>
+            <td style="text-align: right;">0.621</td>
+            <td style="text-align: left;">test.py:2(recall)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">3</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: left;">test.py:5(myupper)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">4</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">1.621</td>
+            <td style="text-align: right;">1.621</td>
+            <td style="text-align: left;">{built-in method builtins.exec}</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">5</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">1.000</td>
+            <td style="text-align: right;">1.000</td>
+            <td style="text-align: right;">1.000</td>
+            <td style="text-align: right;">1.000</td>
+            <td style="text-align: left;">{built-in method time.sleep}</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">6</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: left;">{method 'disable' of '_lsprof.Profiler' objects}</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">7</td>
+            <td style="text-align: right;">6</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: left;">{method 'upper' of 'str' objects}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <td>Номер строки:</td>
+            <td>
+                <customresponse cfn="check_answer">
+                    <textline size="5"/>
+                </customresponse>
+            </td>
+        </tr>
+    </table>
+
+    <style type="text/css">
+        .task_choice_row td{
+            font-family: monospace;
+        }
+    </style>
+
+    <solution>Ответ: <strong>$correct_answer</strong></solution>
+    <script type="loncapa/python">
+import json
+import re
+
+correct_answer = "2"
+
+def check_answer(expect, ans):
+    if re.sub(' +',' ',ans).strip() == correct_answer:
+        return True
+    else:
+        return False
+</script>
+</problem>

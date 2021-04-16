@@ -1,0 +1,35 @@
+<problem>
+    <div class="python_text_input_task">
+        <label>
+            <p>Дан класс:</p>
+            <pre><code>class C:
+    def ...(self):
+        return self
+    def ...(self):
+        return 42
+</code></pre>
+            <p>Что надо написать вместо <strong>...</strong>, чтобы объекты класса <code>C</code> можно было пользоваться классом так:</p>
+            <pre><code>for el in C():
+    print(el)
+</code></pre>
+            <p>Ответ запишите в виде двух слов. Разделитель — запятая и пробел. Например: функция1, функиця2</p>
+        </label>
+
+        <stringresponse answer="__iter__, __next__" type="ci">
+            <additional_answer answer="__iter__,__next__"/>
+            <additional_answer answer="__iter__ __next__"/>
+
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+    <script type="text/javascript">
+        // hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+        document.querySelectorAll('code.inline').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+</problem>

@@ -1,0 +1,20 @@
+<problem>
+    <p>Напишите команду запускающую отладчик в Python IDE <strong>PyCharm</strong>.</p>
+    <customresponse cfn="check_answer">
+        <textline size="30"/>
+        <br/>
+    </customresponse>
+    <solution>Ответ: <strong>$correct_answer</strong></solution>
+    <script type="loncapa/python">
+import json
+import re
+
+correct_answer = "Shift + F9"
+
+def check_answer(expect, ans):
+    if ans.lower().replace(" ", "") == correct_answer.lower().replace(" ", ""):
+        return True
+    else:
+        return False
+</script>
+</problem>

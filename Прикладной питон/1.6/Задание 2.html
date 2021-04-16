@@ -1,0 +1,26 @@
+<problem>
+    <div class="python_text_input_task">
+            <label>
+                <p>Дан код:</p>
+                <pre><code>class C:
+    def f(self):
+        return self
+o = C()
+o.f()</code></pre>
+                <p>Напишите код, эквивалентный последней строчке, но с явным указанием агрумента <code>self</code> метода <code>f()</code></p></label>
+
+        <stringresponse answer="C.f(o)" type="ci">
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+    <script type="text/javascript">
+        // hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+        document.querySelectorAll('code.inline').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+</problem>

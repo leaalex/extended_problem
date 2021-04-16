@@ -1,0 +1,60 @@
+<problem>
+    <script type="loncapa/python">
+solution_str = """
+    &lt;div&gt;
+      &lt;h2&gt;Решение:&lt;/h2&gt;
+    &lt;pre&gt;&lt;code&gt;import requests
+url = 'https://the-one-api.dev/v2/book'
+res = requests.get(url).json()
+_id = None
+for x in res['docs']:
+    if x['name'] == 'The Two Towers':
+        _id = x['_id']
+        break
+url = f'https://the-one-api.dev/v2/book/{_id}/chapter'
+res = requests.get(url).json()
+chapter_name = None
+for x in res['docs']:
+    if x['_id'] == '5cdc25d5bc17e929cf246206':
+        chapter_name = x['chapterName']
+        break
+print(len(res['docs']), chapter_name)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+// hljs.initHighlightingOnLoad();
+  document.querySelectorAll('pre code').forEach(function(block) {
+  hljs.highlightBlock(block);
+  });
+  document.querySelectorAll('code.inline').forEach(function(block) {
+  hljs.highlightBlock(block);
+  });
+&lt;/script&gt;
+"""
+</script>
+    <style>
+        .programming-task .explanation-title, .programming-task .hint-label{
+            display: none !important;
+        }
+
+        .programming-task pre {
+            overflow: auto;
+            padding: 0px !important;
+            border: none !important;
+    </style>
+
+
+    <div class="programming-task">
+
+        <p>Используя API (<a href="https://the-one-api.dev/documentation" target="_blank">https://the-one-api.dev/documentation</a>) ответить, сколько глав в книге «Две крепости» и как называется глава под id <i>'5cdc25d5bc17e929cf246206'</i>. Ответ вывести через запятую без пробелов (название главы их уже содержит).</p>
+        <p><strong>Пример ответа: 9,The White Rider</strong></p>
+
+        <stringresponse answer="21 Helm's Deep" type="ci">
+            <correcthint>$solution_str</correcthint>
+            <additional_answer answer="21, Helm's Deep"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="21  Helm's Deep"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="(21, Helm's Deep)"><correcthint>$solution_str</correcthint></additional_answer>
+            <additional_answer answer="(21,Helm's Deep)"><correcthint>$solution_str</correcthint></additional_answer>
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+</problem>

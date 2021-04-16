@@ -1,0 +1,168 @@
+<problem>
+
+
+
+    <div id="task_xfg976sfdg" class="step_task">
+        <p>Написать доктесты для функции, вычисляющей для переданного аргумента <code>x</code> результат комбинации одной и той же функции <code>fn</code>, выполненной <code>n</code> раз. Весь код написан в файле <i>main.py</i>.</p>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):</code></pre>
+                <p>Варианты для следующей строки:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><pre><code>"""</code></pre></choice>
+                    <choice correct="false"><pre><code>""""""</code></pre></choice>
+                    <choice correct="false"><pre><code># start test</code></pre></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):<br/>    """</code></pre>
+                <p>Варианты для следующей строки:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><pre><code>>>> apply_function(2, lambda x:x**3)</code></pre></choice>
+                    <choice correct="false"><pre><code># apply_function(2, lambda x:x**3)</code></pre></choice>
+                    <choice correct="false"><pre><code>apply_function(2, lambda x:x**3)</code></pre></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):<br/>    """<br/>    >>> apply_function(2, lambda x:x**3)</code></pre>
+                <p>Варианты для следующей строки:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><pre><code>8</code></pre></choice>
+                    <choice correct="false"><pre><code>"8"</code></pre></choice>
+                    <choice correct="false"><pre><code>: 8</code></pre></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):<br/>    """<br/>    >>> apply_function(2, lambda x:x**3)<br/>    8</code></pre>
+                <p>Варианты для следующей строки:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><pre><code>>>> apply_function(2, lambda x:x**2, 3)</code></pre></choice>
+                    <choice correct="false"><pre><code># apply_function(2, lambda x:x**2, 3)</code></pre></choice>
+                    <choice correct="false"><pre><code>apply_function(2, lambda x:x**2, 3)</code></pre></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):<br/>    """<br/>    >>> apply_function(2, lambda x:x**3)<br/>    8<br/>    >>> apply_function(2, lambda x:x**2, 3)</code></pre>
+                <p>Варианты для следующей строки:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><pre><code>256</code></pre></choice>
+                    <choice correct="false"><pre><code>"256"</code></pre></choice>
+                    <choice correct="false"><pre><code>:256</code></pre></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):<br/>    """<br/>    >>> apply_function(2, lambda x:x**3)<br/>    8<br/>    >>> apply_function(2, lambda x:x**2, 3)<br/>    256</code></pre>
+                <p>Варианты для следующей строки:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><pre><code>"""</code></pre></choice>
+                    <choice correct="false"><pre><code>""""""</code></pre></choice>
+                    <choice correct="false"><pre><code># end test</code></pre></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+
+        <div class="question-step">
+            <label>
+                <pre><code>def apply_function(x,fn,n=1):<br/>    """<br/>    >>> apply_function(2, lambda x:x**3)<br/>    8<br/>    >>> apply_function(2, lambda x:x**2, 3)<br/>    256<br/>    """<br/>    res = x<br/>    for _ in range(n):<br/>        res = fn(res)<br/>    return res</code></pre>
+                <p>Выберите правильный вариант запуска кода из консоли:</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><code>python -m doctest -v main.py</code></choice>
+                    <choice correct="false"><code>python -m test -v main.py</code></choice>
+                    <choice correct="false"><code>python main.py test</code></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+        </div>
+
+
+    </div>
+    <script type="text/javascript">
+        let task_id = "task_xfg976sfdg";
+
+        let problem = $(`#${task_id}`).closest(".problem")
+        // console.log(problem)
+
+        $(`#${task_id} .field-input.input-radio`).change(function() {
+            $(".submit.btn-brand", problem).removeAttr("disabled")
+        });
+
+        let show_index = 0;
+
+        $(".question-step", problem).each(function(index, element) {
+            $($(".question-step", problem)[index]).hide();
+            if ($('.status.correct', $($(".question-step", problem)[index])).length){
+                if (index == $(".question-step", problem).length - 1){
+                    show_index = index;
+                }
+                else{
+                    show_index = index+1;
+                }
+                // console.log(show_index)
+            }
+        });
+
+        $($(".question-step", problem)[show_index]).show();
+
+
+    </script>
+    <script type="text/javascript">
+        // hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+        document.querySelectorAll('code.inline').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+    <style>
+
+        .step_task pre{
+            margin: 0px !important;
+            padding: 0px !important;
+            border: none !important;
+            background-color: #3c3c3c !important;
+            text-shadow: none !important;
+            color: whitesmoke !important;
+            font-family: monospace;
+        }
+        .step_task .status-icon{
+            display: none;
+        }
+
+        .step_task legend{
+            margin-bottom: 0px !important;
+        }
+
+        .step_task .question-step p{
+            margin-bottom: 10px !important;
+            margin-top: 10px;
+        }
+
+    </style>
+</problem>

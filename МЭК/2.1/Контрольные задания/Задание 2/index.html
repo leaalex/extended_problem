@@ -1,0 +1,83 @@
+<problem>
+
+    <p>Задание выполняется в два этапа. На первом этапе в виде тестового кейса выбирается компоновка архитектуры цифровой подстанции. На втором этапе необходимо выбрать верное подключение терминала релейной защиты и автоматики IED к измерительной и коммуникационной части подстанции.</p>
+
+    <div id="task_HTtvcwv3kj4" class="step_task">
+        <div class="question-step">
+            <label><p><strong>Этап 1.</strong> Необходимо выбрать вариант построения архитектуры подстанции с точки зрения числа и назначения коммуникационных сетей. Условием, влияющим на принятие решения, является необходимость использования оборудования без промежуточных преобразовательных устройств и устройств сопряжения.</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><img src="/static/theme_02_01_task_02_img_01.png" class="image"/></choice>
+                    <choice correct="false"><img src="/static/theme_02_01_task_02_img_02.png" class="image"/></choice>
+                    <choice correct="false"><img src="/static/theme_02_01_task_02_img_03.png" class="image"/></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <label><p><strong>Этап 2.</strong> В соответствии с выбранным вариантом построения коммуникационной сети подстанции, необходимо выбрать вариант правильного подключения интеллектуального электронного устройства, представленного терминалов релейной защиты и автоматики (IED).</p></label>
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true"><img src="/static/theme_02_01_task_02_img_04.png" class="image"/></choice>
+                    <choice correct="false"><img src="/static/theme_02_01_task_02_img_05.png" class="image"/></choice>
+                    <choice correct="false"><img src="/static/theme_02_01_task_02_img_06.png" class="image"/></choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        let task_id = "task_HTtvcwv3kj4";
+
+        let problem = $(`#${task_id}`).closest(".problem")
+
+        $(`#${task_id} .field-input.input-radio`).change(function() {
+            $(".submit.btn-brand", problem).removeAttr("disabled")
+        });
+
+        let show_index = 0;
+
+        $(".question-step", problem).each(function(index, element) {
+            $($(".question-step", problem)[index]).hide();
+            if ($('.status.correct', $($(".question-step", problem)[index])).length){
+                if (index === $(".question-step", problem).length - 1){
+                    show_index = index;
+                }
+                else{
+                    show_index = index+1;
+                }
+            }
+        });
+
+        $($(".question-step", problem)[show_index]).show();
+
+
+    </script>
+    <style>
+        .step_task img.image{
+            max-width: 360px;
+        }
+        .step_task pre{
+            margin: 0px !important;
+            border: none !important;
+            background-color: #3c3c3c !important;
+            text-shadow: none !important;
+            color: whitesmoke !important;
+            font-family: monospace;
+        }
+        .step_task .status-icon{
+            display: none;
+        }
+
+        .step_task legend{
+            margin-bottom: 0px !important;
+        }
+
+        .step_task .question-step p{
+            margin-bottom: 10px !important;
+            margin-top: 10px;
+        }
+
+    </style>
+</problem>

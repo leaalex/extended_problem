@@ -1,0 +1,336 @@
+<html>
+<script type="loncapa/python">
+import math
+import json
+
+unique_id = "task_H9HGywseCKH"
+
+correct_answer = {"a1":["b1"], "a2":["b2"], "a3":["b3"], "a4":["b4"]}
+
+# types:
+#     all_items
+#     correct_order
+#     check_or
+
+check_type = 'all_items'
+show_wrong_cells = False
+
+
+def get_response(grade_decimal, wrong_cells=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_cells is not None and show_wrong_cells:
+        response["wrong_cells"] = wrong_cells
+    if grade_decimal == 1:
+        response["ok"] = True
+        response["message"] = 'Correctly'
+    elif grade_decimal == 0:
+        response["ok"] = False
+        response["message"] = 'Incorrectly'
+    else:
+        response["ok"] = 'Partial'
+        response["message"] = 'Partially'
+    return response
+
+def check_or(CA, SA):
+    _max_grade = float(len(CA.keys()))
+    _grade = 0
+    for key in CA.keys():
+        if type(CA[key]).__name__ == "dict":
+            if "or" in CA[key].keys():
+                _grade += len([True for i in CA[key]["or"] if set(i) == set(SA[key])])
+        else:
+            if (set(CA[key]) == set(SA[key])):
+                _grade += 1
+
+    grade_decimal = _grade / _max_grade
+    response = get_response(grade_decimal)
+    return response
+
+def check_all_items(CA, SA):
+    max_grade = 0
+    grade = 0
+    wrong_cells = []
+    for key in CA.keys():
+        max_grade = max_grade + len(CA[key])
+        for item in CA[key]:
+            if type(item).__name__ == 'set':
+                for subitem in list(item):
+                    wrong_cells.append(key)
+                    if subitem in SA[key]:
+                        grade = grade + 1
+                        wrong_cells = list(set(wrong_cells))
+                        wrong_cells.remove(key)
+                        break
+            else:
+                if item in SA[key]:
+                    grade = grade + 1
+                else:
+                    wrong_cells.append(key)
+    grade_decimal = float(grade) / float(max_grade)
+    response = get_response(grade_decimal, wrong_cells)
+    return response
+
+
+def check_correct_order(CA, SA):
+    grade = 0
+    max_grade = len(CA.keys())
+    grade_decimal = 0
+    for key in CA.keys():
+        if (set(CA[key]) == set(SA[key])):
+            grade = grade + 1
+    if grade == max_grade:
+        grade_decimal = 1
+    response = get_response(grade_decimal)
+    return response
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    student_answer = student_answer["answer"]
+    if check_type == 'all_items':
+        response = check_all_items(correct_answer, student_answer)
+    elif check_type == 'correct_order':
+        response = check_correct_order(correct_answer, student_answer)
+    elif check_type == 'check_or':
+        response = check_or(correct_answer, student_answer)
+    return {
+        'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+</script>
+
+<script type="text/javascript">
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+
+<script type="text/javascript" src="/static/sortable.js"></script>
+
+<script type="text/javascript">
+    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
+<style>
+    #$unique_id .conf-table td, .conf-table th {
+        border: none;
+    }
+    .no-border{
+        border: none !important;
+    }
+    #$unique_id .text-fixed-width{
+          width: 10%;
+      }
+
+    #$unique_id .text-fixed-height{
+          height: 40px;
+      }
+
+    #$unique_id .inputtype.option-input {
+          /*margin: 0 !important;*/
+          font-size: 14px;
+          display: inline-flex;
+          margin: 0em 0.5em 0.5em 0.5em;
+      }
+
+    #$unique_id .conf-table {
+
+          width: 900px !important;
+          border-collapse: inherit !important;
+          border-spacing: 10px 0px !important;
+      }
+
+    #$unique_id .conf-table td{
+          padding: 0px !important;
+      }
+
+    #$unique_id .conf-table img{
+          /*height: 120px;*/
+          min-width: 150px;
+      }
+    .cell-fixed-width{
+        width: 270px;
+    }
+
+    .cell-1{
+        width: 140px;
+        min-width: 140px;
+        border-right: none !important;
+        border-left: 2px dashed black !important;
+        border-top: 2px dashed black !important;
+        border-bottom: 2px dashed black !important;
+        text-align: center !important;
+    }
+    .cell-2{
+        border-right: none !important;
+        border-left: 2px dashed black !important;
+        border-top: none !important;
+        border-bottom: 2px dashed black !important;
+        text-align: center !important;
+    }
+    .cell-3{
+        border-right: none !important;
+        border-left: 2px dashed black !important;
+        border-top: none !important;
+        border-bottom: 2px dashed black !important;
+        text-align: center !important;
+    }
+
+    #$unique_id p.answer {
+          display: none;
+      }
+
+    #$unique_id td.conf-inputable{
+          border: 1px solid #b2b2b2 !important;
+      }
+    #$unique_id .conf-draggable p{
+          margin-bottom: 0.41575em !important;
+          text-align: center;
+      }
+
+    #$unique_id .conf-item {
+          /*cursor: move !important;*/
+          font-size: 14px;
+          padding: 0px !important;
+      }
+    #$unique_id .handler-element {
+          cursor: move !important;
+          /*margin: 0.6em;*/
+          margin: 0.5em 0.5em 0.0em 0.5em;
+      }
+</style>
+
+<script type="text/javascript" src="/static/matching_table_mobile_r3.js"></script>
+
+<div class="matching_table disable-marker" id="$unique_id">
+
+    <p>Контрольное задание по разделу 3 предполагает решение кейса на определение связей между интеллектуальным устройством (IED) и смежными устройствами присоединения цифрового энергообъекта.</p>
+    <p>На представленном в задании рисунке, на уровне присоединения располагается терминал релейной защиты (IED), имеющий односторонние и двусторонние коммуникационные связи со смежными устройствами, расположенными на полевом и станционном уровнях одного присоединения цифрового энергообъекта. Стрелками показаны направления информационного обмена. Под рисунком к заданию расположены передаваемые по коммуникационным связям данные, с возможностью выбора используемого для их передачи протокола в виде выпадающего списка.</p>
+    <p>Необходимо в соответствии с передаваемой информацией расставить наборы передаваемых данных на путем их перемещения в соответствующие пустые области рисунка задания. Кроме того, необходимо верно определить и выбрать в выпадающем списке протокол передачи данных, соответствующий передаваемой по связи информации.</p>
+
+
+    <table class="conf-table">
+
+        <tr>
+            <td rowspan="2" class="cell-1">Станционный уровень</td>
+            <td class="no-border"></td>
+            <td class="no-border" style="width: 150px;"><img src="/static/control_03_img_005.svg" /></td>
+            <td class="no-border"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" id="a1" capacity="1" class="conf-answers-place conf-inputable input-place cell-fixed-width"></td>
+            <td class="no-border" rowspan="2"><img src="/static/control_03_img_004.svg" /></td>
+            <td rowspan="2" id="a2" capacity="1" class="conf-answers-place conf-inputable input-place cell-fixed-width"></td>
+        </tr>
+        <tr>
+            <td rowspan="3" class="cell-2">Уровень присоеденения</td>
+        </tr>
+        <tr>
+            <td class="no-border"></td>
+            <td class="no-border"><img src="/static/control_03_img_003.svg" /></td>
+            <td class="no-border"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" id="a3" capacity="1" class="conf-answers-place conf-inputable input-place cell-fixed-width"></td>
+            <td rowspan="2" class="no-border"> <img src="/static/control_03_img_002.svg" /></td>
+            <td rowspan="2" id="a4" capacity="1" class="conf-answers-place conf-inputable input-place cell-fixed-width"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="cell-3">Полевой<br /> уровень</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center !important;" class="no-border"> <img style="width: 350px;" src="/static/control_03_img_001.svg" /></td>
+
+        </tr>
+
+    </table>
+
+    <p style="text-align:center;"></p>
+
+
+    <div class="conf-answers-place conf-inputable conf-all-answers fourth ">
+
+        <div id="b1" class="conf-item conf-draggable">
+            <div class="handler-element"><p>Срабатывание защиты:</p></div>
+            <div style="">
+                <optionresponse>
+                    <optioninput>
+                        <option correct="False">GOOSE сообщение</option>
+                        <option correct="True">MMS сообщение (буф.)</option>
+                        <option correct="False">MMS сообщение (небуф.)</option>
+                        <option correct="False">Поток Sampled Values</option>
+                    </optioninput>
+                </optionresponse>
+            </div>
+        </div>
+        <div id="b2" class="conf-item conf-draggable">
+            <div class="handler-element"><p>Измерения \(U_{ср}\), \(I_{ср}\):</p></div>
+            <div style="">
+                <optionresponse>
+                    <optioninput>
+                        <option correct="False">GOOSE сообщение</option>
+                        <option correct="False">MMS сообщение (буф.)</option>
+                        <option correct="True">MMS сообщение (небуф.)</option>
+                        <option correct="False">Поток Sampled Values</option>
+                    </optioninput>
+                </optionresponse>
+            </div>
+        </div>
+        <div id="b3" class="conf-item conf-draggable">
+            <div class="handler-element"><p>Измерения \(i_{u}\):</p></div>
+            <div style="">
+                <optionresponse>
+                    <optioninput>
+                        <option correct="False">GOOSE сообщение</option>
+                        <option correct="False">MMS сообщение (буф.)</option>
+                        <option correct="False">MMS сообщение (небуф.)</option>
+                        <option correct="True">Поток Sampled Values</option>
+                    </optioninput>
+                </optionresponse>
+            </div>
+        </div>
+        <div id="b4" class="conf-item conf-draggable">
+            <div class="handler-element"><p>Состояние контактов выключателя:</p></div>
+            <div style="">
+                <optionresponse>
+                    <optioninput>
+                        <option correct="True">GOOSE сообщение</option>
+                        <option correct="False">MMS сообщение (буф.)</option>
+                        <option correct="False">MMS сообщение (небуф.)</option>
+                        <option correct="False">Поток Sampled Values</option>
+                    </optioninput>
+                </optionresponse>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="matching_table_input" style="display: none !important;">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+
+        <div class="message-about-grade"></div>
+    </div>
+
+    <solution>
+        <div class="detailed-solution">
+
+            <div class="detailed-solution-header"><h1 style="margin-bottom: 0em !important;">Решение задачи</h1></div>
+
+            <figure style="text-align:center;">
+                <img src="/static/correct_answer_hjUYf8ghajrGs.png" alt="" style="max-width: 850px;"/>
+                <figcaption></figcaption>
+            </figure>
+
+
+        </div>
+    </solution>
+
+</div>
+</html>

@@ -1,0 +1,31 @@
+<problem>
+    <div class="python_text_input_task">
+        <label>
+            <p>Что напечатает данный код?</p>
+            <p>В случае ошибки, введите полный текст ошибки. Иначе введите ответ точно так, как его выведет функция <code>print</code>. Не меняйте форматирование!</p>
+            <pre><code>class C:
+    a = [41, 42]
+c1 = C()
+c2 = C()
+c1.a += [43]
+print(c2.a)</code></pre>
+            <p></p></label>
+
+        <stringresponse answer="[41, 42, 43]" type="ci">
+            <additional_answer answer="[41,42,43]"/>
+            <additional_answer answer="41, 42, 43"/>
+            <additional_answer answer="41,42,43"/>
+            <textline size="20"/>
+        </stringresponse>
+    </div>
+    <script type="text/javascript">
+        // hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+        document.querySelectorAll('code.inline').forEach(function(block){
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+</problem>
