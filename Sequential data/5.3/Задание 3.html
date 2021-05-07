@@ -1,0 +1,79 @@
+<problem>
+
+    <figure style="text-align:center;">
+        <img src="/static/t5.3.3.png" alt="" style="max-width: 800px;"/>
+        <figcaption></figcaption>
+    </figure>
+
+    <div id="task_tYhfr5fjJfL" class="step_task">
+        <div class="question-step">
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="true">The graph is fine</choice>
+                    <choice correct="false">Not all nodes are balanced</choice>
+                    <choice correct="false">Graph is balanced, but directions are wrong</choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <p>Correct String:</p>
+            <stringresponse answer="DABABCAC" type="ci">
+                <textline size="20"/>
+            </stringresponse>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        let task_id_2 = "task_tYhfr5fjJfL";
+
+        let problem_2 = $(`#${task_id_2}`).closest(".problem")
+
+        $(`#${task_id_2} .field-input.input-radio`).change(function() {
+            $(".submit.btn-brand", problem_2).removeAttr("disabled")
+        });
+
+        let show_index_2 = 0;
+
+        $(".question-step", problem_2).each(function(index, element) {
+            $($(".question-step", problem_2)[index]).hide();
+            if ($('.status.correct', $($(".question-step", problem_2)[index])).length || $('.status.incorrect', $($(".question-step", problem_2)[index])).length){
+                if (index === $(".question-step", problem_2).length - 1){
+                    show_index_2 = index;
+                }
+                else{
+                    show_index_2 = index+1;
+                }
+            }
+        });
+
+        $($(".question-step", problem_2)[show_index_2]).show();
+
+
+    </script>
+    <style>
+
+        .step_task pre{
+            margin: 0px !important;
+            border: none !important;
+            background-color: #3c3c3c !important;
+            text-shadow: none !important;
+            color: whitesmoke !important;
+            font-family: monospace;
+        }
+        .step_task .status-icon{
+            display: none;
+        }
+
+        .step_task legend{
+            margin-bottom: 0px !important;
+        }
+
+        .step_task .question-step p{
+            margin-bottom: 10px !important;
+            margin-top: 10px;
+        }
+
+    </style>
+</problem>

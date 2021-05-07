@@ -1,0 +1,371 @@
+<problem>
+    <script type="loncapa/python">
+# from statistics import mean
+import numpy as np
+import random
+import math
+
+
+def fit_slope_and_intercept(_xs, _ys):
+    # средняя линия
+    _m = (((np.mean(_xs) * np.mean(_ys)) - np.mean(_xs * _ys)) / ((np.mean(_xs) * np.mean(_xs)) - np.mean(_xs * _xs)))
+    _b = np.mean(_ys) - _m * np.mean(_xs)
+    return _m, _b
+
+
+def line_equation(_x, _y, _x1, _y1, calc_val):
+    a = (_y1-_y)/(_x1-_x)
+    b = _y-_x*a
+    return round(a * calc_val + b + random.choice([random.randint(1, 5)*0.01, -random.randint(1, 5)*0.01]),3)
+
+
+# Оптическая плотность, Абсолютный метод
+Aa_5 = random.randint(1400, 1500) * 0.001
+Aa_1 = line_equation(0, 0, 9, Aa_5, 1)
+Aa_2 = line_equation(0, 0, 9, Aa_5, 3)
+Aa_3 = line_equation(0, 0, 9, Aa_5, 5)
+Aa_4 = line_equation(0, 0, 9, Aa_5, 7)
+
+# Оптическая плотность, Дифференциальный метод
+Ad_1 = round(Aa_1 - Aa_3, 3)
+Ad_2 = round(Aa_2 - Aa_3, 3)
+Ad_3 = round(Aa_3 - Aa_3, 3)
+Ad_4 = round(Aa_4 - Aa_3, 3)
+Ad_5 = round(Aa_5 - Aa_3, 3)
+
+# Исследуемый раствор
+A_base = round(random.randint(round((Aa_2+0.1)*1000), round((Aa_4-0.1)*1000)) * 0.001, 3)
+A_array = [A_base + 0.02, A_base - 0.01, A_base, ]
+random.shuffle(A_array)
+A_1 = round(A_array[0], 3)
+A_2 = round(A_array[1], 3)
+A_3 = round(A_array[2], 3)
+A_4 = round(A_1 - Aa_3, 3)
+A_5 = round(A_2 - Aa_3, 3)
+A_6 = round(A_3 - Aa_3, 3)
+
+ys_abs = np.array([0, Aa_1, Aa_2, Aa_3, Aa_4, Aa_5], dtype=np.float64)
+ys_dif = np.array([Ad_1, Ad_2, Ad_3, Ad_4, Ad_5], dtype=np.float64)
+
+xs_abs = np.array([0, 1, 3, 5, 7, 9], dtype=np.float64)
+xs_dif = np.array([1, 3, 5, 7, 9], dtype=np.float64)
+
+m_abs, b_abs = fit_slope_and_intercept(xs_abs, ys_abs)
+m_dif, b_dif = fit_slope_and_intercept(xs_dif, ys_dif)
+
+V_1 = round((A_1 - b_abs)/m_abs, 3)
+V_2 = round((A_2 - b_abs)/m_abs, 3)
+V_3 = round((A_3 - b_abs)/m_abs, 3)
+V_4 = round((A_4 - b_dif)/m_dif, 3)
+V_5 = round((A_5 - b_dif)/m_dif, 3)
+V_6 = round((A_6 - b_dif)/m_dif, 3)
+
+T = 2.95 # * math.pow(10, 5)
+m_Ni_1 = V_1 * T
+m_Ni_2 = V_2 * T
+m_Ni_3 = V_3 * T
+m_Ni_4 = V_4 * T
+m_Ni_5 = V_5 * T
+m_Ni_6 = V_6 * T
+
+m_avg_abs = (m_Ni_1 + m_Ni_2 + m_Ni_3) / 3
+m_avg_dif = (m_Ni_4 + m_Ni_5 + m_Ni_6) / 3
+
+S_abs = np.std([m_Ni_1, m_Ni_2, m_Ni_3])
+S_dif = np.std([m_Ni_4, m_Ni_5, m_Ni_6])
+
+Sr_abs = S_abs/m_avg_abs
+Sr_dif = S_dif/m_avg_dif
+
+t_3_95 = 4.3
+
+delta_m_abs = (S_abs*t_3_95)/math.sqrt(3)
+delta_m_dif = (S_dif*t_3_95)/math.sqrt(3)
+
+</script>
+
+    <style type="text/css">
+        .chemical-task table.data-table td,.chemical-task table.data-table th{
+            padding: 0.55em !important;
+            border: 1px solid #e5e5e5 !important;
+            text-align: center !important;
+            word-break: initial !important;
+        }
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: block !important;
+            margin-top: 2px !important;
+            text-align: center;
+        }
+        .chemical-task input {
+            min-width: 100px !important;
+        }
+        .chemical-task .sign-block{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <div class="chemical-task">
+
+        <p>Дано: </p>
+        <p><i>Таблица 1. Результаты измерения оптической плотности стандартных и анализируемого растворов методами абсолютной и дифференциальной спектрофотометрии</i></p>
+
+        <table class="data-table">
+            <tr>
+                <th colspan="2">Абсолютный метод</th>
+                <th colspan="2">Дифференциальный метод</th>
+            </tr>
+            <tr>
+                <th>Объем стандартного раствора, \(V_{ст}\), мл</th>
+                <th>Оптическая плотность, \(A\)</th>
+                <th>Объем стандартного раствора, \(V_{ст}\), мл</th>
+                <th>Оптическая плотность, \(A\)</th>
+            </tr>
+            <tr>
+                <td>\(1.0\)</td>
+                <td>\($Aa_1\)</td>
+                <td>\(1.0\)</td>
+                <td>\($Ad_1\)</td>
+            </tr>
+            <tr>
+                <td>\(3.0\)</td>
+                <td>\($Aa_2\)</td>
+                <td>\(3.0\)</td>
+                <td>\($Ad_2\)</td>
+            </tr>
+            <tr>
+                <td>\(5.0\)</td>
+                <td>\($Aa_3\)</td>
+                <td>\(5.0\)</td>
+                <td>\($Ad_3\)</td>
+            </tr>
+            <tr>
+                <td>\(7.0\)</td>
+                <td>\($Aa_4\)</td>
+                <td>\(7.0\)</td>
+                <td>\($Ad_4\)</td>
+            </tr>
+            <tr>
+                <td>\(9.0\)</td>
+                <td>\($Aa_5\)</td>
+                <td>\(9.0\)</td>
+                <td>\($Ad_5\)</td>
+            </tr>
+            <tr>
+                <th rowspan="3">Исследуемый раствор</th>
+                <td>\($A_1\)</td>
+                <th rowspan="3">Исследуемый раствор</th>
+                <td>\($A_4\)</td>
+            </tr>
+            <tr>
+                <td>\($A_2\)</td>
+                <td>\($A_5\)</td>
+            </tr>
+            <tr>
+                <td>\($A_3\)</td>
+                <td>\($A_6\)</td>
+            </tr>
+
+        </table>
+
+        <p> </p>
+        <p>Выполнить. </p>
+        <p>Постройте градуировочные графики, выполните необходимые расчеты, результаты впишите в соответствующие ячейки таблицы 2. </p>
+        <p> </p>
+        <p><i>Таблица 2. Результаты определения массы никеля в исследуемом растворе</i></p>
+
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th colspan="3">Абсолютный метод</th>
+                <th colspan="3">Дифференциальный метод</th>
+            </tr>
+            <tr>
+                <th>\(A\)</th>
+                <th>\(V\), мл</th>
+                <th>\(m(Ni)\), \(10^{-5}\) г</th>
+                <th>\(A\)</th>
+                <th>\(V\), мл</th>
+                <th>\(m(Ni)\), \(10^{-5}\) г</th>
+            </tr>
+            <tr>
+                <td>\($A_1\)</td>
+                <td>
+                    <numericalresponse answer="$V_1">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_Ni_1">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\($A_4\)</td>
+                <td>
+                    <numericalresponse answer="$V_4">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_Ni_4">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\($A_2\)</td>
+                <td>
+                    <numericalresponse answer="$V_2">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_Ni_2">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\($A_5\)</td>
+                <td>
+                    <numericalresponse answer="$V_5">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_Ni_5">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>\($A_3\)</td>
+                <td>
+                    <numericalresponse answer="$V_3">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_Ni_3">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>\($A_6\)</td>
+                <td>
+                    <numericalresponse answer="$V_6">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_Ni_6">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <p>Выполните необходимые расчеты, результаты впишите в соответствующие ячейки таблицы 3. </p>
+        <p><i>Таблица 3. Статистическая обработка результатов определения массы никеля в исследуемом растворе</i></p>
+
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th>Параметры</th>
+                <th style="width: 190px;">Абсолютный метод</th>
+                <th style="width: 190px;">Дифференциальный метод</th>
+            </tr>
+            <tr>
+                <th>Среднее значение, \(m_{ср}\), \(10^{-5}\) г</th>
+                <td>
+                    <numericalresponse answer="$m_avg_abs">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_avg_dif">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Стандартное отклонение, \(S\), \(10^{-5}\) </th>
+                <td>
+                    <numericalresponse answer="$S_abs">
+                        <responseparam type="tolerance" default="0.02"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$S_dif">
+                        <responseparam type="tolerance" default="0.02"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Относительное стандартное отклонение, \(S_r\), \(\%\)</th>
+                <td>
+                    <numericalresponse answer="$Sr_abs">
+                        <responseparam type="tolerance" default="0.02"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$Sr_dif">
+                        <responseparam type="tolerance" default="0.02"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Доверительный интервал, \(\Delta m\), \(10^{-5}\) г</th>
+                <td>
+                    <div class="sign-block">
+                        <div style="margin-right: 8px;">\(\pm\)</div>
+                        <numericalresponse answer="$delta_m_abs">
+                            <responseparam type="tolerance" default="0.02"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+                <td>
+                    <div class="sign-block">
+                        <div style="margin-right: 8px;">\(\pm\)</div>
+                        <numericalresponse answer="$delta_m_dif">
+                            <responseparam type="tolerance" default="0.02"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+            </tr>
+            <!--
+            <tr>
+              <th>Результат, \(m_{ср} \pm \Delta m\), \(10^5\) г</th>
+              <td></td>
+              <td></td>
+            </tr>
+            -->
+            </tbody>
+        </table>
+    </div>
+</problem>

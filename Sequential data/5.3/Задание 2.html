@@ -1,0 +1,88 @@
+<problem>
+
+    <figure style="text-align:center;">
+        <img src="/static/t5.3.2.png" alt="" style="max-width: 800px;"/>
+        <figcaption></figcaption>
+    </figure>
+
+    <div id="task_Htd689Jgsd7" class="step_task">
+        <div class="question-step">
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false">The graph is fine</choice>
+                    <choice correct="false">Not all nodes are balanced</choice>
+                    <choice correct="true">Graph is balanced, but directions are wrong</choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <p>Select wrong directions:</p>
+            <choiceresponse>
+                <checkboxgroup>
+                    <choice correct="true">BC – B</choice>
+                    <choice correct="false">ABC – BC</choice>
+                    <choice correct="true">A – CA</choice>
+                    <choice correct="false">DAB – AB</choice>
+                    <choice correct="false">CA – CAC</choice>
+                    <choice correct="true">AB – A</choice>
+                    <choice correct="false">C – D</choice>
+                    <choice correct="false">D – DA</choice>
+                </checkboxgroup>
+            </choiceresponse>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        let task_id_1 = "task_Htd689Jgsd7";
+
+        let problem_1 = $(`#${task_id_1}`).closest(".problem")
+
+        $(`#${task_id_1} .field-input.input-radio`).change(function() {
+            $(".submit.btn-brand", problem_1).removeAttr("disabled")
+        });
+
+        let show_index_1 = 0;
+
+        $(".question-step", problem_1).each(function(index, element) {
+            $($(".question-step", problem_1)[index]).hide();
+            if ($('.status.correct', $($(".question-step", problem_1)[index])).length || $('.status.incorrect', $($(".question-step", problem_1)[index])).length){
+                if (index === $(".question-step", problem_1).length - 1){
+                    show_index_1 = index;
+                }
+                else{
+                    show_index_1 = index+1;
+                }
+            }
+        });
+
+        $($(".question-step", problem_1)[show_index_1]).show();
+
+
+    </script>
+    <style>
+
+        .step_task pre{
+            margin: 0px !important;
+            border: none !important;
+            background-color: #3c3c3c !important;
+            text-shadow: none !important;
+            color: whitesmoke !important;
+            font-family: monospace;
+        }
+        .step_task .status-icon{
+            display: none;
+        }
+
+        .step_task legend{
+            margin-bottom: 0px !important;
+        }
+
+        .step_task .question-step p{
+            margin-bottom: 10px !important;
+            margin-top: 10px;
+        }
+
+    </style>
+</problem>

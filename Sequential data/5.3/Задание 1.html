@@ -1,0 +1,96 @@
+<problem>
+
+    <p>Check the graphs below and select whether they are correct or select the type of mistake in graph. For the correct variant write down the superstring.</p>
+
+    <figure style="text-align:center;">
+        <img src="/static/t5.3.1.png" alt="" style="max-width: 800px;"/>
+        <figcaption></figcaption>
+    </figure>
+
+    <div id="task_wegF6Of72gG" class="step_task">
+        <div class="question-step">
+            <multiplechoiceresponse>
+                <choicegroup type="MultipleChoice" shuffle="true">
+                    <choice correct="false">The graph is fine</choice>
+                    <choice correct="true">Not all nodes are balanced</choice>
+                    <choice correct="false">Graph is balanced, but directions are wrong</choice>
+                </choicegroup>
+            </multiplechoiceresponse>
+
+        </div>
+
+        <div class="question-step">
+            <p>Select unbalanced nodes:</p>
+            <choiceresponse>
+                <checkboxgroup>
+                    <choice correct="false">DAB</choice>
+                    <choice correct="false">ABC</choice>
+                    <choice correct="true">BAB</choice>
+                    <choice correct="false">CAC</choice>
+                    <choice correct="false">DA</choice>
+                    <choice correct="true">AB</choice>
+                    <choice correct="false">BC</choice>
+                    <choice correct="true">BA</choice>
+                    <choice correct="false">CA</choice>
+                    <choice correct="false">AC</choice>
+                    <choice correct="false">D</choice>
+                    <choice correct="false">A</choice>
+                    <choice correct="false">B</choice>
+                    <choice correct="true">C</choice>
+                </checkboxgroup>
+            </choiceresponse>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        let task_id = "task_wegF6Of72gG";
+
+        let problem = $(`#${task_id}`).closest(".problem")
+
+        $(`#${task_id} .field-input.input-radio`).change(function() {
+            $(".submit.btn-brand", problem).removeAttr("disabled")
+        });
+
+        let show_index = 0;
+
+        $(".question-step", problem).each(function(index, element) {
+            $($(".question-step", problem)[index]).hide();
+            if ($('.status.correct', $($(".question-step", problem)[index])).length || $('.status.incorrect', $($(".question-step", problem)[index])).length){
+                if (index === $(".question-step", problem).length - 1){
+                    show_index = index;
+                }
+                else{
+                    show_index = index+1;
+                }
+            }
+        });
+
+        $($(".question-step", problem)[show_index]).show();
+
+
+    </script>
+    <style>
+
+        .step_task pre{
+            margin: 0px !important;
+            border: none !important;
+            background-color: #3c3c3c !important;
+            text-shadow: none !important;
+            color: whitesmoke !important;
+            font-family: monospace;
+        }
+        .step_task .status-icon{
+            display: none;
+        }
+
+        .step_task legend{
+            margin-bottom: 0px !important;
+        }
+
+        .step_task .question-step p{
+            margin-bottom: 10px !important;
+            margin-top: 10px;
+        }
+
+    </style>
+</problem>

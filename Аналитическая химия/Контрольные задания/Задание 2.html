@@ -1,0 +1,366 @@
+<problem>
+    <script type="loncapa/python">
+# from statistics import mean
+import numpy as np
+import random
+import math
+
+
+def fit_slope_and_intercept(_xs, _ys):
+    # средняя линия
+    _xs = np.array(_xs, dtype=np.float64)
+    _ys = np.array(_ys, dtype=np.float64)
+    _m = (((np.mean(_xs) * np.mean(_ys)) - np.mean(_xs * _ys)) / ((np.mean(_xs) * np.mean(_xs)) - np.mean(_xs * _xs)))
+    _b = np.mean(_ys) - _m * np.mean(_xs)
+    return _m, _b
+
+
+source_A = [random.randint(200, 500), random.randint(500, 1000), random.randint(1000, 1500)]
+source_A.sort()
+
+A3 = round(source_A[2] * 0.001, 3)
+A6 = round(source_A[1] * 0.001, 3)
+A9 = round(source_A[0] * 0.001, 3)
+
+K1 = fit_slope_and_intercept([0, 9], [0, A3])[0]
+A1 = round(K1 * 3, 3)
+A2 = round(K1 * 6, 3)
+
+K2 = fit_slope_and_intercept([0, 9], [0, A6])[0]
+A4 = round(K2 * 3, 3)
+A5 = round(K2 * 6, 3)
+
+K3 = fit_slope_and_intercept([0, 9], [0, A9])[0]
+A7 = round(K3 * 3, 3)
+A8 = round(K3 * 6, 3)
+
+A10_A11_A12_base = round(random.randint(200, 900) * 0.001, 3)
+A10_A11_A12_array = [A10_A11_A12_base + (random.randint(10, 20)*0.001), A10_A11_A12_base - (random.randint(10, 20)*0.001), A10_A11_A12_base, ]
+random.shuffle(A10_A11_A12_array)
+A10 = round(A10_A11_A12_array[0], 3)
+A11 = round(A10_A11_A12_array[1], 3)
+A12 = round(A10_A11_A12_array[2], 3)
+
+A13_A14_A15_base = A10_A11_A12_base + (random.randint(50, 350) * 0.001)
+A13_A14_A15_array = [A13_A14_A15_base + (random.randint(10, 20)*0.001), A13_A14_A15_base - (random.randint(10, 20)*0.001), A13_A14_A15_base, ]
+random.shuffle(A13_A14_A15_array)
+A13 = round(A13_A14_A15_array[0], 3)
+A14 = round(A13_A14_A15_array[1], 3)
+A15 = round(A13_A14_A15_array[2], 3)
+
+# A1 = 0.155
+# A2 = 0.305
+# A3 = 0.443
+# A4 = 0.095
+# A5 = 0.185
+# A6 = 0.285
+# A7 = 0.068
+# A8 = 0.125
+# A9 = 0.185
+# A10 = 0.195
+# A11 = 0.212
+# A12 = 0.206
+# A13 = 0.250
+# A14 = 0.261
+# A15 = 0.248
+
+A_480_avg = round(sum([A10, A11, A12])/3, 3)
+A_550_avg = round(sum([A13, A14, A15])/3, 3)
+
+C_1z_KMnO4_3ml = 0.0006
+C_1z_KMnO4_6ml = 0.0012
+C_1z_KMnO4_9ml = 0.0018
+C_1z_K2Cr2O7_3ml = 0.0036
+C_1z_K2Cr2O7_6ml = 0.0072
+C_1z_K2Cr2O7_9ml = 0.0108
+
+e_A1 = round(A1/C_1z_KMnO4_3ml, 1)
+e_A2 = round(A2/C_1z_KMnO4_6ml, 1)
+e_A3 = round(A3/C_1z_KMnO4_9ml, 1)
+
+e_A4 = round(A4/C_1z_K2Cr2O7_3ml, 1)
+e_A5 = round(A5/C_1z_K2Cr2O7_6ml, 1)
+e_A6 = round(A6/C_1z_K2Cr2O7_9ml, 1)
+
+e_A7 = round(A7/C_1z_KMnO4_3ml, 1)
+e_A8 = round(A8/C_1z_KMnO4_6ml, 1)
+e_A9 = round(A9/C_1z_KMnO4_9ml, 1)
+
+e_KMnO4_550_avg = round(sum([e_A1, e_A2, e_A3])/3, 3)
+e_KMnO4_480_avg = round(sum([e_A7, e_A8, e_A9])/3, 3)
+e_K2Cr2O7_480_avg = round(sum([e_A4, e_A5, e_A6])/3, 3)
+
+C_1z_perm = round(A_550_avg/e_KMnO4_550_avg, 7)
+C_1z_dihr = round((A_480_avg - e_KMnO4_480_avg*C_1z_perm)/e_K2Cr2O7_480_avg, 7)
+
+m_perm = C_1z_perm * 50 * (158/5)
+m_dihr = C_1z_dihr * 50 * (294.2/6)
+
+</script>
+
+    <style type="text/css">
+        .chemical-task table.data-table td,.chemical-task table.data-table th{
+            padding: 0.55em !important;
+            border: 1px solid #e5e5e5 !important;
+            text-align: center !important;
+            word-break: initial !important;
+        }
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: block !important;
+            margin-top: 2px !important;
+            text-align: center;
+        }
+        .chemical-task input {
+            min-width: 100px !important;
+        }
+        .chemical-task .sign-block{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <div class="chemical-task">
+
+        <p><strong>Задание.</strong> Определить массу перманганата и дихромата калия в растворе по данным спектрофотометрии. Провести статистическую обработку результатов измерений.</p>
+        <p><i>Таблица 1. Результаты измерения оптической плотности стандартных растворов \(KMnO_4\), \(K_2CR_2O_7\) и исследуемого раствора.</i></p>
+
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th colspan="4">\(A\) стандартных растворов</th>
+                <th colspan="2" rowspan="2">\(A\) исследуемого раствора</th>
+            </tr>
+            <tr>
+                <th rowspan="2">\(V\)ст., мл</th>
+                <th colspan="2">\(KMnO_4\)</th>
+                <th>\(K_2CR_2O_7\)</th>
+            </tr>
+            <tr>
+                <th>550 нм</th>
+                <th>480 нм</th>
+                <th>480 нм</th>
+                <th>480 нм</th>
+                <th>550 нм</th>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>\($A1\)</td>
+                <td>\($A7\)</td>
+                <td>\($A4\)</td>
+                <td>\($A10\)</td>
+                <td>\($A13\)</td>
+            </tr>
+            <tr>
+                <th>6</th>
+                <td>\($A2\)</td>
+                <td>\($A8\)</td>
+                <td>\($A5\)</td>
+                <td>\($A11\)</td>
+                <td>\($A14\)</td>
+            </tr>
+            <tr>
+                <th>9</th>
+                <td>\($A3\)</td>
+                <td>\($A9\)</td>
+                <td>\($A6\)</td>
+                <td>\($A12\)</td>
+                <td>\($A15\)</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <p>Промежуточные и конечные результаты вычислений</p>
+
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th rowspan="2">Параметры</th>
+                <th colspan="3">\(KMnO_4\)</th>
+                <th colspan="3">\(K_2CR_2O_7\)</th>
+            </tr>
+            <tr>
+                <th>
+                    1 ст. р-р<br />(3 мл)
+                </th>
+                <th>
+                    2 ст.р-р<br />(6 мл)
+                </th>
+                <th>
+                    3 ст.р-р<br />(9 мл)
+                </th>
+                <th>
+                    1 ст. р-р<br />(3 мл)
+                </th>
+                <th>
+                    2 ст.р-р<br />(6 мл)
+                </th>
+                <th>
+                    3 ст.р-р<br />(9 мл)
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    \(C_{1/z}\)станд. р-ров, моль/л
+                </th>
+                <td>
+                    \($C_1z_KMnO4_3ml\)
+                </td>
+                <td>
+                    \($C_1z_KMnO4_6ml\)
+                </td>
+                <td>
+                    \($C_1z_KMnO4_9ml\)
+                </td>
+                <td>
+                    \($C_1z_K2Cr2O7_3ml\)
+                </td>
+                <td>
+                    \($C_1z_K2Cr2O7_6ml\)
+                </td>
+                <td>
+                    \($C_1z_K2Cr2O7_9ml\)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    \(\varepsilon\) (480 нм)
+                </th>
+                <td>
+                    <numericalresponse answer="$e_A7">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A8">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A9">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A4">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A5">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A6">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Среднее \(\varepsilon\) (480 нм)
+                </th>
+                <td colspan="3">
+                    <numericalresponse answer="$e_KMnO4_480_avg">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td colspan="3">
+                    <numericalresponse answer="$e_K2Cr2O7_480_avg">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    \(\varepsilon\) (550 нм)
+                </th>
+                <td>
+                    <numericalresponse answer="$e_A1">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A2">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$e_A3">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td colspan="3" rowspan="2">
+                    \(-\)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Среднее \(\varepsilon\) (550 нм)
+                </th>
+                <td colspan="3" >
+                    <numericalresponse answer="$e_KMnO4_550_avg">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    \(C_{1/z}\) компонентов в анализир. растворе, моль/л
+                </th>
+                <td colspan="3">
+                    <numericalresponse answer="$C_1z_perm">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td colspan="3">
+                    <numericalresponse answer="$C_1z_dihr">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Массы компонентов, \(10^{-3}\) г
+                </th>
+                <td colspan="3">
+                    <numericalresponse answer="$m_perm">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td colspan="3">
+                    <numericalresponse answer="$m_dihr">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</problem>
