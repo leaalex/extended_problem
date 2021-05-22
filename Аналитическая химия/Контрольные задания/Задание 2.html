@@ -67,12 +67,13 @@ A15 = round(A13_A14_A15_array[2], 3)
 A_480_avg = round(sum([A10, A11, A12])/3, 3)
 A_550_avg = round(sum([A13, A14, A15])/3, 3)
 
-C_1z_KMnO4_3ml = 0.0006
-C_1z_KMnO4_6ml = 0.0012
-C_1z_KMnO4_9ml = 0.0018
-C_1z_K2Cr2O7_3ml = 0.0036
-C_1z_K2Cr2O7_6ml = 0.0072
-C_1z_K2Cr2O7_9ml = 0.0108
+C_1z_KMnO4_3ml = 0.00012
+C_1z_KMnO4_6ml = 0.00024
+C_1z_KMnO4_9ml = 0.00036
+
+C_1z_K2Cr2O7_3ml = 0.0006
+C_1z_K2Cr2O7_6ml = 0.0012
+C_1z_K2Cr2O7_9ml = 0.0018
 
 e_A1 = round(A1/C_1z_KMnO4_3ml, 1)
 e_A2 = round(A2/C_1z_KMnO4_6ml, 1)
@@ -105,11 +106,13 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             text-align: center !important;
             word-break: initial !important;
         }
-
+        .chemical-task table.data-table th{
+            background: #e5f6ff;
+            min-width: 80px;
+        }
         .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
             display: none !important;
         }
-
         .chemical-task p.answer {
             display: block !important;
             margin-top: 2px !important;
@@ -127,8 +130,8 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
 
     <div class="chemical-task">
 
-        <p><strong>Задание.</strong> Определить массу перманганата и дихромата калия в растворе по данным спектрофотометрии. Провести статистическую обработку результатов измерений.</p>
-        <p><i>Таблица 1. Результаты измерения оптической плотности стандартных растворов \(KMnO_4\), \(K_2CR_2O_7\) и исследуемого раствора.</i></p>
+        <p><strong>Дано:</strong> </p>
+        <p><i>Таблица 1. Результаты измерения оптической плотности стандартных растворов \(\rm{KMnO_4}\), \(\rm{K_2Cr_2O_7}\) и исследуемого раствора.</i></p>
 
         <table class="data-table">
             <tbody>
@@ -138,18 +141,18 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tr>
             <tr>
                 <th rowspan="2">\(V\)ст., мл</th>
-                <th colspan="2">\(KMnO_4\)</th>
-                <th>\(K_2CR_2O_7\)</th>
+                <th colspan="2">\(\rm{KMnO_4}\)</th>
+                <th>\(\rm{K_2Cr_2O_7}\)</th>
             </tr>
             <tr>
-                <th>550 нм</th>
-                <th>480 нм</th>
-                <th>480 нм</th>
-                <th>480 нм</th>
-                <th>550 нм</th>
+                <th>\(550\) нм</th>
+                <th>\(480\) нм</th>
+                <th>\(480\) нм</th>
+                <th>\(480\) нм</th>
+                <th>\(550\) нм</th>
             </tr>
             <tr>
-                <th>3</th>
+                <th>\(3\)</th>
                 <td>\($A1\)</td>
                 <td>\($A7\)</td>
                 <td>\($A4\)</td>
@@ -157,7 +160,7 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
                 <td>\($A13\)</td>
             </tr>
             <tr>
-                <th>6</th>
+                <th>\(6\)</th>
                 <td>\($A2\)</td>
                 <td>\($A8\)</td>
                 <td>\($A5\)</td>
@@ -165,7 +168,7 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
                 <td>\($A14\)</td>
             </tr>
             <tr>
-                <th>9</th>
+                <th>\(9\)</th>
                 <td>\($A3\)</td>
                 <td>\($A9\)</td>
                 <td>\($A6\)</td>
@@ -175,15 +178,16 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tbody>
         </table>
 
-
-        <p>Промежуточные и конечные результаты вычислений</p>
+        <p><strong>Выполнить:</strong> </p>
+        <p>необходимые расчеты, результаты вписать в соответствующие ячейки таблицы 2.</p>
+        <p><i>Таблица 2. Промежуточные и конечные результаты вычислений</i></p>
 
         <table class="data-table">
             <tbody>
             <tr>
                 <th rowspan="2">Параметры</th>
-                <th colspan="3">\(KMnO_4\)</th>
-                <th colspan="3">\(K_2CR_2O_7\)</th>
+                <th colspan="3">\(\rm{KMnO_4}\)</th>
+                <th colspan="3">\(\rm{K_2Cr_2O_7}\)</th>
             </tr>
             <tr>
                 <th>
@@ -207,30 +211,48 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tr>
             <tr>
                 <th>
-                    \(C_{1/z}\)станд. р-ров, моль/л
+                    \(C\) станд. р-ров, моль/л
                 </th>
                 <td>
-                    \($C_1z_KMnO4_3ml\)
+                    <numericalresponse answer="$C_1z_KMnO4_3ml">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
                 </td>
                 <td>
-                    \($C_1z_KMnO4_6ml\)
+                    <numericalresponse answer="$C_1z_KMnO4_6ml">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
                 </td>
                 <td>
-                    \($C_1z_KMnO4_9ml\)
+                    <numericalresponse answer="$C_1z_KMnO4_9ml">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
                 </td>
                 <td>
-                    \($C_1z_K2Cr2O7_3ml\)
+                    <numericalresponse answer="$C_1z_K2Cr2O7_3ml">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
                 </td>
                 <td>
-                    \($C_1z_K2Cr2O7_6ml\)
+                    <numericalresponse answer="$C_1z_K2Cr2O7_6ml">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
                 </td>
                 <td>
-                    \($C_1z_K2Cr2O7_9ml\)
+                    <numericalresponse answer="$C_1z_K2Cr2O7_9ml">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
                 </td>
             </tr>
             <tr>
                 <th>
-                    \(\varepsilon\) (480 нм)
+                    \(\rm{\varepsilon}\) (\(480\) нм), дм<sup>3</sup>/(моль*см)
                 </th>
                 <td>
                     <numericalresponse answer="$e_A7">
@@ -271,7 +293,7 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tr>
             <tr>
                 <th>
-                    Среднее \(\varepsilon\) (480 нм)
+                    Среднее \(\rm{\varepsilon}\) (\(480\) нм), дм<sup>3</sup>/(моль*см)
                 </th>
                 <td colspan="3">
                     <numericalresponse answer="$e_KMnO4_480_avg">
@@ -288,7 +310,7 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tr>
             <tr>
                 <th>
-                    \(\varepsilon\) (550 нм)
+                    \(\rm{\varepsilon}\) (\(550\) нм), дм<sup>3</sup>/(моль*см)
                 </th>
                 <td>
                     <numericalresponse answer="$e_A1">
@@ -314,7 +336,7 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tr>
             <tr>
                 <th>
-                    Среднее \(\varepsilon\) (550 нм)
+                    Среднее \(\rm{\varepsilon}\) (\(550\) нм), дм<sup>3</sup>/(моль*см)
                 </th>
                 <td colspan="3" >
                     <numericalresponse answer="$e_KMnO4_550_avg">
@@ -325,7 +347,7 @@ m_dihr = C_1z_dihr * 50 * (294.2/6)
             </tr>
             <tr>
                 <th>
-                    \(C_{1/z}\) компонентов в анализир. растворе, моль/л
+                    \(C\) компонентов в анализир. растворе, моль/л
                 </th>
                 <td colspan="3">
                     <numericalresponse answer="$C_1z_perm">
