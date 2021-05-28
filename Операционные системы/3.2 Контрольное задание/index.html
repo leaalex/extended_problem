@@ -1,0 +1,144 @@
+<problem>
+    <script type="loncapa/python">
+import random
+import json
+
+groups_list = ["managers", "front_developers", "back_developers", "analysts", "testers", "system_administrators","technical_support", "marketers", "hr_specialists"]
+GIGs_list = ["444", "555", "777", "888", "999"]
+user_GIDs_list = ["1005", "1100", "1110", "1111", "1115"]
+passwords_list = ["my_password", "qwerty123", "P@s$w0rd", "asdqwezxc", "1@3$5^7*9", "1qaz2wsx3edc$RFV"]
+usernames_list = ["anabel", "emily", "george", "harry", "jessica", "lily", "olivia", "thomas", "samuel"]
+
+random.shuffle(groups_list)
+random.shuffle(GIGs_list)
+random.shuffle(user_GIDs_list)
+random.shuffle(passwords_list)
+random.shuffle(usernames_list)
+
+group_1 = groups_list[0]  # "mygroup"
+group_1_GID = GIGs_list[0]  # "435"
+group_2 = groups_list[1]  # "group2"
+group_2_password = passwords_list[0]  # "1234567"
+
+user_1 = usernames_list[0]  # "etc_user"
+user_1_password = passwords_list[1]  # "asdqwezxc"
+user_2 = usernames_list[1]  # "user2"
+user_3 = usernames_list[2]  # "user3"
+user_3_GID = user_GIDs_list[0]  # "1003"
+
+correct_answer_passwd = [
+    [user_1, False, False, False, False, '/etc/' + user_1, False],
+    [user_2, False, False, False, False, False, False],
+    [user_3, False, user_3_GID, user_3_GID, False, False, False]
+]
+correct_answer_group = [
+    [group_1, False, group_1_GID, user_3],
+    [group_2, False, False, user_3],
+    [user_3, False, user_3_GID, False]
+]
+correct_answer = [correct_answer_passwd, correct_answer_group]
+
+source_data = [
+{"title": "Загрузка файла passwd"},
+{"title": "Загрузка файла group"},
+]
+source_data = json.dumps(source_data).replace('"', "'")
+
+
+def compare_arrays(student_arr, correct_arr):
+    current_grade = 0
+    correct_items = []
+    for correct_array in correct_arr:
+        for line_idx, line in enumerate(student_arr):
+            student_array = line.replace("\r", "").split(":")
+            if len(correct_array) == len(student_array):
+                if all([student_array[idx] == x if not isinstance(x, bool) else True for idx, x in
+                        enumerate(correct_array)]):
+                    current_grade += 1
+                    correct_items.append(student_array)
+                    break
+    return current_grade, correct_items
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    # print(student_answer)
+    grade = 0
+    max_grade = sum([len(x) for x in correct_answer])
+    msg = {
+        "correct_items": [],
+        "errors": [],
+        "grade_decimal": 0,
+        "grade": 0,
+        "max_grade": max_grade,
+    }
+    for ans_idx, ans in enumerate(correct_answer):
+        grade_tmp, corr_items = compare_arrays(student_answer[ans_idx]['data'], ans)
+        grade += grade_tmp
+        msg["correct_items"].append(corr_items)
+
+    final_grade = grade / max_grade
+    if final_grade == 1:
+        ok = True
+    elif final_grade == 0:
+        ok = False
+    else:
+        ok = 'Partial'
+
+    msg["grade"] = grade
+    msg["grade_decimal"] = final_grade
+    msg = json.dumps(msg, ensure_ascii=False).replace("\"", "'")
+    return {'input_list': [{'ok': ok, 'msg': msg, 'grade_decimal': final_grade}, ]}
+</script>
+
+    <div>
+        <p>Первого пользователя в системе вы создали при установке (логин: <strong>student</strong>, пароль: <strong>Asdf1234</strong>). В этом задании Вам нужно создать несколько новых пользователей, еще несколько групп в системе и добавить пользователей в группы.</p>
+        <p>Для создания пользователей и групп можно пользоваться любыми изученными средствами.</p>
+        <ol>
+            <li>Создайте две группы: <strong>$group_1</strong> с заданным "вручную" GID <strong>$group_1_GID</strong> и <strong>$group_2</strong> с паролем <strong>$group_2_password</strong>.</li>
+            <li>Далее создайте трех обычных пользователей: <strong>$user_1</strong> с корневым каталогом в <strong>/etc/$user_1</strong>, <strong>$user_2</strong>, сразу при создании включив его в <strong>$group_2</strong> и <strong>$user_3</strong> с заданным "вручную" UID <strong>$user_3_GID</strong>.</li>
+            <li>Добавьте пользователя <strong>$user_3</strong> в группу <strong>$group_2</strong> и <strong>$group_1</strong>, а пользователя <strong>$user_1</strong> в группу <strong>$group_2</strong>.</li>
+            <li>Назначьте пароль пользователю <strong>$user_1</strong> пароль <strong>$user_1_password</strong>.</li>
+            <li>Назначьте пользователю <strong>$user_2</strong> права администратора (добавить в группу sudo).</li>
+            <li>Отправьте на проверку файлы <strong>/etc/passwd</strong> и <strong>/etc/group</strong>.</li>
+            <li>Удалите созданных пользователей.</li>
+        </ol>
+
+        <div style="border: 2px solid #c8c8c8;padding: 10px;border-radius: 4px;width: fit-content; margin: 20px;">
+            <strong>Ищем в passwd:</strong><br />
+            $user_1:x:1001:1024::/etc/$user_1:/bin/sh<br />
+            $user_2:x:1002:1023::/home/$user_2:/bin/sh<br />
+            $user_3:x:$user_3_GID:$user_3_GID::/home/$user_3:/bin/sh<br />
+
+            <strong>Ищем в group:</strong><br />
+            $group_1:x:$group_1_GID:$user_3<br />
+            $group_2:x:1023:$user_3<br />
+            $user_3:x:$user_3_GID:<br />
+        </div>
+    </div>
+    <div data-type="TXTCheckerApp" class="adv-apps" data-initial-data='$source_data'></div>
+
+    <div style="display: none !important;">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$task_id"/>
+            <br/>
+        </customresponse>
+    </div>
+
+    <solution>
+        <!--        <script type="text/javascript">-->
+        <!--            let txt_strings = $correct_answer_display;-->
+        <!--            let task_id = '$task_id';-->
+        <!--            let csvContent = "data:text/txt;charset=utf-8,";-->
+        <!--            csvContent += txt_strings.join('\n')-->
+        <!--            let link = document.createElement("a");-->
+        <!--            link.setAttribute("href", encodeURI(csvContent));-->
+        <!--            link.innerHTML = "Скачать файл с правильным ответом"-->
+        <!--            link.setAttribute("download", `correct_answer.txt`);-->
+        <!--            document.querySelector(`#answer_block_${task_id}`).appendChild(link);-->
+        <!--        </script>-->
+        <!--        <h2 style="color: #018000 !important;">Решение</h2>-->
+        <!--        <div id="answer_block_$task_id"></div>-->
+
+    </solution>
+</problem>
