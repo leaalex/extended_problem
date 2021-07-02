@@ -1,0 +1,205 @@
+<problem>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import matplotlib.pyplot as plt
+import random
+import math
+
+student_x = []
+student_y = []
+
+
+def line_equation(_x, _y, _x1, _y1, calc_val):
+    a = (_y1-_y)/(_x1-_x)
+    b = _y-_x*a
+    return round(a * calc_val + b, 2)
+
+
+answer_x = (round(random.randint(700, 1300) * 0.01, 2))  # положение ответа по "x": от 5 до 15
+answer_y = (round(random.randint(50, 300) * 0.01, 2))  # положение ответа по "y": от 1 до 5
+l_x = math.floor(answer_x) - random.choice([1, 2])
+r_x = math.ceil(answer_x) + random.choice([1, 2])
+climb_value = round(random.randint(50, 90) * 0.01, 2)  # поднятие крайних от правильного ответа точек: от 0.50 до 0.90
+l_y = answer_y + climb_value
+r_y = l_y
+start_y = line_equation(answer_x, answer_y, l_x, l_y, 0)
+end_y = line_equation(answer_x, answer_y, r_x, r_y, 20)
+
+left_points_count = random.randint(2, 4)
+right_points_count = random.randint(2, 4)
+left_points = list(range(0, int(l_x)))
+right_points = list(range(int(r_x+1), 21))
+random.shuffle(left_points)
+random.shuffle(right_points)
+left_points = sorted(left_points[:left_points_count])
+right_points = sorted(right_points[:right_points_count])
+
+for lp in left_points:
+    student_x.append(lp)
+    student_y.append(round(line_equation(answer_x, answer_y, l_x, l_y, lp), 2))
+
+student_x.append(l_x)
+student_y.append(l_y)
+student_x.append(r_x)
+student_y.append(r_y)
+
+for rp in right_points:
+    student_x.append(rp)
+    student_y.append(round(line_equation(answer_x, answer_y, r_x, r_y, rp), 2))
+
+C = random.randint(1000,5000) * 0.0001  # 0.2543
+V = random.choice([50, 100, 200, 250])  # 50
+m = 20
+
+C_HF = round(0.2543 * answer_x/V, 5)
+m_HF = round(C_HF * (V * 0.001) * m, 5)
+
+
+    </script>
+    <script type="application/javascript">
+        let student_x_str = '$student_x'
+        let student_y_str = '$student_y'
+
+        let student_x = JSON.parse(student_x_str);
+        let student_y = JSON.parse(student_y_str);
+
+        function createTable() {
+
+            let data_able =  document.getElementsByClassName("table-custom")[0];
+            let x_tr = data_able.querySelectorAll('tr')[0]
+            let y_tr = data_able.querySelectorAll('tr')[1]
+            Array.from(student_x).forEach(function (item, index) {
+                let x_cell = document.createElement('td')
+                let y_cell = document.createElement('td')
+                x_cell.innerText = "\\(" + item.toFixed(1) + "\\)"
+                y_cell.innerText ="\\(" +  student_y[index].toFixed(2) + "\\)"
+                // x_cell.innerText = item.toFixed(1)
+                // y_cell.innerText = student_y[index].toFixed(2)
+                x_tr.appendChild(x_cell);
+                y_tr.appendChild(y_cell);
+            })
+        }
+
+        createTable()
+    </script>
+    <style type="text/css">
+        .chemical-task table.data-table td, .chemical-task table.data-table th {
+            padding: 0.55em !important;
+            border: 1px solid #e5e5e5 !important;
+            text-align: center !important;
+            word-break: initial !important;
+        }
+
+        .chemical-task table.data-table th {
+            background: #e5f6ff;
+        }
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: block !important;
+            margin-top: 2px !important;
+            text-align: center;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="chemical-task">
+        <p>Определить массу фтористоводородной кислоты \(HF\) в \($V\)  мл раствора по данным, указанным в таблице, кондуктометрического титрования раствором \(NaOH\) с эквивалентной концентрацией \($C\) моль/л.
+            Молярную массу фтористоводородной кислоты принять равной \(20\) г/моль.
+        </p>
+
+        <table class="data-table table-custom">
+            <tr>
+                <th>\(V(NaOH),\ мл\)</th>
+            </tr>
+            <tr>
+                <th>\(W \cdot 10^3, \ См\)</th>
+            </tr>
+        </table>
+
+        <h3><strong>Цель:</strong></h3>
+        строить кривые кондуктометрического титрования и с их помощью определять содержание анализируемого вещества.
+        <p></p>
+        <h3><strong>Указания к выполнению задания:</strong></h3>
+        <ol>
+            <li>
+                По данным задачи построить кривую титрования. Для построения графика можно использовать миллиметровую бумагу или любой софт (например, <i>Microsoft Excel</i>).
+            </li>
+            <li>
+                По кривой титрования определить объем титранта в точке эквивалентности.
+            </li>
+            <li>
+                Рассчитать концентрацию определяемого вещества.
+            </li>
+            <li>
+                Рассчитать массу определяемого вещества.
+            </li>
+            <li>
+                Значения концентрации \(C\) и массы \(m\) впишите в соответствующие ячейки в виде числа с точностью до \(0.0001\) г.
+            </li>
+        </ol>
+        <p></p>
+        <p>Внимание! В качестве десятичного разделителя используйте <strong>ТОЧКУ</strong>.</p>
+    </div>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(V_{ТЭ} = \)
+                </td>
+                <td>
+                    <numericalresponse answer="$answer_x">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    \(мл\) (с точностью до сотых)
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    \(C_{HF} = \)
+                </td>
+                <td>
+                    <numericalresponse answer="$C_HF">
+                        <responseparam type="tolerance" default="0.002"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    \(моль/л\) (с точностью до \(0.0001\))
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    \(m_{HF} = \)
+                </td>
+                <td>
+                    <numericalresponse answer="$m_HF">
+                        <responseparam type="tolerance" default="0.002"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    \(г\) (с точностью до \(0.0001\))
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>

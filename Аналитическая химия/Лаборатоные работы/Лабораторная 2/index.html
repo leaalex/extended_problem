@@ -1,0 +1,439 @@
+<problem>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+
+V_k = 200
+V_pip = 10.0
+t_3_95 = 4.3
+Mz_KMnO4 = 31.6
+Mz_NH4VO3 = 116.94
+
+C = round(random.randint(900, 1500)*0.0001, 4)
+
+
+def generate_data():
+    experiment_len = random.randint(22, 25)
+    v_tmp = [round(x*0.1, 1) for x in list(range(0, experiment_len*10))]
+    v_func = []
+    for f in range(experiment_len):
+        v_func.append(random.choice(v_tmp[f*10:f*10+10]))
+
+    interval_1 = int(round(experiment_len/3) + random.choice([0, 1, ]))
+    interval_3 = int(round(experiment_len/3) + random.choice([-2, -1, 0, ]))
+    interval_2 = int(experiment_len - interval_1 - interval_3)
+    # print(interval_1, interval_2, interval_3, sum([interval_1, interval_2, interval_3]))
+
+    interval_2_value_max = random.choice([0.2, 0.3])
+    interval_1_incline = random.randint(5, 100) * 0.01  # наклон левой ветви: от 0.05 до 1.5
+    interval_3_incline = random.randint(50, 250) * 0.01  # наклон правой ветви: от 0.05 до 1.5
+
+    interval_1_values = [round(math.sqrt(interval_1_incline*(-x + list(reversed(v_func[:interval_1]))[0])) + interval_2_value_max, 2) for x in list(reversed(v_func[:interval_1]))]
+    interval_1_values = list(reversed(interval_1_values))
+    interval_3_values = [round(math.sqrt(interval_3_incline*(x - v_func[-interval_3:][0])) + interval_2_value_max,
+                               2) for x in v_func[-interval_3:]]
+    interval_2_value = round(interval_2_value_max - random.choice([0.1, 0.2, ]), 1)
+    i_func = interval_1_values + [interval_2_value for x in list(range(0, interval_2))] + interval_3_values
+    index_1 = random.choice([interval_1-1, interval_1, interval_1+1])
+    index_2 = random.choice([experiment_len-interval_3-1, experiment_len-interval_3, ])
+    return v_func, i_func, index_1, index_2
+
+
+V_1, I_1, V_1_ind_1, V_1_ind_2 = generate_data()
+V_2, I_2, V_2_ind_1, V_2_ind_2 = generate_data()
+V_3, I_3, V_3_ind_1, V_3_ind_2 = generate_data()
+
+#V_1 = [0, 1, 2, 4, 6, 7, 7.5, 8.0, 8.5, 9.0, 11, 13, 17, 18, 19, 19.2, 19.4, 20, 21, 23]
+#I_1 = [1.7, 1.5, 1.3, 1.0, 0.7, 0.5, 0.3, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.8, 1.2, 2.6, 3.3, 4.3]
+#V_1_ind_1 = 7
+#V_1_ind_2 = 14
+#V_2 = [0, 2, 4, 6, 7, 7.5, 7.8, 8, 8.2, 8.5, 11, 14, 17, 18, 18.5, 18.8, 19, 19.2, 20, 22]
+#I_2 = [2, 1.8, 1.5, 1.2, 1, 0.7, 0.5, 0.4, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.5, 0.9, 1.6, 3.2]
+#V_2_ind_1 = 8
+#V_2_ind_2 = 15
+#V_3 = [0, 2, 4, 6, 7, 7.5, 7.8, 7.9, 8.5, 9, 12, 15, 18, 18.5, 18.8, 19.1, 19.2, 19.5, 20, 22]
+#I_3 = [2.5, 2, 1.8, 1.4, 1, 0.7, 0.3, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 1.2, 1.8, 3.2]
+#V_3_ind_1 = 7
+#V_3_ind_2 = 15
+#C = 0.0925
+
+V_1_1T = V_1[V_1_ind_1]
+V_1_2T = V_1[V_1_ind_2]
+
+V_2_1T = V_2[V_2_ind_1]
+V_2_2T = V_2[V_2_ind_2]
+
+V_3_1T = V_3[V_3_ind_1]
+V_3_2T = V_3[V_3_ind_2]
+
+m_KMnO4_1 = round(C * V_1_1T * Mz_KMnO4 * math.pow(10, -3) * (V_k/V_pip), 4)
+m_NH4VO3_1 = round(C * (V_1_2T - V_1_1T) * Mz_NH4VO3 * math.pow(10, -3) * (V_k/V_pip), 4)
+
+m_KMnO4_2 = round(C * V_2_1T * Mz_KMnO4 * math.pow(10, -3) * (V_k/V_pip), 4)
+m_NH4VO3_2 = round(C * (V_2_2T - V_2_1T) * Mz_NH4VO3 * math.pow(10, -3) * (V_k/V_pip), 4)
+
+m_KMnO4_3 = round(C * V_3_1T * Mz_KMnO4 * math.pow(10, -3) * (V_k/V_pip), 4)
+m_NH4VO3_3 = round(C * (V_3_2T - V_3_1T) * Mz_NH4VO3 * math.pow(10, -3) * (V_k/V_pip), 4)
+
+m_average_KMnO4 = round((m_KMnO4_1 + m_KMnO4_2 + m_KMnO4_3)/3, 4)
+m_average_NH4VO3 = round((m_NH4VO3_1 + m_NH4VO3_2 + m_NH4VO3_3)/3, 4)
+
+S_KMnO4 = round(np.std([m_KMnO4_1, m_KMnO4_2, m_KMnO4_3], ddof=1), 4)
+S_NH4VO3 = round(np.std([m_NH4VO3_1, m_NH4VO3_2, m_NH4VO3_3], ddof=1), 4)
+
+Sr_KMnO4 = round(S_KMnO4/m_average_KMnO4 * 100, 4)
+Sr_NH4VO3 = round(S_NH4VO3/m_average_NH4VO3 * 100, 4)
+
+delta_m_KMnO4 = round((S_KMnO4*t_3_95)/math.sqrt(3), 4)
+delta_m_NH4VO3 = round((S_NH4VO3*t_3_95)/math.sqrt(3), 4)
+
+
+
+    </script>
+    <script type="application/javascript">
+        let I_1_str = '$I_1'
+        let I_2_str = '$I_2'
+        let I_3_str = '$I_3'
+        let V_1_str = '$V_1'
+        let V_2_str = '$V_2'
+        let V_3_str = '$V_3'
+
+        let V_1_ind_1 = parseInt('$V_1_ind_1')
+        let V_1_ind_2 = parseInt('$V_1_ind_2')
+        let V_2_ind_1 = parseInt('$V_2_ind_1')
+        let V_2_ind_2 = parseInt('$V_2_ind_2')
+        let V_3_ind_1 = parseInt('$V_3_ind_1')
+        let V_3_ind_2 = parseInt('$V_3_ind_2')
+
+        console.log(V_1_ind_1, V_1_ind_2)
+
+        let I_1 = JSON.parse(I_1_str);
+        let I_2 = JSON.parse(I_2_str);
+        let I_3 = JSON.parse(I_3_str);
+
+        let V_1 = JSON.parse(V_1_str);
+        let V_2 = JSON.parse(V_2_str);
+        let V_3 = JSON.parse(V_3_str);
+
+        var max_of_array = Math.max.apply(Math, [I_1.length, I_2.length, I_3.length]);
+        // console.log(max_of_array)
+
+        function createTable() {
+            let tableBody = document.createElement('tbody');
+
+            Array.from(Array(max_of_array).keys()).forEach(function (i) {
+                let row = document.createElement('tr')
+                let cell_1 = document.createElement('td')
+                let cell_2 = document.createElement('td')
+                let cell_3 = document.createElement('td')
+                let cell_4 = document.createElement('td')
+                let cell_5 = document.createElement('td')
+                let cell_6 = document.createElement('td')
+
+                if (V_1_ind_1 == i) cell_1.classList.add('equivalence-point')
+                if (V_1_ind_2 == i) cell_1.classList.add('equivalence-point')
+                if (V_2_ind_1 == i) cell_3.classList.add('equivalence-point')
+                if (V_2_ind_2 == i) cell_3.classList.add('equivalence-point')
+                if (V_3_ind_1 == i) cell_5.classList.add('equivalence-point')
+                if (V_3_ind_2 == i) cell_5.classList.add('equivalence-point')
+
+
+                cell_1.innerText = (typeof V_1[i] == 'undefined') ? '' : V_1[i] /*'\\(' + + '\\)'*/
+                cell_2.innerText = (typeof I_1[i] == 'undefined') ? '' : I_1[i] /*'\\(' + + '\\)'*/
+                cell_3.innerText = (typeof V_2[i] == 'undefined') ? '' : V_2[i] /*'\\(' + + '\\)'*/
+                cell_4.innerText = (typeof I_2[i] == 'undefined') ? '' : I_2[i] /*'\\(' + + '\\)'*/
+                cell_5.innerText = (typeof V_3[i] == 'undefined') ? '' : V_3[i] /*'\\(' + + '\\)'*/
+                cell_6.innerText = (typeof I_3[i] == 'undefined') ? '' : I_3[i] /*'\\(' + + '\\)'*/
+
+
+                row.appendChild(cell_1);
+                row.appendChild(cell_2);
+                row.appendChild(cell_3);
+                row.appendChild(cell_4);
+                row.appendChild(cell_5);
+                row.appendChild(cell_6);
+                tableBody.appendChild(row)
+            })
+            document.getElementsByClassName("table-custom")[0].appendChild(tableBody);
+        }
+
+        createTable()
+    </script>
+    <style type="text/css">
+        .chemical-task table.data-table td, .chemical-task table.data-table th {
+            padding: 0.55em !important;
+            border: 1px solid #e5e5e5 !important;
+            text-align: center !important;
+            word-break: initial !important;
+        }
+
+        .chemical-task table.data-table th {
+            background: #e5f6ff;
+        }
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: block !important;
+            margin-top: 2px !important;
+            text-align: center;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chemical-task .table-custom {
+            width: 100% !important;
+        }
+        .chemical-task table.table-custom td {
+            padding: 0.35em !important;
+        }
+        .chemical-task table.table-custom td.equivalence-point {
+            background: whitesmoke;
+        }
+    </style>
+    <div>
+        <p>Анализируемый раствор с неизвестным содержанием ванадата аммония и перманганата калия разбавили дистиллированной водой до \($V_k \ см^3\) и получили испытуемый раствор. </p>
+        <p>Отобрали \($V_pip \ см^3\) испытуемого раствора, провели его амперометрическое титрование стандартным \($C \ моль/дм^3\) раствором соли Мора и полученные значения силы тока в процессе титрования занесли в <strong><i>таблицу 1</i></strong> ( \(V(\rm{Fe^{2+}}), \ см^3 \) – объем прибавленного титранта, \(I, \ мА\) – значения силы тока).</p>
+
+        <p>Определите массы перманганата калия и ванадата аммония при их совместном присутствии в анализируемом растворе.</p>
+
+        <p>Проведите статистическую обработку результатов измерений. Ответы в виде десятичной дроби впишите в соответствующие ячейки <strong><i>таблицы 2</i></strong> и <strong><i>таблицы 3</i></strong>.</p>
+
+
+
+        <p><h3><strong>Цель:</strong></h3></p>
+        <p>научиться строить кривые амперометрического титрования, определять по кривым титрования объемы титранта в точках эквивалентности и рассчитывать массы определяемых веществ.</p>
+        <p></p>
+
+        <h3><strong>Указания к выполнению задания:</strong></h3>
+        <ol>
+            <li>
+                Посмотрите видео лабораторная работа <i>№2 «Амперометрическое определение перманганата калия и ванадата аммония в растворе»</i>.
+            </li>
+            <li>
+                Внимательно прочитайте условия задания.
+            </li>
+            <li>
+                Постройте кривые амперометрического титрования. Для построения графика можно использовать миллиметровую бумагу или любой софт (например, <i>Microsoft Excel</i>).
+            </li>
+            <li>
+                По кривой титрования определите \(V_{1ТЭ}\) и \(V_{2ТЭ}\) с точностью до десятых.
+            </li>
+            <li>
+                Определите факторы эквивалентности \((1/z)\) участников титрования по соответствующим полуреакциям.
+            </li>
+            <li>
+                Рассчитайте массы определяемых веществ в анализируемом растворе.
+            </li>
+            <li>
+                Найденные значения масс в виде числа впишите в соответствующие ячейки <strong><i>таблицы 2</i></strong> (с точностью до тысячных \((0.0001)\)).
+            </li>
+            <li>
+                Проведите статистическую обработку результатов измерений. Результаты расчетов в виде числа впишите в соответствующие ячейки <strong><i>таблицы 3</i></strong> (с точностью не менее четырех знаков после точки).
+            </li>
+        </ol>
+        <p></p>
+    </div>
+
+
+
+    <div class="chemical-task">
+        <p><h3><strong>Дано:</strong></h3></p>
+        <p><i><strong>Таблица 1.</strong> Результаты титрования перманганата калия и ванадата аммония солью Мора.</i></p>
+        <table class="data-table table-custom" style="margin: 0 auto !important;font-weight: 600;">
+            <tr>
+                <th colspan="2">1 опыт</th>
+                <th colspan="2">2 опыт</th>
+                <th colspan="2">3 опыт</th>
+            </tr>
+            <tr>
+                <th style="min-width: 100px">\(V \rm{(Fe^{2+})}, \ см^3\)</th>
+                <th style="min-width: 100px">\(I, мА\)</th>
+                <th style="min-width: 100px">\(V \rm{(Fe^{2+})}, \ см^3\)</th>
+                <th style="min-width: 100px">\(I, мА\)</th>
+                <th style="min-width: 100px">\(V \rm{(Fe^{2+})}, \ см^3\)</th>
+                <th style="min-width: 100px">\(I, мА\)</th>
+            </tr>
+        </table>
+        <p></p>
+        <p><strong>Выполнить:</strong></p>
+        <p>Необходимые расчеты. Найденные значения масс в виде числа вписать  в соответствующие ячейки <strong><i>таблицы 2</i></strong> (с точностью до 0.0001).</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <strong>ТОЧКУ</strong>.</p>
+
+        <p><i><strong>Таблица 2.</strong> Результаты определения объемов титранта в точках эквивалентности и вычисления массы определяемых веществ</i></p>
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th>№ опыта</th>
+                <th style="min-width: 100px;">\(V_{1ТЭ}, \ мл\)</th>
+                <th style="min-width: 100px;">\(V_{2ТЭ}, \ мл\)</th>
+                <th>\(m(\rm{KMnO_4}), \ г\)</th>
+                <th>\(m(\rm{NH_{4}VO_3}), \ г\)</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    \($V_1_1T\)
+                </td>
+                <td>
+                    \($V_1_2T\)
+                </td>
+                <td>
+                    <numericalresponse answer="$m_KMnO4_1">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_NH4VO3_1">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>
+                    \($V_2_1T\)
+                </td>
+                <td>
+                    \($V_2_2T\)
+                </td>
+                <td>
+                    <numericalresponse answer="$m_KMnO4_2">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_NH4VO3_2">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+                    \($V_3_1T\)
+                </td>
+                <td>
+                    \($V_3_2T\)
+                </td>
+                <td>
+                    <numericalresponse answer="$m_KMnO4_3">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_NH4VO3_3">
+                        <responseparam type="tolerance" default="0.2"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Выполнить:</strong></p>
+        <p>статистическую обработку результатов измерений. Результаты расчетов в виде числа вписать в соответствующие ячейки <strong><i>таблицы 3</i></strong> (с точностью не менее четырех знаков после точки).</p>
+        <p><i><strong>Таблица 3.</strong> Проведение статистической обработки результатов анализа \((n = 3, \ P = 0.95)\).</i></p>
+
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th>Параметры</th>
+                <th style="width: 190px;">\(\rm{KMnO_4}\)</th>
+                <th style="width: 190px;">\(\rm{NH_{4}VO_3}\)</th>
+            </tr>
+            <tr>
+                <th>Среднее значение, \(m_{ср},\) г</th>
+                <td>
+                    <numericalresponse answer="$m_average_KMnO4">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$m_average_NH4VO3">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Стандартное отклонение, \(S\)</th>
+                <td>
+                    <numericalresponse answer="$S_KMnO4">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$S_NH4VO3">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Относительное стандартное отклонение, \(S_r\), \(\%\)</th>
+                <td>
+                    <numericalresponse answer="$Sr_KMnO4">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="$Sr_NH4VO3">
+                        <responseparam type="tolerance" default="0.001"/>
+                        <formulaequationinput size="14"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Доверительный интервал, \(\Delta m\), г</th>
+                <td>
+                    <div class="sign-block">
+                        <div style="margin-right: 8px;">\(\pm\)</div>
+                        <numericalresponse answer="$delta_m_KMnO4">
+                            <responseparam type="tolerance" default="0.001"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+                <td>
+                    <div class="sign-block">
+                        <div style="margin-right: 8px;">\(\pm\)</div>
+                        <numericalresponse answer="$delta_m_NH4VO3">
+                            <responseparam type="tolerance" default="0.001"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+            </tr>
+            <!--
+            <tr>
+              <th>Результат, \(m_{ср} \pm \Delta m\), г</th>
+              <td></td>
+              <td></td>
+            </tr>
+            -->
+            </tbody>
+        </table>
+    </div>
+</problem>
