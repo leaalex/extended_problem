@@ -1,0 +1,358 @@
+<problem>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import math
+import numpy as np
+
+
+def fit_slope_and_intercept(_xs, _ys):
+    #  средняя линия
+    _xs = np.array(_xs, dtype=np.float64)
+    _ys = np.array(_ys, dtype=np.float64)
+    _m = (((np.mean(_xs) * np.mean(_ys)) - np.mean(_xs * _ys)) / ((np.mean(_xs) * np.mean(_xs)) - np.mean(_xs * _xs)))
+    _b = np.mean(_ys) - _m * np.mean(_xs)
+    return _m, _b
+
+
+def line_equation(_x, _y, _x1, _y1, calc_val):
+    a = (_y1-_y)/(_x1-_x)
+    b = _y-_x*a
+    return round(a * calc_val + b, 4)
+
+
+def get_difference():
+    return round(random.choice([-1, 1]) * random.randint(20, 50) * 0.0001, 4)
+
+
+def gen_base_values():
+    x1 = -round(random.randint(50, 155) * 0.01, 2)
+    x2, x3, x4 = 0, 1, 2
+    y4 = round(random.randint(550, 700) * 0.001, 3)
+    y1 = 0
+    y2 = line_equation(x1, y1, x4, y4, x2)
+    y3 = line_equation(x1, y1, x4, y4, x3)
+
+    return y2, y3, y4
+
+# A1 = 0.0829
+# A2 = 0.0863
+# A3 = 0.0798
+# A4 = 0.2639
+# A5 = 0.2642
+# A6 = 0.2641
+# A7 = 0.4079
+# A8 = 0.4093
+# A9 = 0.4085
+
+# A10 = 0.0833
+# A11 = 0.0820
+# A12 = 0.0818
+# A13 = 0.1786
+# A14 = 0.1781
+# A15 = 0.1772
+# A16 = 0.2670
+# A17 = 0.2656
+# A18 = 0.2659
+
+A1, A4, A7 = gen_base_values()
+A2 = A1 + get_difference()
+A5 = A4 + get_difference()
+A8 = A7 + get_difference()
+A3 = A1 + get_difference()
+A6 = A4 + get_difference()
+A9 = A7 + get_difference()
+
+A10, A13, A16 = gen_base_values()
+A11 = A10 + get_difference()
+A14 = A13 + get_difference()
+A17 = A16 + get_difference()
+A12 = A10 + get_difference()
+A15 = A13 + get_difference()
+A18 = A16 + get_difference()
+
+Cu_1_avg = round(sum([A1, A2, A3])/3, 4)
+Cu_2_avg = round(sum([A4, A5, A6])/3,4)
+Cu_3_avg = round(sum([A7, A8, A9])/3, 4)
+
+Fe_1_avg = round(sum([A10, A11, A12])/3, 4)
+Fe_2_avg = round(sum([A13, A14, A15])/3,4)
+Fe_3_avg = round(sum([A16, A17, A18])/3, 4)
+
+Cu_avgs = [Cu_1_avg, Cu_2_avg, Cu_3_avg]
+Fe_avgs = [Fe_1_avg, Fe_2_avg, Fe_3_avg]
+
+Cu_k, Cu_b = fit_slope_and_intercept([0, 1, 2], Cu_avgs)
+C_Cu = round(abs((-Cu_b)/Cu_k), 2)
+m_Cu = round((C_Cu*math.pow(10, -6)*25*50/10) * math.pow(10, 5), 4)
+
+Fe_k, Fe_b = fit_slope_and_intercept([0, 1, 2], Fe_avgs)
+C_Fe = round(abs((-Fe_b)/Fe_k), 2)
+m_Fe = round((C_Fe*math.pow(10, -6)*25*50/10) * math.pow(10, 5), 4)
+</script>
+<style type="text/css">
+    .chemical-task table.data-table td, .chemical-task table.data-table th {
+        padding: 0.55em !important;
+        border: 1px solid #e5e5e5 !important;
+        text-align: center !important;
+        word-break: initial !important;
+    }
+
+    .chemical-task table.data-table th {
+        background: #e5f6ff;
+    }
+
+    .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+        display: none !important;
+    }
+
+    .chemical-task p.answer {
+        display: block !important;
+        margin-top: 2px !important;
+        text-align: center;
+    }
+
+    .chemical-task input [type=input] {
+        min-width: 100px !important;
+    }
+
+    .chemical-task .sign-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+    <div>
+        <p>При <strong>ААС-определении</strong> железа и меди в производственном растворе применили метод добавок с построением графика.</p>
+        <p>Для приготовления серии растворов в три мерные колбы вместимостью \(50.0 \ см^3\) ввели аликвоты \(10 \ см^3\) анализируемого и стандартных растворов (\(T_{\rm{Cu}} = 0.001 \ г/см^3\), \(T_{\rm{Fe}} = 0.0001 \ г/см^3\)) меди и железа, разбавили до метки раствором \(0.3 \ моль/л\) \(\rm{HNO_3}\), получили атомный пар и измерили оптические плотности.</p>
+        <p>Определите содержание железа и меди в анализируемом растворе (г), используя данные анализа <strong><i>таблицы 1</i></strong>.</p>
+        <p>Проведите статистическую обработку результатов измерений. Ответы в виде десятичной дроби впишите в соответствующие ячейки <strong><i>таблицы 2</i></strong> и <strong><i>таблицы 3</i></strong>.</p>
+
+        <p><h3><strong>Цель:</strong></h3></p>
+        <p>научиться определять содержание железа и меди в растворе графическим методом добавок.</p>
+        <p></p>
+
+        <h3><strong>Указания к выполнению задания:</strong></h3>
+        <ol>
+            <li>
+                Посмотрите видео лабораторная работа <i>№6 «Обнаружение микроколичеств элементов в технологическом растворе методом ААС-анализа»</i>.
+            </li>
+            <li>
+                Внимательно прочитайте условия задания.
+            </li>
+            <li>
+                Рассчитайте средние значения абсорбции для всех растворов и концентрации добавок (\(C_{доб \ 1}, \ C_{доб \ 2}\)) в анализируемой пробе, используя данные <strong><i>таблицы 1</i></strong>.
+            </li>
+            <li>
+                Найденные значения впишите в соответствующие ячейки <strong><i>таблицы 2</i></strong> с точностью до \(0.0001\).
+            </li>
+            <li>
+                Постройте графики по методу добавок для каждого определяемого металла. Для построения графика можно использовать миллиметровую бумагу или любой софт (например, <i>Microsoft Excel</i>).
+            </li>
+            <li>
+                Определите по графику концентрации ионов металлов в пробе.
+            </li>
+            <li>
+                Рассчитайте массы определяемых веществ в анализируемом растворе с учетом разбавления.
+            </li>
+            <li>
+                Найденные значения масс в виде числа впишите в соответствующие ячейки <strong><i>таблицы 3</i></strong> с точностью до \(0.01 \cdot 10^{-5} \ г\).
+            </li>
+        </ol>
+        <p></p>
+    </div>
+
+
+
+    <div class="chemical-task">
+        <p><h3><strong>Дано:</strong></h3></p>
+        <p><i><strong>Таблица 1.</strong> Результаты ААС анализа.</i></p>
+        <table class="data-table" style="margin: 0 auto !important;">
+                <tbody>
+                <tr>
+                    <th rowspan="2">Состав раствора</th>
+                    <th colspan="3">Оптическая плотность</th>
+                </tr>
+                <tr>
+                    <th>1 измерение</th>
+                    <th>2 измерение</th>
+                    <th>3 измерение</th>
+                </tr>
+                <tr>
+                    <th>Проба \(\rm{Cu}\)</th>
+                    <td>$A1</td>
+                    <td>$A2</td>
+                    <td>$A3</td>
+                </tr>
+                <tr>
+                    <th>Проба + 1 доб. (\(1 \ см^3\))</th>
+                    <td>$A4</td>
+                    <td>$A5</td>
+                    <td>$A6</td>
+                </tr>
+                <tr>
+                    <th>Проба + 2 доб. (\(2 \ см^3\))</th>
+                    <td>$A7</td>
+                    <td>$A8</td>
+                    <td>$A9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Проба \(\rm{Fe}\)</th>
+                    <td>$A10</td>
+                    <td>$A11</td>
+                    <td>$A12</td>
+                </tr>
+                <tr>
+                    <th>Проба + 1 доб. (\(1 \ см^3\))</th>
+                    <td>$A13</td>
+                    <td>$A14</td>
+                    <td>$A15</td>
+                </tr>
+                <tr>
+                    <th>Проба + 2 доб. (\(2 \ см^3\))</th>
+                    <td>$A16</td>
+                    <td>$A17</td>
+                    <td>$A18</td>
+                </tr>
+                </tbody>
+        </table>
+        <p></p>
+
+        <p><strong>Выполнить:</strong></p>
+        <ol>
+            <li>
+                Рассчитайте средние значения абсорбции для всех растворов и концентрации добавок (\(C_{доб \ 1}\), \(C_{доб \ 2}\)) в анализируемой пробе, используя данные <strong><i>таблицы 1</i></strong>.
+            </li>
+            <li>
+                Найденные значения впишите в соответствующие ячейки <strong><i>таблицы 2</i></strong> с точностью до \(0.0001\).
+            </li>
+        </ol>
+
+        <p>Внимание! В качестве десятичного разделителя используйте <strong>ТОЧКУ</strong>.</p>
+
+        <p><i><strong>Таблица 2.</strong> Средние значения абсорбции растворов.</i></p>
+        <table class="data-table">
+            <tbody>
+            <tr>
+                <th>Исследуемый раствор</th>
+                <th style="min-width: 120px;">\(A_{ср}\)</th>
+            </tr>
+            <tr>
+                <th>Проба \(\rm{Cu}\)</th>
+                <td>
+                    <numericalresponse answer="$Cu_1_avg">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Проба + 1 доб. (\(1 \ см^3\))</th>
+                <td>
+                    <numericalresponse answer="$Cu_2_avg">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Проба + 2 доб. (\(2 \ см^3\))</th>
+                <td>
+                    <numericalresponse answer="$Cu_3_avg">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Проба \(\rm{Fe}\)</th>
+                <td>
+                    <numericalresponse answer="$Fe_1_avg">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Проба + 1 доб. (\(1 \ см^3\))</th>
+                <td>
+                    <numericalresponse answer="$Fe_2_avg">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <th>Проба + 2 доб. (\(2 \ см^3\))</th>
+                <td>
+                    <numericalresponse answer="$Fe_3_avg">
+                        <responseparam type="tolerance" default="0.05"/>
+                        <formulaequationinput size="10"/>
+                    </numericalresponse>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <p><strong>Выполнить:</strong></p>
+<ol>
+    <li>Постройте графики по методу добавок для каждого определяемого металла. Для построения графика можно использовать миллиметровую бумагу или любой софт (например, <i>Microsoft Excel</i>).</li>
+    <li>Определите по графику концентрации ионов металлов в пробе.</li>
+    <li>Рассчитайте массы определяемых веществ в анализируемом растворе с учетом разбавления.</li>
+    <li>Найденные значения масс в виде числа впишите в соответствующие ячейки <strong><i>таблицы 3</i></strong> с точностью до \(0.01 \cdot 10^{-5} \ г\).</li>
+</ol>
+
+        <p><i><strong>Таблица 3.</strong> Определенные по графикам концентрации ионов металлов и их рассчитанные массы.</i></p>
+
+        <table class="data-table">
+                <tbody>
+                <tr>
+                    <th rowspan="2">Определяемый ион</th>
+                    <th colspan="2">Метод добавок</th>
+                </tr>
+                <tr>
+                    <th>\(C, \cdot 10^{-6} \ мкг/мл\)</th>
+                    <th>\(m, \cdot 10^{-6} \ г\)</th>
+                </tr>
+                <tr>
+                    <th>\(\rm{Fe}\)</th>
+                    <td>
+                        <numericalresponse answer="$C_Fe">
+                            <responseparam type="tolerance" default="0.05"/>
+                            <formulaequationinput size="14"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$m_Fe">
+                            <responseparam type="tolerance" default="0.05"/>
+                            <formulaequationinput size="14"/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                <tr>
+                    <th>\(\rm{Cu}\)</th>
+                    <td>
+                        <numericalresponse answer="$C_Cu">
+                            <responseparam type="tolerance" default="0.05"/>
+                            <formulaequationinput size="14"/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        <numericalresponse answer="$m_Cu">
+                            <responseparam type="tolerance" default="0.05"/>
+                            <formulaequationinput size="14"/>
+                        </numericalresponse>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+</problem>

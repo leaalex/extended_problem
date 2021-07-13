@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<svg width="580" height="400"
+     viewBox="0 20 800 500"  >
+    <g >
+        <path  id="theMotionPath" d="M370 150C530 230 529-106 730 50 790 90 770 260 700 180 526-55 580 340 430 260 225 138 39 286 270 400 440 450 540 350 670 260 780 190 820 420 670 420 540 420 412 497 320 480-105 414 113 16 370 150z"  style="fill:none; stroke:#C1A161; stroke-width:2px"/>
+    </g>
+    <circle cx="0" cy="0" r="6" stroke="black" stroke-width="3" fill="red">
+
+    <animateMotion dur="10s" repeatCount="indefinite">
+        <mpath xlink:href="#theMotionPath"/>
+    </animateMotion>
+    </circle>
+</svg>
+</body>
+</html>
