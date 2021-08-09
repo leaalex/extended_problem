@@ -1,5 +1,5 @@
 //script src="/static/ovz-audio.js" type="text/javascript" data-static="/static/script" id="ovz_audio_script"
-// div.task-wrapper - обертка для всего задания
+// div.ovz-wrapper - обертка для всего задания
 
 let currentScript = document.querySelector("script#ovz_audio_script");
 
@@ -20,14 +20,14 @@ let settings = {
     font_size: "",
 }
 
-function checkAudiosExists(task_block) {
-    function checkUrlExists(url) {
-        let http = new XMLHttpRequest();
-        http.open('HEAD', url, false);
-        http.send();
-        return http.status !== 404;
-    }
+function checkUrlExists(url) {
+    let http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status !== 404;
+}
 
+function checkAudiosExists(task_block) {
     task_block.querySelectorAll("audio").forEach(function (d) {
         if (checkUrlExists(d.src) === false) {
             alert(`Не можем найти файл ${d.src.split("/").slice(-1)[0]}. Убедитесь, что он загружен в "Файлы и загрузки"!`);
@@ -86,6 +86,7 @@ function createElement(tag, classList, attrs, children) {
 
 function AudioApp(block) {
     let audio_blocks = block.querySelectorAll(`.${settings.audio_class}:not([data-status="activate"])`);
+
     audio_blocks.forEach(function (audio_block) {
         let main_btn = createElement("button", `${settings.audio_class}-button`)
         let icon = createElement("span", `${settings.audio_class}-icon`);
@@ -111,6 +112,11 @@ function AudioApp(block) {
             icon_i.classList.remove('fa-play')
         }
         audio_block.onclick = function () {
+            if (!checkUrlExists(audio_block.dataset.src)){
+                alert(`Файл ${audio_block.dataset.src.split("/").slice(-1)[0]} не загружен!`);
+                return;
+            }
+
             if (hidden_audio.duration > 0 && !hidden_audio.paused) { // проигрывается, ставим на паузу
                 hidden_audio.pause();
             } else { // на паузе, включаем
@@ -162,7 +168,7 @@ function AudioApp(block) {
     /*
     * Алерты если какой-то файл не может подтянуться
     * */
-    checkAudiosExists(block);
+    // checkAudiosExists(block); // выключили на тесте
 }
 
 let apps = {

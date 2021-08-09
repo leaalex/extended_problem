@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 800 455" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="Монтажная-область1" serif:id="Монтажная область1" transform="matrix(1,0,0,0.757523,0,0)">
+        <rect x="0" y="0" width="800" height="600" style="fill:none;"/>
+        <clipPath id="_clip1">
+            <rect x="0" y="0" width="800" height="600"/>
+        </clipPath>
+        <g clip-path="url(#_clip1)">
+            <g transform="matrix(0.747275,0,0,1.27464,-282.814,-1138.31)">
+                <rect x="378.46" y="1156.64" width="227.493" height="207.132" style="fill:rgb(235,235,235);"/>
+            </g>
+            <g transform="matrix(0.747275,0,0,1.27464,-72.8137,-1226.32)">
+                <rect x="378.46" y="1156.64" width="227.493" height="207.132" style="fill:rgb(235,235,235);"/>
+            </g>
+            <g transform="matrix(0.747275,0,0,1.27464,137.186,-1314.32)">
+                <rect x="378.46" y="1156.64" width="227.493" height="207.132" style="fill:rgb(235,235,235);"/>
+            </g>
+            <g transform="matrix(0.747275,0,0,1.27464,347.186,-1402.33)">
+                <rect x="378.46" y="1156.64" width="227.493" height="207.132" style="fill:rgb(235,235,235);"/>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,-11.9433,-605.14)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Записи вне к<tspan x="107.35px 116.248px 125.084px 132.232px 141.131px 148.311px 156.311px 163.459px " y="670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px ">онтекста</tspan></text>
+                <text x="11.943px" y="686.793px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">и б<tspan x="34.311px 42.857px 50.193px 54.639px 62.459px 70.459px 77.607px 86.506px " y="686.793px 686.793px 686.793px 686.793px 686.793px 686.793px 686.793px 686.793px ">ез устан</tspan>ов<tspan x="112.373px 121.709px " y="686.793px 686.793px ">ле</tspan>нных</text>
+                <text x="11.943px" y="703.316px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">о<tspan x="20.49px 27.818px " y="703.316px 703.316px ">тн</tspan>ошений</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,168.057,-340.953)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;fill:rgb(46,112,183);">понимание о<tspan x="106.842px 114.17px " y="670.269px 670.269px ">тн</tspan>ошений</text>
+                <text x="11.943px" y="686.793px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;fill:rgb(46,112,183);">(св<tspan x="33.592px 42.256px 49.412px 58.311px " y="686.793px 686.793px 686.793px 686.793px ">язей</tspan>)</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,588.057,-516.965)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;fill:rgb(46,112,183);">понимание принципов</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,378.057,-428.959)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;fill:rgb(46,112,183);">понимание</text>
+                <text x="11.943px" y="686.793px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;fill:rgb(46,112,183);">зак<tspan x="35.357px 44.256px " y="686.793px 686.793px ">он</tspan>омерност<tspan x="123.67px 132.568px " y="686.793px 686.793px ">ей</tspan></text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,25.9836,-852.448)">
+                <text x="11.943px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Нез<tspan x="40.139px 49.037px " y="670.261px 670.261px ">ав</tspan>исим<tspan x="99.068px 108.631px 117.529px " y="670.261px 670.261px 670.261px ">ост</tspan>ь</text>
+                <text x="11.943px" y="686.785px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">о<tspan x="21.318px 29.154px 33.6px 41.396px 51.17px " y="686.785px 686.785px 686.785px 686.785px 686.785px ">т кон</tspan>тек<tspan x="85.365px 94.264px " y="686.785px 686.785px ">ст</tspan>а</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,198.057,-691.711)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Уче<tspan x="38.811px 46.139px 50.584px 57.764px 66.662px 75.498px 82.646px 91.545px 98.725px 106.725px 113.873px " y="670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px 670.269px ">т контекста</tspan></text>
+                <text x="11.943px" y="686.793px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">и о<tspan x="33.873px 41.201px " y="686.793px 686.793px ">тн</tspan>ошений ме<tspan x="131.545px 142.248px " y="686.793px 686.793px ">жд</tspan>у</text>
+                <text x="11.943px" y="703.316px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">записями</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,408.057,-779.717)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Стр<tspan x="39.545px 47.545px 54.725px 62.232px 70.053px 78.951px " y="670.269px 670.269px 670.269px 670.269px 670.269px 670.269px ">уктуры</tspan>,</text>
+                <text x="11.943px" y="686.793px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">зак<tspan x="35.357px 44.256px " y="686.793px 686.793px ">он</tspan>омерности,</text>
+                <text x="11.943px" y="703.316px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">зависимости, мо<tspan x="135.154px 144.49px 152.857px 162.193px " y="703.316px 703.316px 703.316px 703.316px ">дели</tspan></text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,618.057,-852.251)">
+                <text x="11.943px" y="670.269px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Фундамент<tspan x="95.061px 103.959px " y="670.269px 670.269px ">ал</tspan>ьные</text>
+                <text x="11.943px" y="686.793px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">принципы</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,696.777,-327.058)">
+                <text x="11.943px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Поним<tspan x="64.342px 73.24px " y="670.261px 670.261px ">ан</tspan>ие</text>
+            </g>
+            <g transform="matrix(1,0,0,0.846129,0,-34.0675)">
+                <g transform="matrix(1,-0,-0,1.56015,-0,40.2628)">
+                    <path d="M3.897,31.059L12.897,13.059L21.897,31.059L3.897,31.059Z" style="fill:rgb(66,66,66);"/>
+                    <path d="M12.897,187.847L12.897,27.459" style="fill:none;stroke:rgb(66,66,66);stroke-width:6px;"/>
+                </g>
+            </g>
+            <g transform="matrix(2.834e-16,1.32009,-2.26297,3.95225e-17,937.221,566.912)">
+                <g transform="matrix(1.32301e-17,-0.441897,1,1.25234e-16,-429.449,414.155)">
+                    <path d="M782,433.346L800,442.346L782,451.346L782,433.346Z" style="fill:rgb(66,66,66);"/>
+                    <path d="M182.897,442.346L785.6,442.346" style="fill:none;stroke:rgb(66,66,66);stroke-width:6px;"/>
+                </g>
+            </g>
+            <g transform="matrix(1.21059e-17,1.15994,-0.0966662,3.47278e-17,214.362,446.788)">
+                <g transform="matrix(3.09718e-16,-10.3449,1.13807,1.42524e-16,-385.182,2217.55)">
+                    <path d="M188.629,353.987L208.5,357.169L194.032,371.157L188.629,353.987Z" style="fill:rgb(46,112,183);"/>
+                    <path d="M173.353,368.23C173.353,368.23 184.906,364.594 194.765,361.491" style="fill:none;stroke:rgb(46,112,183);stroke-width:6px;"/>
+                </g>
+            </g>
+            <g transform="matrix(1.21059e-17,1.15994,-0.0966662,3.47278e-17,239.839,436.204)">
+                <g transform="matrix(3.09718e-16,-10.3449,1.13807,1.42524e-16,-376.057,2481.1)">
+                    <path d="M398.629,287.896L418.5,291.077L404.032,305.066L398.629,287.896Z" style="fill:rgb(46,112,183);"/>
+                    <path d="M383.353,302.139C383.353,302.139 394.906,298.503 404.765,295.4" style="fill:none;stroke:rgb(46,112,183);stroke-width:6px;"/>
+                </g>
+            </g>
+            <g transform="matrix(1.21059e-17,1.15994,-0.0966662,3.47278e-17,265.315,425.619)">
+                <g transform="matrix(3.09718e-16,-10.3449,1.13807,1.42524e-16,-366.932,2744.65)">
+                    <path d="M608.629,221.805L628.5,224.986L614.032,238.975L608.629,221.805Z" style="fill:rgb(46,112,183);"/>
+                    <path d="M593.353,236.048C593.353,236.048 604.906,232.412 614.765,229.309" style="fill:none;stroke:rgb(46,112,183);stroke-width:6px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
