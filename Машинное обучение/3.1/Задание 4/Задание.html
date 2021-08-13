@@ -1,0 +1,65 @@
+<problem>
+    <style type="text/css">
+        .UGBH7qv6gl .circle{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .UGBH7qv6gl .circle.red{
+            background: red;
+        }
+        .UGBH7qv6gl .circle.green{
+            background: green;
+        }
+        .UGBH7qv6gl label{
+            /*width: fit-content !important;*/
+            margin-bottom: 0px !important;
+        }
+        .UGBH7qv6gl .field input{
+            top: 0.8625em !important;
+        }
+        .UGBH7qv6gl .field .status{
+           display: none !important;
+        }
+    </style>
+
+    <div class="UGBH7qv6gl">
+
+        <p>Выберите цвет звездочки на рисунке в зависимости от того, к какому классу отнесет этот объект \(kNN\) классификатор, и от значения \(k\).</p>
+
+        <figure style="text-align:center;">
+            <img src="/static/machine_learning_03_01_task_04_img_01.png" alt="" style="max-width: 500px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+
+        <multiplechoiceresponse>
+            <label>при \(k=1\):</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="false"><div class="circle green"></div></choice>
+                <choice correct="true"><div class="circle red"></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <multiplechoiceresponse>
+            <label>при \(k=3\):</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="true"><div class="circle green"></div></choice>
+                <choice correct="false"><div class="circle red"></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <multiplechoiceresponse>
+            <label>при \(k=5\):</label>
+            <choicegroup type="MultipleChoice">
+                <choice correct="false"><div class="circle green"></div></choice>
+                <choice correct="true"><div class="circle red"></div></choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+
+
+
+    </div>
+</problem>

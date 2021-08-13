@@ -1,43 +1,52 @@
 <problem>
     <style type="text/css">
 
-        .drag-custom-xd3JP8NjZV{
-            word-break: initial;
+        .drag-custom-diZdij1IT7{
+            /*word-break: initial;*/
+
             display: flex;
             align-items: center;
             text-align: center;
+            /*padding: 0px !important;*/
+            flex-direction: column;
             background: #f0faff;
             border: 1px solid #cad4da;
-            border-radius: 2px;
+            border-radius: 4px;
 
+
+            /*width: 130px !important;*/
+            /*height: 150px !important;*/
+            line-height: 1.2em;
+            justify-content: center;
         }
-        .drop-custom-xd3JP8NjZV{
+        .drop-custom-diZdij1IT7{
             display: flex;
             align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            background: #ffffff85 !important;
-            border-radius: 6px;
+            background: #ffffff00;
+            border-radius: 4px;
+        }
+        .drop-custom-diZdij1IT7 .drag-custom-diZdij1IT7 {
+            margin: 2px !important;
+            padding: 2px !important;
+            width: 102px !important;
+            height: 34px !important;
+            font-size: 12px;
         }
 
-        .custom-drag-zone-xd3JP8NjZV .drag-zone{
+        .drop-custom-diZdij1IT7 .drag-custom-diZdij1IT7.font-size-11px{
+            font-size: 11px !important;
+        }
+
+        .custom-drag-zone-diZdij1IT7 .drag-zone{
             background: #3e607a0f !important;
             border: 1px solid #3e607a3b !important;
-
-        }
-
-        .drop-custom-xd3JP8NjZV.font-size-14px .drag-custom-xd3JP8NjZV{
-            font-size: 14px !important;
-            padding: 2px !important;
-            margin: 2px !important;
-            border: none;
-            background: #ffffff85;
+            /*min-height: 160px !important;*/
         }
 
     </style>
     <div>
         <div>
-            <p>Сложите круги чтобы показать, что является частью чего. </p>
+            <p>Заполните пустые поля, перенеся в них приведенные ниже термины.</p>
         </div>
         <div data-type="DragAndDropVueApp" class="adv-app" data-initial-data='$student_data'></div>
         <div style="display: none !important;">
@@ -61,45 +70,55 @@ def generate_id(length=8):
 
 
 source_data = {
-    "background_src": "/static/machine_learning_01_02_task_01_img_01.svg",
+    "background_src": "/static/machine_learning_02_01_task_01_img_01.svg",
     "width": 800,
-    "height": 456,
-    "drag_class": "drag-custom-xd3JP8NjZV",
-    "drop_class": " drop-custom-xd3JP8NjZV animate",
+    "height": 242,
+    "drag_class": "drag-custom-diZdij1IT7",
+    "drop_class": " drop-custom-diZdij1IT7 animate",
     "drop_zone_class": "center",
-    "drag_zone_class": "custom-drag-zone-xd3JP8NjZV",
+    "drag_zone_class": "custom-drag-zone-diZdij1IT7",
     "answers": [
         {
-            "coordinates": {"x": 348, "y": 328, "w": 106, "h": 50},
-            "content": [{"text": "Глубокое обучение, DL"}],
-            "class": "font-size-14px",
+            "coordinates": {"x": 20, "y": 188, "w": 111, "h": 44},
+            "content": [{"text": "классификация", "id": "e97Gi9jsBF"}],
+            "class": "",
             "hint": "",
         },
-                {
-            "coordinates": {"x": 348, "y": 234, "w": 104, "h": 52},
-            "content": [{"text": "Нейронные сети, NN"}],
-            "class": "font-size-14px",
+        {
+            "coordinates": {"x": 150, "y": 188, "w": 111, "h": 44},
+            "content": [{"text": "регрессия", "id": "e97Gi9jsBF"}],
+            "class": "",
             "hint": "",
         },
-                {
-            "coordinates": {"x": 336, "y": 160, "w": 126, "h": 52},
-            "content": [{"text": "Машинное обучение, ML"}],
-            "class": "font-size-14px",
+        {
+            "coordinates": {"x": 279, "y": 188, "w": 112, "h": 44},
+            "content": [{"text": "кластеризация", "id": "xgCINVkN3N"}],
+            "class": "",
             "hint": "",
         },
-                {
-            "coordinates": {"x": 328, "y": 87, "w": 138, "h": 52},
-            "content": [{"text": "Искусственный интеллект, AI"}],
-            "class": "font-size-14px",
+        {
+            "coordinates": {"x": 408, "y": 188, "w": 112, "h": 44},
+            "content": [{"text": "снижение размерности", "id": "xgCINVkN3N"}],
+            "class": "",
             "hint": "",
         },
-
-
+        {
+            "coordinates": {"x": 538, "y": 188, "w": 112, "h": 44},
+            "content": [{"text": "оптимальное управление", "id": "s9IkFU4CQs"}],
+            "class": "",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 668, "y": 188, "w": 111, "h": 44},
+            "content": [{"text": "оперативное принятие решений", "class": "font-size-11px", "id": "s9IkFU4CQs"}],
+            "class": "",
+            "hint": "",
+        },
     ],
     "settings": {
         "show_incorrect": True,
         "check_type": "partially",  # "partially", "full", "full_cell", "sequence"
-        "capacity": 2,
+        "capacity": 1,
     }
 }
 

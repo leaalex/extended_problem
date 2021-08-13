@@ -1,43 +1,39 @@
 <problem>
     <style type="text/css">
 
-        .drag-custom-xd3JP8NjZV{
+        .drag-custom-rMZsnTEKsu{
             word-break: initial;
             display: flex;
             align-items: center;
             text-align: center;
-            background: #f0faff;
+            flex-direction: column;
+            background: #fefefe !important;
             border: 1px solid #cad4da;
-            border-radius: 2px;
-
+            border-radius: 4px;
+            padding: 6px 14px !important;
+            justify-content: center;
         }
-        .drop-custom-xd3JP8NjZV{
+        .drop-custom-rMZsnTEKsu{
             display: flex;
             align-items: center;
-            flex-direction: column;
             justify-content: center;
-            background: #ffffff85 !important;
-            border-radius: 6px;
+            background: #ffffff00;
+            border-radius: 4px;
         }
 
-        .custom-drag-zone-xd3JP8NjZV .drag-zone{
+        .custom-drag-zone-rMZsnTEKsu {
+            width: 600px;
+            margin: 0 auto;
+        }
+        .custom-drag-zone-rMZsnTEKsu .drag-zone{
             background: #3e607a0f !important;
             border: 1px solid #3e607a3b !important;
-
-        }
-
-        .drop-custom-xd3JP8NjZV.font-size-14px .drag-custom-xd3JP8NjZV{
-            font-size: 14px !important;
-            padding: 2px !important;
-            margin: 2px !important;
-            border: none;
-            background: #ffffff85;
         }
 
     </style>
     <div>
         <div>
-            <p>Сложите круги чтобы показать, что является частью чего. </p>
+            <p>Восстановите схему обучения с подкреплением.</p>
         </div>
         <div data-type="DragAndDropVueApp" class="adv-app" data-initial-data='$student_data'></div>
         <div style="display: none !important;">
@@ -61,40 +57,45 @@ def generate_id(length=8):
 
 
 source_data = {
-    "background_src": "/static/machine_learning_01_02_task_01_img_01.svg",
+    "background_src": "/static/machine_learning_02_01_task_03_img_01.svg",
     "width": 800,
-    "height": 456,
-    "drag_class": "drag-custom-xd3JP8NjZV",
-    "drop_class": " drop-custom-xd3JP8NjZV animate",
+    "height": 292,
+    "drag_class": "drag-custom-rMZsnTEKsu",
+    "drop_class": " drop-custom-rMZsnTEKsu animate",
     "drop_zone_class": "center",
-    "drag_zone_class": "custom-drag-zone-xd3JP8NjZV",
+    "drag_zone_class": "custom-drag-zone-rMZsnTEKsu",
+    "answers_title": "Элементы схемы:",
     "answers": [
         {
-            "coordinates": {"x": 348, "y": 328, "w": 106, "h": 50},
-            "content": [{"text": "Глубокое обучение, DL"}],
-            "class": "font-size-14px",
+            "coordinates": {"x": 110, "y": 12, "w": 133, "h": 44},
+            "content": [{"text": "Награда"}],
+            "class": "",
             "hint": "",
         },
-                {
-            "coordinates": {"x": 348, "y": 234, "w": 104, "h": 52},
-            "content": [{"text": "Нейронные сети, NN"}],
-            "class": "font-size-14px",
+        {
+            "coordinates": {"x": 280, "y": 53, "w": 240, "h": 54},
+            "content": [{"text": "Агент"}],
+            "class": "",
             "hint": "",
         },
-                {
-            "coordinates": {"x": 336, "y": 160, "w": 126, "h": 52},
-            "content": [{"text": "Машинное обучение, ML"}],
-            "class": "font-size-14px",
+        {
+            "coordinates": {"x": 556, "y": 20, "w": 134, "h": 44},
+            "content": [{"text": "Действие"}],
+            "class": "",
             "hint": "",
         },
-                {
-            "coordinates": {"x": 328, "y": 87, "w": 138, "h": 52},
-            "content": [{"text": "Искусственный интеллект, AI"}],
-            "class": "font-size-14px",
+        {
+            "coordinates": {"x": 110, "y": 240, "w": 133, "h": 43},
+            "content": [{"text": "Состояние"}],
+            "class": "",
             "hint": "",
         },
-
-
+        {
+            "coordinates": {"x": 280, "y": 189, "w": 240, "h": 53},
+            "content": [{"text": "Среда"}],
+            "class": "",
+            "hint": "",
+        },
     ],
     "settings": {
         "show_incorrect": True,

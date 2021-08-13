@@ -1,0 +1,91 @@
+<problem>
+    <style type="text/css">
+        .xgCINVkN3N .task-table td {
+            border: 1px solid #c8c8c8;
+            padding: 8px !important;
+            text-align: center !important;
+        }
+
+        .xgCINVkN3N .task-table {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .xgCINVkN3N .task-input-block .equation {
+            display: none !important;
+        }
+
+        .xgCINVkN3N .task-input-block input {
+            width: 80px !important;
+            min-width: 60px !important;
+            font-size: 18px !important;
+            padding: 8px !important;
+            height: 42px !important;
+            box-shadow: none !important;
+        }
+        .xgCINVkN3N .task-input-block .status, .task-input-block .trailing_text {
+            display: none !important;
+        }
+
+        .xgCINVkN3N .task-input-block p.answer {
+            display: block !important;
+            text-align: center !important;
+            margin-top: 6px !important;
+        }
+    </style>
+
+    <div class="xgCINVkN3N">
+    <p>Заполните матрицу ошибок.  Размер тестовой выборки \(= 7000\) экземпляров, из них \(4000\) относятся к классу \(P\), \(3000\) к классу \(N\). Известно, что <i>recall (TPR)</i> \(= 0.8\), а <i>negative precision (NPV)</i> \( = 0.75\).</p>
+
+    <div class="task-table">
+        <table style="">
+            <tbody>
+            <tr>
+                <td style="width: 20%;"></td>
+                <td style="width: 30%;"><strong>классификатор отнес к классу P, экземпляров</strong></td>
+                <td style="width: 30%;"><strong>классификатор отнес к классу N, экземпляров</strong></td>
+            </tr>
+            <tr>
+                <td><strong>класс P</strong><br/><strong>на самом деле,</strong><br/><strong>экземпляров</strong></td>
+                <td style="background: #fca401;">
+                    <div class="task-input-block">
+                        <numericalresponse answer="3200">
+                            <responseparam type="tolerance" default="1"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+                <td style="background: #91d051;">
+                    <div class="task-input-block">
+                        <numericalresponse answer="800">
+                            <responseparam type="tolerance" default="1"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>класс N</strong><br/><strong>на самом деле,</strong><br/><strong>экземпляров</strong></td>
+                <td style="background: #fefb9b;">
+                    <div class="task-input-block">
+                        <numericalresponse answer="600">
+                            <responseparam type="tolerance" default="1"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+                <td style="background: #00b0f0;">
+                    <div class="task-input-block">
+                        <numericalresponse answer="2400">
+                            <responseparam type="tolerance" default="1"/>
+                            <formulaequationinput size="10"/>
+                        </numericalresponse>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+</problem>

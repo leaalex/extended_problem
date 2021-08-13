@@ -1,0 +1,52 @@
+<problem>
+<style>
+    .no-equation .equation {
+        display: none !important;
+    }
+
+    .no-equation .input-table td {
+        border: none !important;
+        /*text-align: center !important;*/
+    }
+
+    .no-equation .input-table td input{
+        min-width: 60px !important;
+    }
+</style>
+<div class="no-equation">
+    <p>Укажите значения метрик, используемых в алгоритмах кластеризации, для двух точек, показанных на рисунке (округлить до целых чисел).</p>
+    <figure style="text-align:center;">
+        <img src="/static/machine_learning_04_01_task_01_img_01.png" alt="" style="max-width: 600px;"/>
+        <figcaption></figcaption>
+    </figure>
+    <table class="input-table">
+        <tr>
+            <td>Манхэттенское расстояние</td>
+            <td>
+                <numericalresponse answer="100">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Евклидово расстояние</td>
+            <td>
+                <numericalresponse answer="100">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Квадрат евклидова расстояния</td>
+            <td>
+                <numericalresponse answer="100">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+</div>
+</problem>

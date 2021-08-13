@@ -2,46 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="маш предприятие">
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки/theme_02_01_task_02_img_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки/theme_02_01_task_02_img_02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки/theme_02_01_task_02_img_03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки/theme_02_01_task_02_img_04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки/theme_02_01_task_02_img_05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки/theme_02_01_task_02_img_06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/matching_table_mobile_r3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки/control_03_img_001.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки/control_03_img_002.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки/control_03_img_003.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки/control_03_img_004.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки/control_03_img_005.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки/correct_answer_hjUYf8ghajrGs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 10.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 11.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 7.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/1.6/Задание 9.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Задание 3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Задание 4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Задание 5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Задание 6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/2.3/Пошаговая задача.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/Библиотеки/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/Библиотеки/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/На программирование/задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Прикладной питон/На программирование/задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/1.1/Задание 2/Картинки/machine_learning_01_01_task_02_img_01.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/1.2/Задание 3/Задание.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.1/Задание 1/Задание.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.1/Задание 1/Картинки/machine_learning_02_01_task_01_img_01.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.1/Задание 3/Задание.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.1/Задание 3/Картинки/machine_learning_02_01_task_03_img_01.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.2/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.2/Задание 3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/2.2/Задание 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/3.1/Задание 4/Задание.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/3.1/Задание 4/Картинки/machine_learning_03_01_task_04_img_01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Машинное обучение/4.1/Задание.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 6/correct_answer_UGHC67dsac.png" beforeDir="false" afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 6/correct_answer_UGHC67dsac.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 6/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 6/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/История 5 подходов/Доделка 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/История 5 подходов/Доделка 2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/История 5 подходов/Доделка 3/historical_maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/История 5 подходов/Доделка 3/historical_maps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Машинное обучение/1.1/Задание 1/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение/1.1/Задание 1/Задание 1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Машинное обучение/1.1/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение/1.1/Задание 2/Задание.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Машинное обучение/1.2/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение/1.2/Задание 1/Задание.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Машинное обучение/1.2/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение/1.2/Задание 2/Задание.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +73,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Прикладной питон/1.6" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Машинное обучение/2.2" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -102,18 +81,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Прикладной питон/1.6" />
-      <recent name="$PROJECT_DIR$/Прикладной питон/2.3" />
-      <recent name="$PROJECT_DIR$/Прикладной питон/На программирование" />
-      <recent name="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3" />
-      <recent name="$PROJECT_DIR$/engines" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/2.2" />
+      <recent name="$PROJECT_DIR$/История 5 подходов/Доделка 3" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/1.3/Задание 4" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/1.2" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/1.1/Задание 3" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/МЭК/2.1/Контрольные задания/Задание 2/Картинки" />
-      <recent name="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 6" />
-      <recent name="$PROJECT_DIR$/МЭК/Контрольные к разделам/Раздел 3/Картинки" />
-      <recent name="$PROJECT_DIR$/engines/matching_table" />
-      <recent name="$PROJECT_DIR$/МЭК/3.4/Учебные задания" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/3.1/Задание 4/Картинки" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/1.1/Задание 2/Картинки" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/2.1/Задание 1/Картинки" />
+      <recent name="$PROJECT_DIR$/История 5 подходов/Доделка 3" />
+      <recent name="$PROJECT_DIR$/Машинное обучение/2.1/Задание 3/Картинки" />
     </key>
   </component>
   <component name="RunManager">
@@ -288,56 +267,18 @@
       <workItem from="1614846103858" duration="18872000" />
       <workItem from="1615288301175" duration="26659000" />
       <workItem from="1616577156715" duration="1000" />
-      <workItem from="1616599041710" duration="35190000" />
-    </task>
-    <task id="LOCAL-00021" summary="маш предприятие">
-      <created>1599061058223</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1599061058224</updated>
-    </task>
-    <task id="LOCAL-00022" summary="маш предприятие">
-      <created>1599144163424</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1599144163424</updated>
-    </task>
-    <task id="LOCAL-00023" summary="маш предприятие">
-      <created>1599217316338</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1599217316338</updated>
-    </task>
-    <task id="LOCAL-00024" summary="маш предприятие">
-      <created>1599225939836</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1599225939836</updated>
-    </task>
-    <task id="LOCAL-00025" summary="маш предприятие">
-      <created>1599491479514</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1599491479514</updated>
-    </task>
-    <task id="LOCAL-00026" summary="маш предприятие">
-      <created>1599563619560</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1599563619560</updated>
-    </task>
-    <task id="LOCAL-00027" summary="маш предприятие">
-      <created>1599575824774</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1599575824774</updated>
+      <workItem from="1616599041710" duration="59779000" />
+      <workItem from="1621241509734" duration="6101000" />
+      <workItem from="1621675421687" duration="1913000" />
+      <workItem from="1622197923328" duration="6948000" />
+      <workItem from="1623767896781" duration="836000" />
+      <workItem from="1624529471745" duration="205000" />
+      <workItem from="1625130997998" duration="556000" />
+      <workItem from="1625147310282" duration="2139000" />
+      <workItem from="1625738950660" duration="24244000" />
+      <workItem from="1628151883062" duration="21690000" />
+      <workItem from="1628756662153" duration="13320000" />
+      <workItem from="1628841741881" duration="12247000" />
     </task>
     <task id="LOCAL-00028" summary="маш предприятие">
       <created>1599578116094</created>
@@ -633,7 +574,56 @@
       <option name="project" value="LOCAL" />
       <updated>1617294907391</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="маш предприятие">
+      <created>1618588629061</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1618588629061</updated>
+    </task>
+    <task id="LOCAL-00071" summary="маш предприятие">
+      <created>1620399515894</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1620399515896</updated>
+    </task>
+    <task id="LOCAL-00072" summary="маш предприятие">
+      <created>1621697095745</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1621697095745</updated>
+    </task>
+    <task id="LOCAL-00073" summary="маш предприятие">
+      <created>1622197932390</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1622197932390</updated>
+    </task>
+    <task id="LOCAL-00074" summary="маш предприятие">
+      <created>1625219862236</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1625219862237</updated>
+    </task>
+    <task id="LOCAL-00075" summary="маш предприятие">
+      <created>1626176957469</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1626176957469</updated>
+    </task>
+    <task id="LOCAL-00076" summary="маш предприятие">
+      <created>1628837583678</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1628837583678</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,6 +662,17 @@
     <MESSAGE value="sdf" />
     <MESSAGE value="маш предприятие" />
     <option name="LAST_COMMIT_MESSAGE" value="маш предприятие" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>
