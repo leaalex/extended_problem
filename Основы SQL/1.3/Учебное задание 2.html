@@ -1,0 +1,208 @@
+<problem>
+    <div>
+        <div>
+            <p><i>Цель:</i> извлекать данные из таблиц с использованием SQL.</p>
+            <i>Инструкция:</i>
+            <p>В базе данных есть следующая таблица <code>Clients</code> содержащая информации о клиентах компании:</p>
+            <table class="sql-builder-task-table">
+                <tbody>
+                <tr>
+                    <th>
+                        Название столбца
+                    </th>
+                    <th>
+                        Тип данных
+                    </th>
+                    <th>
+                        Назначение
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        id
+                    </td>
+                    <td>
+                        INT
+                    </td>
+                    <td>
+                        Идентификатор
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        name
+                    </td>
+                    <td>
+                        VARCHAR(50)
+                    </td>
+                    <td>
+                        Название клиента
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        purchase_value
+                    </td>
+                    <td>
+                        NUMERIC(12,2)
+                    </td>
+                    <td>
+                        Объем закупок клиента
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>Составьте оператор SQL, который извлекает из таблицы <code>Clients</code> названия и объем закупок клиентов, у которых объем закупок <strong>больше 100000</strong>. Данные необходимо отсортировать в порядке убывания объема закупок. Для этого необходимо:</p>
+            <ul>
+                <li>прочитать описание таблицы <code>Clients</code>;</li>
+                <li>с помощью конструктора операторов SQL составить оператор, который извлекает из таблицы <code>Clients</code> нужные данные и сортирует в требуемом порядке.</li>
+            </ul>
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "show_numbering": False,
+        "operator_title": "Оператор:",
+        "correct_answer_title": "Правильный ответ:",
+    },
+    "data": [
+    {
+        "answers": [["SELECT"], "CREATE TABLE", "INSERT"],
+        "type": "operator",
+    },
+        {"answers": " ",},
+    {
+        "answers": ["id", ["name"], "last_name"],
+        "type": "variable"
+    },
+    {
+         "answers": ", ",
+         "type": "text"
+    },
+    {
+        "answers": ["id", "sales", ["purchase_value"]],
+        "type": "variable"
+    },
+        {"answers": " \n",},
+    {
+        "answers": [["FROM"], "INTO", "(Clients)", "VALUES"],
+        "type": "operator"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["purchase_value", ["clients"], "sales", "table(clients)"],
+        "type": "variable"
+    },
+        {"answers": " \n",},
+    {
+        "answers": ["LIMIT", "ORDER BY", ["WHERE"], "FROM"],
+        "type": "operator"
+    },
+    {
+        "answers": " "
+    },
+    {
+        "answers": [["purchase_value GREATER_THAN 100000"], "purchase_value DESC", "purchase_value ASC", "purchase_value"],
+        "type": "variable"
+    },
+        {"answers": " \n",},
+    {
+        "answers": ["LIMIT", "DISTINCT", "WHERE", ["ORDER BY"]],
+        "type": "operator"
+    },
+    {
+        "answers": " "
+    },
+    {
+        "answers": ["purchase_value GREATER_THAN 100000", ["purchase_value DESC"], "purchase_value ASC", "purchase_value"],
+        "type": "variable"
+    },
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>
