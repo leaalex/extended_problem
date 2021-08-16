@@ -1,61 +1,104 @@
 <problem>
 <script type="loncapa/python">
 import json
-task_id = "q111kekKeK111"
-image_src = "kaggle_instruction_26.png"
-background_width = str(500) + "px"
-background_height = str(500) + "px"
-inputs = [
-  {
-  	"x": 400,
-  	"y": 400,
-  },
-  {
-  	"x": 20,
-  	"y": 100,
-  },
-]
+
+settings = {
+    "id": "uCsTYvDtBb",
+    "src": "/static/kaggle_instruction_26.png",
+    "width": 560,
+    "height": 410,
+    "inputs": [
+        {
+            "y": 104,
+            "x": 248,
+            "w": 138,
+            "border": "2px solid #ff832e"
+        },
+        {
+            "y": 297,
+            "x": 279,
+            "w": 108,
+            "border": "2px solid #1b74b2"
+        },
+    ]
+}
+
+task_id = settings["id"]
 </script>
 <script type="text/javascript">
-let inputs_list = $inputs;
+let settings = $settings;
+let element = document.querySelector(`#${settings.id}`)
+let background = element.querySelector('.background-image')
 
-document.querySelectorAll("#$task_id .background_input").forEach(function(item, index){
-  if (inputs_list[index]){
-  	item.style.left = inputs_list[index].x + "px"
-    item.style.top = inputs_list[index].y + "px"
-  }
+background.style.width = settings.width + 'px'
+background.style.height = settings.height + 'px'
+background.style['background-image'] = `url(${settings.src})`
+
+console.log(element)
+
+settings.inputs.forEach(function (input, input_idx){
+    let html_input = element.querySelectorAll('.background-input')[input_idx]
+    if (element.querySelectorAll('.background-input')[input_idx]){
+        html_input.style.top = `${input.y}px`
+        html_input.style.left = `${input.x}px`
+        console.log(html_input.querySelector('input'))
+        if (Object.keys(input).includes('w')) html_input.querySelector('input').style.width = `${input.w}px`
+        if (Object.keys(input).includes('border')) html_input.querySelector('input').style.border = input.border
+        console.log(input, html_input)
+    }
+    else{
+        alert('input length error')
+    }
 })
 </script>
 <style>
+    .background-input {
+        position: absolute;
+    }
 
-.background_image{
-    width: $background_width;
-    height: $background_height;
-    position: relative;
-}
+    .background-input .status {
+        display: none !important;
+    }
+    .background-image{
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 
-.background_input{
-    position: absolute;
-}
+    .background-input input {
+        height: 36px !important;
+        font-size: 16px !important;
+        min-width: 100px !important;
+        padding: 6px 6px 6px !important;
+    }
 
-.background_input .status{
-	display: none !important;
-}
+    .background-input p.answer{
+        background: white;
+    }
+    .background-wrapper{
+        display: flex;
+        justify-content: center;
+    }
 </style>
+
+    <p>Проанализируйте график изменения ошибки модели в зависимости от числа итераций обучения и впишите подходящие типы выборок в соответствующие ячейки.</p>
 <div id="$task_id">
+    <div class="background-wrapper">
+        <div class="background-image">
+            <div class="background-input">
+                <stringresponse answer="валидационная" type="ci">
+                    <additional_answer answer="валидационная выборка"/>
+                    <textline/>
+                </stringresponse>
+            </div>
+            <div class="background-input">
+                <stringresponse answer="обучающая" type="ci">
+                    <additional_answer answer="обучающая выборка"/>
+                    <textline/>
+                </stringresponse>
+            </div>
 
-  <div class="background_image" style="background-image: url(https://courses.openedu.urfu.ru/asset-v1:edX+DemoX+Demo_Course+type@asset+block@$image_src)">
-  <div class="background_input">
-    <stringresponse answer="the correct answer" type="ci">
-      	<textline size="20"/>
-    </stringresponse>
-  </div>
-  <div class="background_input">
-    <stringresponse answer="the correct answer" type="ci">
-    	<textline size="20"/>
-  	</stringresponse>
-  </div>
+        </div>
+    </div>
 </div>
-
-  </div>
 </problem>

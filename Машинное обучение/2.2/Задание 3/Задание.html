@@ -1,0 +1,104 @@
+<problem>
+    <script type="loncapa/python">
+import json
+
+settings = {
+    "id": "id_ertgedfg",
+    "src": "/static/machine_learning_02_02_task_03_img_01.png",
+    "width": 560,
+    "height": 410,
+    "inputs": [
+        {
+            "y": 115,
+            "x": 248,
+            "w": 138,
+            "border": "2px solid #ff832e"
+        },
+        {
+            "y": 312,
+            "x": 279,
+            "w": 108,
+            "border": "2px solid #1b74b2"
+        },
+    ]
+}
+
+task_id = settings["id"]
+</script>
+    <script type="text/javascript">
+        let settings = $settings;
+        let element = document.querySelector(`#${settings.id}`)
+        let background = element.querySelector('.background-image')
+
+        background.style.width = settings.width + 'px'
+        background.style.height = settings.height + 'px'
+        background.style['background-image'] = `url(${settings.src})`
+
+        console.log(element)
+
+        settings.inputs.forEach(function (input, input_idx){
+            let html_input = element.querySelectorAll('.background-input')[input_idx]
+            if (element.querySelectorAll('.background-input')[input_idx]){
+                html_input.style.top = `${input.y}px`
+                html_input.style.left = `${input.x}px`
+                console.log(html_input.querySelector('input'))
+                if (Object.keys(input).includes('w')) html_input.querySelector('input').style.width = `${input.w}px`
+                if (Object.keys(input).includes('border')) html_input.querySelector('input').style.border = input.border
+                console.log(input, html_input)
+            }
+            else{
+                alert('input length error')
+            }
+        })
+    </script>
+    <style>
+        .background-input {
+            position: absolute;
+        }
+
+        .background-input .status {
+            display: none !important;
+        }
+        .background-image{
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .background-input input {
+            height: 36px !important;
+            font-size: 16px !important;
+            min-width: 100px !important;
+            padding: 6px 6px 6px !important;
+        }
+
+        .background-input p.answer{
+            background: white;
+        }
+        .background-wrapper{
+            display: flex;
+            /*justify-content: center;*/
+        }
+    </style>
+
+    <p>Проанализируйте график изменения ошибки модели в зависимости от числа итераций обучения и впишите подходящие типы выборок в соответствующие ячейки.</p>
+    <div id="$task_id">
+        <div class="background-wrapper">
+            <div class="background-image">
+                <div class="background-input">
+                    <stringresponse answer="валидационная" type="ci">
+                        <additional_answer answer="валидационная выборка"/>
+                        <textline/>
+                    </stringresponse>
+                </div>
+                <div class="background-input">
+                    <stringresponse answer="обучающая" type="ci">
+                        <additional_answer answer="обучающая выборка"/>
+                        <textline/>
+                    </stringresponse>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</problem>
