@@ -1,0 +1,126 @@
+<problem>
+<style type="text/css">
+    .message {
+        display: block !important;
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+</style>
+    <script type="text/javascript">
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            ['1','2','3','4','5','6','7','8','9'].forEach(function(num) {
+                userItem.innerHTML = userItem.innerHTML.replace(`.00000000000000${num}`, '')
+            })
+        });
+    </script>
+<script type="loncapa/python">
+
+def check_answer(expect, answer_given):
+    max_grade = 10
+    grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": 'partially'
+        }
+    ]
+
+    try:
+        user_state[0]["answer"] = float(user_state[0]["answer"])
+        if user_state[0]["answer"] > 8:
+            grade -= 2
+            user_state[0]["msg"] = "Cлишком высокое значение параметра minimum leaf size с учетом числа объектов в выборке"
+        else:
+            user_state[0]["correctness"] = True
+    except ValueError:
+        user_state[0]["correctness"] = False
+        grade = 0
+        user_state[0]["msg"] = "Введенное значение не является числом!"
+
+    try:
+        user_state[1]["answer"] = float(user_state[1]["answer"])
+
+        if user_state[1]["answer"] == 1:
+            grade -= 4
+            user_state[1]["msg"] = "Не имеет смысла применять ансамблевые метод при использовании лишь одной индивидуальной модели"
+        elif user_state[1]["answer"] > 40:
+            grade -= 2
+            user_state[1]["msg"] = "Слишком высокое значение параметра number of learners с учетом числа объектов в выборке"
+        elif 8 > user_state[1]["answer"]:
+            grade -= 2
+            user_state[1]["msg"] = "Слишком низкое значение параметра number of learners с учетом числа объектов в выборке"
+        else:
+            user_state[1]["correctness"] = True
+
+    except ValueError:
+        user_state[1]["correctness"] = False
+        grade = 0
+        user_state[1]["msg"] = "Введенное значение не является числом!"
+
+    try:
+        user_state[2]["answer"] = float(user_state[2]["answer"])
+
+        if 490 > user_state[2]["answer"] >= 460:
+            grade -= 1
+            user_state[2]["msg"] = "Ошибка модели может быть снижена немного сильнее"
+        elif 590 > user_state[2]["answer"] >= 490:
+            grade -= 2
+            user_state[2]["msg"] = "Ошибка модели может быть снижена сильнее"
+        elif user_state[2]["answer"] >= 590:
+            grade = 0
+            user_state[2]["msg"] = "Ошибка модели может быть снижена намного сильнее"
+            user_state[2]["correctness"] = False
+        else:
+            user_state[2]["correctness"] = True
+
+    except ValueError:
+        grade = 0
+        user_state[2]["msg"] = "Введенное значение не является числом!"
+        user_state[2]["correctness"] = False
+
+
+    return {'input_list': [
+                    { 'ok': user_state[0]["correctness"], 'msg': user_state[0]["msg"], 'grade_decimal':round(grade/max_grade, 9)},
+                    { 'ok': user_state[1]["correctness"], 'msg': user_state[1]["msg"], 'grade_decimal':round(grade/max_grade, 9)},
+                    { 'ok': user_state[2]["correctness"], 'msg': user_state[2]["msg"], 'grade_decimal':round(grade/max_grade, 9)} ],
+            }
+
+
+</script>
+    <p>Введите параметры используемой регрессионной модели <i><strong>«Bagged Tree»</strong></i>.</p>
+    <div class="task-inputs-block">
+    <customresponse cfn="check_answer">
+        <p>Минимальное число элементов для терминального узла (<i>minimum leaf size</i>):</p>
+        <textline size="10" label=""/><br/>
+    <hr />
+    <p>Число элементов ансамбля (<i>number of learners</i>):</p>
+        <textline size="10" label=""/><br/>
+    <hr />
+    <p>Введите полученную ошибку <i>RMSE</i>:</p>
+        <textline size="10" label=""/>
+    </customresponse>
+    </div>
+    <solution>
+<!--        <div class="detailed-solution">-->
+<!--            <p>Explanation</p>-->
+<!--        </div>-->
+    </solution>
+</problem>

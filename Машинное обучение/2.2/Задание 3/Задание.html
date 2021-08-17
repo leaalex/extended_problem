@@ -4,21 +4,21 @@ import json
 
 settings = {
     "id": "id_ertgedfg",
-    "src": "/static/machine_learning_02_02_task_03_img_01.png",
-    "width": 560,
-    "height": 410,
+    "src": "/static/machine_learning_02_02_task_03_img_01.svg",
+    "width": 801,
+    "height": 437,
     "inputs": [
         {
-            "y": 115,
-            "x": 248,
-            "w": 138,
-            "border": "2px solid #ff832e"
+            "y": 145,
+            "x": 318,
+            "w": 144,
+            "border": "4px solid #ff832e"
         },
         {
-            "y": 312,
-            "x": 279,
-            "w": 108,
-            "border": "2px solid #1b74b2"
+            "y": 332,
+            "x": 329,
+            "w": 114,
+            "border": "4px solid #1b74b2"
         },
     ]
 }
@@ -33,6 +33,7 @@ task_id = settings["id"]
         background.style.width = settings.width + 'px'
         background.style.height = settings.height + 'px'
         background.style['background-image'] = `url(${settings.src})`
+        background.style['background-size'] =`${settings.width}px ${settings.height}px`
 
         console.log(element)
 
