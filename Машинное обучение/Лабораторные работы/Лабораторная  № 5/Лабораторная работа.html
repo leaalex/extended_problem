@@ -1,0 +1,192 @@
+<problem>
+<style type="text/css">
+    .textline div{
+        display: inline-block;
+    }
+    .task-inputs-block .message {
+        display: inline-block !important;
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+</style>
+<script type="loncapa/python">
+
+def check_answer(expect, answer_given):
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[4],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[5],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[6],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[7],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[8],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[9],
+            "msg": "",
+            "correctness": 'partially'
+        },
+        {
+            "answer": answer_given[10],
+            "msg": "",
+            "correctness": 'partially'
+        }
+    ]
+    try:
+        count = int(user_state[0]["answer"])
+        for ix_ind, x in enumerate(user_state):
+            if ix_ind in [0]+[1,2,3,4,5,6,7,8][:count]+[10]:
+                h = int(user_state[ix_ind]["answer"])
+    except ValueError:
+        for idx,s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+
+
+    return {'overall_message': str(answer_given),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': str(user_state)},
+                {'ok': user_state[1]['correctness'], 'msg': 'Feedback for input 2'},
+                {'ok': user_state[2]['correctness'], 'msg': 'Feedback for input 3'},
+                {'ok': user_state[3]['correctness'], 'msg': 'Feedback for input 4'},
+                {'ok': user_state[4]['correctness'], 'msg': 'Feedback for input 5'},
+                {'ok': user_state[5]['correctness'], 'msg': 'Feedback for input 6'},
+                {'ok': user_state[6]['correctness'], 'msg': 'Feedback for input 7'},
+                {'ok': user_state[7]['correctness'], 'msg': 'Feedback for input 8'},
+                {'ok': user_state[8]['correctness'], 'msg': 'Feedback for input 9'},
+                {'ok': user_state[9]['correctness'], 'msg': 'Feedback for input 10'},
+                {'ok': user_state[10]['correctness'], 'msg': 'Feedback for input 11'},
+            ]}
+
+more = "&lt;"
+less = "&gt;"
+</script>
+
+<script type="text/javascript">
+        console.log('start script');
+        let inputs_count = document.querySelector('.inputs_count input')
+        function upd() {
+            const inputs_count_value = parseInt(inputs_count.value);
+            if (isNaN(inputs_count_value)) {
+                document.querySelectorAll('.category_parameters tr').forEach(function(val, idx){val.style.display = 'none'})
+            }
+            else {
+                document.querySelectorAll('.category_parameters tr').forEach(function(val, idx){
+                    if (inputs_count_value $less 1){
+                        if (idx+1 $less inputs_count_value){
+                            val.style.display = 'none'
+                        }
+                        else{
+                            val.style.display = 'block'
+                        }
+                    }
+                    else{
+                        document.querySelectorAll('.category_parameters tr').forEach(function(val, idx){val.style.display = 'none'})
+                    }
+                })
+
+            }
+        };
+        upd()
+        inputs_count.onchange = upd
+</script>
+
+    <p>Укажите число входных параметров, число категорий по каждому входному параметру, число категорий выходного параметра и общее число правил.</p>
+    <div class="task-inputs-block">
+    <customresponse cfn="check_answer">
+        <div class="inputs_count">
+            <table class="input-table"><tr><td>Число входных параметров:</td><td><textline size="10" label=""/></td></tr></table>
+        </div>
+        <hr />
+        <div>
+            <table class="category_parameters input-table">
+                <tr style="display: none">
+                    <td>Число категорий параметра 1:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 2:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 3:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 4:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 5:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 6:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 7:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+                <tr style="display: none">
+                    <td>Число категорий параметра 8:</td>
+                    <td><textline size="10" label=""/></td>
+                </tr>
+            </table>
+        </div>
+        <hr />
+        <div>
+            <table class="input-table"><tr><td>Число выходного параметра:</td><td><textline size="10" label=""/></td></tr></table><hr />
+            <table class="input-table"><tr><td>Общее число правил:</td><td><textline size="10" label=""/></td></tr></table>
+        </div>
+    </customresponse>
+    <solution>
+<!--        <div class="detailed-solution">-->
+<!--            <p>Explanation</p>-->
+<!--        </div>-->
+    </solution>
+    </div>
+</problem>
