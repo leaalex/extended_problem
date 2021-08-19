@@ -15,13 +15,15 @@
 </style>
     <script type="text/javascript">
         document.querySelectorAll('.problem-progress').forEach(function(userItem) {
-            ['1','2','3','4','5','6','7','8','9'].forEach(function(num) {
-                userItem.innerHTML = userItem.innerHTML.replace(`.00000000000000${num}`, '')
-            })
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
         });
     </script>
 <script type="loncapa/python">
-
 def check_answer(expect, answer_given):
     max_grade = 10
     grade = 10
@@ -29,27 +31,28 @@ def check_answer(expect, answer_given):
         {
             "answer": answer_given[0],
             "msg": "",
-            "correctness": 'partially'
+            "correctness": True
         },
         {
             "answer": answer_given[1],
             "msg": "",
-            "correctness": 'partially'
+            "correctness": True
         },
         {
             "answer": answer_given[2],
             "msg": "",
-            "correctness": 'partially'
+            "correctness": True
         }
     ]
 
     try:
         user_state[0]["answer"] = float(user_state[0]["answer"])
+
         if user_state[0]["answer"] > 8:
             grade -= 2
+            user_state[0]["correctness"] = 'partially'
             user_state[0]["msg"] = "Cлишком высокое значение параметра minimum leaf size с учетом числа объектов в выборке"
-        else:
-            user_state[0]["correctness"] = True
+
     except ValueError:
         user_state[0]["correctness"] = False
         grade = 0
@@ -61,11 +64,16 @@ def check_answer(expect, answer_given):
         if user_state[1]["answer"] == 1:
             grade -= 4
             user_state[1]["msg"] = "Не имеет смысла применять ансамблевые метод при использовании лишь одной индивидуальной модели"
+            user_state[1]["correctness"] = False
+
         elif user_state[1]["answer"] > 40:
             grade -= 2
             user_state[1]["msg"] = "Слишком высокое значение параметра number of learners с учетом числа объектов в выборке"
+            user_state[1]["correctness"] = 'partially'
+
         elif 8 > user_state[1]["answer"]:
             grade -= 2
+            user_state[1]["correctness"] = 'partially'
             user_state[1]["msg"] = "Слишком низкое значение параметра number of learners с учетом числа объектов в выборке"
         else:
             user_state[1]["correctness"] = True
@@ -78,16 +86,26 @@ def check_answer(expect, answer_given):
     try:
         user_state[2]["answer"] = float(user_state[2]["answer"])
 
-        if 490 > user_state[2]["answer"] >= 460:
+        if 200 >= user_state[2]["answer"]:
+            user_state[2]["msg"] = "Ошибка модели на используемых данных не может быть настолько низкой"
+            user_state[2]["correctness"] = False
+            grade = 0
+
+        elif 490 > user_state[2]["answer"] >= 460:
             grade -= 1
             user_state[2]["msg"] = "Ошибка модели может быть снижена немного сильнее"
+            user_state[2]["correctness"] = 'partially'
+
         elif 590 > user_state[2]["answer"] >= 490:
             grade -= 2
             user_state[2]["msg"] = "Ошибка модели может быть снижена сильнее"
+            user_state[2]["correctness"] = 'partially'
+
         elif user_state[2]["answer"] >= 590:
             grade = 0
             user_state[2]["msg"] = "Ошибка модели может быть снижена намного сильнее"
             user_state[2]["correctness"] = False
+
         else:
             user_state[2]["correctness"] = True
 
@@ -96,6 +114,8 @@ def check_answer(expect, answer_given):
         user_state[2]["msg"] = "Введенное значение не является числом!"
         user_state[2]["correctness"] = False
 
+    if 0 > grade:
+        grade = 0
 
     return {'input_list': [
                     { 'ok': user_state[0]["correctness"], 'msg': user_state[0]["msg"], 'grade_decimal':round(grade/max_grade, 9)},
