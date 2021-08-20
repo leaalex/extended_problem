@@ -1,6 +1,18 @@
 <problem>
     <style>
+        .h200px {
+            height: 200px !important;
+        }
         .center {text-align:center  !important;}
+
+        .img-bojH74W5QI{
+            width: 100%;
+            max-width: 180px;
+        }
+
+        .image_center .answer p{
+            text-align: center !important;
+        }
     </style>
     <script type="loncapa/python">
 import json
@@ -9,40 +21,28 @@ import string
 
 data = {
     "content": {
-        "body": "Расположите задачи по возрастанию скорости поступления данных.",
-        "answers_title": "Задачи:"
+        "body": "Разделите приведенные ниже результаты кластеризации на удачные и неудачные.",
+        "answers_title": "Результаты кластеризации"
     },
     "table": [
+    ['__Удачные__.{.text-blue-8} .{.center}', '__Неудачные__.{.text-blue-8} .{.center}'],
     [
-      '__Меньшая скорость поступления данных__.{.text-blue-8} .{.center}'
-     ],
-        [
-      ['Производственное планирование'],
+      ['![](/static/machine_learning_04_01_task_02_img_01.svg).{.img-bojH74W5QI}', '![](/static/machine_learning_04_01_task_02_img_02.svg).{.img-bojH74W5QI}', '![](/static/machine_learning_04_01_task_02_img_03.svg).{.img-bojH74W5QI}'],
+        ['![](/static/machine_learning_04_01_task_02_img_04.svg).{.img-bojH74W5QI}', '![](/static/machine_learning_04_01_task_02_img_05.svg).{.img-bojH74W5QI}', '![](/static/machine_learning_04_01_task_02_img_06.svg).{.img-bojH74W5QI}'],
       ],
-        [
-       ['Прогнозирование электропотребления на сутки вперед'],
-       ],
-        [
-       ['Контроль за кибербезопасностью'],
-     ],
-        [
-       ['Обработка векторных измерений тока и напряжения'],
-        ],
-            [
-      '__Большая скорость поступления данных__.{.text-blue-8} .{.center}'
-     ],
     ],
   "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
         'is_exist_mathjax': False,
-        'is_exist_image': False,
+        'is_exist_image': True,
         'show_incorrect': True,
-        "capacity": 2,
+        "capacity": 4,
   },
   "style": {
-        'rows': ['', ''],
-        'colls': ['', '']
+        'table': ['table-width-800', ],
+        'rows': ['', 'h200px'],
+        'colls': ['w50 image_center', 'image_center']
     }
 }
 

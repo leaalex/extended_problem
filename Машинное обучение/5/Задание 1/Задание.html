@@ -1,6 +1,29 @@
 <problem>
     <style>
+        .h50px {
+            height: 50px !important;
+        }
         .center {text-align:center  !important;}
+
+        .img-kxsXaQJFCs{
+            width: 100%;
+            max-width: 260px;
+        }
+        .white-background td{
+            background: white !important;
+        }
+        .white-background td .answer p{
+            text-align: center !important;
+        }
+
+        .table-width-800{
+            max-width: 800px;
+            margin: 1.41575em auto !important;
+        }
+
+        .empty-row td{
+            border: none !important;
+        }
     </style>
     <script type="loncapa/python">
 import json
@@ -9,40 +32,32 @@ import string
 
 data = {
     "content": {
-        "body": "Расположите задачи по возрастанию скорости поступления данных.",
-        "answers_title": "Задачи:"
+        "body": "Заполните пустые поля, перенеся в них приведенные ниже термины.",
+        "answers_title": ""
     },
     "table": [
     [
-      '__Меньшая скорость поступления данных__.{.text-blue-8} .{.center}'
+      '![](/static/machine_learning_05_01_task_01_img_01.svg).{.img-kxsXaQJFCs}',
+        '![](/static/machine_learning_05_01_task_01_img_02.svg).{.img-kxsXaQJFCs}',],
+    [ ['__Перцептрон__.{.text-blue-8} .{.center}'], ['__Многослойный перцептрон__.{.text-blue-8} .{.center}'], ],
+    ['', ''],
+        ['![](/static/machine_learning_05_01_task_01_img_03.svg).{.img-kxsXaQJFCs}',
+         '![](/static/machine_learning_05_01_task_01_img_04.svg).{.img-kxsXaQJFCs}'
      ],
-        [
-      ['Производственное планирование'],
-      ],
-        [
-       ['Прогнозирование электропотребления на сутки вперед'],
-       ],
-        [
-       ['Контроль за кибербезопасностью'],
-     ],
-        [
-       ['Обработка векторных измерений тока и напряжения'],
-        ],
-            [
-      '__Большая скорость поступления данных__.{.text-blue-8} .{.center}'
-     ],
+     [['__Рекуррентная сеть__.{.text-blue-8} .{.center}'], ['__Глубокая сеть__.{.text-blue-8} .{.center}']],
     ],
   "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
         'is_exist_mathjax': False,
-        'is_exist_image': False,
+        'is_exist_image': True,
         'show_incorrect': True,
         "capacity": 2,
   },
   "style": {
-        'rows': ['', ''],
-        'colls': ['', '']
+        'table': ['table-width-800', 'bg-whate', 'shadow-1', 'border-round'],
+        'rows': ['white-background', 'h50px', 'empty-row', 'white-background', 'h50px'],
+        'colls': ['w50', '']
     }
 }
 

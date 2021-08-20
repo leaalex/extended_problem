@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 801 455" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-9124,-11)">
+        <g id="_017" serif:id="017" transform="matrix(1,0,0,0.757523,9124.09,11.3636)">
+            <rect x="0" y="0" width="800" height="600" style="fill:none;"/>
+            <g transform="matrix(1,0,0,1.32009,696.777,-327.058)">
+                <text x="11.943px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Сл<tspan x="33.451px 43.014px 54.357px 64.021px 73.584px 82.482px " y="670.261px 670.261px 670.261px 670.261px 670.261px 670.261px ">ожност</tspan>ь</text>
+            </g>
+            <g transform="matrix(1,0,0,1.32009,13.829,-843.163)">
+                <text x="11.943px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">По<tspan x="32.818px 40.654px " y="670.261px 670.261px ">те</tspan>нциальная т<tspan x="147.756px 157.131px 166.42px 176.084px 185.646px 194.545px " y="670.261px 670.261px 670.261px 670.261px 670.261px 670.261px ">очност</tspan>ь</text>
+            </g>
+            <g transform="matrix(1,0,0,2.1096,0,-110.681)">
+                <g transform="matrix(1,-0,-0,0.625754,-0.0937826,52.2379)">
+                    <path d="M3.991,31.423L12.991,13.423L21.991,31.423L3.991,31.423Z" style="fill:rgb(66,66,66);"/>
+                    <path d="M12.991,449.211L12.991,27.823" style="fill:none;stroke:rgb(66,66,66);stroke-width:6px;"/>
+                </g>
+            </g>
+            <g transform="matrix(3.65145e-16,1.32009,-2.91571,3.95225e-17,976.801,566.912)">
+                <g transform="matrix(1.02682e-17,-0.342969,1,1.25234e-16,-429.813,335.045)">
+                    <path d="M782.094,433.71L800.094,442.71L782.094,451.71L782.094,433.71Z" style="fill:rgb(66,66,66);"/>
+                    <path d="M4.991,442.71L785.694,442.71" style="fill:none;stroke:rgb(66,66,66);stroke-width:6px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
