@@ -48,108 +48,80 @@ def check_answer(expect, answer_given):
             "answer": answer_given[5],
             "msg": "",
             "correctness": True
-        },
-        {
-            "answer": answer_given[6],
-            "msg": "",
-            "correctness": True
-        },
-        {
-            "answer": answer_given[7],
-            "msg": "",
-            "correctness": True
-        },
-        {
-            "answer": answer_given[8],
-            "msg": "",
-            "correctness": True
-        },
-        {
-            "answer": answer_given[9],
-            "msg": "",
-            "correctness": True
-        },
-        {
-            "answer": answer_given[10],
-            "msg": "",
-            "correctness": True
         }
     ]
     overall_message = ''
-    # error_index = 0
     all_numbers = True
     try:
-        count = int(user_state[0]["answer"])
         for ix_ind, x in enumerate(user_state):
-            if ix_ind in [0]+[1, 2, 3, 4, 5, 6, 7, 8][:count]+[9, 10]:
-                # error_index = ix_ind
-                user_state[ix_ind]["ans_int"] = int(user_state[ix_ind]["answer"])
+            if ix_ind in [5]:
+                user_state[ix_ind]["ans_int"] = float(x["answer"])
+            else:
+                user_state[ix_ind]["ans_int"] = int(x["answer"])
 
     except ValueError:
         for idx, s in enumerate(user_state):
             user_state[idx]['correctness'] = False
             overall_message = "В ответе допустимы только числовые значения. Убедитесь, что все поля заполнены корректно"
-            if 2 >= count:
-                grade = 0
-                overall_message = "Необходимо добавить как минимум один дополнительный входной параметр"
             all_numbers = False
 
     if all_numbers:
-        t1 = False
-        t2 = False
-        for x in [1, 2, 3, 4, 5, 6, 7, 8][:count]:
-            if user_state[x]["ans_int"] == 1:
-                t1 = True
-                user_state[x]["correctness"] = False
-                user_state[x]["msg"] = "Как правило, одной категории мало для параметра"
-
-        for x in [1, 2, 3, 4, 5, 6, 7, 8][:count]:
-            if user_state[x]["ans_int"] >= 7:
-                t2 = True
-                user_state[x]["correctness"] = False
-                user_state[x]["msg"] = "Слишком большое число категорий приводит к чрезмерной сложности системы правил"
-
-        if t1:
-            grade -= 2
-        if t2:
-            grade -= 2
-
-        if 3 >= user_state[9]["ans_int"]:
-            grade -= 4
-            user_state[9]["correctness"] = 'partial'
-            user_state[9]["msg"] = "Число выходных категорий должно быть больше, чем в исходном примере (больше 3)"
-
-        if user_state[9]["ans_int"] >= 9:
-            grade -= 2
-            user_state[9]["correctness"] = 'partial'
-            user_state[9]["msg"] = "Число выходных категорий слишком велико"
-
-        if 7 >= user_state[10]["ans_int"]:
+        if user_state[0]["ans_int"] >= 2 and 3 > user_state[0]["ans_int"]:
+            user_state[0]["correctness"] = False
+            user_state[0]["msg"] = "Для данной задачи достаточно одного скрытого слоя"
+            grade -= 5
+        elif user_state[0]["ans_int"] >= 3:
+            user_state[0]["correctness"] = False
+            user_state[0]["msg"] = "Слишком большое число скрытых слоев с учетом числа объектов в выборке"
             grade = 0
-            user_state[10]["correctness"] = False
-            user_state[10]["msg"] = "Задано слишком мало правил"
-
-        elif user_state[9]["ans_int"] * 2 >= user_state[10]["ans_int"]:
-            grade -= 2
-            user_state[10]["correctness"] = 'partial'
-            user_state[10]["msg"] = "Задано недостаточно правил"
-
-        elif user_state[10]["ans_int"] >= user_state[9]["ans_int"] * 10:
-            grade -= 2
-            user_state[10]["correctness"] = 'partial'
-            user_state[10]["msg"] = "Задано слишком много правил"
         else:
             pass
 
-        if 2 >= user_state[0]["ans_int"]:
-            grade = 0
-            user_state[0]["correctness"] = False
-            user_state[0]["msg"] = "Необходимо добавить как минимум один дополнительный входной параметр"
-
-        if user_state[0]["ans_int"] >= 6:
+        if 2 >= user_state[1]["ans_int"]:
+            user_state[1]["correctness"] = False
+            user_state[1]["msg"] = "Недостаточное число нейронов"
             grade -= 4
-            user_state[0]["correctness"] = 'partial'
-            user_state[0]["msg"] = "Число входных параметров слишком велико для применения нечетких правил"
+        elif user_state[1]["ans_int"] >= 51:
+            user_state[1]["correctness"] = False
+            user_state[1]["msg"] = "Число нейронов сильно завышено"
+            grade -= 4
+        elif user_state[1]["ans_int"] >= 21:
+            user_state[1]["correctness"] = 'partial'
+            user_state[1]["msg"] = "Число нейронов завышено"
+            grade -= 2
+        else:
+            pass
+
+        if user_state[2]["ans_int"] != 70:
+            user_state[2]["correctness"] = False
+            user_state[2]["msg"] = "По заданию не следовало менять пропорции разделения выборки данных (обучающая " \
+                                   "выборка должна составлять 70 %)"
+            grade = 0
+
+        if user_state[3]["ans_int"] != 15:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "По заданию не следовало менять пропорции разделения выборки данных (валидационная выборка должна составлять 15 %)"
+            grade = 0
+
+        if user_state[4]["ans_int"] != 15:
+            user_state[4]["correctness"] = False
+            user_state[4]["msg"] = "По заданию не следовало менять пропорции разделения выборки данных (тестовая выборка должна составлять 15 %)"
+            grade = 0
+
+        if user_state[5]["ans_int"] >= 45 and 48 > user_state[5]["ans_int"]:
+            user_state[5]["correctness"] = 'partial'
+            user_state[5]["msg"] = "Возможно большее снижение ошибки"
+            grade -= 2
+        elif user_state[5]["ans_int"] >= 48:
+            user_state[5]["correctness"] = False
+            user_state[5]["msg"] = "Возможно большее снижение ошибки"
+            grade -= 2
+        elif 25 >= user_state[5]["ans_int"]:
+            user_state[5]["correctness"] = False
+            user_state[5]["msg"] = "Указанная ошибка занижена"
+            grade = 0
+        else:
+            pass
 
     if 0 > grade:
         grade = 0
@@ -162,15 +134,8 @@ def check_answer(expect, answer_given):
                 {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
                 {'ok': user_state[4]['correctness'], 'msg': user_state[4]['msg'], 'grade_decimal':grade/max_grade},
                 {'ok': user_state[5]['correctness'], 'msg': user_state[5]['msg'], 'grade_decimal':grade/max_grade},
-                {'ok': user_state[6]['correctness'], 'msg': user_state[6]['msg'], 'grade_decimal':grade/max_grade},
-                {'ok': user_state[7]['correctness'], 'msg': user_state[7]['msg'], 'grade_decimal':grade/max_grade},
-                {'ok': user_state[8]['correctness'], 'msg': user_state[8]['msg'], 'grade_decimal':grade/max_grade},
-                {'ok': user_state[9]['correctness'], 'msg': user_state[9]['msg'], 'grade_decimal':grade/max_grade},
-                {'ok': user_state[10]['correctness'], 'msg': user_state[10]['msg'], 'grade_decimal':grade/max_grade},
             ]}
 
-more = "&lt;"
-less = "&gt;"
 </script>
 
     <script type="text/javascript">
@@ -184,32 +149,38 @@ less = "&gt;"
         });
     </script>
 
-    <p>Укажите число входных параметров, число категорий по каждому входному параметру, число категорий выходного параметра и общее число правил.</p>
+    <p>Введите параметры нейронной сети, параметры разбиения выборки данных и ошибку на тестовой выборке в процентах, усредненную по десяти запускам модели (для запуска служит кнопка <code>Retrain</code> в интерфейсе решателя <strong>MATLAB</strong>, значение ошибки находится на панели <code>Results</code>, в столбце <strong>%E</strong>).</p>
+    <p><i>При вводе дробных чисел в качестве разделителя используйте точку.</i></p>
     <div class="task-inputs-block">
         <customresponse cfn="check_answer">
             <div class="input-block">
                 <p>Число скрытых слоев:</p>
-                <textline size="10" label=""/>
+                <textline size="10" label=""/><br />
             </div>
+            <hr />
             <div class="input-block">
                 <p>Суммарное число нейронов в скрытых слоях:</p>
-                <textline size="10" label=""/>
+                <textline size="10" label=""/><br />
             </div>
+            <hr />
             <div class="input-block">
                 <p>Процент данных в обучающей выборке:</p>
-                <textline size="10" label=""/>
+                <textline size="10" label=""/><br />
             </div>
+            <hr />
             <div class="input-block">
                 <p>Процент данных в валидационной выборке:</p>
-                <textline size="10" label=""/>
+                <textline size="10" label=""/><br />
             </div>
+            <hr />
             <div class="input-block">
                 <p>Процент данных в тестовой выборке:</p>
-                <textline size="10" label=""/>
+                <textline size="10" label=""/><br />
             </div>
+            <hr />
             <div class="input-block">
                 <p>Средняя точность на тестовой выборке в процентах:</p>
-                <textline size="10" label=""/>
+                <textline size="10" label=""/><br />
             </div>
 
         </customresponse>
