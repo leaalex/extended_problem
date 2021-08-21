@@ -73,13 +73,24 @@ def check_answer(expect, answer_given):
             user_state[1]["msg"] = "Результат может быть улучшен"
             grade -= 4
 
-        if 1.04 > user_state[2]["ans_int"]:
+        if 0.054 > user_state[2]["ans_int"]:
             user_state[2]["correctness"] = False
             user_state[2]["msg"] = "Некорректный результат"
             grade = 0
-        elif user_state[2]["ans_int"] > 2.107:
+        elif user_state[2]["ans_int"] > 1.075:
             user_state[2]["correctness"] = False
             user_state[2]["msg"] = "Результат может быть улучшен"
+            grade -= 4
+        else:
+            pass
+
+        if 1.04 > user_state[3]["ans_int"]:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "Некорректный результат"
+            grade = 0
+        elif user_state[3]["ans_int"] > 2.107:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "Результат может быть улучшен"
             grade -= 4
         else:
             pass
@@ -119,6 +130,7 @@ def check_answer(expect, answer_given):
                 {'ok': user_state[2]['correctness'], 'msg': user_state[2]['msg'], 'grade_decimal':grade/max_grade},
                 {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
             ]}
+
 
 
 </script>
