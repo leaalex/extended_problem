@@ -95,10 +95,7 @@ def check_answer(expect, answer_given):
             user_state[2]["correctness"] = False
             user_state[2]["msg"] = "Model error can be reduced more"
             grade -= 2
-        elif user_state[2]["ans_int"] >= 550:
-            user_state[2]["correctness"] = False
-            user_state[2]["msg"] = "Model error can be reduced much more"
-            grade = 0
+
         else:
             pass
 
@@ -118,6 +115,12 @@ def check_answer(expect, answer_given):
             user_state[3]["correctness"] = False
             user_state[3]["msg"] = "model error on the data used cannot be so low"
             grade = 0
+        elif user_state[3]["ans_int"] >= 550:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "Model error can be reduced much more"
+            grade = 0
+        else:
+            pass
 
     if 0 > grade:
         grade = 0
@@ -135,10 +138,10 @@ def check_answer(expect, answer_given):
 
     <div class="task-inputs-block">
         <customresponse cfn="check_answer">
-            <p>Maximum depth of trees (max_depth):</p>
+            <p>Maximum depth of trees (<code>max_depth</code>):</p>
             <textline size="10" label=""/><br/>
             <hr />
-            <p>Number of trees (n_estimators):</p>
+            <p>Number of trees (<code>n_estimators</code>):</p>
             <textline size="10" label=""/><br/>
             <hr />
             <p>Enter the resulting RMSE error on the train set:</p>
