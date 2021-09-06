@@ -1,0 +1,156 @@
+<problem>
+    <style type="text/css">
+        .task-inputs-block .message {
+            display: block !important;
+            background: whitesmoke !important;
+            padding: 10px !important;
+            margin-top: 8px !important;
+            box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+            font-weight: bold !important;
+        }
+
+        .task-inputs-block p {
+            margin-bottom: 0.41575em !important;
+        }
+    </style>
+    <script type="text/javascript">
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
+        });
+    </script>
+    <script type="loncapa/python">
+def check_answer(expect, answer_given):
+    max_grade = 10
+    grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": True
+        }
+    ]
+    overall_message = ''
+    all_numbers = True
+    try:
+        for ix_ind, x in enumerate(user_state):
+            if ix_ind in [2, 3]:
+                user_state[ix_ind]["ans_int"] = float(x["answer"])
+            else:
+                user_state[ix_ind]["ans_int"] = int(x["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only numeric values are allowed in answers. Make sure all fields are filled correctly."
+            all_numbers = False
+
+    if all_numbers:
+        if user_state[0]["ans_int"] > 12:
+            user_state[0]["correctness"] = 'partial'
+            user_state[0]["msg"] = "Too high value of the max_depth parameter given the number of objects in the data set"
+            grade -= 2
+        else:
+            pass
+
+        if user_state[1]["ans_int"] > 50:
+            user_state[1]["correctness"] = 'partial'
+            user_state[1]["msg"] = "Too high value of the n_estimators parameter given the number of objects in the data set"
+            grade -= 2
+        elif user_state[1]["ans_int"] == 1:
+            user_state[1]["correctness"] = False
+            user_state[1]["msg"] = "It makes no sense to apply the ensemble method when using only one individual model"
+            grade -= 4
+        elif 6 > user_state[1]["ans_int"]:
+            user_state[1]["correctness"] = 'partial'
+            user_state[1]["msg"] = "Too low value of the n_estimators parameter given the number of objects in the data set"
+            grade -= 2
+        else:
+            pass
+
+        if user_state[2]["ans_int"] >= 400 and 450 > user_state[2]["ans_int"]:
+            user_state[2]["correctness"] = 'partial'
+            user_state[2]["msg"] = "Model error can be reduced a little more"
+            grade -= 1
+        elif user_state[2]["ans_int"] >= 450 and 550 > user_state[2]["ans_int"]:
+            user_state[2]["correctness"] = False
+            user_state[2]["msg"] = "Model error can be reduced more"
+            grade -= 2
+        elif user_state[2]["ans_int"] >= 550:
+            user_state[2]["correctness"] = False
+            user_state[2]["msg"] = "Model error can be reduced much more"
+            grade = 0
+        else:
+            pass
+
+        val_3_minus_2 = user_state[3]["ans_int"] - user_state[2]["ans_int"]
+        if val_3_minus_2 >= 250:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "Too large difference between the results on the train and test set indicates overfitting"
+            grade = 0
+        elif val_3_minus_2 >= 200 and 250 >= val_3_minus_2:
+            user_state[3]["correctness"] = 'partial'
+            user_state[3]["msg"] = "The difference between the results on the train and test set may indicate overfitting"
+            grade -= 2
+        else:
+            pass
+
+        if 200 >= user_state[3]["ans_int"]:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "model error on the data used cannot be so low"
+            grade = 0
+
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': str(user_state[0]['msg']), 'grade_decimal':grade/max_grade},
+                {'ok': user_state[1]['correctness'], 'msg': str(user_state[1]['msg']), 'grade_decimal':grade/max_grade},
+                {'ok': user_state[2]['correctness'], 'msg': str(user_state[2]['msg']), 'grade_decimal':grade/max_grade},
+                {'ok': user_state[3]['correctness'], 'msg': str(user_state[3]['msg']), 'grade_decimal':grade/max_grade},
+            ]}
+</script>
+    <p>Enter the parameters for the <i><strong>«Random Forest»</strong></i> regression model used.</p>
+    <p><i>Use a point as a decimal separator.</i></p>
+
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <p>Maximum depth of trees (max_depth):</p>
+            <textline size="10" label=""/><br/>
+            <hr />
+            <p>Number of trees (n_estimators):</p>
+            <textline size="10" label=""/><br/>
+            <hr />
+            <p>Enter the resulting RMSE error on the train set:</p>
+            <textline size="10" label=""/><br/>
+            <hr />
+            <p>Enter the resulting RMSE error on the test set:</p>
+            <textline size="10" label=""/>
+        </customresponse>
+    </div>
+    <solution>
+        <!--        <div class="detailed-solution">-->
+        <!--            <p>Explanation</p>-->
+        <!--        </div>-->
+    </solution>
+</problem>

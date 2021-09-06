@@ -1,0 +1,178 @@
+<problem>
+<style type="text/css">
+    .task-inputs-block .message, .task-inputs-block .response_message {
+        /*display: inline-block !important;*/
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+
+</style>
+<script type="loncapa/python">
+def check_answer(expect, answer_given):
+    grade = 10
+    max_grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": True
+        }
+    ]
+    overall_message = ''
+    all_numbers = True
+    try:
+        for ix_ind, x in enumerate(user_state):
+            user_state[ix_ind]["ans_int"] = float(x["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only numeric values are allowed in answers. Make sure all fields are filled correctly."
+            all_numbers = False
+
+    if all_numbers:
+        if 0.000 > user_state[0]["ans_int"]:
+            user_state[0]["correctness"] = False
+            user_state[0]["msg"] = "Incorrect result"
+            grade = 0
+        elif user_state[0]["ans_int"] > 12.000:
+            user_state[0]["correctness"] = False
+            user_state[0]["msg"] = "Incorrect result"
+            grade = 0
+        else:
+            pass
+
+        if 0.300 > user_state[1]["ans_int"]:
+            user_state[1]["correctness"] = False
+            user_state[1]["msg"] = "Incorrect result"
+            grade = 0
+        elif user_state[1]["ans_int"] > 12.305:
+            user_state[1]["correctness"] = False
+            user_state[1]["msg"] = "Result can be improved"
+            grade -= 4
+
+        if 3.000 > user_state[2]["ans_int"]:
+            user_state[2]["correctness"] = False
+            user_state[2]["msg"] = "Incorrect result"
+            grade = 0
+        elif user_state[2]["ans_int"] > 15.050:
+            user_state[2]["correctness"] = False
+            user_state[2]["msg"] = "Result can be improved"
+            grade -= 4
+        else:
+            pass
+
+        if 6.000 > user_state[3]["ans_int"]:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "Incorrect result"
+            grade = 0
+        elif user_state[3]["ans_int"] > 18.100:
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = "Result can be improved"
+            grade -= 4
+        else:
+            pass
+
+        D_4_3 = user_state[3]["ans_int"] - user_state[2]["ans_int"]
+        D_3_2 = user_state[2]["ans_int"] - user_state[1]["ans_int"]
+
+        if 3.000 > D_4_3:
+            overall_message = "The difference between the results for \(w=1\) and \(w=0.5\) cannot be so low"
+            user_state[3]["correctness"] = False
+            user_state[2]["correctness"] = False
+            grade = 0
+        elif D_4_3 > 4.000:
+            overall_message = "The difference between the results for \(w=1\) and \(w=0.5\) cannot be so low"
+            user_state[3]["correctness"] = False
+            user_state[2]["correctness"] = False
+            grade = 0
+
+        if 2.700 > D_3_2:
+            overall_message = "The difference between the results for \(w=0.5\) and \(w=0.05\) cannot be so low"
+            user_state[2]["correctness"] = False
+            user_state[1]["correctness"] = False
+            grade = 0
+        elif D_3_2 > 4.000:
+            overall_message = "The difference between the results for \(w=0.5\) and \(w=0.05\) cannot be so low"
+            user_state[2]["correctness"] = False
+            user_state[1]["correctness"] = False
+            grade = 0
+
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': str(user_state[0]['msg']), 'grade_decimal':grade/max_grade},
+                {'ok': user_state[1]['correctness'], 'msg': user_state[1]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[2]['correctness'], 'msg': user_state[2]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
+            ]}
+
+</script>
+
+<script type="text/javascript">
+    document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+        function second_passed() {
+            let arr = userItem.innerHTML.split(" ")
+            arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+            userItem.innerHTML = arr.join(" ")
+        }
+        setTimeout(second_passed, 300)
+    });
+</script>
+
+    <p>Enter the results of solving the optimization problem for different values of the coefficient \(w\) (specify three digits after the decimal separator).</p>
+    <p><i>Use a point as a decimal separator.</i></p>
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <div class="input-block">
+                <p>\(w = 0.00:\)</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <hr />
+            <div class="input-block">
+                <p>\(w = 0.05:\)</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <hr />
+            <div class="input-block">
+                <p>\(w = 0.50:\)</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <hr />
+            <div class="input-block">
+                <p>\(w = 1.00:\)</p>
+                <textline size="10" label=""/><br />
+            </div>
+
+        </customresponse>
+        <solution>
+            <!--        <div class="detailed-solution">-->
+            <!--            <p>Explanation</p>-->
+            <!--        </div>-->
+        </solution>
+    </div>
+</problem>

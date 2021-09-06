@@ -1,0 +1,288 @@
+<problem>
+<style type="text/css">
+    .inputs_count_label{
+        font-weight: bold;
+        /*display: inline-block;*/
+    }
+    .task-inputs-block .message, .task-inputs-block .response_message {
+        /*display: inline-block !important;*/
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+
+    .inputs_count .status{
+        display: none !important;
+    }
+    .category-param{
+        padding: 12px 20px;
+    }
+</style>
+<script type="loncapa/python">
+def check_answer(expect, answer_given):
+    grade = 10
+    max_grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[4],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[5],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[6],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[7],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[8],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[9],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[10],
+            "msg": "",
+            "correctness": True
+        }
+    ]
+    overall_message = ''
+    # error_index = 0
+    all_numbers = True
+    try:
+        count = int(user_state[0]["answer"])
+        for ix_ind, x in enumerate(user_state):
+            if ix_ind in [0]+[1, 2, 3, 4, 5, 6, 7, 8][:count]+[9, 10]:
+                # error_index = ix_ind
+                user_state[ix_ind]["ans_int"] = int(user_state[ix_ind]["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only numeric values are allowed in answers. Make sure all fields are filled correctly."
+            if 2 >= count:
+                grade = 0
+                overall_message = "It is necessary to add at least one additional input parameter"
+            all_numbers = False
+
+    if all_numbers:
+        t1 = False
+        t2 = False
+        for x in [1, 2, 3, 4, 5, 6, 7, 8][:count]:
+            if user_state[x]["ans_int"] == 1:
+                t1 = True
+                user_state[x]["correctness"] = False
+                user_state[x]["msg"] = "As a rule, one category is not enough for a parameter"
+
+        for x in [1, 2, 3, 4, 5, 6, 7, 8][:count]:
+            if user_state[x]["ans_int"] >= 7:
+                t2 = True
+                user_state[x]["correctness"] = False
+                user_state[x]["msg"] = "Too many categories lead to the exceeding complexity of the rule system"
+
+        if t1:
+            grade -= 2
+        if t2:
+            grade -= 2
+
+        if 3 >= user_state[9]["ans_int"]:
+            grade -= 4
+            user_state[9]["correctness"] = 'partial'
+            user_state[9]["msg"] = "The number of output categories must be greater than in the initial example (more than 3)"
+
+        if user_state[9]["ans_int"] >= 9:
+            grade -= 2
+            user_state[9]["correctness"] = 'partial'
+            user_state[9]["msg"] = "The number of output categories is too large"
+
+        if 7 >= user_state[10]["ans_int"]:
+            grade = 0
+            user_state[10]["correctness"] = False
+            user_state[10]["msg"] = "Too few rules set"
+
+        elif user_state[9]["ans_int"] * 2 >= user_state[10]["ans_int"]:
+            grade -= 2
+            user_state[10]["correctness"] = 'partial'
+            user_state[10]["msg"] = "Not enough rules set"
+
+        elif user_state[10]["ans_int"] >= user_state[9]["ans_int"] * 10:
+            grade -= 2
+            user_state[10]["correctness"] = 'partial'
+            user_state[10]["msg"] = "Too many rules set"
+        else:
+            pass
+
+        if 2 >= user_state[0]["ans_int"]:
+            grade = 0
+            user_state[0]["correctness"] = False
+            user_state[0]["msg"] = "It is necessary to add at least one additional input parameter"
+
+        if user_state[0]["ans_int"] >= 6:
+            grade -= 4
+            user_state[0]["correctness"] = 'partial'
+            user_state[0]["msg"] = "The number of input parameters is too large to apply fuzzy rules"
+
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': str(user_state[0]['msg']), 'grade_decimal':grade/max_grade},
+                {'ok': user_state[1]['correctness'], 'msg': user_state[1]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[2]['correctness'], 'msg': user_state[2]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[4]['correctness'], 'msg': user_state[4]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[5]['correctness'], 'msg': user_state[5]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[6]['correctness'], 'msg': user_state[6]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[7]['correctness'], 'msg': user_state[7]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[8]['correctness'], 'msg': user_state[8]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[9]['correctness'], 'msg': user_state[9]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[10]['correctness'], 'msg': user_state[10]['msg'], 'grade_decimal':grade/max_grade},
+            ]}
+
+more = "&lt;"
+less = "&gt;"
+</script>
+
+    <script type="text/javascript">
+        let inputs_count = document.querySelector('.inputs_count input')
+        inputs_count.type = 'range';
+        inputs_count.max = '8';
+        inputs_count.min = '1';
+
+        if (document.querySelector('.inputs_count input').getAttribute('value') === ''){
+            inputs_count.value = 1;
+        }
+        function upd() {
+            const inputs_count_value = parseInt(inputs_count.value);
+            document.querySelector('.inputs_count_label').innerHTML = inputs_count_value;
+            if (isNaN(inputs_count_value)) {
+                document.querySelectorAll('.category_parameters .input-block').forEach(function(val, idx){val.style.display = 'none'})
+            }
+            else {
+                document.querySelectorAll('.category_parameters .input-block').forEach(function(val, idx){
+                    if (inputs_count_value $less 1){
+                        if (idx+1 $less inputs_count_value){
+                            val.style.display = 'none'
+                        }
+                    else{
+                            val.style.display = 'block'
+                        }
+                    }
+                else{
+                        document.querySelectorAll('.category_parameters .input-block').forEach(function(val, idx){val.style.display = 'none'})
+                    }
+                })
+
+            }
+        };
+        upd()
+        inputs_count.oninput = upd
+        document.querySelector('.inputs_count_label').innerHTML = inputs_count.value;
+
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
+        });
+    </script>
+
+    <p>Specify the number of input parameters, the number of categories for each input parameter, the number of categories for output parameter, and the total number of fuzzy rules.</p>
+    <p><i>Use a point as a decimal separator.</i></p>
+
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <div class="input-block inputs_count">
+                <p>Number of input parameters = <span class="inputs_count_label"></span></p>
+                <textline size="10" label=""/>
+            </div>
+            <hr />
+            <div class="category_parameters">
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 1</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 2</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 3</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 4</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 5</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 6</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 7</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+                <div class="input-block category-param">
+                    <p>Number of categories for <strong>parameter 8</strong>:</p>
+                    <td><textline size="10" label=""/></td>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <div class="input-block"><p>Number of categories for the output parameter:</p> <textline size="10" label=""/><br/></div> <hr />
+                <div class="input-block"><p>Total number of fuzzy rules:</p> <textline size="10" label=""/></div>
+            </div>
+        </customresponse>
+        <solution>
+            <!--        <div class="detailed-solution">-->
+            <!--            <p>Explanation</p>-->
+            <!--        </div>-->
+        </solution>
+    </div>
+</problem>
