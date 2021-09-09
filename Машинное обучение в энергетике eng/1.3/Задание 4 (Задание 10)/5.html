@@ -1,0 +1,119 @@
+<problem>
+    <div>
+        <div>
+        </div>
+        <div data-type="EquationColorsApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+source_data = {
+    "task_text": "recall for Class 2  = ",
+    "select_title": "Select color:",
+    "correct_answer_title": "Correct answer",
+    "structure": [
+        {
+            "type": "equation",
+            "items": [
+                {
+                    "type": "square",
+                    "color": "blue"
+                }
+            ]
+        },
+        {
+            "type": "black_line"
+        },
+        {
+            "type": "equation",
+            "items": [
+                {
+                    "type": "square",
+                    "color": "blue"
+                },
+                {
+                    "type": "plus",
+                    "text": "+"
+                },
+                {
+                    "type": "square",
+                    "color": "yellow"
+                }]
+        }
+    ],
+    "colors": {
+        "orange": {
+            "color": "#fda400",
+            "title": "Оранжевый"
+        },
+        "blue": {
+            "color": "#00b0f0",
+            "title": "Синий"
+        },
+        "green": {
+            "color": "#91d051",
+            "title": "Зеленый"
+        },
+        "yellow": {
+            "color": "#fefb9b",
+            "title": "Желтый"
+        },
+    }
+}
+
+student_data = source_data.copy()
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+correct_answer = {}
+
+for stage in student_data["structure"]:
+    if stage["type"] == "equation":
+        stage_id = generate_id()
+        stage["id"] = stage_id
+        correct_answer[stage_id] = {}
+        for item in stage["items"]:
+            if item["type"] == "square":
+                item_id = generate_id()
+                item["id"] = item_id
+                correct_answer[stage_id][item_id] = item["color"]
+                del item["color"]
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    grade = 0
+    for x in correct_answer.keys():
+        correct_arr = [correct_answer[x][y] for y in correct_answer[x].keys()]
+        student_arr = [student_answer[x][y] for y in student_answer[x].keys()]
+        if sorted(correct_arr) == sorted(student_arr):
+            grade += 1
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg':str(correct_answer), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': str(correct_answer), 'grade_decimal': 0}]}
+
+</script>
+</problem>

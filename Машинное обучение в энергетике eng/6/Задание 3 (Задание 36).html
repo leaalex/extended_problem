@@ -1,0 +1,272 @@
+<problem>
+
+    <script type="loncapa/python">
+import random
+
+r_1_01 = 1
+r_1_02 = 0
+r_1_03 = 1
+r_1_04 = 0
+r_1_05 = 1
+r_1_06 = 1
+r_1_07 = 0
+r_1_08 = 0
+r_1_09 = 1
+
+r_2_01 = 0
+r_2_02 = 0
+r_2_03 = 1
+r_2_04 = 0
+r_2_05 = 0
+r_2_06 = 1
+r_2_07 = 1
+r_2_08 = 1
+r_2_09 = 0
+index = 5
+
+
+r_1_01 = random.choice([0, 1])
+r_1_02 = random.choice([0, 1])
+r_1_03 = random.choice([0, 1])
+r_1_04 = random.choice([0, 1])
+r_1_05 = random.choice([0, 1])
+r_1_06 = random.choice([0, 1])
+r_1_07 = random.choice([0, 1])
+r_1_08 = random.choice([0, 1])
+r_1_09 = random.choice([0, 1])
+
+r_2_01 = random.choice([0, 1])
+r_2_02 = random.choice([0, 1])
+r_2_03 = random.choice([0, 1])
+r_2_04 = random.choice([0, 1])
+r_2_05 = random.choice([0, 1])
+r_2_06 = random.choice([0, 1])
+r_2_07 = random.choice([0, 1])
+r_2_08 = random.choice([0, 1])
+r_2_09 = random.choice([0, 1])
+
+index = random.choice([4,5,6,7])
+
+r_1_arr = [r_1_01, r_1_02, r_1_03, r_1_04, r_1_05, r_1_06, r_1_07, r_1_08, r_1_09]
+r_2_arr = [r_2_01, r_2_02, r_2_03, r_2_04, r_2_05, r_2_06, r_2_07, r_2_08, r_2_09]
+
+p_1_arr = []
+p_2_arr = []
+
+for (elem_idx, elem) in enumerate(r_1_arr):
+    if index > elem_idx:
+        p_1_arr.append(elem)
+        p_2_arr.append(r_2_arr[elem_idx])
+    else:
+        p_1_arr.append(r_2_arr[elem_idx])
+        p_2_arr.append(elem)
+
+def test_add(expect, ans):
+
+    student_arr_1 = []
+    student_arr_2 = []
+
+    for x in ans[:9]:
+        try:
+            student_arr_1.append(int(x))
+        except ValueError:
+            student_arr_1 = []
+            break
+
+    for x in ans[9:18]:
+        try:
+            student_arr_2.append(int(x))
+        except ValueError:
+            student_arr_2 = []
+            break
+
+    arr_1_correctness = False
+    arr_2_correctness = False
+
+    if student_arr_1 == p_1_arr and student_arr_2 == p_2_arr:
+        arr_1_correctness = True
+        arr_2_correctness = True
+    elif student_arr_2 == p_1_arr and student_arr_1 == p_2_arr:
+        arr_1_correctness = True
+        arr_2_correctness = True
+    elif student_arr_1 == p_1_arr or student_arr_1 == p_2_arr:
+        arr_1_correctness = True
+    elif student_arr_2 == p_1_arr or student_arr_2 == p_2_arr:
+        arr_2_correctness = True
+    else:
+        pass
+
+    return {'input_list': [
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+        {'ok': arr_1_correctness, },
+
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+        {'ok': arr_2_correctness, },
+    ]}
+
+
+p_1_01 = p_1_arr[0]
+p_1_02 = p_1_arr[1]
+p_1_03 = p_1_arr[2]
+p_1_04 = p_1_arr[3]
+p_1_05 = p_1_arr[4]
+p_1_06 = p_1_arr[5]
+p_1_07 = p_1_arr[6]
+p_1_08 = p_1_arr[7]
+p_1_09 = p_1_arr[8]
+
+p_2_01 = p_2_arr[0]
+p_2_02 = p_2_arr[1]
+p_2_03 = p_2_arr[2]
+p_2_04 = p_2_arr[3]
+p_2_05 = p_2_arr[4]
+p_2_06 = p_2_arr[5]
+p_2_07 = p_2_arr[6]
+p_2_08 = p_2_arr[7]
+p_2_09 = p_2_arr[8]
+
+column_index = index + 2
+</script>
+    <style type="text/css">
+        .chromosomes-task .status, .chromosomes-task .trailing_text, .chromosomes-task p.answer{
+            display: none !important;
+        }
+
+        .chromosomes-task .input-table input{
+            min-width: 20px !important;
+            height: 34px !important;
+            padding: 6px !important;
+            width: 34px !important;
+
+        }
+
+        .chromosomes-task table.input-table td input{
+            text-align: center !important;
+        }
+
+        .chromosomes-task table.input-table td {
+            border: 1px solid #c8c8c8;
+            padding: 4px !important;
+            text-align: center !important;
+            font-family: math;
+            font-size: 20px !important;
+        }
+
+        .chromosomes-task table.input-table tr:nth-child(-n+2) td:nth-child($column_index){
+            border-left: 6px solid red;
+        }
+
+        .chromosomes-task .solution-table td{
+            border: 1px solid #028100;
+            color: #015400;
+            padding: 4px 15px !important;
+            text-align: center !important;
+            font-family: math;
+            font-size: 20px !important;
+        }
+
+
+
+    </style>
+
+    <div class="chromosomes-task">
+        <p>Fill in the children chromosomes with zeros and ones.</p>
+
+        <customresponse cfn="test_add" expect="20">
+            <table class="input-table">
+                <tr>
+                    <td style="width: 120px;">Parent 1</td>
+                    <td>$r_1_01</td>
+                    <td>$r_1_02</td>
+                    <td>$r_1_03</td>
+                    <td>$r_1_04</td>
+                    <td>$r_1_05</td>
+                    <td>$r_1_06</td>
+                    <td>$r_1_07</td>
+                    <td>$r_1_08</td>
+                    <td>$r_1_09</td>
+                </tr>
+                <tr>
+                    <td>Parent 2</td>
+                    <td>$r_2_01</td>
+                    <td>$r_2_02</td>
+                    <td>$r_2_03</td>
+                    <td>$r_2_04</td>
+                    <td>$r_2_05</td>
+                    <td>$r_2_06</td>
+                    <td>$r_2_07</td>
+                    <td>$r_2_08</td>
+                    <td>$r_2_09</td>
+                </tr>
+                <tr><td style="border: none !important; height: 20px !important;" colspan="10"></td></tr>
+                <tr>
+                    <td>Offspring 1</td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                </tr>
+                <tr>
+                    <td>Offspring 2</td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                    <td><textline size="2" /></td>
+                </tr>
+            </table>
+        </customresponse>
+        <solution>
+            <h2>Solution: </h2>
+            <table class="solution-table">
+                <tr>
+                    <td style="width: 120px;">Offspring 1</td>
+                    <td>$p_1_01</td>
+                    <td>$p_1_02</td>
+                    <td>$p_1_03</td>
+                    <td>$p_1_04</td>
+                    <td>$p_1_05</td>
+                    <td>$p_1_06</td>
+                    <td>$p_1_07</td>
+                    <td>$p_1_08</td>
+                    <td>$p_1_09</td>
+                </tr>
+                <tr>
+                    <td>Offspring 2</td>
+                    <td>$p_2_01</td>
+                    <td>$p_2_02</td>
+                    <td>$p_2_03</td>
+                    <td>$p_2_04</td>
+                    <td>$p_2_05</td>
+                    <td>$p_2_06</td>
+                    <td>$p_2_07</td>
+                    <td>$p_2_08</td>
+                    <td>$p_2_09</td>
+                </tr>
+            </table>
+        </solution>
+    </div>
+</problem>

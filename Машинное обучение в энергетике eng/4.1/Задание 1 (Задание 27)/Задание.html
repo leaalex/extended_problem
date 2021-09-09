@@ -1,0 +1,52 @@
+<problem>
+<style>
+    .no-equation .equation {
+        display: none !important;
+    }
+
+    .no-equation .input-table td {
+        border: none !important;
+        /*text-align: center !important;*/
+    }
+
+    .no-equation .input-table td input{
+        min-width: 60px !important;
+    }
+</style>
+<div class="no-equation">
+    <p>Input the values of the distance metrics used in the clustering for two points shown in the figure (round to the nearest integer).</p>
+    <figure style="text-align:center;">
+        <img src="/static/machine_learning_04_01_task_01_img_01.svg" alt="" style="max-width: 600px;"/>
+        <figcaption></figcaption>
+    </figure>
+    <table class="input-table">
+        <tr>
+            <td>Manhattan distance</td>
+            <td>
+                <numericalresponse answer="12">
+                    <responseparam type="tolerance" default="0"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Euclidean distance</td>
+            <td>
+                <numericalresponse answer="10">
+                    <responseparam type="tolerance" default="0"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Squared Euclidean distance</td>
+            <td>
+                <numericalresponse answer="104">
+                    <responseparam type="tolerance" default="0"/>
+                    <formulaequationinput size="10"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+</div>
+</problem>

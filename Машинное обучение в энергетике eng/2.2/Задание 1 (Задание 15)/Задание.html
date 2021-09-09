@@ -1,0 +1,252 @@
+<problem>
+    <style type="text/css">
+
+        .drag-custom-hp0QFPJdTK{
+            word-break: initial;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: #f0faff;
+            border: 1px solid #cad4da;
+            border-radius: 4px;
+            justify-content: center;
+        }
+        .drop-custom-hp0QFPJdTK{
+            display: flex;
+            /*align-items: center;*/
+            /*justify-content: center;*/
+            background: #ffffff00 !important;
+        }
+
+        .custom-drag-zone-hp0QFPJdTK .drag-zone{
+            background: #3e607a0f !important;
+            border: 1px solid #3e607a3b !important;
+
+        }
+
+        .border-right{
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .border-left{
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .drop-custom-hp0QFPJdTK .drag-custom-hp0QFPJdTK{
+            /*padding: 2px !important;*/
+            /*margin: 2px !important;*/
+            border: none;
+            background: #ffffff85 !important;
+            height: auto !important;
+            flex: 1;
+        }
+
+    </style>
+    <div>
+        <div>
+            <p>Fill in the blank fields by dragging and dropping the terms below. </p>
+        </div>
+        <div data-type="DragAndDropVueApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import string
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+source_data = {
+    "background_src": "/static/machine_learning_02_02_task_01_img_01.svg",
+    "width": 800,
+    "height": 208,
+    "drag_class": "drag-custom-hp0QFPJdTK",
+    "drop_class": " drop-custom-hp0QFPJdTK animate",
+    "drop_zone_class": "center",
+    "drag_zone_class": "custom-drag-zone-hp0QFPJdTK",
+    "answers": [
+        {
+            "coordinates": {"x": 21, "y": 11, "w": 544, "h": 54},
+            "content": [{"text": "Train set"}],
+            "class": "border-left",
+            "hint": "",
+        },
+                {
+            "coordinates": {"x": 568, "y": 11, "w": 210, "h": 54},
+            "content": [{"text": "Test set"}],
+            "class": "border-right",
+            "hint": "",
+        },
+                {
+            "coordinates": {"x": 21, "y": 109, "w": 378, "h": 86},
+            "content": [{"text": "Validation subset"}],
+            "class": "border-left",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 402, "y": 109, "w": 163, "h": 86},
+            "content": [{"text": "Cross-vaidation"}],
+            "class": "border-right",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 595, "y": 141, "w": 182, "h": 55},
+            "content": [{"text": "Train subset"}],
+            "class": "border-right border-left",
+            "hint": "",
+        },
+
+
+    ],
+    "settings": {
+        "show_incorrect": True,
+        "check_type": "partially",  # "partially", "full", "full_cell", "sequence"
+        "capacity": 1,
+        "correct_answer_title": "Correct answer"
+    }
+}
+
+
+student_data = source_data.copy()
+student_data["answers"] = []
+student_data["all_answers"] = []
+correct_answer = {}
+
+for drop in source_data["answers"]:
+    drop_id = generate_id()
+    correct_answer[drop_id] = []
+    drop_element = drop.copy()
+    drop_element["id"] = drop_id
+    del drop_element["content"]
+    student_data["answers"].append(drop_element)
+
+    for drag in drop["content"]:
+        drag_id = generate_id()
+        if 'id' in drag.keys():
+            drag_id = drag['id']
+        drag_element = drag.copy()
+        drag_element["id"] = drag_id
+        correct_answer[drop_id].append(drag_id)
+        student_data["all_answers"].append(drag_element)
+if 'distractors' in source_data.keys():
+    for distractor in source_data['distractors']:
+        distractor_element = distractor.copy()
+        distractor_element["id"] = generate_id()
+        student_data["all_answers"].append(distractor_element)
+
+def check_partially(c_a, s_a):
+    local_grade = 0
+    local_incorrect = []
+    for item in c_a.keys():
+        for ans in c_a[item]:
+            if ans in s_a[item]:
+                local_grade += 1
+        if sorted(s_a[item]) != sorted(c_a[item]):
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def check_full(c_a, s_a):
+    local_grade = 1
+    local_incorrect = []
+    for item in c_a.keys():
+        if sorted(s_a[item]) != sorted(c_a[item]):
+            local_grade = 0
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def check_full_cell(c_a, s_a):
+    local_grade = 0
+    local_incorrect = []
+    for item in c_a.keys():
+        if sorted(s_a[item]) == sorted(c_a[item]):
+            local_grade += 1
+        else:
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def check_sequence(c_a, s_a):
+    local_grade = 0
+    local_incorrect = []
+    for item in c_a.keys():
+        if s_a[item] == c_a[item]:
+            local_grade += 1
+        else:
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def get_ok(grade_decimal):
+    if grade_decimal == 1:
+        return True
+    elif grade_decimal == 0:
+        return False
+    else:
+        return 'Partial'
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    if 'max_grade' in source_data["settings"]:
+        max_grade = source_data["settings"]["max_grade"]
+    check_types = ["partially", "full", "full_cell", "sequence"]
+    check_type = "partially"
+    if "check_type" in source_data["settings"].keys():
+        if source_data["settings"]["check_type"] in check_types:
+            check_type = source_data["settings"]["check_type"]
+
+    grade = 0
+    incorrect_answers = []
+    if check_type == "full_cell":
+        grade, incorrect_answers = check_full_cell(correct_answer, student_answer)
+    elif check_type == "full":
+        max_grade = 1
+        grade, incorrect_answers = check_full(correct_answer, student_answer)
+    elif check_type == "partially":
+        max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+        grade, incorrect_answers = check_partially(correct_answer, student_answer)
+    elif check_type == "sequence":
+        grade, incorrect_answers = check_sequence(correct_answer, student_answer)
+    else:
+        pass
+
+    result_grade = float(grade/max_grade)
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    return {
+        'input_list': [
+            {
+                'ok': get_ok(result_grade),
+                'msg': json.dumps(msg_json),
+                'grade_decimal': result_grade
+            },
+        ]
+    }
+
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+random.shuffle(student_data["all_answers"])
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+</script>
+</problem>

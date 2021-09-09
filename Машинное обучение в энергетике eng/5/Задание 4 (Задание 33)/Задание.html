@@ -1,0 +1,142 @@
+<problem>
+    <script type="loncapa/python">
+import json
+
+settings = {
+    "id": "id_zeSaC74dqi",
+    "src": "/static/machine_learning_05_01_task_04_img_01.png",
+    "width": 1248/2.5,
+    "height": 298/2.5,
+    "inputs": [
+        {
+            "y": 40,
+            "x": 11,
+            "w": 34,
+            "h": 35,
+        },
+        {
+            "y": 57,
+            "x": 190,
+            "w": 25,
+            "h": 32,
+        },
+        {
+            "y": 40,
+            "x": 271,
+            "w": 34,
+            "h": 35,
+        },
+        {
+            "y": 68,
+            "x": 342,
+            "w": 35,
+            "h": 35,
+        },
+        {
+            "y": 40,
+            "x": 436,
+            "w": 35,
+            "h": 35,
+        },
+    ]
+}
+
+task_id = settings["id"]
+</script>
+    <script type="text/javascript">
+        let settings = $settings;
+        let element = document.querySelector(`#${settings.id}`)
+        let background = element.querySelector('.background-image')
+
+        background.style.width = settings.width + 'px'
+        background.style.height = settings.height + 'px'
+        background.style['background-image'] = `url(${settings.src})`
+
+        console.log(element)
+
+        settings.inputs.forEach(function (input, input_idx){
+            let html_input = element.querySelectorAll('.background-input')[input_idx]
+            if (element.querySelectorAll('.background-input')[input_idx]){
+                html_input.style.top = `${input.y}px`
+                html_input.style.left = `${input.x}px`
+                console.log(html_input.querySelector('input'))
+                if (Object.keys(input).includes('w')) html_input.querySelector('input').style.width = `${input.w}px`
+                if (Object.keys(input).includes('h')) html_input.querySelector('input').style.height = `${input.h}px`
+                if (Object.keys(input).includes('border')) html_input.querySelector('input').style.border = input.border
+                console.log(input, html_input)
+            }
+            else{
+                alert('input length error')
+            }
+        })
+    </script>
+    <style>
+        .background-input {
+            position: absolute;
+        }
+
+        .background-input .status {
+            display: none !important;
+        }
+        .background-image{
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .background-input input {
+            /*height: 36px !important;*/
+            font-size: 30px !important;
+            min-width: 20px !important;
+            padding: 0px 2px 4px !important;
+            text-align: center;
+            color: black;
+            font-family: math !important;
+        }
+
+        .background-input p.answer{
+            background: white;
+            display: block !important;
+            margin-top: 0px !important;
+            margin-left: -18px !important;
+            white-space: nowrap;
+        }
+        .background-wrapper{
+            display: flex;
+        }
+    </style>
+
+    <p>Fill in the missing places to get the principle formula of updating the ANN weight by a gradient-based learning method.</p>
+    <div id="$task_id">
+        <div class="background-wrapper">
+            <div class="background-image">
+                <div class="background-input">
+                    <stringresponse answer="w" type="cs">
+                        <textline/>
+                    </stringresponse>
+                </div>
+                <div class="background-input">
+                    <stringresponse answer="i" type="cs">
+                        <textline/>
+                    </stringresponse>
+                </div>
+                <div class="background-input">
+                    <stringresponse answer="a" type="cs">
+                        <textline/>
+                    </stringresponse>
+                </div>
+                <div class="background-input">
+                    <stringresponse answer="w" type="cs">
+                        <textline/>
+                    </stringresponse>
+                </div>
+                <div class="background-input">
+                    <stringresponse answer="w" type="cs">
+                        <textline/>
+                    </stringresponse>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</problem>

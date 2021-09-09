@@ -1,0 +1,107 @@
+<problem>
+    <script type="loncapa/python">
+import json
+
+settings = {
+    "id": "id_ertgedfg",
+    "src": "/static/machine_learning_02_02_task_03_img_01.svg",
+    "width": 801,
+    "height": 437,
+    "inputs": [
+        {
+            "y": 145,
+            "x": 318,
+            "w": 144,
+            "border": "4px solid #ff832e"
+        },
+        {
+            "y": 332,
+            "x": 329,
+            "w": 114,
+            "border": "4px solid #1b74b2"
+        },
+    ]
+}
+
+task_id = settings["id"]
+</script>
+    <script type="text/javascript">
+        let settings = $settings;
+        let element = document.querySelector(`#${settings.id}`)
+        let background = element.querySelector('.background-image')
+
+        background.style.width = settings.width + 'px'
+        background.style.height = settings.height + 'px'
+        background.style['background-image'] = `url(${settings.src})`
+        background.style['background-size'] =`${settings.width}px ${settings.height}px`
+
+        console.log(element)
+
+        settings.inputs.forEach(function (input, input_idx){
+            let html_input = element.querySelectorAll('.background-input')[input_idx]
+            if (element.querySelectorAll('.background-input')[input_idx]){
+                html_input.style.top = `${input.y}px`
+                html_input.style.left = `${input.x}px`
+                console.log(html_input.querySelector('input'))
+                if (Object.keys(input).includes('w')) html_input.querySelector('input').style.width = `${input.w}px`
+                if (Object.keys(input).includes('border')) html_input.querySelector('input').style.border = input.border
+                console.log(input, html_input)
+            }
+            else{
+                alert('input length error')
+            }
+        })
+    </script>
+    <style>
+        .background-input {
+            position: absolute;
+        }
+
+        .background-input .status {
+            display: none !important;
+        }
+        .background-image{
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .background-input input {
+            height: 36px !important;
+            font-size: 16px !important;
+            min-width: 100px !important;
+            padding: 6px 6px 6px !important;
+        }
+
+        .background-input p.answer{
+            background: white;
+        }
+        .background-wrapper{
+            display: flex;
+            /*justify-content: center;*/
+        }
+    </style>
+
+    <p>Analyze the process of the model error decreasing depending on the number of training iterations and write the appropriate set types in the boxes.</p>
+    <div id="$task_id">
+        <div class="background-wrapper">
+            <div class="background-image">
+                <div class="background-input">
+                    <stringresponse answer="train set" type="ci">
+                        <additional_answer answer="training set"/>
+                        <additional_answer answer="training"/>
+                        <additional_answer answer="train"/>
+                        <textline/>
+                    </stringresponse>
+                </div>
+                <div class="background-input">
+                    <stringresponse answer="validation set" type="ci">
+                        <additional_answer answer="validation"/>
+                        <textline/>
+                    </stringresponse>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</problem>
