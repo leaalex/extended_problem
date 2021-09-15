@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 801 410" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <g transform="matrix(1,0,0,1,-2533,-2)">
-        <g id="_004" serif:id="004" transform="matrix(0.99185,0,0,0.903852,792.73,10.1308)">
+    <g transform="matrix(1,0,0,1,-2533,-61)">
+        <g id="_004" serif:id="004" transform="matrix(0.99185,0,0,0.903852,792.73,69.1308)">
             <rect x="1755.48" y="-8.417" width="806.573" height="452.321" style="fill:none;"/>
             <clipPath id="_clip1">
                 <rect x="1755.48" y="-8.417" width="806.573" height="452.321"/>
@@ -61,6 +61,8 @@
                         <path d="M605.953,1164.53C605.953,1160.17 600.133,1156.64 592.954,1156.64C552.879,1156.64 431.534,1156.64 391.46,1156.64C384.28,1156.64 378.46,1160.17 378.46,1164.53C378.46,1197.37 378.46,1323.04 378.46,1355.88C378.46,1360.24 384.28,1363.77 391.46,1363.77C431.534,1363.77 552.879,1363.77 592.954,1363.77C600.133,1363.77 605.953,1360.24 605.953,1355.88C605.953,1323.04 605.953,1197.37 605.953,1164.53Z" style="fill:rgb(235,235,235);"/>
                         <path d="M605.953,1164.53C605.953,1160.17 600.133,1156.64 592.954,1156.64C552.879,1156.64 431.534,1156.64 391.46,1156.64C384.28,1156.64 378.46,1160.17 378.46,1164.53C378.46,1197.37 378.46,1323.04 378.46,1355.88C378.46,1360.24 384.28,1363.77 391.46,1363.77C431.534,1363.77 552.879,1363.77 592.954,1363.77C600.133,1363.77 605.953,1360.24 605.953,1355.88C605.953,1323.04 605.953,1197.37 605.953,1164.53ZM601.078,1164.53L601.078,1355.88C601.078,1358.6 597.441,1360.81 592.954,1360.81C592.954,1360.81 391.46,1360.81 391.46,1360.81C386.972,1360.81 383.335,1358.6 383.335,1355.88C383.335,1323.04 383.335,1197.37 383.335,1164.53C383.335,1161.8 386.972,1159.6 391.46,1159.6C391.46,1159.6 592.954,1159.6 592.954,1159.6C597.441,1159.6 601.078,1161.8 601.078,1164.53Z" style="fill:white;"/>
                     </g>
+                </g>
+                <g transform="matrix(1.00822,-0,-0,1.10638,1754.57,-8.99576)">
                 </g>
                 <g>
                     <g transform="matrix(1.00822,-0,-0,1.10638,1754.57,-8.99576)">
@@ -129,20 +131,21 @@
                     </g>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,1763.38,-532.677)">
-                    <text x="17.357px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Классифик<tspan x="99.302px 108.2px " y="689.539px 689.539px ">ац</tspan>ия</text>
+                    <text x="43.267px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Classifier</text>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,1922.68,-532.677)">
-                    <text x="38.11px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Р<tspan x="48.079px 56.978px " y="689.539px 689.539px ">ег</tspan>рессия</text>
+                    <text x="35.696px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Regression</text>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,2081.98,-532.677)">
-                    <text x="38.11px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Р<tspan x="48.079px 56.978px " y="689.539px 689.539px ">ег</tspan>рессия</text>
+                    <text x="22.802px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Data clustering</text>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,2241.28,-532.677)">
-                    <text x="28.7px" y="681.277px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">У<tspan x="38.146px 49.146px " y="681.277px 681.277px ">ме</tspan>ньшение</text>
-                    <text x="28.286px" y="697.8px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">ра<tspan x="45.903px 53.239px " y="697.8px 697.8px ">зм</tspan>ерности</text>
+                    <text x="24.142px" y="681.277px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Dimensionality</text>
+                    <text x="43.251px" y="697.8px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">reduction</text>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,2400.58,-532.677)">
-                    <text x="25.153px" y="689.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Поиск правил</text>
+                    <text x="35.251px" y="681.277px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Association</text>
+                    <text x="28.134px" y="697.8px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">rules learning</text>
                 </g>
                 <g>
                     <g transform="matrix(1.00822,-0,-0,1.10638,1754.57,-8.99576)">
@@ -163,10 +166,10 @@
                     </g>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,1793.33,-627.065)">
-                    <text x="37.079px" y="692.039px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Классическ<tspan x="121.985px 130.884px " y="692.039px 692.039px ">ое</tspan> об<tspan x="161.938px 169.938px " y="692.039px 692.039px ">уч</tspan>ение</text>
+                    <text x="54.751px" y="692.039px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Supervised learning</text>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,2191.57,-627.065)">
-                    <text x="37.079px" y="692.039px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Классическ<tspan x="121.985px 130.884px " y="692.039px 692.039px ">ое</tspan> об<tspan x="161.938px 169.938px " y="692.039px 692.039px ">уч</tspan>ение</text>
+                    <text x="45.86px" y="692.039px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Unsupervised learning</text>
                 </g>
                 <g transform="matrix(0.84504,-0.291844,-0.029258,-0.102016,2301.84,108.695)">
                     <g transform="matrix(1.08557,-3.10557,-0.341652,-9.86772,-552.919,2735.42)">
@@ -190,7 +193,7 @@
                     </g>
                 </g>
                 <g transform="matrix(1.00822,0,0,1.10638,1992.18,-731.775)">
-                    <text x="37.079px" y="694.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Классическ<tspan x="121.985px 130.884px " y="694.539px 694.539px ">ое</tspan> об<tspan x="161.938px 169.938px " y="694.539px 694.539px ">уч</tspan>ение</text>
+                    <text x="27.634px" y="694.539px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:16px;">Classical Machine Learning</text>
                 </g>
             </g>
         </g>

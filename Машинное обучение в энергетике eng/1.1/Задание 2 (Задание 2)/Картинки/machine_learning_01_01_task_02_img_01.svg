@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 801 303" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <g transform="matrix(1,0,0,1,-860,-2)">
-        <g id="_002" serif:id="002" transform="matrix(1,0,0,0.503012,860.528,2.97755)">
+    <g transform="matrix(1,0,0,1,-860,-61)">
+        <g id="_002" serif:id="002" transform="matrix(1,0,0,0.503012,860.528,61.9775)">
             <rect x="0" y="0" width="800" height="600" style="fill:none;"/>
             <clipPath id="_clip1">
                 <rect x="0" y="0" width="800" height="600"/>
@@ -48,9 +48,9 @@
                     <path d="M1023.63,340.381L1023.63,332.29L1046.42,351.089L1023.63,369.888L1023.63,361.798L965.988,361.798L965.988,340.381L1023.63,340.381Z" style="fill:rgb(46,112,183);stroke:rgb(41,100,164);stroke-width:1.8px;"/>
                 </g>
                 <g transform="matrix(6.12323e-17,1.98802,-1,1.21731e-16,1283.6,118.006)">
-                    <text x="40.897px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Длительный</text>
-                    <text x="37.389px" y="686.785px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">и тр<tspan x="69.069px 77.569px 87.725px 97.498px 106.186px 118.022px " y="686.785px 686.785px 686.785px 686.785px 686.785px 686.785px ">удоемк</tspan>ий</text>
-                    <text x="58.78px" y="703.308px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">проце<tspan x="106.514px 115.412px " y="703.308px 703.308px ">сс</tspan></text>
+                    <text x="71.998px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Long</text>
+                    <text x="41.319px" y="686.785px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">and laborious</text>
+                    <text x="60.862px" y="703.308px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">process</text>
                 </g>
                 <g>
                     <g transform="matrix(1,-0,-0,1.98802,-0.528249,-1.94338)">
@@ -62,7 +62,7 @@
                     </g>
                 </g>
                 <g transform="matrix(6.12323e-17,1.98802,-1,1.21731e-16,853.821,187.097)">
-                    <text x="22.553px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Наличие</text>
+                    <text x="12.323px" y="670.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:16px;">Occurrence</text>
                 </g>
             </g>
         </g>
