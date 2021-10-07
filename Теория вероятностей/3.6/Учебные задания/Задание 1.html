@@ -61,7 +61,7 @@ X_Y_b0 = round(X_avg - X_Y_b1 * Y_avg, 10)
 t_krit_1 = stats.t.ppf(1-(alpha_1/2), len(n)-2)
 t_krit_2 = stats.t.ppf(1-(alpha_2/2), len(n)-2)
 
-t_exp = R_xy * math.sqrt(8/(1 - math.pow(R_xy, 2)))
+t_exp = abs(R_xy) * math.sqrt(8/(1 - math.pow(abs(R_xy), 2)))
 
 if t_exp > t_krit_1:
     answer_1_1 = True  # корреляция существует

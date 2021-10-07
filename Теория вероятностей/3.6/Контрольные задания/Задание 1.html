@@ -50,9 +50,9 @@ Y2_Rxy = Y2_Kxy / math.sqrt(Y2_D * X_D)
 Y3_Rxy = Y3_Kxy / math.sqrt(Y3_D * X_D)
 # print(Y1_Rxy, Y2_Rxy, Y3_Rxy)
 
-t1_exp = Y1_Rxy * math.sqrt(8/(1 - math.pow(Y1_Rxy, 2)))
-t2_exp = Y2_Rxy * math.sqrt(8/(1 - math.pow(Y2_Rxy, 2)))
-t3_exp = Y3_Rxy * math.sqrt(8/(1 - math.pow(Y3_Rxy, 2)))
+t1_exp = abs(Y1_Rxy) * math.sqrt(8/(1 - math.pow(abs(Y1_Rxy), 2)))
+t2_exp = abs(Y2_Rxy) * math.sqrt(8/(1 - math.pow(abs(Y2_Rxy), 2)))
+t3_exp = abs(Y3_Rxy) * math.sqrt(8/(1 - math.pow(abs(Y3_Rxy), 2)))
 # print(t1_exp, t2_exp, t3_exp)
 
 t_krit_1 = stats.t.ppf(1-(alpha_1/2), n-2)
