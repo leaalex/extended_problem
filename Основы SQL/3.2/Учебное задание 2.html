@@ -14,23 +14,15 @@
     </style>
     <div>
         <div>
-            <p><i>Цель:</i> уметь использовать индексы в базе данных.</p>
+            <p><i>Цель:</i> уметь подтверждать и откатывать транзакции в SQL.</p>
 
-            <p>Схема базы данных онлайн-школы выглядит следующим образом:</p>
-            <figure style="text-align:center;">
-                <img src="/static/spWDaVLjjn.png" alt="" style="max-width: 900px;"/>
-                <figcaption></figcaption>
-            </figure>
+            <p>Для обновления состояния счетов в базе данных банка необходимо выполнить следующие команды:</p>
+            <pre><code><strong>UPDATE</strong> accounts <strong>SET</strong> balance = balance – 15000<br /><strong>WHERE</strong> account_number = 1234567<br /><br /><strong>UPDATE</strong> accounts <strong>SET</strong> balance = balance + 15000<br /><strong>WHERE</strong> account_number = 9876543</code></pre>
 
-            <p>Продукты школы часто нужно выводить в порядке убывания стоимости. Чтобы повысить производительность таких запросов, был создан индекс следующей командой:</p>
-            <pre><code><strong>CREATE INDEX</strong> products_price_idx <strong>ON</strong> products(price)</code></pre>
-
-            <p>Однако анализ показал, что данный индекс не используется в запросах, при которых продукты сортируются в порядке убывания стоимости. Разработайте правильную команду для создания индекса. Для этого необходимо:</p>
+            <p>Должны быть выполнены обе команды, либо ни одна из них. Выберите последовательность команд, которые необходимо выполнить для фиксации транзакции, содержащей эти две команды. Для этого необходимо:</p>
             <ul>
-                <li>изучить схему базы данных онлайн-школы;</li>
-                <li>прочитать описание запроса, для которого планировалось использовать индекс;</li>
-                <li>изучить составленную разработчиком команду SQL и найти в ней ошибку;</li>
-                <li>с помощью конструктора операторов SQL составить правильную команду.</li>
+                <li>изучить описание команд, которые нужно выполнить в одной транзакции;</li>
+                <li>с помощью конструктора операторов SQL составить правильную последовательность команд для фиксации транзакции.</li>
             </ul>
         </div>
         <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
@@ -59,30 +51,34 @@ source_data = {
     },
     "data": [
     {
-        "answers": ["ALTER", ["CREATE"], "DROP"],
+        "answers": ["NEW TRANSACTION;", ["START TRANSACTION;"], "BEGIN;"],
         "type": "operator",
     },
-        {"answers": " ",},
+        {"answers": "\n",},
+        {"answers": "\n",},
     {
-        "answers": [["INDEX"], "CONSTRAINT", "TABLE"],
+        "answers": "UPDATE accounts SET balance = balance – 15000",
+    },
+        {"answers": "\n",},
+    {
+        "answers": "WHERE account_number = 1234567;",
+    },
+     {"answers": "\n",},
+     {"answers": "\n",},
+    {
+        "answers": "UPDATE accounts SET balance = balance + 15000",
+    },
+        {"answers": "\n",},
+    {
+        "answers": "WHERE account_number = 9876543;",
+    },
+    {
+        "answers": "\n",
+    },
+        {"answers": "\n",},
+    {
+        "answers": ["ROLLBACK;", "END;", ["COMMIT;"]],
         "type": "operator"
-    },
-     {"answers": " ",},
-    {
-        "answers": [["customers_name_idx"], "FROM", "AS SELECT"],
-        "type": "variable"
-    },
-        {"answers": " ",},
-    {
-        "answers": [["ON"], "USING", "WITH"],
-        "type": "operator"
-    },
-    {
-        "answers": " ",
-    },
-    {
-        "answers": ["products(price)", "products(price ASC)", ["products(price DESC)"]],
-        "type": "variable"
     },
 ]}
 

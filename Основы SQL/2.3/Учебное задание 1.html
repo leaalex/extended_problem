@@ -1,10 +1,230 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style>
+        .center {text-align:center  !important;}
+        .h90{
+            height: 90px !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import json
+import random
+import string
 
-</body>
-</html>
+data = {
+    "content": {
+        "body": "",
+        "answers_title": "Описания типа объединения таблиц:"
+    },
+    "table": [
+    [
+  '__Тип объединения таблиц в SQL__.{.text-deep-orange} .{.center}','__Описание типа объединения таблиц в SQL__.{.text-deep-orange} .{.center}',
+    ],
+    [
+        '__Внутреннее объединение__ .{.center}', ['В объединение попадают только строки, для которых есть соответствующие строки в обеих соединяемых таблицах'],
+    ],
+    [
+        '__Левое внешнее объединение__ .{.center}', ['В объединение попадают все подходящие строки из левой таблицы, даже если для них нет соответствующих строк в правой таблице'],
+    ],
+    [
+        '__Правое внешнее объединение__ .{.center}', ['В объединение попадают все подходящие строки из правой таблицы, даже если для них нет соответствующих строк в правой таблице'],
+    ],
+    [
+        '__Полное внешнее объединение__ .{.center}', ['В объединение попадают все подходящие строки из обеих таблиц, даже если для них нет соответствующих строк в соединяемой таблице'],
+    ],
+    [
+        '__Перекрестное объединение__ .{.center}', ['Каждая строка в левой таблице объединяется с каждой строкой в правой таблице'],
+    ]
+
+],
+  "settings":{
+        "is_exist_markdown": True,
+        "is_exist_advanced_style": True,
+        'is_exist_mathjax': True,
+        'is_exist_image': True,
+        'show_incorrect': False,
+  		'capacity': 2,
+  },
+  "style": {
+        'rows': ['','h90','h90','h90','h90','h90'],
+        'colls': ['w40']
+    }
+}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
+data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+data["settings"] = data["settings"] if "settings" in data.keys() else {}
+data["style"] = data["style"] if "style" in data.keys() else {}
+correct_answer = {}
+student_data = {
+    "table": [],
+    "answers": [],
+    "settings": data["settings"],
+    "style": data["style"],
+    "content": data["content"]
+}
+
+use_multi_answers = ''
+if "multi_answers" in data["settings"].keys():
+    if data["settings"]["multi_answers"] == "horizontal":
+        use_multi_answers = "horizontal"
+    elif data["settings"]["multi_answers"] == "vertical":
+        use_multi_answers = "vertical"
+
+all_answers_obj = {}
+
+for row_index, row in enumerate(data["table"]):
+    student_data["table"].append([])
+    for column_index, cell in enumerate(row):
+        student_cell = {}
+        if not isinstance(cell, str):
+            student_cell["id"] = generate_id()
+            student_cell["isFixed"] = False
+            correct_answer[student_cell["id"]] = []
+
+            for cell_answer in cell:
+                cell_answer_id = generate_id()
+
+                if use_multi_answers:
+                    direction_index = column_index if use_multi_answers == 'vertical' else row_index
+                    if "block" + str(direction_index) not in all_answers_obj.keys():
+                        all_answers_obj["block" + str(direction_index)] = []
+                    all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
+
+                student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                correct_answer[student_cell["id"]].append(cell_answer_id)
+        else:
+            student_cell["value"] = [cell]
+            student_cell["isFixed"] = True
+        student_data["table"][row_index].append(student_cell)
+
+
+for distractor in data["distractors"]:
+    student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+if use_multi_answers:
+    student_data["answers"] = []
+    for block_idx, block_key in enumerate(all_answers_obj.keys()):
+        student_data["answers"].append(all_answers_obj[block_key])
+        try:
+            if isinstance(data["distractors"][block_idx], list):
+                for dist in data["distractors"][block_idx]:
+                    student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
+        except:
+            pass
+            # raise Exception("DISTRACTORS ERROR")
+
+
+random.shuffle(student_data["answers"])
+
+def get_response(grade_decimal, wrong_answers=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_answers is not None:
+        response["wrong_answers"] = wrong_answers
+    if grade_decimal == 1:
+        response["ok"] = True
+    elif grade_decimal == 0:
+        response["ok"] = False
+    else:
+        response["ok"] = 'Partial'
+    return response
+
+
+def check_partially(c_a, s_a):
+    result = {
+        "grade": 0.0,
+        "wrong_answers": [],
+    }
+    local_grade = 0
+    for ans in c_a:
+        if ans in s_a:
+            local_grade += 1
+    for ans in s_a:
+        if ans not in c_a:
+            result["wrong_answers"].append(ans)
+    result["grade"] = local_grade
+
+    return result
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+    grade = 0
+    wrong_answers = []
+
+    for correct_cell_id in correct_answer.keys():
+        correct_cell = correct_answer[correct_cell_id]
+        res = check_partially(correct_cell, student_answer[correct_cell_id])
+        grade += res["grade"]
+        if show_incorrect:
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+    response = get_response(float(grade / max_grade), wrong_answers, )
+
+    return {
+        'input_list': [
+            {
+                # true, false partially
+                'ok': response['ok'],
+                # string - отображаения под Input'ом
+                # как проавило сюда отправляется json со всеми дополнительными данными
+                'msg': str(json.dumps(response)),
+                # number [0, 1] - оценка за задание
+                'grade_decimal': response['grade']
+            },
+        ]
+    }
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+correct_data = json.dumps(data)
+correct_data = correct_data.replace('"', "'")
+</script>
+    <div>
+        <p><i>Цель:</i> формулировать типы объединения данных в SQL.</p>
+        <p><i>Инструкция:</i></p>
+        <p>Выберите описание типов объединений между таблицами, соответствующее их названиям. Для этого необходимо:</p>
+        <ul>
+            <li>просмотреть описание типов объединений между таблицами, размещенные в списке «Описания типа объединения таблиц»;</li>
+            <li>установить соответствие между описанием типов объединений между таблицами и их названиями;</li>
+            <li>переместить описание типов объединений между таблицами в соответствующие ячейки таблицы.</li>
+        </ul>
+
+    </div>
+    <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
+        <span class="loadingspinner"/>
+        <style>
+            .loadingspinner {
+                display: block;
+                margin: 0 auto;
+                pointer-events: none;
+                width: 2.5em;
+                height: 2.5em;
+                border: 0.4em solid transparent;
+                border-color: #eee;
+                border-top-color: #3E67EC;
+                border-radius: 50%;
+                animation: loadingspin 1s linear infinite;
+            }
+
+            @keyframes loadingspin {
+                100% {
+                    transform: rotate(360deg)
+                }
+            }
+        </style>
+    </div>
+    <div style="display: none">
+        <customresponse cfn="check_answer">
+            <textline size="120"/>
+        </customresponse>
+        <solution data-initial-data="$correct_data"/>
+    </div>
+</problem>

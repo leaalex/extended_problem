@@ -1,10 +1,287 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style type="text/css">
+        .custom-table td {
+            background: #f7f7f7 !important;
+            border: 2px solid white !important;
+            padding: 4px 10px !important;
+        }
+        .custom-table th {
+            background: #d8d8d8;
+            border: 2px solid white;
+            text-align: center;
+            padding: 4px 10px !important;
+        }
+    </style>
+    <div>
+        <div>
+            <p>Схема базы данных онлайн-школы выглядит следующим образом:</p>
+            <figure style="text-align:center;">
+                <img src="/static/spWDaVLjjn.png" alt="" style="max-width: 900px;"/>
+                <figcaption></figcaption>
+            </figure>
+            <p>Пример данных в таблицах:</p>
 
-</body>
-</html>
+            <p>Таблица <code>Customers</code></p>
+
+            <table class="custom-table">
+                <tbody>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        name
+                    </th>
+                    <th>
+                        email
+                    </th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Иван Петров</td>
+                    <td>petrov@mail.ru</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Петри Иванов</td>
+                    <td>ivanov@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Тимофей Сергеев</td>
+                    <td>ts@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Дарья Корнеева</td>
+                    <td>dasha.korneeva@mail.ru</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Иван Иван</td>
+                    <td>petrov@mail.ru</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Сергей Комов</td>
+                    <td>user156@yandex.ru</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Екатерина Самарина</td>
+                    <td>kate@mail.ru</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Андрей Котов</td>
+                    <td>a.kotoff@yandex.ru</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>Таблица Orders.</p>
+
+            <table class="custom-table">
+                <tbody>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        order_date
+                    </th>
+                    <th>
+                        customer_id
+                    </th>
+                </tr>
+                <tr>
+                <td>1</td>
+                    <td>2021-01-11</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2021-01-15</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>2021-01-20</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>2021-01-12</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>2021-01-25</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>2021-01-30</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>Напишите запрос, который извлекает имена клиентов (хранятся в таблице <code>Customers</code>) и даты заказов, которые они совершали (хранятся в таблице <code>Orders</code>).</p>
+            <p>Для этого необходимо:</p>
+            <ul>
+                <li>изучить схему базы данных онлайн-школы;</li>
+                <li>просмотреть пример данных таблиц <code>Customers</code> и <code>Orders</code>;</li>
+                <li>прочитать описание данных, которые нужно извлечь из таблиц;</li>
+                <li>с помощью конструктора операторов SQL составить необходимый запрос.</li>
+            </ul>
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "show_numbering": False,
+        "operator_title": "Оператор:",
+        "correct_answer_title": "Правильный ответ:",
+    },
+    "data": [
+    {
+        "answers": [["SELECT"], "JOIN", "FROM"],
+        "type": "operator",
+    },
+        {"answers": " ",},
+    {
+        "answers": [["c.name"], "o.name", "email"],
+        "type": "variable"
+    },
+     {"answers": ", ",},
+    {
+        "answers": ["o.customer_id", ["o.order_date"], "c.order_date"],
+        "type": "variable"
+    },
+        {"answers": " ",},
+    {
+        "answers": ["JOIN", "ON", ["FROM"]],
+        "type": "operator"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": [["customers AS c"], "сlients AS c", "orders AS c", "sales AS o"],
+        "type": "variable"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["FROM", ["JOIN"], "ON", "GROUP BY"],
+        "type": "operator"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["orders AS c", "sales AS c", "customers AS o", ["orders AS o"]],
+        "type": "variable"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["HAVING", ["ON"], "WHERE", "JOIN BY"],
+        "type": "operator"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["o.id = c.customer_id", "c.id = o.id", "o.id = sales.order_id", ["c.id = o.customer_id"]],
+        "type": "variable"
+    },
+
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>

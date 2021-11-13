@@ -1,10 +1,356 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style type="text/css">
+        .custom-table td {
+            background: #f7f7f7 !important;
+            border: 2px solid white !important;
+            padding: 4px 10px !important;
+        }
+        .custom-table th {
+            background: #d8d8d8;
+            border: 2px solid white;
+            text-align: center !important;
+            padding: 4px 10px !important;
+        }
+    </style>
+    <div>
+        <div>
+            <p>Схема базы данных онлайн-школы выглядит следующим образом:</p>
+            <figure style="text-align:center;">
+                <img src="/static/spWDaVLjjn.png" alt="" style="max-width: 900px;"/>
+                <figcaption></figcaption>
+            </figure>
+            <p>Пример данных в таблицах:</p>
 
-</body>
-</html>
+            <p>Таблица <code>Products</code></p>
+
+            <table class="custom-table">
+                <tbody>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        name
+                    </th>
+                    <th>
+                        type_id
+                    </th>
+                    <th>
+                        price
+                    </th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Основы искусственного интеллекта</td>
+                    <td>1</td>
+                    <td>15000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Технологии обработки больших данных</td>
+                    <td>1</td>
+                    <td>50000</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Программирование глубоких нейронных сетей</td>
+                    <td>1</td>
+                    <td>30000</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Как стать DataScientist'ом</td>
+                    <td>2</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Математика для DataScience</td>
+                    <td>3</td>
+                    <td>2000</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Анализ временных рядов</td>
+                    <td></td>
+                    <td>30000</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>Таблица Orders.</p>
+
+            <table class="custom-table">
+                <tbody>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        order_date
+                    </th>
+                    <th>
+                        customer_id
+                    </th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2021-01-11</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2021-01-15</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>2021-01-20</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>2021-01-12</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>2021-01-25</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>2021-01-30</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <p>Таблица Sales.</p>
+
+            <table class="custom-table">
+                <tbody>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        order_id
+                    </th>
+                    <th>
+                        quantity
+                    </th>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>5</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>Напишите запрос, который извлекает следующую информацию о продаже продуктов:</p>
+            <ul>
+                <li>Название продукта</li>
+                <li>Стоимость продукта</li>
+                <li>Количество продуктов в заказе</li>
+                <li>Дата заказа</li>
+            </ul>
+            <p>Для этого необходимо:</p>
+            <ul>
+                <li>изучить схему базы данных онлайн-школы;</li>
+                <li>просмотреть пример данных таблиц <code>Products</code>, <code>Orders</code> и <code>Sales</code>;</li>
+                <li>прочитать описание данных, которые нужно извлечь из таблиц;</li>
+                <li>с помощью конструктора операторов SQL составить необходимый запрос.</li>
+            </ul>
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "show_numbering": False,
+        "operator_title": "Оператор:",
+        "correct_answer_title": "Правильный ответ:",
+    },
+    "data": [
+    {
+        "answers": [["SELECT"], "JOIN", "UPDATE"],
+        "type": "operator",
+    },
+        {"answers": " ",},
+    {
+        "answers": [["p.name"], "o.name", "p.email"],
+        "type": "variable"
+    },
+     {"answers": ", ",},
+    {
+        "answers": ["p.id", "product_types.id", ["p.price"]],
+        "type": "variable"
+    },
+        {"answers": ", ",},
+    {
+        "answers": ["s.order_id", ["s.quantity"], "s.price"],
+        "type": "variable"
+    },
+    {
+        "answers": ", ",
+    },
+    {
+        "answers": ["s.order_id", "o.id", ["o.order_date"]],
+        "type": "variable"
+    },
+    {
+        "answers": "\n",
+    },
+    {
+        "answers": [["FROM sales AS s JOIN products AS p"], "FROM sales JOIN products", "FROM sales AS p JOIN products AS s", "FROM products AS p JOIN product_type AS t"],
+        "type": "variable"
+    },
+    {
+        "answers": "\n",
+    },
+    {
+        "answers": ["ON p.product_id = s.id", "JOIN orders AS o", ["ON s.product_id = p.id"], "AND FROM orders AS o"],
+        "type": "variable"
+    },
+    {
+        "answers": "\n",
+    },
+    {
+        "answers": [["JOIN orders AS o"], "FROM orders AS o", "ON s.product_id = p.id AND s.order_id = o.id", "JOIN product_type AS t"],
+        "type": "variable"
+    },
+    {
+        "answers": "\n",
+    },
+    {
+        "answers": ["ON s.product_id = p.id", "ON s.product_id = p.id AND s.order_id = o.id", "ON s.product_id = p.id AND s.order_id = o.id", ["ON s.order_id = o.id"]],
+        "type": "variable"
+    },
+
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>

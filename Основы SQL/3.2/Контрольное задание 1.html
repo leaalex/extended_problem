@@ -1,10 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style type="text/css">
+        .custom-table td {
+            background: #f7f7f7 !important;
+            border: 2px solid white !important;
+            padding: 4px 10px !important;
+        }
+        .custom-table th {
+            background: #d8d8d8;
+            border: 2px solid white;
+            text-align: center !important;
+            padding: 4px 10px !important;
+        }
+    </style>
+    <div>
+        <div>
+            <p><i>Цель:</i> уметь подтверждать и откатывать транзакции в SQL.</p>
 
-</body>
-</html>
+            <p>Для обновления состояния счетов в базе данных банка необходимо выполнить следующие команды:</p>
+            <pre><code><strong>UPDATE</strong> accounts <strong>SET</strong> balance = balance – 15000<br /><strong>WHERE</strong> account_number = 1234567<br /><br /><strong>UPDATE</strong> accounts <strong>SET</strong> balance = balance + 15000<br /><strong>WHERE</strong> account_number = 9876543</code></pre>
+
+            <p>Однако разработчик ошибся и во второй команде ввел неправильный номер счета:</p>
+            <pre><code><strong>UPDATE</strong> accounts <strong>SET</strong> balance = balance + 15000<br /><strong>WHERE</strong> account_number = 8765432</code></pre>
+
+            <p>Выберите последовательность команд, которые необходимо выполнить для отката транзакции, содержащей две команды. Для этого необходимо:</p>
+            <ul>
+                <li>изучить описание команд, которые нужно выполнить в одной транзакции;</li>
+                <li>с помощью конструктора операторов SQL составить правильную последовательность команд для отката транзакции.</li>
+            </ul>
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "show_numbering": False,
+        "operator_title": "Оператор:",
+        "correct_answer_title": "Правильный ответ:",
+    },
+    "data": [
+    {
+        "answers": ["NEW TRANSACTION;", ["START TRANSACTION;"], "BEGIN;"],
+        "type": "operator",
+    },
+        {"answers": "\n",},
+        {"answers": "\n",},
+    {
+        "answers": "UPDATE accounts SET balance = balance – 15000",
+    },
+        {"answers": "\n",},
+    {
+        "answers": "WHERE account_number = 1234567;",
+    },
+     {"answers": "\n",},
+     {"answers": "\n",},
+    {
+        "answers": "UPDATE accounts SET balance = balance + 15000",
+    },
+        {"answers": "\n",},
+    {
+        "answers": "WHERE account_number = 8765432;",
+    },
+    {
+        "answers": "\n",
+    },
+        {"answers": "\n",},
+    {
+        "answers": [["ROLLBACK;"], "END;", "COMMIT;"],
+        "type": "operator"
+    },
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>

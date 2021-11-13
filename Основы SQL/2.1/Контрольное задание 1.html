@@ -1,10 +1,262 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style type="text/css">
+        .custom-table td {
+            background: #f7f7f7 !important;
+            border: 2px solid white !important;
+            padding: 4px 10px !important;
+        }
+        .custom-table th {
+            background: #d8d8d8;
+            border: 2px solid white;
+            text-align: center;
+            padding: 4px 10px !important;
+        }
+    </style>
+    <div>
+        <div>
+            <p><i>Цель:</i> уметь использовать агрегатные функции в SQL.</p>
+            <i>Инструкция:</i>
+            <p>В базе данных есть следующая таблица <code>Sales</code> содержащая информации о продажах компании:</p>
+            <table class="sql-builder-task-table">
+                <tbody>
+                <tr>
+                    <th>
+                        Название поля
+                    </th>
+                    <th>
+                        Тип данных
+                    </th>
+                    <th>
+                        Назначение
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        id
+                    </td>
+                    <td>
+                        INT
+                    </td>
+                    <td>
+                        Номер закупки
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        client_name
+                    </td>
+                    <td>
+                        VARCHAR(50)
+                    </td>
+                    <td>
+                        Название клиента
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        total
+                    </td>
+                    <td>
+                        NUMERIC(12,2)
+                    </td>
+                    <td>
+                        Сумма заказа
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-</body>
-</html>
+            <p>Пример данных:</p>
+
+            <table class="custom-table">
+                <tbody>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        client_name
+                    </th>
+                    <th>
+                        total
+                    </th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Вектор</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ромашка</td>
+                    <td>1500</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>БД Консалтинг</td>
+                    <td>100000</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ромашка</td>
+                    <td>35000</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>БД Консалтинг</td>
+                    <td>99999</td>
+                </tr>
+                </tbody>
+
+            </table>
+            <p>Составьте SQL запрос, определяющий размер максимальной и минимальной покупки для каждого клиента.</p>
+            <p>Для этого необходимо:</p>
+            <ul>
+                <li>прочитать описание столбцов и типов данных таблицы <code>Sales</code>;</li>
+                <li>просмотреть пример данных таблицы <code>Sales</code>;</li>
+                <li>прочитать описание данных, которые нужно извлечь из таблицы <code>Sales</code>;</li>
+                <li>с помощью конструктора операторов SQL составить оператор, который извлекает необходимые данные из таблицы <code>Sales</code>.</li>
+            </ul>
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "show_numbering": False,
+        "operator_title": "Оператор:",
+        "correct_answer_title": "Правильный ответ:",
+    },
+    "data": [
+    {
+        "answers": ["DELETE", ["SELECT"], "UPDATE", "INSERT"],
+        "type": "operator",
+    },
+        {"answers": " ",},
+    {
+        "answers": [["client_name"], "name", "id", "client_id"],
+        "type": "variable"
+    },
+     {"answers": ", ",},
+    {
+        "answers": [["MAX(total)"], "MAX(*)", "SUM(*)", "AVG(id)"],
+        "type": "var_type"
+    },
+        {"answers": ", ",},
+    {
+        "answers": ["COUNT(*)", "MAX(total)", "MINIMAX(*)", ["MIN(total)"]],
+        "type": "var_type"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["GROUP BY", ["FROM"], "SORT BY", "sales(clinet_name)"],
+        "type": "operator"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": [["sales"], "сlients", "client_name", "GROUP BY"],
+        "type": "variable"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["WHERE", "MAX_FROM", "ORDER BY", ["GROUP BY"]],
+        "type": "operator"
+    },
+    {
+        "answers": " ",
+    },
+    {
+        "answers": ["client_id", "*", "id", ["client_name"]],
+        "type": "variable"
+    },
+
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>

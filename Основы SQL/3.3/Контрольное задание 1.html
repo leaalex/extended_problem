@@ -1,10 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
+    <style type="text/css">
+        .custom-table td {
+            background: #f7f7f7 !important;
+            border: 2px solid white !important;
+            padding: 4px 10px !important;
+        }
+        .custom-table th {
+            background: #d8d8d8;
+            border: 2px solid white;
+            text-align: center !important;
+            padding: 4px 10px !important;
+        }
+    </style>
+    <div>
+        <div>
+            <p><i>Цель:</i> уметь использовать ограничения в базе данных.</p>
 
-</body>
-</html>
+            <p>Схема базы данных онлайн-школы выглядит следующим образом:</p>
+            <figure style="text-align:center;">
+                <img src="/static/spWDaVLjjn.png" alt="" style="max-width: 900px;"/>
+                <figcaption></figcaption>
+            </figure>
+
+            <p>Разработчик подготовил следующий оператор SQL для создания таблицы <code>Customers</code>:</p>
+
+            <pre><code><strong>CREATE TABLE</strong> customers (id <strong>INT PRIMARY KEY</strong>, name <strong>VARCHAR</strong>, email <strong>VARCHAR UNIQUE</strong>)</code></pre>
+
+            <p>В процессе эксплуатации системы с такой таблицей оказалось, что в нее можно вставить информацию о клиенте без email адреса. Однако такое недопустимо с точки зрения логики работы онлайн-школы: всегда нужно знать email клиента. Исправьте ошибку разработчика и создайте команду SQL для создания таблицы customers с правильными ограничениями. Для этого необходимо:</p>
+            <ul>
+                <li>изучить схему базы данных онлайн-школы;</li>
+                <li>изучить требования к столбцам таблицы <code>Customers</code>, типам данных в них и ограничениям;</li>
+                <li>изучить оператор SQL для создания таблицы customers, который подготовил разработчик, и найдите в нем ошибку;</li>
+                <li>с помощью конструктора операторов SQL составить оператор, который создает таблицу <code>Customers</code> с необходимыми полями и ограничениями.</li>
+            </ul>
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "show_numbering": False,
+        "operator_title": "Оператор:",
+        "correct_answer_title": "Правильный ответ:",
+    },
+    "data": [
+    {
+        "answers": [["CREATE TABLE"], "ALTER TABLE", "DROP TABLE"],
+        "type": "operator",
+    },
+        {"answers": " ",},
+    {
+        "answers": [["customers"], "sales",  "orders"],
+        "type": "variable"
+    },
+     {"answers": "(",},
+    {
+        "answers": ["id INT", "id INT NOT NULL", ["id INT PRIMARY KEY"]],
+        "type": "var_type"
+    },
+        {"answers": ", ",},
+    {
+        "answers": [["name VARCHAR"], "name INT", "customer_name VARCHAR order_id INT"],
+        "type": "var_type"
+    },
+    {
+        "answers": ", ",
+    },
+    {
+        "answers": ["email VARCHAR UNIQUE", "email VARCHAR PRIMARY KEY", ["email VARCHAR UNIQUE NOT NULL"], "email VARCHAR NOT NULL AND UNIQUE"],
+        "type": "var_type"
+    },
+    {
+        "answers": ")",
+    },
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>
