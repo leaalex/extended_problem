@@ -1,0 +1,465 @@
+<problem>
+<script type="loncapa/python">
+import random
+import math
+
+dan_koeff = {
+    1: 1.7,
+    2: 1.3,
+    3: 1.0,
+    4: 0.9,
+}
+zone_size = {
+    1: 1000,
+    2: 500,
+    3: 300,
+    4: 100
+}
+
+variants = [[2.5, 19.3, 0.04, 28.9, 8, 3.56, 0.8, 1.92, 1.7, 3.33],
+[2.3, 20.3, 0.05, 13.9, 8.7, 3.62, 6, 20.2, 0.93, 4.33],
+[2.4, 18.5, 0.06, 21.9, 8.7, 3.60, 1.9, 10.15, 5.32, 2.63],
+[2.6, 20.3, 0.08, 12.7, 8.7, 4.12, 0.9, 105.4, 1.6, 5.3],
+[2.7, 22.3, 0.09, 13.7, 8.7, 2.87, 1.0, 1.02, 2.93, 4.3],
+[2.8, 21.2, 0.14, 11.7, 8.7, 3.52, 1.8, 4.165, 1.594, 2.8],
+[3.0, 20.2, 0.73, 11.5, 9.6, 3.33, 1.2, 3.7, 1.7, 2.3],
+[3.2, 20.1, 0.75, 11.4, 9.6, 3.56, 1.6, 15.375, 0.015, 1.03],
+[3.3, 20, 0.81, 11.8, 8.7, 3.06, 1.4, 0.2, 2.18, 0.3],
+[2.9, 18, 0.32, 12.5, 7.2, 2.95, 1.5, 0.175, 1.543, 0.25],
+[2.5, 19, 0.18, 14.1, 8, 3.24, 1.1, 0.175, 0.472, 3.3],
+[2.4, 18.3, 0.35, 13.8, 7.5, 3.17, 1.3, 18.3, 0.56, 1.2]]
+
+PDK = [5, 0.5, 0.002, 0.04, 0.3, 0.6, 0.003, 0.1, 0.01, 0.40]
+substance_class = [4, 4, 1, 3, 4, 4, 2, 3, 2, 2]
+M_v = random.choice(variants)
+
+KOP = 0
+for idx, x in enumerate(M_v):
+    KOP += math.pow(round(float(x)/PDK[idx], 4), dan_koeff[substance_class[idx]])
+
+KOP = round(KOP, 2)
+enterprise_class = 0
+
+if KOP > math.pow(10, 6):
+    enterprise_class = 1
+elif KOP >= math.pow(10, 4) and math.pow(10, 6) > KOP:
+    enterprise_class = 2
+elif KOP >= math.pow(10, 3) and math.pow(10, 4) > KOP:
+    enterprise_class = 3
+else:
+    enterprise_class = 4
+SZZ = zone_size[enterprise_class]
+
+M_v_0 = M_v[0]
+M_v_1 = M_v[1]
+M_v_2 = M_v[2]
+M_v_3 = M_v[3]
+M_v_4 = M_v[4]
+M_v_5 = M_v[5]
+M_v_6 = M_v[6]
+M_v_7 = M_v[7]
+M_v_8 = M_v[8]
+M_v_9 = M_v[9]
+
+a_i_0 = dan_koeff[substance_class[0]]
+a_i_1 = dan_koeff[substance_class[1]]
+a_i_2 = dan_koeff[substance_class[2]]
+a_i_3 = dan_koeff[substance_class[3]]
+a_i_4 = dan_koeff[substance_class[4]]
+a_i_5 = dan_koeff[substance_class[5]]
+a_i_6 = dan_koeff[substance_class[6]]
+a_i_7 = dan_koeff[substance_class[7]]
+a_i_8 = dan_koeff[substance_class[8]]
+a_i_9 = dan_koeff[substance_class[9]]
+
+</script>
+<style>
+    .data-table td, .data-table th{
+        padding: 6px 6px !important;
+        border: 1px solid #e5e5e5 !important;
+        text-align: center !important;
+    }
+
+    .data-table{
+        width: 100%;
+    }
+
+    .input-block{
+        margin-bottom: 20px;
+    }
+    .input-block label{
+        margin-bottom: 8px;
+    }
+    .input-block .equation{
+        display: none !important;
+    }
+
+    .input-table td, .input-table th{
+        padding: 6px 6px !important;
+        border: 1px solid #e5e5e5 !important;
+    }
+
+    .input-table td.center, .input-table th.center{
+        text-align: center !important;
+    }
+
+    .input-table .equation,.input-table .trailing_text, .input-table .status{
+        display: none !important;
+    }
+    .input-table .inputtype.option-input {
+        margin: 0px 0 0px !important;
+    }
+
+    .input-table .inputtype.formulaequationinput input {
+        height: auto !important;
+    }
+
+    .input-table p.answer, .input-table .status{
+        margin-top: 0px !important;
+    }
+</style>
+<div>
+    <p><strong>Цель:</strong></p>
+    <p>выбирать методы защиты человека и окружающей среды (ОС) от экологических опасностей и обеспечения устойчивого развития</p>
+
+    <p><strong>Ситуация:</strong></p>
+    <p>В городской черте расположено машиностроительное предприятие, при производстве продукции которого в атмосферу выделяется 10 вредных веществ: оксид углерода, диоксид серы, соли никеля, стирол, сульфат натрия, толуол, медь, поташ, фенол, азотную кислоту. Эти выбросы оказывают неблагоприятное воздействие на окружающую среду и здоровье жителей города, живущих вблизи предприятия, проявляющееся в повышенной частоте заболеваний органов дыхания. Для обеспечения снижения уровня воздействия вредных выбросов до требуемых гигиенических нормативов необходимо отделить предприятие от территории жилой застройки, установить санитарно-защитную зону предприятия.</p>
+
+    <p><strong>Задание:</strong></p>
+    <p><strong>1.</strong> Определите размер санитарно-защитной зоны, который необходимо установить для обеспечения снижения уровня воздействия вредных выбросов до требуемых гигиенических нормативов. Для этого необходимо:</p>
+    <p><strong>1.1</strong> Рассчитать категорию опасности предприятия по формуле:</p>
+    \[КОП = \sum_{i=1}^{n}\left(\frac{M_i}{ПДК_{i}}\right)^{a_i}\]
+
+    <p>где \(M_i\) – количество выбрасываемого \(i\)-вещества, <strong>т/год</strong>;</p>
+    <p>\(ПДК_i\) – предельно допустимая концентрация \(i\)-го вещества, <strong>мг/м3</strong>;</p>
+    <p>\(а_i\) – относительный коэффициент опасности, величина которого определяется по табл. 1.</p>
+    <p>Результаты расчетов округлять до десятых</p>
+
+    <p style="text-align: right;">Таблица 1</p>
+    <table style="" class="data-table">
+        <caption>Значение коэффициента опасности</caption>
+        <tbody>
+        <tr>
+            <th style="width: 30%;">
+                Класс опасности вещества
+            </th>
+            <td>
+                \(1\)
+            </td>
+            <td>
+                \(2\)
+            </td>
+            <td>
+                \(3\)
+            </td>
+            <td>
+                \(4\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                \(а_i\)
+            </td>
+            <td>
+                \(1.7\)
+            </td>
+            <td>
+                \(1.3\)
+            </td>
+            <td>
+                \(1.0\)
+            </td>
+            <td>
+                \(0.9\)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p><strong>1.2</strong> Отнести предприятие к классам опасности по табл. 2.</p>
+    <p style="text-align: right;">Таблица 2</p>
+    <table class="data-table">
+        <tbody>
+        <tr>
+            <th style="width: 30%;">
+                Класс опасности предприятия
+            </th>
+            <td>
+                \(1\)
+            </td>
+            <td>
+                \(2\)
+            </td>
+            <td>
+                \(3\)
+            </td>
+            <td>
+                \(4\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                КОП
+            </td>
+            <td>
+                \(>10^6\)
+            </td>
+            <td>
+                \(10^4 - 10^6\)
+            </td>
+            <td>
+                \(10^3-10^4\)
+            </td>
+            <td>
+                \(10^3>\)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p><strong>1.3</strong> Установить размер санитарно-защитной зоны (СЗЗ) предприятия в зависимости от его класса опасности в соответствии с СанПин 2.2.1/2.1.1.1200-03 по табл. 3</p>
+    <p style="text-align: right;">Таблица 3</p>
+    <table class="data-table" >
+        <caption>Размер санитарно-защитной зоны</caption>
+        <tbody>
+        <tr>
+            <th style="width: 30%;">
+                Класс предприятия
+            </th>
+            <td>
+                \(\rm{I}\)
+            </td>
+            <td>
+                \(\rm{II}\)
+            </td>
+            <td>
+                \(\rm{III}\)
+            </td>
+            <td>
+                \(\rm{IV}\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                \(а_i\)
+            </td>
+            <td>
+                \(1000\)
+            </td>
+            <td>
+                \(500\)
+            </td>
+            <td>
+                \(300\)
+            </td>
+            <td>
+                \(100\)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p><strong>2. </strong>Указать мероприятия и методы защиты человека и окружающей среды от экологических опасностей, причиняемых машиностроительным предприятием.</p>
+
+    <p><strong>Исходные данные:</strong></p>
+
+    <table class="input-table">
+        <tbody>
+        <tr>
+            <th style="width: 20%;" class="center">
+                Вещество
+            </th>
+            <th style="width: 20%;" class="center">
+                ПДК, мг/м<sup>3</sup>
+            </th>
+            <th style="width: 20%;" class="center">
+                Класс опасности вещества
+            </th>
+            <th style="width: 20%;" class="center">
+                Количество выбрасываемого вещества, \(М_i\), т/год
+            </th>
+            <th style="width: 20%;" class="center">
+                Значение коэффициента опасности, \(а_i\)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <i>Оксид углерода</i>
+            </td>
+            <td class="center">5</td>
+            <td class="center">4</td>
+            <td class="center">$M_v_0</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_0">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Диоксид серы</i>
+            </td>
+            <td class="center">0.5</td>
+            <td class="center">4</td>
+            <td class="center">$M_v_1</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_1">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Соли никеля</i>
+            </td>
+            <td class="center">0.002</td>
+            <td class="center">1</td>
+            <td class="center">$M_v_2</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_2">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Стирол</i>
+            </td>
+            <td class="center">0.04</td>
+            <td class="center">3</td>
+            <td class="center">$M_v_3</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_3">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Сульфат натрия</i>
+            </td>
+            <td class="center">0.3</td>
+            <td class="center">4</td>
+            <td class="center">$M_v_4</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_4">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Толуол</i>
+            </td>
+            <td class="center">0.6</td>
+            <td class="center">4</td>
+            <td class="center">$M_v_5</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_5">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Медь</i>
+            </td>
+            <td class="center">0.003</td>
+            <td class="center">2</td>
+            <td class="center">$M_v_6</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_6">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Поташ</i>
+            </td>
+            <td class="center">0.1</td>
+            <td class="center">3</td>
+            <td class="center">$M_v_7</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_7">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Фенол</i>
+            </td>
+            <td class="center">0.01</td>
+            <td class="center">2</td>
+            <td class="center">$M_v_8</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_8">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Азотная кислота</i>
+            </td>
+            <td class="center">0.04</td>
+            <td class="center">2</td>
+            <td class="center">$M_v_9</td>
+            <td class="center">
+                <numericalresponse answer="$a_i_9">
+                    <responseparam type="tolerance" default="5"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="input-block">
+        <numericalresponse answer="$KOP">
+            <label>КОП = </label>
+            <responseparam type="tolerance" default="5%"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+    <div class="input-block">
+        <numericalresponse answer="$enterprise_class">
+            <label>Класс опасности предприятия = </label>
+            <responseparam type="tolerance" default="5%"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+
+    <div class="input-block">
+        <numericalresponse answer="$SZZ">
+            <label>Размер СЗЗ, м = </label>
+            <responseparam type="tolerance" default="5%"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+    <p></p>
+    <choiceresponse partial_credit="EDC">
+        <label>Выберите мероприятия и методы защиты человека и окружающей среды от экологических опасностей, причиняемых машиностроительным предприятием:</label>
+        <checkboxgroup>
+            <choice correct="true">дополнительные озелененные площади</choice>
+            <choice correct="true">выбор экологически чистых исходных материалов</choice>
+            <choice correct="true">перенос предприятия из селитебной (жилой) зоны населенного пункта</choice>
+            <choice correct="false">использование средств индивидуальной защиты</choice>
+            <choice correct="true">установка систем очистки отходящих газов</choice>
+            <choice correct="false">проведение оздоравливающих мероприятий</choice>
+            <choice correct="true">совершенствование технологического процесса</choice>
+        </checkboxgroup>
+    </choiceresponse>
+</div>
+</problem>

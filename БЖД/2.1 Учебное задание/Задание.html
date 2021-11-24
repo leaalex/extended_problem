@@ -1,0 +1,143 @@
+<problem>
+
+<style>
+.atYCC027gI .equation{
+    display: none !important;
+}
+</style>
+
+<script type="loncapa/python">
+import math
+import random
+
+variants = [[62, 69, 61],
+[72, 60, 80],
+[65, 82, 75],
+[56, 53, 62],
+[50, 61, 59],
+[62, 66, 61],
+[70, 70, 80],
+[80, 72, 74],
+[70, 72, 76],
+[68, 80, 79],
+[72, 79, 71],
+[72, 80, 70],
+[75, 72, 65],
+[76, 83, 72],
+[80, 81, 79],
+[72, 56, 51],
+[70, 80, 60],
+[70, 62, 64],
+[80, 78, 76],
+[78, 80, 69],
+[82, 59, 51],
+[72, 70, 80],
+[79, 70, 55],
+[76, 73, 72],
+[70, 71, 69],
+[62, 56, 51],
+[70, 85, 85],
+[60, 62, 54],
+[70, 82, 86],
+[65, 70, 79]]
+
+variant = random.choice(variants)
+L1 = variant[0]
+L2 = variant[1]
+L3 = variant[2]
+
+L_i = [L1, L2, L3]
+L_a = round(10 * math.log10(sum([math.pow(10, float(x)/10) for x in L_i])), 2)
+L_i_max = [max(L_i[0], L_i[1], L_i[2]), max(L_i[0], L_i[1], L_i[2]), max(L_i[0], L_i[1], L_i[2])]
+L_a_max = round(10 * math.log10(sum([math.pow(10, float(x)/10) for x in L_i_max])), 2)
+
+if L_a > 60:
+    different_devices_living_yes = True
+    different_devices_living_no = False
+else:
+    different_devices_living_yes = False
+    different_devices_living_no = True
+
+if L_a > 80:
+    different_devices_industrial_yes = True
+    different_devices_industrial_no = False
+else:
+    different_devices_industrial_yes = False
+    different_devices_industrial_no = True
+
+
+if L_a_max > 60:
+    identical_devices_living_yes = True
+    identical_devices_living_no = False
+else:
+    identical_devices_living_yes = False
+    identical_devices_living_no = True
+
+if L_a_max > 80:
+    identical_devices_industrial_yes = True
+    identical_devices_industrial_no = False
+else:
+    identical_devices_industrial_yes = False
+    identical_devices_industrial_no = True
+
+</script>
+
+
+<div class="atYCC027gI">
+    <p><strong>Цель:</strong> определять уровень шума, угрожающего здоровью человека.</p>
+    <p><strong>Задание:</strong></p>
+    <p>Определите уровень звукового давления в центре жилой зоны и производственного помещения после запуска в работу оборудования, при одновременной работе 3-х разных источников шума (\(L_i\), дБА): \(L_1 = $L1,\) \(L_2 = $L2,\) \(L3 = $L3\) <strong>дБА</strong>.</p>
+    <p>Для этого необходимо:</p>
+    <ul>
+        <li>определить уровень звукового давления и в жилой зоне, и в производственном помещении, создаваемое тремя разными источниками с разным уровнем звукового давления;</li>
+        <li>рассчитать суммарный уровень шума отдельно для каждого помещения;</li>
+        <li>определить соответствует ли суммарный уровень шума нормативному значению для жилой зоны и производственного помещения.</li>
+    </ul>
+
+    <numericalresponse answer="$L_a">
+        <label><strong>1.1.</strong> Уровень интенсивности звука при одновременной работе <strong>3-х разных источников</strong> в жилом помещении равен:</label>
+        <responseparam type="tolerance" default="5"/>
+        <formulaequationinput/>
+    </numericalresponse>
+
+    <multiplechoiceresponse>
+        <label><strong>1.2.</strong> Угрожает ли здоровью человека такой уровень шума в <strong>жилом помещении</strong> (при одновременной работе 3-х разных источников)?</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$different_devices_living_yes">Да</choice>
+            <choice correct="$different_devices_living_no">Нет</choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+    <multiplechoiceresponse>
+        <label><strong>1.3.</strong> Угрожает ли здоровью человека такой уровень шума в <strong>производственном помещении</strong> (при одновременной работе 3-х разных источников)?</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$different_devices_industrial_yes">Да</choice>
+            <choice correct="$different_devices_industrial_no">Нет</choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+
+    <p></p>
+    <hr />
+
+    <numericalresponse answer="$L_a_max">
+        <label><strong>2.1.</strong><strong> Суммарный уровень шума</strong> 3-х источников шума с таким уровнем интенсивности звука равен:</label>
+        <responseparam type="tolerance" default="5"/>
+        <formulaequationinput/>
+    </numericalresponse>
+
+    <multiplechoiceresponse>
+        <label><strong>2.2.</strong> Угрожает ли здоровью человека такой уровень шума в <strong>жилом помещении</strong> (при суммарном уровне шума 3-х источников)?</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$identical_devices_living_yes">Да</choice>
+            <choice correct="$identical_devices_living_no">Нет</choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+    <multiplechoiceresponse>
+        <label><strong>1.3.</strong> Угрожает ли здоровью человека такой уровень шума в <strong>производственном помещении</strong> (при суммарном уровне шума 3-х источников)?</label>
+        <choicegroup type="MultipleChoice">
+            <choice correct="$identical_devices_industrial_yes">Да</choice>
+            <choice correct="$identical_devices_industrial_no">Нет</choice>
+        </choicegroup>
+    </multiplechoiceresponse>
+</div>
+
+</problem>

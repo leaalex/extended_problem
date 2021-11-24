@@ -1,0 +1,132 @@
+<problem>
+    <script type="loncapa/python">
+task_id = "Ytb43hjvvsDvf"
+</script>
+    <style>
+        #$task_id{
+            position:relative;
+            padding-bottom: 20px;
+        }
+        #$task_id .task_image{
+              width: 600px;
+              min-width: 700px;
+              border: 1px solid #e5e5e5;
+          }
+        #$task_id .selected_elements{
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              left: 0;
+          }
+        #$task_id .selected_elements .field{
+              position: absolute;
+              white-space: nowrap;
+              user-select: none;
+              cursor: pointer;
+
+          }
+        #$task_id .selected_elements .field label div:hover{
+              /*background: aliceblue;*/
+              border: 2px solid #ff9e99;
+          }
+        #$task_id .selected_elements .field input{
+              display: none;
+          }
+        #$task_id .selected_elements .field label{
+              border: none;
+              display: block;
+              border: none;
+              font-size: 0px !important;
+              padding: 0px !important;
+              margin: 0px !important;
+              height: 100%;
+              line-height: 0 !important;
+          }
+
+        #$task_id .selected_elements .choicegroup.capa_inputtype{
+              width: 100%;
+              text-align: center;
+          }
+
+        #$task_id .selected_elements .indicator-container{
+              position: absolute;
+              bottom: 0;
+          }
+
+        #$task_id .selected_elements .field label div{
+              /*border: 2px solid #00000026;*/
+              padding: 0px !important;
+              margin: 0px !important;
+              border-radius: 2px;
+              height: 100%;
+          }
+
+
+        #$task_id .selected_elements .field:nth-child(1){
+              top: 68px;
+              left: 70px;
+              width: 535px;
+              height: 26px;
+          }
+
+        #$task_id .selected_elements .field:nth-child(2){
+              top: 127px;
+              left: 70px;
+              width: 156px;
+              height: 15px;
+          }
+
+        #$task_id .selected_elements .field:nth-child(3){
+              top: 147px;
+              left: 70px;
+              width: 72px;
+              height: 14px;
+          }
+
+        #$task_id .selected_elements .field:nth-child(4){
+              top: 174px;
+              left: 70px;
+              width: 246px;
+              height: 92px;
+          }
+
+        #$task_id .selected_elements .field:nth-child(5){
+              top: 271px;
+              left: 70px;
+              width: 281px;
+              height: 15px;
+          }
+
+        #$task_id .selected_elements .field:nth-child(6){
+              top: 290px;
+              left: 70px;
+              width: 276px;
+              height: 15px;
+          }
+
+
+        #$task_id .selected_elements input[type="checkbox"]:checked ~ div {
+              border: 2px solid #b2170f;
+          }
+    </style>
+    <div id="$task_id">
+        <img class="task_image" src="/static/LOuvj5cDfm.png"> </img>
+        <div class="selected_elements">
+            <choiceresponse partial_credit="EDC">
+                <checkboxgroup>
+                    <choice correct="false"><div class="item-1"></div></choice>
+                    <choice correct="true"><div class="item-2"></div></choice>
+                    <choice correct="false"><div class="item-3"></div></choice>
+                    <choice correct="false"><div class="item-4"></div></choice>
+                    <choice correct="true"><div class="item-5"></div></choice>
+                    <choice correct="false"><div class="item-6"></div></choice>
+                </checkboxgroup>
+            </choiceresponse>
+        </div>
+        <solution>
+            <h2 style="color: green">Правильный ответ</h2>
+            <img class="task_image" src="/static/LOuvj5cDfm_correct.png" />
+        </solution>
+    </div>
+</problem>

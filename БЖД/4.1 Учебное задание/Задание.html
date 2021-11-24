@@ -1,0 +1,409 @@
+<problem>
+<script type="loncapa/python">
+import random
+
+variants = [
+    {
+        "cars": 20,
+        "trucks_gasoline": 60,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 40
+    },
+    {
+        "cars": 25,
+        "trucks_gasoline": 55,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 45
+    },
+    {
+        "cars": 30,
+        "trucks_gasoline": 50,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 50
+    },
+    {
+        "cars": 35,
+        "trucks_gasoline": 40,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 55
+    },
+    {
+        "cars": 40,
+        "trucks_gasoline": 45,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 60
+    },
+    {
+        "cars": 45,
+        "trucks_gasoline": 90,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 60
+    },
+    {
+        "cars": 50,
+        "trucks_gasoline": 85,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 55
+    },
+    {
+        "cars": 55,
+        "trucks_gasoline": 80,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 50
+    },
+    {
+        "cars": 60,
+        "trucks_gasoline": 75,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 45
+    },
+    {
+        "cars": 60,
+        "trucks_gasoline": 70,
+        "trucks_diesel": 0,
+        "buses_gasoline": 0,
+        "buses_diesel": 40
+    },
+    {
+        "cars": 55,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 20,
+        "buses_gasoline": 30,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 50,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 15,
+        "buses_gasoline": 25,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 45,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 10,
+        "buses_gasoline": 20,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 40,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 40,
+        "buses_gasoline": 15,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 35,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 80,
+        "buses_gasoline": 10,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 30,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 70,
+        "buses_gasoline": 10,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 25,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 65,
+        "buses_gasoline": 15,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 20,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 60,
+        "buses_gasoline": 20,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 20,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 75,
+        "buses_gasoline": 25,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 25,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 50,
+        "buses_gasoline": 30,
+        "buses_diesel": 0
+    },
+    {
+        "cars": 30,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 30,
+        "buses_diesel": 40
+    },
+    {
+        "cars": 35,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 25,
+        "buses_diesel": 45
+    },
+    {
+        "cars": 40,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 20,
+        "buses_diesel": 50
+    },
+    {
+        "cars": 45,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 15,
+        "buses_diesel": 55
+    },
+    {
+        "cars": 50,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 10,
+        "buses_diesel": 60
+    },
+    {
+        "cars": 55,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 10,
+        "buses_diesel": 60
+    },
+    {
+        "cars": 60,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 15,
+        "buses_diesel": 55
+    },
+    {
+        "cars": 20,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 20,
+        "buses_diesel": 50
+    },
+    {
+        "cars": 25,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 25,
+        "buses_diesel": 45
+    },
+    {
+        "cars": 30,
+        "trucks_gasoline": 0,
+        "trucks_diesel": 0,
+        "buses_gasoline": 30,
+        "buses_diesel": 40
+    }]
+
+emissions_cars = {
+    "cars": [1.492, 48.0, 40.0, 178.8, 0],
+    "trucks_gasoline": [6.475, 217.0, 154.0, 1655.5, 0],
+    "trucks_diesel": [41.475, 390.25, 46.55, 108.5, 18.2],
+    "buses_gasoline": [9.45, 315.0, 175.5, 2007.0, 0],
+    "buses_diesel": [56.7, 562.5, 63.0, 184.5, 26.65],
+}
+variant = variants[0]
+
+cars_count = variant["cars"]
+trucks_gasoline_count = variant["trucks_gasoline"]
+trucks_diesel_count = variant["trucks_diesel"]
+buses_gasoline_count = variant["buses_gasoline"]
+buses_diesel_count = variant["buses_diesel"]
+
+emissions = 0
+for car in variant.keys():
+    car_count = variant[car]
+    emissions = emissions + (sum([x*car_count for x in emissions_cars[car]]))
+
+</script>
+<style>
+    .data-table td, .data-table th{
+        padding: 6px 6px !important;
+        border: 1px solid #e5e5e5 !important;
+        text-align: center !important;
+    }
+
+    .input-block .equation{
+        display: none !important;
+    }
+</style>
+<div>
+    <p><strong>Цель:</strong> идентифицировать экологические опасности для окружающей среды.</p>
+    <p><strong>Задание:</strong></p>
+    <p>Прочитайте приведенную в задании ситуацию и рассчитайте количество выбросов автопредприятия по формуле:</p>
+    \[ M_{ij} = \sum(k_{ij} \cdot j),\]
+    <p>где \(i\) – загрязняющее атмосферу вещество; \(j\) – количество автомобилей данного типа на предприятии.</p>
+
+    <p>Исходные данные:</p>
+    <p>Количество автотранспорта на предприятии \((j)\):</p>
+    <ul>
+        <li>Легковые автомобили – <strong>$cars_count шт.</strong></li>
+        <li>Грузовые с бензиновым двигателем – <strong>$trucks_gasoline_count шт.</strong></li>
+        <li>Грузовые с дизельным двигателем – <strong>$trucks_diesel_count шт.</strong></li>
+        <li>Автобусы с бензиновым двигателем – <strong>$buses_gasoline_count шт.</strong></li>
+        <li>Автобусы с дизельным двигателем – <strong>$buses_gasoline_count шт.</strong></li>
+    </ul>
+    <p>Значения коэффициентов \(k_{ij}\) приведены в табл. 1.</p>
+
+    <p><strong>Ситуация:</strong></p>
+    <p>В черте города существует автопредприятие, занимающееся транспортировкой населения (автобусы и легковые автомобили) и грузов. В качестве топлива автомобили используют как бензин, так и дизельное топливо. В зависимости от вида топлива работающие двигатели выбрасывают диоксид серы \((SO_2)\), оксиды азота \((NO_x)\), летучие органические соединения \((VOC)\), оксид углерода \((СО)\) и твердые частицы (\(РМ\) – сажа) в атмосферу, загрязняя ее. Для оценки экологической ситуации необходимо знать количество выбросов автопредприятия (количество выбрасываемых в атмосферу веществ).</p>
+
+    <p style="text-align: right;">Таблица 1</p>
+    <table class="data-table">
+        <caption>Коэффициенты \(k_{ij}\) для расчета выбросов загрязняющих веществ от автотранспорта, кг/ед</caption>
+        <tbody>
+        <tr>
+            <td>
+                Тип автомобиля
+            </td>
+            <td>
+                Диоксид серы \((SO_2)\)
+            </td>
+            <td>
+                Оксиды азота \((NO_x)\)
+            </td>
+            <td>
+                \(VOC\) - летучие органические соединения
+            </td>
+            <td>
+                Углерода оксид \((СО)\)
+            </td>
+            <td>
+                РМ - твердые частицы (сажа)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Легковые
+            </td>
+            <td>
+                \(1.492\)
+            </td>
+            <td>
+                \(48.0\)
+            </td>
+            <td>
+                \(40.0\)
+            </td>
+            <td>
+                \(178.8\)
+            </td>
+            <td>
+                \(-\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Грузовые с бензиновым двигателем
+            </td>
+            <td>
+                \(6.475\)
+            </td>
+            <td>
+                \(217.0\)
+            </td>
+            <td>
+                \(154.0\)
+            </td>
+            <td>
+                \(1655.5\)
+            </td>
+            <td>
+                \(-\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Грузовые с дизельным двигателем
+            </td>
+            <td>
+                \(41.475\)
+            </td>
+            <td>
+                \(390.25\)
+            </td>
+            <td>
+                \(46.55\)
+            </td>
+            <td>
+                \(108.5\)
+            </td>
+            <td>
+                \(18.2\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Автобусы с бензиновым двигателем
+            </td>
+            <td>
+                \(9.45\)
+            </td>
+            <td>
+                \(315.0\)
+            </td>
+            <td>
+                \(175.5\)
+            </td>
+            <td>
+                \(2007.0\)
+            </td>
+            <td>
+                \(-\)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Автобусы с дизельным двигателем
+            </td>
+            <td>
+                \(56.7\)
+            </td>
+            <td>
+                \(562.5\)
+            </td>
+            <td>
+                \(63.0\)
+            </td>
+            <td>
+                \(184.5\)
+            </td>
+            <td>
+                \(26.65\)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <div class="input-block">
+        <numericalresponse answer="$emissions">
+            <label>Результаты расчета количества выбросов автопредприятия:</label>
+            <responseparam type="tolerance" default="5"/>
+            <formulaequationinput/>
+        </numericalresponse>
+    </div>
+</div>
+
+
+</problem>

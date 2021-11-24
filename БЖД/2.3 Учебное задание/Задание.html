@@ -1,0 +1,78 @@
+<problem>
+    <div>
+        <div data-type="SpielbergerTestApp" class="adv-app" data-initial-data='$student_data'></div>
+        <div style="display: none !important;*/">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+
+
+def check_answer(exp, ans):
+    rt_level_correct = False
+    lt_level_correct = False
+    rt_suitability_correct = False
+    lt_suitability_correct = False
+    student_answer = json.loads(ans)["answer"]
+    RT_points = int(student_answer["RT_points"])
+    LT_points = int(student_answer["LT_points"])
+
+    if 30 >= RT_points:
+        if student_answer['RT_level'] == 'low':
+            rt_level_correct = True
+    elif RT_points >= 46:
+        if student_answer['RT_level'] == 'high':
+            rt_level_correct = True
+    else:
+        if student_answer['RT_level'] == 'middle':
+            rt_level_correct = True
+
+    if 30 >= LT_points:
+        if student_answer['LT_level'] == 'low':
+            lt_level_correct = True
+    elif LT_points >= 46:
+        if student_answer['LT_level'] == 'high':
+            lt_level_correct = True
+    else:
+        if student_answer['LT_level'] == 'middle':
+            lt_level_correct = True
+
+    if rt_level_correct:
+        if student_answer['RT_level'] == 'middle' and student_answer['RT_dangerous_job'] == 'yes':
+            rt_suitability_correct = True
+        if student_answer['RT_dangerous_job'] == 'no' and (student_answer['RT_level'] == 'low' or student_answer['RT_level'] == 'high'):
+            rt_suitability_correct = True
+
+    if lt_level_correct:
+        if student_answer['LT_level'] == 'middle' and student_answer['LT_dangerous_job'] == 'yes':
+            lt_suitability_correct = True
+        if student_answer['LT_dangerous_job'] == 'no' and (student_answer['LT_level'] == 'low' or student_answer['LT_level'] == 'high'):
+            lt_suitability_correct = True
+
+    result = [rt_level_correct, rt_suitability_correct, lt_level_correct, lt_suitability_correct]
+    final_grade = sum(result)/4
+
+    if final_grade == 1:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(result), 'grade_decimal': 1}]}
+    elif final_grade == 0:
+        return {'input_list': [{'ok': False, 'msg': json.dumps(result), 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(result), 'grade_decimal': final_grade}]}
+
+student_data = {}
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+</script>
+
+
+</problem>

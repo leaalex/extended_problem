@@ -1,0 +1,498 @@
+<problem>
+<script type="loncapa/python">
+import random
+
+source_data = [
+    {
+        "N": 1525,
+        "failing_height": 4,
+        "limb_cuts": 26,
+        "burns": 5,
+        "fractures": 6
+    },
+    {
+        "N": 2025,
+        "failing_height": 5,
+        "limb_cuts": 25,
+        "burns": 8,
+        "fractures": 7
+    },
+    {
+        "N": 3025,
+        "failing_height": 6,
+        "limb_cuts": 24,
+        "burns": 10,
+        "fractures": 8
+    },
+    {
+        "N": 4025,
+        "failing_height": 7,
+        "limb_cuts": 23,
+        "burns": 13,
+        "fractures": 9
+    },
+    {
+        "N": 5025,
+        "failing_height": 8,
+        "limb_cuts": 22,
+        "burns": 15,
+        "fractures": 10
+    },
+    {
+        "N": 6025,
+        "failing_height": 9,
+        "limb_cuts": 21,
+        "burns": 18,
+        "fractures": 11
+    },
+    {
+        "N": 1725,
+        "failing_height": 7,
+        "limb_cuts": 6,
+        "burns": 26,
+        "fractures": 4
+    },
+    {
+        "N": 2225,
+        "failing_height": 5,
+        "limb_cuts": 7,
+        "burns": 25,
+        "fractures": 8
+    },
+    {
+        "N": 3225,
+        "failing_height": 6,
+        "limb_cuts": 8,
+        "burns": 24,
+        "fractures": 4
+    },
+    {
+        "N": 4225,
+        "failing_height": 7,
+        "limb_cuts": 9,
+        "burns": 23,
+        "fractures": 10
+    },
+    {
+        "N": 5225,
+        "failing_height": 8,
+        "limb_cuts": 10,
+        "burns": 22,
+        "fractures": 12
+    },
+    {
+        "N": 6225,
+        "failing_height": 9,
+        "limb_cuts": 11,
+        "burns": 21,
+        "fractures": 7
+    },
+    {
+        "N": 1225,
+        "failing_height": 4,
+        "limb_cuts": 8,
+        "burns": 5,
+        "fractures": 6
+    },
+    {
+        "N": 2125,
+        "failing_height": 5,
+        "limb_cuts": 6,
+        "burns": 8,
+        "fractures": 7
+    },
+    {
+        "N": 3125,
+        "failing_height": 6,
+        "limb_cuts": 5,
+        "burns": 10,
+        "fractures": 8
+    },
+    {
+        "N": 4125,
+        "failing_height": 7,
+        "limb_cuts": 4,
+        "burns": 13,
+        "fractures": 9
+    },
+    {
+        "N": 5125,
+        "failing_height": 8,
+        "limb_cuts": 12,
+        "burns": 15,
+        "fractures": 10
+    },
+    {
+        "N": 6125,
+        "failing_height": 9,
+        "limb_cuts": 7,
+        "burns": 18,
+        "fractures": 11
+    },
+    {
+        "N": 7025,
+        "failing_height": 10,
+        "limb_cuts": 20,
+        "burns": 21,
+        "fractures": 12
+    },
+    {
+        "N": 7225,
+        "failing_height": 10,
+        "limb_cuts": 12,
+        "burns": 20,
+        "fractures": 14
+    },
+
+]
+
+period_1 = random.choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+period_2 = period_1 + 1
+N_1 = source_data[period_1]["N"]
+N_2 = source_data[period_2]["N"]
+
+period_1_fractures_count = source_data[period_1]["fractures"]
+period_1_limb_cuts_count = source_data[period_1]["limb_cuts"]
+period_1_burns_count = source_data[period_1]["burns"]
+period_1_failing_height_count = source_data[period_1]["failing_height"]
+
+period_2_fractures_count_count = source_data[period_2]["fractures"]
+period_2_limb_cuts_count = source_data[period_2]["limb_cuts"]
+period_2_burns_count = source_data[period_2]["burns"]
+period_2_failing_height_count = source_data[period_2]["failing_height"]
+
+period_1_fractures = round(float(source_data[period_1]["fractures"]) / source_data[period_1]["N"], 5)
+period_1_limb_cuts = round(float(source_data[period_1]["limb_cuts"]) / source_data[period_1]["N"], 5)
+period_1_burns = round(float(source_data[period_1]["burns"]) / source_data[period_1]["N"], 5)
+period_1_failing_height = round(float(source_data[period_1]["failing_height"]) / source_data[period_1]["N"], 5)
+
+period_2_fractures = round(float(source_data[period_2]["fractures"]) / source_data[period_2]["N"], 5)
+period_2_limb_cuts = round(float(source_data[period_2]["limb_cuts"]) / source_data[period_2]["N"], 5)
+period_2_burns = round(float(source_data[period_2]["burns"]) / source_data[period_2]["N"], 5)
+period_2_failing_height = round(float(source_data[period_2]["failing_height"]) / source_data[period_2]["N"], 5)
+
+#  period 1
+periods_1 = sorted([period_1_fractures, period_1_limb_cuts, period_1_burns, period_1_failing_height])
+#  dropdown 1
+
+period_1_fractures_level = 0
+period_1_limb_cuts_level = 0
+period_1_burns_level = 0
+period_1_failing_height_level = 0
+
+if periods_1[3] == period_1_fractures:
+    period_1_fractures_level = 1
+elif periods_1[3] == period_1_limb_cuts:
+    period_1_limb_cuts_level = 1
+elif periods_1[3] == period_1_burns:
+    period_1_burns_level = 1
+elif periods_1[3] == period_1_failing_height:
+    period_1_failing_height_level = 1
+#  dropdown 2
+if periods_1[2] == period_1_fractures:
+    period_1_fractures_level = 2
+elif periods_1[2] == period_1_limb_cuts:
+    period_1_limb_cuts_level = 2
+elif periods_1[2] == period_1_burns:
+    period_1_burns_level = 2
+elif periods_1[2] == period_1_failing_height:
+    period_1_failing_height_level = 2
+#  dropdown 3
+if periods_1[1] == period_1_fractures:
+    period_1_fractures_level = 3
+elif periods_1[1] == period_1_limb_cuts:
+    period_1_limb_cuts_level = 3
+elif periods_1[1] == period_1_burns:
+    period_1_burns_level = 3
+elif periods_1[1] == period_1_failing_height:
+    period_1_failing_height_level = 3
+#  dropdown 3
+if periods_1[0] == period_1_fractures:
+    period_1_fractures_level = 4
+elif periods_1[0] == period_1_limb_cuts:
+    period_1_limb_cuts_level = 4
+elif periods_1[0] == period_1_burns:
+    period_1_burns_level = 4
+elif periods_1[0] == period_1_failing_height:
+    period_1_failing_height_level = 4
+
+#  period 2
+periods_2 = sorted([period_2_fractures, period_2_limb_cuts, period_2_burns, period_2_failing_height])
+#  dropdown 1
+period_2_fractures_level = 0
+period_2_limb_cuts_level = 0
+period_2_burns_level = 0
+period_2_failing_height_level = 0
+
+if periods_2[3] == period_2_fractures:
+    period_2_fractures_level = 1
+elif periods_2[3] == period_2_limb_cuts:
+    period_2_limb_cuts_level = 1
+elif periods_2[3] == period_2_burns:
+    period_2_burns_level = 1
+elif periods_2[3] == period_2_failing_height:
+    period_2_failing_height_level = 1
+#  dropdown 2
+if periods_2[2] == period_2_fractures:
+    period_2_fractures_level = 2
+elif periods_2[2] == period_2_limb_cuts:
+    period_2_limb_cuts_level = 2
+elif periods_2[2] == period_2_burns:
+    period_2_burns_level = 2
+elif periods_2[2] == period_2_failing_height:
+    period_2_failing_height_level = 2
+#  dropdown 3
+if periods_2[1] == period_2_fractures:
+    period_2_fractures_level = 3
+elif periods_2[1] == period_2_limb_cuts:
+    period_2_limb_cuts_level = 3
+elif periods_2[1] == period_2_burns:
+    period_2_burns_level = 3
+elif periods_2[1] == period_2_failing_height:
+    period_2_failing_height_level = 3
+#  dropdown 3
+if periods_2[0] == period_2_fractures:
+    period_2_fractures_level = 4
+elif periods_2[0] == period_2_limb_cuts:
+    period_2_limb_cuts_level = 4
+elif periods_2[0] == period_2_burns:
+    period_2_burns_level = 4
+elif periods_2[0] == period_2_failing_height:
+    period_2_failing_height_level = 4
+</script>
+<style>
+    .input-table td, .input-table th{
+        padding: 6px 6px !important;
+        border: 1px solid #e5e5e5 !important;
+    }
+
+    .input-table td.center, .input-table th.center{
+        text-align: center !important;
+    }
+
+    .input-table .equation{
+        display: none !important;
+    }
+    .input-table .inputtype.option-input {
+        margin: 0px 0 0px !important;
+    }
+
+    .input-table .inputtype.formulaequationinput input {
+        height: auto !important;
+    }
+</style>
+
+
+<div>
+
+<p>Для снижения риска травматизма на производстве и повышения уровня безопасности необходимо:</p>
+<ul>
+    <li>рассчитать показатели индивидуального риска травматизма на производстве для переломов, порезов конечностей, ожогов и падений с высоты за 2018-2019 годы, если число травмированных \(n\), а число работающих \(N\);</li>
+    <li>распределить виды травм для данного предприятия по уровню риска;</li>
+    <li>проанализировать опасности, приводящие к травме с наибольшим уровнем риска и указать пути повышения уровня безопасности на производстве.</li>
+</ul>
+
+
+    <p><strong>1.</strong> Рассчитайте показатели индивидуального риска травматизма на производстве за 2018 год, если число работающих \(N = $N_1\).</p>
+    <table class="input-table">
+        <tr>
+            <th class="center">Вид травмы</th>
+            <th class="center">Число травмированных, \(n\)</th>
+            <th>Показатель индивидуального риска травматизма</th>
+        </tr>
+        <tr>
+            <td>Переломы</td>
+            <td class="center">$period_1_fractures_count</td>
+            <td>
+                <numericalresponse answer="$period_1_fractures">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Порезы конечностей</td>
+            <td class="center">$period_1_limb_cuts_count</td>
+            <td>
+                <numericalresponse answer="$period_1_limb_cuts">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Ожоги</td>
+            <td class="center">$period_1_burns_count</td>
+            <td>
+                <numericalresponse answer="$period_1_burns">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Падение с высоты</td>
+            <td class="center">$period_1_failing_height_count</td>
+            <td>
+                <numericalresponse answer="$period_1_failing_height">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p><strong>2.</strong> Распределите виды травм по уровню риска за 2018 год в соответствующих ячейках таблицы:</p>
+    <table class="input-table">
+        <tr>
+            <th>Вид травмы</th>
+            <th>Уровень риска (1, 2, 3 или 4)</th>
+        </tr>
+        <tr>
+            <td>Переломы</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_1_fractures_level"></optioninput>
+                </optionresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Порезы конечностей</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_1_limb_cuts_level"></optioninput>
+                </optionresponse>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Ожоги</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_1_burns_level"></optioninput>
+                </optionresponse>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Падение с высоты</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_1_failing_height_level"></optioninput>
+                </optionresponse>
+
+            </td>
+        </tr>
+    </table>
+
+    <p><strong>3.</strong> Рассчитайте показатели индивидуального риска травматизма на производстве за 2019 год, если число работающих \(N = $N_1\).</p>
+    <table class="input-table">
+        <tr>
+            <th class="center">Вид травмы</th>
+            <th class="center">Число травмированных, \(n\)</th>
+            <th>Показатель индивидуального риска травматизма</th>
+        </tr>
+        <tr>
+            <td>Переломы</td>
+            <td class="center">$period_2_fractures_count_count</td>
+            <td>
+                <numericalresponse answer="$period_2_fractures">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Порезы конечностей</td>
+            <td class="center">$period_2_limb_cuts_count</td>
+            <td>
+                <numericalresponse answer="$period_2_limb_cuts">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Ожоги</td>
+            <td class="center">$period_2_burns_count</td>
+            <td>
+                <numericalresponse answer="$period_2_burns">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Падение с высоты</td>
+            <td class="center">$period_2_failing_height_count</td>
+            <td>
+                <numericalresponse answer="$period_2_failing_height">
+                    <responseparam type="tolerance" default="0.0001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p><strong>4.</strong> Распределите виды травм по уровню риска за 2019 год в соответствующих ячейках таблицы:</p>
+    <table class="input-table">
+        <tr>
+            <th>Вид травмы</th>
+            <th>Уровень риска (1, 2, 3 или 4)</th>
+        </tr>
+        <tr>
+            <td>Переломы</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_2_fractures_level"></optioninput>
+                </optionresponse>
+            </td>
+        </tr>
+        <tr>
+            <td>Порезы конечностей</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_2_limb_cuts_level"></optioninput>
+                </optionresponse>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Ожоги</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_2_burns_level"></optioninput>
+                </optionresponse>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Падение с высоты</td>
+            <td>
+                <optionresponse>
+                    <optioninput options="('1','2','3','4')"
+                                 correct="$period_2_failing_height_level"></optioninput>
+                </optionresponse>
+
+            </td>
+        </tr>
+    </table>
+
+    <choiceresponse>
+        <label><strong>5. </strong>Укажите пути снижения вероятности травм на производстве:</label>
+        <checkboxgroup>
+            <choice correct="true">Совершенствование технических систем и объектов</choice>
+            <choice correct="true">Подготовка и обучение персонала</choice>
+            <choice correct="false">Совершенствование систем управления при авариях и ЧС</choice>
+        </checkboxgroup>
+    </choiceresponse>
+</div>
+
+</problem>
