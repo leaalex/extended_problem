@@ -1,0 +1,126 @@
+<problem>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+
+from datetime import datetime
+
+year_transition = {
+    "transition_enable": True,
+    "date": {
+        "month": 4,
+        "day": 22
+    },
+    "before": 753,
+    "after": 754,
+}
+
+
+def check_years(expect, answer_given):
+    birthday_str = answer_given[0].replace(" ", "")
+    new_birthday_str = answer_given[1].replace(" ", "")
+
+    msg_1 = ""
+    msg_2 = ""
+
+    grade = 0
+
+    max_year = datetime.now().year - 10
+    min_year = max_year - 200
+
+    birthday = birthday_str.split(".")
+
+    if len(birthday) == 3:
+        try:
+            day = int(birthday[0])
+            month = int(birthday[1])
+            year = int(birthday[2])
+
+            if 31 >= day >= 1 and 12 >= month >= 1 and max_year >= year >= min_year:
+                try:
+                    new_birth = int(new_birthday_str)
+
+                    if year_transition["transition_enable"]:
+                        if month > year_transition["date"]["month"]:
+                            new_birth_correct = year + year_transition["after"]
+                        elif month == year_transition["date"]["month"]:
+                            if day >= year_transition["date"]["day"]:
+                                new_birth_correct = year + year_transition["after"]
+                            else:
+                                new_birth_correct = year + year_transition["before"]
+                        else:
+                            new_birth_correct = year + year_transition["before"]
+                    else:
+                        new_birth_correct = year + year_transition["before"]
+
+                    # print("new_birth_correct:", new_birth_correct)
+                    # print("new_birth:", new_birth)
+
+                    if new_birth == new_birth_correct:
+                        grade = 1
+                        msg_2 = "Верный ответ!"
+                    else:
+                        msg_2 = "Неверный ответ!"
+
+                except:
+                    msg_2 = "Ошибка ввода года!"
+
+            else:
+                msg_1 = "Ошибка ввода даты рождения"
+
+        except:
+            msg_1 = "Ошибка ввода даты рождения"
+    else:
+        msg_1 = "Ошибка ввода даты рождения"
+
+    if grade == 1:
+        ok = True
+    else:
+        ok = False
+
+    return_obj = {'input_list': [
+                    {'ok': ok, 'msg': msg_1, 'grade_decimal': grade},
+                    {'ok': ok, 'msg': msg_2, 'grade_decimal': grade}]}
+
+    return return_obj
+</script>
+
+    <style>
+        .calendar-task .without-correctness .status{
+            display: none !important;
+        }
+
+        .calendar-task .without-correctness input{
+            border: 2px solid #e5e5e5 !important;
+        }
+
+        .calendar-task .task-inputs p{
+            margin-bottom: 6px !important;
+        }
+
+    </style>
+
+    <div class="calendar-task">
+        <div class="task-wording">
+            <p>В <strong>Римской хронологии</strong> эра начинается с основания Рима (<i>Ab Urbe Сondita</i>, или <i>AUC</i>) и отсчитывается с <strong>22 апреля 753 г. до н. э.</strong> Поэтому, 22 апреля 2019 года (согласно современному летоисчислении) наступил 2773 год от основания Рима, поскольку прошло 2772 полных лет (2019+753).</p>
+            <p><i>Примеры:</i></p>
+            <p>Один человек родился 18 января 1978 года (современное летоисчисление). Дата рождения не меняется, при смене даты начала отсчета времени, меняется только год, в данном случае это 2731 год (по Римской хронологии). Поскольку человек рожден до 22 апреля, то новый год еще не наступил и складывается 1978 и 753 хотя и не полных лет, прошедших до рождества Христова.</p>
+            <p>Другой человек родился 4 сентября 1978 года (согласно современному летоисчислению), т. е. после 22 апреля, тогда год ее рождения 2732 (по Римской хронологии). К 1978 году прибавляется 753 полных года, прошедших до рождества Христова, и текущим годом становится следующий, т. е. прибавляется еще 1. Таким образом, в данном случае к году своего рождения нужно прибавить 754.</p>
+        </div>
+
+        <div class="task-inputs">
+            <h2>Симулятор:</h2>
+            <customresponse cfn="check_years">
+                <p>Введите дату Вашего рождения в формате <strong>ДД.ММ.ГГГГ</strong>, <i>(например, <strong>26.01.1993</strong>)</i>:</p>
+                <div class="without-correctness">
+                    <textline size="10"/><br/>
+                </div>
+                <p>Самостоятельно рассчитайте <strong>год рождения</strong> по <strong>календарю от основания Рима</strong> и введите его в ячейку:</p>
+                <textline size="10"/>
+            </customresponse>
+        </div>
+
+    </div>
+
+
+</problem>

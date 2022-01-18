@@ -1,230 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="маш предприятие">
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1 (Задание 1)/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 2 (Задание 2)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 2 (Задание 2)/Картинки/machine_learning_01_01_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 3 (Задание 3).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 1 (Задание 4)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 1 (Задание 4)/Картинки/machine_learning_01_02_task_01_img_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 1 (Задание 4)/Картинки/machine_learning_01_02_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_05.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_06.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 3 (Задание 6)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 1 (Задание 7).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 2 (Задание 8).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 3 (Задание 9).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4 (Задание 10)/1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4 (Задание 10)/2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4 (Задание 10)/3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4 (Задание 10)/4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4 (Задание 10)/5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 1 (Задание 11)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 1 (Задание 11)/Картинки/machine_learning_02_01_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2 (Задание 12)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_05.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 3 (Задание 13)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 3 (Задание 13)/Картинки/machine_learning_02_01_task_03_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 4 (Задание 14).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 1 (Задание 15)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 1 (Задание 15)/Картинки/machine_learning_02_02_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 2 (Задание 16).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 3 (Задание 17)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 3 (Задание 17)/Картинки/machine_learning_02_02_task_03_img_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 3 (Задание 17)/Картинки/machine_learning_02_02_task_03_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 4 (Задание 18).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1 (Задание 19)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2 (Задание 20)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2 (Задание 20)/Картинки/machine_learning_03_01_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2 (Задание 20)/Картинки/machine_learning_03_01_task_02_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2 (Задание 20)/Картинки/machine_learning_03_01_task_02_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 4 (Задание 21)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 4 (Задание 21)/Картинки/machine_learning_03_01_task_04_img_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5 (Задание 22)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5 (Задание 22)/Картинки/machine_learning_03_01_task_05_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5 (Задание 22)/Картинки/machine_learning_03_01_task_05_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5 (Задание 22)/Картинки/machine_learning_03_01_task_05_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1 (Задание 23)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2 (Задание 24)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2 (Задание 24)/Картинки/machine_learning_03_02_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2 (Задание 24)/Картинки/machine_learning_03_02_task_02_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2 (Задание 24)/Картинки/machine_learning_03_02_task_02_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3 (Задание 25)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3 (Задание 25)/Картинки/machine_learning_03_02_task_03_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3 (Задание 25)/Картинки/machine_learning_03_02_task_03_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3 (Задание 25)/Картинки/machine_learning_03_02_task_03_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 4 (Задание 26)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 4 (Задание 26)/Картинки/machine_learning_03_02_task_04_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 1 (Задание 27)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 1 (Задание 27)/Картинки/machine_learning_04_01_task_01_img_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 1 (Задание 27)/Картинки/machine_learning_04_01_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_05.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_06.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 3 (Задание 29)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 3 (Задание 29)/Картинки/machine_learning_04_01_task_03_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1 (Задание 30)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 2 (Задание 31)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 2 (Задание 31)/Картинки/machine_learning_05_01_task_02_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_02.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_03.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_04.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_05.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_06.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 4 (Задание 33)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 4 (Задание 33)/Картинки/machine_learning_05_01_task_04_img_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 1 (Задание 34)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 1 (Задание 34)/Картинки/machine_learning_06_01_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 2 (Задание 35)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 2 (Задание 35)/Картинки/machine_learning_06_02_task_01_img_01.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 3 (Задание 36).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 4 (Задание 37)/Задание.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 4 (Задание 37)/Картинки/machine_learning_06_04_task_01_img_01.svg" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="БЖД">
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/1. Календарь греческих Олимпиад.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/2. Календарь от основания Рима.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/3. Календарь Диоклетиана.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/4. Исламский календарь.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/5. Иудейский календарь.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/6. Буддийский календарь.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MCS/Календари/7. Китайский циклический календарь.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Задание 1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1/Картинки/machine_learning_01_01_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1/Картинки/machine_learning_01_01_task_01_img_02.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_02.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1/Картинки/machine_learning_01_01_task_01_img_03.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_03.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1/Картинки/machine_learning_01_01_task_01_img_04.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_04.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 1/Картинки/machine_learning_01_01_task_01_img_05.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки/machine_learning_01_01_task_01_img_05.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 2 (Задание 2)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 2/Картинки/machine_learning_01_01_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 2 (Задание 2)/Картинки/machine_learning_01_01_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.1/Задание 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 3 (Задание 3).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 1 (Задание 4)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 1/Картинки/machine_learning_01_02_task_01_img_01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 1 (Задание 4)/Картинки/machine_learning_01_02_task_01_img_01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 1/Картинки/machine_learning_01_02_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 1 (Задание 4)/Картинки/machine_learning_01_02_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Картинки/machine_learning_01_02_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Картинки/machine_learning_01_02_task_02_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Картинки/machine_learning_01_02_task_02_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Картинки/machine_learning_01_02_task_02_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Картинки/machine_learning_01_02_task_02_img_05.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_05.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 2/Картинки/machine_learning_01_02_task_02_img_06.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки/machine_learning_01_02_task_02_img_06.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.2/Задание 3/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 3 (Задание 6)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 1 (Задание 7).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 2 (Задание 8).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 3 (Задание 9).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4/1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 4 (Задание 10)/1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4/2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 4 (Задание 10)/2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4/3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 4 (Задание 10)/3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4/4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 4 (Задание 10)/4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/1.3/Задание 4/5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.3/Задание 4 (Задание 10)/5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 1 (Задание 11)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 1/Картинки/machine_learning_02_01_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 1 (Задание 11)/Картинки/machine_learning_02_01_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 2 (Задание 12)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2/Картинки/machine_learning_02_01_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2/Картинки/machine_learning_02_01_task_02_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2/Картинки/machine_learning_02_01_task_02_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2/Картинки/machine_learning_02_01_task_02_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 2/Картинки/machine_learning_02_01_task_02_img_05.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 2 (Задание 12)/Картинки/machine_learning_02_01_task_02_img_05.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 3/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 3 (Задание 13)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 3/Картинки/machine_learning_02_01_task_03_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 3 (Задание 13)/Картинки/machine_learning_02_01_task_03_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.1/Задание 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.1/Задание 4 (Задание 14).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 1 (Задание 15)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 1/Картинки/machine_learning_02_02_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 1 (Задание 15)/Картинки/machine_learning_02_02_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 2 (Задание 16).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 3/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 3 (Задание 17)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 3/Картинки/machine_learning_02_02_task_03_img_01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 3 (Задание 17)/Картинки/machine_learning_02_02_task_03_img_01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 3/Картинки/machine_learning_02_02_task_03_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 3 (Задание 17)/Картинки/machine_learning_02_02_task_03_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/2.2/Задание 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/2.2/Задание 4 (Задание 18).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 1 (Задание 19)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1/Картинки/machine_learning_03_01_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1/Картинки/machine_learning_03_01_task_01_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1/Картинки/machine_learning_03_01_task_01_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 1/Картинки/machine_learning_03_01_task_01_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 1 (Задание 19)/Картинки/machine_learning_03_01_task_01_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 2 (Задание 20)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2/Картинки/machine_learning_03_01_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 2 (Задание 20)/Картинки/machine_learning_03_01_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2/Картинки/machine_learning_03_01_task_02_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 2 (Задание 20)/Картинки/machine_learning_03_01_task_02_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 2/Картинки/machine_learning_03_01_task_02_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 2 (Задание 20)/Картинки/machine_learning_03_01_task_02_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 4/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 4 (Задание 21)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 4/Картинки/machine_learning_03_01_task_04_img_01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 4 (Задание 21)/Картинки/machine_learning_03_01_task_04_img_01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 5 (Задание 22)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5/Картинки/machine_learning_03_01_task_05_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 5 (Задание 22)/Картинки/machine_learning_03_01_task_05_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5/Картинки/machine_learning_03_01_task_05_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 5 (Задание 22)/Картинки/machine_learning_03_01_task_05_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.1/Задание 5/Картинки/machine_learning_03_01_task_05_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 5 (Задание 22)/Картинки/machine_learning_03_01_task_05_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 1 (Задание 23)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1/Картинки/machine_learning_03_02_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1/Картинки/machine_learning_03_02_task_01_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1/Картинки/machine_learning_03_02_task_01_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 1/Картинки/machine_learning_03_02_task_01_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 1 (Задание 23)/Картинки/machine_learning_03_02_task_01_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 2 (Задание 24)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2/Картинки/machine_learning_03_02_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 2 (Задание 24)/Картинки/machine_learning_03_02_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2/Картинки/machine_learning_03_02_task_02_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 2 (Задание 24)/Картинки/machine_learning_03_02_task_02_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 2/Картинки/machine_learning_03_02_task_02_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 2 (Задание 24)/Картинки/machine_learning_03_02_task_02_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 3 (Задание 25)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3/Картинки/machine_learning_03_02_task_03_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 3 (Задание 25)/Картинки/machine_learning_03_02_task_03_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3/Картинки/machine_learning_03_02_task_03_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 3 (Задание 25)/Картинки/machine_learning_03_02_task_03_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 3/Картинки/machine_learning_03_02_task_03_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 3 (Задание 25)/Картинки/machine_learning_03_02_task_03_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 4/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 4 (Задание 26)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/3.2/Задание 4/Картинки/machine_learning_03_02_task_04_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.2/Задание 4 (Задание 26)/Картинки/machine_learning_03_02_task_04_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 1 (Задание 27)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 1/Картинки/machine_learning_04_01_task_01_img_01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 1 (Задание 27)/Картинки/machine_learning_04_01_task_01_img_01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 1/Картинки/machine_learning_04_01_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 1 (Задание 27)/Картинки/machine_learning_04_01_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Картинки/machine_learning_04_01_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Картинки/machine_learning_04_01_task_02_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Картинки/machine_learning_04_01_task_02_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Картинки/machine_learning_04_01_task_02_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Картинки/machine_learning_04_01_task_02_img_05.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_05.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 2/Картинки/machine_learning_04_01_task_02_img_06.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 2 (Задание 28)/Картинки/machine_learning_04_01_task_02_img_06.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 3/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 3 (Задание 29)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/4.1/Задание 3/Картинки/machine_learning_04_01_task_03_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 3 (Задание 29)/Картинки/machine_learning_04_01_task_03_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 1 (Задание 30)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1/Картинки/machine_learning_05_01_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1/Картинки/machine_learning_05_01_task_01_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1/Картинки/machine_learning_05_01_task_01_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 1/Картинки/machine_learning_05_01_task_01_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 1 (Задание 30)/Картинки/machine_learning_05_01_task_01_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 2 (Задание 31)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 2/Картинки/machine_learning_05_01_task_02_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 2 (Задание 31)/Картинки/machine_learning_05_01_task_02_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки/machine_learning_05_01_task_03_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки/machine_learning_05_01_task_03_img_02.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_02.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки/machine_learning_05_01_task_03_img_03.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_03.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки/machine_learning_05_01_task_03_img_04.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_04.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки/machine_learning_05_01_task_03_img_05.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_05.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки/machine_learning_05_01_task_03_img_06.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 3 (Задание 32)/Картинки/machine_learning_05_01_task_03_img_06.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 4/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 4 (Задание 33)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 4/Картинки/machine_learning_05_01_task_04_img_01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/5/Задание 4 (Задание 33)/Картинки/machine_learning_05_01_task_04_img_01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 1/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 1 (Задание 34)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 1/Картинки/machine_learning_06_01_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 1 (Задание 34)/Картинки/machine_learning_06_01_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 2/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 2 (Задание 35)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 2/Картинки/machine_learning_06_02_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 2 (Задание 35)/Картинки/machine_learning_06_02_task_01_img_01.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 3 (Задание 36).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 4/Задание.html" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 4 (Задание 37)/Задание.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 4/Картинки/machine_learning_06_04_task_01_img_01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Машинное обучение в энергетике eng/6/Задание 4 (Задание 37)/Картинки/machine_learning_06_04_task_01_img_01.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,26 +62,26 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Машинное обучение в энергетике eng" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ИТИС/4.1" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng" />
-      <recent name="$PROJECT_DIR$/Машинное обучение/1.3" />
-      <recent name="$PROJECT_DIR$/Машинное обучение/Лабораторные работы/Лабораторная  № 5" />
-      <recent name="$PROJECT_DIR$/Машинное обучение/Лабораторные работы" />
-      <recent name="$PROJECT_DIR$/Основы SQL/1.3" />
+      <recent name="$PROJECT_DIR$/ИТИС/4.1" />
+      <recent name="$PROJECT_DIR$/ИТИС/1.1" />
+      <recent name="$PROJECT_DIR$/Основы SQL/3.2" />
+      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 3 (Задание 29)/Картинки" />
+      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 4 (Задание 21)/Картинки" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/Лабораторные работы/Лабораторная 1/Файлы" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 4/Картинки" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 2/Картинки" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике/6/Задание 1/Картинки" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике/5/Задание 3/Картинки" />
+      <recent name="$PROJECT_DIR$/ИТИС/4.1" />
+      <recent name="$PROJECT_DIR$/БЖД/2.3 Учебное задание" />
+      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки" />
+      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки" />
+      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 2 (Задание 2)/Картинки" />
     </key>
   </component>
   <component name="RunManager">
@@ -484,49 +269,15 @@
       <workItem from="1628756662153" duration="13320000" />
       <workItem from="1628841741881" duration="88138000" />
       <workItem from="1630578600681" duration="20221000" />
-      <workItem from="1631095819097" duration="9076000" />
-    </task>
-    <task id="LOCAL-00043" summary="маш предприятие">
-      <created>1600702311856</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1600702311856</updated>
-    </task>
-    <task id="LOCAL-00044" summary="маш предприятие">
-      <created>1600787871277</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1600787871277</updated>
-    </task>
-    <task id="LOCAL-00045" summary="маш предприятие">
-      <created>1600875213336</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1600875213359</updated>
-    </task>
-    <task id="LOCAL-00046" summary="маш предприятие">
-      <created>1601050765967</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1601050765967</updated>
-    </task>
-    <task id="LOCAL-00047" summary="маш предприятие">
-      <created>1601135152187</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1601135152187</updated>
-    </task>
-    <task id="LOCAL-00048" summary="маш предприятие">
-      <created>1601270632634</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1601270632634</updated>
+      <workItem from="1631095819097" duration="34283000" />
+      <workItem from="1633429494707" duration="12461000" />
+      <workItem from="1636456993520" duration="21436000" />
+      <workItem from="1636807560528" duration="27000" />
+      <workItem from="1636807716292" duration="48570000" />
+      <workItem from="1638186174020" duration="161000" />
+      <workItem from="1638190274816" duration="315000" />
+      <workItem from="1638266462775" duration="3510000" />
+      <workItem from="1642415252311" duration="12177000" />
     </task>
     <task id="LOCAL-00049" summary="маш предприятие">
       <created>1601305064679</created>
@@ -829,7 +580,49 @@
       <option name="project" value="LOCAL" />
       <updated>1630938149102</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="маш предприятие">
+      <created>1631196836987</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1631196836987</updated>
+    </task>
+    <task id="LOCAL-00093" summary="маш предприятие">
+      <created>1631715176410</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1631715176410</updated>
+    </task>
+    <task id="LOCAL-00094" summary="маш предприятие">
+      <created>1633616665416</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1633616665417</updated>
+    </task>
+    <task id="LOCAL-00095" summary="маш предприятие">
+      <created>1635864563134</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1635864563135</updated>
+    </task>
+    <task id="LOCAL-00096" summary="маш предприятие">
+      <created>1636808096260</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1636808096260</updated>
+    </task>
+    <task id="LOCAL-00097" summary="БЖД">
+      <created>1637764797440</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1637764797440</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -867,18 +660,8 @@
     <MESSAGE value="вопросы с поясненияеми" />
     <MESSAGE value="sdf" />
     <MESSAGE value="маш предприятие" />
-    <option name="LAST_COMMIT_MESSAGE" value="маш предприятие" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/engines/matching_table/matching_table_mobile.js</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="БЖД" />
+    <option name="LAST_COMMIT_MESSAGE" value="БЖД" />
   </component>
   <component name="masterDetails">
     <states>

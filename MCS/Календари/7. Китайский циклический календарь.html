@@ -1,0 +1,1025 @@
+<problem>
+    <style>
+
+        .calendar-table-wrapper{
+            overflow: auto;
+        }
+
+        .choice-block{
+            padding: 10px;
+            margin: 10px 0px;
+            border: 2px solid #ffffff00;
+            border-radius: 3px;
+        }
+
+        .choice-block label{
+            display: block;
+        }
+
+        .choice-block #cell_input{
+            box-sizing: border-box;
+            background-color: #f2f2f2;
+            background-image: -webkit-linear-gradient(#f2f2f2,#fff);
+            background-image: linear-gradient(#f2f2f2,#fff);
+            padding: 6px 8px 8px;
+            border: 1px solid #b2b2b2;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            font-family: 'Open Sans', sans-serif;
+            color: #4c4c4c;
+            margin-bottom: 6px;
+            outline: 0;
+        }
+
+        .correct-block{
+            /*border: 2px solid #009b00;*/
+        }
+
+        .correct-block .message {
+            background: whitesmoke;
+            padding: 4px;
+            color: #009b00;
+            text-align: center;
+        }
+
+        .incorrect-block{
+            /*border: 2px solid #cb0712;*/
+        }
+
+        .without-correctness .status{
+            display: none !important;
+        }
+
+        .without-correctness .correct input[type="text"] {
+            border: 2px solid #e5e5e5 !important;
+        }
+
+        #birth_date .message{
+            background: whitesmoke;
+            padding: 4px;
+            /* color: #009b00; */
+            text-align: center;
+        }
+
+        .incorrect-block .message {
+            background: whitesmoke;
+            padding: 4px;
+            color: #cb0711;
+            text-align: center;
+        }
+
+        .choice-block legend {
+            padding-bottom: 10px;
+        }
+
+        .calendar-table td p{
+            margin-bottom: 2px !important;
+            margin-top: 2px !important;
+        }
+
+        .calendar-table td, .calendar-table th {
+            word-break: keep-all;
+            font-size: 80% !important;
+            padding: 4px !important;
+            border: 1px solid #c8c8c8;
+        }
+
+        .calendar-table td p:first-of-type {
+            text-align: center;
+        }
+
+        .calendar-table th {
+            background: #eee;
+            font-weight: bold;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+    </style>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import json
+from datetime import datetime
+
+year_transition = {
+    "transition_enable": False,
+    "date": {
+        "month": 6,
+        "day": 15
+    },
+    "before": 2697,
+    "after": 2697,
+}
+
+trunks = ["wood", "fire", "earth", "metal", "water"]
+branches = ["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", "monkey", "rooster", "dog", "pig"]
+
+
+def check_answer(expect, answer_given):
+
+    student_answer = json.loads(answer_given)
+    student_trunk = student_answer["trunk"]
+    student_branch = student_answer["branch"]
+    birthday_str = student_answer["birth_date"].replace(" ", "")
+
+    result_grade = 0
+
+    response = {
+         "trunk": {
+            "correctness": False,
+            "msg": "Ошибка ввода даты рождения"
+        },
+         "branch": {
+            "correctness": False,
+            "msg": "Ошибка ввода даты рождения"
+        }
+    }
+
+    try:
+        birthday = birthday_str.split(".")
+        day = int(birthday[0])
+        month = int(birthday[1])
+        year = int(birthday[2])
+        year -= 1924
+        d = int("5od2nauh6qe4obvj8rf5pd2math6re3ocvi8sf5pd2l9uh6rf3nbvi7sg5pd2k9th6rf4navj7sg5oc1m9ti7qe3navj8sg5pc1math6qd3nbvj8sf4oc1ma"[year], 36)
+        year -= (((21 > d) * 31) + d) > ((31 * month) - 31 + day)
+
+        correct_branch = branches[year % 12]
+        correct_trunk = trunks[int(year % 10 / 2)]
+
+        if student_trunk in trunks:
+            if correct_trunk == student_trunk:
+                response["trunk"]["msg"] = "Небесный ствол выбран верно!"
+                response["trunk"]["correctness"] = True
+                result_grade += 0.5
+            else:
+                response["trunk"]["msg"] = "Небесный ствол выбран неверно!"
+        else:
+            response["trunk"]["msg"] = "Не выбран небесный ствол!"
+
+        if student_branch in branches:
+            if correct_branch == student_branch:
+                response["branch"]["msg"] = "Земная ветвь выбрана верно!"
+                response["branch"]["correctness"] = True
+                result_grade += 0.5
+            else:
+                response["branch"]["msg"] = "Земная ветвь выбрана неверно!"
+        else:
+            response["branch"]["msg"] = "Не выбрана земная ветвь!"
+    except:
+        pass
+
+    if result_grade == 1:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}]}
+
+
+def check_years(expect, answer_given):
+    birthday_str = answer_given[0].replace(" ", "")
+    new_birthday_str = answer_given[1].replace(" ", "")
+
+    msg_1 = ""
+    msg_2 = ""
+
+    grade = 0
+
+    max_year = datetime.now().year - 10
+    min_year = max_year - 100
+
+    birthday = birthday_str.split(".")
+
+    if len(birthday) == 3:
+        try:
+            day = int(birthday[0])
+            month = int(birthday[1])
+            year = int(birthday[2])
+
+            if 31 >= day >= 1 and 12 >= month >= 1 and max_year >= year >= min_year:
+                try:
+                    new_birth = int(new_birthday_str)
+                    p_s = year
+                    year -= 1924
+                    p_old = year
+                    d = int("5od2nauh6qe4obvj8rf5pd2math6re3ocvi8sf5pd2l9uh6rf3nbvi7sg5pd2k9th6rf4navj7sg5oc1m9ti7qe3navj8sg5pc1math6qd3nbvj8sf4oc1ma"[year], 36)
+                    year -= (((21 > d) * 31) + d) > ((31 * month) - 31 + day)
+                    ch_bd = year - p_old + 2697 + p_s
+                    if new_birth == ch_bd:
+                        grade = 1
+                        msg_2 = "Верный ответ!"
+                    else:
+                        msg_2 = "Неверный ответ!"
+
+                except:
+                    msg_2 = "Ошибка ввода года!"
+
+            else:
+                msg_1 = "Ошибка ввода даты рождения"
+
+        except:
+            msg_1 = "Ошибка ввода даты рождения"
+    else:
+        msg_1 = "Ошибка ввода даты рождения"
+
+    if grade == 1:
+        ok = True
+    else:
+        ok = False
+
+    return_obj = {'input_list': [
+                    {'ok': ok, 'msg': msg_1, 'grade_decimal': grade},
+                    {'ok': ok, 'msg': msg_2, 'grade_decimal': grade}]}
+
+    return return_obj
+</script>
+
+    <script type="text/javascript">
+        function Answer(elementField) {
+            this.elementField = elementField;
+            this.fieldValue = "";
+            this.fieldObject = {};
+            this.get = function () {
+                this.fieldValue = elementField.value;
+                return this.fieldValue;
+            };
+            this.set = function (value) {
+                if (value === undefined) value = this.fieldValue;
+                elementField.value = value;
+            };
+            this.getJSON = function () {
+                if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
+                return this.fieldObject;
+            };
+            this.setJSON = function (object) {
+                if (object === undefined) object = this.fieldObject;
+                this.set(JSON.stringify(object));
+            };
+            this.isJsonString = function (str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        let state = {
+            birth_date: "",
+            trunk: "",
+            branch: ""
+        };
+
+        let answer = new Answer(document.querySelector("#chinese_calendar_input").querySelector("input[type='text']"));
+
+        let response;
+
+        let choice_trunk_inputs = document.querySelectorAll("#chinese_calendar #choice_trunk input");
+        let choice_branch_inputs = document.querySelectorAll("#chinese_calendar #choice_branch input");
+        let birth_date_input = document.querySelector("#birth_date.task-inputs").querySelector("input[type='text']")
+
+        state.birth_date = birth_date_input.innerHTML;
+
+        let choice_trunk_block = choice_trunk_inputs[0].closest(".choice-block");
+        let choice_branch_block = choice_branch_inputs[0].closest(".choice-block");
+
+        if(answer.get()){
+            state = answer.getJSON();
+
+            if (document.querySelector("#chinese_calendar_input").querySelector("span.message")) {
+                response = JSON.parse(document.querySelector("#chinese_calendar_input").querySelector("span.message").innerHTML);
+                if (response){
+                    // console.log(response);
+                    if(response.branch.correctness){
+                        choice_branch_block.classList.add("correct-block")
+                    }
+                    else{
+                        choice_branch_block.classList.add("incorrect-block")
+                    }
+                    if(response.trunk.correctness){
+                        choice_trunk_block.classList.add("correct-block")
+                    }
+                    else{
+                        choice_trunk_block.classList.add("incorrect-block")
+                    }
+
+                    document.querySelector("#choice_trunk .message").innerHTML = response.trunk.msg;
+                    document.querySelector("#choice_branch .message").innerHTML = response.branch.msg;
+
+                }
+            }
+
+        }
+
+
+        answer.setJSON(state);
+
+        let prev = null;
+        choice_trunk_inputs.forEach(function (input, index) {
+            if (state.trunk === input.value){
+                input.checked = true;
+            }
+            input.addEventListener('change', function() {
+                if (this !== prev) {
+                    prev = this;
+                }
+                state.trunk = this.value;
+                choice_trunk_block.classList.remove("incorrect-block");
+                choice_trunk_block.classList.remove("correct-block");
+                choice_trunk_block.querySelector(".message").innerHTML = "";
+                answer.setJSON(state);
+            });
+        });
+        prev = null;
+        choice_branch_inputs.forEach(function (input, index) {
+            if (state.branch === input.value){
+                input.checked = true;
+            }
+            input.addEventListener('change', function() {
+                if (this !== prev) {
+                    prev = this;
+                }
+                state.branch = this.value;
+                choice_branch_block.classList.remove("incorrect-block");
+                choice_branch_block.classList.remove("correct-block");
+                choice_branch_block.querySelector(".message").innerHTML = "";
+                answer.setJSON(state);
+            });
+        });
+        prev = null;
+        birth_date_input.addEventListener('input', function(event) {
+            if (this !== prev) {
+                prev = this;
+            }
+            state.birth_date = event.target.value;
+            console.log(state)
+            choice_branch_block.classList.remove("incorrect-block");
+            choice_branch_block.classList.remove("correct-block");
+
+            choice_branch_block.querySelector(".message").innerHTML = "";
+            choice_trunk_block.querySelector(".message").innerHTML = "";
+
+            answer.setJSON(state);
+        });
+
+    </script>
+
+
+    <div id="chinese_calendar">
+
+        <p><strong>Китайский циклический календарь</strong> является комбинацией 10-летнего цикла («небесные стволы») и 12-летнего цикла («земные ветви») и составляет общий цикл 60 лет, половина сочетаний (у которых разная чётность) не используется. «Небесные стволы» – 10 летний цикл состоит из пяти знаков, каждый из которых имеет две тональности: дерево, огонь, земля, металл, вода. «Земные ветви» – 12 летний цикл названы в честь животных: крыса, бык, тигр, кролик, дракон, змея, лошадь, овца, обезьяна, петух, собака, свинья. Год в цикле обозначается двумя иероглифами: небесный ствол и земная ветвь. Китайский циклический календарь получил популярность, но при этом чаще указывают только «земную ветвь», т.е. символ животное.</p>
+        <p>Начало года в китайском календаре зависит от астрономического явления (новолуния), а не от даты как в григорианском календаре. Поэтому, из-за протяжённости территории, на которой использовался календарь, в разных местах Новый Год могли отмечать в разные (±1) дни григорианского календаря.</p>
+        <p>В соответствии с китайской традицией начало летоисчисления - первый год правления Желтого императора Хуан-ди был 2698 году до н. э. С 1645 по 2644 гг. новый год наступает не раньше 21 января и не позже 21 февраля и связан с новолунием в этот период. Например, 4 716 год желтой свиньи с 5 февраля 2019 года по 24 января 2020 года.</p>
+
+        <p><i>Примеры:</i></p>
+        <p>Один человек родился 28 января 1958 года (согласно современному летоисчислению). Дата рождения не меняется при смене даты начала отсчета времени, меняется только год, в данном случае это 4654 год по китайскому календарю. Поскольку человек рожден до начала нового года – 18 февраля 1958 года, т. е. до года земляной собаки в год огненного петуха, наступившего 31 января 1957 года и продолжавшийся до 17 февраля 1958 года. Поэтому уточняем год рождения человека – это 1957, к которому прибавляется 2697.</p>
+        <p>Другой человек родился 4 сентября 1958 года, т. е. после наступления года земляной собаки (18 февраля 1958 года), тогда год его рождения – 4655 по китайскому календарю. К году его рождения 1958 прибавляется 2697.</p>
+
+        <div class="calendar-table-wrapper">
+            <table class="calendar-table">
+                <caption>Таблица. Шестидесятилетний цикл китайского календаря по григорианскому календарю</caption>
+                <tbody>
+                <tr>
+                    <th rowspan="3" >
+                        Китайский зодиак
+                    </th>
+                    <th colspan="14">
+                        Небесные стволы
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">Дерево</th>
+                    <th colspan="3">Огонь</th>
+                    <th colspan="3">Земля</th>
+                    <th colspan="3">Металл</th>
+                    <th colspan="3">Вода</th>
+                </tr>
+
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th colspan="2">3</th>
+                    <th>4</th>
+                    <th colspan="2">5</th>
+                    <th>6</th>
+                    <th colspan="2">7</th>
+                    <th>8</th>
+                    <th colspan="2">9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <th>Крыса</th>
+                    <td>
+                        <p><strong>1</strong></p>
+                        <p>05.02.1924</p>
+                        <p>02.02.1984</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>13</strong></p>
+                        <p>24.01.1936</p>
+                        <p>19.02.1996</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>25</strong></p>
+                        <p>10.02.1948</p>
+                        <p>07.02.2008</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>37</strong></p>
+                        <p>28.01.1960</p>
+                        <p>25.01.2020</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>49</strong></p>
+                        <p>15.02.1972</p>
+                        <p>11.02.2032</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Бык
+                    </th>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p><strong>2</strong></p>
+                        <p>24.01.1925</p>
+                        <p>20.02.1985</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>14</strong></p>
+                        <p>11.02.1937</p>
+                        <p>07.02.1997</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>26</strong></p>
+                        <p>29.01.1949</p>
+                        <p>26.01.2009</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>38</strong></p>
+                        <p>15.02.1961</p>
+                        <p>12.02.2021</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>50</strong></p>
+                        <p>03.02.1973</p>
+                        <p>31.01.2033</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Тигр
+                    </th>
+                    <td>
+                        <p><strong>51</strong></p>
+                        <p>23.01.1974</p>
+                        <p>19.02.2034</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>3</strong></p>
+                        <p>13.02.1926</p>
+                        <p>09.02.1986</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>15</strong></p>
+                        <p>31.01.1938</p>
+                        <p>28.01.1998</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>27</strong></p>
+                        <p>17.02.1950</p>
+                        <p>14.02.2010</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>39</strong></p>
+                        <p>05.02.1962</p>
+                        <p>01.02.2022</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>Кролик
+                    </th>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p><strong>52</strong></p>
+                        <p>11.02.1975</p>
+                        <p>08.02.2035</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>4</strong></p>
+                        <p>02.02.1927</p>
+                        <p>29.01.1987</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>16</strong></p>
+                        <p>19.02.1939</p>
+                        <p>16.02.1999</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>28</strong></p>
+                        <p>06.02.1951</p>
+                        <p>03.02.2011</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>40</strong></p>
+                        <p>25.01.1963</p>
+                        <p>22.01.2023</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Дракон
+                    </th>
+                    <td>
+                        <p><strong>41</strong></p>
+                        <p>13.02.1964</p>
+                        <p>10.02.2024</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>53</strong></p>
+                        <p>31.01.1976</p>
+                        <p>28.01.2036</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>5</strong></p>
+                        <p>23.01.1928</p>
+                        <p>17.02.1988</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>17</strong></p>
+                        <p>08.02.1940</p>
+                        <p>05.02.2000</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>29</strong></p>
+                        <p>27.01.1952</p>
+                        <p>23.01.2012</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Змея
+                    </th>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p><strong>42</strong></p>
+                        <p>02.02.1965</p>
+                        <p>29.01.2025</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>54</strong></p>
+                        <p>18.02.1977</p>
+                        <p>15.02.2037</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>6</strong></p>
+                        <p>10.02.1929</p>
+                        <p>06.02.1989</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>18</strong></p>
+                        <p>27.01.1941</p>
+                        <p>24.01.2001</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>30</strong></p>
+                        <p>14.02.1953</p>
+                        <p>10.02.2013</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Лошадь
+                    </th>
+                    <td>
+                        <p><strong>31</strong></p>
+                        <p>03.02.1954</p>
+                        <p>31.01.2014</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>43</strong></p>
+                        <p>21.01.1966</p>
+                        <p>17.02.2026</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>55</strong></p>
+                        <p>07.02.1978</p>
+                        <p>04.02.2038</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>7</strong></p>
+                        <p>30.01.1930</p>
+                        <p>27.01.1990</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>19</strong></p>
+                        <p>15.02.1942</p>
+                        <p>12.02.2002</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Овца
+                    </th>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p><strong>32</strong></p>
+                        <p>24.01.1955</p>
+                        <p>19.02.2015</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>44</strong></p>
+                        <p>09.02.1967</p>
+                        <p>06.02.2027</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>56</strong></p>
+                        <p>28.01.1979</p>
+                        <p>24.01.2039</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>8</strong></p>
+                        <p>17.02.1931</p>
+                        <p>15.02.1991</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>20</strong></p>
+                        <p>05.02.1943</p>
+                        <p>01.02.2003</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Обезьяна
+                    </th>
+                    <td>
+                        <p><strong>21</strong></p>
+                        <p>25.01.1944</p>
+                        <p>22.01.2004</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>33</strong></p>
+                        <p>12.02.1956</p>
+                        <p>08.02.2016</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>45</strong></p>
+                        <p>30.01.1968</p>
+                        <p>26.01.2028</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>57</strong></p>
+                        <p>16.02.1980</p>
+                        <p>12.02.2040</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>9</strong></p>
+                        <p>06.02.1932</p>
+                        <p>04.02.1992</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Петух
+                    </th>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p><strong>22</strong></p>
+                        <p>13.02.1945</p>
+                        <p>09.02.2005</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>34</strong></p>
+                        <p>31.01.1957</p>
+                        <p>28.01.2017</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>46</strong></p>
+                        <p>17.02.1969</p>
+                        <p>13.02.2029</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>58</strong></p>
+                        <p>05.02.1981</p>
+                        <p>01.02.2041</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>10</strong></p>
+                        <p>26.01.1933</p>
+                        <p>23.01.1993</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Собака
+                    </th>
+                    <td>
+                        <p><strong>11</strong></p>
+                        <p>14.02.1934</p>
+                        <p>10.02.1994</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>23</strong></p>
+                        <p>02.02.1946</p>
+                        <p>29.01.2006</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>35</strong></p>
+                        <p>18.02.1958</p>
+                        <p>16.02.2018</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>47</strong></p>
+                        <p>06.02.1970</p>
+                        <p>03.02.2030</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td colspan="2">
+                        <p><strong>59</strong></p>
+                        <p>25.01.1982</p>
+                        <p>22.01.2042</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>Свинья</th>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p><strong>12</strong></p>
+                        <p>04.02.1935</p>
+                        <p>31.01.1995</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>24</strong></p>
+                        <p>22.01.1947</p>
+                        <p>18.02.2007</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>36</strong></p>
+                        <p>08.02.1959</p>
+                        <p>05.02.2019</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>48</strong></p>
+                        <p>27.01.1971</p>
+                        <p>23.01.2031</p>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                    <td>
+                        <p><strong>60</strong></p>
+                        <p>13.02.1983</p>
+                        <p>10.02.2043</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Цвет
+                    </th>
+                    <th colspan="2">
+                        зелёный, синий
+                    </th>
+                    <th colspan="3">
+                        красный
+                    </th>
+                    <th colspan="3">
+                        жёлтый
+                    </th>
+                    <th colspan="3">
+                        белый
+                    </th>
+                    <th colspan="3">
+                        голубой, чёрный
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2>Симулятор:</h2>
+
+        <div class="task-inputs" id="birth_date">
+            <customresponse cfn="check_years">
+                <p>Введите дату Вашего рождения в формате <strong>ДД.ММ.ГГГГ</strong>, <i>(например, <strong>26.01.1993</strong>)</i>:</p>
+                <div class="without-correctness">
+                    <textline size="10"/><br/>
+                </div>
+                <p>Самостоятельно рассчитайте <strong>год рождения</strong> по <strong> Китайскому циклическому календарю</strong> и введите его в ячейку:</p>
+                <textline size="10"/>
+            </customresponse>
+        </div>
+
+
+        <div class="choice-block" id="choice_trunk">
+            <fieldset> <legend><b>Небесный ствол, к которому относится Ваша дата рождения:</b></legend>
+                <label><input type="radio" name="trunk" value="wood"/> Дерево</label>
+                <label><input type="radio" name="trunk" value="fire"/> Огонь</label>
+                <label><input type="radio" name="trunk" value="earth"/> Земля</label>
+                <label><input type="radio" name="trunk" value="metal"/> Металл</label>
+                <label><input type="radio" name="trunk" value="water"/> Вода</label>
+            </fieldset>
+            <div class="message"></div>
+        </div>
+
+        <div class="choice-block" id="choice_branch">
+
+            <fieldset> <legend><b>Земная ветвь, к которой относится дата Вашего рождения:</b></legend>
+                <label><input type="radio" name="branch" value="rat"/> Крыса</label>
+                <label><input type="radio" name="branch" value="ox"/> Бык</label>
+                <label><input type="radio" name="branch" value="tiger"/> Тигр</label>
+                <label><input type="radio" name="branch" value="rabbit"/> Кролик</label>
+                <label><input type="radio" name="branch" value="dragon"/> Дракон</label>
+                <label><input type="radio" name="branch" value="snake"/> Змея</label>
+                <label><input type="radio" name="branch" value="horse"/> Лошадь</label>
+                <label><input type="radio" name="branch" value="goat"/> Овца</label>
+                <label><input type="radio" name="branch" value="monkey"/> Обезьяна</label>
+                <label><input type="radio" name="branch" value="rooster"/> Петух</label>
+                <label><input type="radio" name="branch" value="dog"/> Собака</label>
+                <label><input type="radio" name="branch" value="pig"/> Свинья</label>
+            </fieldset>
+            <div class="message"></div>
+        </div>
+
+        <div id="chinese_calendar_input" style="display: none!important;">
+
+            <customresponse cfn="check_answer">
+                <textline size="40" value="$taskId" />
+                <br/>
+            </customresponse>
+        </div>
+
+    </div>
+
+</problem>
