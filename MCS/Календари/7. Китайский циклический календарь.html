@@ -6,7 +6,7 @@
         }
 
         .choice-block{
-            padding: 10px;
+            padding: 10px 0px;
             margin: 10px 0px;
             border: 2px solid #ffffff00;
             border-radius: 3px;
@@ -57,7 +57,7 @@
         #birth_date .message{
             background: whitesmoke;
             padding: 4px;
-            /* color: #009b00; */
+            margin: 4px 0px;
             text-align: center;
         }
 
@@ -117,7 +117,7 @@ branches = ["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", 
 
 def check_answer(expect, answer_given):
 
-    student_answer = json.loads(answer_given)
+    student_answer = json.loads(answer_given[0])
     student_trunk = student_answer["trunk"]
     student_branch = student_answer["branch"]
     birthday_str = student_answer["birth_date"].replace(" ", "")
@@ -170,11 +170,11 @@ def check_answer(expect, answer_given):
         pass
 
     if result_grade == 1:
-        return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}]}
+        return {'input_list': [{'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}, {'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}, {'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}, {'ok': True, 'msg': json.dumps(response), 'grade_decimal': 1}]}
     elif result_grade == 0:
-        return {'input_list': [{'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}]}
+        return {'input_list': [{'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}, {'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}, {'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}, {'ok': False, 'msg': json.dumps(response), 'grade_decimal': 0}]}
     else:
-        return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}]}
+        return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}, {'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}, {'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}, {'ok': 'Partial', 'msg': json.dumps(response), 'grade_decimal': result_grade}]}
 
 
 def check_years(expect, answer_given):
@@ -371,7 +371,7 @@ def check_years(expect, answer_given):
 
         <p><strong>Китайский циклический календарь</strong> является комбинацией 10-летнего цикла («небесные стволы») и 12-летнего цикла («земные ветви») и составляет общий цикл 60 лет, половина сочетаний (у которых разная чётность) не используется. «Небесные стволы» – 10 летний цикл состоит из пяти знаков, каждый из которых имеет две тональности: дерево, огонь, земля, металл, вода. «Земные ветви» – 12 летний цикл названы в честь животных: крыса, бык, тигр, кролик, дракон, змея, лошадь, овца, обезьяна, петух, собака, свинья. Год в цикле обозначается двумя иероглифами: небесный ствол и земная ветвь. Китайский циклический календарь получил популярность, но при этом чаще указывают только «земную ветвь», т.е. символ животное.</p>
         <p>Начало года в китайском календаре зависит от астрономического явления (новолуния), а не от даты как в григорианском календаре. Поэтому, из-за протяжённости территории, на которой использовался календарь, в разных местах Новый Год могли отмечать в разные (±1) дни григорианского календаря.</p>
-        <p>В соответствии с китайской традицией начало летоисчисления - первый год правления Желтого императора Хуан-ди был 2698 году до н. э. С 1645 по 2644 гг. новый год наступает не раньше 21 января и не позже 21 февраля и связан с новолунием в этот период. Например, 4 716 год желтой свиньи с 5 февраля 2019 года по 24 января 2020 года.</p>
+        <p>В соответствии с китайской традицией начало летоисчисления - первый год правления Желтого императора Хуан-ди был 2697 году до н. э. С 1645 по 2644 гг. новый год наступает не раньше 21 января и не позже 21 февраля и связан с новолунием в этот период. Например, 4 716 год желтой свиньи с 5 февраля 2019 года по 24 января 2020 года.</p>
 
         <p><i>Примеры:</i></p>
         <p>Один человек родился 28 января 1958 года (согласно современному летоисчислению). Дата рождения не меняется при смене даты начала отсчета времени, меняется только год, в данном случае это 4654 год по китайскому календарю. Поскольку человек рожден до начала нового года – 18 февраля 1958 года, т. е. до года земляной собаки в год огненного петуха, наступившего 31 января 1957 года и продолжавшийся до 17 февраля 1958 года. Поэтому уточняем год рождения человека – это 1957, к которому прибавляется 2697.</p>
@@ -1016,6 +1016,9 @@ def check_years(expect, answer_given):
 
             <customresponse cfn="check_answer">
                 <textline size="40" value="$taskId" />
+                <textline size="40"  />
+                <textline size="40"  />
+                <textline size="40"  />
                 <br/>
             </customresponse>
         </div>
