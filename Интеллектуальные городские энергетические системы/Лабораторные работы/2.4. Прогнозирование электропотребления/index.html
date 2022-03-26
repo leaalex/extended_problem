@@ -65,36 +65,36 @@ def check_answer(expect, answer_given):
         else:
             user_state[0]["correctness"] = False
             if user_state[0]["ans_int"] > correct_answer_0:
-                user_state[0]["msg"] =  'Введенное вами значение больше правильного'
+                user_state[0]["msg"] =  'Введенное значение больше правильного'
             else:
-                user_state[0]["msg"] =  'Введенное вами значение меньше правильного'
+                user_state[0]["msg"] =  'Введенное значение меньше правильного'
 
         if user_state[1]["ans_int"] == correct_answer_1:
             grade += 1
         else:
             user_state[1]["correctness"] = False
             if user_state[1]["ans_int"] > correct_answer_1:
-                user_state[1]["msg"] =  'Введенное вами значение больше правильного'
+                user_state[1]["msg"] =  'Введенное значение больше правильного'
             else:
-                user_state[1]["msg"] =  'Введенное вами значение меньше правильного'
+                user_state[1]["msg"] =  'Введенное значение меньше правильного'
 
         if user_state[2]["ans_int"] == correct_answer_2:
             grade += 1
         else:
             user_state[2]["correctness"] = False
             if user_state[2]["ans_int"] > correct_answer_2:
-                user_state[2]["msg"] =  'Введенное вами значение больше правильного'
+                user_state[2]["msg"] =  'Введенное значение больше правильного'
             else:
-                user_state[2]["msg"] =  'Введенное вами значение меньше правильного'
+                user_state[2]["msg"] =  'Введенное значение меньше правильного'
 
         if user_state[3]["ans_int"] == correct_answer_3:
             grade += 1
         else:
             user_state[3]["correctness"] = False
             if user_state[3]["ans_int"] > correct_answer_3:
-                user_state[3]["msg"] =  'Введенное вами значение больше правильного'
+                user_state[3]["msg"] =  'Введенное значение больше правильного'
             else:
-                user_state[3]["msg"] =  'Введенное вами значение меньше правильного'
+                user_state[3]["msg"] =  'Введенное значение меньше правильного'
 
     return {'overall_message': str(overall_message),
             'input_list': [

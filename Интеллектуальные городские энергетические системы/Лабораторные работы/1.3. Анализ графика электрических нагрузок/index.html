@@ -94,7 +94,7 @@ def check_answer(expect, answer_given):
     except ValueError:
         for idx, s in enumerate(user_state):
             user_state[idx]['correctness'] = False
-            overall_message = "В ответе допустимы только числовые значения. Убедитесь, что все поля заполнены корректно"
+            overall_message = "В ответе допустимы только числовые значения. Убедитесь, что все поля заполнены корректно. При вводе дробных чисел в качестве разделителя используйте точку."
             all_numbers = False
 
     if all_numbers:
@@ -162,8 +162,8 @@ def check_answer(expect, answer_given):
     <p><strong>Шаги выполнения задания</strong></p>
     <ol>
         <li>Ознакомьтесь с методическими указаниями к выполнению лабораторной работы.</li>
-        <li>Скачайте файл задания <a href="/static/$link" download="График нагрузки ОЭС $title.xlsx">«График нагрузки»</a>. В файле находятся данные о потребления <strong>ОЭС $title</strong> за 5 февраля 2022 года с шагом в 1 час (<a href="https://www.so-ups.ru/functioning/ees/ees-indicators/ees-gen-consump-hour/)" target="_blank">источник</a>).</li>
-        <li>Для заданного графика электрических нагрузок ОЭС $title определите:
+        <li>Скачайте файл задания <a href="/static/$link" download="График нагрузки ОЭС $title.xlsx">«График нагрузки»</a>. В файле находятся данные о потребления <strong>ОЭС $title</strong> за 5 февраля 2022 года с шагом в 1 час (<a href="https://www.so-ups.ru/functioning/ees/ees-indicators/ees-gen-consump-hour/" target="_blank">источник</a>).</li>
+        <li>Для заданного графика электрических нагрузок <strong>ОЭС $title</strong> определите:
             <ul>
                 <li>Среднюю мощность нагрузки в МВт;</li>
                 <li>Пиковую (максимальную мощность нагрузки в МВт;</li>
@@ -171,7 +171,7 @@ def check_answer(expect, answer_given):
                 <li>Коэффициент неравномерности в о.е.;</li>
                 <li>Коэффициент заполнения в о.е.;</li>
                 <li>Коэффициент регулируемости в о.е.;</li>
-                <li>Энергопотребление ОЭС $title на всем представленном временном промежутке в МВт∙ч..</li>
+                <li>Энергопотребление <strong>ОЭС $title</strong> на всем представленном временном промежутке в МВт∙ч..</li>
             </ul>
         </li>
         <li>Полученные результаты впишите в соответствующие ячейки (в качестве разделителя дробной части используйте ТОЧКУ).</li>
