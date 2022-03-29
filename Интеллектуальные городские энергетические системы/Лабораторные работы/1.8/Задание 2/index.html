@@ -1,0 +1,191 @@
+<problem>
+    <style type="text/css">
+        .task-inputs-block div.equation {
+            display: none !important;
+        }
+
+        .task-inputs-block p {
+            margin-bottom: 0.41575em !important;
+        }
+
+        .data-table td, .data-table th {
+            padding: 4px 14px !important;
+            margin: 0px !important;
+            border: 1px solid #e5e5e5 !important;
+        }
+        .data-table th {
+            background: whitesmoke;
+        }
+    </style>
+<script type="loncapa/python">
+import random
+import math
+
+variants = [
+    {
+        "winter": {
+            "solar_radiation": 1.15,
+            "day_length": 8
+        },
+        "spring_autumn": {
+            "solar_radiation": 3.40,
+            "day_length": 12
+        },
+        "summer": {
+            "solar_radiation": 6.70,
+            "day_length": 16
+        }
+    },
+    {
+        "winter": {
+            "solar_radiation": 2.10,
+            "day_length": 9
+        },
+        "spring_autumn": {
+            "solar_radiation": 4.10,
+            "day_length": 11
+        },
+        "summer": {
+            "solar_radiation": 6.20,
+            "day_length": 13
+        }
+    },
+    {
+        "winter": {
+            "solar_radiation": 4.20,
+            "day_length": 10
+        },
+        "spring_autumn": {
+            "solar_radiation": 5.50,
+            "day_length": 11
+        },
+        "summer": {
+            "solar_radiation": 6.50,
+            "day_length": 12
+        }
+    }
+]
+
+summer_days = 92
+winter_days = 90
+spring_days = 92
+autumn_days = 91
+
+electrical_load_variants = [6, 50, 120]
+photovoltaic_module_power = 320
+
+variant_number = random.choice([0, 1, 2])
+
+electrical_load = electrical_load_variants[variant_number]
+
+winter_solar_radiation = variants[variant_number]["winter"]["solar_radiation"]
+spring_autumn_solar_radiation = variants[variant_number]["spring_autumn"]["solar_radiation"]
+summer_solar_radiation = variants[variant_number]["summer"]["solar_radiation"]
+
+winter_day_length = variants[variant_number]["winter"]["day_length"]
+spring_autumn_day_length = variants[variant_number]["spring_autumn"]["day_length"]
+summer_day_length = variants[variant_number]["summer"]["day_length"]
+
+photomodule_width = 1
+photomodule_height = 2
+photomodule_kpd = 0.17
+
+photomodule_kpd_display = photomodule_kpd * 100
+
+N_mod = math.ceil(electrical_load / (photovoltaic_module_power * 0.001))
+S_sum = N_mod * photomodule_width * photomodule_height
+
+W_summer = S_sum * photomodule_kpd * summer_days * summer_day_length * (summer_solar_radiation/summer_day_length)
+W_summer = round(W_summer, 2)
+
+W_winter = S_sum * photomodule_kpd * winter_days * winter_day_length * (winter_solar_radiation/winter_day_length)
+W_winter = round(W_winter, 2)
+
+W_spring = S_sum * photomodule_kpd * spring_days * spring_autumn_day_length * (spring_autumn_solar_radiation/spring_autumn_day_length)
+W_spring = round(W_spring, 2)
+
+W_autumn = S_sum * photomodule_kpd * autumn_days * spring_autumn_day_length * (spring_autumn_solar_radiation/spring_autumn_day_length)
+W_autumn = round(W_autumn, 2)
+
+print("Число модулей: ", N_mod)
+print("Лето: ", W_summer)
+print("Зима: ", W_winter)
+print("Весна: ", W_spring)
+print("Осень: ", W_autumn)
+
+
+</script>
+
+    <figure style="text-align:center;">
+        <img src="/static/neWDK5hJPA.png" alt="" style="width: 100%; max-width: 800px;"/>
+        <figcaption></figcaption>
+    </figure>
+
+    <p><strong>Цель:</strong> </p>
+    <p><strong>Задание</strong></p>
+    <p><strong>1.</strong> При заданных параметрах плотности потока энергии солнечного излучения, продолжительности светового дня, параметрах фотоэлектрических модулей и суммарной электрической нагрузке определить число фотоэлектрических модулей заданной единичной мощности, необходимое для обеспечения питания присоединенной к станции электрической нагрузки.</p>
+    <p><strong>2.</strong> С учетом результатов, полученных в п. 1 [число модулей], определить суммарную выработку электроэнергии фотоэлектростанцией при заданной продолжительности светового дня.</p>
+
+    <p><strong>Исходные данные</strong></p>
+    <table class="data-table">
+        <tr>
+            <th>Параметр</th>
+            <th style="min-width: 120px;">Зима</th>
+            <th style="min-width: 120px;">Весна/Осень</th>
+            <th style="min-width: 120px;">Лето</th>
+        </tr>
+        <tr>
+            <th>Солнечное излучение за сутки, кВт/м<sup>2</sup></th>
+            <td style="text-align: center;">$winter_solar_radiation</td>
+            <td style="text-align: center;">$spring_autumn_solar_radiation</td>
+            <td style="text-align: center;">$summer_solar_radiation</td>
+        </tr>
+        <tr>
+            <th>Продолжительность светового дня, ч</th>
+            <td style="text-align: center;">$winter_day_length</td>
+            <td style="text-align: center;">$spring_autumn_day_length</td>
+            <td style="text-align: center;">$summer_day_length</td>
+        </tr>
+    </table>
+    <p><strong>Принять, что число летних дней - 92, зимних - 90 и весенне-осенних - 92+91=183.</strong></p>
+
+    <p>Исходные данные по электрической нагрузке: <strong>$electrical_load кВт</strong>.</p>
+    <p>Параметры фотоэлектрических модулей:</p>
+    <ul>
+        <li>номинальная мощность фотоэлектрического модуля – <strong>$photovoltaic_module_power Вт</strong>.</li>
+        <li>габаритные размеры фотоэлектрического модуля: ширина – <strong>$photomodule_width м</strong>, высота – <strong>$photomodule_height м</strong>.</li>
+        <li>коэффициент полезного действия фотоэлектрического модуля – <strong>$photomodule_kpd_display %</strong>.</li>
+    </ul>
+
+            <div class="task-inputs-block">
+                <p>Требуемое количество фотоэлектрических модулей, шт: </p>
+                <numericalresponse answer="$N_mod">
+                    <responseparam type="tolerance" default="0.000001"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+
+                <p>Выработка электроэнергии в <strong>зимний период</strong>, кВт: </p>
+                <numericalresponse answer="$W_winter">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+
+                <p>Выработка электроэнергии в <strong>весенний период</strong>, кВт: </p>
+                <numericalresponse answer="$W_spring">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+
+                <p>Выработка электроэнергии в <strong>осенний период</strong>, кВт: </p>
+                <numericalresponse answer="$W_autumn">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+
+                <p>Выработка электроэнергии в <strong>летний период</strong>, кВт: </p>
+                <numericalresponse answer="$W_summer">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput/>
+                </numericalresponse>
+    </div>
+</problem>

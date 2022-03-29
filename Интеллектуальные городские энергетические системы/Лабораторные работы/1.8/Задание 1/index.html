@@ -12,6 +12,7 @@
             padding: 4px 14px !important;
             margin: 0px !important;
             border: 1px solid #e5e5e5 !important;
+            text-align: center !important;
         }
         .data-table th {
             background: whitesmoke;
@@ -46,9 +47,9 @@ wind_variants = [{
 load_variants = [500, 750, 1000]
 power_variants = [50, 100, 300]
 
-variant_number = 0  # random.choice([0, 1, 2])
-load_number = 0  # random.choice([0, 1, 2])
-power_number = 0  # random.choice([0, 1, 2])
+variant_number = random.choice([0, 1, 2])
+load_number = random.choice([0, 1, 2])
+power_number = random.choice([0, 1, 2])
 
 load = load_variants[load_number]
 power = power_variants[power_number]
@@ -69,8 +70,8 @@ answers_electricity_per_year = [
 answer_installed_generator_power = answers_installed_generator_power[variant_number][load_number]
 answer_electricity_per_year = answers_electricity_per_year[variant_number][power_number]
 
-print("Кол-во генераторов: ", answer_installed_generator_power)
-print("Электроэнергия за год: ", answer_electricity_per_year)
+# print("Кол-во генераторов: ", answer_installed_generator_power)
+# print("Электроэнергия за год: ", answer_electricity_per_year)
 
 
 wind_P_0 = wind_variants[variant_number]["P"][0]
@@ -140,6 +141,11 @@ kium = wind_variants[variant_number]["kium"]
 
 </script>
 
+    <figure style="text-align:center;">
+        <img src="/static/t2frJxdPnv.png" alt="" style="width: 100%; max-width: 800px;"/>
+        <figcaption></figcaption>
+    </figure>
+
     <p><strong>Цель:</strong> </p>
     <p><strong>Задание</strong></p>
     <p>Изучив методические указания к лабораторной работе и выполнив приведенные в них учебные задания, нужно построить для заданного графика электропотребления регрессионные модели для прогнозирования генерации и потребления на неделю вперед.</p>
@@ -155,9 +161,9 @@ kium = wind_variants[variant_number]["kium"]
 
     <table class="data-table">
         <tr>
-            <th>\(v,\) м/с</th>
-            <th>\(P(v)^*\)</th>
-            <th>\(p(v)^{**}\)</th>
+            <th style="width: 80px;">\(v,\) м/с</th>
+            <th style="width: 80px;">\(P(v)^*\)</th>
+            <th style="width: 80px;">\(p(v)^{**}\)</th>
         </tr>
         <tr><td>0</td><td>$wind_P_0</td><td>$wind_p_0</td></tr>
         <tr><td>1</td><td>$wind_P_1</td><td>$wind_p_1</td></tr>
