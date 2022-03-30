@@ -96,16 +96,16 @@ N_mod = math.ceil(electrical_load / (photovoltaic_module_power * 0.001))
 S_sum = N_mod * photomodule_width * photomodule_height
 
 W_summer = S_sum * photomodule_kpd * summer_days * summer_day_length * (summer_solar_radiation/summer_day_length)
-W_summer = round(W_summer, 2)
+W_summer = round(W_summer)
 
 W_winter = S_sum * photomodule_kpd * winter_days * winter_day_length * (winter_solar_radiation/winter_day_length)
-W_winter = round(W_winter, 2)
+W_winter = round(W_winter)
 
 W_spring = S_sum * photomodule_kpd * spring_days * spring_autumn_day_length * (spring_autumn_solar_radiation/spring_autumn_day_length)
-W_spring = round(W_spring, 2)
+W_spring = round(W_spring)
 
 W_autumn = S_sum * photomodule_kpd * autumn_days * spring_autumn_day_length * (spring_autumn_solar_radiation/spring_autumn_day_length)
-W_autumn = round(W_autumn, 2)
+W_autumn = round(W_autumn)
 
 print("Число модулей: ", N_mod)
 print("Лето: ", W_summer)
