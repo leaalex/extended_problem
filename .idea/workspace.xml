@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="БЖД">
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/1. Календарь греческих Олимпиад.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/2. Календарь от основания Рима.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/3. Календарь Диоклетиана.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/4. Исламский календарь.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/5. Иудейский календарь.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/6. Буддийский календарь.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MCS/Календари/7. Китайский циклический календарь.html" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="ENERGYSYSTEM лабораторные работы">
+      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/2.4. Прогнозирование электропотребления/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/2.4. Прогнозирование электропотребления/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/3.7. Влияние нарушений целостности данных на работу информационных систем в электроэнергетике/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/3.7. Влияние нарушений целостности данных на работу информационных систем в электроэнергетике/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +37,9 @@
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="JupyterTrust" id="3060c1fd-e48f-4f28-9605-895a26fd8109" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1OP2cEouiXV0rp8sUm8h3CjTKSZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -50,38 +51,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ИТИС/4.1" />
-    <property name="list.type.of.created.stylesheet" value="SCSS" />
-    <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 2" />
       <recent name="$PROJECT_DIR$/ИТИС/4.1" />
       <recent name="$PROJECT_DIR$/ИТИС/1.1" />
       <recent name="$PROJECT_DIR$/Основы SQL/3.2" />
       <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/4.1/Задание 3 (Задание 29)/Картинки" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/3.1/Задание 4 (Задание 21)/Картинки" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 1" />
+      <recent name="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/3.7. Влияние нарушений целостности данных на работу информационных систем в электроэнергетике/Файлы" />
+      <recent name="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/2.4. Прогнозирование электропотребления/Файлы" />
+      <recent name="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.3. Анализ графика электрических нагрузок/Файлы" />
       <recent name="$PROJECT_DIR$/ИТИС/4.1" />
-      <recent name="$PROJECT_DIR$/БЖД/2.3 Учебное задание" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 1 (Задание 1)/Картинки" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.2/Задание 2 (Задание 5)/Картинки" />
-      <recent name="$PROJECT_DIR$/Машинное обучение в энергетике eng/1.1/Задание 2 (Задание 2)/Картинки" />
     </key>
   </component>
   <component name="RunManager">
@@ -277,84 +266,16 @@
       <workItem from="1638186174020" duration="161000" />
       <workItem from="1638190274816" duration="315000" />
       <workItem from="1638266462775" duration="3510000" />
-      <workItem from="1642415252311" duration="12177000" />
-    </task>
-    <task id="LOCAL-00049" summary="маш предприятие">
-      <created>1601305064679</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1601305064679</updated>
-    </task>
-    <task id="LOCAL-00050" summary="маш предприятие">
-      <created>1601392416022</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1601392416023</updated>
-    </task>
-    <task id="LOCAL-00051" summary="маш предприятие">
-      <created>1601480841512</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1601480841514</updated>
-    </task>
-    <task id="LOCAL-00052" summary="маш предприятие">
-      <created>1601537328698</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1601537328698</updated>
-    </task>
-    <task id="LOCAL-00053" summary="маш предприятие">
-      <created>1601562712067</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1601562712067</updated>
-    </task>
-    <task id="LOCAL-00054" summary="маш предприятие">
-      <created>1601650229424</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1601650229424</updated>
-    </task>
-    <task id="LOCAL-00055" summary="маш предприятие">
-      <created>1601723011943</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1601723011943</updated>
-    </task>
-    <task id="LOCAL-00056" summary="маш предприятие">
-      <created>1601902892294</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1601902892294</updated>
-    </task>
-    <task id="LOCAL-00057" summary="маш предприятие">
-      <created>1601999440853</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1601999440853</updated>
-    </task>
-    <task id="LOCAL-00058" summary="маш предприятие">
-      <created>1602073323794</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1602073323794</updated>
-    </task>
-    <task id="LOCAL-00059" summary="маш предприятие">
-      <created>1602084073253</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1602084073253</updated>
+      <workItem from="1642415252311" duration="14920000" />
+      <workItem from="1644475987047" duration="2000" />
+      <workItem from="1646052285882" duration="3000" />
+      <workItem from="1646914556779" duration="492000" />
+      <workItem from="1647240856501" duration="648000" />
+      <workItem from="1647244585965" duration="787000" />
+      <workItem from="1647434922917" duration="15000" />
+      <workItem from="1648112341733" duration="20244000" />
+      <workItem from="1649159379134" duration="985000" />
+      <workItem from="1650007502687" duration="331000" />
     </task>
     <task id="LOCAL-00060" summary="маш предприятие">
       <created>1602152135003</created>
@@ -622,7 +543,84 @@
       <option name="project" value="LOCAL" />
       <updated>1637764797440</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="MCS">
+      <created>1642518849128</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1642518849132</updated>
+    </task>
+    <task id="LOCAL-00099" summary="MCS">
+      <created>1648112352621</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1648112352621</updated>
+    </task>
+    <task id="LOCAL-00100" summary="MCS">
+      <created>1648115316059</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1648115316059</updated>
+    </task>
+    <task id="LOCAL-00101" summary="MCS">
+      <created>1648116768976</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1648116768976</updated>
+    </task>
+    <task id="LOCAL-00102" summary="MCS">
+      <created>1648121242685</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1648121242685</updated>
+    </task>
+    <task id="LOCAL-00103" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1648292103421</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1648292103422</updated>
+    </task>
+    <task id="LOCAL-00104" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1648470935816</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1648470935816</updated>
+    </task>
+    <task id="LOCAL-00105" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1648481018603</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1648481018603</updated>
+    </task>
+    <task id="LOCAL-00106" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1648551557108</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1648551557108</updated>
+    </task>
+    <task id="LOCAL-00107" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1648654787055</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1648654787055</updated>
+    </task>
+    <task id="LOCAL-00108" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1648886997713</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1648886997716</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +636,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -661,7 +658,9 @@
     <MESSAGE value="sdf" />
     <MESSAGE value="маш предприятие" />
     <MESSAGE value="БЖД" />
-    <option name="LAST_COMMIT_MESSAGE" value="БЖД" />
+    <MESSAGE value="MCS" />
+    <MESSAGE value="ENERGYSYSTEM лабораторные работы" />
+    <option name="LAST_COMMIT_MESSAGE" value="ENERGYSYSTEM лабораторные работы" />
   </component>
   <component name="masterDetails">
     <states>
