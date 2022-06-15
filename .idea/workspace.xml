@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="ENERGYSYSTEM лабораторные работы">
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 2/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/2.4. Прогнозирование электропотребления/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/2.4. Прогнозирование электропотребления/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/3.7. Влияние нарушений целостности данных на работу информационных систем в электроэнергетике/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/3.7. Влияние нарушений целостности данных на работу информационных систем в электроэнергетике/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,12 +48,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Интеллектуальные городские энергетические системы/Лабораторные работы/1.8/Задание 2" />
@@ -275,14 +272,14 @@
       <workItem from="1647434922917" duration="15000" />
       <workItem from="1648112341733" duration="20244000" />
       <workItem from="1649159379134" duration="985000" />
-      <workItem from="1650007502687" duration="331000" />
-    </task>
-    <task id="LOCAL-00060" summary="маш предприятие">
-      <created>1602152135003</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1602152135004</updated>
+      <workItem from="1650007502687" duration="953000" />
+      <workItem from="1650261562746" duration="1553000" />
+      <workItem from="1650376199586" duration="5483000" />
+      <workItem from="1651910215412" duration="149000" />
+      <workItem from="1653552788407" duration="606000" />
+      <workItem from="1654853721094" duration="713000" />
+      <workItem from="1654931711613" duration="9000" />
+      <workItem from="1655214178908" duration="1933000" />
     </task>
     <task id="LOCAL-00061" summary="маш предприятие">
       <created>1602152556263</created>
@@ -620,7 +617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648886997716</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="ENERGYSYSTEM лабораторные работы">
+      <created>1650007841438</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1650007841438</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

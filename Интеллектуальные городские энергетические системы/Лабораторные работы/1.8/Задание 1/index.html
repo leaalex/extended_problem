@@ -18,7 +18,7 @@
             background: whitesmoke;
         }
     </style>
-<script type="loncapa/python">
+    <script type="loncapa/python">
 import random
 
 
@@ -145,14 +145,13 @@ kium = wind_variants[variant_number]["kium"]
         <img src="/static/t2frJxdPnv.png" alt="" style="width: 100%; max-width: 800px;"/>
         <figcaption>Рис. 1. Электроэнергетическая система с ветроэнергетической установкой</figcaption>
     </figure>
-    <p></p>
 
     <p><strong>Цель: </strong> </p>
-    <p>Применять математические подходы для определения основных параметров функционирования энергообъектов на основе ВИЭ в различных климатических/метеорологических условиях.</p>
+    <p>применять математические подходы для определения основных параметров функционирования энергообъектов на основе ВИЭ в различных климатических/метеорологических условиях.</p>
     <p><strong>Задание</strong></p>
     <ol>
         <li>Для заданной зависимости мощности ветроэнергетической установки от скорости ветра, распределению Вейбулла по скоростям ветра и максимальной электрической нагрузке определить число ветроэнергетических установок заданной установленной мощности, необходимое для обеспечения питания присоединенной нагрузки.</li>
-        <li>С учетом результатов, полученных в п.1 [КИУМ, количество ВЭУ], определить суммарную годовую выработку электрической энергии ветровой электростанцией при заданном графике числе часов использования установленной мощности ветроэнергетических установок.</li>
+        <li>С учетом результатов, полученных в п. 1 [КИУМ, количество ВЭУ], определить суммарную годовую выработку электрической энергии ветровой электростанцией при заданном графиком числе часов использования установленной мощности ветроэнергетических установок.</li>
     </ol>
     <p><strong>Исходные данные</strong></p>
     <ul>
@@ -227,17 +226,17 @@ kium = wind_variants[variant_number]["kium"]
         </tr>
     </table>
     <p>При определении числа установок в работе округлять до большего числа.</p>
-            <div class="task-inputs-block">
-                <p>Требуемое количество генераторов, шт: </p>
-                <numericalresponse answer="$answer_installed_generator_power">
-                    <responseparam type="tolerance" default="0.01"/>
-                    <formulaequationinput/>
-                </numericalresponse>
+    <div class="task-inputs-block">
+        <p>Требуемое количество генераторов, шт: </p>
+        <numericalresponse answer="$answer_installed_generator_power">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
 
-                <p>Электроэнергия за год, кВт*ч: </p>
-                <numericalresponse answer="$answer_electricity_per_year">
-                    <responseparam type="tolerance" default="0.01"/>
-                    <formulaequationinput/>
-                </numericalresponse>
+        <p>Электроэнергия за год, кВт∙ч: </p>
+        <numericalresponse answer="$answer_electricity_per_year">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+        </numericalresponse>
     </div>
 </problem>
