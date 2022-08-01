@@ -1,0 +1,200 @@
+<problem>
+<style type="text/css">
+    .task-inputs-block .message, .task-inputs-block .response_message {
+        /*display: inline-block !important;*/
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+
+    .task-text code {
+        white-space: normal !important;
+    }
+
+</style>
+<script type="loncapa/python">
+def check_between(first, second, checked):
+    return second >= checked >= first
+
+
+def comparison_numbers(correct_number, student_number, tol=0.001):
+    if type(student_number) == str:
+        student_number = student_number.replace(",", ".")
+    try:
+        st_num = float(student_number)
+        return tol >= abs(st_num - correct_number)
+    except ValueError:
+        return False
+
+
+def check_answer(expect, answer_given):
+    grade = 10
+    max_grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[4],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[5],
+            "msg": "",
+            "correctness": True
+        }
+    ]
+    overall_message = ''
+    all_numbers = True
+    try:
+        for ix_ind, x in enumerate(user_state):
+            user_state[ix_ind]["ans_int"] = float(x["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only numeric values are allowed in answers. Make sure all fields are filled correctly."
+            all_numbers = False
+
+    if all_numbers:
+        if not check_between(2010, 2105, user_state[0]["ans_int"]):
+            grade = 0
+            user_state[0]["correctness"] = False
+            user_state[0]["msg"] = 'Incorrect metric value'
+
+        if not check_between(1.74, 1.78, user_state[1]["ans_int"]):
+            grade = 0
+            user_state[1]["correctness"] = False
+            user_state[1]["msg"] = 'Incorrect metric value'
+
+        if not check_between(0.94, 0.98, user_state[2]["ans_int"]):
+            grade = 0
+            user_state[2]["correctness"] = False
+            user_state[2]["msg"] = 'Incorrect metric value'
+
+        if not check_between(135600, 135900, user_state[3]["ans_int"]):
+            grade -= 2
+            user_state[3]["correctness"] = False
+            user_state[3]["msg"] = 'Incorrect predicted value'
+
+        if not check_between(133600, 134000, user_state[4]["ans_int"]):
+            grade -= 2
+            user_state[4]["correctness"] = False
+            user_state[4]["msg"] = 'Incorrect predicted value'
+
+        if not check_between(130000, 130300, user_state[5]["ans_int"]):
+            grade -= 2
+            user_state[5]["correctness"] = False
+            user_state[5]["msg"] = 'Incorrect predicted value'
+
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': user_state[0]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[1]['correctness'], 'msg': user_state[1]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[2]['correctness'], 'msg': user_state[2]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[4]['correctness'], 'msg': user_state[4]['msg'], 'grade_decimal': grade / max_grade},
+                {'ok': user_state[5]['correctness'], 'msg': user_state[5]['msg'], 'grade_decimal': grade / max_grade}
+            ]}
+
+</script>
+
+    <script type="text/javascript">
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
+        });
+    </script>
+
+    <div class="task-text">
+    <ol>
+        <li>By analogy with the example discussed above, create a power generation forecasting model for this power system using the data from the «L1_Power_Generation.xlsx» spreadsheet.</li>
+        <li>Indicate the model results on the testing set by specifying two additional characters after the decimal separator.</li>
+        <li>Apply the model to forecast power generation using the following series  of the generation for the previous day: <pre><code>128804, 126535, 125344, 122449, 120854, 121461, 122030, 122598, 122377, 123269, 124364, 126580, 128019, 129108, 129677, 130747, 132926, 135281, 135868, 135293, 133405, 132485, 130616, 127724, 124826, 122703, 120674, 120478, 120213, 122105, 124057, 125956, 128001, 131826, 133397, 134458, 135341, 135067, 135560, 136734, 137626, 139591, 139886, 139095, 136444, 134480, 132459, 128882</code></pre></li>
+        <li>Enter the last three hours from the received forecast, rounded up to the nearest integer.</li>
+    </ol>
+        <p>Download input data:</p>
+        <p><a href="/static/L1_Power_Consumption.xlsx" download="L1_Power_Consumption.xlsx">«L1_Power_Consumption.xlsx»</a> </p>
+        <p><a href="/static/L1_Power_Generation.xlsx" download="L1_Power_Generation.xlsx">«L1_Power_Generation.xlsx»</a> </p>
+        <p>Enter the power generation forecasting results. <i>Use a point as a decimal separator.</i></p>
+
+
+    </div>
+
+    <p>Accuracy metrics:</p>
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <div class="input-block">
+                <p>MAE (MW): </p>
+                <textline size="10" label=""/><br />
+            </div>
+
+            <div class="input-block">
+                <p>MAPE (%): </p>
+                <textline size="10" label=""/><br />
+            </div>
+
+            <div class="input-block">
+                <p>R<sup style="font-size: 10px !important;">2</sup>:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <hr />
+            <p>Predicted generation:</p>
+            <div class="input-block">
+                <p>21:00:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>22:00:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>23:00:</p>
+                <textline size="10" label=""/><br />
+            </div>
+        </customresponse>
+        <solution>
+            <div class="detailed-solution">
+                <p><strong>Correct answer: </strong></p>
+                <p>MAE (MW): <strong>from 2105 to 2010 </strong></p>
+                <p>MAPE (%): <strong>from 1.74 to 1.78 </strong></p>
+                <p>R<sup style="font-size: 10px !important;">2</sup>: <strong>from 0.94 to 0.98</strong></p>
+                <p>21:00: <strong>from 135600 to 135900</strong></p>
+                <p>22:00: <strong>from 133600 to 134000</strong></p>
+                <p>23:00: <strong>from 130000 to 130300</strong></p>
+            </div>
+
+        </solution>
+    </div>
+</problem>

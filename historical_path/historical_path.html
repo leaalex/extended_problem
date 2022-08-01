@@ -7,7 +7,7 @@ cities = ["city_0", "city_1", "city_4", "city_20", "city_31", "city_71"]
 cities_1 = ["city_0", "city_9", "city_20", "city_31", "city_71"]
 
 def check_answer(exp, ans):
-    student_answer = json.loads(ans)["answer"]
+    student_answer = ans[0]
     student_correct = [cities[0]]
     grade = 0
     del cities[0]

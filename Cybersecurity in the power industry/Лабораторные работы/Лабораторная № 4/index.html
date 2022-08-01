@@ -1,0 +1,98 @@
+<problem>
+<style type="text/css">
+    .task-inputs-block .message, .task-inputs-block .response_message {
+        /*display: inline-block !important;*/
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+
+    .task-text code {
+        white-space: normal !important;
+    }
+
+</style>
+<script type="loncapa/python">
+
+def check_answer(expect, answer_given):
+    grade = 10
+    max_grade = 10
+    user_state = [
+        {
+            "answer": answer_given,
+            "msg": "",
+            "correctness": True
+        },
+    ]
+    overall_message = ''
+    all_numbers = True
+    try:
+        for ix_ind, x in enumerate(user_state):
+            user_state[ix_ind]["ans_int"] = str(x["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only string values are allowed in answer."
+            all_numbers = False
+
+    if all_numbers:
+        if not user_state[0]["ans_int"]== 'CYBER$ECUR1TY@':
+            grade = 0
+            user_state[0]["correctness"] = False
+
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': user_state[0]['msg'], 'grade_decimal':grade/max_grade},
+            ]}
+
+</script>
+
+    <script type="text/javascript">
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
+        });
+    </script>
+
+    <div class="task-text">
+        <ol>
+            <li>Download the files with the keys and the file with the encrypted message - <a href="/static/L4_public_key" download="L4_public_key">«L4_public_key»</a>, <a href="/static/L4_private_key" download="L4_private_key">«L4_private_key»</a>, <a href="/static/L4_encrypted.txt" download="L4_encrypted.txt">«L4_encrypted.txt»</a>.</li>
+            <li>Decrypt the encrypted message.</li>
+        </ol>
+        <p>Download input files:</p>
+        <p><a href="/static/L4_public_key" download="L4_public_key">«L4_public_key»</a></p>
+        <p><a href="/static/L4_private_key" download="L4_private_key">«L4_private_key»</a></p>
+        <p><a href="/static/L4_encrypted.txt" download="L4_encrypted.txt">«L4_encrypted.txt»</a></p>
+
+    </div>
+
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <div class="input-block">
+                <p>Enter the decrypted message:</p>
+                <textline size="80" label=""/><br />
+            </div>
+        </customresponse>
+        <solution>
+            <div class="detailed-solution">
+                <p><strong>Correct answer: </strong></p>
+                <p>Decrypted message: <strong>CYBER$ECUR1TY@</strong></p>
+            </div>
+
+        </solution>
+    </div>
+</problem>

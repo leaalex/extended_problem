@@ -1,0 +1,174 @@
+<problem>
+<style type="text/css">
+    .task-inputs-block .message, .task-inputs-block .response_message {
+        /*display: inline-block !important;*/
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+
+    .task-text code {
+        white-space: normal !important;
+    }
+
+</style>
+<script type="loncapa/python">
+
+def check_answer(expect, answer_given):
+    grade = 10
+    max_grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[4],
+            "msg": "",
+            "correctness": True
+        }
+    ]
+    overall_message = ''
+    all_numbers = True
+    try:
+        for ix_ind, x in enumerate(user_state):
+            user_state[ix_ind]["ans_int"] = str(x["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only string values are allowed in answers. Make sure all fields are filled correctly."
+            all_numbers = False
+
+    if all_numbers:
+        if not user_state[0]["ans_int"].lower().strip() == 'c775e7b757ede630cd0aa1113bd102661ab38829ca52a6422ab782862f268646':
+            grade -= 1
+            user_state[0]["correctness"] = False
+
+        if not user_state[1]["ans_int"].lower().strip() == '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8':
+            grade -= 1
+            user_state[1]["correctness"] = False
+
+        if not user_state[2]["ans_int"].lower().strip() == 'b7b3694cf27e50252dad89a06d269f24ed14b94128fdb33741388903d975ed08':
+            grade -= 1
+            user_state[2]["correctness"] = False
+
+        if not user_state[3]["ans_int"].upper().strip() == 'AE78913E7AA634B177B93B4C8FA2846E':
+            grade -= 3
+            user_state[3]["correctness"] = False
+
+        if not (user_state[4]["ans_int"].strip() == '5' or user_state[4]["ans_int"].strip() == '5.csv'):
+            grade -= 4
+            user_state[4]["correctness"] = False
+
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': user_state[0]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[1]['correctness'], 'msg': user_state[1]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[2]['correctness'], 'msg': user_state[2]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[4]['correctness'], 'msg': user_state[4]['msg'], 'grade_decimal': grade / max_grade},
+            ]}
+
+</script>
+
+    <script type="text/javascript">
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
+        });
+    </script>
+
+    <div class="task-text">
+
+        <ol>
+        <li>Calculate and indicate in the report the hash totals found using the SHA256 algorithm from the following passwords:
+            <ul>
+                <li><i>1234567890</i></li>
+                <li><i>password</i></li>
+                <li><i>4f73!m3m+d4s3</i></li>
+            </ul>
+        </li>
+        <li>Determine the hash total of the <a href="/static/L3_Power_Consumption.xlsx" download="L3_Power_Consumption.xlsx">«L3_Power_Consumption.xlsx»</a> file obtained by the MD5 algorithm.</li>
+        <li>The lab materials contain a set of data packets saved in separate files (in the <a href="/static/L3_Packages.zip" download="L3_Packages.zip">«L3_Packages.zip»</a> archive) and a <a href="/static/L3_Hashes.txt" download="L3_Hashes.txt">«L3_Hashes.txt»</a> text file containing their hash totals obtained by the SHA256 algorithm. Some of the files have been changed, you need to find them and indicate the names of these files in the report.</li>
+        </ol>
+
+        <p>Download input data:</p>
+        <p><a href="/static/L3_Power_Consumption.xlsx" download="L3_Power_Consumption.xlsx">«L3_Power_Consumption.xlsx»</a></p>
+        <p><a href="/static/L3_Packages.zip" download="L3_Packages.zip">«L3_Packages.zip»</a></p>
+        <p><a href="/static/L3_Hashes.txt" download="L3_Hashes.txt">«L3_Hashes.txt»</a></p>
+
+
+    </div>
+
+    <p>Enter the password hashes (lower case):</p>
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <div class="input-block">
+                <p>1234567890:</p>
+                <textline size="80" label=""/><br />
+            </div>
+
+            <div class="input-block">
+                <p>password: </p>
+                <textline size="80" label=""/><br />
+            </div>
+
+            <div class="input-block">
+                <p>4f73!m3m+d4s3:</p>
+                <textline size="80" label=""/><br />
+            </div>
+            <hr />
+            <div class="input-block">
+                <p>Enter the hash of the file <i>L3_Power_Consumption.xlsx</i> (lower case):</p>
+                <textline size="80" label=""/><br />
+            </div>
+            <hr />
+
+            <div class="input-block">
+                <p>Enter the names of the modified packages:</p>
+                <textline size="80" label=""/><br />
+            </div>
+        </customresponse>
+        <solution>
+            <div class="detailed-solution">
+                <p><strong>Correct answer: </strong></p>
+                <p>1234567890: <strong>c775e7b757ede630cd0aa1113bd102661ab38829ca52a6422ab782862f268646</strong></p>
+                <p>password: <strong>f5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</strong></p>
+                <p>4f73!m3m+d4s3: <strong>b7b3694cf27e50252dad89a06d269f24ed14b94128fdb33741388903d975ed08</strong></p>
+                <p>Hash of the file <i>L3_Power_Consumption.xlsx</i>: <strong>AE78913E7AA634B177B93B4C8FA2846E</strong></p>
+                <p>Names of the modified packages: <strong>5</strong></p>
+            </div>
+
+        </solution>
+    </div>
+</problem>

@@ -1,0 +1,237 @@
+<problem>
+<style type="text/css">
+    .task-inputs-block .message, .task-inputs-block .response_message {
+        /*display: inline-block !important;*/
+        background: whitesmoke !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+        font-weight: bold !important;
+    }
+
+    .task-inputs-block p {
+        margin-bottom: 0.41575em !important;
+    }
+
+    .task-text code {
+        white-space: normal !important;
+    }
+
+</style>
+<script type="loncapa/python">
+def check_between(first, second, checked):
+    return second >= checked >= first
+
+
+def comparison_numbers(correct_number, student_number, tol=0.0001):
+    if type(student_number) == str:
+        student_number = student_number.replace(",", ".")
+    try:
+        st_num = float(student_number)
+        return tol >= abs(st_num - correct_number)
+    except ValueError:
+        return False
+
+
+def check_answer(expect, answer_given):
+    grade = 10
+    max_grade = 10
+    user_state = [
+        {
+            "answer": answer_given[0],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[1],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[2],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[3],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[4],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[5],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[6],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[7],
+            "msg": "",
+            "correctness": True
+        },
+        {
+            "answer": answer_given[8],
+            "msg": "",
+            "correctness": True
+        }
+    ]
+    overall_message = ''
+    all_numbers = True
+    try:
+        for ix_ind, x in enumerate(user_state):
+            user_state[ix_ind]["ans_int"] = float(x["answer"])
+
+    except ValueError:
+        for idx, s in enumerate(user_state):
+            user_state[idx]['correctness'] = False
+            overall_message = "Only numeric values are allowed in answers. Make sure all fields are filled correctly."
+            all_numbers = False
+
+    if all_numbers:
+        if not check_between(39, 43, user_state[0]["ans_int"]):
+            grade -= 2
+            user_state[0]["correctness"] = False
+
+        if not check_between(28, 32, user_state[1]["ans_int"]):
+            grade -= 1
+            user_state[1]["correctness"] = False
+
+        if not check_between(10, 12, user_state[2]["ans_int"]):
+            grade -= 1
+            user_state[2]["correctness"] = False
+
+        if not comparison_numbers(2, user_state[3]["ans_int"]):
+            grade -= 1
+            user_state[3]["correctness"] = False
+
+        if not comparison_numbers(0, user_state[4]["ans_int"]):
+            grade -= 1
+            user_state[4]["correctness"] = False
+
+        if not comparison_numbers(5, user_state[5]["ans_int"]):
+            grade -= 1
+            user_state[5]["correctness"] = False
+
+        if not comparison_numbers(0, user_state[6]["ans_int"]):
+            grade -= 1
+            user_state[6]["correctness"] = False
+
+        if not comparison_numbers(0, user_state[7]["ans_int"]):
+            grade -= 1
+            user_state[7]["correctness"] = False
+
+        if not comparison_numbers(4, user_state[8]["ans_int"]):
+            grade -= 1
+            user_state[8]["correctness"] = False
+    if 0 > grade:
+        grade = 0
+
+    return {'overall_message': str(overall_message),
+            'input_list': [
+                {'ok': user_state[0]['correctness'], 'msg': user_state[0]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[1]['correctness'], 'msg': user_state[1]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[2]['correctness'], 'msg': user_state[2]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[3]['correctness'], 'msg': user_state[3]['msg'], 'grade_decimal':grade/max_grade},
+                {'ok': user_state[4]['correctness'], 'msg': user_state[4]['msg'], 'grade_decimal': grade / max_grade},
+                {'ok': user_state[5]['correctness'], 'msg': user_state[5]['msg'], 'grade_decimal': grade / max_grade},
+                {'ok': user_state[6]['correctness'], 'msg': user_state[6]['msg'], 'grade_decimal': grade / max_grade},
+                {'ok': user_state[7]['correctness'], 'msg': user_state[7]['msg'], 'grade_decimal': grade / max_grade},
+                {'ok': user_state[8]['correctness'], 'msg': user_state[8]['msg'], 'grade_decimal': grade / max_grade},
+            ]}
+
+</script>
+
+    <script type="text/javascript">
+        document.querySelectorAll('.problem-progress').forEach(function(userItem) {
+            function second_passed() {
+                let arr = userItem.innerHTML.split(" ")
+                arr[0] = Math.round(parseFloat(arr[0].split("/")[0]))+'/'+Math.round(parseFloat(arr[0].split("/")[1]))
+                userItem.innerHTML = arr.join(" ")
+            }
+            setTimeout(second_passed, 300)
+        });
+    </script>
+
+    <div class="task-text">
+        <ol>
+            <li>1. According to the performance of the work from the section «2. LOAD FORECASTING WHEN LOSING INITIAL DATA» indicate the obtained values of the error metrics on the testing set in case of temperature data loss.</li>
+            <li>2. Detect outliers in the <a href="/static/L5_Weather.xlsx" download="L5_Weather.xlsx">«L5_Weather.xlsx»</a> file using interquartile distance with a coefficient of 3. Specify the number of outliers for each meteorological parameter.</li>
+        </ol>
+        <p>Download input data:</p>
+        <p><a href="/static/L5_Electrical_load_test.xlsx" download="L5_Electrical_load_test.xlsx">«L5_Electrical_load_test.xlsx»</a> </p>
+        <p><a href="/static/L5_Electrical_load_train.xlsx" download="L5_Electrical_load_train.xlsx">«L5_Electrical_load_train.xlsx»</a> </p>
+        <p><a href="/static/L5_Electrical_load_train_losses.xlsx" download="L5_Electrical_load_train_losses.xlsx">«L5_Electrical_load_train_losses.xlsx»</a> </p>
+        <p><a href="/static/L5_Weather.xlsx" download="L5_Weather.xlsx">«L5_Weather.xlsx»</a> </p>
+        <p>Enter the forecasting accuracy metrics on the testing set in case of temperature data loss (rounding to the nearest integer)</p>
+
+    </div>
+
+    <p>Accuracy metrics:</p>
+    <div class="task-inputs-block">
+        <customresponse cfn="check_answer">
+            <div class="input-block">
+                <p>MAE, MWh: </p>
+                <textline size="10" label=""/><br />
+            </div>
+
+            <div class="input-block">
+                <p>RMSE, MWh: </p>
+                <textline size="10" label=""/><br />
+            </div>
+
+            <div class="input-block">
+                <p>MAPE, %:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <hr />
+            <p>Enter the number of outliers for each parameter:</p>
+            <div class="input-block">
+                <p>Solar_flow:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>Сloudiness:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>Transparence:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>Temperature:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>Humidity:</p>
+                <textline size="10" label=""/><br />
+            </div>
+            <div class="input-block">
+                <p>Wind_speed:</p>
+                <textline size="10" label=""/><br />
+            </div>
+        </customresponse>
+        <solution>
+            <div class="detailed-solution">
+                <p><strong>Correct answer: </strong></p>
+                <p>MAE, MWh: <strong>from 39 to 43 </strong></p>
+                <p>RMSE, MWh: <strong>from 28 to 32 </strong></p>
+                <p>MAPE, %: <strong>from 10 to 12 </strong></p>
+                <p>Solar_flow: <strong>2 </strong></p>
+                <p>Сloudiness: <strong>0 </strong></p>
+                <p>Transparence: <strong>5 </strong></p>
+                <p>Temperature: <strong>0 </strong></p>
+                <p>Humidity: <strong>0 </strong></p>
+                <p>Wind_speed: <strong>4 </strong></p>
+            </div>
+
+        </solution>
+    </div>
+</problem>
