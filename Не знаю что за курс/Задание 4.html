@@ -1,0 +1,294 @@
+<problem>
+
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+    <p>Планируется возведение жилого квартала из 3 домов. Полезная площадь каждого составляет 6000 кв. метров. Себестоимость строительства определена в ходе РГР 1. Общий срок строительства – 4 года.</p>
+    <p>Квартиры в жилых домах приобретаются пополам через долевое участие и покупку готовой квартиры. Цены продаж и долевого участия для 1 дома составляют 100 и 80 тысяч за метр полезной площади. Цены для каждого следующего дома увеличиваются на 5% от цен предыдущего дома. Жилье собственникам планируется передавать с 3 года, когда завершится строительство 1 дома. До передачи дома деньги за долевое строительство хранятся на счетах эскроу.</p>
+    <p>Заполнить таблицу, определить потребности в финансировании проекта, и дополнить финансовый план, исходя из предположения о соотношении собственных и заемных средств как 35% к 65%. Процентами за кредит и налогом на прибыль пренебречь.</p>
+
+    <div class="no-equation no-trailing">
+        <table class="training-task">
+            <tr>
+                <th rowspan="2">
+                    Показатели
+                </th>
+                <th colspan="6" style="text-align: center">
+
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center"><strong>Итого</strong></td>
+                <td style="text-align: center"><strong>1 год</strong></td>
+                <td style="text-align: center"><strong>2 год</strong></td>
+                <td style="text-align: center"><strong>3 год</strong></td>
+                <td style="text-align: center"><strong>4 год</strong></td>
+                <td style="text-align: center"><strong>5 год</strong></td>
+            </tr>
+            <tr>
+                <td>Поступления от продаж</td>
+                <td style="width: 13%">1 702 350 000</td>
+                <td style="width: 13%">0</td>
+                <td style="width: 13%">0</td>
+                <td style="width: 13%">
+                    <numericalresponse answer="540000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td style="width: 13%">
+                    <numericalresponse answer="567000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td style="width: 13%">
+                    <numericalresponse answer="595350000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Собственный капитал</td>
+                <td>
+                    <numericalresponse answer="176000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="58000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="118000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Кредиты поступления</td>
+                <td>
+                    <numericalresponse answer="325600000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="107000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="218600000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><i>Всего притоки</i></td>
+                <td></td>
+                <td>
+                    <numericalresponse answer="165000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="33660000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="540000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="567000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="595350000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Себестоимость строительства</td>
+                <td>1 042 800 000</td>
+                <td>165 000 000</td>
+                <td>336 600 000</td>
+                <td>356 400 000</td>
+                <td>184 800 000</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Возврат собственного капитала</td>
+                <td></td>
+                <td>0</td>
+                <td>0</td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="176000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Выплата дивидендов</td>
+                <td></td>
+                <td>0</td>
+                <td>0</td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="64200000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="595350000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Кредиты возврат</td>
+                <td>325 600 000</td>
+                <td>0</td>
+                <td>0</td>
+                <td>
+                    <numericalresponse answer="183600000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="142000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="595350000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td><i>Всего оттоки</i></td>
+                <td></td>
+                <td>
+                    <numericalresponse answer="165000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="336600000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="540000000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="56700000">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</problem>

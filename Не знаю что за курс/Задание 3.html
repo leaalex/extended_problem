@@ -1,0 +1,196 @@
+<problem>
+    <style type="text/css">
+        .task-inputs-block div.equation {
+            display: none !important;
+        }
+
+        .task-inputs-block p {
+            margin-bottom: 0.41575em !important;
+        }
+
+        .data-table td, .data-table th {
+            padding: 4px 14px !important;
+            margin: 0px !important;
+            border: 1px solid #e5e5e5 !important;
+        }
+        .data-table th {
+            background: whitesmoke;
+        }
+    </style>
+    <script type="loncapa/python">
+import random
+
+BAC = random.randint(30, 50) * 10000  # 300000
+AC = random.randint(15, 25) * 10000  # 200000
+
+EV = 0.6 * BAC
+PV = (3.5/5) * BAC
+
+SV = EV - PV
+SPI = round(EV / PV, 2)
+
+behind_schedule = True if 0 > SV else False
+ahead_schedule = True if SV > 0 else False
+on_schedule = True if SV == 0 else False
+
+CV = EV - AC
+CPI = round(EV / AC, 2)
+
+cost_overrun = False
+cost_savings = False
+
+if CV > 0:
+    cost_savings = True
+else:
+    cost_overrun = True
+
+EAC_1 = AC+(BAC - EV)
+EAC_2 = round(AC + ((BAC - EV)/CPI), 2)
+EAC_3 = BAC + 50000
+
+variant_1 = False
+variant_2 = False
+variant_3 = False
+variant_4 = False
+
+if 1 > CPI and SPI > 1:
+    variant_1 = True
+elif 1 > SPI and 1 > CPI:
+    variant_2 = True
+elif CPI > 1 and SPI > 1:
+    variant_3 = True
+elif CPI > 1 and 1 > SPI:
+    variant_4 = True
+
+</script>
+
+    <p>На изготовление 20 горизонтирующих платформ было выделено <strong>$BAC</strong> рублей и пять месяцев. Прошло три с половиной месяца, потрачено <strong>$AC</strong> рублей. По данным производственного отдела все идет по плану, работа выполнена на <strong>60%</strong> и будет завершена через месяц, если дополнительно к плану потратить 50000 рублей. Оценить состояние проекта и сделать прогноз по срокам и стоимости проекта в предположении, что планировалось осуществлять затраты равномерно. Нужно ли принимать предложение о сокращении сроков, если заказ не срочный?</p>
+
+    <p>На основании информации от производственного отдела <strong>EV</strong> составляет 60% от <strong>BAC</strong>, т.е. $EV руб.</p>
+
+    <p>Поскольку затраты распределены равномерно, то <strong>PV</strong> = $PV руб.</p>
+
+    <div class="task-inputs-block">
+        <p>Определите отклонения и коэффициенты и выберите статус проекта: </p>
+        <table>
+            <tr>
+                <td>
+                    SV =
+                </td>
+                <td>
+                    <numericalresponse answer="$SV">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    SPI =
+                </td>
+                <td>
+                    <numericalresponse answer="$SPI">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="$behind_schedule">проект отстает от графика</choice>
+                <choice correct="$ahead_schedule">проект опережает график</choice>
+                <choice correct="$on_schedule">проект соответствует графику</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+        <hr />
+        <table>
+            <tr>
+                <td>
+                    CV =
+                </td>
+                <td>
+                    <numericalresponse answer="$CV">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CPI =
+                </td>
+                <td>
+                    <numericalresponse answer="$CPI">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="true">
+                <choice correct="$cost_overrun">Происходит превышение по затратам</choice>
+                <choice correct="$cost_savings">Происходит экономия по затратам</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+        <hr />
+
+        <p>Построим прогнозы по затратам</p>
+        <p><strong>1. </strong>В предположении, что отклонения по затратам были случайными</p>
+        <table>
+            <tr>
+                <td>
+                    EAC  =
+                </td>
+                <td>
+                    <numericalresponse answer="$EAC_1">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+        <p><strong>2. </strong>В предположении, что отклонения по затратам были не случайными и тенденция сохранится</p>
+        <table>
+            <tr>
+                <td>
+                    EAC  =
+                </td>
+                <td>
+                    <numericalresponse answer="$EAC_2">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+        <p><strong>3. </strong>В предположении, что будет произведена доплата</p>
+        <table>
+            <tr>
+                <td>
+                    EAC  =
+                </td>
+                <td>
+                    <numericalresponse answer="$EAC_3">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <hr />
+
+        <multiplechoiceresponse>
+            <choicegroup type="MultipleChoice" shuffle="false">
+                <choice correct="$variant_1">Следует определить причины превышения по затратам, возможно следует притормозить проект, доп. затраты не требуются</choice>
+                <choice correct="$variant_2">Надо проводить дополнительный анализ и определить причины задержек и превышения. Возможно, потребуется разработать отдельные мероприятия по повышению производительности</choice>
+                <choice correct="$variant_3">Все ок, делать ничего не надо, доп. затраты не требуются</choice>
+                <choice correct="$variant_4">Все неплохо (так как проект не срочный), доп. затраты не требуются</choice>
+            </choicegroup>
+        </multiplechoiceresponse>
+
+    </div>
+</problem>
