@@ -1,10 +1,289 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<problem>
 
-</body>
-</html>
+    <style>
+        .training-task td, .training-task th{
+            margin: 20px 0 !important;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .training-task th{
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .inline-dropdown{
+            margin-bottom: 20px;
+        }
+
+        .inline-dropdown .indicator-container{
+            margin-left: 0px !important;
+        }
+
+        .no-equation .equation{
+            display: none !important;
+        }
+
+
+
+        .inline-numerical{
+            display: flex;
+            padding-bottom: 20px;
+        }
+        .inline-numerical div:first-of-type{
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+        }
+
+        .trailing_text{
+            margin-left: 10px;
+            word-break: keep-all;
+        }
+
+        .no-trailing .trailing_text, .no-trailing .status{
+            display: none !important;
+        }
+        .no-trailing.no-equation input{
+            min-width: 80px !important;
+        }
+        .no-trailing p.answer {
+            display: block !important;
+            margin-top: 0px !important;
+            margin-bottom: 0 !important;
+        }
+
+    </style>
+
+    <p>В компании приняты следующие индексы эскалации по годам и ставки резервов</p>
+
+    <table class="training-task" style="width: 100%">
+        <tr>
+            <th>Параметр</th>
+            <th style="width: 15%; text-align: center;">Базовый год</th>
+            <th style="width: 10%; text-align: center;">+1</th>
+            <th style="width: 10%; text-align: center;">+2</th>
+            <th style="width: 10%; text-align: center;">+3</th>
+            <th style="width: 10%; text-align: center;">+4</th>
+            <th style="width: 10%; text-align: center;">+5</th>
+        </tr>
+        <tr>
+            <td>Эскалация стоимости оборудования и услуг, %</td>
+            <td style="text-align: center;">0</td>
+            <td style="text-align: center;">4</td>
+            <td style="text-align: center;">8</td>
+            <td style="text-align: center;">12</td>
+            <td style="text-align: center;">16</td>
+            <td style="text-align: center;">20</td>
+        </tr>
+    </table>
+
+    <table class="training-task" style="width: 100%">
+        <tr>
+            <th>Класс оценки</th>
+            <th style="width: 10%; text-align: center;">Класс 5 <br />+100%/-50%</th>
+            <th style="width: 10%; text-align: center;">Класс 4 <br />+50%/-30%</th>
+            <th style="width: 10%; text-align: center;">Класс 3 <br />+30%/-20%</th>
+            <th style="width: 10%; text-align: center;">Класс 2 <br />+20%/-15%</th>
+            <th style="width: 10%; text-align: center;">Класс 1 <br />+5%/-3%</th>
+        </tr>
+        <tr>
+            <td>Резерв (на непредвиденные обстоятельства и управление проектом), %</td>
+            <td style="text-align: center;">20</td>
+            <td style="text-align: center;">15</td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">5</td>
+            <td style="text-align: center;">2</td>
+        </tr>
+    </table>
+
+    <p>Для проекта застройки жилого квартала из трех домов определим оценку стоимости класса 3 при условии, что срок строительства одного дома - 2 года, строительство следующего дома начинается через год от начала строительства предыдущего, а работы по строительству первого дома законтрактованы полностью. Принять, что базовая стоимость строительства первого дома составляет 300 миллионов рублей, затраты распределяются равномерно.</p>
+
+    <div class="no-equation no-trailing">
+        <table class="training-task">
+            <tr>
+                <th style="text-align: center"><strong>Дома</strong></th>
+                <th style="text-align: center"><strong>1 год</strong></th>
+                <th style="text-align: center"><strong>2 год</strong></th>
+                <th style="text-align: center"><strong>3 год</strong></th>
+                <th style="text-align: center"><strong>4 год</strong></th>
+            </tr>
+            <tr>
+                <td>1 дом</td>
+                <td>150</td>
+                <td>150</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2 дом</td>
+                <td></td>
+                <td>150</td>
+                <td>150</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3 дом</td>
+                <td></td>
+                <td></td>
+                <td>150</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>Базовая стоимость</td>
+                <td>
+                    <numericalresponse answer="150">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="300">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="300">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="150">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Эскалация</td>
+                <td>
+                    <numericalresponse answer="0">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="6">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="24">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="18">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Нескорректированная стоимость</td>
+                <td>
+                    <numericalresponse answer="150">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="306">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="324">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="168">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Резерв</td>
+                <td>
+                    <numericalresponse answer="15">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="30.6">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="32.4">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="16.8">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Итоговая стоимость
+
+                </td>
+                <td>
+                    <numericalresponse answer="165">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="336.6">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="356.4">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+                <td>
+                    <numericalresponse answer="184.8">
+                        <responseparam type="tolerance" default="0.1"/>
+                        <formulaequationinput size="12" />
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    Итого стоимость проекта  =
+                </td>
+                <td>
+                    <numericalresponse answer="1042.8">
+                        <responseparam type="tolerance" default="1"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    млн. рублей
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</problem>

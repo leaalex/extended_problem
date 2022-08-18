@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="CYBERSECURITY лабораторные работы">
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-8FkLqAWWX2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-JZCpi7l3dT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-LJNttYkR8F.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-PiyxS1UD5n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-Zw2DdWJyFR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-fTre2p64u2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-kOlRjBmh0H.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 4.html" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="CYBERSECURITY таблички">
+      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5/9HdKyRutsX.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7/E38D4K7UFI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабораторная № 4/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабораторная № 4/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Не знаю что за курс/Задание 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Не знаю что за курс/Задание 3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Не знаю что за курс/Задание 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Не знаю что за курс/Задание 4.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +39,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.6.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Не знаю что за курс/Задание 2.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Не знаю что за курс/Задание 3.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Не знаю что за курс/Задание 4.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JupyterTrust" id="3060c1fd-e48f-4f28-9605-895a26fd8109" />
   <component name="MarkdownSettingsMigration">
@@ -84,11 +80,11 @@
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабраторная № 3" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7" />
+      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабораторная № 5/Файлы" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабраторная № 4/Файлы" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабраторная № 3/Файлы" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабраторная № 2/Файлы" />
     </key>
   </component>
   <component name="RunManager">
@@ -309,14 +305,7 @@
       <workItem from="1659689700981" duration="1137000" />
       <workItem from="1659960880682" duration="598000" />
       <workItem from="1660033163758" duration="8293000" />
-      <workItem from="1660203908443" duration="398000" />
-    </task>
-    <task id="LOCAL-00063" summary="маш предприятие">
-      <created>1602317695868</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1602317695868</updated>
+      <workItem from="1660203908443" duration="10306000" />
     </task>
     <task id="LOCAL-00064" summary="маш предприятие">
       <created>1602334414964</created>
@@ -654,7 +643,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659367399998</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="CYBERSECURITY таблички">
+      <created>1660205711597</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1660205711597</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +691,8 @@
     <MESSAGE value="MCS" />
     <MESSAGE value="ENERGYSYSTEM лабораторные работы" />
     <MESSAGE value="CYBERSECURITY лабораторные работы" />
-    <option name="LAST_COMMIT_MESSAGE" value="CYBERSECURITY лабораторные работы" />
+    <MESSAGE value="CYBERSECURITY таблички" />
+    <option name="LAST_COMMIT_MESSAGE" value="CYBERSECURITY таблички" />
   </component>
   <component name="masterDetails">
     <states>
