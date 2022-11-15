@@ -1,0 +1,67 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+        .distribution-table td{
+            margin: 20px 0;
+            padding: 10px !important;
+            border: 1px solid #ccc;
+            text-align: center !important;
+        }
+
+        .custom-comment {
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+            padding: 10px;
+        }
+
+        .custom-comment-sign{
+            float: left;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+        }
+        .custom-comment-content{
+            width: 90%;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+    </style>
+
+    <div class="no-equation">
+        <p><strong>Цель:</strong> использовать методы обнаружения аномалий в исходных данных для защиты целостности данных.</p>
+        <p><strong>Задание</strong></p>
+        <p>Определите минимальный и максимальный порог для статистического отсечения выбросов по межквартильному размаху с коэффициентом <strong>1.5</strong> по приведенному ниже рисунку.</p>
+        <p>Впишите результат в соответствующее поле ответа, округлив до ближайшего целого числа.</p>
+
+        <figure style="/*text-align:center;*/">
+            <img src="/static/E38D4K7UFI.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        <table>
+            <tr>
+                <td>Минимальный порог: </td>
+                <td>
+                    <numericalresponse answer="-45">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+            <tr>
+                <td>Максимальный порог: </td>
+                <td>
+                    <numericalresponse answer="155">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+            </tr>
+        </table>
+    </div>
+</problem>
