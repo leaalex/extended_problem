@@ -1,51 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="CYBERSECURITY таблички">
-      <change afterPath="$PROJECT_DIR$/engines/Пошаговость/Единичный выбор.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engines/Пошаговость/Табличка.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/caesar_wheel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/wheel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.4_1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.4_2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 5/5.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 5/5.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 5/5.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 7/7.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 7/7.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 7/7.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Последовательность.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/DIGSCRESEARCHTextApp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/DIGSCRESEARCHTextApp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/SelectedTextApp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/SelectedTextApp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/arrow_down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Задание 4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Пошаговый.html" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="fizika">
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 2/2.4/2.4.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Кибербезопасность 2/wheel.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,14 +325,7 @@
       <workItem from="1664266924042" duration="5257000" />
       <workItem from="1668001262676" duration="27877000" />
       <workItem from="1668527284681" duration="16325000" />
-      <workItem from="1668693350802" duration="46599000" />
-    </task>
-    <task id="LOCAL-00067" summary="маш предприятие">
-      <created>1603208704573</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1603208704588</updated>
+      <workItem from="1668693350802" duration="47787000" />
     </task>
     <task id="LOCAL-00068" summary="маш предприятие">
       <created>1614777519381</created>
@@ -712,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668528851392</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="fizika">
+      <created>1669134240530</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1669134240531</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -754,7 +712,8 @@
     <MESSAGE value="ENERGYSYSTEM лабораторные работы" />
     <MESSAGE value="CYBERSECURITY лабораторные работы" />
     <MESSAGE value="CYBERSECURITY таблички" />
-    <option name="LAST_COMMIT_MESSAGE" value="CYBERSECURITY таблички" />
+    <MESSAGE value="fizika" />
+    <option name="LAST_COMMIT_MESSAGE" value="fizika" />
   </component>
   <component name="masterDetails">
     <states>

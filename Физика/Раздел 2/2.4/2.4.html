@@ -1,0 +1,99 @@
+<problem>
+    <script type="loncapa/python">
+import random
+
+M = random.randrange(100, 1000, 500) / 100
+A = random.randrange(1, 100, 1)
+B = random.randrange(10, 100, 2) / 10
+C = random.randrange(0, 200, 20) / 100
+t = random.randrange(0, 400, 20) / 100
+M = 8
+B = 2
+C = 1
+t= 2
+Ek = M/2 * ((B+2*C*t) ** 2)
+Ek = round(Ek, 1)
+
+</script>
+    <style type="text/css">
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <h4><strong>Дано: </strong></h4>
+        <p>
+            Координата тела массой \(M = $M кг\), движущегося вдоль оси \(x\), изменяется по закону \(x  = A + Bt + Ct^2\).
+            Найти кинетическую энергию этого тела в момент времени \(t =  $t \ с\).
+        </p>
+        <p>
+            \(A = $A, \ B = $B, \ C = \ $C. \)
+        </p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>
+            Используя определение мгновенной скорости рассчитайте ее в указанный момент времени.
+            Далее используя определение кинетической энергии, рассчитайте ее значение. Полученный результат округлите <strong>до десятых</strong>.
+        </p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(E_{к} = \)
+                </td>
+                <td  id="icazxXqL1v">
+                    <numericalresponse answer="$Ek">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    Дж
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="icazxXqL1v_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>По определению мгновенной скорости:</p>
+        \[ v = \frac{dx}{dt} = (A \ + \ Bt \ + \ Ct^2)', \]
+        <p>Кинетическая энергия равна:</p>
+        \[E_{к} =  \frac{mv^2}{2}.\]
+        <p>Рассчитайте кинетическую энергию. Полученный результат округлите <strong>до десятых</strong>.</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>По определению мгновенной скорости:</p>
+        \[ v  = \frac{dx}{dt} = (A \ + \ Bt \ + \ Ct^2)', \]
+        <p>Кинетическая энергия равна:</p>
+        \[E_{к} =  \frac{mv^2}{2} = \frac{m(B + 2Ct)^2}{2}.\]
+        <p>Рассчитайте кинетическую энергию.</p>
+        \[E_{к} = \frac{M}{2}(B + 2Ct)^2 = \frac{$M}{2}($B + 2 \cdot $C \cdot $t)^2 = $Ek \ Дж\]
+    </solution>
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#icazxXqL1v').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#icazxXqL1v_message').style.display = 'block';
+        }
+    </script>
+</problem>
