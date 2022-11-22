@@ -1,0 +1,95 @@
+<problem>
+<script type="loncapa/python">
+import random
+import math
+A = round(random.randint(3, 6) * 0.001, 3)
+B = random.randint(6, 15) * 100
+C = random.randint(4, 12)
+
+delta_l = round(math.sqrt((2*A*10*C) / B), 2)
+</script>
+<style type="text/css">
+    .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+        display: none !important;
+    }
+
+    .chemical-task p.answer {
+        display: none !important;
+    }
+
+    .chemical-task input [type=input] {
+        min-width: 100px !important;
+    }
+
+    .chemical-task .sign-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .message {
+        display: none;
+    }
+</style>
+    <div>
+        <h4><strong>Дано:</strong></h4>
+        <p>
+            При изготовлении детского пружинного пистолета «Светлячок», который стреляет светящимися шариками вертикально вверх, конструктор – разработчик должен рассчитать деформацию пружины \(\Delta l\),
+            чтобы при массе шарика \(M = $A \ кг\) и жесткости пружины \(k = $B \ Н/м\), высота подъема шарика составляла \(h = $C \ м\).
+            Трением в стволе и сопротивлением воздуха пренебречь. Считать, что \(\Delta l\ll h\). Ускорение свободного падения принять равным \(10 \ м/с^2\).
+        </p>
+        <h4><strong>Рекомендации:</strong></h4>
+        <p>
+            Воспользуйтесь законом сохранения энергии для системы пружина пистолета – светящийся шарик и выразите деформацию пружины перед выстрелом.
+            Рассчитайте значение деформации пружины \(\Delta l\), округлив его <strong>до сотых</strong>.
+        </p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\Delta l = \)
+                </td>
+                <td  id="icazxXqL1v">
+                    <numericalresponse answer="$delta_l">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    м
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <div id="icazxXqL1v_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>
+            Для системы пружина пистолета — пуля выполняется закон сохранения энергии, поскольку трением можно пренебречь.
+            Энергия упругодеформированной пружины переходит в потенциальную энергию светящегося шарика на высоте \(h\). Следовательно:</p>
+        \[ \cfrac{k\Delta l^2}2-mgh. \]
+        <p>Выразите из этой формулы деформацию пружины перед выстрелом. Рассчитайте значение деформации пружины \(\Delta l\), округлив его <strong>до сотых</strong>.</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>
+            Для системы пружина пистолета — пуля выполняется закон сохранения энергии, поскольку трением можно пренебречь.
+            Энергия упругодеформированной пружины переходит в потенциальную энергию светящегося шарика на высоте \(h\). Следовательно:</p>
+        \[ \cfrac{k\Delta l^2}2-mgh. \]
+        <p>Выразим из этой формулы деформацию пружины перед выстрелом:</p>
+        \[ \Delta l = \sqrt{\cfrac{2mgh}{k}} = \sqrt{\cfrac{2 \cdot $A \cdot 10 \cdot $C}{$B}} = $delta_l \ м  \]
+    </solution>
+
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#icazxXqL1v').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#icazxXqL1v_message').style.display = 'block';
+        }
+    </script>
+</problem>

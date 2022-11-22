@@ -1,0 +1,126 @@
+<problem>
+<script type="loncapa/python">
+import random
+
+data = [
+["Молния", "Спутниковая связь", "\\(280^\\circ\\)", "\\(62.8^\\circ\\)", "\\(12\\) часов", 500, 40000],
+["Меридиан", "Спутниковая связь", "\\(280^\\circ\\)", "\\(62.8^\\circ\\)", "\\(12\\) часов", 1000, 40000],
+["Sirius XM Radio", "Спутниковое радио", "\\(269^\\circ\\)", "\\(62.15^\\circ\\)", "\\(24\\) часа", 24475, 447093],
+["Интеграл", "Космическая обсерватория", "\\(300^\\circ\\)", "\\(51.6^\\circ\\)", "\\(4310\\) минут", 9743.2, 152963.8],
+["Орбитальная геофизическая обсерватория", "Космическая обсерватория", "\\(-\\)", "\\(101.5^\\circ\\)", "\\(3839\\) минут", 300, 150000],
+["Advanced composition explorer", "Научный космический аппарат", "\\(-\\)", "\\(28.2^\\circ\\)", "\\(1398\\) часов", 145700000, 150550000],
+["Quazi-Zenith Satellit system", "Спутниковая система дифференциальной коррекции сигнала GPS", "\\(270^\\circ\\)", "\\(40^\\circ\\)", "\\(24\\) часа", 32000, 40000],
+]
+
+variant = random.choice(data)
+omega = round((variant[6]/variant[5]) ** 2, 1)
+
+title = variant[0]
+purpose = variant[1]
+argument = variant[2]
+incline = variant[3]
+period = variant[4]
+perigee = variant[5]
+apogee = variant[6]
+
+</script>
+<style type="text/css">
+    .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+        display: none !important;
+    }
+
+    .chemical-task p.answer {
+        display: none !important;
+    }
+
+    .chemical-task input [type=input] {
+        min-width: 100px !important;
+    }
+
+    .chemical-task .sign-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .message {
+        display: none;
+    }
+</style>
+    <div>
+        <h4><strong>Дано:</strong></h4>
+        <p>
+            Спутниковая система \(A\) вращается вокруг Земли по эллиптической орбите. Найдите отношение ее максимальной угловой скорости на данной орбите, к минимальной.
+        </p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>
+            При решении задачи воспользуйтесь законом сохранения момента импульса.
+            Полученное значение округлите <strong>до десятых</strong>.
+        </p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+
+    <div class="chemical-task">
+        <p>Характеристики некоторых спутниковых систем Земли, имеющих высокоэллиптические орбиты:</p>
+
+        <p>Название спутниковой системы: <strong>$title</strong></p>
+        <p>Назначение: <strong>$purpose</strong></p>
+        <p>Аргумент широты перигея: <strong>$argument</strong></p>
+        <p>Наклон плоскости орбиты к экватору: <strong>$incline</strong></p>
+        <p>Период обращения: <strong>$period</strong></p>
+        <p>Высота в перигее (точке орбиты, ближайшей к Земле), км: <strong>\($perigee\)</strong></p>
+        <p>Высота в апогее (точке орбиты, наиболее удаленной от Земли), км: <strong>\($apogee\)</strong></p>
+
+        <h4><strong>Выполнить:</strong></h4>
+        <table>
+            <tr>
+                <td>
+                    \(\cfrac{\omega_{max}}{\omega_{min}} = \)
+                </td>
+                <td  id="rbUSxVkExJ">
+                    <numericalresponse answer="$omega">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="rbUSxVkExJ_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Выпишите значения расстояний, соответствующих максимальному удалению \(r_a\) спутника от Земли  (высота в апогее) и минимальному удалению \(r_p\) (высота в перигее).</p>
+        <p>Момент импульса спутниковой системы равен \(L \ = \ r \cdot p\), где \(p \ = \ m \cdot V\) – импульс спутника, а \(V\) - его линейной скорость в данной точке траектории.</p>
+        <figure style="text-align:center;">
+            <img src="/static/4.4.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+        <p>Запишите формулу, выражающую связь между угловой и линейной скоростью, подставьте в формулу для момента импульса. Согласно закону сохранения момента импульса, момент импульса спутника одинаков во всех точках орбиты. Запишите момент импульса спутника в перигее и апогее и выразите отношение \(\cfrac{\omega_{max}}{\omega_{min}}\).</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <figure style="text-align:center;">
+            <img src="/static/4.4.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+        <p>Выпишите значения расстояний, соответствующих максимальному удалению \(r_a\) спутника от Земли  (высота в апогее) и минимальному удалению \(r_p\) (высота в перигее).</p>
+        <p>Момент импульса спутниковой системы равен \(L \ = \ r \cdot p\), где \(p \ = \ m \cdot V\) – импульс спутника, а \(V\) - его линейной скорость в данной точке траектории.</p>
+        <p>В свою очередь, линейная скорость связана с угловой скоростью \(\omega\) соотношением:</p>
+        \[V = \omega \cdot r.\]
+        <p>Таким образом, момент импульса спутника можно выразить как:</p>
+        \[ L = r \cdot p = r \cdot m \cdot V = m \cdot r^2 \cdot \omega  \]
+        <p>Применим закон сохранения момента импульса:</p>
+        \[L_A = L_P\]
+        \[m \cdot r^2_{p} \cdot \omega_{max} = m \cdot r^2_{a} \cdot \omega_{min}\]
+        \[ \cfrac{\omega_{max}}{\omega_{min}} = \left( \frac{r_a}{r_p} \right)^2 = \left( \frac{$apogee}{$perigee} \right)^2 = $omega \]
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#rbUSxVkExJ').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#rbUSxVkExJ_message').style.display = 'block';
+        }
+    </script>
+</problem>

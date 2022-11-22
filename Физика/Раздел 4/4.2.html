@@ -1,0 +1,157 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+A = round(random.randint(5, 20) * 0.1, 1)
+B = round(random.randrange(20, 40, 2) * 0.1, 1)
+C = round(random.randrange(30, 60, 2) * 0.1, 1)
+D = round(random.randrange(40, 100, 2) * 0.1, 1)
+
+A = 1
+B = 2
+C = 3
+D = 5
+
+u1 = round(((A-B)*C+2*B*D)/float((A+B)), 2)
+u2 = round(((B-A)*D+2*A*C)/float((A+B)), 2)
+
+</script>
+<style type="text/css">
+    .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+        display: none !important;
+    }
+
+    .chemical-task p.answer {
+        display: none !important;
+    }
+
+    .chemical-task input [type=input] {
+        min-width: 100px !important;
+    }
+
+    .chemical-task .sign-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .message {
+        display: none;
+    }
+</style>
+    <div>
+        <h4><strong>Дано: </strong></h4>
+        <p>
+            Тела массами \(m_1 = $A \ кг\) и \(m_2 = $B \ кг\), двигаясь навстречу друг другу со скоростями  \(v_{1} = $C \ м/с\) и \(v_{2} = $D \ м/с\), соответственно, соударяются.
+            Считая удар центральным и абсолютно упругим, найти скорости этих тел (\(u_1\) и \(u_2\)) после соударения.
+        </p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>
+            Запишите закон сохранения импульса применительно к данной задаче.
+            Далее воспользуйтесь законом сохранения энергии, т.к. удар абсолютно упругий.
+            Решите полученную систему уравнений и выразите скорости тел после столкновения.
+            Рассчитайте значение скоростей, округлив его <strong>до сотых</strong>.
+        </p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(u_1 = \)
+                </td>
+                <td id="vdKOEOsRdC">
+                    <numericalresponse answer="$u1">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                   м/с
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \(u_2 = \)
+                </td>
+                <td id="bkHuFITFiI">
+                    <numericalresponse answer="$u2">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    м/с
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="vdKOEOsRdC_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>
+            Согласно закону сохранения импульса (см. рисунок):
+        </p>
+        <figure style="text-align:center;">
+            <img src="/static/4.2.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        \[m_1{\overrightarrow v}_1+m_2{\overrightarrow v}_2=m_1{\overrightarrow u}_1+m_2{\overrightarrow u}_2.\]
+        <p>
+            Направьте координатную ось \(O_x\) вдоль вектора скорости первого тела до удара.
+            Тогда, по условию задачи, вектор скорости второго тела до удара будет параллелен этой оси и направлен в противоположную сторону.
+        </p>
+        <p>
+            Спроецируйте уравнение на выбранную ось (в силу того, что удар центральный, а вектора скоростей тел до соударения параллельны – тела после удара будут двигаться вдоль той же прямой, что и до удара.
+            Предполагая, что скорости тел \(u_1\) и \(u_2\) до и после удара направлены в противоположные стороны (см. рисунок к задаче), получим:
+        </p>
+            \[m_1v_1-m_2v_2=-m_1u_1+m_2u_2.\]
+        <p>
+            Далее дополните полученное уравнение законом сохранения энергии, т.к. удар абсолютно упругий.
+            На уровне линии, вдоль которой движутся тела, можно их потенциальную энергию принять за ноль.
+            Тогда механическая энергия тел равна только их кинетической энергии.
+        </p>
+            \[\cfrac{m_1v_1^2}2+\cfrac{m_2v_2^2}2=\cfrac{m_1u_1^2}2+\cfrac{m_2u_2^2}2\]
+        <p>Решая систему уравнений, найдите значения скоростей тел после соударения.</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>В данной задаче предполагается, что на тела не действуют никакие внешние силы. Тогда система этих двух тел изолирована. Выбрав за состояние «До» – состояние первого и второго тела до соударения (суммарный вектор импульса тел в этом состоянии – \( m_1{\overrightarrow v}_1+m_2{\overrightarrow v}_2 \) ), а за состояние «После» – состояние тел после удара (суммарный вектор импульса тел в этом состоянии – \(m_1{\overrightarrow u}_1+m_2{\overrightarrow u}_2\) ), тогда согласно закону сохранения импульса (см. рисунок) запишем:</p>
+        \[m_1{\overrightarrow v}_1+m_2{\overrightarrow v}_2=m_1{\overrightarrow u}_1+m_2{\overrightarrow u}_2\]
+        <figure style="text-align:center;">
+            <img src="/static/4.2.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        <p>Направим координатную ось \(O_x\) вдоль вектора скорости первого тела до удара. Тогда, по условию задачи, вектор скорости второго тела до удара будет параллелен этой оси и направлен в противоположную сторону.</p>
+        <p>Спроецируйте уравнение на выбранную ось (в силу того, что удар центральный, а вектора скоростей тел до соударения параллельны – тела после удара будут двигаться вдоль той же прямой, что и до удара. Предполагая, что скорости тел \(u_1\) и \(u_2\) до и после удара направлены в противоположные стороны (см. рисунок к задаче), получим:</p>
+        \[m_1v_1-m_2v_2=-m_1u_1+m_2u_2.\]
+        <p>Данное уравнение содержит две неизвестных величины. Дополним его законом сохранения энергии, т.к. удар абсолютно упругий. Поскольку на тела не действуют никакие силы, постольку потенциальная энергия тел может быть принята равной нулю. Тогда:</p>
+        \[\cfrac{m_1v_1^2}2+\cfrac{m_2v_2^2}2=\cfrac{m_1u_1^2}2+\cfrac{m_2u_2^2}2\]
+        <p>Преобразуем спроецированное уравнение закона сохранения импульса и уравнение закона сохранения энергии. Собрав в левых частях этих равенств слагаемые, содержащие массу первого тела, а в правых – слагаемые, содержащие массу второго тела, и домножив уравнение закона сохранения энергии на \(2\), получим:</p>
+        \[  m_1(v_1+u_1) = m_2(v_2+u_2); \]
+        \[  m_1(v_1^2 - u^2_1) = m_2(u^2_2-v^2_2). \]
+        <p>Выполнив деление одного уравнения на другое, получим систему двух линейных уравнений относительно двух неизвестных:</p>
+        \[  m_1(v_1+u_1) = m_2(v_2+u_2). \]
+        \[ v_1 - u_1 = v_2 - u_2. \]
+        <p>Решая систему уравнений, найдем значения скоростей тел после соударения:</p>
+        <p>
+            \(  u_1 = \cfrac{(m_1 - m_2)v_1 + 2m_2v_2}{(m_1 + m_2)} = \cfrac{($A - $B) \cdot $C + 2 \cdot $B \cdot $D}{($A + $B)} = $u1 \ м/с \)
+        </p>
+        <p>
+            \(  u_2 = \cfrac{(m_2 - m_1)v_2 + 2m_1v_1}{(m_1 + m_2)} = \cfrac{($B - $A) \cdot $C + 2 \cdot $A \cdot $C}{($A + $B)} = $u2 \ м/с \)
+        </p>
+
+    </solution>
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#vdKOEOsRdC').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#vdKOEOsRdC_message').style.display = 'block';
+        }
+        let incorrect1 = document.querySelector('#bkHuFITFiI').querySelector('.incorrect')
+        if (incorrect1){
+            document.querySelector('#vdKOEOsRdC_message').style.display = 'block';
+        }
+    </script>
+</problem>

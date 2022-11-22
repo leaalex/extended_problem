@@ -1,0 +1,392 @@
+<problem>
+<!--    <script type="text/javascript" src="/static/SelectedTextApp.js"></script>-->
+<!--    <link rel='stylesheet' href="/static/SelectedTextApp.css"/>-->
+    <div>
+        <p>Task 1. Please read the abstract to the scientific article and then mark the blocks in it with the appropriate color, reflecting the following components.</p>
+        <div>
+            <div data-type="SelectedTextApp" class="adv-app" data-initial-data='$student_data'></div>
+        </div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+    </div>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import json
+
+component_types = [
+    {
+        "title": "The relevance of the work",
+        "id": "relevance",
+    },
+    {
+        "title": "The purpose of the work",
+        "id": "purpose",
+    },
+    {
+        "title": "Research methods",
+        "id": "research",
+    },
+    {
+        "title": "Results",
+        "id": "results",
+    },
+    {
+        "title": "Conclusions",
+        "id": "conclusions",
+    }
+]
+
+variant_01 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "relevance",
+        "text": "A fundamental problem in materials science consists in establishing a relationship between the chemical composition, structure, and properties of materials. This issue can be solved through the study of multicomponent systems and the directed synthesis of promising compounds. Of practical interest here are active dielectrics that are based on complex oxide compounds, specifically molybdates. Among complex molybdates and tungstates, ternary caged molybdates of the following structural types are of greatest importance: nasicon, perovskite, langbeinite, etc. Due to their widely varying elemental and quantitative compositions, such molybdates are convenient models for structural and chemical design, as well as the establishment of “composition–structure–properties” genetic relationships. Bismuth-containing complex molybdate systems exhibit the formation of phases having ferro-piezoelectric, ionic, and other properties. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "In this work, the Rb2MoO4–Bi2(MoO4)3–Zr(MoO4)2 ternary salt system was studied for the first time using the method of intersecting sections in the subsolidus region (450–650 ºС). To this end, quasibinary sections were identified; triangulation was performed. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Ternary molybdates Rb5BiZr(MoO4)6 and Rb2BiZr2(MoO4)6,5 were formed in the system using a ceramic technology.",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "These compounds are isostructural to the previously obtained REE molybdates (M5LnZr(MoO4)6) but contain trivalent bismuth instead of rare earth elements. The structure of Rb5BiZr(MoO4)6 was adjusted via the Rietveld refinement technique using the TOPAS 4.2 software package. ",
+    },
+    {
+        "id": "text_05",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "The ternary molybdate crystallizes in a trigonal system, with the following unit cell parameters of the 3c space group: a = 10.7756(2) and c = 39.0464(7) Å. According to the studies of thermal properties exhibited by M5BiZr(MoO4)6, these ternary molybdates undergo the first-order phase transition in the temperature range of 450–600 ºC. The IR and Raman spectra of M5BiZr(MoO4)6 reveal the crystallization of ternary molybdates in the 3c space group. The conducted comparative characterization of M2MoO4–Bi2(MoO4)3–Zr(MoO4)2 ",
+    },
+    {
+        "id": "text_06",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "phase diagrams suggests that the phase equilibria of these systems depend on the nature of molybdates of monovalent elements.",
+    },
+]
+variant_02 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "The article is devoted to the study of the specifics of the semantic deconstruction process of the English-language terminological units of the military sphere in the scientific and popular science texts. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "relevance",
+        "text": "The topicality of the study is conditioned by the lack of linguistic studies of the phenomenon of deconstruction on terminological material as such. Specific mechanisms of semantic deconstruction in the texts of different styles have not been identified and are not ordered, which also requires the attention of linguists. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "The material for the study includes a corpus of the English-language terminological units of the military sphere with a total volume of more than 500 units selected by the continuous selection method from various electronic and printed sources, including scientific and popular science texts on military topics, as well as more than 250 contexts within which the semantics of these units was deconstructed by explication. The selection of text fragments is made from monographs and other literary works of a scientific and popular scientific nature devoted to the history of the emergence and use of various types of weapons, military operations, means and methods of warfare. The main research methods include the method of continuous selection, methods of seminal (component) and definitional analysis, the method of etymological analysis, as well as methods of quantitative calculation. In the course of the work, the analysis of the English-language military terms has been carried out. These terms were deconstructed by explication in the scientific and popular science texts. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "As part of the work, it has been revealed that the deconstruction process follows two main mechanisms – according to the frame structure and according to the script structure. In addition, there is a combined version of the semantic deconstruction process. It has been determined that the cases of the frame and combined semantic deconstruction are the most common, while the cases of deconstruction according to the script structure in its pure form are quite rare. ",
+    },
+    {
+        "id": "text_05",
+        "block_type": "text",
+        "text": "The fact is emphasized that the ",
+    },
+    {
+        "id": "text_06",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "deconstruction of the semantics of a military term occurs to a greater extent in a popular science text as compared to a scientific one.",
+    },
+]
+variant_03 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "The article deals with the socio-economic dynamics of the Russian Arctic in the context of national policy and scientific views on the priorities, tasks, opportunities, and limitations of development. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "relevance",
+        "text": "The fundamental importance and relevance of the presented research is determined by a series of fundamental problems that accompany the processes of development of the Russian Arctic, and the simultaneous increase in the importance of this territory for the national economy of Russia. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "The research methodology consists of three approaches: 1) critical generalization of policies, declarations, historical facts on development processes in the Arctic; 2) surveys of the population of the Arctic region of the Murmansk Oblast; 3) analysis of statistical data characterizing socio-economic processes in the Russian Arctic, including consideration of demographic indicators, identification of trends and dependencies of interaction between the main factors of GRP production (the number of employees, investment in fixed capital). The application of this interdisciplinary toolkit has made it possible to examine the manner in which socioeconomic transformations are taking place in the Russian Arctic. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "It has been established that policy is a determining factor in the development of the Russian Arctic. Long-term changes and contemporary socio-economic features of the development of the Russian Arctic are presented, and considered in close connection with the political attitudes, declarations, and views of scientists. It establishes the consistency of the legal regulation of the region with the priorities and declarations of the main participants of the processes in the Arctic. A positive influence of modern policy on the development of this area has been established, which has tended to reduce demographic losses and to ensure investment growth. At the same time, a number of disruptive aspects of development have been established: that there are significant labour and investment imbalances in some regions of the Russian Arctic; and that there is a strong migratory mood among the most economically active population. ",
+    },
+    {
+        "id": "text_05",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "These findings not only highlight the lack of theoretical development in the field of effective policymaking, but also identify an area for further research. They have important practical implications for identifying and neutralizing risks to the sustainable development of the Russian Arctic.",
+    },
+]
+variant_04 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "This article discusses the processes of moisture intake, redistribution, and consumption within the downy oak forest community, along with their interannual and interseasonal water balance dynamics. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "The study of the water balance components was conducted using a combination of field research methods and geoinformation modeling. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "The indicators having the most tangible impact on the water balance are the amount of precipitation and evapotranspiration. The influence of stemflow and relief features on the redistribution of moisture within the landscape is described. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "The analysis of the inter-annual and intra-annual dynamics of the water balance values allows us to conclude that the downy oak forests of the South-Eastern Crimea are formed under conditions of a negative water balance, which takes positive values only in the winter months. All the analyzed features of the water balance elements form conditions conducive to the displacement of steppe communities by forest species, which is confirmed by the results of field and remote studies.",
+    }
+]
+variant_05 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "The article presents separate formulae that fix the morphological means of expressing the subject and subject-object relations in lyrical poetry. These formulae include personal pronouns with different grammatical characteristics (here the categories of person, number, and case are meant). ",
+    },
+    {
+        "id": "text_02_text",
+        "block_type": "text",
+        "text": "The author ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "performs a linguo-stylistic analysis of texts written by A. S. Pushkin, M. Yu. Lermontov, S. A. Esenin, B. L. Pasternak ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "relying on the experience of studying the ways personal pronouns are semanticised in lyrical poetry. The paper concludes that the lyrical text does not exist outside the pronominal formula which facilitates the disclosure of the subject of enunciation’s life philosophy (psychological state). The article highlights the sequence of personal pronouns or their case forms within the poetic text. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "In the author’s opinion, the variety of pronominal formulae is indicative of the lyrical structure flexibility as it tolerates different variants of pronominal expression of the subject of enunciation and those objects to which he expresses his attitudes.",
+    }
+]
+variant_06 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "The paper is aimed at reviewing the first outcomes of the forced transition to the online higher education within two years of COVID-19 pandemic. The study focuses on advantages and disadvantages of the online education as perceived by the main stakeholders of the education process. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "The author summarizes the results of the large-scale sociological surveys of teachers and students of the Russian universities. These surveys were conducted by the HSE University, Russian Presidential Academy of National Economy and Public Administration, Moscow State University, and RUDN University. New unpublished data from an HSE University Monitoring of Teachers’ and Researchers’ Life conducted in December 2021 is also attracted. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "The author examines contradictory views of teachers and students regarding the distant learning. Special attention is paid to the opportunities and shortages of the online education, comparative quality of distant learning and psychological conditions of students. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "Finally, general conclusions are made with regard to the increasing de-subjectivation of relationships in the teaching process and prospects for the distant learning after the pandemic.",
+    }
+]
+variant_07 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "relevance",
+        "text": "Despite the numerous publications on the implementation of distance technologies, there are practically no studies on the systematic analysis of various forms of video conferencing that support educational technologies and serve as a practical guide for teachers in teacher training. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "The purpose of the study is to analyze the experience of implementing video conferencing in various forms of interaction, to identify and experimentally test the effectiveness of their implementation in the process of professional socialization of student teachers. The study was conducted on the basis of the method of reflexive-system analysis of the implementation of video conferencing in the professional training of student teachers. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "Based on the questionnaire and the method of expert assessments, testing of the level of social and psychological adaptability, professional and behavioral skills, social and emotional comfort of students was implemented. The experiment involved 209 students of the Glazov State Pedagogical Institute and Kazan Federal University. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "As a result of the study, it was revealed that the implementation of the group form of video conferencing significantly increases the involvement of almost all students in active communication activities in the classroom. Communication activity in the implementation of social and educational interaction between small and large groups made it possible to most effectively form professional socialization among students. Statistical analysis showed that it was classes in a remote format using video conferencing in subgroups of 4‒5 students that had the greatest positive effect. ",
+    },
+    {
+        "id": "text_05",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "The conclusions made by the authors contribute to the development of new forms of effective communication through social and educational interaction in the implementation of video conferencing. The materials of the article can be useful in the implementation of teacher education to increase the level of studentsʼ involvement in professional training in the context of distance education.",
+    },
+]
+variant_08 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "According to the data of ground-based high-frequency radio sounding in the summer of 2017 on the Western glacial plateau of Elbrus (Central Caucasus), ",
+    },
+    {
+        "id": "text_02_text",
+        "block_type": "text",
+        "text": "it was found that ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "snow accumulation in the near-top region is characterized by significant variability, and also has seasonal differences. An analysis of the accumulation fields showed that less snow accumulates in the middle part of the plateau than in the eastern and western ones, but the distribution of snow over the plateau area is similar from year to year. In the warm period, snow accumulation is on average greater than in the cold one, and it occurs more evenly over the area of the plateau.",
+    }
+]
+variant_09 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "The article describes the impact of the global trend of digitalization on the most vulnerable category of the population. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "relevance",
+        "text": "The study of the digital divide is a fairly new area of research in the social sciences. Modern technologies are a part of our lives that influence social processes – in particular, it can increase or reduce social inequality. Modern researchers are finding more and more evidence of the growth of relative inequalities in Internet skills and Internet use. In case if the typical user’s “set” is a smartphone, the Internet and a laptop (or computer), the homeless person’s “set of technologies” may be different or not at all. Studies of the digital divide have already been conducted in large cities of socially and economically developed countries. ",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "The object of the study is a group with a low socio-economic status, homeless people, including those who have returned from prison. The study involved 15 respondents from 24 living in the social center at the time of the interview. As a result of the analysis of the collected data, some features of the perception of digital technologies and practices of their use were identified. The peculiarities of perception are combined into a group of discursive patterns, the practice of using digital technologies – into a group of behavioral patterns. ",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": ". A good result of sociological research is the refutation of stereotypes that have developed in society. So, it seems possible to identify two main stereotypes. It is believed that mostly the homeless do not have cell phones, but if they do, it is likely a status thing for them. The second stereotype is associated with the repertoire of digital technologies: homeless people likely use non-personalized technologies due to their marginal position. Both stereotypes have been refuted. ",
+    },
+    {
+        "id": "text_05",
+        "block_type": "selectable",
+        "answer": "conclusions",
+        "text": "The unexpected result of the study indicates its absolute relevance and the prospect of further study, including vulnerable groups of the population. The prospect of future research is the continuation of the study on the example of other organizations and the study of other categories of homeless people (applying for overnight accommodation for one night or not visiting social organizations). It also should be noted, that the possibility of developing new social work practices taking into account the results of the study.",
+    },
+]
+variant_10 = [
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "Twelve original parental forms of raspberry, as well as their nine progeny combinations of controlled breeding, were evaluated for the main performance characteristics. The work was carried out at the collection and trial gardens of the Kokin testing station of the FSBSO ARHCBAN in 2019-2021. The shoot loading was determined under field conditions by counting the fruiting branches on a stem and the average number of berries per 1 fruiting branch. The original forms were subjected to triple analysis. The average mass of berries was determined by measuring no less than 100 fruits in each analysis using the SCC-750 electronic balance. Hybrid seedlings were counted by bush, and at least 30 fruits were collected from each plant to determine the average berry mass. The weather conditions during the study period varied considerably. This ensured a more accurate evaluation of the studied raspberry material for its performance characteristics. ",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Several varieties were differentiated by the following parameters: Smile, Gusar, Lavina, Skromnitsa and selected forms 8-6-3 and 11-126-1 by the number of laterals per stem (20 and more); Brigantina and selected form 11-126-1 by the number of fruits per lateral (16 berries per fruiting branch); Cowichan, Lavina, Phenomen by fruit mass (over 3.5 g). The negative association of berry mass with the number of berries per fruiting branch was confirmed. It was established that the berry mass is associated by 25 % with the variations in fruit number on the lateral. Analysing the hybrid progeny allowed the most promising breeding combinations to be identified based on performance characteristics. When breeding for improving the number of laterals per stem, the families Gusar×8-6-3, Gusar×Volnitsa, 8-6-3×Cowichan, 8-6-3×Smile deserve special attention; Gusar×Volnitsa, 8-6-3×Smile, 8-6-3×D-1-1, Skromnitsa×Phenomenon and 18-11-2×11-126-1 when breeding for improving polycarpic yield; Skromnitsa×Phenomenon and Brigantina×Lavina when breeding for improving the size of a fruit. Among the hybrid progeny of some breeding combinations, the genotypes 2-58-2, 2-58-3 (18-11-2×11-126-1), 2-60-1, 2-61-2 (Hussar×8-6-3), 2-59-1, 2-59-2 (Skromnitsa×Phenomenon), 2-83-1 (Brigantina×Lavina), and 2-60-2 (8-6-3×Cowichan) were obtained that exhibit several performance characteristics and represent novel material in raspberry breeding for yield improvement.",
+    }
+]
+
+
+data = random.choice([variant_01, variant_02, variant_03, variant_04, variant_05, variant_06, variant_07, variant_08, variant_09, variant_10])
+data = variant_10
+student_texts = []
+
+for block in data:
+    if "id" in block.keys():
+        student_texts.append({
+            "id": block["id"],
+            "block_type": block["block_type"],
+            "text": block["text"]
+        })
+    else:
+        student_texts.append({
+            "text": block["text"]
+        })
+
+student_data = {
+    "component_types": component_types,
+    "student_texts": student_texts,
+    "modal_header": "Components:",
+    "cancel_component_title": "Remove selection"
+}
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    print(student_answer)
+    correct_items = [elem for elem in data if elem["block_type"] == 'selectable']
+    max_grade = len(correct_items)
+    feedback = {
+        "correct": [],
+        "incorrect": []
+    }
+    grade = 0
+    for item in correct_items:
+        if item['id'] in student_answer.keys():
+            if item['answer'] == student_answer[item['id']]:
+                grade = grade + 1
+                feedback["correct"].append(item['id'])
+            else:
+                feedback["incorrect"].append(item['id'])
+        else:
+            feedback["incorrect"].append(item['id'])
+
+    print(grade)
+    print(feedback)
+
+    result_grade = grade/max_grade
+    if result_grade == 1:
+        ok = True
+    elif result_grade == 0:
+        ok = False
+    else:
+        ok = 'Partial'
+
+    return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+</script>
+</problem>

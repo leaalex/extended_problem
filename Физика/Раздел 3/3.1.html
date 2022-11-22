@@ -1,0 +1,94 @@
+<problem>
+<script type="loncapa/python">
+import random
+
+B = random.choice([10, 15, 20, 25, 30, 35, 40, 45, 50])
+A = round(10 * 6.37 * B)
+
+</script>
+<style type="text/css">
+.chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+    display: none !important;
+}
+
+.chemical-task p.answer {
+    display: none !important;
+}
+
+.chemical-task input [type=input] {
+    min-width: 100px !important;
+}
+
+.chemical-task .sign-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.message {
+    display: none;
+}
+</style>
+    <h4><strong>Дано: </strong></h4>
+    <p>Из бесконечности на поверхность Земли падает метеорит массой \(m = $B \ кг\). Определите работу, которая при этом будет совершена силами гравитационного поля Земли. Ускорение свободного падения у поверхности Земли и ее радиус считать известными и равными соответственно \(g = 10 м/с^2\), \( R = 6.37 \cdot 10^6 \ м\).</p>
+    <h4><strong>Рекомендации:</strong></h4>
+    <p>Воспользуйтесь определением работы переменной силы, а также выражением гравитационной силы взаимодействия метеорита с Землей. Вычислите работу и выразите ее в МДж (МегаДжоулях), округлив <strong>до целого</strong>.</p>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(A = \)
+                </td>
+                <td  id="icazxXqL1v">
+                    <numericalresponse answer="$A">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    МДж
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="icazxXqL1v_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Работа переменной силы определяется по формуле:</p>
+        \[ A = \int\limits_1^2\overrightarrow F \cdot d\overrightarrow{r}. \]
+        <p>Так как метеорит движется из бесконечности на поверхность земли соответственно:</p>
+        \[ A = \int\limits_\infty^R\overrightarrow F \cdot d\overrightarrow{r}. \]
+        <p>Сила взаимодействия метеорита с Землей определяется по формуле:</p>
+        \[ F =  G\cfrac{mM}{r^2}, \]
+        <p>где \(G\) — гравитационная постоянная, \(M\) — масса Земли, \(r\) — расстояние от метеорита до Земли, \(m\) — масса метеорита.</p>
+        <p>Подставляя выражение для гравитационной силы в формулу для определения работы, вычислите определенный интеграл. Затем воспользуйтесь формулой ускорения свободного падения у поверхности Земли:</p>
+        \[g \ = \ G\cfrac M{R^2},\]
+        <p>и вычислите работу, выразив ее значение в МДж (мегаджоулях) и округлив <strong>до целого</strong>.</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Работа переменной силы определяется по формуле:</p>
+        \[ A = \int\limits_1^2\overrightarrow F \cdot d\overrightarrow{r}. \]
+        <p>Так как метеорит движется из бесконечности на поверхность земли соответственно:</p>
+        \[ A = \int\limits_\infty^R\overrightarrow F \cdot d\overrightarrow{r}. \]
+        <p>Сила взаимодействия метеорита с Землей определяется по формуле:</p>
+        \[ F =  G\cfrac{mM}{r^2}, \]
+        <p>Учтем, что вектора \(\overrightarrow F\) и \(d\overrightarrow{r}\) направлены в противоположно друг другу, тогда:</p>
+        \[ A = \int\limits_\infty^R\overrightarrow F \cdot d\overrightarrow{r} = - \int\limits_\infty^RF \cdot dr. \]
+        <p>Подставляя выражение для гравитационной силы в формулу для  определения работы, вычислим определенный интеграл.</p>
+        \[ A = -\int\limits_\infty^RF \cdot dr = -\int\limits_\infty^RG\cfrac{mM}{r^2} \cdot dr = G\cfrac{mM}{R}. \]
+        <p>Воспользуемся формулой ускорения свободного падения у поверхности Земли:</p>
+        \[ g = G\cfrac{M}{R^2}. \]
+        <p>Выразив массу Земли: \(M = \cfrac{gR^2}{G}\) и подставляя ее в выражение для работы, получим:</p>
+        \[A = G\cfrac{mM}{R} = G\cfrac{m}{R}\cfrac{gR^2}{G} = gRm\]
+        <p>\(A = gRm = 10 \cdot 6.37 \cdot $B =  $A \ МДж \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#icazxXqL1v').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#icazxXqL1v_message').style.display = 'block';
+        }
+    </script>
+</problem>

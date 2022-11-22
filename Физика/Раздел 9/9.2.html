@@ -1,0 +1,92 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+A = round(random.randint(15, 30) * 0.1,1)
+answer = round(math.sqrt(1 - 1/float((A*A))), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Какую долю от скорости света должна составлять скорость позитрона, чтобы его релятивистский импульс в \(n = $A\) раза превышал его импульс, рассчитанный по формулам классической механики?</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Запишите формулы релятивистского импульса частицы и импульса, рассчитанного в рамках классической механики. Учтите, что согласно классической механики, масса тела не зависит от его скорости. Выразите отношение скорости частицы к скорости света (при вычислении значения квадратного корня округлять <strong>до сотых</strong>)</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\frac{v}{c} = \)
+                </td>
+                <td  id="cWQgkCVqTF">
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="cWQgkCVqTF_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Импульс \(p\) движущейся с релятивистской скоростью частицы связан с ее скоростью соотношением \(p_{рел} = mv\), где \(m\) – масса движущейся частицы, которая связана с массой покоя частицы \(m_0\) соотношением:</p>
+        \[m = \frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }}\]
+         В свою очередь, импульс частицы, рассчитанный в рамках классической механики, имеет вид:
+        \[ p_{кл} = m_0v.\]
+        <p>Учитывая, что \(p_{рел} = n \cdot p_{кл}\), выразите и рассчитайте отношение скорости частицы к скорости света (при вычислении значения квадратного корня округлять <strong>до сотых</strong>).</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+
+        <p>Импульс \(p\) движущейся с релятивистской скоростью частицы связан с ее скоростью соотношением \(p_{рел} = mv\), где \(m\) – масса движущейся частицы, которая связана с массой покоя частицы \(m_0\) соотношением:</p>
+        \[m = \frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }}\]
+        В свою очередь, импульс частицы, рассчитанный в рамках классической механики, имеет вид:
+        \[ p_{кл} = m_0v.\]
+        <p>Учтем, что \(p_{рел} = n \cdot p_{кл}\), тогда:</p>
+
+        <p> \(\frac{m_0v}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }} = n \cdot m_0v \  \Rightarrow \
+            n =  \frac{1}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }} \  \Rightarrow \
+            1 - \left( \frac{v}{c} \right) ^2  = \frac{1}{n^2}  \  \Rightarrow \
+            \frac{v}{c} = \sqrt{1 - \frac{1}{n^2}}
+            \)   </p>
+        <p>\( \frac{v}{c} = \sqrt{1 - \frac{1}{n^2} } \)</p>
+        <p>\( \frac{v}{c} = \sqrt{1 - \frac{1}{($A)^2} } = $answer \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#cWQgkCVqTF').querySelector('.incorrect')
+        if (incorrect){
+                document.querySelector('#cWQgkCVqTF_message').style.display = 'block';
+        }
+    </script>
+</problem>

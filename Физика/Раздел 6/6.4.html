@@ -1,0 +1,91 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.randint(25, 35)
+b = round(random.randint(8, 18) * 0.1, 1)
+c = random.choice([8, 10, 12, 14, 16, 18])
+
+upsilon = round((a/(2 * 3.14 * 100)) * math.sqrt((2 * 10 * b)/(c * 0.02)), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+
+        <p>Трактор, прошедший по грунтовой дороге, оставил следы в виде ряда углублений, находящихся на расстоянии \(l = $a \ см\) друг от друга. По этой дороге покатили детскую коляску, имеющую две одинаковые рессоры, каждая из которых прогибается на \(x_{0} = 2 \ см\) под действием груза \(m_0 = $b \ кг\). С какой скоростью \(V\) катили коляску, если от толчков на углублениях она, попав в резонанс, начала сильно раскачиваться? Масса коляски \(M = $c \ кг\). Ускорение свободного падения принять равным \(10 \ м/c^2\) .</p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Необходимо учесть, что коляска начнет сильно раскачиваться при условии, что наблюдается явление резонанса, т.е. если период собственных колебаний коляски равен промежутку времени между двумя последовательными толчками коляски на углублениях в грунте. Далее воспользуйтесь формулами для определения времени при равномерном движении и периода собственных колебаний пружинного маятника.</p>
+        <p>Введите ответ, округлив его <strong>до сотых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\upsilon = \)
+                </td>
+                <td  id="fTqrfyQpnb">
+                    <numericalresponse answer="$upsilon">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>м/с</td>
+            </tr>
+        </table>
+    </div>
+    <div id="fTqrfyQpnb_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Период собственных колебаний коляски определяется по формуле \( T = 2 \pi \sqrt{\frac{m}{k}} \), где масса \(m=\frac{M}{2}\).</p>
+
+        <p>Чтоб найти коэффициент жесткости воспользуйтесь тем, что рессоры прогибаются на величину \(x_0\) под действием груза массы \(m_0\), т.е. \(kx_0 = m_0g\).</p>
+        <p>Время между двумя последовательными толчками можно определить, используя формулу для пути при равномерном движении \(l = \upsilon \cdot t\).</p>
+        <p>Выразите период и время, приравняв эти формулы, получите выражение для скорости, рассчитайте.</p>
+        <p>Введите ответ, округлив его до сотых.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Период собственных колебаний коляски определяется по формуле \(T = 2 \pi \sqrt{\frac{m}{k}}\), где масса \(m = \frac{M}{2}\). Коэффициент жесткости определим из условия, что рессоры прогибаются на величину \(x_0\) под действием груза массы \(m_0\), т.е.</p>
+        \[ kx_0 = m_0g, \]
+        \[ k = \frac{m_0g}{x_0}. \]
+        <p>Используя формулу для пути при равномерном движении, выразим время между двумя последовательными толчками \(t = \cfrac{l}{\upsilon}\).</p>
+        <p>Приравниваем период к времени между двумя последовательными толчками:</p>
+        \[ 2 \pi \sqrt{\cfrac{Mx_0}{2m_0g}} = \frac{l}{\upsilon}. \]
+        <p>Выражаем искомую скорость и рассчитываем, не забывая сделать перевод единиц в систему СИ:</p>
+        <p>\( \upsilon = \cfrac{l}{2 \pi} \sqrt{\cfrac{Mx_0}{2m_0g}} = \cfrac{$a}{2 \cdot 3.14 \cdot 100} \sqrt{\cfrac{2 \cdot 10 \cdot $b}{$c \cdot 0.02}} = $upsilon \ м/с \)</p>
+
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#fTqrfyQpnb').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#fTqrfyQpnb_message').style.display = 'block';
+        }
+    </script>
+</problem>

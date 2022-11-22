@@ -1,0 +1,88 @@
+<problem>
+<script type="loncapa/python">
+import random
+
+a = random.choice([0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+b = random.randint(1, 6)
+F = round(3*a, 1)
+
+</script>
+<style type="text/css">
+    .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+        display: none !important;
+    }
+
+    .chemical-task p.answer {
+        display: none !important;
+    }
+
+    .chemical-task input [type=input] {
+        min-width: 100px !important;
+    }
+
+    .chemical-task .sign-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .message {
+        display: none;
+    }
+</style>
+    <div>
+        <h4><strong>Дано:</strong></h4>
+        <p>Потенциальная энергия частицы, находящейся в силовом поле изменяется по закону \(W_{p} = -ax^3 + b\). Найдите величину консервативной силы, действующей на частицу в точке с координатой \(x = 1 \ м\).</p>
+        <p>\(a = $a\),</p>
+        <p>\(b = $b\).</p>
+
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользовавшись формулой, выражающей связь между консервативной силой и потенциальной энергией, определите значение силы в точке с координатой \(x = 1 \ м\), округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(F = \)
+                </td>
+                <td  id="icazxXqL1v">
+                    <numericalresponse answer="$F">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                  Н
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="icazxXqL1v_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Воспользуйтесь формулой, выражающей связь между консервативной силой и потенциальной энергии. </p>
+        \[ \overrightarrow F=-\overrightarrow\nabla\cdot W_p=-\left(\frac{\partial W_p}{\partial x}\cdot\overrightarrow i+\frac{\partial W_p}{\partial y}\cdot\overrightarrow i+\frac{\partial W_p}{\partial z}\cdot\overrightarrow k\right) \]
+        <p>где \( F_x=-\cfrac{\partial W_p}{\partial x};F_y=-\cfrac{\partial W_p}{\partial y};F_z=-\cfrac{\partial W_p}{\partial z} \) — частные производные потенциальной энергии по соответствующим переменным.</p>
+        <p>В нашем случае потенциальная энергия зависит только от одной переменной, поэтому сила имеет только составляющую на ось \(OX \ F_x=-\cfrac{\partial W_p}{\partial x}=(-ax^3+b)'= \ ...\)</p>
+        <p>Возьмите производную и определите значение силы в точке с координатой \(x = 1 \ м\), округлив его <strong>до десятых</strong>.</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Формула, выражающая связь между консервативной силой и потенциальной энергией имеет вид:</p>
+        \[ \overrightarrow F=-\overrightarrow\nabla\cdot W_p=-\left(\frac{\partial W_p}{\partial x}\cdot\overrightarrow i+\frac{\partial W_p}{\partial y}\cdot\overrightarrow i+\frac{\partial W_p}{\partial z}\cdot\overrightarrow k\right) \]
+        <p>где \( F_x=-\cfrac{\partial W_p}{\partial x};F_y=-\cfrac{\partial W_p}{\partial y};F_z=-\cfrac{\partial W_p}{\partial z} \) — частные производные потенциальной энергии по соответствующим переменным.</p>
+        <p>В нашем случае потенциальная энергия зависит только от одной переменной, поэтому сила имеет только составляющую на ось \(OX \ F_x=-\cfrac{\partial W_p}{\partial x}=(-ax^3+b)'= 3ax^2.\)</p>
+        <p>Подставляем из условия задачи, координату точки \(x = 1 \ м\) и получим:</p>
+        \[F = 3a\]
+        \[F = 3 \cdot $a = $F \ Н\]
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#icazxXqL1v').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#icazxXqL1v_message').style.display = 'block';
+        }
+    </script>
+</problem>

@@ -1,0 +1,90 @@
+<problem>
+    <script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.randint(12, 24)
+
+t = round(a/6,1)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Через какое время от начала движения, точка, совершающая гармоническое колебание по закону косинуса, сместится от положения равновесия на половину амплитуды? Период колебаний \(T = $a \ с\), начальная фаза \(\varphi_0 = 0\).</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь уравнением гармонических колебаний, учитывая, что в рассматриваемый момент времени координата тела равна половине амплитуды. Выразите время.</p>
+        <p>Введите ответ, округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(t = \)
+                </td>
+                <td  id="fTqrfyQpnb">
+                    <numericalresponse answer="$t">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                 с
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="fTqrfyQpnb_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Уравнение гармонических колебаний:</p>
+        \[ x = x_{max} cos(\omega_0 t + \varphi_0), \]
+        <p>где циклическая частота собственных колебаний определяется по формуле  \(\omega_0 = \frac{2 \pi}{T}\), координата точки и начальная фаза согласно условию соответственно равны \(x = \frac{x_{max}}{2}\), \( \varphi_0 = 0\).</p>
+        <p>Из полученного уравнения выразите время. Введите ответ, округлив его до десятых.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Уравнение гармонических колебаний:</p>
+        \[ x = x_{max} cos(\omega_0 t + \varphi_0), \]
+        <p>где циклическая частота собственных колебаний определяется по формуле  \(\omega_0 = \frac{2 \pi}{T}\), координата точки и начальная фаза согласно условию соответственно равны \(x = \frac{x_{max}}{2}\), \( \varphi_0 = 0\).</p>
+        <p>После подстановки получим:</p>
+        \[ \frac{x_{max}}{2} = x_{max} cos(\frac{2 \pi}{T} t + 0) \]
+        <p>Решаем уравнение:</p>
+        \[ cos\left(\frac{2 \pi}{T}t\right) = \frac{1}{2} \]
+        \[ \frac{2 \pi}{T} t = \frac{\pi}{3} \]
+        \[ t = \frac{T}{6} \]
+        <p>\( t = \cfrac{$a}{6} = $t \ с \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#fTqrfyQpnb').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#fTqrfyQpnb_message').style.display = 'block';
+        }
+    </script>
+</problem>

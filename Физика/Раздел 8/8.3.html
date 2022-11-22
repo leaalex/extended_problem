@@ -1,0 +1,84 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.randint(89, 99)
+a = 99
+u = round(1/math.sqrt(1 - math.pow(a/100, 2)), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Во сколько раз увеличивается продолжительность существования нестабильной частицы по часам неподвижного наблюдателя, если она начинает двигаться со скоростью, составляющей \($a \%\) от скорости света?</p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь следствием из преобразований Лоренца.</p>
+        <p>Введите ответ, округлив его <strong>до сотых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\cfrac{\Delta{t}}{\Delta{t_0}} = \)
+                </td>
+                <td  id="lEeQQwFoJh">
+                    <numericalresponse answer="$u">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="lEeQQwFoJh_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Воспользуйтесь формулой, связывающей время существования движущейся частицы с временем существования частицы по часам неподвижного наблюдателя.</p>
+        <p>Введите ответ, округлив его до сотых.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Из преобразований Лоренца, промежуток времени в системе отсчета, движущейся со скоростью \(V\), связан с промежутком времени в неподвижной системе, следующим соотношением:</p>
+
+        \[\Delta t = \cfrac{\Delta t_0}{\sqrt{1 - \left( \frac{V}{c} \right)^2}}.\]
+
+
+        <p>Используя вышеуказанную формулу, найдем искомое соотношение:</p>
+
+        <p>\( \cfrac{\Delta{t}}{\Delta{t_0}} = \cfrac{1}{\sqrt{1 - \left( \frac{V}{c} \right)^2}} = \cfrac{1}{\sqrt{1 - \left( \frac{$a \cdot c}{100 \cdot c} \right)^2}} = \cfrac{1}{\sqrt{1 - \left( \frac{$a}{100} \right)^2}} = $u   \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#lEeQQwFoJh').querySelector('.incorrect')
+        if (incorrect){
+                document.querySelector('#lEeQQwFoJh_message').style.display = 'block';
+        }
+    </script>
+</problem>

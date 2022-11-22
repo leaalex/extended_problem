@@ -1,0 +1,82 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = round(random.randint(1, 9) * 0.1,1)
+
+u = round((6*a)/(1 + math.pow(a, 2)), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Две частицы движутся навстречу друг другу частицы со скоростями \(|V| = $a \cdot c\), где \(c\) – скорость света в вакууме. Определить относительную скорость \(u_{21}\) сближения частиц в системе отсчета, связанной с одной из частиц. Скорость света в вакууме принять равной \(3 \cdot 10^8\) м/с.</p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Необходимо обратить внимание на то, что скорости частиц соизмеримы со скоростью света, а значит для решения задачи нужно воспользоваться формулой сложения скоростей релятивистской механики.</p>
+        <p>Введите ответ, округлив его <strong>до сотых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(u_{12} = \)
+                </td>
+                <td  id="lEeQQwFoJh">
+                    <numericalresponse answer="$u">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    \(\cdot 10^8 \ м/с.\)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="lEeQQwFoJh_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Воспользуйтесь формулой сложения скоростей:</p>
+        \[u_{12} = \cfrac{V_1 + V_2}{1 + \cfrac{V_1 \cdot V_2}{c^2}}\]
+        <p>Введите ответ, округлив его до сотых.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>По условию задачи, скорости частиц одинаковы: \(V_1 = V_2 = $a \cdot c\), где \(c\) – скорость света в вакууме. Воспользуемся формулой сложения скоростей:</p>
+        \[u_{12} = \cfrac{V_1 + V_2}{1 + \cfrac{V_1 \cdot V_2}{c^2}}\]
+        <p>Подставив имеющиеся значения скоростей, получаем:</p>
+        <p>\( u_{12} = \cfrac{$ac + $ac}{1 + \cfrac{$ac \cdot $ac}{c^2}} = \cfrac{2 \cdot $ac}{1 + \cfrac{($a)^2 \cdot c^2}{c^2}} = \cfrac{2 \cdot $ac}{1 + ($a)^2} = \cfrac{6 \cdot $a}{1 + ($a)^2} \cdot 10^8 = $u \cdot 10^8 \ м/с \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#lEeQQwFoJh').querySelector('.incorrect')
+        if (incorrect){
+                document.querySelector('#lEeQQwFoJh_message').style.display = 'block';
+        }
+    </script>
+</problem>

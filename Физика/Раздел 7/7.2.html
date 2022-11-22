@@ -1,0 +1,98 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.randint(10, 20)
+b = round(random.randint(10, 20) * 0.1, 1)
+c = random.randint(10, 20)
+d = random.randint(30, 40)
+
+a = 15
+b = 1.2
+c = 20
+d = 30
+
+
+phi = round((2*3.14)/(a*b)*(d-c), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Поперечная волна распространяется вдоль упругого шнура со скоростью \(V = $a \ м/с\). Период колебания точек шнура \(T = $b \ с\). Определить разность фаз \(\Delta \varphi\) колебаний двух точек, лежащих на луче и отстоящих от источника волн на расстояниях \(x_1 = $c \ м\), \(x_2 = $d \ м\). </p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь выражением, определяющем фазу колебаний точек волны и найдите разность фаз колебаний двух точек, лежащих на луче. Также воспользуйтесь выражением, связывающем волновое число со скоростью волны и периодом колебаний. Принять значение \(\pi = 3.14\).</p>
+        <p>Введите ответ, округлив его <strong>до сотых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(l = \)
+                </td>
+                <td  id="bUWsNGKeEc">
+                    <numericalresponse answer="$phi">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="bUWsNGKeEc_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+
+        <p>Фаза колебаний точек волны определяется выражением:</p>
+        \[ \varphi = \omega \cdot t - k \cdot x + \varphi_0.\]
+        <p>Для определения разности фаз воспользуйтесь вышеприведенной формулой, также определите значение коэффициента \(k\).</p>
+        <p>Коэффициент \(k\) (волновое число) связано с длиной волны:</p>
+        \[k = \frac{2 \cdot \pi}{\lambda}\]
+        <p>Рассчитайте разность фаз, выразив длину волны через формулу-определение. Принять значение \(\pi = 3.14\).</p>
+        <p>Введите ответ, округлив его <strong>до сотых</strong>.</p>
+
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Фаза колебаний первой точки определяется выражением: \(\varphi_1 = \omega \cdot t - k \cdot x_1 + \varphi_0\), для второй точки соответственно - \(\varphi_2 = \omega \cdot t - k \cdot x_2 + \varphi_0\). Разность фаз тогда:</p>
+        \[\Delta \varphi = \varphi_1 - \varphi_2 = \omega \cdot t - k \cdot x_1 + \varphi_0 - (\omega \cdot t - k \cdot x_2 + \varphi_0) = k \cdot (x_2 - x_1). \]
+        <p>Волновое число \(k = \frac{2 \cdot \pi}{\lambda} \), где \(\lambda\) – длина волны. Из определения длины волны \(\lambda = V \cdot T\).</p>
+        <p>Подставив выражение для волнового числа, получим окончательную формулу для определения разности фаз:</p>
+        <p>\( \Delta \varphi = \cfrac{2 \cdot \pi}{V \cdot T} \cdot (x_2 - x_1) = \cfrac{2 \cdot 3.14}{$a \cdot $b} \cdot ($d - $c) = $phi\).</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#bUWsNGKeEc').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#bUWsNGKeEc_message').style.display = 'block';
+        }
+    </script>
+</problem>

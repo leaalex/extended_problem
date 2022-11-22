@@ -1,0 +1,99 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+A = round(random.randint(15, 30) * 0.1,1)
+k = round(math.sqrt(1 - 1/float((A*A))), 3)
+v = round(300000 * k, 3)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <h4><strong>Дано: </strong></h4>
+        <p>С какой скоростью должен двигаться электрон, чтобы его полная энергия была в \(n = $A\) раза больше энергии покоя? Скорость света в вакууме \(c = 300000 \ км/с\). Полученное значение скорости электрона выразить в км/c и округлить до целых.</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь формулой Эйнштейна для полной энергии, движущейся с релятивистской скоростью частицы, а также формулой энергии покоя. Запишите формулу, выражающую связь массы движущейся с релятивистской скоростью частицы с ее массой покоя. Введите ответ в км/с, округлив его до целых (при вычислении значения квадратного корня округлять <strong>до тысячных</strong>)</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(v = \)
+                </td>
+                <td  id="cWQgkCVqTF">
+                    <numericalresponse answer="$v">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    \( км/с \)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="cWQgkCVqTF_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Согласно формуле Эйнштейна, полная энергия движущейся с релятивистской скоростью частицы определяется выражением \(E=mc^2\).</p>
+        <p>Энергия покоя соответственно \(E_0 = m_0 c^2 \).</p>
+        <p>Масса \(m\) движущийся с релятивистской скоростью частицы связана с ее массой покоя \(m_0\) соотношением:</p>
+        \[m = \frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }}\]
+        <p>Используя вышеперечисленные формулы и условие задачи выразите и рассчитайте скорость \(v\) частицы. Полученное значение выразите в км/с и округлите его до целых  (при вычислениях значение квадратного корня округлять <strong>до тысячных</strong>).</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Согласно формуле Эйнштейна, полная энергия движущейся с релятивистской скоростью частицы определяется выражением \(E=mc^2\).</p>
+        <p>Энергия покоя соответственно \(E_0 = m_0 c^2 \).</p>
+        <p>Масса \(m\) движущийся с релятивистской скоростью частицы связана с ее массой покоя \(m_0\) соотношением:</p>
+        \[m = \frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }}\]
+
+        <p>Учтем, что \(E = n \cdot E_0\). Тогда: </p>
+
+        \[ mc^2 = n \cdot m_0c^2 \]
+        \[\frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }} c^2 = n \cdot m_0c^2 \]
+
+
+        <p> \(n = \frac{1}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }} \  \Rightarrow \
+            1 - \left( \frac{v}{c} \right)^2 = \frac{1}{n^2} \  \Rightarrow \
+            \frac{v}{c} = \sqrt{1 - \frac{1}{n^2} } \  \Rightarrow \
+            v = c \cdot \sqrt{1 - \frac{1}{n^2} }
+            \)   </p>
+        <p>\( v = c \cdot \sqrt{1 - \frac{1}{n^2} } \)</p>
+        <p>\( v = 300000 \cdot \sqrt{1 - \frac{1}{$A^2} } = 300000 \cdot $k = $v \ км/с \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#cWQgkCVqTF').querySelector('.incorrect')
+        if (incorrect){
+                document.querySelector('#cWQgkCVqTF_message').style.display = 'block';
+        }
+    </script>
+</problem>

@@ -1,0 +1,91 @@
+<problem>
+    <script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.choice([1, 1.5, 2, 2.5, 3, 3.5, 4])
+c = random.choice([2, 2.5, 3, 3.5, 4])
+b = round(random.randint(5, 15) * 0.1, 1)
+
+l = round((b*a)/c * 60,1)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Пароход, проходящий по озеру, возбудил волну. Волна дошла до берега через \($a\) минут. Расстояние между соседними «горбами» волны равно \($b\) м, время между двумя последовательными ударами волны о берег равно \($c\) с. Каково расстояние \(l\) от берега до парохода?</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь определениями длины волны и периода, а также формулами для равномерного движения. Связав формулы, определяющие эти величины, получите выражение, определяющее искомое расстояние. Сделайте перевод единиц в систему СИ. Рассчитайте. Введите ответ, округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(l = \)
+                </td>
+                <td  id="bUWsNGKeEc">
+                    <numericalresponse answer="$l">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    м
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="bUWsNGKeEc_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>По определению, длина волны — это минимальное расстояние между точками волны, колеблющимися в одинаковой фазе, таким образом, расстояние \($b\) м между соседними «горбами» волны и есть длина волны. Период волны – время одного полного колебания точки волны, т.е. время между двумя последовательными ударами волны о берег – это период волны. Волна распространяется равномерно, а значит расстояние можно найти как произведение скорости волны на известное время ее распространения. Скорость волны выразите из связи длины волны и периода.</p>
+        <p>Связав формулы получите выражение, определяющее искомое расстояние. Сделайте перевод единиц в систему СИ. Рассчитайте. Введите ответ, округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+
+        Длина волны – это расстояние, которое проходит волна за время равное периоду:
+        \[ \lambda = v \cdot T, \]
+        из этой формулы выражаем скорость волны:
+        \[ v = \frac{\lambda}{T}. \]
+
+        Искомое расстояние находим, используя формулу для равномерного, прямолинейного движения: \( l = v \cdot t\). Подставляем выражение, определяющее скорость волны и получаем окончательную формулу:
+        \[ l = \frac{\lambda}{T} \cdot t. \]
+        \[ l = \frac{$b \cdot $a}{$c} \cdot 60 = $l \ м. \]
+
+        <p></p>
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#bUWsNGKeEc').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#bUWsNGKeEc_message').style.display = 'block';
+        }
+    </script>
+</problem>

@@ -1,0 +1,94 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+
+A = random.randint(2, 30)
+B = random.randint(10, 100) * 10
+
+M = round(B/float((6.28 * A)), 1)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Якорь двигателя вращается с частотой \(n = $A \ об/с\).  Чему равен вращающий момент \(M\), если двигатель развивает мощность \(P = $B \ Вт\)? (при расчетах принять, что число \(\pi = 3.14\))</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользовавшись формулами – определениями мгновенной мощности, элементарной работы при вращательном движении, выразите мощность двигателя, через вращающий момент и угловую скорость. Воспользуйтесь формулой, связывающей угловую скорость с частотой вращения, и рассчитайте вращающий момент (при расчетах принять, что число \(\pi = 3.14\)).</p>
+        <p>Введите ответ, округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(M = \)
+                </td>
+                <td  id="naieMBDwPT">
+                    <numericalresponse answer="$M">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    Н∙м
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="naieMBDwPT_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Мощность характеризует быстроту совершения работы, поэтому:</p>
+        \[ P = \frac{dA}{dt}, \]
+        <p>где \(d A = Md \varphi \) – элементарная работа при вращательном движении.</p>
+        <p>В свою очередь, угловая скорость равна первой производной от угла поворота по времени:</p>
+        \[ \omega = \cfrac{d \varphi}{dt}, \]
+        <p>Запишите формулу, связывающую угловую скорость \(\omega\) с частотой вращения \(n\), и подставив все величины в формулу для мощности, выразите из нее вращающий момент \(M\) (при расчетах принять, \(\pi = 3.14\)). Введите ответ, округлив его <strong>до десятых</strong>.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Мощность характеризует быстроту совершения работы, поэтому:</p>
+        \[ P = \frac{dA}{dt}, \]
+        <p>где \(d A = Md \varphi \) – элементарная работа при вращательном движении.</p>
+        <p>В свою очередь, угловая скорость равна первой производной от угла поворота по времени:</p>
+        \[ \omega = \cfrac{d \varphi}{dt}, \]
+
+        <p>Угловая скорость \(\omega\) связана с частотой вращения \(n\) соотношением:</p>
+        \[ \omega = 2 \pi n. \]
+        <p>Подставляя все в формулу для мощности, имеем:</p>
+        \[ P = \frac{dA}{dt} = \cfrac{ M d \varphi}{dt} = M \omega = 2M \pi n, \]
+        <p>откуда, </p>
+        <p>\( M = \cfrac{P}{2 \pi n} = \cfrac{$B}{6.28 \cdot $A} = $M \ Н \cdot м\)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#naieMBDwPT').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#naieMBDwPT_message').style.display = 'block';
+        }
+    </script>
+</problem>

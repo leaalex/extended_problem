@@ -1,0 +1,90 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+
+A = round(random.randint(5, 100) * 0.1, 1)
+B = round(random.randint(2, 80) * 0.1, 1)
+A = 2
+B = 5
+W = round((3 * A * math.pow(B, 2))/4, 1)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Диск массой \(m = $A \ кг\) катится без скольжения по горизонтальной плоскости со скоростью \(\upsilon = $B \ м/с\). Найти кинетическую энергию диска.</p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>При решении задачи учтите, что кинетическая энергия катящегося тела складывается из кинетической энергии поступательного движения и кинетической энергии его вращательного движения. Рассчитайте кинетическую энергию диска.</p>
+        <p>Введите ответ, округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(W_k = \)
+                </td>
+                <td  id="naieMBDwPT">
+                    <numericalresponse answer="$W">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                   Дж
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="naieMBDwPT_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Кинетическая энергия катящегося тела складывается из кинетической энергии поступательного движения и кинетической энергии его вращательного движения:</p>
+        \[ W_{к} = W_{к_{поступ}} + W_{к_{вращат}}, \]
+        <p>где \( W_{к_{поступ}} = \cfrac{m \upsilon^2}{2}, \ W_{к_{вращ}} = \cfrac{I \omega^2}{2}.  \)</p>
+        <p>Запишите формулу для момента инерции \(I\) диска и формулу, связывающую линейную скорость \(\upsilon\), с угловой скоростью \(\omega\). Подставьте все в формулу для кинетической энергии и рассчитайте ее.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Кинетическая энергия катящегося тела складывается из кинетической энергии поступательного движения и кинетической энергии его вращательного движения:</p>
+        \[ W_{к} = W_{к_{поступ}} + W_{к_{вращат}}, \]
+        <p>где \( W_{к_{поступ}} = \cfrac{m \upsilon^2}{2}, \ W_{к_{вращ}} = \cfrac{I \omega^2}{2},  \)</p>
+        <p>где \(I\) – момент инерции тела, \(\omega\) – его угловая скорость.</p>
+        <p>Момент инерции диска вычисляется по формуле \( I = \cfrac{mR^2}{2}\),</p>
+        <p>а угловая скорость связана с линейным соотношением \(\omega = \cfrac{\upsilon}{R}\).</p>
+        <p>Тогда \(W_{к_{вращ}} = \cfrac{I \omega^2}{2} = \cfrac{mR^2}{2} \cdot \left( \cfrac{\upsilon}{R} \right)^2 \cdot \cfrac{1}{2} = \cfrac{m \upsilon^2}{4}. \)</p>
+        <p>\(W_{к} = W_{к_{поступ}} + W_{к_{вращат}} = \cfrac{m \upsilon^2}{2} + \cfrac{m \upsilon^2}{4} = \cfrac{3 m \upsilon^2}{4} = \cfrac{3 \cdot $A \cdot ($B)^2 }{4} = $W \ Дж. \)</p>
+
+
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#naieMBDwPT').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#naieMBDwPT_message').style.display = 'block';
+        }
+    </script>
+</problem>

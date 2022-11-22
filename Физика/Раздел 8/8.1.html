@@ -1,0 +1,105 @@
+<problem>
+    <script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.randint(20, 80)
+b = random.randint(20, 80)
+c = random.randint(40, 160)
+
+S = round((c/a) * math.sqrt((a*a) + (b*b)), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Два автомобиля одновременно выезжают из одного места по двум взаимно перпендикулярным направлениям. Один со скоростью \(V_1 = $a \ км/ч\), другой со скоростью \(V_2 = $b \ км/ч\). Чему расстояние \(S\) между автомобилями в момент, когда первый автомобиль прошел путь \(S_1 = $c \ км\)? Ответ выразите в километрах, округлив результат до целого числа.</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь формулой, определяющую относительную скорость движения двух тел. Далее определите время движения первого автомобиля. Используя формулу для нахождения пути при равномерном прямолинейном движении определите расстояние \(S\) между автомобилями. Введите ответ в километрах, округлив результат до целого числа.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(S = \)
+                </td>
+                <td  id="lEeQQwFoJh">
+                    <numericalresponse answer="$S">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    км.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="lEeQQwFoJh_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Относительная скорость определяется выражением:</p>
+        \[ \overrightarrow{V}_{отн} = \overrightarrow{V}_{1} - \overrightarrow{V}_{2} \]
+        <p>При определении относительной скорости необходимо учесть, что два автомобиля двигаются по двум взаимно перпендикулярным направлениям.</p>
+        <p>Для определения времени движения используйте формулу:</p>
+        \[ t = \frac{S_1}{V_1}.\]
+        <p>Используя полученные выражения и формулу для нахождения пути при равномерном прямолинейном движении определите расстояние \(S\) между автомобилями.</p>
+        \[ S = \overrightarrow{V}_{отн} \cdot t.\]
+        <p>Введите ответ в километрах, округлив результат до целого числа.</p>
+
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Относительная скорость определяется выражением:</p>
+        \[ \overrightarrow{V}_{отн} = \overrightarrow{V}_{1} - \overrightarrow{V}_{2} \]
+        <p>Так как два автомобиля двигаются по двум взаимно перпендикулярным направлениям, то векторная диаграмма для нахождения относительной скорости будет выглядеть следующим образом:</p>
+
+        <figure style="text-align:center;">
+            <img src="/static/8.1.1.png" alt="" style="max-width: 300px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        <p>По теореме Пифагора:</p>
+        \[ V_{отн} = \sqrt{V^{2}_{1} + V^{2}_{2}}. \]
+        <p>Определим время движения первого автомобиля:</p>
+        \[ t = \frac{S_1}{V_1}. \]
+        <p>Используя формулу для нахождения пути при равномерном прямолинейном движении определим расстояние \(S\) между автомобилями:</p>
+        \[ S = V_{отн} \cdot t.\]
+        <p>Далее подставим в формулу пути выражение для относительной скорости и получим:</p>
+        <p>\( S = \frac{S_1}{V_1} \sqrt{V^{2}_{1} + V^{2}_{2}} \)</p>
+        <p>\( S = \frac{$c}{$a} \sqrt{$a^{2} + $b^{2}} = $S \) км.</p>
+
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#lEeQQwFoJh').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#lEeQQwFoJh_message').style.display = 'block';
+        }
+    </script>
+</problem>

@@ -1,0 +1,100 @@
+<problem>
+    <script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+A = round(random.randint(11, 25) * 0.1,1)
+
+answer = round(math.sqrt(1 - 1/float(math.pow((A+1), 2))), 2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <h4><strong>Дано: </strong></h4>
+        <p>Какую долю от скорости света должна составлять скорость электрона, чтобы его кинетическая энергия в \(n = $A\) раза превышала его энергию покоя?</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Запишите формулу для кинетической энергии релятивистской частицы (частицы, движущейся со скоростью близкой к скорости света). Выразите отношение скорости частицы к скорости света (при вычислении значения квадратного корня округлять <strong>до тысячных</strong>)</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\frac{v}{c} = \)
+                </td>
+                <td  id="cWQgkCVqTF">
+                    <numericalresponse answer="$answer">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="cWQgkCVqTF_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Кинетическая энергия \(W_к\) движущейся с релятивистской скоростью частицы, выражается формулой:</p>
+        \[ W_к = W - W_0, \]
+
+        <p>где \(W = mc^2 \) – полная энергия частицы, \(W_0 = m_0c^2 \) – ее энергия покоя.</p>
+        <p>Запишите формулу, выражающую связь массы \(m\) движущейся частицы с ее массой покоя \(m_0\). Выразите и рассчитайте отношение скорости частицы к скорости света (при вычислении значения квадратного корня округлять <strong>до сотых</strong>).</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+
+        <p>Кинетическая энергия \(W_к\) движущейся с релятивистской скоростью частицы, выражается формулой:</p>
+        \[ W_к = W - W_0, \]
+        <p>где \(W = mc^2 \) – полная энергия частицы, \(W_0 = m_0c^2 \) – ее энергия покоя, а масса \(m\) движущейся частицы связана с ее массой покоя \(m_0\) соотношением: \( \frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }}\).</p>
+        <p>Учтем, что \(W_{кин} = n \cdot W_0\). Тогда: </p>
+
+        <p> \( n \cdot W_0 = W - W_0 \  \Rightarrow \
+            (n + 1) W_0 = W \  \Rightarrow \
+            (n + 1) m_0 \cdot c^2 =  m \cdot c^2  \  \Rightarrow \
+            \)
+
+        </p>
+        <p>
+            \(
+            (n + 1) m_0  = \frac{m_0}{\sqrt{1 - \left( \frac{v}{c} \right)^2 }}  \  \Rightarrow
+            1 -  \left( \frac{v}{c} \right)^2 = \frac{1}{(n+1)^2}  \  \Rightarrow \
+            \frac{v}{c} = \sqrt{1 - \frac{1}{(n+1)^2}}
+            \)   </p>
+        <p>\( \frac{v}{c} = \sqrt{1 - \frac{1}{(n+1)^2}} \)</p>
+        <p>\( \frac{v}{c} = \sqrt{1 - \frac{1}{($A + 1)^2} } = $answer \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#cWQgkCVqTF').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#cWQgkCVqTF_message').style.display = 'block';
+        }
+    </script>
+</problem>

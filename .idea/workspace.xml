@@ -2,82 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="CYBERSECURITY таблички">
-      <change afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/critthink.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность 2/wheel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 1/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 1/Файлы/L1_Power_Consumption.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 1/Файлы/L1_Power_Generation.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 2/Файлы/L2_Mitre_Layer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 3/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 3/Файлы/L3_Hashes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 3/Файлы/L3_Packages.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 3/Файлы/L3_Power_Consumption.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 4/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 4/Файлы/L4_encrypted.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 4/Файлы/L4_private_key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 4/Файлы/L4_public_key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 5/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 5/Файлы/L5_Electrical_load_test.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 5/Файлы/L5_Electrical_load_train.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 5/Файлы/L5_Electrical_load_train_losses.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы/Лабораторная № 5/Файлы/L5_Weather.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-8FkLqAWWX2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-JZCpi7l3dT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-LJNttYkR8F.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-PiyxS1UD5n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-Zw2DdWJyFR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-fTre2p64u2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/1.6/Картинки/img-kOlRjBmh0H.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/2.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/2.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/2.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/2.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/2.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.6/9HdKyRutsX.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.6/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.7/E38D4K7UFI.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/3.7/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/Пошаговость/Единичный выбор.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engines/Пошаговость/Табличка.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/caesar_wheel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/wheel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 3/3.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.4_1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 4/4.4_2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 5/5.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 5/5.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 5/5.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 6/6.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 7/7.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 7/7.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 7/7.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 8/8.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Физика/Раздел 9/9.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Последовательность.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/DIGSCRESEARCHTextApp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/DIGSCRESEARCHTextApp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/SelectedTextApp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/SelectedTextApp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты/arrow_down.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Задание 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Пошаговый.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-8FkLqAWWX2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-8FkLqAWWX2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-JZCpi7l3dT.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-JZCpi7l3dT.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-LJNttYkR8F.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-LJNttYkR8F.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-PiyxS1UD5n.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-PiyxS1UD5n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-Zw2DdWJyFR.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-Zw2DdWJyFR.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-fTre2p64u2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-fTre2p64u2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки/img-kOlRjBmh0H.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/1.6/Картинки/img-kOlRjBmh0H.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/2.1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/2.2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/2.3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/2.4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/2.5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/2.5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5/9HdKyRutsX.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.5/9HdKyRutsX.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.5/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.6.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7/E38D4K7UFI.png" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.7/E38D4K7UFI.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.7/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Философия/visual_organizer/visual_organizer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Философия/visual_organizer/visual_organizer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Кибербезопасность 2/wheel.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,8 +60,8 @@
       <list>
         <option value="SCSS File" />
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -147,28 +115,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/vesloguzov/PROJECTS/extended_problem/Кибербезопасность в энергетике/Лабораторные работы&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "WebServerToolWindowFactoryState": "true",
+    "last_opened_file_path": "/Users/vesloguzov/PROJECTS/extended_problem/Физика/Раздел 5",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Кибербезопасность в энергетике/Лабораторные работы" />
-      <recent name="$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички" />
-      <recent name="$PROJECT_DIR$/Не знаю что за курс" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабораторная № 5" />
+      <recent name="$PROJECT_DIR$/Физика/Раздел 5" />
+      <recent name="$PROJECT_DIR$/Физика/Раздел 6" />
+      <recent name="$PROJECT_DIR$/Физика/Раздел 7" />
+      <recent name="$PROJECT_DIR$/Физика/Раздел 8" />
+      <recent name="$PROJECT_DIR$/Физика/Раздел 9" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Лабораторная № 5/Файлы" />
     </key>
   </component>
   <component name="RunManager">
@@ -398,14 +366,8 @@
       <workItem from="1663687161183" duration="564000" />
       <workItem from="1664266924042" duration="5257000" />
       <workItem from="1668001262676" duration="27877000" />
-      <workItem from="1668527284681" duration="1234000" />
-    </task>
-    <task id="LOCAL-00066" summary="маш предприятие">
-      <created>1602772442563</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1602772442564</updated>
+      <workItem from="1668527284681" duration="16325000" />
+      <workItem from="1668693350802" duration="46599000" />
     </task>
     <task id="LOCAL-00067" summary="маш предприятие">
       <created>1603208704573</created>
@@ -743,7 +705,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664807933159</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="CYBERSECURITY таблички">
+      <created>1668528851392</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1668528851392</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

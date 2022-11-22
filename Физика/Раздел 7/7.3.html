@@ -1,0 +1,82 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+l = random.choice([9, 12, 15, 18, 21, 24, 27])
+
+_lambda = 2 * l / 3
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Стоячие волны наблюдаются повсюду в природе. Причина появления этих волн состоит в отражательных свойствах вещества. Определите длину волны \(\lambda\) накладываемых волн, если в результате это наложения образовалась стоячая волна и расстояние между первой и четвертой пучностями этой волны \(l = $l\).</p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Вспомните определение пучностей стоячей волны и формулу связи длины стоячей и бегущей волн. Выразите длину бегущей волны.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\lambda = \)
+                </td>
+                <td  id="bUWsNGKeEc">
+                    <numericalresponse answer="$_lambda">
+                        <responseparam type="tolerance" default="0"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>м</td>
+            </tr>
+        </table>
+    </div>
+    <div id="bUWsNGKeEc_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Точки стоячей волны, где амплитуда максимальна называются пучностями. Длина стоячей волны равна половине длины волны бегущей. Выразите длину бегущей волны.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Расстояние между первой и четвертой пучностями соответствует трем длинам волн стоячей волны, т.е. \(l =  3 \cdot \lambda_{ст} \) (см. рисунок). Получаем, что \(\lambda_{ст} = \frac{l}{3}\).</p>
+
+        <figure style="text-align:center;">
+            <img src="/static/7.3.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        <p>Длина стоячей волны равна половине длины волны бегущей:  \(\lambda_{ст} = \frac{\lambda}{2}\).</p>
+        <p>Приравнивая полученные выражения, получим окончательное выражения для расчета:</p>
+        \[ \lambda = \frac{2 \cdot l}{3} = \frac{2 \cdot $l}{3} = $_lambda \ м. \]
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#bUWsNGKeEc').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#bUWsNGKeEc_message').style.display = 'block';
+        }
+    </script>
+</problem>

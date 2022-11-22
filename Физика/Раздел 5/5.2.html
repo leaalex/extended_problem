@@ -1,0 +1,104 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+
+A = random.randint(120, 220)
+B = random.choice([1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3])
+C = random.randint(50, 80)
+A = 120
+B = 2
+C = 50
+omega = round((A*B)/float((A + 2 * C)), 1)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Горизонтальная платформа массой \(M = $A \ кг\) вращается вокруг вертикальной оси, проходящей через центр платформы, с угловой скоростью частотой \(\omega_1 = $B \ рад/c\). Человек массой \(m = $C \ кг\) стоит при этом в центре платформы. С какой угловой скоростью \(\omega_2\) начнет вращаться платформа, если человек перейдет от центра платформы к ее краю? Платформу считать однородным диском, а человека – точечной массой.</p>
+        <p></p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Запишите момент импульса системы платформа - человек до и после перехода человека из центра на край платформы. Далее, воспользовавшись законом сохранения момента импульса, определите угловую скорость \(\omega_2\).</p>
+        <p>Введите ответ, округлив его <strong>до десятых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\omega_2 = \)
+                </td>
+                <td  id="naieMBDwPT">
+                    <numericalresponse answer="$omega">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                 рад/с
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="naieMBDwPT_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Момент импульса системы платформы-человек равен сумме моментов импульса платформы и человека:</p>
+        \[ L_{\sum} = L_{платф} + L_{чел} = (L_{платф} + L_{чел}) \omega. \]
+        <p>Запишите это выражение для начальной и конечной ситуации и воспользуйтесь законом сохранения момента импульса, выразите конечную угловую скорость. Введите полученное значение, округлив его до десятых.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Момент импульса системы платформы-человек равен сумме моментов импульса платформы и человека:</p>
+        \[ L_{\sum} = L_{платф} + L_{чел} = (L_{платф} + L_{чел}) \omega. \]
+        <p><strong>В начальной ситуации:</strong></p>
+        <p>\(I_{платф} = \cfrac{MR^2}{2}, I_{чел} = 0\), так как человек находится в центре платформы.</p>
+
+        <figure style="text-align:center;">
+            <img src="/static/5.2.1.png" alt="" style="max-width: 300px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        <p><strong>В конечной ситуации:</strong></p>
+        <p>\(I_{платф} = \cfrac{MR^2}{2}, I_{чел} = mR^2\), так как человек находится на краю платформы.</p>
+
+        <figure style="text-align:center;">
+            <img src="/static/5.2.2.png" alt="" style="max-width: 300px;"/>
+            <figcaption></figcaption>
+        </figure>
+        <p>Так как по закону сохранения момента импульса:</p>
+        \[ L_1 = L_2, \]
+        \[\left(\frac{MR^2}{2} + 0\right) \omega_1 = \left(\frac{MR^2}{2} + mR^2\right) \omega_2,\]
+        <p>откуда:</p>
+        <p>\( \omega_2 = \cfrac{M \omega_1}{(M + 2m)} = \cfrac{$A \cdot $B}{($A + 2 \cdot $C)} = $omega \ рад/с. \)</p>
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#naieMBDwPT').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#naieMBDwPT_message').style.display = 'block';
+        }
+    </script>
+</problem>

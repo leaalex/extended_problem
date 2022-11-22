@@ -1,0 +1,97 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = round(random.randint(1, 5) * 0.1, 1)
+b = round(random.randint(10, 20) * 0.1, 1)
+a = 0.1
+b = 1
+
+V = round(3 * 100 * math.sqrt(2*a/b))
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Предположим, что мы можем измерить длину стержня с точностью \(\Delta l= $a \ мкм\). При какой относительной скорости \(u\) двух инерциальных систем отсчета можно было бы обнаружить релятивистское сокращение длины стержня, собственная длина \(l_0\) которого равна \($b \ м\)?</p>
+
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь следствием из преобразований Лоренца. Скорость света принять равной \(3 \cdot 10^8 \ м/с\).</p>
+        <p>Введите ответ, округлив его <strong>до целых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(V = \)
+                </td>
+                <td  id="lEeQQwFoJh">
+                    <numericalresponse answer="$V">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    км/с
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="lEeQQwFoJh_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>Воспользуйтесь формулой, связывающей длину \(l\) тела, движущегося со скоростью \(V\) с длиной \(l_0\) тела, в системе относительно которой тело покоится.</p>
+        <p>Также при решении используйте тот факт, что заданная точность измерения \( \Delta l\) длины стержня много меньше, чем длина \(l_0\) стержня, а значит слагаемым \(\left(\frac{\Delta l}{l_0}\right)^2\) при решении можно пренебречь, вследствие малости.</p>
+        <p>Введите ответ, округлив его до целых.</p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>В соответствии с теорией относительности длина \(l\) тела связана со скоростью \(V\) его движения следующим соотношением:</p>
+        \[l = l_0 \sqrt{1 - \frac{V^2}{c^2}}.\]
+        <p>По условию задачи задана точность измерения, т.е. дана величина \(\Delta l = l_0 - l\). </p>
+        <p>Подставляя в формулу значение \(l\) получим: \( l_0 - \Delta l = l_0  \sqrt{1 - \frac{V^2}{c^2}} \), возведем полученное уравнение в квадрат:</p>
+        <p>\(
+            (l_0 - \Delta l)^2 = l^2_0 \left(1 - \cfrac{V^2}{c^2}\right) \  \Rightarrow \
+            \cfrac{V^2}{c^2} \cdot l^2_0 = l^2_0 - l^2_0 + 2 \cdot l_0 \cdot \Delta l - \Delta l^2 \  \Rightarrow \
+            \) </p>
+        <p>\(
+            V^2 = c^2 \cfrac{2 \cdot l_0 \cdot \Delta l - \Delta l^2}{l^2_0} = c^2 \left(\cfrac{2 \cdot l_0 \cdot \Delta l}{l^2_0} - \cfrac{\Delta l^2}{l^2_0}\right).
+            \)
+        </p>
+        <p>Учтем, что заданная точность измерения \( \Delta l\) длины стержня много меньше, чем длина \(l_0\) стержня, а значит слагаемым \(\left(\frac{\Delta l}{l_0}\right)^2\) при решении можно пренебречь, вследствие малости. Окончательно получим:</p>
+        <p>\( V = c \sqrt{\cfrac{2 \cdot \Delta l}{l_0}} = 3 \cdot 10^8 \sqrt{\cfrac{2 \cdot $a \cdot 10^{-6}}{$b}} = 3 \cdot 10^5 \sqrt{\cfrac{2 \cdot $a}{$b}} \ м/с \)</p>
+        <p>По условию, ответ необходимо ввести в км/с. Делаем перевод единиц, разделив полученное значение на <strong>1000</strong>.</p>
+        <p>\( V = 3 \cdot 10^2 \sqrt{\cfrac{2 \cdot $a}{$b}} = $V \ км/с \).</p>
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#lEeQQwFoJh').querySelector('.incorrect')
+        if (incorrect){
+                document.querySelector('#lEeQQwFoJh_message').style.display = 'block';
+        }
+    </script>
+</problem>

@@ -1,0 +1,97 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+
+M = round(random.randint(5, 50) * 0.01, 2)
+r = round(random.randint(10, 20) * 0.1, 2)
+A = random.randint(1, 30)
+B = round(random.randint(0, 25) * 0.1 * 2, 1)
+C = round(random.randint(2, 12) * 0.1, 1)
+t = random.choice([0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+
+L = round(M * r ** 2 * (B+2*C*t), 2)
+
+</script>
+    <style type="text/css">
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <h4><strong>Дано:</strong></h4>
+        <p>
+            Материальная точка массой \(m = $M \ кг\) под действием постоянного момента силы, движется по окружности радиусом \(R = $r \ м\) так,
+            что угол ее поворота изменяется со временем по закону \( \varphi = $A + $Bt + $Ct^2 \), рад.
+            Чему равен момент импульса точки в момент времени \(t = $t \ с\)?
+        </p>
+        <h3><strong>Рекомендации: </strong></h3>
+        <p>
+            При решении задачи воспользуйтесь формулами – определениями: момента импульса и импульса материальной точки, угловой скорости, а также формулой,
+            выражающей связь между угловой и линейной скоростью материальной точки.
+            Рассчитайте момент импульса материальной точки. Введите полученное значение, округлив его <strong>до сотых</strong>.
+        </p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(L = \)
+                </td>
+                <td  id="vYKfbgKDTX">
+                    <numericalresponse answer="$L">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    \(\cfrac{кг \cdot м^2}{с}\)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="vYKfbgKDTX_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        <p>
+            Модуль \(L\) момента импульса материальной точки, движущейся по окружности равен \(L=R \cdot p\),
+            где \(p=m \cdot V\) – импульс точки, а \(V=\omega \cdot R\) – формула, выражающая связь между угловой и линейной скоростью. В свою очередь
+            \( \omega = \frac{d\varphi}{dt}=(A+Bt+Ct^2)'.\)
+            Взяв производную, получите явный вид зависимости угловой скорости от времени. Подставьте все формулы в момент импульса и рассчитайте его.
+        </p>
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>Модуль \(L\) момента импульса материальной точки, движущейся по окружности равен \(L=R \cdot p\), где \(p =m \cdot V\) – импульс точки, а \(V=\omega \cdot R\) – формула, выражающая связь между угловой и линейной скоростью.</p>
+        <p>В свою очередь \( \omega = \frac{d\varphi}{dt}=(A+Bt+Ct^2)' = B + 2Ct.\)</p>
+        <p>Подставим все в формулу для момента импульса:</p>
+        <p>\( L = R \cdot p = R \cdot m \cdot V = R \cdot m \cdot \omega \cdot R = m \cdot R^2 \cdot (B + 2Ct) \)</p>
+        <p>\( L = M \cdot r^2 \cdot (B + 2Ct) = $M \cdot $r^2 \cdot ($B + 2 \cdot $C \cdot t) = $L \ \cfrac{кг \cdot м^2}{с} \)</p>
+
+    </solution>
+
+    <script type="text/javascript" charset="utf-8">
+        let incorrect = document.querySelector('#vYKfbgKDTX').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#vYKfbgKDTX_message').style.display = 'block';
+        }
+    </script>
+</problem>

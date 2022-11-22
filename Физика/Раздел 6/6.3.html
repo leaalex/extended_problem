@@ -1,0 +1,86 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+
+a = random.randint(10, 20)
+b = random.randint(1, 5)
+
+_lambda = round(math.log(a/b)/10,2)
+
+</script>
+    <style type="text/css">
+
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        .chemical-task p.answer {
+            display: none !important;
+        }
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p>Начальная амплитуда колебаний механического маятника \(A_1 = $a \ см\), амплитуда после \(10\) полных колебаний равна \(A_{10} = $b \ см\). Определить логарифмический декремент затухания.</p>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>Воспользуйтесь определением логарифмического декремента затухания и получите формулу, связывающую логарифмический декремент затухания, период колебаний и коэффициент затухания. Используя условие задачи, выразите коэффициент затухания. Получите выражение, определяющее логарифмический декремент затухания. Рассчитайте. </p>
+        <p>Введите ответ, округлив его <strong>до сотых</strong>.</p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(\lambda = \)
+                </td>
+                <td  id="fTqrfyQpnb">
+                    <numericalresponse answer="$_lambda">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="fTqrfyQpnb_message" style="display: none;">
+        <h4><strong>Подсказка:</strong></h4>
+        По определению логарифмического декремента затухания:
+        \[ \lambda = ln(\frac{A(t)}{A(t+T)}) = \beta T. \]
+        Таким образом, для определения логарифмического декремента затухания необходимо определить коэффициент затухания \(\beta\). Значение этого коэффициента определите через известное отношение амплитуд \(A_1\) и \(A_{10}\). Получите выражение, определяющее логарифмический декремент затухания. Рассчитайте. Введите ответ, округлив его до сотых.
+    </div>
+    <solution>
+        <h4><strong>Решение:</strong></h4>
+        <p>По определению логарифмического декремента затухания:</p>
+        \[ \lambda = ln(\frac{A(t)}{A(t+T)}) = \beta T. \]
+        <p>Используем условие задачи и через отношение амплитуд, взятых через время \(t = 10T\), получим выражение для определения коэффициента затухания \(\beta\):</p>
+        \[  \frac{A_{1}}{A_{10}} = \frac{A_0 e^{-\beta t}}{A_0 e^{-\beta (t + 10T)}} = e^{10T \beta}, \]
+        \[ \beta = \frac{ln(\frac{A_1}{A_{10}})}{10T}.\]
+        <p>Подставив полученное выражение в формулу для \(\lambda\), получим окончательное выражения для расчета:</p>
+        \[ \lambda = \frac{ln(\frac{A_1}{A_{10}})}{10}\]
+        <p>Рассчитайте логарифмический декремент затухания. Полученный результат округлите до сотых:</p>
+        \( \lambda = \cfrac{ln(\frac{$a}{$b})}{10} = $_lambda \)
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#fTqrfyQpnb').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#fTqrfyQpnb_message').style.display = 'block';
+        }
+    </script>
+</problem>

@@ -1,0 +1,184 @@
+<problem>
+<!--    <script type="text/javascript" src="/static/DIGSCRESEARCHTextApp.js"></script>-->
+<!--    <link rel='stylesheet' href="/static/DIGSCRESEARCHTextApp.css"/>-->
+    <div>
+
+        <p><strong>Цель: </strong>Научиться грамотно оформлять научную статью</p>
+        <p></p>
+        <p><strong>Инструкция</strong></p>
+        <ul>
+            <li>Определите структуру статьи. Для этого установите правильную последовательность разделов в столбце «Структура статьи»</li>
+            <li>Сопоставьте фрагменты текста разделам статьи, переместите их в соответствующие ячейки таблицы</li>
+            <li>Проверьте правильность выполнения задания</li>
+        </ul>
+        <p></p>
+        <div>
+            <div data-type="DIGSCRESEARCHTextApp" class="adv-app" data-initial-data='$student_data'></div>
+        </div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+    </div>
+    <script type="loncapa/python">
+import random
+import json
+
+digital_types = [
+    {
+        "title": "Introduction",
+        "id": "relevance",
+    },
+    {
+        "title": "Methods",
+        "id": "purpose",
+    },
+    {
+        "title": "Results",
+        "id": "research",
+    },
+    {
+        "title": "Discussion of the results",
+        "id": "results",
+    },
+    {
+        "title": "Conclusion",
+        "id": "conclusions",
+    }
+]
+data = [
+    {
+        "text": [
+            {
+                "text": "On the territory of the Crimean Peninsula, subtropical forest landscapes are mainly represented by downy oak and juniper formations. These forests formed at the furthest extent of their range due to the effect of the subtropical climate, which occurs here due to the circulatory position of the Southern coast of Crimea. In this regard, the study of the water balance of downy oak forests located at the furthest extent of their range represents an important problem, whose solution will further scientific understanding by uncovering individual patterns of the internal organization of such systems.",
+                "id": "fragment_1_1",
+                "digital": "relevance",
+            },
+        ],
+        "id": "fragment_1"
+    },
+    {
+        "text": [
+            {
+                "text": "The study of the water balance components of downy oak forests was conducted under the auspices of the Kurum Landscape and Ecological Station. It is located in the redivision of the major catchment gully (0.6 km long, 17 ha area) on the eastern slope of the Besh-Tash ridge.",
+                "id": "fragment_2_1",
+                "digital": "purpose",
+            },
+        ],
+        "id": "fragment_2"
+    },
+    {
+        "text": [
+            {
+                "text": "In the intra-annual dynamics, a constant winter maximum of precipitation is observed within the downy oak forests. However, in some years (2013, 2014), absolute precipitation maxima were observed in the study area in June, which were catastrophic for the environment.",
+                "id": "fragment_3_1",
+                "digital": "research",
+            },
+        ],
+        "id": "fragment_3"
+    },
+    {
+        "text": [
+            {
+                "text": "Comparable results were obtained by V.A. Bokov’s expeditions in this area in 1997. According to his research, a dense downy oak forest intercepts about 35% of precipitation during the growing season from May to October. However, this moisture, which enters the soil surface more gradually than heavy rainfall, is generally well-retained by the forest floor, helping to form its moisture reserve.",
+                "id": "fragment_4_1",
+                "digital": "results",
+            },
+        ],
+        "id": "fragment_4"
+    },
+    {
+        "text": [
+            {
+                "text": "Based on field research and analysis of literature data, the main components of the water balance of the downy oak forests of Southeastern Crimea are considered. The data obtained show that the water balance of downy oak forests is characterized by negative values, which is primarily due to a lack of moisture.",
+                "id": "fragment_5_1",
+                "digital": "conclusions",
+            },
+        ],
+        "id": "fragment_5"
+    },
+]
+
+# print(data)
+
+student_texts = [{"type": x["type"] if "type" in x.keys() else "text", "id": x["id"], "text": [{"text": y["text"], "id": y["id"] } for y in x["text"]]} for x in data]
+
+student_texts_tmp = []
+student_headers_tmp = []
+# tmp = []
+for x in student_texts:
+    if x["type"] == "text":
+        student_texts_tmp.append(x)
+    else:
+        student_headers_tmp.append(x)
+random.shuffle(student_texts_tmp)
+
+
+student_texts[0] = student_texts_tmp[0]
+student_texts[1] = student_texts_tmp[1]
+student_texts[2] = student_texts_tmp[2]
+student_texts[3] = student_texts_tmp[3]
+student_texts[4] = student_texts_tmp[4]
+
+print(len(student_texts))
+
+student_data = {
+    "digital_types": digital_types,
+    "student_texts": student_texts,
+    "modal_header": "Components",
+}
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+
+    max_grade = len(data) + (sum([sum([1 if "digital" in y.keys() else 0 for y in x["text"]]) for x in data])) * 2
+    grade = 0
+    correctness = {
+        "paragraphs_order": [],
+        "digital_elements": []
+    }
+    # print(max_grade)
+
+    correct_paragraphs_order = [x["id"] for x in data]
+    if len(student_answer["paragraphs_order"]) == len(correct_paragraphs_order):
+        for p_idx, p in enumerate(correct_paragraphs_order):
+            if p == student_answer["paragraphs_order"][p_idx]:
+                correctness["paragraphs_order"].append(p)
+                grade += 1
+
+    corr_tmp = [[{"id": y["id"], "digital": y["digital"]} if "digital" in y.keys() else {"id": y["id"], "digital": ""} for y in x["text"]] for x in data]
+    correct_digital_elements = {}
+    for de in corr_tmp:
+        for item in de:
+            correct_digital_elements[item["id"]] = item["digital"]
+
+    for corr_key in correct_digital_elements.keys():
+        if correct_digital_elements[corr_key] == "":
+            if student_answer["digital_elements"][corr_key].replace(" ", "") != "":
+                grade += -1
+        else:
+            if student_answer["digital_elements"][corr_key] == correct_digital_elements[corr_key]:
+                grade += 2
+                correctness["digital_elements"].append(corr_key)
+
+    result_grade = grade/max_grade
+
+    if result_grade == 1:
+        ok = True
+    elif result_grade == 0:
+        ok = False
+    else:
+        ok = 'Partial'
+
+    return {'input_list': [{'ok': ok, 'msg': json.dumps(correctness), 'grade_decimal': result_grade}, ]}
+
+
+</script>
+</problem>

@@ -1,0 +1,142 @@
+<problem>
+<script type="loncapa/python">
+# coding: utf-8
+import random
+A = random.randint(5, 30) * 0.1 * 2  # от 1 до 6 с шагом 0.2
+B = random.randint(15, 35) * 0.1 * 2  # от 1 до 6 с шагом 0.2
+C = random.randint(10, 50) * 0.1 * 2  # от 1 до 6 с шагом 0.2
+
+V = round((A*B)/(A+C), 2)
+Ane = round((((A*B) ** 2) / 2) - (((A+C) * V ** 2) / 2), 2)
+
+</script>
+<style type="text/css">
+    .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+        display: none !important;
+    }
+
+    .chemical-task p.answer {
+        display: none !important;
+    }
+
+    .chemical-task input [type=input] {
+        min-width: 100px !important;
+    }
+
+    .chemical-task .sign-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .message {
+        display: none;
+    }
+</style>
+    <div>
+        <h4><strong>Дано: </strong></h4>
+        <p>
+            Тело массой \(m_1 = $A \ кг\), движущееся со скоростью \(V_1 = $B \ м/с\), сталкивается с неподвижным телом массой \(m_2 = $C \ кг\).
+            Считая удар абсолютно неупругим, найти:
+        </p>
+        <ol>
+            <li>скорость тел после столкновения</li>
+            <li>работу неконсервативных сил за время удара. </li>
+        </ol>
+        <h4><strong>Рекомендации: </strong></h4>
+        <p>
+            <strong>1. </strong>Запишите закон сохранения импульса применительно к данной задаче. Выразите из него скорость тел после столкновения. Рассчитайте значение скорости, округлив его <strong>до сотых</strong>.
+        </p>
+        <p>
+            <strong>2. </strong>Учтите, что работа неконсервативных сил равна убыли механической энергии системы. Введите значение работы неконсервативных сил, округлив его <strong>до сотых</strong>.
+        </p>
+        <p>Внимание! В качестве десятичного разделителя используйте <b>ТОЧКУ</b>.</p>
+    </div>
+    <h4><strong>Выполнить:</strong></h4>
+    <div class="chemical-task">
+        <table>
+            <tr>
+                <td>
+                    \(V = \)
+                </td>
+                <td  id="vdKOEOsRdC">
+                    <numericalresponse answer="$V">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                    м/с
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \(A_{неконс} = \)
+                </td>
+                <td  id="bkHuFITFiI">
+                    <numericalresponse answer="$Ane">
+                        <responseparam type="tolerance" default="0.01"/>
+                        <formulaequationinput/>
+                    </numericalresponse>
+                </td>
+                <td>
+                   Дж
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="vdKOEOsRdC_message" style="display: none;">
+        <h4><strong>Подсказка: </strong></h4>
+        <p>
+            Согласно закону сохранения импульса (см. рисунок):
+        </p>
+        \[m_1\overrightarrow{V_1}=(m_1+m_2)\overrightarrow V.\]
+        <figure style="text-align:center;">
+            <img src="/static/4.3.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+
+        <p>
+            Спроецируйте это равенство на ось \(O_x\), выразите общую скорость тел \(V\) и рассчитайте ее.
+            Введите полученное значение, округлив <strong>до сотых</strong>.
+        </p>
+    </div>
+    <div id="bkHuFITFiI_message" style="display: none;">
+        <h4><strong>Подсказка: </strong></h4>
+        <p>На уровне линии, вдоль которой движутся тела, можно их потенциальную энергию принять за ноль. Тогда механическая энергия тел равна только их кинетической энергии. Поэтому работа неконсервативных сил равна убыли кинетической энергии системы:</p>
+        \[A_{неконс} = W_{кин. \ системы \ до} - W_{кин. \ системы \ после}.\]
+        <p>Распишите кинетическую энергию системы до и после столкновения. Рассчитайте работу неконсервативных сил. Введите полученное значение, округлив его <strong>до сотых</strong>.</p>
+    </div>
+
+    <solution>
+        <h4><strong>Решение: </strong></h4>
+        <p><strong>1. </strong>Согласно закону сохранения импульса (см. рисунок):</p>
+        \[m_1\overrightarrow{V_1}=(m_1+m_2)\overrightarrow V.\]
+        <figure style="text-align:center;">
+            <img src="/static/4.3.1.png" alt="" style="max-width: 400px;"/>
+            <figcaption></figcaption>
+        </figure>
+        <p>В проекции на ось \(O_x\): \(m_1V_1 = (m_1 + m_2)V \) </p>
+        <p> \(\ V = \cfrac{m_1V_1}{m_1 + m_2} = \cfrac{$A \cdot $B}{$A + $C} = $V \ м/с \) </p>
+
+        <p><strong>2. </strong>На уровне линии, вдоль которой движутся тела, можно их потенциальную энергию принять за ноль. Тогда механическая энергия тел равна только их кинетической энергии.</p>
+        <p>Поэтому работа неконсервативных сил равна убыли кинетической энергии системы:</p>
+        \[A_{неконс} = W_{кин. \ системы \ до} - W_{кин. \ системы \ после},\]
+        <p>где \( W_{кин. \ системы \ до} = \cfrac{m_1V^2_1}{2} \), \(W_{кин. \ системы \ после} = \cfrac{(m_1 + m_2)V^2}{2}.\)</p>
+        <p>Таким образом, </p>
+        <p>\(  A_{неконс} = \cfrac{m_1V^2_1}{2} - \cfrac{(m_1 + m_2)V^2}{2} = \cfrac{$A \cdot $B^2}{2} - \cfrac{($A + $C) \cdot $V^2}{2} = $Ane \ Дж \)</p>
+
+
+
+    </solution>
+
+    <script type="text/javascript">
+        let incorrect = document.querySelector('#vdKOEOsRdC').querySelector('.incorrect')
+        if (incorrect){
+            document.querySelector('#vdKOEOsRdC_message').style.display = 'block';
+        }
+        let incorrect1 = document.querySelector('#bkHuFITFiI').querySelector('.incorrect')
+        if (incorrect1){
+            document.querySelector('#bkHuFITFiI_message').style.display = 'block';
+        }
+    </script>
+</problem>
