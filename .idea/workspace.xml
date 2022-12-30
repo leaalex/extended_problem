@@ -2,8 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="fizika">
-      <change afterPath="$PROJECT_DIR$/Физика/Раздел 2/2.4/2.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Временной ряд/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Временной ряд/xlsx.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Плюсики/1.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Плюсики/2.5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/1.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/1.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/1.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.6.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Адаптационный модуль/M2 3.2 Память на числа/twelve_numbers.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.2 Память на числа/twelve_numbers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Адаптационный модуль/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Адаптационный модуль/M2 3.5 Закономерности числового ряда/numerical_series.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.5 Закономерности числового ряда/numerical_series.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/caesar_wheel.js" beforeDir="false" afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/CaesarWheel/caesar_wheel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/wheel.html" beforeDir="false" afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/CaesarWheel/wheel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Физика/Раздел 2/2.4/2.4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Физика/Раздел 2/2.4/2.4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 4.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,28 +96,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "WebServerToolWindowFactoryState": "true",
-    "last_opened_file_path": "/Users/vesloguzov/PROJECTS/extended_problem/Физика/Раздел 5",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vesloguzov/PROJECTS/extended_problem/Кибербезопасность ИНЭУ/Учебные задания&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания" />
+      <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Плюсики" />
       <recent name="$PROJECT_DIR$/Физика/Раздел 5" />
       <recent name="$PROJECT_DIR$/Физика/Раздел 6" />
       <recent name="$PROJECT_DIR$/Физика/Раздел 7" />
-      <recent name="$PROJECT_DIR$/Физика/Раздел 8" />
-      <recent name="$PROJECT_DIR$/Физика/Раздел 9" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ" />
+      <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Временной ряд" />
       <recent name="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Скрипты" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry" />
       <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.7" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/3.5" />
-      <recent name="$PROJECT_DIR$/Cybersecurity in the power industry/Лабораторные работы/Таблички/1.6/Картинки" />
     </key>
   </component>
   <component name="RunManager">
@@ -325,14 +348,9 @@
       <workItem from="1664266924042" duration="5257000" />
       <workItem from="1668001262676" duration="27877000" />
       <workItem from="1668527284681" duration="16325000" />
-      <workItem from="1668693350802" duration="47787000" />
-    </task>
-    <task id="LOCAL-00068" summary="маш предприятие">
-      <created>1614777519381</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1614777519382</updated>
+      <workItem from="1668693350802" duration="53993000" />
+      <workItem from="1669288389416" duration="37213000" />
+      <workItem from="1672131325800" duration="1833000" />
     </task>
     <task id="LOCAL-00069" summary="маш предприятие">
       <created>1617294907390</created>
@@ -670,7 +688,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669134240531</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="fizika">
+      <created>1669135891136</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1669135891136</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

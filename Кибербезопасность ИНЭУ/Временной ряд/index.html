@@ -1,0 +1,213 @@
+<problem>
+    <script type="loncapa/python">
+# coding: utf-8
+import random
+import math
+import numpy as np
+
+signal = []
+
+for (i, el) in enumerate(np.arange(500)):
+    time = (i * 30) / float(24 * 60 * 60)
+    x = 600 * (math.sin(2 * math.pi * 50 * time + 0.75 * math.pi) + float(math.cos(2 * math.pi * 50 * time + 0.38 * math.pi)))
+    noiseC = random.randint(0, 15) * 0.01
+    noiseD = random.choice([0, 1])
+    noiseF = random.randint(0, 20)
+    noiseH = random.randint(1500, 3500)
+    value = 0
+    if noiseF == 4 and noiseD == 0:
+        value = x + noiseH
+    else:
+        if noiseF == 4 and noiseD == 1:
+            value = x + noiseH
+        else:
+            value = x
+    signal.append(value)
+
+
+quartiles = np.percentile(signal, [0, 25, 50, 75, 100])
+median = np.median(signal)
+x_median = [abs(l - median) for l in signal]
+mad = np.median(x_median)
+
+MP = quartiles[3] - quartiles[1]
+down = quartiles[1] - 1.5 * MP
+up = quartiles[3] + 1.5 * MP
+
+source = []
+quartile_analysis = []
+quartile_analysis_ejection_count = 0
+
+hempel_filter = []
+hempel_filter_ejection_count = 0
+
+for (i, el) in enumerate(signal):
+    if 3 * mad > x_median[i]:
+        hempel_filter.append(el)
+    else:
+        hempel_filter_ejection_count = hempel_filter_ejection_count + 1
+    if up > el > down:
+        quartile_analysis.append(el)
+    else:
+        quartile_analysis_ejection_count = quartile_analysis_ejection_count + 1
+
+
+quartile_analysis_average = round(sum(quartile_analysis)/len(quartile_analysis) ,3)
+hempel_filter_average = round(sum(hempel_filter)/len(hempel_filter), 3)
+
+file_title = "Данные с выбросами"
+</script>
+    <style type="text/css">
+        .chemical-task .equation, .chemical-task .status, .chemical-task .trailing_text, .chemical-task .answer::before {
+            display: none !important;
+        }
+
+        /*.chemical-task p.answer {*/
+        /*    display: none !important;*/
+        /*}*/
+
+        .chemical-task input [type=input] {
+            min-width: 100px !important;
+        }
+
+        .chemical-task .sign-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+    <div>
+        <p><strong>Цель работы:</strong> выстраивать процесс обнаружения в исходных данных аномалий (выбросов), применяя подходы описательной статистики (квартильный анализ и фильтр Хэмпеля).</p>
+        <p><strong>Задание</strong></p>
+        <p>В соответствии с методикой, представленной в методических указаниях, провести анализ исходных данных и определить аномальные значения двумя методами (квартильный анализ и фильтр Хэмпеля).</p>
+
+        <p><strong>Шаги выполнения задания</strong></p>
+        <ol>
+            <li>Ознакомьтесь с методическими указаниями к выполнению лабораторной работы (файл «2.2 Обнаружение аномалий во временном ряду (квартили и Хэмпель). Методические указания».</li>
+            <li>Скачайте файл задания <a id="download_xlsx" href="">«Данные с выбросами»</a>. В файле находится искусственно сгенерированный временной ряд из <strong>500 значений</strong> с дискретностью <strong>30 секунд</strong>.</li>
+            <li>
+                <strong>Для исходных данных определите:</strong>
+                <ul>
+                    <li>границы квартилей;</li>
+                    <li>межквартильный размах;</li>
+                    <li>верхнюю и нижнюю границы валидных данных;</li>
+                    <li>медианное значение;</li>
+                    <li>абсолютное медианное отклонение;</li>
+                </ul>
+            </li>
+            <li>
+                Сравните количество найденных выбросов для каждого из предложенных методов.
+            </li>
+        </ol>
+
+        <p>Полученные результаты впишите в соответствующие ячейки (в качестве разделителя дробной части используйте ТОЧКУ. Округление производить до ТРЕХ ЗНАКОВ ПОСЛЕ ЗАПЯТОЙ).</p>
+
+        <p><strong>Для метода квартильного анализа:</strong></p>
+        <div class="chemical-task">
+            <table>
+                <tr>
+                    <td>
+                       Число выбросов =
+                    </td>
+                    <td>
+                        <numericalresponse answer="$quartile_analysis_ejection_count">
+                            <responseparam type="tolerance" default="0"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        шт;
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        Среднее значение для выборки без обнаруженных выбросов =
+                    </td>
+                    <td>
+                        <numericalresponse answer="$quartile_analysis_average">
+                            <responseparam type="tolerance" default="0"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        ;
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <p><strong>Для фильтра Хэмпеля:</strong></p>
+        <div class="chemical-task">
+            <table>
+                <tr>
+                    <td>
+                        Число выбросов =
+                    </td>
+                    <td>
+                        <numericalresponse answer="$hempel_filter_ejection_count">
+                            <responseparam type="tolerance" default="0"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        шт;
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        Среднее значение для выборки без обнаруженных выбросов =
+                    </td>
+                    <td>
+                        <numericalresponse answer="$hempel_filter_average">
+                            <responseparam type="tolerance" default="0"/>
+                            <formulaequationinput/>
+                        </numericalresponse>
+                    </td>
+                    <td>
+                        ;
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <p><strong><i>Ответы:</i></strong></p>
+        <p><i>Квартильным анализом:</i></p>
+        <p><i>Число выбросов: $quartile_analysis_ejection_count</i></p>
+        <p><i>Среднее по чистым данным: $quartile_analysis_average</i></p>
+        <p><i>Фильтром Хэмпеля:</i></p>
+        <p><i>Число выбросов: $hempel_filter_ejection_count</i></p>
+        <p><i>Среднее по чистым данным: $hempel_filter_average</i></p>
+    </div>
+
+<!--    <solution>-->
+<!--        <h4><strong>Решение:</strong></h4>-->
+<!--    </solution>-->
+
+    <script type="text/javascript">
+        const signal = $signal
+        let times = signal.map(function (_, index) { return new Date(index * 30 * 1000).toISOString().substring(11, 19)})
+        let xlsx_data = signal.map(function (s, index) { return [times[index], s]})
+        xlsx_data.unshift(['Times', 'Signal'])
+        // console.log(signal)
+        // console.log(times)
+        import("/static/xlsx.mjs").then(function(XLSX){
+            document.querySelector('#download_xlsx').addEventListener('click', async function (e){
+                console.log('xxx')
+                e.preventDefault()
+                    let worksheet = XLSX.utils.aoa_to_sheet(xlsx_data);
+                    let workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "source data");
+                    XLSX.writeFile(workbook, "$file_title.xlsx");
+            })
+        }).catch( function(error){
+            console.log('Error:', error)
+        })
+    </script>
+</problem>

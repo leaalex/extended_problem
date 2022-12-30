@@ -138,7 +138,7 @@ student_data = student_data.replace('"', "'")
 def check_answer(expect, ans):
     student_answer = json.loads(ans)
 
-    max_grade = len(data) + (sum([sum([1 if "digital" in y.keys() else 0 for y in x["text"]]) for x in data])) * 2
+    max_grade = len(data) + (sum([sum([1 if "digital" in y.keys() else 0 for y in x["text"]]) for x in data]))
     grade = 0
     correctness = {
         "paragraphs_order": [],
@@ -160,12 +160,9 @@ def check_answer(expect, ans):
             correct_digital_elements[item["id"]] = item["digital"]
 
     for corr_key in correct_digital_elements.keys():
-        if correct_digital_elements[corr_key] == "":
-            if student_answer["digital_elements"][corr_key].replace(" ", "") != "":
-                grade += -1
-        else:
+        if correct_digital_elements[corr_key] != "":
             if student_answer["digital_elements"][corr_key] == correct_digital_elements[corr_key]:
-                grade += 2
+                grade += 1
                 correctness["digital_elements"].append(corr_key)
 
     result_grade = grade/max_grade

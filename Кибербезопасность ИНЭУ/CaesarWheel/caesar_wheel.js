@@ -11,7 +11,7 @@ let box = document.querySelector("#caesarCipherWheel")
         },
         slices_count = 33,
         R2D = 180 / Math.PI,
-    rot = box.querySelector('#outer_circle')
+    rot = box.querySelector('#inner_circle')
     // rot = box.querySelector('#inner_circle_background')
     shift_count = document.querySelector('#step_angle')
     shift_count.querySelector('text').style.textAnchor = "middle"
