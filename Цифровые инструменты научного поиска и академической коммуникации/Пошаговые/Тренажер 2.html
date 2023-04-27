@@ -1,0 +1,90 @@
+<problem>
+    <script type="loncapa/python">
+task_id = "xzsSoW0vjv"
+</script>
+    <style type="text/css">
+        #step_simulator .explanation-title, #step_simulator .hint-label, #step_simulator .status-icon{
+            display: none !important;
+        }
+
+        .question_step .feedback-hint-incorrect {
+            color: #b2170f;
+            margin-top: 5px;
+            /* border: 2px solid #b20610; */
+            border-radius: 3px;
+            padding: 6px 10px;
+        }
+
+        .question_step .feedback-hint-correct {
+            color: #028100;
+            margin-top: 5px;
+            /* border: 2px solid #b20610; */
+            border-radius: 3px;
+            padding: 6px 10px;
+        }
+        .problem .notification{
+            display: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+
+        const taskBlock = document.querySelector("#$task_id")
+        const radios = taskBlock.querySelectorAll('input[type=radio]');
+
+        radios.forEach(function(radio){radio.addEventListener('change', function() {
+            if(taskBlock.querySelector("#step_simulator").closest(".vert")){
+                taskBlock.querySelector("#step_simulator").closest(".vert").querySelector('.submit.btn-brand').removeAttribute("disabled")
+            }
+            if(taskBlock.querySelector("#step_simulator").closest(".wrapper-xblock")){
+                taskBlock.querySelector("#step_simulator").closest(".wrapper-xblock").querySelector('.submit.btn-brand').removeAttribute("disabled")
+            }
+
+        })});
+        const step_questions = taskBlock.querySelectorAll("#step_simulator .question_step")
+        const visible_question_idx = Math.max(...Array.from(step_questions).map(function(step, step_idx){
+            return step.getElementsByClassName('choicegroup_correct').length !== 0 ? (step_idx === step_questions.length - 1 ? step_idx : step_idx + 1)  : 0
+        }))
+        Array.from(step_questions).forEach(function(step,step_idx){
+            if (step_idx != visible_question_idx){
+                step.style.display = "none";
+            }
+        })
+    </script>
+    <div id="$task_id" class='lol-kek'>
+        <div id="step_simulator">
+            <div class="question_step">
+                <p><strong>Шаг 1/3</strong></p>
+                <label>Вы проводите научное исследование и получили его первые результаты. Вы выбираете публикационную площадку для первого представления результатов еще завершенного исследования научному сообществу. Какую площадку выбрать целесообразнее?</label>
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice" shuffle="true">
+                        <choice correct="true">Подготовка материалов для сборника научной конференции</choice>
+                        <choice correct="false">Подготовка статьи в научный журнал <choicehint>Нет, т.к. высока вероятность отклонения рукописи, в которой представлено неполноценное исследование </choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+
+            <div class="question_step">
+                <p><strong>Шаг 2/3</strong></p>
+                <label>Какую конференцию лучше выбрать?</label>
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice" shuffle="true">
+                        <choice correct="true">Профильную конференцию, где собираются ученые, понимающие суть проводимого исследования </choice>
+                        <choice correct="false">Многопрофильную конференцию, где присутствуют специалисты из разных отраслей наук <choicehint>Нет, т.к. такие конференции, как правило, имеют низкий профессиональный уровень, на них невозможно получить идеи для продолжения исследования и его развития </choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+
+            <div class="question_step">
+                <p><strong>Шаг 3/3</strong></p>
+                <p>Что целесообразно сделать после представления доклада на конференции?</p>
+                <multiplechoiceresponse>
+                    <choicegroup type="MultipleChoice" shuffle="true">
+                        <choice correct="true">Разместить презентацию по нему в свои научные профили и завершить исследование, почерпнув новые идеи на конференции <choicehint>Задание выполнено успешно</choicehint></choice>
+                        <choice correct="false">Заняться проведением следующего исследования <choicehint>Нет, т.к. целесообразно представить результаты завершенного исследования в журнальной статье</choicehint></choice>
+                    </choicegroup>
+                </multiplechoiceresponse>
+            </div>
+        </div>
+    </div>
+
+</problem>

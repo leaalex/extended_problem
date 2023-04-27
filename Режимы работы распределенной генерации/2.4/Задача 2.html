@@ -1,0 +1,35 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <p><strong>Цель:</strong> Оценивать основные показатели эффективности газовых турбин с разными характеристиками.</p>
+
+    Определите мощность, развиваемую турбиной ГТД, если расход газа через турбину составляет \(G_Г = 110 \ кг/с\), степень понижения давления в турбине \(\pi^*_{T} = 3\), температура газа перед турбиной \(T^*_Г = 1700 \ К\), изоэнтропический КПД турбины \(\eta^*_T = 0.92\) (принять \(C_{РГ} = 1.157 \ кДж/(кг \cdot К)\), \(k_Г = 1.33\) ).
+    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>
+    <table class="no-equation">
+        <tr>
+            <td>Удельная эффективная работа турбины \(L_{T} = \)</td>
+            <td>
+                <numericalresponse answer="405.2">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кДж/кг"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Мощность турбины газотурбинного двигателя \(Т_{T} = \)</td>
+            <td>
+                <numericalresponse answer="40520">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кВт"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

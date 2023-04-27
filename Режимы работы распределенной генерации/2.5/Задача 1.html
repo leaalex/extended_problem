@@ -1,0 +1,59 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <p><strong>Цель:</strong> Оценивать основные показатели электростанций на базе поршневых двигателей.</p>
+
+    <p>Определить номинальную \(N_{ice}\) (с учетом потерь в генераторе) и максимальную \(N_{ice\_max}\) мощность двигателя для электростанции со следующими показателями: \(N_{en} = 1500 \ кВт\) (номинальная мощность электростанции); \(\eta_g = 0.9\) (КПД генератора); \(N_s = 25 \ кВт\) (расход мощности на привод агрегатов собственных нужд); \(N_{e\_max} = 1650 \ кВт\) (максимальная мощность электростанции). Также определить удельный расход топлива электростанции \(g_e\) и двигателя \(g_{ice}\), приводящего в действие эту электростанцию, с параметрами указанными выше, если за час работы двигатель расходует \(310 \ кг\) топлива \((G_f = 310 \ кг/ч)\).</p>
+    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>
+    <table class="no-equation">
+        <tr>
+            <td>Номинальная мощность двигателя для электростанции мощностью \(1500 \ кВт\): \(N_{ice} =  \)</td>
+            <td style="min-width: 200px">
+                <numericalresponse answer="1694">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кВт"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Максимальная мощность, которую должен развивать двигатель с \(10 \ \%\) запасом мощности на перегруз: \(N_{ice\_max} = \)</td>
+            <td style="min-width: 200px">
+                <numericalresponse answer="1861">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кВт"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Удельный расход топлива двигателя для привода электростанции мощностью \(1500 \ кВт\): \(g_{ice} = \)</td>
+            <td style="min-width: 220px">
+                <numericalresponse answer="0.183">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кг/(кВт·ч)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Удельный расход топлива электростанции мощностью \(1500 \ кВт\): \(g_{e} = \)</td>
+            <td style="min-width: 220px">
+                <numericalresponse answer="0.207">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кг/(кВт·ч)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

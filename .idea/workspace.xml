@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="fizika">
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Временной ряд/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Временной ряд/xlsx.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Плюсики/1.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Плюсики/2.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/1.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/1.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/1.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/2.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания/3.6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.1/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.1/Задача 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.1/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.2/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.2/Задача 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.2/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.3/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.3/Задача 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.3/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.4/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.4/Задача 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.4/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.5/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.5/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.1/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.1/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.2/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.2/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.3/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.3/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.4/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.4/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Задача 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Текст.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровая трансформация образования/Тема 1.1/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровая трансформация образования/Тема 1.1/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровая трансформация образования/Тема 1.1/Задание 3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Пошаговые/Тренажер 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации/Пошаговые/Тренажер 2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Адаптационный модуль/M2 3.2 Память на числа/twelve_numbers.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.2 Память на числа/twelve_numbers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Адаптационный модуль/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.3 Тест Мюнстербергера/munsterberg_test_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Адаптационный модуль/M2 3.5 Закономерности числового ряда/numerical_series.html" beforeDir="false" afterPath="$PROJECT_DIR$/Адаптационный модуль/M2 3.5 Закономерности числового ряда/numerical_series.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/caesar_wheel.js" beforeDir="false" afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/CaesarWheel/caesar_wheel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Кибербезопасность 2/CaesarWheel/wheel.html" beforeDir="false" afterPath="$PROJECT_DIR$/Кибербезопасность ИНЭУ/CaesarWheel/wheel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" beforeDir="false" afterPath="$PROJECT_DIR$/Майер-Бригс/MBTI.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Физика/Раздел 2/2.4/2.4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Физика/Раздел 2/2.4/2.4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 4.html" beforeDir="false" afterPath="$PROJECT_DIR$/Цифровые инструменты научного поиска и академической коммуникации ENG/Задание 4.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,11 +76,22 @@
     <setting file="file://$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.5/index.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.6.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Cybersecurity in the power industry/Таблички/3.7/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/engines/Инпуты в картинках/edx.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/engines/Пропущенные слова.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Кибербезопасность в энергетике/Таблички/2.1.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Криптография/Промежуточный контроль/Задание 2.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Линейная алгебра/Промежуточный контроль 2/Задание 3.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/МЭК/5.4/Контрольные задания/Задание 1/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/МЭК/5.4/Контрольные задания/Задание 2/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/МЭК/5.4/Контрольные задания/Задание 3/Index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/МЭК/5.4/Учебные задания/Учебное задание 1/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/МЭК/5.4/Учебные задания/Учебное задание 2/index.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Не знаю что за курс/Задание 2.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Не знаю что за курс/Задание 3.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Не знаю что за курс/Задание 4.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Основы SQL/1.1/Контрольное задание 1.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Основы SQL/1.1/Контрольное задание 2.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Основы SQL/1.1/Учебное задание 1.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Основы проектной деятельности/1.2 учебное.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Основы проектной деятельности/1.3.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Основы проектной деятельности/1.4_1.html" root0="FORCE_HIGHLIGHTING" />
@@ -79,6 +99,15 @@
     <setting file="file://$PROJECT_DIR$/Основы проектной деятельности/2.2.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Основы проектной деятельности/3.3.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Проекты цифровой трансформации/1.1 Контрольное задание 2.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/3.1/Задача 1.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/3.2/Задача 1.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/3.3/Задача 1.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/3.3/Текст.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/3.4/Задача 1.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/3.4/Текст.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Задача 1.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Задача 2.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Текст.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Философия/Диагностики/Диагностика 1.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JupyterTrust" id="3060c1fd-e48f-4f28-9605-895a26fd8109" />
@@ -100,17 +129,25 @@
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/vesloguzov/PROJECTS/extended_problem/Кибербезопасность ИНЭУ/Учебные задания&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vesloguzov/PROJECTS/extended_problem/Цифровая трансформация образования&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/usr/local/lib/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Учебные задания" />
-      <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ/Плюсики" />
-      <recent name="$PROJECT_DIR$/Физика/Раздел 5" />
-      <recent name="$PROJECT_DIR$/Физика/Раздел 6" />
-      <recent name="$PROJECT_DIR$/Физика/Раздел 7" />
+      <recent name="$PROJECT_DIR$/Цифровая трансформация образования" />
+      <recent name="$PROJECT_DIR$/Режимы работы распределенной генерации/4.1" />
+      <recent name="$PROJECT_DIR$/Режимы работы распределенной генерации/3.4" />
+      <recent name="$PROJECT_DIR$/Режимы работы распределенной генерации/3.3" />
+      <recent name="$PROJECT_DIR$/Режимы работы распределенной генерации/3.2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ" />
@@ -350,14 +387,25 @@
       <workItem from="1668527284681" duration="16325000" />
       <workItem from="1668693350802" duration="53993000" />
       <workItem from="1669288389416" duration="37213000" />
-      <workItem from="1672131325800" duration="1833000" />
-    </task>
-    <task id="LOCAL-00069" summary="маш предприятие">
-      <created>1617294907390</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1617294907391</updated>
+      <workItem from="1672131325800" duration="1940000" />
+      <workItem from="1674213106151" duration="8946000" />
+      <workItem from="1676278582689" duration="26197000" />
+      <workItem from="1677052224921" duration="1778000" />
+      <workItem from="1678453945917" duration="1381000" />
+      <workItem from="1678791096977" duration="4726000" />
+      <workItem from="1679399956625" duration="862000" />
+      <workItem from="1679911161874" duration="599000" />
+      <workItem from="1679919657031" duration="599000" />
+      <workItem from="1680081810110" duration="596000" />
+      <workItem from="1680360937664" duration="599000" />
+      <workItem from="1680518177495" duration="20000" />
+      <workItem from="1680518226545" duration="15000" />
+      <workItem from="1681124904084" duration="1263000" />
+      <workItem from="1681718662568" duration="4000" />
+      <workItem from="1681718923295" duration="6000" />
+      <workItem from="1681718980214" duration="24000" />
+      <workItem from="1681904912461" duration="6523000" />
+      <workItem from="1682329324334" duration="4877000" />
     </task>
     <task id="LOCAL-00070" summary="маш предприятие">
       <created>1618588629061</created>
@@ -695,7 +743,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669135891136</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="fizika">
+      <created>1672399413927</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1672399413927</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

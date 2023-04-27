@@ -1,0 +1,92 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <p><strong>Цель:</strong> Оценивать основные параметры топливной системы поршневого двигателя.</p>
+    <p>Необходимо определить основные геометрические размеры основных элементов топливного насоса высокого давления для дизельного двигателя, если известны следующие параметры:</p>
+
+    <p>Цилиндровая мощность двигателя \(N_c = 20 \ кВт\);</p>
+    <p>Частота вращения коленвала \(n = 2500 \ об/мин\);</p>
+    <p>Тактность двигателя \(\tau = 4\);</p>
+    <p>Плотность топлива \(\rho_f = 850 \ кг/м^3\);</p>
+    <p>Удельный расход топлива \(g_e = 235 \ г/(кВт \cdot ч)\);</p>
+    <p>Коэффициент скорости подачи топлива \(k = 1.35\);</p>
+    <p>Продолжительность впрыска топлива \(\varphi = 25 \ град.\);</p>
+    <p>Коэффициент подачи \(\eta = 0.9\);</p>
+    <p>Скорость плунжера \(c_p = 2.2 \ м/с\);</p>
+    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>
+    <table class="no-equation">
+        <tr>
+            <td>Объемная цикловая подача топлива \(V_c =  \)</td>
+            <td>
+                <numericalresponse answer="73.7">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\(мм^3/цикл\)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Диаметр плунжера топливного насоса \(d_{p} = \)</td>
+            <td>
+                <numericalresponse answer="6.2">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="мм"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Активный ход плунжера \(h = \)</td>
+            <td>
+                <numericalresponse answer="2.71">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="мм"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Диаметр впускного и отсеченного каналов \(d_c = \)</td>
+            <td>
+                <numericalresponse answer="1.86">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="мм"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Минимально необходимый полный ход плунжера \(H_{min} = \)</td>
+            <td>
+                <numericalresponse answer="6.43">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="мм"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Полный ход плунжера \(H = \)</td>
+            <td>
+                <numericalresponse answer="6.5">
+                    <responseparam type="tolerance" default="999999"/>
+                    <formulaequationinput  trailing_text="мм"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

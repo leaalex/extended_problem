@@ -1,0 +1,90 @@
+<problem>
+  <script type="loncapa/python">
+task_id = "ozNtOzTRK9"
+</script>
+  <style type="text/css">
+    #step_simulator .explanation-title, #step_simulator .hint-label, #step_simulator .status-icon{
+      display: none !important;
+    }
+
+    .question_step .feedback-hint-incorrect {
+      color: #b2170f;
+      margin-top: 5px;
+      /* border: 2px solid #b20610; */
+      border-radius: 3px;
+      padding: 6px 10px;
+    }
+
+    .question_step .feedback-hint-correct {
+      color: #028100;
+      margin-top: 5px;
+      /* border: 2px solid #b20610; */
+      border-radius: 3px;
+      padding: 6px 10px;
+    }
+    .problem .notification{
+      display: none !important;
+    }
+  </style>
+  <script type="text/javascript">
+
+    const taskBlock = document.querySelector("#$task_id")
+    const radios = taskBlock.querySelectorAll('input[type=radio]');
+
+    radios.forEach(function(radio){radio.addEventListener('change', function() {
+      if(taskBlock.querySelector("#step_simulator").closest(".vert")){
+        taskBlock.querySelector("#step_simulator").closest(".vert").querySelector('.submit.btn-brand').removeAttribute("disabled")
+      }
+      if(taskBlock.querySelector("#step_simulator").closest(".wrapper-xblock")){
+        taskBlock.querySelector("#step_simulator").closest(".wrapper-xblock").querySelector('.submit.btn-brand').removeAttribute("disabled")
+      }
+
+    })});
+    const step_questions = taskBlock.querySelectorAll("#step_simulator .question_step")
+    const visible_question_idx = Math.max(...Array.from(step_questions).map(function(step, step_idx){
+      return step.getElementsByClassName('choicegroup_correct').length !== 0 ? (step_idx === step_questions.length - 1 ? step_idx : step_idx + 1)  : 0
+    }))
+    Array.from(step_questions).forEach(function(step,step_idx){
+      if (step_idx != visible_question_idx){
+        step.style.display = "none";
+      }
+    })
+  </script>
+  <div id="$task_id" class='lol-kek'>
+    <div id="step_simulator">
+      <div class="question_step">
+        <p><strong>Шаг 1/3</strong></p>
+        <label>Вы провели научное исследование, получив научные результаты, которые отличаются научной новизной и практической значимостью. Вы выбираете публикационную площадку для своего исследования. Какую площадку выбрать целесообразнее?</label>
+        <multiplechoiceresponse>
+          <choicegroup type="MultipleChoice" shuffle="true">
+            <choice correct="true">Подготовка статьи в научный журнал</choice>
+            <choice correct="false">Подготовка материалов для сборника научной конференции <choicehint>Нет, т.к. результаты полноценного завершенного исследования целесообразно представлять в научном журнале</choicehint></choice>
+          </choicegroup>
+        </multiplechoiceresponse>
+      </div>
+
+      <div class="question_step">
+        <p><strong>Шаг 2/3</strong></p>
+        <label>Какой журнал лучше выбрать?</label>
+        <multiplechoiceresponse>
+          <choicegroup type="MultipleChoice" shuffle="true">
+            <choice correct="true">Журнал, в котором публикуются статьи по сходной тематике</choice>
+            <choice correct="false">Журнал, в котором публикуются статьи по разным отраслям наук <choicehint>Нет, т.к. такие журналы, как правило, плохо читаются профильным научным сообществом, цитируемость статьи будет ниже, чем при публикации в профильном журнале</choicehint></choice>
+          </choicegroup>
+        </multiplechoiceresponse>
+      </div>
+
+      <div class="question_step">
+        <p><strong>Шаг 3/3</strong></p>
+        <label>Что целесообразно сделать после того, как статья будет опубликована?</label>
+        <multiplechoiceresponse>
+          <choicegroup type="MultipleChoice" shuffle="true">
+            <choice correct="true">Разместить ее в свои научные профили <choicehint>Задание выполнено успешно</choicehint></choice>
+            <choice correct="false">Сложить ее в архив собственных публикаций и заняться подготовкой следующей статьи <choicehint>Нет, т.к. после публикации статья может "работать" на автора, повышая его показатели как ученого</choicehint></choice>
+          </choicegroup>
+        </multiplechoiceresponse>
+      </div>
+    </div>
+  </div>
+
+</problem>

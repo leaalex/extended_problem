@@ -1,0 +1,53 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <p><strong>Цель:</strong> Оценивать основные параметры системы смазки поршневого двигателя.</p>
+    <p>Определить количество смазочного масла, прокачиваемого через двигатель, и объем масла, заливаемого в систему, для дизельного двигателя со следующими параметрами:</p>
+    <p>Мощность двигателя \(N_e = 140 \ кВт\).</p>
+    <p>Температура масла на входе в двигатель \(T_1 = 80 \ ^{\circ}C\).</p>
+    <p>Температура масла на выходе из двигателя \(T_2 = 95 \ ^{\circ}C\).</p>
+    <p>Коэффициент запаса \(\xi = 2.5\).</p>
+    <p>Удельный теплоотвод в масло: \(0.85 \ кДж/(кг \cdot ч)\).</p>
+    <p>Теплоемкость масла при \(T_{ср} = 1.9 \ кДж/(кг \cdot К)\).</p>
+    <p>Тип системы смазки: система с мокрым картером.</p>
+    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>
+    <table class="no-equation">
+        <tr>
+            <td>Перепад температур масла на выходе и входе в двигатель \(\Delta T =  \)</td>
+            <td>
+                <numericalresponse answer="15">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\(^{\circ}C\)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Количество масла, прокачиваемого через двигатель \(G_{м} = \)</td>
+            <td>
+                <numericalresponse answer="10.4">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кг/с"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Объем масла, заливаемого в систему \(V_{с} = \)</td>
+            <td>
+                <numericalresponse answer="21">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="л"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>
