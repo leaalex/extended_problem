@@ -1,0 +1,70 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные параметры термодинамических циклов разных типов поршневых двигателей.</p>-->
+
+    <p>A gasoline engine with a compression ratio \(\varepsilon = 8\) operates at a crankshaft speed \(n = 4000 \ min^{-1}\). Determine the numerical values of the maximum pressure of the working cycle \(p_{max}\) and the pressure of the actuating medium at the end of the exhaust stroke \(p_b\). The pressure at the end of the intake stroke \(p_{a} = 0.088 \ МПа\). The pressure increase ratio is \(\lambda = 4.3\).The exhaust polytropic index \(n_2 = 1.26\).</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>ПCompression polytropic index \(n_1 = \)</td>
+            <td>
+                <numericalresponse answer="1.385">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text=""/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Pressure at the end of compression \(p_c = \)</td>
+            <td>
+                <numericalresponse answer="1.57">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{MPa} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Pressure at the end of combustion \(p_z = \)</td>
+            <td>
+                <numericalresponse answer="6.75">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{MPa} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Maximum diesel cycle pressure \(p_{max} = \)</td>
+            <td>
+                <numericalresponse answer="5.74">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{MPa} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Pressure of the actuating medium at the end of the expansion stroke \(p_b = \)</td>
+            <td>
+                <numericalresponse answer="0.49">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{MPa} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+</problem>

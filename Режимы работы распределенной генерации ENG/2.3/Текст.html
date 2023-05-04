@@ -1,0 +1,29 @@
+<p><strong>Example 1.</strong> A four-stroke, four-cylinder gasoline engine develops an effective power of \(53 \ \mathrm{kW}\) at a crankshaft speed of \(5400 \ min^{-1}\). Mean indicator pressure \(p_i = 1.06 \ \mathrm{MPa}\), mean mechanical loss pressure \(p_m = 0.31 \ \mathrm{MPa}\). The piston stroke is \(80 \ \mathrm{mm}\). Determine the engine cylinder diameter \(D\).</p>
+<p><strong>Solution</strong></p>
+<p>It is possible to determine the cylinder diameter value from the equation for calculating the effective engine power:</p>
+\[ N_e = \cfrac{p_e V_h n i}{30 \tau} = \cfrac{p_e n i}{30 \tau} \cdot  \cfrac{\pi D^2 \cdot S}{4}.\]
+<p>Therefore the cylinder diameter is:</p>
+\[D = \sqrt{\cfrac{120 \cdot N_e \cdot \tau }{p_e \cdot \pi \cdot S \cdot n \cdot i}}.\]
+<p>In this formula, all quantities are known, except for the mean effective pressure \(p_e\). The mean effective pressure of the cycle is:</p>
+<p>\(p_e = p_i - p_m = 1.06 - 0.31 = 0.75 \ \mathrm{MPa}.\)</p>
+<p>When determining the cylinder diameter, the piston stroke must be substituted in decimeters (dm), since the cylinder capacity must be substituted in liters \((dm^3)\) in this formula</p>
+<p>\( D = \sqrt{\cfrac{120 \cdot N_e \cdot \tau }{p_e \cdot \pi \cdot S \cdot n \cdot i}} = D = \sqrt{\cfrac{120 \cdot 53 \cdot 4 }{0.75 \cdot 3.14 \cdot 0.8 \cdot 5400 \cdot 4}} = 0.79 \ \mathrm{dm}\) (or \(79\) \(\mathrm{mm}\)).</p>
+
+<p><strong>Example 2.</strong> A four-stroke, eight-cylinder \(200 \ \mathrm{kW}\) gasoline engine at a crankshaft speed of \(4200 \ min^{-1}\) has a specific effective fuel consumption \(g_e = 300 \ \mathrm{g/(kW \cdot h)}\). The cylinder diameter is \(108 \ \mathrm{mm}\), the stroke is \(95 \ \mathrm{mm}\). The mean mechanical loss pressure \(p_m = 0.187 \ \mathrm{MPa}\). Determine the indicator values of the operating cycle: mean indicator pressure \(pi\), indicator efficiency \(\eta_i\), specific indicator fuel consumption \(g_i\).</p>
+<p><strong>Solution</strong></p>
+
+<p>The solution can be started by determining the mean effective pressure of the working cycle: \( p_e = \cfrac{N_e 30 \tau}{V_h ni} \). The cylinder capacity is unknown.</p>
+<p>The cylinder capacity is:</p>
+<p>\( V_h = \cfrac{\pi D^2}{4} \cdot S = \cfrac{3.14 \cdot 1.08^2}{4} \cdot 0.95 = 0.87 \ \mathrm{l \ (dm^3)}\).</p>
+<p>Then the mean effective pressure of the cycle is:</p>
+<p>\( p_e = \cfrac{N_e 30 \tau}{V_h n i } = \cfrac{200 \cdot 30 \cdot 4}{0.87 \cdot 4200 \cdot 8} = 0.82 \ \mathrm{MPa}\).</p>
+<p>The mean indicator pressure of the cycle is:</p>
+<p>\( p_i = p_e + p_m = 0.82 + 0.187 = 1.007 \ \mathrm{MPa}\).</p>
+<p>Net efficiency, characterizing the proportion of the fuel combustion heat, which is converted into effective operation in the engine is:</p>
+<p>\( \eta_e = \cfrac{3600}{Hu \cdot g_e} = \cfrac{3600}{44 \cdot 300} = 0.273. \)</p>
+<p>The cycle mechanical efficiency is:</p>
+<p>\(\eta_{м} = p_e/p_i = 0.82/1.007 = 0.814.\)</p>
+<p>The cycle indicator efficiency is:</p>
+<p>\(\eta_{i} = \eta_e/\eta_m = 0.273/0.814 = 0.335.\)</p>
+<p>The specific indicator fuel consumption</p>
+<p>\( g_i = \cfrac{3600}{Hu \cdot \eta_i} = \cfrac{3600}{44 \cdot 0.335} = 244 \ \mathrm{g/(kW \cdot h)}.\)</p>

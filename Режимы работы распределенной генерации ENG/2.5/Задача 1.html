@@ -1,0 +1,59 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные показатели электростанций на базе поршневых двигателей.</p>-->
+
+    <p>Determine the nominal \(N_{ice}\) (taking into account losses in the generator) and the maximum \(N_{ice\_max}\) engine power for the power plant with the following indicators: \(N_{en} = 1500 \ \mathrm{kW}\) (nominal power of the power plant); \(\eta_g = 0.9\) (generator efficiency); \(N_s = 25 \ \mathrm{kW}\) (power consumption for the drive of auxiliary units); \(N_{e\_max} = 1650 \ \mathrm{kW}\) (power plant maximum capacity). Also determine the specific fuel consumption of the power plant \(g_e\) and of the engine \(g_{ice}\), driving this power plant, with the parameters indicated above, if the engine consumes \(310 \ \mathrm{kg}\) of fuel per hour of operation \((G_f = 310 \ \mathrm{kg/h})\).</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>Engine nominal power for a \(1500 \ \mathrm{kW}\) power plant: \(N_{ice} =  \)</td>
+            <td style="min-width: 200px">
+                <numericalresponse answer="1694">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kW} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Maximum power that the engine must develop with a \(10 \ \%\) power margin for overload: \(N_{ice\_max} = \)</td>
+            <td style="min-width: 200px">
+                <numericalresponse answer="1861">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kW} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Specific fuel consumption of the engine for driving a \(1500 \ \mathrm{kW}\) power plant: \(g_{ice} = \)</td>
+            <td style="min-width: 220px">
+                <numericalresponse answer="0.183">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kg/(kW \cdot h)} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Specific fuel consumption of a \(1500 \ \mathrm{kW}\) power plant: \(g_{e} = \)</td>
+            <td style="min-width: 220px">
+                <numericalresponse answer="0.207">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kg/(kW \cdot h)} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

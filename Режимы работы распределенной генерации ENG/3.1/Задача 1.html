@@ -1,0 +1,53 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные параметры системы смазки поршневого двигателя.</p>-->
+    <p>Determine the amount of lubricant pumped through the engine and the volume of lubricant poured into the system for the diesel engine with the following parameters:</p>
+    <p>Engine power \(N_e = 140 \ \mathrm{kW}\).</p>
+    <p>Lubricant temperature at the engine intake \(T_1 = 80 \ ^{\circ}C\).</p>
+    <p>Lubricant temperature at the engine exhaust \(T_2 = 95 \ ^{\circ}C\).</p>
+    <p>Yield factor \(\xi = 2.5\).</p>
+    <p>Specific heat sink in lubricant: \(0.85 \ \mathrm{kJ/(kg \cdot h)}\).</p>
+    <p>Lubricant heat capacity for \(T_{ср} = 1.9 \ \mathrm{kJ/(kg \cdot K)}\).</p>
+    <p>ТType of lubricant system: a wet sump system.</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>The lubricant temperature difference at the engine exhaust and intake \(\Delta T =  \)</td>
+            <td>
+                <numericalresponse answer="15">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\(^{\circ}C\)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>The amount of lubricant pumped through the engine \(G_{l} = \)</td>
+            <td>
+                <numericalresponse answer="10.4">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kg/s} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>The volume of lubricant poured into the system \(V_{s} = \)</td>
+            <td>
+                <numericalresponse answer="21">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{l} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

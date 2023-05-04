@@ -1,0 +1,92 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные параметры топливной системы поршневого двигателя.</p>-->
+    <p>It is necessary to determine the major geometric dimensions of the main elements of the high pressure fuel pump for the diesel engine, if the following parameters are known:</p>
+
+    <p>Cylinder power of the engine \(N_c = 20 \ \mathrm{kW}\);</p>
+    <p>Crankshaft speed \(n = 2500 \ \mathrm{r/min}\);</p>
+    <p>Engine strokeness \(\tau = 4\);</p>
+    <p>Fuel density \(\rho_f = 850 \ \mathrm{kg/m^3}\);</p>
+    <p>Specific fuel consumption \(g_e = 235 \ \mathrm{g/(kW \cdot h)}\);</p>
+    <p>Fuel supply coefficient \(k = 1.35\);</p>
+    <p>Injection duration \(\varphi = 25\) degrees;</p>
+    <p>Supply coefficient \(\eta = 0.9\);</p>
+    <p>Plunger speed \(c_p = 2.2 \ \mathrm{m/s}\);</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>Volumetric cycle fuel supply \(V_c =  \)</td>
+            <td>
+                <numericalresponse answer="73.7">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\(\mathrm{mm^3/cycle}\)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Diameter of the fuel pump plunger \(d_{p} = \)</td>
+            <td>
+                <numericalresponse answer="6.2">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{mm} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Active plunger move \(h = \)</td>
+            <td>
+                <numericalresponse answer="2.71">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{mm} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Diameter of the intake and blocked off bores \(d_c = \)</td>
+            <td>
+                <numericalresponse answer="1.86">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{mm} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Minimum necessary full plunger move \(H_{min} = \)</td>
+            <td>
+                <numericalresponse answer="6.43">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{mm} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Full plunger move \(H = \)</td>
+            <td>
+                <numericalresponse answer="6.5">
+                    <responseparam type="tolerance" default="99999"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{mm} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

@@ -1,0 +1,58 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные параметры термодинамических циклов газотурбинных установок.</p>-->
+
+    <p>For an ideal cycle of a gas turbine unit with isobaric heat supply, determine the parameters of the actuating medium at characteristic points, the amount of supplied and removed heat, useful yield, thermal efficiency, if the initial parameters of the actuating medium are \(p_1 = 0.1 \ \mathrm{MPa}\) and \(t_1 = 20 ^{\circ}C\), compressor pressure ratio \(\beta = 6.5\) and the temperature of the actuating medium at the heat supply end \(t_3 = 650 ^{\circ}С\). The actuating medium is air. \(R = 287.3 \ \mathrm{J/kg \cdot K}\), \(c_p= 1.01 \ \mathrm{J/kg \cdot K}\), \(k = 1.4\).</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>The amount of heat supplied to the actuating medium \(q_1 =  \)</td>
+            <td>
+                <numericalresponse answer="407.03">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kJ/kg} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>The amount of heat removed from the actuating medium \(q_2 = \)</td>
+            <td>
+                <numericalresponse answer="249.47">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kJ/kg} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Cycle operation \(l = \)</td>
+            <td>
+                <numericalresponse answer="157.56">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kJ/kg} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Thermal efficiency of the gas turbine unit cycle \(\eta_t = \)</td>
+            <td>
+                <numericalresponse answer="0.39">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text=""/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+</problem>

@@ -1,0 +1,51 @@
+
+<p><strong>Example 1.</strong> For an ideal cycle of a gas turbine unit with isobaric heat supply, determine the parameters of the actuating medium at characteristic points, the amount of supplied and removed heat, useful yield, thermal efficiency, if the initial parameters of the actuating medium are \(p_1= 0.1 \ \mathrm{MPa} \) and \(t_1 = 15 ^{\circ}C\), compressor pressure ratio \(\beta = 6.0\) and the temperature of the actuating medium at the heat supply end \(t_3 = 600 ^{\circ}C\). The actuating medium is air. \(R = 287.3 \ \mathrm{J/kg \cdot K}\), \(c_p  = 1.01 \ \mathrm{J/kg \cdot K}\), \(k = 1.4\).</p>
+<p><strong>Solution</strong></p>
+<p>The theoretical thermodynamic cycles of a gas turbine unit with isobaric heat supply and with complete regeneration (dashed lines) are shown in Fig. 1.</p>
+<figure style="text-align:center;">
+    <img src="/static/uOtLnskkfw.jpg" alt="" style=""/>
+    <img src="/static/jmzRPfgv5Q.jpg" alt="" style=""/>
+    <figcaption>Fig. 1. Thermodynamic cycles of a gas turbine unit with isobaric heat supply and with complete regeneration (dashed lines)</figcaption>
+</figure>
+<p></p>
+<p>Determine the parameters of the actuating medium at point 1:</p>
+<p>- pressure \(p_1= 0.1 \ \mathrm{MPa}\);</p>
+<p>- temperature \(T_1 = 15 + 273 = 288 \ \mathrm{K}\);</p>
+<p>- specific volume \( \nu_1 = \cfrac{R \cdot T_1}{p_1} = \cfrac{287.3 \cdot 288}{0.1 \cdot 10^6} = 0.83 \ \mathrm{m^3/kg}\).</p>
+
+<p>Determine the parameters of the actuating medium at point 2:</p>
+<p>- pressure \(p_2 = p_1 \cdot \beta = 0.1 \cdot 6 = 0.6 \ \mathrm{MPa}\);</p>
+<p>- относительный объем \( \nu_2 = \nu_1 \cdot \left( \cfrac{1}{\beta} \right)^{1/k} = 0.83 \cdot \left( \cfrac{1}{6} \right)^{1/1.4} = 0.23 \ \mathrm{m^3/kg} \);</p>
+<p>- temperature \( T_2 = \cfrac{p_2 \cdot \nu_2 }{R} = \cfrac{0.6 \cdot 10^6 \cdot 0.23 }{287.3} = 480 \ К\).</p>
+
+<p>Determine the parameters of the actuating medium at point 3:</p>
+<p>- temperature \(T_3= 600 + 273 = 873 \ \mathrm{K}\);</p>
+<p>- pressure \(p_3 = p_2 = 0.6 \ \mathrm{MPa}\);</p>
+<p>- specific volume \( \nu_3 = \cfrac{R \cdot T_3}{p_3} = \cfrac{287.3 \cdot 873}{0.6 \cdot 10^6} = 0.42 \ \mathrm{m^3/kg}\).</p>
+
+<p>Determine the parameters of the actuating medium at point 4:</p>
+<p>- pressure \(p_4 = p_1 = 0.1 \ \mathrm{MPa}\);</p>
+<p>- temperature \( T_4 = T_3 \left( \cfrac{1}{\beta} \right)^{\frac{k-1}{k}} = 873 \cdot \left( \cfrac{1}{6} \right)^{0.286} = 523 \ К\).</p>
+<p>- specific volume \( \nu_4 = \cfrac{R \cdot T_4}{p_4} = \cfrac{287.3 \cdot 523}{0.1 \cdot 10^6} = 1.5 \ \mathrm{m^3/kg}\).</p>
+
+<p>The amount of heat supplied to the actuating medium:</p>
+<p>\( q_1 = c_p (T_3 - T_2) = 1.01 \cdot (873 -480) = 396.93 \  \mathrm{kJ/kg}\).</p>
+<p>The amount of heat removed from the actuating medium:</p>
+<p>\( q_2 = c_p (T_4 - T_1) = 1.01 \cdot (523 - 288) = 237.35 \  \mathrm{kJ/kg}\).</p>
+<p>Cycle operation:</p>
+<p>\(l = q_1 - q_2 = 396.93 - 237.35 = 159.58 \ \mathrm{kJ/kg}\).</p>
+<p>Thermal efficiency of the gas turbine unit cycle:</p>
+<p>\( \eta_t = \cfrac{l}{q_1} = \cfrac{159.58}{396.93} = 0.4 \)</p>
+
+<p><strong>Example 2.</strong> Solve the previous problem (example 1) provided that a complete regeneration is performed.</p>
+<p><strong>Solution</strong></p>
+<p>Fig. 1 shows that in the thermodynamic cycle of a gas turbine with regeneration \(T_4 = T_5\), а \(T_2 = T_6\).</p>
+<p>The amount of heat supplied to the actuating medium:</p>
+<p>\(q_1' = c_p(T_3 - T_5) = 1.01 \cdot (873 - 523) = 353.5 \ \mathrm{kJ/kg}\).</p>
+<p>The amount of heat removed from the actuating medium:</p>
+<p>\(q_2' = c_p(T_6 - T_1) = 1.01 \cdot (480 - 288) = 193.92 \ \mathrm{kJ/kg}\).</p>
+<p>The cycle operation of a gas turbine unit with regeneration:</p>
+<p>\( l' = q_1' - q_2' = 353.5 - 193.92 = 159.58 \ \mathrm{kJ/kg}\).</p>
+<p>Thermal efficiency of a cycle of a gas turbine unit with regeneration:</p>
+<p>\( \eta_t = \cfrac{l}{q'_1} = \cfrac{159.58}{353.5} = 0.45 \).</p>
+

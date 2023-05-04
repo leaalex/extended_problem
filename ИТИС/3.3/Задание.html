@@ -1,12 +1,14 @@
 <problem>
-<script type="loncapa/python">
+    <p><strong>Цель:</strong><br />научиться формировать поисковый запрос в сети Интернет.</p>
+    <p><strong>Инструкция</strong><br />1. Вспомните правила формирования поиска информации в Интернет . Ознакомьтесь с материалами <a href="https://rookee.ru/blog/yazyk-zaprosov-yandex/?ysclid=lcq5plpm99834376678" target="_blank">Язык поисковых запросов «Яндекса»</a><br />2. Сформируйте  запрос на поиск информации в соответствии с условием задачи и введите его в поле ответа.</p><p>Введите в поле ответа строку, которая позволит найти на сайте <a href="https://www.dns-shop.ru/" target="_blank">dns-shop.ru</a> точный запрос «Технические характеристики» исключая из поиска слово "iPhone".</p>
+    <script type="loncapa/python">
 # -*- coding: utf-8 -*-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 import random
-sites_list = ["apple.com", "urfu.ru", "gosuslugi.ru", "habr.com"]
+sites_list = ["dns-shop.ru", "urfu.ru", "gosuslugi.ru", "habr.com"]
 queries_list = ["Быть программистом", "Поступление в магистратуру", "Запись к врачу", "Технические характеристики"]
 excludes_list = ["Python", "УрФУ", "Витамины", "iPhone"]
 
@@ -29,15 +31,15 @@ answer += " "
 answer += "-" + exclude
 
 def check_answer(exp, ans):
-    if unicode(answer).lower().encode('utf8') == ' '.join(ans.split()).replace("'", '"').replace("'", '"').lower():
+    if sorted(unicode(answer).lower().strip().split(' ')) == sorted(ans.replace("'", '"').replace("'", '"').lower().strip().split(' ')):
         return 1
     else:
         return 0
 </script>
     <div>
-        <p><a href="https://support.google.com/websearch/answer/2466433?hl=ru#:~:text=%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D1%8C%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%20%D1%82%D0%BE%D1%87%D0%BD%D1%8B%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B,%D0%B8%D0%BB%D0%B8%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%BE%D0%BC%20%D0%B8%20%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%8B%D0%BC%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%BC." target="_blank">Инструкция Google</a></p>
+        <p><a href="https://yandex.ru/support/search/query-language/search-context.html" target="_blank">Инструкция Яндекс</a></p>
         <p><a href="https://www.rookee.ru/learn/kak-polzovatsya-operatorami-poiska-google-yazyk-zaprosov/" target="_blank">Дополнительная информация</a></p>
-        <p>Найдите сайте <strong>$site</strong> $is_exact_query_text "$query" исключая из поиска слово "$exclude".</p>
+
 
         <customresponse cfn="check_answer">
             <textline size="60" value="$task_id"/>

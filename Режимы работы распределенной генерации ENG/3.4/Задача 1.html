@@ -1,0 +1,150 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+    <p><strong>Цель:</strong> Оценивать экономические показатели электростанций на базе поршневых двигателей с когенерацией.</p>
+    <p>Определить срок окупаемости электростанции на базе поршневого двигателя, работающего на газообразном топливе, и когенерацией. Исходные данные:</p>
+    <p>- электрическая мощность \(N_{el} = 150 \ кВт\);</p>
+    <p>- тепловая мощность \(N_h = 250 \ кВт\);</p>
+    <p>- расход газа \(G = 47 \ м^3/ч\);</p>
+    <p>- тариф на природный газ \(T1 = 6000 \ руб./1000 \ м^3\);</p>
+    <p>- тариф на электроэнергию \(T2 = 3 \ руб./(кВт \cdot ч)\);</p>
+    <p>- тариф на тепло \(T3 = 2000 \ руб./Гкал\);</p>
+    <p>- затраты на обслуживание и ремонт электростанции \(T4 = 650 \ 000 \ руб./год\);</p>
+    <p>- капитальные затраты на электростанцию и ее монтаж \(T5 = 8 \ 000 \ 000 / руб\);</p>
+    <p>- число часов работы электростанции в год – \(6000\).</p>
+    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>
+    <hr />
+    <p>Количество электроэнергии, выработанной за 1 год:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(N_{\scriptsize{\sum} el} =  \)</td>
+            <td>
+                <numericalresponse answer="900000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="кВт"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Стоимость выработанной электроэнергии:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\( S2 =  \)</td>
+            <td>
+                <numericalresponse answer="2700000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="руб."/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Количество выработанного тепла:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(N_{\scriptsize{\sum} h} =  \)</td>
+            <td>
+                <numericalresponse answer="1290">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="Гкал"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Стоимость выработанного тепла:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(S3 = \)</td>
+            <td>
+                <numericalresponse answer="2580000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="руб."/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Суммарная стоимость выработанной энергии</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(S_{\scriptsize{\sum}} = \)</td>
+            <td>
+                <numericalresponse answer="5280000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="руб."/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Расход природного газа за 1 год работы электростанции:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(G_{\scriptsize{\sum}} = \)</td>
+            <td>
+                <numericalresponse answer="282000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\(м^3\)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Расходы на природный газ за 1 год работы электростанции:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(C1 = \)</td>
+            <td>
+                <numericalresponse answer="1692000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="руб."/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Суммарные расходы на текущие издержки за 1 год:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(C \sum = \)</td>
+            <td>
+                <numericalresponse answer="2342000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="руб."/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Чистый доход от проданной энергии:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(P = \)</td>
+            <td>
+                <numericalresponse answer="2938000">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="руб./год"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <p>Окупаемость:</p>
+    <table class="no-equation">
+        <tr>
+            <td>\(Pb = \)</td>
+            <td>
+                <numericalresponse answer="2.72">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="года"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

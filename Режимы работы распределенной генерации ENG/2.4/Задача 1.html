@@ -1,0 +1,35 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные показатели эффективности газовых турбин с разными характеристиками.</p>-->
+
+    <p>Determine the specific effective and isentropic operation of the turbine, if the gas temperature in front of the turbine \(T^*_G = 1800 \ К\), the gas temperature behind the turbine \(T^*_T = 1250 \ К\), turbine efficiency \(\eta^*_T = 0.92\), the isobaric heat capacity of gases \(C_{РГ} = 1.157 \ \mathrm{kJ/(kg \cdot K)}\).</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>Isentropic operation \(L^*_{TS} =  \)</td>
+            <td>
+                <numericalresponse answer="636.35">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kJ/kg} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>Specific effective operation \(L^*_{T} = \)</td>
+            <td>
+                <numericalresponse answer="585.4">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kJ/kg} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>

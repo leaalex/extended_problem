@@ -1,0 +1,42 @@
+<p><strong>Example 1.</strong> A diesel engine with a compression ratio \(\varepsilon = 15\) operates at a crankshaft speed \(n = 2000 \ min^{-1}\). Determine the value of the maximum pressure of the working cycle \(p_{max}\), if it is known that the pressure increase ratio \(\lambda = 2.0\). The pressure of the actuating medium at the end of the intake stroke \(p_{a} = 0.095 \ MPа\).</p>
+<p><strong>Solution</strong></p>
+<p>When performing an approximate calculation of the diesel engine’s working cycle, the real process of fuel combustion is replaced by the process of isochoric-isobaric (mixed) heat supply to the actuating medium (Fig. 1).</p>
+<figure style="text-align:center;">
+    <img src="/static/IRexSj9Mk8.jpg" alt="" style=""/>
+    <figcaption>Fig. 1. \(p - \nu\) - working cycle diagram with mixed heat supply to the actuating medium (Diesel cycle)</figcaption>
+</figure>
+<p></p>
+<p>Combustion begins when the piston is at TDC. Combustion start pressure - \(p_c\), temperature – \(T_c\). Part of the fuel burns at a constant volume of the actuating medium \((V = const)\). In this case, the pressure increases from \(p_c\) to \(p_z\), which \((p_z)\) corresponds to the end of the isochoric combustion process. The rest of the fuel burns at \(p = const\). Thus, the pressure \(p_z\) is the maximum cycle pressure. In this case, the ratio of the values \(p_c\) and \(p_z\) is characterized by the pressure increase ratio \(\lambda = \cfrac{p_z}{p_c}\).</p>
+<p>To solve the problem, it is necessary to find the pressure of the actuating medium at the end of the compression stroke:</p>
+\[ p_c = p_a \varepsilon^{n_1}.\]
+<p>The compression polytropic index is calculated by the formula:</p>
+\[ n_1 = 1.41 - \cfrac{100}{n} = 1.41 - \cfrac{100}{2000} = 1.36. \]
+<p>Then the pressure at the end of compression:</p>
+\[p_c = 0.095 \cdot 15^{1.36} = 3.78 \ \mathrm{MPa}.\]
+<p>Maximum working cycle pressure:</p>
+\[p_{max} = p_c \lambda = 3.78 \cdot 2 = 7.56 \ \mathrm{MPa}.\]
+
+
+<p><strong>Пример 2.</strong> A gasoline engine with a compression ratio \(\varepsilon = 9.9\) operates at a crankshaft speed \(5600 \ min^{-1}\). Pressure at the end of the intake stroke \(p_{a} = 0.088 \ \mathrm{MPa}\). Determine the value of the cycle’s maximum pressure \(p_{max}\) and the pressure of the actuating medium at the end of the exhaust stroke \(p_{b}\).</p>
+<p><strong>Solution</strong></p>
+<p>When calculating the abstract working cycle of a gasoline engine, the actual combustion process is represented as isochoric (Fig. 2).</p>
+
+<figure style="text-align:center;">
+    <img src="/static/MC4whhhn0x.jpg" alt="" style=""/>
+    <figcaption>Fig. 2. \(p - \nu\) - working cycle diagram with isochoric heat supply to the actuating medium (gasoline engine cycle)</figcaption>
+</figure>
+<p></p>
+
+<p>The combustion begins at TDC at a pressure \(p_c\), proceeds at a constant volume \((V = const)\) and ends at TDC at a pressure  \(p_z\). The \(p_z\) value is calculated using the pressure ratio \(\lambda\).</p>
+<p>For a gasoline engine \(\lambda = p_z/p_c = 4.0 ... 4.5\). The \(p_z\) value obtained by this method exceeds the \(p_max\) values of gasoline engines measured experimentally. To harmonize the calculations with practice, the so-called rounding of the idealized indicator diagram is used, assuming that \(p_max = 0.85 p_z\).</p>
+<p>According to experimental data, the value of the average exhaust polytropic index for gasoline engines is \(n_2 = 1.18 ... 1.28\), and for diesel engines is \(n_2 = 1.18 ... 1.24\).</p>
+<p>The compression polytropic index:</p>
+\[ n_1 = 1.41 - \cfrac{100}{n} = 1.41 - \cfrac{100}{5600} = 1.392. \]
+<p>The pressure at the end of the compression stroke:</p>
+\[ p_c = p_a \varepsilon^{n_1} = 0.088 \cdot 9.9^{1.392} = 2.14 \ \mathrm{MPa}.\]
+<p>The pressure at the end of combustion:</p>
+\[ p_z = p_c \lambda = 2.14 \cdot 4.3 = 9.2 \ \mathrm{MPa}.\]
+<p>Maximum cycle pressure:</p>
+\[ p_{max} = 0.85 p_z = 0.85 \cdot 9.2 = 7.85 \ \mathrm{MPa}.\]
+<p>Taking the value of the exhaust polytropic index \(n_2 = 1.27\), calculate the pressure at the end of the exhaust stroke:</p>
+\[ p_b = p_z \left(\cfrac{\nu_c}{\nu_a}\right)^{n_2} =\cfrac{p_z}{\varepsilon^{n_2}} = \cfrac{9.2}{9.9^{1.27}} = 0.5 \ \mathrm{MPa}.\]

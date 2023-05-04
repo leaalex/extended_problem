@@ -1,0 +1,35 @@
+<problem>
+    <style>
+        .no-equation .equation{
+            display: none !important;
+        }
+    </style>
+<!--    <p><strong>Цель:</strong> Оценивать основные показатели эффективности газовых турбин с разными характеристиками.</p>-->
+
+    <p> Determine the power developed by the GTE turbine, if the gas flow through the turbine is \(G_G = 110 \ \mathrm{kg/s}\), the expansion in the turbine \(\pi^*_{T} = 3\), the gas temperature in front of the turbine \(T^*_G = 1700 \ \mathrm{K}\), the isentropic efficiency of the turbine \(\eta^*_T = 0.92\) (set \(C_{РГ} = 1.157 \ \mathrm{kJ/(kg \cdot K)}\), \(k_G = 1.33\) ).</p>
+<!--    <p><i>Дробную часть необходимо вводить через <strong>точку</strong>.</i></p>-->
+    <table class="no-equation">
+        <tr>
+            <td>Specific effective operation of the turbine \(L_{T} = \)</td>
+            <td>
+                <numericalresponse answer="405.2">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kJ/kg} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+    <table class="no-equation">
+        <tr>
+            <td>GTE turbine power \(Т_{T} = \)</td>
+            <td>
+                <numericalresponse answer="40520">
+                    <responseparam type="tolerance" default="0.01"/>
+                    <formulaequationinput  trailing_text="\( \mathrm{kW} \)"/>
+                </numericalresponse>
+            </td>
+        </tr>
+    </table>
+
+</problem>
