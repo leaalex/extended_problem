@@ -1,32 +1,32 @@
-<p><strong>Пример 1.</strong> Определить срок окупаемости электростанции на базе поршневого двигателя, работающего на газообразном топливе, и когенерацией. Исходные данные:</p>
-<p>- электрическая мощность \(N_{el} = 140 \ кВт\);</p>
-<p>- тепловая мощность \(N_h = 200 \ кВт\);</p>
-<p>- расход газа \(G = 43 \ м^3/ч\);</p>
-<p>- тариф на природный газ \(T1 = 6000 \ руб./1000 м^3\);</p>
-<p>- тариф на электроэнергию \(T2 = 3 \ руб./(кВт \cdot ч)\);</p>
-<p>- тариф на тепло \(T3 = 2000 \ руб./Гкал\);</p>
-<p>- затраты на обслуживание и ремонт электростанции \(T4 = 500 \ 000 \ руб./год\);</p>
-<p>- капитальные затраты на электростанцию и ее монтаж \(T5 = 7 \ 000 \ 000 \ руб\).</p>
+<p><strong>Example 1.</strong> Determine the payback period for a cogeneration power plant based on a piston engine, which is running on gaseous fuel. Initial data:</p>
+<p>- capacity \(N_{el} = 140 \ \mathrm{kW} \);</p>
+<p>- thermal power \(N_h = 200 \ \mathrm{kW} \);</p>
+<p>- gas consumption \(G = 43 \ \mathrm{m^3/h} \);</p>
+<p>- pipeline rates \(T1 = 6000 \ \mathrm{rubles/1000 \ m^3} \);</p>
+<p>- electricity tariff \(T2 = 3 \ \mathrm{rubles/(kWh)} \);</p>
+<p>- heat tariff \(T3 = 2000 \  \mathrm{rubles/Gcal} \);</p>
+<p>- power plant maintenance and repair costs \(T4 = 500 \ 000 \ \mathrm{rubles/year}\);</p>
+<p>- capital costs for the power plant and its installation \(T5 = 7 \ 000 \ 000 \ \mathrm{rubles}\).</p>
 
-<p><strong>Решение</strong></p>
-<p>Количество электроэнергии, выработанной за 1 год:</p>
-<p>\(N_{\scriptsize{\sum} el} = N_{el} \cdot 6000 = 140 \cdot 6000 = 840000 \ кВт\), где \(6000\) – число часов работы электростанции в год.</p>
-<p>Стоимость выработанной электроэнергии:</p>
-<p>\( S2 = N_{\scriptsize{\sum} el} \cdot T2 = 840000 \cdot 3 = 2 \ 520 \ 000 \ руб.\)</p>
-<p>Количество выработанного тепла:</p>
-<p>\(N_{\scriptsize{\sum} h} = N_h \cdot 6000 = 200 \cdot 6000 = 1200000 \ кВт \cdot ч = 1031.8 \ Гкал\), с учетом, что \(1 \ кВт \cdot ч = 860 \ ккал\)</p>
-<p>Стоимость выработанного тепла:</p>
-<p>\(S3 = N_{\scriptsize{\sum} h} \cdot T3 = 1031.8 \cdot 2000 = 2 \ 063 \ 600 \ руб.\)</p>
-<p>Суммарная стоимость выработанной энергии</p>
-<p>\(S_{\scriptsize{\sum}} = S2 + S3 = 2 \ 520 \ 000 + 2 \ 063 \ 600 = 4 \ 583 \ 600 \ руб.\)</p>
-<p>Расход природного газа за 1 год работы электростанции:</p>
-<p>\( G_{\scriptsize{\sum}} = G \cdot 6000 = 43 \cdot 6000 = 258000 \ м^3.\)</p>
-Расходы на природный газ за 1 год работы электростанции:
-<p>\( C1 = G_{\scriptsize{\sum}} \cdot T1 = 258 \cdot 6000 = 1 \ 548 \ 000 \ руб.\)</p>
-<p>Суммарные расходы на текущие издержки за 1 год:</p>
-<p>\(C \sum = T4 + C1 = 500 \ 000 + 1 \ 548 \ 000 = 2 \ 048 \ 000 \ руб.\)</p>
-<p>Чистый доход от проданной энергии:</p>
-<p>\( P = S_{\scriptsize{\sum}} - C_{\scriptsize{\sum}} = 4 \ 583 \ 600 - 2 \ 048 \ 000 = 2 \ 535 \ 600 \ руб./год.\)</p>
-<p>Окупаемость:</p>
-<p>\(Pb = T5/P = 7 \ 000 \ 000 / 2 \ 535 \ 600 = 2.76 \ года.\)</p>
+<p><strong>Solution</strong></p>
+<p>Quantity of power, generated per year:</p>
+<p>\(N_{\scriptsize{\sum} el} = N_{el} \cdot 6000 = 140 \cdot 6000 = 840000 \ \mathrm{kW} \), where \(6000\) is the number of operating hours of the power plant per year.</p>
+<p>The cost of generated electricity:</p>
+<p>\( S2 = N_{\scriptsize{\sum} el} \cdot T2 = 840000 \cdot 3 = 2 \ 520 \ 000 \ \mathrm{rubles}.\)</p>
+<p>The amount of generated heat:</p>
+<p>\(N_{\scriptsize{\sum} h} = N_h \cdot 6000 = 200 \cdot 6000 = 1200000 \ \mathrm{kWh} = 1031.8 \ \mathrm{Gcal}\) (given that  \(1 \ \mathrm{kWh} = 860 \ \mathrm{kcal}\)).</p>
+<p>Cost of generated heat:</p>
+<p>\(S3 = N_{\scriptsize{\sum} h} \cdot T3 = 1031.8 \cdot 2000 = 2 \ 063 \ 600 \ \mathrm{rubles}.\)</p>
+<p>Total cost of the energy production:</p>
+<p>\(S_{\scriptsize{\sum}} = S2 + S3 = 2 \ 520 \ 000 + 2 \ 063 \ 600 = 4 \ 583 \ 600 \ \mathrm{rubles}.\)</p>
+<p>Consumption of natural gas over 1 year of operation of the power plant:</p>
+<p>\( G_{\scriptsize{\sum}} = G \cdot 6000 = 43 \cdot 6000 = 258000 \ \mathrm{m^3}.\)</p>
+<p>Cost of natural gas over 1 year of operation of the power plant:</p>
+<p>\( C1 = G_{\scriptsize{\sum}} \cdot T1 = 258 \cdot 6000 = 1 \ 548 \ 000 \ \mathrm{rubles}.\)</p>
+<p>Total operating costs over 1 year:</p>
+<p>\(C \sum = T4 + C1 = 500 \ 000 + 1 \ 548 \ 000 = 2 \ 048 \ 000 \ \mathrm{rubles}.\)</p>
+<p>Net income from the energy production:</p>
+<p>\( P = S_{\scriptsize{\sum}} - C_{\scriptsize{\sum}} = 4 \ 583 \ 600 - 2 \ 048 \ 000 = 2 \ 535 \ 600 \ \mathrm{rubles/year}.\)</p>
+<p>Payback:</p>
+<p>\(Pb = T5/P = 7 \ 000 \ 000 / 2 \ 535 \ 600 = 2.76 \ \mathrm{years}.\)</p>
 
