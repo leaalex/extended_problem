@@ -1,0 +1,147 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+  </style>
+
+  <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+
+variants = [
+{
+    "a":20,
+    "b":10,
+    "c":0,
+    "x1":0,
+    "x2":0,
+    "f_x1_x2":0
+},
+{
+    "a":20,
+    "b":10,
+    "c":1,
+    "x1":0.15835,
+    "x2":0,
+    "f_x1_x2":0.252
+},
+{
+    "a":10,
+    "b":10,
+    "c":2,
+    "x1":0.3167,
+    "x2":0,
+    "f_x1_x2":-9.899
+},
+{
+    "a":15,
+    "b":10,
+    "c":-1.5,
+    "x1":-0.2375,
+    "x2":0,
+    "f_x1_x2":-4.943
+},
+{
+    "a":5,
+    "b":2,
+    "c":-1.5,
+    "x1":-0.2328,
+    "x2":0,
+    "f_x1_x2":1.0556
+},
+{
+    "a":8,
+    "b":6,
+    "c":0,
+    "x1":0,
+    "x2":0,
+    "f_x1_x2":-4.000
+},
+{
+    "a":13,
+    "b":11,
+    "c":2,
+    "x1":0.31685,
+    "x2":0,
+    "f_x1_x2":-8.899
+},
+{
+    "a":13,
+    "b":0,
+    "c":-1.5,
+    "x1":0,
+    "x2":0,
+    "f_x1_x2":13
+},
+{
+    "a":0,
+    "b":10,
+    "c":0,
+    "x1":0,
+    "x2":0,
+    "f_x1_x2":-20
+},
+{
+    "a":10,
+    "b":1,
+    "c":3,
+    "x1":0.4544,
+    "x2":0,
+    "f_x1_x2":8.2170
+}
+]
+
+variant = random.choice(variants)
+
+a = variant["a"]
+b = variant["b"]
+c = variant["c"]
+x1 = variant["x1"]
+x2 = variant["x2"]
+f_x1_x2 = variant["f_x1_x2"]
+
+</script>
+
+<p><strong>Цель:</strong> оценить эффективность алгоритма роя частиц в задаче поиска минимумов многомерной функции</p>
+
+<p><strong>Задача.</strong> Найти минимум оптимизационной задачи на основе функции Растригина для варианта с двумя переменными:</p>
+\[f(x) = a + x_1^2 - b \cdot cos(2 \pi x_1 - c) x^2_1 + x^2_2 - b \cdot cos(2 \pi x_2) \to min \]
+  \[ -5 \le x_1 \le 5 \]
+  \[ -5 \le x_2 \le 5 \]
+
+  <p>\(a = $a\)</p>
+  <p>\(b = $b\)</p>
+  <p>\(c = $c\)</p>
+  <p>Нужно модифицировать код примера для решения задачи оптимизации и ввести найденное решение \((x_1, x_2, f(x_1, x_2))\). При этом достаточно изменить код целевой функции, размерность (<code class="inline">dimensions</code>) и при необходимости число частиц и/или итераций.</p>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(x_1 = \)</td>
+      <td>
+        <numericalresponse answer="$x1">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(x_2 = \)</td>
+      <td>
+        <numericalresponse answer="$x2">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(f(x_1, x_2) = \)</td>
+      <td>
+        <numericalresponse answer="$f_x1_x2">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+</problem>

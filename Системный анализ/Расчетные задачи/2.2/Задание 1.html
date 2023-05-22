@@ -1,0 +1,92 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+    .no-equation br {
+      display: none !important;
+    }
+  </style>
+  <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+
+variants = [
+    {
+        "task": "кратчайший путь от вершины 1 до вершины 17",
+        "order": ['1', '4', '6', '9', '13', '17'],
+        "shortest_path": 14
+    },
+    {
+        "task": "кратчайший путь от вершины 1 до вершины 16",
+        "order": ['1', '4', '3', '10', '15', '16'],
+        "shortest_path": 12
+    },
+    {
+        "task": "кратчайший путь от вершины 2 до вершины 17",
+        "order": ['2', '4', '6', '9', '13', '17'],
+        "shortest_path": 14
+    },
+    {
+        "task": "кратчайший путь от вершины 1 до вершины 15",
+        "order": ['1', '4', '3', '10', '15'],
+        "shortest_path": 11
+    },
+    {
+        "task": "кратчайший путь от вершины 2 до вершины 16",
+        "order": ['2', '3', '10', '15', '16'],
+        "shortest_path": 11
+    },
+]
+
+variant = random.choice(variants)
+task = variant["task"]
+correct_answer = "-".join(variant["order"])
+shortest_path = variant["shortest_path"]
+
+def check_answer(expect, ans):
+    student_answer = [x.strip() for x in ans.replace(',', '-').split('-')]
+    if variant["order"] == student_answer:
+        return {'input_list': [{'ok': True, 'grade_decimal': 1}]}
+    else:
+        return {'input_list': [{'ok': False, 'grade_decimal': 0}]}
+
+</script>
+  <div>
+    <p><strong>Цель:</strong> разрабатывать программные компоненты для решения задач оптимизации в системах принятия решений</p>
+
+    <p><strong>Задача.</strong> Решить задачу поиска кратчайшего пути для графа, используя алгоритм Дейкстры, представленного на рисунке 3. Необходимо определить <strong>$task</strong>.</p>
+
+    <figure style="text-align:center;">
+      <img src="/static/SYSANALYSIS_R_02_02_img_03.png" alt="" style="max-width: 600px;"/>
+      <figcaption>Рис.3. Условие задачи 1</figcaption>
+    </figure>
+    <p></p>
+
+    <table class="no-equation">
+      <tr>
+        <td>Порядок обхода вершин (через запятую или тире) </td>
+        <td>    <customresponse cfn="check_answer">
+          <textline size="40" value="$task_id"/>
+          <br/>
+        </customresponse>
+          <solution>
+            <p>Привильный ответ: <strong>$correct_answer</strong></p>
+          </solution></td>
+      </tr>
+    </table>
+    <table class="no-equation">
+      <tr>
+        <td>Длина кратчайшего пути =</td>
+        <td>
+          <numericalresponse answer="$shortest_path">
+            <responseparam type="tolerance" default="0.01"/>
+            <formulaequationinput/>
+          </numericalresponse>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+</problem>

@@ -1,0 +1,43 @@
+<p><strong>Пример.</strong> Даны отношения между классами фрагмента онтологии: </p>
+<p>«АЭС» состоит из «Реактор»</p>
+<p>«АЭС» состоит из «Парогенератор»</p>
+<p>«АЭС» состоит из «Электрогенератор»</p>
+<p>«Реактор» передает тепловую энергию в «Парогенератор»</p>
+<p>«Парогенератор» передает механическую энергию в «Электрогенератор»</p>
+<p>Необходимо задать фрагмент онтологии кодом на языке программирования Python и построить граф, как показано на рис. 1. </p>
+
+<figure style="text-align:center;">
+    <img src="/static/SYSANALYSIS_R_02_03_img_01.png" alt="" style="max-width: 600px;"/>
+    <figcaption>Рис. 1. Графическое представление системы 1</figcaption>
+</figure>
+<p></p>
+
+<p><strong>Решение</strong></p>
+<p>Можно использовать библиотеку <code class="inline">Pyviz</code> в среде Google Colab. Для этого создать в Google Colab новый проект и добавить в него приведенный ниже код. В первую ячейку вставить код для установки библиотеки и для подключения функционала Jupyter notebook по отображению HTML: </p>
+<pre><code>!pip install pyvis
+from pyvis.network import Network
+from IPython.core.display import display, HTML</code></pre>
+
+<p>Во вторую ячейку нужно добавить код:</p>
+
+<pre><code># Инициализация сети (графа)
+net = Network(notebook = True, cdn_resources='remote', directed =True)
+
+# Добавление узлов
+net.add_node(0, label='АЭС', physics = False)
+net.add_node(1, label='Реактор', physics = False)
+net.add_node(2, label='Парогенератор', physics = False)
+net.add_node(3, label = 'Электрогенератор', physics = False)
+
+# Добавление ветвей (однотипные ветви можно задать в цикле)
+for i in range(1, 4):
+  net.add_edge(0, i, label = 'состоит из')
+
+net.add_edge(1, 2, label = 'передает тепловую энергию')
+net.add_edge(2, 3, label = 'передает механическую энергию')
+
+# Отображение сети на экране
+net.show('tags.html')
+display(HTML('tags.html'))</code></pre>
+
+<p>Затем нужно запустить ячейки с кодом на выполнение или нажать <code class="inline">Ctrl+9</code>. Под ячейками с кодом появится граф, узлы которого можно перетаскивать мышкой, расположив их как нужно (рис. 1).</p>

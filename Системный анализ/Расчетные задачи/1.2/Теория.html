@@ -1,0 +1,56 @@
+<p><strong>Пример 1.</strong> Рассмотрим задачу минимизации:</p>
+<p>
+    \(
+    2x - 2y - 3z \to min \\
+    \left\{
+    \begin{array}{c}
+    y + 2z \le 4, \\
+    x - y - z = 2, \\
+    x + y \le 6.
+    \end{array}
+    \right.  \\
+    x \ge 0, y \ge 0, z \ge 0
+    \)
+</p>
+<p>Необходимо задать условие кодом на языке программирования Python и найти значения \(x, y, z\), при которых целевая функция будет минимальна.</p>
+<p><strong>Решение</strong></p>
+<p>Можно использовать библиотеку <code class="inline">Pulp</code> в среде Google Colab. Для этого создать в Google Colab новый проект и добавить в него приведенный ниже код. В первую ячейку вставить код для установки библиотеки: </p>
+<pre><code>!pip install pulp
+from pulp import LpMinimize, LpProblem, lpSum, LpVariable</code></pre>
+<p>Во вторую ячейку нужно добавить код:</p>
+
+<pre><code># Инициализация описания проблемы
+model = LpProblem(name="exam", sense=LpMinimize)</code></pre>
+
+<p>Параметр <code class="inline">sense</code> определяет какую задачу надо решить, для решения задачи максимизации надо ввести <code class="inline">LpMaximize</code>.</p>
+
+<pre><code># Вводим переменные и указываем нижнюю границу
+x = LpVariable(name="x", lowBound=0)
+y = LpVariable(name="y", lowBound=0)
+z = LpVariable(name="z", lowBound=0)</code></pre>
+
+<p>Чтобы получить целочисленное решение, можно добавить параметр <code class="inline">cat="Integer"</code>.</p>
+
+<pre><code># Добавляем ограничения
+model += ( y + 2* z &lt;= 4)
+model += (x - y - z == 2)
+model += (y +z &lt;= 6)
+# Добавляем целевую функцию через lpSum
+model += lpSum([2*x, -2*y, -3 * z])</code></pre>
+
+<p>Теперь можно проверить полное описание модели:</p>
+<pre><code>print(model)</code></pre>
+
+<p>Далее можно решать задачу, для этого воспользуемся методом <code class="inline">Solve</code>:</p>
+<pre><code>status = model.solve()</code></pre>
+
+<p>Целочисленный статус решения равен 1, если найдено оптимальное решение.</p>
+
+<pre><code># Выводим результат оптимизации
+ print(f"status: {model.status}, {LpStatus[model.status]}")
+ print(f"objective: {model.objective.value()}")
+for var in model.variables():
+    print(f"{var.name}: {var.value()}")
+model.solver</code></pre>
+
+<p>Затем нужно запустить ячейки с кодом на выполнение или нажать <code class="inline">Ctrl+9</code>. Под ячейками с кодом появится значение целевой функции и оптимальные значения переменных решения.</p>

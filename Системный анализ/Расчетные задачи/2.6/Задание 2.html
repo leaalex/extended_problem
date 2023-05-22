@@ -1,0 +1,76 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+  </style>
+
+
+<p><strong>Задача.</strong> Нужно найти оба глобальных экстремума минимум оптимизационной <a href="https://www.sfu.ca/~ssurjano/camel6.html" target="_blank">задачи шестигорбого верблюда</a>. Известно, что один из них лежит в области \(x_1 \gt 0\), второй в области \(x_1 \lt 0\).</p>
+
+\[f(x) = (4 - 2.1 x^2_1 + \cfrac{x^4_1}{3})x^2_1 + x_1 x_2 + (-4 + 4x^2_2)x^2_2 \to min \tag{6} \]
+\[ -3 \le x_1 \le 3  \tag{7} \]
+\[ -2 \le x_2 \le 2  \tag{8} \]
+
+  <p>Нужно модифицировать код примера для решения задачи оптимизации и ввести найденное решение \((x_1, x_2, f(x_1, x_2))\). При этом достаточно изменить код целевой функции, размерность (<code class="inline">dimensions</code>) и при необходимости число частиц и/или итераций.</p>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(x_1 (\gt 0) = \)</td>
+      <td>
+        <numericalresponse answer="0.0896">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(x_2 = \)</td>
+      <td>
+        <numericalresponse answer="-0.7126">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(f(x_1, x_2) = \)</td>
+      <td>
+        <numericalresponse answer="-1.0316">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(x_1 (\lt 0) = \)</td>
+      <td>
+        <numericalresponse answer="-0.0896">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(x_2 = \)</td>
+      <td>
+        <numericalresponse answer="0.7126">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(f(x_1, x_2) = \)</td>
+      <td>
+        <numericalresponse answer="-1.0316">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+</problem>

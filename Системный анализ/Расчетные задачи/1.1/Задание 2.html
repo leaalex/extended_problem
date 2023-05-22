@@ -1,0 +1,221 @@
+<problem>
+
+  <script type="loncapa/python">task_id="OaSycyldf2"</script>
+
+  <style type="text/css">
+    #id_$task_id.inline-input-task div{display: inline !important;}
+    #id_$task_id.inline-input-task .status, #id_$task_id.inline-input-task .trailing_text, #id_$task_id.inline-input-task .solution-span{display: none !important;}
+    #id_$task_id.inline-input-task input[type="text"]{font-size: inherit;text-align: center;font-family: inherit;min-width: 20px !important;color: inherit;height: 24px !important;margin: 0px -2px 0px 0px !important;padding: 0px 2px !important;box-shadow: none !important;border-radius: 2px !important;}
+    #id_$task_id.inline-input-task input[type="text"] ~ p.answer{margin: 0px !important;display: inline !important;color: #008100;font-weight: bold;}
+    #id_$task_id.inline-input-task p.answer::before {content: "" !important;}
+    #id_$task_id.paragraph-class{margin-bottom: 12px; line-height: 1.6;}
+  </style>
+
+
+    <p>Одной из важных задач системного анализа в электроэнергетике является задача прогнозирования графиков электропотребления [1, 2, 3]. На рис. 3 приведена схема работы системы прогнозирования электропотребления предприятия. Использованы обозначения: \(e\) – ретроспективные данные электропотребления, \(p\) – производственные планы, \(m\) – прогнозы метеорологических факторов на сутки вперед, \(PPE\) – предобработка данных электропотребления, \(PPP\) – предобработка производственных планов, \(PPM\) – предобработка метеорологических прогнозов данных, \(pe\) – предобработанные данные электропотребления, \(pp\) – предобработанные производственные планы, \(ppm\) – предобработанные метеорологические прогнозы, \(per\) – предупреждения об ошибках в данных электропотребления, \(ppr\) – предупреждения об ошибках в данных о производственных планах, \(ppm\) – предупреждения об ошибках в данных метеорологических прогнозов, \(ER\) – модуль фиксации ошибок и генерации предупреждений, \(er\) – сообщение об ошибках, \(F\) – модуль формирования входного вектора признаков для прогнозной модели, \(x\) – вектор признаков, \(M\) – прогнозная модель, \(f\) – прогноз электропотребления.</p>
+
+    <figure style="text-align:center;">
+        <img src="/static/SYSANALYSIS_R_01_01_img_03.png" alt="" style="max-width: 600px;"/>
+        <figcaption>Рис. 3. Графическое представление системы прогнозирования электропотребления</figcaption>
+    </figure>
+    <p></p>
+    <p>Нужно представить систему в функциональном виде и заполнить поля на форме ниже обозначениями элементов и связей системы.</p>
+
+  <div class="inline-input-task paragraph-class" id="id_$task_id">
+      <span>
+        \((pe,\)
+       <stringresponse answer="per" type="cs">
+            <textline size="3"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+
+        <span>    \() = PPE(\)
+       <stringresponse answer="e" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+        \( )\)
+      </span>
+  </div>
+
+    <div class="inline-input-task paragraph-class" id="id_$task_id">
+       <span>
+       \((\)
+       <stringresponse answer="pp" type="cs">
+            <textline size="2"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+       </span>
+      <span>
+      \(, ppr) = \)
+       <stringresponse answer="xxx" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+      \( (\)
+       <stringresponse answer="p" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+      <span>
+        \( )\)
+      </span>
+    </div>
+
+    <div class="inline-input-task paragraph-class" id="id_$task_id">
+       <span>
+       \((\)
+       <stringresponse answer="pm" type="cs">
+            <textline size="2"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+       </span>
+        <span>
+      \(, \)
+       <stringresponse answer="pmr" type="cs">
+            <textline size="3"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+      \() = PPM (\)
+       <stringresponse answer="m" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+        \( )\)
+      </span>
+    </div>
+
+    <div class="inline-input-task paragraph-class" id="id_$task_id">
+       <span>
+       <stringresponse answer="x" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+       </span>
+        <span>
+      \( = \)
+       <stringresponse answer="F" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+      \((\)
+       <stringresponse answer="pe" type="cs">
+            <textline size="2"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+        \( \ pp \ pm )\)
+      </span>
+    </div>
+
+    <div class="inline-input-task paragraph-class" id="id_$task_id">
+       <span>
+       <stringresponse answer="er" type="cs">
+            <textline size="2"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+       </span>
+        <span>
+      \( = \)
+       <stringresponse answer="E" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+      \((per \ \)
+      </span>
+        <span>
+       <stringresponse answer="ppr" type="cs">
+            <textline size="3"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+       <stringresponse answer="pmr" type="cs">
+            <textline size="3"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+        \( )\)
+      </span>
+    </div>
+
+    <div class="inline-input-task paragraph-class" id="id_$task_id">
+       <span>
+       <stringresponse answer="forecast" type="cs">
+            <textline size="7"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+       </span>
+        <span>
+      \( = \)
+       <stringresponse answer="M" type="cs">
+            <textline size="1"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+      \( ( \)
+      </span>
+        <span>
+       <stringresponse answer="x" type="cs">
+            <textline size="3"/>
+        </stringresponse>
+        <solution>
+            <style>#id_$task_id.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+      </span>
+        <span>
+        \( )\)
+      </span>
+    </div>
+</problem>

@@ -1,0 +1,52 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+    .no-equation br {
+      display: none !important;
+    }
+  </style>
+  <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+
+variants = [
+    {
+        "order": ['H', 'I', 'L', 'M', 'C', 'K', 'B', 'D', 'A', 'G', 'J', 'F', 'E'],
+    }
+]
+
+variant = random.choice(variants)
+correct_answer = "-".join(variant["order"])
+
+def check_answer(expect, ans):
+    student_answer = [x.upper().strip() for x in ans.replace(',', '-').split('-')]
+    if variant["order"] == student_answer:
+        return {'input_list': [{'ok': True, 'grade_decimal': 1}]}
+    else:
+        return {'input_list': [{'ok': False, 'grade_decimal': 0}]}
+
+</script>
+  <div>
+    <p><strong>Задача.</strong> Применим алгоритм поиска в глубину для графа, изображенного на рисунке 4.</p>
+    <figure style="text-align:center;">
+      <img src="/static/SYSANALYSIS_R_02_02_img_04.png" alt="" style="max-width: 600px;"/>
+      <figcaption>Рис. 4. Условие задачи 2</figcaption>
+    </figure>
+    <p></p>
+    <p>Необходимо задать условие кодом на языке программирования Python и записать порядок обхода вершин, начиная с вершины \(H\), используя алгоритм поиска в глубину. Для этого достаточно инициализировать граф и в выводе указать начальную вершину.</p>
+    <table class="no-equation">
+      <tr>
+        <td>Порядок обхода вершин (через запятую или тире) </td>
+        <td><customresponse cfn="check_answer">
+          <textline size="40" value="$task_id"/>
+          <br/>
+        </customresponse>
+          <solution>
+            <p>Привильный ответ: <strong>$correct_answer</strong></p>
+          </solution></td>
+      </tr>
+    </table>
+  </div>
+</problem>

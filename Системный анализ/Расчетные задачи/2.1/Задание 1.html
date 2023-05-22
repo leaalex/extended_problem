@@ -1,0 +1,105 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+  </style>
+
+  <script type="loncapa/python">
+import random
+
+variants = [
+    {
+        "task_A": "четные числа от 500 до 750",
+        "task_B": "числа от 633 до 701",
+        "task_C": "числа от 527 до 684 с шагом 3",
+        "N1": 8,
+        "N2": 53,
+        "N3": 26
+    },
+    {
+        "task_A": "числа от 100 до 600 с шагом 3",
+        "task_B": "нечетные числа от 201 до 500",
+        "task_C": "числа от 227 до 484",
+        "N1": 43,
+        "N2": 136,
+        "N3": 7
+    },
+    {
+        "task_A": "числа от 1011 до 1364 с шагом 5",
+        "task_B": "числа от 1063 до 1227",
+        "task_C": "четные числа от 1000 до 1350",
+        "N1": 17,
+        "N2": 98,
+        "N3": 16
+    },
+    {
+        "task_A": "числа от 1000 до 1598 с шагом 3",
+        "task_B": "нечетные числа от 1051 до 1508",
+        "task_C": "числа от 1027 до 1484 ",
+        "N1": 73,
+        "N2": 228,
+        "N3": 4
+    },
+    {
+        "task_A": "числа от 100 до 600 с шагом 6",
+        "task_B": "четные числа от 200 до 500",
+        "task_C": "числа от 227 до 484 ",
+        "N1": 43,
+        "N2": 93,
+        "N3": 7
+    },
+]
+
+variant = random.choice(variants)
+task_A = variant["task_A"]
+task_B = variant["task_B"]
+task_C = variant["task_C"]
+N1 = variant["N1"]
+N2 = variant["N2"]
+N3 = variant["N3"]
+
+
+</script>
+
+  <p><strong>Цель:</strong> разработать программный код для применения операций ко множествам</p>
+
+  <p><strong>Задача.</strong> Найти мощности множеств</p>
+  <p>\(N_1: A \cap B \cap C, \)</p>
+  <p>\(N_2: ((A \cap B) \cup (A \cap C) \cup (B \cap C)) | (A \cap B \cap C) \)</p>
+  <p>\(N_3: A \cap B \cup \overline{C}, \)</p>
+  <p>Значение \(A\): $task_A.</p>
+  <p>Значение \(B\): $task_B.</p>
+  <p>Значение \(C\): $task_C.</p>
+  <p>Нужно модифицировать код примера для решения задачи на множества и ввести найденное решение в соответствующую ячейку. При этом достаточно изменить сами множества и соответствующие методы.</p>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(N_1 = \)</td>
+      <td>
+        <numericalresponse answer="$N1">
+          <responseparam type="tolerance" default="0.0001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(N_2 = \)</td>
+      <td>
+        <numericalresponse answer="$N2">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(N_3 = \)</td>
+      <td>
+        <numericalresponse answer="$N3">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+</problem>

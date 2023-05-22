@@ -1,0 +1,115 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+  </style>
+
+  <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+
+variants = [
+    {
+        "n1": 190,
+        "n2": 60,
+        "n3": 110,
+        "p1": 0.85,
+        "p2": 0.76,
+        "p3": 0.71,
+        "PH1": 0.568,
+        "PH2": 0.163,
+        "PH3": 0.269,
+    },
+    {
+        "n1": 210,
+        "n2": 160,
+        "n3": 150,
+        "p1": 0.88,
+        "p2": 0.81,
+        "p3": 0.76,
+        "PH1": 0.427,
+        "PH2": 0.305,
+        "PH3": 0.268,
+    },
+    {
+        "n1": 260,
+        "n2": 130,
+        "n3": 160,
+        "p1": 0.86,
+        "p2": 0.79,
+        "p3": 0.77,
+        "PH1": 0.495,
+        "PH2": 0.232,
+        "PH3": 0.273,
+    },
+    {
+        "n1": 150,
+        "n2": 130,
+        "n3": 210,
+        "p1": 0.79,
+        "p2": 0.77,
+        "p3": 0.74,
+        "PH1": 0.311,
+        "PH2": 0.262,
+        "PH3": 0.427,
+    },
+    {
+        "n1": 190,
+        "n2": 110,
+        "n3": 300,
+        "p1": 0.82,
+        "p2": 0.75,
+        "p3": 0.69,
+        "PH1": 0.353,
+        "PH2": 0.182,
+        "PH3": 0.465,
+    },
+]
+
+variant = random.choice(variants)
+
+n1 = variant["n1"]
+n2 = variant["n2"]
+n3 = variant["n3"]
+p1 = variant["p1"]
+p2 = variant["p2"]
+p3 = variant["p3"]
+PH1 = variant["PH1"]
+PH2 = variant["PH2"]
+PH3 = variant["PH3"]
+
+</script>
+
+  <p><strong>Задача.</strong> Поставщик получает резисторы с трех заводов. На складе есть резисторы изготовленные первым, вторым и третьим заводом в количестве \($n1\), \($n2\) и \($n3\) шт., которые работают без отказа до конца гарантийного срока с вероятностями \($n1\), \($n2\) и \($n3\) соответственно. Вычислить вероятность, что взятый и оказавшийся бракованный резистор, поставлен соответственно первым, вторым или третьим заводом.</p>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(P(H_1 | A) = \)</td>
+      <td>
+        <numericalresponse answer="$PH1">
+          <responseparam type="tolerance" default="0.01"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(P(H_2 | A) = \)</td>
+      <td>
+        <numericalresponse answer="$PH2">
+          <responseparam type="tolerance" default="0.01"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(P(H_3 | A) = \)</td>
+      <td>
+        <numericalresponse answer="$PH3">
+          <responseparam type="tolerance" default="0.01"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+</problem>

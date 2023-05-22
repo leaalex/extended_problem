@@ -1,0 +1,65 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+  </style>
+
+  <p><strong>Задача.</strong> Решить задачу оптимизации:</p>
+
+  <p>\(
+    6x + 10y + 4z \to min \\
+    \left\{
+    \begin{array}{c}
+    - x + y + 2z \le 15, \\
+    - x - y - z \le 11, \\
+    x + y \le 16, \\
+    y \le 14.
+    \end{array}
+    \right.  \\
+    x \ge 0, y \ge 0, z \ge 0
+    \)</p>
+
+  <p>Необходимо задать условие кодом на языке программирования Python и найти значения переменных, при которых целевая функция будет максимальна. При этом достаточно изменить код целевой функции, ограничения, параметр <code>sense</code>.</p>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(x = \)</td>
+      <td>
+        <numericalresponse answer="27">
+          <responseparam type="tolerance" default="0.1"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(y = \)</td>
+      <td>
+        <numericalresponse answer="14">
+          <responseparam type="tolerance" default="0.1"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(z = \)</td>
+      <td>
+        <numericalresponse answer="2">
+          <responseparam type="tolerance" default="0.1"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+  <table class="no-equation">
+    <tr>
+      <td>Целевая функция =</td>
+      <td>
+        <numericalresponse answer="310">
+          <responseparam type="tolerance" default="0.1"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+</problem>
