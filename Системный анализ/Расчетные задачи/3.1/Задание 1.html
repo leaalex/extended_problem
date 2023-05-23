@@ -1,0 +1,102 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+  </style>
+
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+
+variants = [
+    {
+        "p1": 0.1,
+        "p2": 0.25,
+        "p3": 0.15,
+        "p4": 0.15,
+        "p5": 0.3,
+        "p6": 0.05,
+        "H": 2.39,
+        "rho": 0.074,
+    },
+    {
+        "p1": 0.24,
+        "p2": 0.28,
+        "p3": 0.05,
+        "p4": 0.22,
+        "p5": 0.15,
+        "p6": 0.06,
+        "H": 2.36,
+        "rho": 0.086,
+    },
+    {
+        "p1": 0.1,
+        "p2": 0.1,
+        "p3": 0.1,
+        "p4": 0.2,
+        "p5": 0.35,
+        "p6": 0.15,
+        "H": 2.4,
+        "rho": 0.070,
+    },
+    {
+        "p1": 0.08,
+        "p2": 0.27,
+        "p3": 0.2,
+        "p4": 0.1,
+        "p5": 0.17,
+        "p6": 0.18,
+        "H": 2.48,
+        "rho": 0.039,
+    },
+    {
+        "p1": 0.03,
+        "p2": 0.26,
+        "p3": 0.09,
+        "p4": 0.21,
+        "p5": 0.19,
+        "p6": 0.22,
+        "H": 2.38,
+        "rho": 0.078,
+    }
+]
+
+variant = random.choice(variants)
+
+p1 = variant["p1"]
+p2 = variant["p2"]
+p3 = variant["p3"]
+p4 = variant["p4"]
+p5 = variant["p5"]
+p6 = variant["p6"]
+H = variant["H"]
+rho = variant["rho"]
+
+</script>
+
+<p><strong>Цель:</strong> вычислять меры количества информации и энтропии.</p>
+
+<p><strong>Задача.</strong> Некоторый источник сообщений выдает из алфавита, состоящего из \(8\) символов, информацию. Вероятность появления первого символа соответственно \($p1, $p2, $p3, $p4, $p5, $p6\). Определить количество информации и ее избыточность.</p>
+
+  <table class="no-equation">
+    <tr>
+      <td>\(H = \)</td>
+      <td>
+        <numericalresponse answer="$H">
+          <responseparam type="tolerance" default="0.01"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+    <tr>
+      <td>\(\rho = \)</td>
+      <td>
+        <numericalresponse answer="$rho">
+          <responseparam type="tolerance" default="0.001"/>
+          <formulaequationinput/>
+        </numericalresponse>
+      </td>
+    </tr>
+  </table>
+</problem>

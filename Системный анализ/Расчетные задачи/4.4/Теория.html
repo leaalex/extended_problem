@@ -1,0 +1,38 @@
+<p>В задачах машинного обучения различные признаки могут иметь различную степень важности для моделей машинного обучения. Анализ значимости признаков позволяет отбросить малозначимые признаки, упростив модель, а также повысить прозрачность модели. Более того, анализ значимости признаков способен выявить ошибки в модели машинного обучения или выборке данных. Например, если оказывается, что ее оценка значимости признаков принципиально расходится с экспертными знаниями специалистов по решаемой задаче.</p>
+<p>Алгоритмы построения деревьев решений позволяют одновременно строить модели машинного обучения и оценивать значимости признаков. Но из-за стохастичности процесса обучения следует усреднять оценки множества деревьев. Для этого можно использовать ансамбль деревьев решений, построенный алгоритмом случайного леса (<a href="https://scikit-learn.org/stable/modules/ensemble.html#random-forests" target="_blank">Random forest</a>)</p>
+<p><strong><strong>Пример</strong></strong>. Требуется определить значимости признаков в задаче классификации с помощью построения ансамбля деревьев решения</p>
+<p>Пример ниже показывает работу с <code class="inline">Scikit-Learn</code> в среде Google Colab. Для этого достаточно создать в Google Colab новый проект и добавить в него приведенный ниже код. Кроме того, необходимо загрузить в Google Colab файл с набором данных <a href="/static/4.2_Iris.csv">4.2_Iris.csv</a>, описанным в расчетом задании к теме 4.2.</p>
+<p><strong><strong>Решение</strong></strong></p>
+<p>Начальный этап аналогичен тому, как решалась задача в теме 4.2. Нужно добавить код подключения библиотек, чтения данных и разделения выборки.</p>
+<pre><code>!pip install pandas-bokeh
+import pandas as pd
+import pandas_bokeh
+pandas_bokeh.output_notebook()
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+df = pd.read_csv('/content/4.2_Iris.csv', sep = ',', index_col=0)
+X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.3, random_state = 0)</code></pre>
+<p>Код для построения и оценки классификатора:</p>
+<pre><code>classifier = RandomForestClassifier()
+classifier.fit(X_train, y_train)
+y_train_pred = classifier.predict(X_train)
+y_test_pred = classifier.predict(X_test)
+
+print('Test results:')
+print(classification_report(y_test, y_test_pred))</code></pre>
+<p>Для получения и визуализации значимости признаков достаточно добавить одну строку кода:</p>
+<pre><code>pd.DataFrame(classifier.feature_importances_, index = classifier.feature_names_in_, columns = ['feature_importances']).plot_bokeh.barh()</code></pre>
+<p>В результате выполнения будет построена интерактивная гистограмма, как показано на рис. 1.</p>
+
+<figure style="text-align:center;">
+    <img src="/static/SYSANALYSIS_R_04_04_img_01.png" alt="" style="max-width: 600px;"/>
+    <figcaption>Рис. 1. Гистограмма значимости признаков</figcaption>
+</figure>
+<p></p>
+<p>Полученные результаты демонстрируют доминирование двух признаков. Если навести курсор на столбец, то будет показано численное значение.</p>
