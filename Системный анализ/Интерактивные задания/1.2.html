@@ -1,0 +1,268 @@
+<problem>
+  <style type="text/css">
+
+    .drag-custom-oCcuAXGZRe{
+      word-break: initial;
+      display: flex;
+      /*align-items: center;*/
+      color: #4B5F81;
+      text-align: left;
+      background: #FEDC9D !important;
+      border: 1px solid #FFCE6D;
+      border-radius: 5px;
+      padding: 12px !important;
+      line-height: 1.1 !important;
+    }
+    .drop-custom-oCcuAXGZRe{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      /*background: #ffffff85 !important;*/
+      border-radius: 6px;
+    }
+
+    .custom-drag-zone-oCcuAXGZRe .drag-zone{
+      background: #3e607a0f !important;
+      border: 1px solid #3e607a3b !important;
+
+    }
+
+    .drop-custom-oCcuAXGZRe.font-size-14px .drag-custom-oCcuAXGZRe{
+      height: 45px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 162px !important;
+      text-align: center !important;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+
+  </style>
+  <div>
+    <p><strong>Цель:</strong> планировать основные этапы применения системного анализа.</p>
+    <p><strong>Задание:</strong> расставить этапы системного анализа в хронологическом порядке. Переместите карточки с названиями этапов в соответствующие ячейки.</p>
+    <div data-type="DragAndDropVueApp" class="adv-app" data-initial-data="$student_data"/>
+    <div style="display: none !important;">
+      <customresponse cfn="check_answer">
+        <textline size="100"/>
+        <br/>
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"/>
+  </div>
+  <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import string
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+source_data = {
+    "background_src": "/static/SYSANALYSIS_01_02_int.png",
+    "width": 800,
+    "height": 588,
+    "drag_class": "drag-custom-oCcuAXGZRe",
+    "drop_class": " drop-custom-oCcuAXGZRe animate",
+    "drop_zone_class": "center",
+    "drag_zone_class": "custom-drag-zone-oCcuAXGZRe",
+    "answers": [
+        {
+            "coordinates": {"x": 198, "y": 40, "w": 162, "h": 45},
+            "content": [{"text": "Человеческий фактор"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+                {
+            "coordinates": {"x": 412, "y": 70, "w": 162, "h": 45},
+            "content": [{"text": "Состояние"}],
+            "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 622, "y": 101, "w": 162, "h": 45},
+            "content": [{"text": "Умственное"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 412, "y": 187, "w": 162, "h": 45},
+            "content": [{"text": "Средство измерения"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 622, "y": 217, "w": 162, "h": 45},
+            "content": [{"text": "Погрешность"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 412, "y": 303, "w": 162, "h": 45},
+            "content": [{"text": "Условия измерения"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 622, "y": 392, "w": 162, "h": 45},
+            "content": [{"text": "Алгоритм измерений"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 198, "y": 503, "w": 162, "h": 45},
+            "content": [{"text": "Объект измерения"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        },
+        {
+            "coordinates": {"x": 412, "y": 476, "w": 162, "h": 45},
+            "content": [{"text": "Сигнал"}],
+                        "class": "font-size-14px",
+            "hint": "",
+        }
+
+    ],
+    "settings": {
+        "show_incorrect": True,
+        "check_type": "partially",  # "partially", "full", "full_cell", "sequence"
+        "capacity": 1,
+    }
+}
+
+
+student_data = source_data.copy()
+student_data["answers"] = []
+student_data["all_answers"] = []
+correct_answer = {}
+
+for drop in source_data["answers"]:
+    drop_id = generate_id()
+    correct_answer[drop_id] = []
+    drop_element = drop.copy()
+    drop_element["id"] = drop_id
+    del drop_element["content"]
+    student_data["answers"].append(drop_element)
+
+    for drag in drop["content"]:
+        drag_id = generate_id()
+        if 'id' in drag.keys():
+            drag_id = drag['id']
+        drag_element = drag.copy()
+        drag_element["id"] = drag_id
+        correct_answer[drop_id].append(drag_id)
+        student_data["all_answers"].append(drag_element)
+if 'distractors' in source_data.keys():
+    for distractor in source_data['distractors']:
+        distractor_element = distractor.copy()
+        distractor_element["id"] = generate_id()
+        student_data["all_answers"].append(distractor_element)
+
+def check_partially(c_a, s_a):
+    local_grade = 0
+    local_incorrect = []
+    for item in c_a.keys():
+        for ans in c_a[item]:
+            if ans in s_a[item]:
+                local_grade += 1
+        if sorted(s_a[item]) != sorted(c_a[item]):
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def check_full(c_a, s_a):
+    local_grade = 1
+    local_incorrect = []
+    for item in c_a.keys():
+        if sorted(s_a[item]) != sorted(c_a[item]):
+            local_grade = 0
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def check_full_cell(c_a, s_a):
+    local_grade = 0
+    local_incorrect = []
+    for item in c_a.keys():
+        if sorted(s_a[item]) == sorted(c_a[item]):
+            local_grade += 1
+        else:
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def check_sequence(c_a, s_a):
+    local_grade = 0
+    local_incorrect = []
+    for item in c_a.keys():
+        if s_a[item] == c_a[item]:
+            local_grade += 1
+        else:
+            local_incorrect.append(item)
+    return local_grade, local_incorrect
+
+
+def get_ok(grade_decimal):
+    if grade_decimal == 1:
+        return True
+    elif grade_decimal == 0:
+        return False
+    else:
+        return 'Partial'
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    if 'max_grade' in source_data["settings"]:
+        max_grade = source_data["settings"]["max_grade"]
+    check_types = ["partially", "full", "full_cell", "sequence"]
+    check_type = "partially"
+    if "check_type" in source_data["settings"].keys():
+        if source_data["settings"]["check_type"] in check_types:
+            check_type = source_data["settings"]["check_type"]
+
+    grade = 0
+    incorrect_answers = []
+    if check_type == "full_cell":
+        grade, incorrect_answers = check_full_cell(correct_answer, student_answer)
+    elif check_type == "full":
+        max_grade = 1
+        grade, incorrect_answers = check_full(correct_answer, student_answer)
+    elif check_type == "partially":
+        max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+        grade, incorrect_answers = check_partially(correct_answer, student_answer)
+    elif check_type == "sequence":
+        grade, incorrect_answers = check_sequence(correct_answer, student_answer)
+    else:
+        pass
+
+    result_grade = float(grade/max_grade)
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    return {
+        'input_list': [
+            {
+                'ok': get_ok(result_grade),
+                'msg': json.dumps(msg_json),
+                'grade_decimal': result_grade
+            },
+        ]
+    }
+
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+random.shuffle(student_data["all_answers"])
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+</script>
+</problem>

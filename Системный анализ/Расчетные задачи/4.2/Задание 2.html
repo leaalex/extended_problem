@@ -1,0 +1,45 @@
+<problem>
+  <link rel="stylesheet" href="/static/highlight.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript" >
+    // hljs.initHighlightingOnLoad();
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+    document.querySelectorAll('code.inline').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+    .xmodule_display.xmodule_CapaModule div.problem pre {
+      overflow: auto;
+      padding: 0px !important;
+      border: none !important;
+    }
+  </style>
+  <p>Построить модель, определяющую угол тока нулевой последовательности при коротком замыкании, в зависимости от остальных параметров, используя данные файла <a href="/static/4.2_short_circuits.csv">4.2_short_circuits.csv</a>.</p>
+
+  <p>По аналогии с приведенным выше примером решения задачи классификации нужно построить две модели: линейную регрессию и дерево решений и указать полученные результаты, а именно среднюю ошибку в процентах на тестовой выборке. Чтобы применить дерево решений, нужно в код подключения библиотек добавить строчку</p>
+  <pre><code>from sklearn.tree import DecisionTreeRegressor</code></pre>
+  <p>И, соответственно, заменить в коде логистическую регрессию на дерево решений</p>
+  <pre><code>regressor = DecisionTreeRegressor()</code></pre>
+
+  <div class="no-equation">
+    <p>Средняя ошибка в процентах на валидационной выборке линейной регрессии:</p>
+    <numericalresponse answer="[12,27]">
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput trailing_text="%"/>
+    </numericalresponse>
+
+    <p>Средняя ошибка в процентах на валидационной выборке дерева решений:</p>
+    <numericalresponse answer="[6,20]">
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput trailing_text="%"/>
+    </numericalresponse>
+  </div>
+
+</problem>

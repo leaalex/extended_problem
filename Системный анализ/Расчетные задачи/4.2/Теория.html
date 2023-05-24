@@ -1,0 +1,66 @@
+<p>К основным задачам обучения с учителем относятся задача классификации – построение модели для определения неизвестного целевого <strong><em>категориального</em></strong> признака (класса) по известным входным признакам, и задача регрессии – построение модели для определения неизвестного целевого <strong><em>численного</em></strong> признака по известным входным признакам.</p>
+<p>Поскольку отличие заключается только в типе данных целевой переменной, то программные компоненты систем искусственного интеллекта для решения обоих видов задач отличаются только алгоритмом обучения модели машинного обучения. Алгоритм обучения в задаче классификации стремиться обеспечить минимальное перепутывание между предсказанными и истинными целевым классом, алгоритм обучения в задаче регрессии стремиться обеспечить минимальное отклонение между предсказанным и истинным значениями целевой величины.</p>
+<p>Одной из наиболее широко используемых библиотек для разработки как прототипов, так и конечных версий программных компонент систем искусственного интеллекта является библиотека <code class="inline">Scikit-Learn</code>. Помимо моделей машинного обучения данная библиотека содержит функционал для предварительной обработки данных, валидации и тестирования моделей.</p>
+<p>Примеры ниже показывают работу с <code class="inline">Scikit-Learn</code> в среде Google Colab. Для этого достаточно создать в Google Colab новый проект и добавить в него приведенный ниже код. Кроме того, необходимо загрузить в Google Colab файл с набором данных <a href="/static/4.2_Iris.csv">4.2_Iris.csv</a>.</p>
+
+<p>Примеры ниже используют выборку данных «Ирисы Фишера» (<code class="inline">Iris data set</code>) – датасет, ставший классическим при изучении моделей машинного обучения благодаря свой простоте и наглядности.</p>
+<p>Датасет содержит столбцы:</p>
+<p>- длина наружной доли околоцветника, см (<code class="inline">sepal length</code>);</p>
+<p>- ширина наружной доли околоцветника, см (<code class="inline">sepal width</code>);</p>
+<p>- длина внутренней доли околоцветника, см (<code class="inline">petal length</code>);</p>
+<p>- ширина внутренней доли околоцветника, см (<code class="inline">petal width</code>);</p>
+<p>- вид ириса: ирис щетинистый (<code class="inline">iris setosa</code>), ирис виргинский (<code class="inline">iris virginica</code>) и ирис разноцветный (<code class="inline">iris versicolor</code>).</p>
+<p><strong>Пример 1</strong>. Требуется построить классификатор, который определяет вид ириса по параметрам цветка.</p>
+<p>Нужно добавить код для подключения библиотек</p>
+<pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_absolute_percentage_error
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay</code></pre>
+<p>Затем прочитать данные и разделить выборку на обучающую и валидационную части (в данном учебном примере валидационная и тестовая совмещены в одной). В коде ниже \(«:-1»\) означает, что будут использованы все столбцы кроме последнего как признаки, \(«-1»\) – что последний столбец будет использован как целевой, \(«0.3»\) – означает, что валидационная часть выборки составит \(30 \ \%\), а обучающая \(70 \ \%\).</p>
+<pre><code>df = pd.read_csv('/content/4.2_Iris.csv', sep = ',', index_col=0)
+print(df)
+X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.3)</code></pre>
+<p>После этого можно построить модель для решения задачи классификации на базе линейной регрессии и протестировать ее.</p>
+<pre><code>classifier = LogisticRegression()
+classifier.fit(X_train, y_train)
+y_train_pred = classifier.predict(X_train)
+y_test_pred = classifier.predict(X_test)
+
+print('Trainining results:')
+print(classification_report(y_train, y_train_pred))
+print('')
+print('Test results:')
+print(classification_report(y_test, y_test_pred))
+
+cm = confusion_matrix(y_test, y_test_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot()
+plt.grid(False)
+plt.show()</code></pre>
+
+<p>Полученная матрица ошибок показана на рис. 1. Видно, что лишь для двух цветков в валидационной выборке произошло перепутывание классов. Усредненная точность составляет \(96 \ \%\) (нижняя строчка <code class="inline">«weighted avg»</code>, столбец <code class="inline">«f1-score»</code>). При выполнении данного кода результаты могут отличаться незначительно в зависимости от того, как будет выполнено разбиение выборки</p>
+
+<figure style="text-align:center;">
+    <img src="/static/SYSANALYSIS_04_02_int.png" alt="" style="max-width: 600px;"/>
+    <figcaption>Рис. 1. Матрица ошибок</figcaption>
+</figure>
+<p></p>
+
+<p><strong><strong>Пример 2</strong></strong>. Требуется построить модель, определяющую длина наружной доли околоцветника по остальным измерениям (для анализа существующей зависимости между параметрами цветков).</p>
+<p><strong><strong>Решение</strong></strong></p>
+<p>Так как целевая переменная теперь находится в самом левом столбце, то нужно добавить код разделения на обучающую и валидационную выборку следующего вида:</p>
+<pre><code>X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.3)</code></pre>
+<p>Далее все аналогично предыдущему примеру, за исключением модели машинного обучения и используемых метрик:</p>
+<pre><code>regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+y_train_pred = regressor.predict(X_train)
+y_test_pred = regressor.predict(X_test)
+
+print('Средняя ошибка на обучающей выборке : {:.3f}%'.format(100 * mean_absolute_percentage_error(y_train, y_train_pred)))
+print('Средняя ошибка на валидационной выборке: {:.3f}%'.format(100 * mean_absolute_percentage_error(y_test, y_test_pred)))</code></pre>

@@ -1,98 +1,39 @@
 <problem>
-    <style>
-        .problem .xucOZaOX4r .matching-table{
-            min-width: 1000px;
-        }
-        .problem .xucOZaOX4r .matching-table .img123{
-            width: 512px;
-        }
-
-        .xucOZaOX4r td.conf-text.conf-header {
-            background: white !important;
-            border: none !important;
-        }
-
-        .xucOZaOX4r td.conf-answers-place{
-            border: 4px solid #e6e6e6 !important;
-        }
-        .problem .xucOZaOX4r .matching-table td {
-            padding: 0px !important;
-            height: 46px;
-            border-radius: 4px;
-        }
-        .problem .xucOZaOX4r .matching-table {
-            border: none !important;
-            box-shadow: none !important;
-        }
-        .xucOZaOX4r .h200{
-            height: 200px!important;
-        }
-
-    </style>
-    <script type="loncapa/python">
+  <style>
+    .center {text-align:center  !important;}
+  </style>
+  <script type="loncapa/python">
 import json
 import random
 import string
 
 data = {
     "content": {
-        "body": """На временной схеме обмена сообщениями между клиентом и сервером расставьте метки, соответствующие порядку коммуникационного диалога между двумя устройствами по протоколу NTP. Задание выполняется путем переноса имени метки в соответствующие ячейки рабочего поля с изображением диалога между клиентом и сервером.""",
-        "answers_title" : '__Имена меток, которые необходимо разместить на временной схеме:__',
-        },
+        "body": "",
+        "answers_title": "Модели:"
+    },
     "table": [
-                  [
-            '',
-            '![](/static/evFYxOOIZi.png).{.img123}',
-            ''
-
-        ],
-		['',''],
-				['',''],
-						[['Originate Timestamp'],''],
-						['',''],
-						['',['Receive Timestamp']],
-		[
-		'',
-		''
-		],
-		[
-		'',
-		''
-		],
-		[
-		'',
-		['Transmit Timestamp']
-		],
-		[
-		'',
-		''
-		],
-		[
-		['Destination Timestamp'],
-		''
-		],
-		[
-		'',
-		''
-		],
-		[
-		'',
-		''
-		],
+    [
+      '__Описание данных__ .{.center}', '__Модель__ .{.center}'
+     ],
+        [ 'Архив наблюдений с системы двадцати гидрологических и метеорологических постов, содержащий по десять параметров (столбцов) с каждого поста и порядка 100 тысяч строк. \\\n Назначение базы данных: получение данных по отдельным постам и наборам параметров.', ['Столбчатая']],
+        [ 'Данные электроэнергетической системы, которая включает в себя порядка 100 узлов и ветвей, а также данные таких единиц оборудования как генераторы, выключатели и трансформаторы. \\\n Назначение базы данных: хранение данных для выполнения расчетов режимов.', ['Реляционная']],
+        [ 'Формализованные отношения между сотрудниками предприятия такие как «руководитель-подчиненный», «наставник-стажер», «родственники», «конкуренты на повышение», содержащее данные от 25 сотрудниках. \\\n Назначение базы данных: автоматизированное формирование малых групп сотрудников для выполнения проектов.', ['Графовая']],
+        [ 'Архив значений скорости, направления ветра и генерации ветроэнергетической установки с шагом 15 минут за период работы 3 года. \\\n Назначение базы данных: оценка эффективности выработки ветроэнергетической установки.', ['Плоская']]
     ],
-  "distractors": [],
   "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-  		"is_exist_image": True,
-      	"rowspan": {1:{2:13}},
-      	"capacity": 1,
+        'is_exist_mathjax': False,
+        'is_exist_image': False,
+        'show_incorrect': True,
+        "capacity": 1,
   },
   "style": {
-        'colls': ['w25', 'w50', ''],
-        'rows': ['', '', '', ''],
-      	'table': ['bg-whate', 'shadow-1', ]
-    }
+        'rows': ['', ''],
+        'colls': ['', 'w30']
+    },
+  "distractors": ["Ключ-значение", "Фреймовая", "Лингвистическая"]
 }
 
 
@@ -118,7 +59,6 @@ if "multi_answers" in data["settings"].keys():
         use_multi_answers = "horizontal"
     elif data["settings"]["multi_answers"] == "vertical":
         use_multi_answers = "vertical"
-
 
 all_answers_obj = {}
 
@@ -233,32 +173,36 @@ student_data = student_data.replace('"', "'")
 correct_data = json.dumps(data)
 correct_data = correct_data.replace('"', "'")
 </script>
+  <p><strong>Цель:</strong> анализировать предметную область для выбора моделей представления данных.</p>
+  <p><strong>Задание:</strong> соотнесите описание данных с оптимальными для их хранения и обработки моделями баз данных. Заполните таблицу, переместив правильные ответы в соответствующие ячейки таблицы.</p>
 
+  <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
+    <span class="loadingspinner"/>
+    <style>
+      .loadingspinner {
+        display: block;
+        margin: 0 auto;
+        pointer-events: none;
+        width: 2.5em;
+        height: 2.5em;
+        border: 0.4em solid transparent;
+        border-color: #eee;
+        border-top-color: #3E67EC;
+        border-radius: 50%;
+        animation: loadingspin 1s linear infinite;
+      }
 
-    <div class='adv-app xucOZaOX4r' data-type='MatchingTableVueApp' data-initial-data='$student_data' data-static='/static/_'>
-        <span class="loadingspinner"></span>
-        <style>
-            .loadingspinner {
-                display: block;
-                margin: 0 auto;
-                pointer-events: none;
-                width: 2.5em;
-                height: 2.5em;
-                border: 0.4em solid transparent;
-                border-color: #eee;
-                border-top-color: #3E67EC;
-                border-radius: 50%;
-                animation: loadingspin 1s linear infinite;
-            }
-
-            @keyframes loadingspin {
-                100% {
-                    transform: rotate(360deg)
-                }
-            }
-        </style>
-    </div>
-    <div style="display: none"><customresponse cfn="check_answer"><textline size="120"/></customresponse>
-        <solution data-initial-data='$correct_data'></solution>
-    </div>
+      @keyframes loadingspin {
+        100% {
+          transform: rotate(360deg)
+        }
+      }
+    </style>
+  </div>
+  <div style="display: none">
+    <customresponse cfn="check_answer">
+      <textline size="120"/>
+    </customresponse>
+    <solution data-initial-data="$correct_data"/>
+  </div>
 </problem>

@@ -1,0 +1,53 @@
+<problem>
+  <link rel="stylesheet" href="/static/highlight.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript" >
+    // hljs.initHighlightingOnLoad();
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+    document.querySelectorAll('code.inline').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+    .xmodule_display.xmodule_CapaModule div.problem pre {
+      overflow: auto;
+      padding: 0px !important;
+      border: none !important;
+    }
+  </style>
+
+  <p><strong>Цель:</strong> применять библиотеки построения моделей классификации и регрессии</p>
+  <p><strong>Задача.</strong> Построить модель для решения задачи классификации коротких замыканий в электрической сети.</p>
+  <p>Выборка данных, представленная в файле <a href="/static/4.2_short_circuits.csv">4.2_short_circuits.csv</a> содержит данные о произошедших коротких замыканиях четырех видов [3, 4]:</p>
+  <ul>
+    <li>1ф – однофазное короткое замыкание на землю,</li>
+    <li>2ф – междуфазное короткое замыкание,</li>
+    <li>3ф – трехфазное короткое замыкание,</li>
+    <li>1ф1ф – двухфазное короткое замыкание на землю.</li>
+  </ul>
+  <p>В качестве признаков в ней используются токи и углы токов прямой, нулевой и обратной последовательностей.</p>
+  <p>По аналогии с приведенным выше примером решения задачи классификации нужно построить две модели: логистическую регрессию и дерево решений и указать полученные результаты, а именно <code class="inline">«weighted avg f1-score»</code> на тестовой выборке. Чтобы применить дерево решений, нужно в код подключения библиотек добавить строчку</p>
+  <pre><code>from sklearn.tree import DecisionTreeClassifier</code></pre>
+  <p>И, соответственно, заменить в коде логистическую регрессию на дерево решений</p>
+  <pre><code>classifier = DecisionTreeClassifier()</code></pre>
+
+  <div class="no-equation">
+    <numericalresponse answer="[0.91,1]">
+      <label>Взвешенное усредненное значение <code class="inline">F1-score</code> на тестовой выборке для логистической регрессии, два знака после десятичного разделителя:</label>
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput/>
+    </numericalresponse>
+    <numericalresponse answer="[0.91,1]">
+      <label>Взвешенное усредненное значение <code class="inline">F1-score</code> на тестовой выборке для дерева решений, два знака после десятичного разделителя:</label>
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput/>
+    </numericalresponse>
+  </div>
+
+</problem>

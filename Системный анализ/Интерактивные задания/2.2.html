@@ -1,98 +1,41 @@
 <problem>
-    <style>
-        .problem .xucOZaOX4r .matching-table{
-            min-width: 1000px;
-        }
-        .problem .xucOZaOX4r .matching-table .img123{
-            width: 512px;
-        }
-
-        .xucOZaOX4r td.conf-text.conf-header {
-            background: white !important;
-            border: none !important;
-        }
-
-        .xucOZaOX4r td.conf-answers-place{
-            border: 4px solid #e6e6e6 !important;
-        }
-        .problem .xucOZaOX4r .matching-table td {
-            padding: 0px !important;
-            height: 46px;
-            border-radius: 4px;
-        }
-        .problem .xucOZaOX4r .matching-table {
-            border: none !important;
-            box-shadow: none !important;
-        }
-        .xucOZaOX4r .h200{
-            height: 200px!important;
-        }
-
-    </style>
-    <script type="loncapa/python">
+  <style>
+    .center {text-align:center  !important;}
+    .custom_h90 {
+      height: 90px !important;
+    }
+    .img-class{
+      width: 100%;
+      max-width: 150px;
+    }
+  </style>
+  <script type="loncapa/python">
 import json
 import random
 import string
 
 data = {
     "content": {
-        "body": """На временной схеме обмена сообщениями между клиентом и сервером расставьте метки, соответствующие порядку коммуникационного диалога между двумя устройствами по протоколу NTP. Задание выполняется путем переноса имени метки в соответствующие ячейки рабочего поля с изображением диалога между клиентом и сервером.""",
-        "answers_title" : '__Имена меток, которые необходимо разместить на временной схеме:__',
-        },
+        "body": "",
+        "answers_title": "Виды графов:"
+    },
     "table": [
-                  [
-            '',
-            '![](/static/evFYxOOIZi.png).{.img123}',
-            ''
-
-        ],
-		['',''],
-				['',''],
-						[['Originate Timestamp'],''],
-						['',''],
-						['',['Receive Timestamp']],
-		[
-		'',
-		''
-		],
-		[
-		'',
-		''
-		],
-		[
-		'',
-		['Transmit Timestamp']
-		],
-		[
-		'',
-		''
-		],
-		[
-		['Destination Timestamp'],
-		''
-		],
-		[
-		'',
-		''
-		],
-		[
-		'',
-		''
-		],
+['![](/static/SYSANALYSIS_02_02_int_01.png).{.img-class} .{.center}','![](/static/SYSANALYSIS_02_02_int_02.png).{.img-class} .{.center}','![](/static/SYSANALYSIS_02_02_int_03.png).{.img-class} .{.center}','![](/static/SYSANALYSIS_02_02_int_04.png).{.img-class} .{.center}',],
+[['Полный двудольный граф \\\(K_{3,3}\\\)'],['Связанный ациклический граф'],['Регулярный граф степени \\\(5\\\)'],['Платонов граф']]
     ],
-  "distractors": [],
   "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-  		"is_exist_image": True,
-      	"rowspan": {1:{2:13}},
-      	"capacity": 1,
+        'is_exist_mathjax': True,
+        'is_exist_image': True,
+        'show_incorrect': True,
+        "capacity": 1,
   },
   "style": {
-        'colls': ['w25', 'w50', ''],
-        'rows': ['', '', '', ''],
-      	'table': ['bg-whate', 'shadow-1', ]
-    }
+        'rows': ['', 'custom_h90', 'custom_h90', 'custom_h90', 'custom_h90'],
+        'colls': ['w25', 'w25', 'w25', 'w25']
+    },
+  "distractors": ["Псевдограф", "Смешанный граф"],
 }
 
 
@@ -118,7 +61,6 @@ if "multi_answers" in data["settings"].keys():
         use_multi_answers = "horizontal"
     elif data["settings"]["multi_answers"] == "vertical":
         use_multi_answers = "vertical"
-
 
 all_answers_obj = {}
 
@@ -234,31 +176,36 @@ correct_data = json.dumps(data)
 correct_data = correct_data.replace('"', "'")
 </script>
 
+  <p><strong>Цель:</strong> характеризовать свойства графов.</p>
+  <p><strong>Задание:</strong> соотнести виды графов с их изображениями. Заполните таблицу, переместив правильные ответы в соответствующие ячейки таблицы.</p>
 
-    <div class='adv-app xucOZaOX4r' data-type='MatchingTableVueApp' data-initial-data='$student_data' data-static='/static/_'>
-        <span class="loadingspinner"></span>
-        <style>
-            .loadingspinner {
-                display: block;
-                margin: 0 auto;
-                pointer-events: none;
-                width: 2.5em;
-                height: 2.5em;
-                border: 0.4em solid transparent;
-                border-color: #eee;
-                border-top-color: #3E67EC;
-                border-radius: 50%;
-                animation: loadingspin 1s linear infinite;
-            }
+  <div class="adv-app" data-type="MatchingTableVueApp" data-initial-data="$student_data" data-static="/static/_">
+    <span class="loadingspinner"/>
+    <style>
+      .loadingspinner {
+        display: block;
+        margin: 0 auto;
+        pointer-events: none;
+        width: 2.5em;
+        height: 2.5em;
+        border: 0.4em solid transparent;
+        border-color: #eee;
+        border-top-color: #3E67EC;
+        border-radius: 50%;
+        animation: loadingspin 1s linear infinite;
+      }
 
-            @keyframes loadingspin {
-                100% {
-                    transform: rotate(360deg)
-                }
-            }
-        </style>
-    </div>
-    <div style="display: none"><customresponse cfn="check_answer"><textline size="120"/></customresponse>
-        <solution data-initial-data='$correct_data'></solution>
-    </div>
+      @keyframes loadingspin {
+        100% {
+          transform: rotate(360deg)
+        }
+      }
+    </style>
+  </div>
+  <div style="display: none">
+    <customresponse cfn="check_answer">
+      <textline size="120"/>
+    </customresponse>
+    <solution data-initial-data="$correct_data"/>
+  </div>
 </problem>
