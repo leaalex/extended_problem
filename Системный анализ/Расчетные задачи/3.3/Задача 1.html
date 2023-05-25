@@ -1,0 +1,183 @@
+<problem>
+  <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+  <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+  <script type="loncapa/python">task_id="fWKTFlf2KP"</script>
+
+  <div class="code-task">
+    <p><strong>Цель: </strong>строить UML-диаграммы по описанию</p>
+    <p><strong><strong>Задача.</strong></strong> Составить код для построения UML-диаграммы по приведенному описанию.</p>
+    <p>УСД (устройство сбора данных) имеет три возможные модификации: УСД_А, УСД_М и УСД_У. УСД реализует интерфейс передачи пакетов данных ППД и использует систему передачи пакетов СПП. УСД может включать в себя датчики метеорологические МД и гидрологические ГД, которые относятся к классу Д.</p>
+    <p>Необходимо построить UML диаграмму, составить ее код и заполнить пропуски в форме ниже. В качестве названий классов использовать приведенные в задании аббревиатуры.</p>
+
+    <pre><code class="language-python">
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g = graphviz.Digraph('Classes')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>('</span>
+<span class="input-green"><stringresponse answer="УСД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', shape = 'record')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('УСД_А', shape = 'record')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('УСД_М', shape = 'record')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('УСД_У', shape = 'record')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('СПД', shape = 'record')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('&lt;&lt;интерфейс&gt;&gt;\n</span>
+<span class="input-green"><stringresponse answer="ППД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', shape = 'record')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('Д', shape = 'record')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('М</span>
+<span class="input-green"><stringresponse answer="Д" type="ci"><textline size="1"/></stringresponse></span>
+<span>', shape = 'record')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="node" type="ci"><textline size="4"/></stringresponse></span>
+<span>('Г</span>
+<span class="input-green"><stringresponse answer="Д" type="ci"><textline size="1"/></stringresponse></span>
+<span>', shape = 'record')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('</span>
+<span class="input-green"><stringresponse answer="МД" type="ci"><textline size="2"/></stringresponse></span>
+<span>', 'Д', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('ГД', '</span>
+<span class="input-green"><stringresponse answer="Д" type="ci"><textline size="1"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('УСД', '&lt;&lt;интерфейс&gt;&gt;\n</span>
+<span class="input-green"><stringresponse answer="ППД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('</span>
+<span class="input-green"><stringresponse answer="УСД_" type="ci"><textline size="4"/></stringresponse></span>
+<span>А', '</span>
+<span class="input-green"><stringresponse answer="УСД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('</span>
+<span class="input-green"><stringresponse answer="УСД_" type="ci"><textline size="4"/></stringresponse></span>
+<span>М', '</span>
+<span class="input-green"><stringresponse answer="УСД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('</span>
+<span class="input-green"><stringresponse answer="УСД_" type="ci"><textline size="4"/></stringresponse></span>
+<span>У', '</span>
+<span class="input-green"><stringresponse answer="УСД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('УСД', '</span>
+<span class="input-green"><stringresponse answer="СПД" type="ci"><textline size="3"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="vee" type="ci"><textline size="3"/></stringresponse></span>
+<span>', style='dashed', label = '</span>
+<span class="input-green"><stringresponse answer="использует" type="ci"><textline size="8"/></stringresponse></span>
+<span>')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('СПД', '</span>
+<span class="input-green"><stringresponse answer="&lt;&lt;интерфейс&gt;&gt;\nППД" type="ci"><textline size="17"/></stringresponse></span>
+<span>', arrowhead='</span>
+<span class="input-green"><stringresponse answer="vee" type="ci"><textline size="3"/></stringresponse></span>
+<span>', style='dashed', label = 'использует')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('ГД', 'Д', arrowhead='</span>
+<span class="input-green"><stringresponse answer="empty" type="ci"><textline size="5"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>g.</span>
+<span><stringresponse answer="edge" type="ci"><textline size="4"/></stringresponse></span>
+<span>('Д', 'УСД', arrowhead='</span>
+<span class="input-green"><stringresponse answer="odiamond" type="ci"><textline size="8"/></stringresponse></span>
+<span>', style='dashed')</span>
+</div>
+</code></pre>
+  </div>
+</problem>

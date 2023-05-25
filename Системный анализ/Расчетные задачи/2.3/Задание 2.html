@@ -1,0 +1,81 @@
+<problem>
+  <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+  <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+  <script type="loncapa/python">task_id="YdfJtXXX"</script>
+
+  <div class="code-task">
+    <p>Дан список классов:</p>
+    <ul>
+      <li>«Электростанция»</li>
+      <li>«ГЭС»</li>
+      <li>«АЭС»</li>
+      <li>«ТЭС»</li>
+      <li>«ВЭС»</li>
+      <li>«Курская АЭС»</li>
+      <li>«Ириклинская ГЭС»</li>
+    </ul>
+    <p>Необходимо задать фрагмент онтологии кодом на языке программирования Python и построить ее граф.</p>
+    <p>Составьте из приведенных классов и экземпляров фрагмент онтологии, используя отношения «подкласс» и «экземпляр», запишите код создания и отображения данного фрагмента онтологии и заполните фрагментами полученного кода пропуски в форме ниже.</p>
+
+    <pre><code class="language-python">
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span><stringresponse answer="net" type="ci"><textline size="3"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>.add_node(0, label='Электростанция', physics = False)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>#...</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_node" type="ci"><textline size="8"/></stringresponse></span>
+<span>(4, label='ВЭС', physics = False)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>#...</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.add_node(6, label='Ириклинская ГЭС', physics = False)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>for i in range(1, 5):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 36px !important;">
+  <span>net.</span>
+<span><stringresponse answer="add_edge" type="ci"><textline size="8"/></stringresponse></span>
+  <span>(</span>
+<span><stringresponse answer="i" type="ci"><textline size="1"/></stringresponse></span>
+  <span>, </span>
+<span><stringresponse answer="0" type="ci"><textline size="1"/></stringresponse></span>
+  <span>, label = '</span>
+<span><stringresponse answer="подкласс" type="ci"><textline size="6"/></stringresponse></span>
+  <span>')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>#...</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_edge" type="ci"><textline size="8"/></stringresponse></span>
+<span>(6, 1, label = '</span>
+<span><stringresponse answer="экземпляр" type="ci"><textline size="7"/></stringresponse></span>
+<span>')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+#...
+</div>
+
+</code></pre>
+  </div>
+</problem>

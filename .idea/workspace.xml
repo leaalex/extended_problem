@@ -4,36 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="распределенная генерация">
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/1.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/1.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/2.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/2.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/2.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/2.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/2.5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/2.6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/3.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/3.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/3.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/3.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/4.1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/4.2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/4.3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Интерактивные задания/4.4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.2/Задание 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.2/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.2/Теория.html" afterDir="false" />
+    <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Сисанал">
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.3/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.3/Задача 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.3/Теория.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/МЭК/4.3/Учебные задания/Задание 2/Задание 2.html" beforeDir="false" afterPath="$PROJECT_DIR$/МЭК/4.3/Учебные задания/Задание 2/Задание 2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/2.2/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/2.2/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/2.3/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/2.3/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/3.3/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/3.3/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/3.4/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/3.4/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/4.1/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации ENG/4.1/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.2/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/2.2/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.4/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/3.4/Текст.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Текст.html" beforeDir="false" afterPath="$PROJECT_DIR$/Режимы работы распределенной генерации/4.1/Текст.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.3/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.3/Задание 1.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,11 +118,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.2" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.4" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.1" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.6" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.4" />
-      <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ" />
@@ -406,14 +383,7 @@
       <workItem from="1682329324334" duration="6280000" />
       <workItem from="1683015648393" duration="31948000" />
       <workItem from="1684320610032" duration="44861000" />
-      <workItem from="1684834776929" duration="19296000" />
-    </task>
-    <task id="LOCAL-00076" summary="маш предприятие">
-      <created>1628837583678</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1628837583678</updated>
+      <workItem from="1684834776929" duration="26289000" />
     </task>
     <task id="LOCAL-00077" summary="маш предприятие">
       <created>1628867459638</created>
@@ -751,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684844845265</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="Сисанал">
+      <created>1684946844785</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1684946844785</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -795,7 +772,8 @@
     <MESSAGE value="CYBERSECURITY таблички" />
     <MESSAGE value="fizika" />
     <MESSAGE value="распределенная генерация" />
-    <option name="LAST_COMMIT_MESSAGE" value="распределенная генерация" />
+    <MESSAGE value="Сисанал" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сисанал" />
   </component>
   <component name="masterDetails">
     <states>

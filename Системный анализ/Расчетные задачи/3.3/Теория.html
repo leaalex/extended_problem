@@ -1,0 +1,76 @@
+<p><strong>Пример 1</strong>. Дано описание пользователей системы и ее функционала: </p>
+<p>Editor (редактор)</p>
+<ul>
+    <li>Open (открыть файл)</li>
+    <li>View (просмотреть файл)</li>
+    <li>Edit (редактировать файл)</li>
+    <li>Save (сохранить файл)</li>
+    <li>Export (экспортировать файл)</li>
+    <li>Import (импортировать файл</li>
+</ul>
+<p>Reader (читатель)</p>
+<ul>
+    <li>Open</li>
+    <li>Import</li>
+    <li>View</li>
+</ul>
+<p>Необходимо построить UML-диаграмму использования автоматизировано, с помощью программного кода.</p>
+<p><strong>Решение</strong></p>
+
+<p>Представленный код можно вставить и запустить в среде Google Colab. В первую ячейку нужно поместить код для подключения библиотеки <code class="inline">Graphviz</code>:</p>
+<pre><code>import graphviz</code></pre>
+<p>Во вторую код, реализующий UML-диаграмму использования:</p>
+
+<pre><code>g = graphviz.Graph('UseCase')
+
+g.node('Editor')
+g.node('Reader')
+
+with g.subgraph(name='cluster_0') as a:
+  a.node('Open')
+  a.node('View')
+  a.node('Edit')
+  a.node('Save')
+  a.node('Export')
+  a.node('Import')
+
+g.edge('Editor', 'Open')
+g.edge('Editor', 'View')
+g.edge('Editor', 'Edit')
+g.edge('Editor', 'Save')
+g.edge('Editor', 'Export')
+g.edge('Editor', 'Import')
+
+g.edge('Reader', 'Open')
+g.edge('Reader', 'View')
+g.edge('Reader', 'Import')</code></pre>
+
+<p>Затем нужно запустить ячейки с кодом на выполнение или нажать <code class="inline">Ctrl+9</code>. Получится UML-диаграмма как показана на рис. 1. Расположение элементов будет подобрано автоматически.</p>
+<figure style="text-align:center;">
+    <img src="/static/SYSANALYSIS_R_03_03_img_01.png" alt="" style="max-width: 600px;"/>
+    <figcaption>Рис. 1. Сгенерированная UML-диаграмма примера 1</figcaption>
+</figure>
+<p></p>
+<p></p>
+
+<p><strong>Пример 2</strong>. Даны отношения между классами:</p>
+<p>«Дизельный генератор» является подклассом класса «Генератор»</p>
+<p>«Газовый генератор» является подклассом класса «Генератор»</p>
+<p>«Система электроснабжения» использует «Генератор»</p>
+<p><strong>Решение</strong></p>
+<p>Аналогично первому примеру можно задать UML-диаграмму через элементы и связи между ними, результат показан на рис. 2.</p>
+<pre><code>g = graphviz.Digraph('Classes')
+
+g.node('Генератор', shape='record')
+g.node('Дизельный генератор', shape='record')
+g.node('Газовый генератор', shape='record')
+g.node('Система электроснабжения', shape='record')
+
+g.edge('Газовый генератор', 'Генератор', arrowhead='empty', style='dashed')
+g.edge('Дизельный генератор', 'Генератор', arrowhead='empty', style='dashed')
+g.edge('Система электроснабжения', 'Генератор', arrowhead='vee', style='dashed', label='&lt;использует&gt;')</code></pre>
+
+<figure style="text-align:center;">
+    <img src="/static/SYSANALYSIS_R_03_03_img_02.png" alt="" style="max-width: 600px;"/>
+    <figcaption>Рис. 2. Сгенерированная UML-диаграмма примера 2</figcaption>
+</figure>

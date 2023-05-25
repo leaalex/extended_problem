@@ -1,0 +1,116 @@
+<problem>
+    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+    <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+    <script type="text/javascript" src="/static/highlight.js"></script>
+    <script type="text/javascript">
+        document.querySelectorAll('pre code').forEach(function(block) {
+            hljs.highlightBlock(block);
+        });
+    </script>
+
+
+    <script type="loncapa/python">task_id="YdfJtsDH"</script>
+
+    <div class="code-task">
+
+        <p><strong>Цель: </strong>строить графы онтологических моделей</p>
+        <p><strong>Задача.</strong> Даны отношения между классами фрагмента онтологии:</p>
+        <ul>
+            <li>«ГЭС» расположена на «Река»</li>
+            <li>«Новосибирская ГЭС» расположена на «Обь»</li>
+            <li>«Новосибирская ГЭС» экземпляр «ГЭС»</li>
+            <li>«Обь» экземпляр «Река»</li>
+        </ul>
+        <p>Необходимо задать фрагмент онтологии кодом на языке программирования Python и построить ее граф.</p>
+        <p>Составьте код создания и отображения данного фрагмента онтологии и заполните фрагментами полученного кода пропуски в форме ниже.</p>
+
+
+        <pre><code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net = </span>
+<span><stringresponse answer="Network" type="ci"><textline size="7"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>(notebook = True, cdn_resources='remote', directed = True)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_node" type="ci"><textline size="8"/></stringresponse></span>
+<span>(0, label='</span>
+<span class="input-green"><stringresponse answer="ГЭС" type="ci"><textline size="3"/></stringresponse></span>
+<span>', physics = False)</span>
+</div>
+
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span><stringresponse answer="net" type="ci"><textline size="3"/></stringresponse></span>
+<span>.add_node(</span>
+<span class="input-blue"><stringresponse answer="1" type="ci"><textline size="1"/></stringresponse></span>
+<span>, label='Река', physics = False)</span>
+</div>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_node" type="ci"><textline size="8"/></stringresponse></span>
+<span>(2, </span>
+<span><stringresponse answer="label" type="ci"><textline size="5"/></stringresponse></span>
+<span>='Новосибирская ГЭС', physics = False)</span>
+</div>
+
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span><stringresponse answer="net.add_node" type="ci"><textline size="12"/></stringresponse></span>
+<span>(</span>
+<span class="input-blue"><stringresponse answer="3" type="ci"><textline size="1"/></stringresponse></span>
+<span>, label = 'Обь', physics = False)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_edge" type="ci"><textline size="8"/></stringresponse></span>
+<span>(0, 1, label = '</span>
+<span class="input-green"><stringresponse answer="расположена на" type="ci"><textline size="12"/></stringresponse></span>
+<span>')</span>
+</div>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_edge" type="ci"><textline size="8"/></stringresponse></span>
+<span>(</span>
+<span class="input-blue"><stringresponse answer="2" type="ci"><textline size="1"/></stringresponse></span>
+<span>, </span>
+<span class="input-blue"><stringresponse answer="3" type="ci"><textline size="1"/></stringresponse></span>
+<span>, label = 'расположена на')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span><stringresponse answer="net" type="ci"><textline size="3"/></stringresponse></span>
+<span>.add_edge(2, 0, label = '</span>
+<span class="input-green"><stringresponse answer="экземпляр" type="ci"><textline size="7"/></stringresponse></span>
+<span>')</span>
+</div>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.</span>
+<span><stringresponse answer="add_edge" type="ci"><textline size="8"/></stringresponse></span>
+<span>(</span>
+<span class="input-blue"><stringresponse answer="3" type="ci"><textline size="1"/></stringresponse></span>
+<span>, </span>
+<span class="input-blue"><stringresponse answer="1" type="ci"><textline size="1"/></stringresponse></span>
+<span>, label = 'экземпляр')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>net.show('tags.html')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>display(HTML('tags.html'))</span>
+</div>
+
+</code></pre>
+    </div>
+</problem>
