@@ -1,0 +1,46 @@
+<problem>
+  <link rel="stylesheet" href="/static/highlight.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript" >
+    // hljs.initHighlightingOnLoad();
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+    document.querySelectorAll('code.inline').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+    .xmodule_display.xmodule_CapaModule div.problem pre {
+      overflow: auto;
+      padding: 0px !important;
+      border: none !important;
+    }
+  </style>
+
+  <p><strong>Цель:</strong> формировать решения по предварительной обработке данных.</p>
+  <p><strong>Задача.</strong> Построить модель для решения задачи классификации коротких замыканий в электрической сети на основе логистической регрессии, предварительно исправив ошибки в данных.</p>
+  <p>Выборка данных, представленная в файле <a href="/static/4.3_short_circuits.csv">4.3_short_circuits.csv</a>, является искаженной копией выборки данных из расчетного задания темы 4.2: <a href="/static/4.2_short_circuits.csv">4.2_short_circuits.csv</a>. В некоторых именах типов коротких замыканий использована буква <code class="inline">p (phase)</code> вместо <code class="inline">ф (фаза)</code>, некоторые значения углов тока нулевой последовательности имеют инвертированный знак.</p>
+  <p>Нужно построить и оценить классификатор на базе логистической регрессии, при этом указать точность до предобработки и после предобработки данных.</p>
+  <p>Подсказка: чтобы поменять значения только в нужно столбце, его необходимо указать.</p>
+  <pre><code>X_train['Угол тока нулевой последовательности. град.'][X_train['Угол тока нулевой последовательности. град.'] > 0] *= -1</code></pre>
+  <p></p>
+
+  <div class="no-equation">
+    <numericalresponse answer="[0.69,0.73]">
+      <label>Взвешенное усредненное значение <code class="inline">F1-score</code> на тестовой выборке для логистической регрессии до предобработки, два знака после десятичного разделителя:</label>
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput/>
+    </numericalresponse>
+    <numericalresponse answer="[0.95,0.99]">
+      <label>Взвешенное усредненное значение <code class="inline">F1-score</code> на тестовой выборке для логистической регрессии после предобработки, два знака после десятичного разделителя:</label>
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput/>
+    </numericalresponse>
+  </div>
+
+</problem>

@@ -1,0 +1,25 @@
+<problem>
+  <style>
+    .no-equation .equation{
+      display: none !important;
+    }
+    .xmodule_display.xmodule_CapaModule div.problem pre {
+      overflow: auto;
+      padding: 0px !important;
+      border: none !important;
+    }
+  </style>
+  <p>Построить модель для решения задачи классификации коротких замыканий в электрической сети на основе дерева решений, предварительно исправив ошибки в данных.</p>
+  <div class="no-equation">
+    <numericalresponse answer="[0.60,0.74]">
+      <label>Взвешенное усредненное значение <code class="inline">F1-score</code> на тестовой выборке для дерева решений регрессии до предобработки, два знака после десятичного разделителя:</label>
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput/>
+    </numericalresponse>
+    <numericalresponse answer="[0.91,0.97]">
+      <label>Взвешенное усредненное значение <code class="inline">F1-score</code> на тестовой выборке для дерева решений после предобработки, два знака после десятичного разделителя:</label>
+      <responseparam type="tolerance" default="0"/>
+      <formulaequationinput/>
+    </numericalresponse>
+  </div>
+</problem>

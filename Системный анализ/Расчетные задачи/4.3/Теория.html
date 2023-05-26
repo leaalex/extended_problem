@@ -1,0 +1,70 @@
+<p>Из-за того, что в данных могут встречаться различные виды ошибок, связанные с пропущенными данными, неверными форматами данных, выбросами, дубликатами данных и так далее, необходима предобработка данных.</p>
+<p><strong>Пример</strong>. Требуется исправить ошибки в выборке данных и построить классификатор.</p>
+<p>Пример ниже показывает работу с <code class="inline">Scikit-Learn</code> в среде Google Colab. Для этого достаточно создать в Google Colab новый проект и добавить в него приведенный ниже код. Кроме того, необходимо загрузить в Google Colab файл с набором данных <a href="/static/4.3_Iris.csv">4.3_Iris.csv</a> (находится в материалах к расчетному заданию).</p>
+<p>Используются та же выборка данных, что и в расчетном задании темы 4.2, но в нее внесены искажения:</p>
+<ul>
+    <li>часть имен одних и тех же видов начинаются с заглавной буквы, часть с прописной, например, <code class="inline">Iris-setosa</code> или <code class="inline">iris-setosa</code>;</li>
+    <li>часть имен содержат символ «-» как разделитель, а часть содержат символ «_»</li>
+    <li>некоторые значения длин заменены на такие же, но со знаком минус.</li>
+</ul>
+<p><strong>Решение</strong></p>
+<p>Начальный этап аналогичен тому, как решалась задача в теме 4.2. Нужно добавить код подключения библиотек, чтения данных и разделения выборки.</p>
+
+<pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+df = pd.read_csv('/content/4.3_Iris.csv', sep = ',', index_col=0)
+X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.3)</code></pre>
+
+<p>Код для построения и оценки классификатора помещен в функцию, так как он будет вызываться несколько раз.</p>
+
+<pre><code>df = pd.read_csv('/content/4.3_Iris.csv', sep = ',', index_col=0)
+X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.3, random_state = 0)
+
+def create_evaluate_model():
+  classifier = LogisticRegression()
+  classifier.fit(X_train, y_train)
+  y_train_pred = classifier.predict(X_train)
+  y_test_pred = classifier.predict(X_test)
+
+  print('Trainining results:')
+  print(classification_report(y_train, y_train_pred))
+  print('')
+  print('Test results:')
+  print(classification_report(y_test, y_test_pred))
+
+  cm = confusion_matrix(y_test, y_test_pred)
+  disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+  disp.plot()
+  plt.grid(False)
+  plt.show()</code></pre>
+
+<p>Далее нужно вызвать эту функцию.</p>
+<pre><code>create_evaluate_model()</code></pre>
+<p>Полученные результаты демонстрируют низкую точность, значения средневзвешенных показателей оставляют \(59–67 \ \%\).</p>
+<p>Для исправления ошибок в текстовых данных нужно применить функции, переводящие все символы в нижний регистр и заменяющие «_» на «-»:</p>
+
+<pre><code>y_train = y_train.str.lower().str.replace('_', '-')
+y_test = y_test.str.lower().str.replace('_', '-')
+create_evaluate_model()</code></pre>
+
+<p>Точность увеличивается до \(78 \ \%\).</p>
+<p>Далее нужно исправить отрицательные значения. Исправления значений как правило выполняется в два этапа:</p>
+<ul>
+    <li>детектирования ошибочных значений;</li>
+    <li>восстановление значений или удаление (строк или столбцов, содержащих ошибки).</li>
+</ul>
+<p>В данном примере значения легко восстановить, так как задано, что они просто приняли отрицательное значение.</p>
+
+<pre><code>X_train[X_train &lt; 0] *= -1
+X_test[X_test &lt; 0] *= -1
+
+create_evaluate_model()</code></pre>
+
+<p>Точность увеличивается до \(98 \ \%\).</p>

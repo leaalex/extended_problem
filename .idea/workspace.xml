@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="320616c2-d46d-4b6e-a693-338805701689" name="Default" comment="Сисанал">
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.3/Задание 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.3/Задача 1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.3/Теория.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.4/Теория.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Теория.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.3/Задание 1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.3/Задание 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.3/Теория.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.3/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.3/Задание 1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 1.html" beforeDir="false" afterPath="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1/Задание 1.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +113,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "WebServerToolWindowFactoryState": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/vesloguzov/PROJECTS/extended_problem/Системный анализ/Расчетные задачи/4.2",
+    "last_opened_file_path": "/Users/vesloguzov/PROJECTS/extended_problem/Системный анализ/Расчетные задачи/4.3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -118,11 +126,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.3" />
+      <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.1" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.2" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/4.4" />
       <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/3.1" />
-      <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.6" />
-      <recent name="$PROJECT_DIR$/Системный анализ/Расчетные задачи/2.4" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Кибербезопасность ИНЭУ" />
@@ -383,14 +391,7 @@
       <workItem from="1682329324334" duration="6280000" />
       <workItem from="1683015648393" duration="31948000" />
       <workItem from="1684320610032" duration="44861000" />
-      <workItem from="1684834776929" duration="26289000" />
-    </task>
-    <task id="LOCAL-00077" summary="маш предприятие">
-      <created>1628867459638</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1628867459638</updated>
+      <workItem from="1684834776929" duration="37758000" />
     </task>
     <task id="LOCAL-00078" summary="маш предприятие">
       <created>1628947891887</created>
@@ -728,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684946844785</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="Сисанал">
+      <created>1685032660757</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1685032660757</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,0 +1,59 @@
+<problem>
+    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+    <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+    <script type="text/javascript" src="/static/highlight.js"></script>
+    <script type="text/javascript">
+        document.querySelectorAll('pre code').forEach(function(block) {
+            hljs.highlightBlock(block);
+        });
+    </script>
+    <script type="loncapa/python">task_id="RDkGYpZXS9"</script>
+
+    <div class="code-task">
+        <p><strong>Цель: </strong>составлять поисковые запросы к базе данных на языке SQL.</p>
+        <p><strong>Задача.</strong> Составить SQL для получения указанных данных.</p>
+        <p>Составьте SQL запрос и заполните пропуски в форме ниже. Для самопроверки правильности запроса используйте код из примеров. Ключевые слова (SELECT, FROM, WHERE, INNER JOIN, AND вводите заглавными буквами).</p>
+        <p>Получить диспетчерские имена оборудования, испытания которого проводил Селезнев, включить его ФИО в таблицу с результатом.</p>
+
+        <pre><code class="language-python">
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span>pd.read_sql_query(</span>
+</div>
+<div class="inline-input-task paragraph-class firts class_$task_id" style="margin-left:20px;">
+<span>"</span>
+<span style="padding-right: 4px;" class="input-green"><stringresponse answer="SELECT" type="ci"><textline size="6"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>Испытания_оборудования.ID_оборудования, Сотрудники.Фамилия, Сотрудники.Имя, Сотрудники.Отчество"</span>
+</div>
+<div class="inline-input-task paragraph-class firts class_$task_id" style="margin-left:20px;">
+<span>"</span>
+<span style="padding-right: 8px;"  class="input-green"><stringresponse answer="FROM" type="ci"><textline size="4"/></stringresponse></span>
+<span style="padding-right: 4px;"  class="input-green"><stringresponse answer="Испытания_оборудования" type="ci"><textline size="18"/></stringresponse></span>
+<span>INNER JOIN Сотрудники"</span>
+</div>
+<div class="inline-input-task paragraph-class firts class_$task_id" style="margin-left:20px;">
+<span>"</span>
+<span style="padding-right: 4px;"  class="input-green"><stringresponse answer="WHERE" type="ci"><textline size="5"/></stringresponse></span>
+<span>Испытания_оборудования.</span>
+<span>ID_сотрудника</span>
+ <span>= Сотрудники.</span>
+<span style="padding-right: 4px;"  class="input-green"><stringresponse answer="ID" type="ci"><textline size="2"/></stringresponse></span>
+<span>"</span>
+</div>
+<div class="inline-input-task paragraph-class firts class_$task_id" style="margin-left:20px;">
+<span>"AND Сотрудники.Фамилия = '</span>
+<span  class="input-green"><stringresponse answer="Селезнев" type="ci"><textline size="6"/></stringresponse></span>
+<span>'"</span>
+</div>
+<div class="inline-input-task paragraph-class firts class_$task_id" style="margin-left:20px;">
+<span>, connect</span>
+</div>
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span>).head()</span>
+</div>
+	</code></pre>
+    </div>
+</problem>

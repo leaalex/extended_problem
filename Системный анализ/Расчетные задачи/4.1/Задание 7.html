@@ -1,0 +1,47 @@
+<problem>
+  <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+  <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+  <script type="loncapa/python">task_id="AzQWHFAya2"</script>
+
+  <div class="code-task">
+    <p><strong>Цель: </strong>составлять поисковые запросы к базе данных на языке SQL.</p>
+    <p><strong>Задача.</strong> Составить SQL для получения указанных данных.</p>
+  <p>Составьте SQL запрос и заполните пропуски в форме ниже. Для самопроверки правильности запроса используйте код из примеров. Ключевые слова (SELECT, FROM, WHERE, INNER JOIN, AND вводите заглавными буквами).</p>
+    <p>Получить диспетчерские имена разъединителей трансформатора напряжения.</p>
+
+    <pre><code class="language-SQL">
+		<div class="inline-input-task paragraph-class firts class_$task_id">
+		<span style="padding-right: 4px;"><stringresponse answer="SELECT" type="ci"><textline size="6"/></stringresponse>
+		<solution>
+		    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+		</solution>
+		</span>
+		<span>Оборудование.</span>
+		<span><stringresponse answer="Диспетчерское_имя" type="ci"><textline size="14"/></stringresponse></span>
+		</div>
+		<div class="inline-input-task paragraph-class firts class_$task_id">
+		<span style="padding-right: 4px;"><stringresponse answer="FROM" type="ci"><textline size="4"/></stringresponse></span>
+		<span style="padding-right: 4px;">Оборудование INNER</span>
+		<span style="padding-right: 4px;"><stringresponse answer="JOIN" type="ci"><textline size="4"/></stringresponse></span>
+		<span style="padding-right: 4px;">Виды_оборудования</span>
+		</div>
+		<div class="inline-input-task paragraph-class class_$task_id">
+		<span>WHERE Оборудование.</span>
+		<span style="padding-right: 4px;"><stringresponse answer="ID_вида" type="ci"><textline size="6"/></stringresponse></span>
+		<span> = Виды_оборудования.</span>
+		<span><stringresponse answer="ID" type="ci"><textline size="2"/></stringresponse></span>
+		</div>
+		<div class="inline-input-task paragraph-class class_$task_id">
+		<span>AND Виды_оборудования.Имя = '</span>
+		<span><stringresponse answer="разъединитель трансформатора напряжения" type="ci"><textline size="32"/></stringresponse></span>
+		<span>'</span>
+		</div>
+	</code></pre>
+  </div>
+</problem>

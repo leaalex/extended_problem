@@ -1,0 +1,303 @@
+<p>Для работы с реляционными базами данных используется язык структурированных запросов (<code class="inline">Structured query language, SQL</code>). Для выбора данных из одной или нескольких таблиц служат запросы вида <code class="inline">SELECT</code>.</p>
+<p>В текстовых материалах к теме приведено описание реляционной базы данных для хранения данных об испытаниях электрооборудования. В табл. 1-4 приведены таблицы этого примера с некоторым модификациями.</p>
+
+<p style="text-align: right;">Таблица 1</p>
+<p></p>
+<table>
+    <caption>Таблица размеров обуви</caption>
+    <tbody>
+    <tr>
+        <th style="text-align: center;">
+            ID
+        </th>
+        <th style="text-align: center;">
+            Имя
+        </th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            1
+        </td>
+        <td style="text-align: center;">
+            обходной разъединитель
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            2
+        </td>
+        <td style="text-align: center;">
+            разъединитель трансформатора напряжения
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            3
+        </td>
+        <td style="text-align: center;">
+            шинный разъединитель
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p> </p>
+
+<p style="text-align: right;">Таблица 2</p>
+<table>
+    <caption>Оборудование</caption>
+    <tbody>
+    <tr>
+        <th style="text-align: center;">
+            ID
+        </th>
+        <th style="text-align: center;">
+            Диспетчерское_имя
+        </th>
+        <th style="text-align: center;">
+            ID_вида
+        </th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            1
+        </td>
+        <td style="text-align: center;">
+            ТР ТН-1 10 кВ
+        </td>
+        <td style="text-align: center;">
+            2
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            2
+        </td>
+        <td style="text-align: center;">
+            ОР ТН 220 кВ ОСШ
+        </td>
+        <td style="text-align: center;">
+            3
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            3
+        </td>
+        <td style="text-align: center;">
+            ОР 110 кВ Т-1
+        </td>
+        <td style="text-align: center;">
+            1
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            4
+        </td>
+        <td style="text-align: center;">
+            ШР 1 сек. 110 кВ Т-1
+        </td>
+        <td style="text-align: center;">
+            3
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<p> </p>
+<p style="text-align: right;">Таблица 3</p>
+<table>
+    <caption>Сотрудники</caption>
+    <tbody>
+    <tr>
+        <th style="text-align: center;">
+            ID
+        </th>
+        <th>
+            Фамилия
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            Отчество
+        </th>
+        <th>
+            Группа электробезопасности
+        </th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            1
+        </td>
+        <td>
+            Ершов
+        </td>
+        <td>
+            Николай
+        </td>
+        <td>
+            Александрович
+        </td>
+        <td>
+            5
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            2
+        </td>
+        <td>
+            Селезнев
+        </td>
+        <td>
+            Иван
+        </td>
+        <td>
+            Анатольевич
+        </td>
+        <td>
+            4
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p> </p>
+
+
+<p style="text-align: right;">Таблица 4</p>
+<table>
+    <caption>Испытания оборудования</caption>
+    <tbody>
+    <tr>
+        <th style="text-align: center;">
+            ID
+        </th>
+        <th style="text-align: center;">
+            ID_оборудования
+        </th>
+        <th style="text-align: center;">
+            Дата
+        </th>
+        <th style="text-align: center;">
+            Результаты
+        </th>
+        <th style="text-align: center;">
+            ID сотрудника
+        </th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            1
+        </td>
+        <td style="text-align: center;">
+            1
+        </td>
+        <td style="text-align: center;">
+            10.01.2023
+        </td>
+        <td style="text-align: center;">
+            ...
+        </td>
+        <td style="text-align: center;">
+            1
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            2
+        </td>
+        <td style="text-align: center;">
+            2
+        </td>
+        <td style="text-align: center;">
+            10.01.2023
+        </td>
+        <td style="text-align: center;">
+            ...
+        </td>
+        <td style="text-align: center;">
+            1
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            3
+        </td>
+        <td style="text-align: center;">
+            3
+        </td>
+        <td style="text-align: center;">
+            20.01.2023
+        </td>
+        <td style="text-align: center;">
+            ...
+        </td>
+        <td style="text-align: center;">
+            1
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            4
+        </td>
+        <td style="text-align: center;">
+            4
+        </td>
+        <td style="text-align: center;">
+            15.02.2023
+        </td>
+        <td style="text-align: center;">
+            ...
+        </td>
+        <td style="text-align: center;">
+            2
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            5
+        </td>
+        <td style="text-align: center;">
+            1
+        </td>
+        <td style="text-align: center;">
+            15.02.2023
+        </td>
+        <td style="text-align: center;">
+            ...
+        </td>
+        <td style="text-align: center;">
+            2
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Работа с базами данных с помощью языка <code class="inline">SQL</code> осуществляется с помощью системы управления базой данных (СУБД). В примерах ниже используется СУБД <code class="inline">SQLite</code>, поскольку позволяет хранить всю базу данных в одном файле и является свободном-распространяемым программным обеспечением.</p>
+<p>Для взаимодействия с СУБД <code class="inline">SQLite</code> можно использовать <code class="inline">Python</code> библиотеку <code class="inline">Sqlite3</code>. Примеры ниже показывают работу с ней в среде Google Colab. Для этого достаточно создать в Google Colab новый проект и добавить в него приведенный ниже код. Кроме того, необходимо загрузить в Google Colab файл с базой данных <a href="/static/4.1_database.sqlite3">4.1_database.sqlite3</a> (находится в материалах к расчетному заданию).</p>
+<pre><code>import sqlite3
+import pandas as pd
+connect = sqlite3.connect("/content/4.1_database.sqlite3")</code></pre>
+<p><strong>Пример 1.</strong> Требуется прочитать все данные из таблицы &laquo;Виды оборудования&raquo;</p>
+<p><strong>Решение</strong></p>
+<p>Достаточно добавить следующий код, содержащий SQL-запрос</p>
+<pre><code>pd.read_sql_query("SELECT * FROM Виды_оборудования", connect).head()</code></pre>
+<p>Звездочка означает &laquo;прочитать все столбцы&raquo;</p>
+<p><strong>Пример 2.</strong> Требуется получить фамилии сотрудников с группой электробезопасности выше 4-й.</p>
+<p><strong>Решение</strong></p>
+<pre><code>pd.read_sql_query(
+    "SELECT Фамилия FROM Сотрудники"
+    "WHERE Группа_электробезопасности &gt; 4", connect
+).head()</code></pre>
+<p><strong>Пример 3.</strong> Требуется получить таблицу с оборудованием, но так, чтобы вместо <code class="inline">ID</code> вида было название вида</p>
+<p><strong>Решение</strong></p>
+<p>Если нужно получить данные из нескольких таблиц, то необходимо выполнить операцию их объединения. Существует несколько способов объединения, для рассматриваемых примеров достаточно использовать <code class="inline">inner join</code>.</p>
+<pre><code>pd.read_sql_query(
+    "SELECT Оборудование.ID, Оборудование.Диспетчерское_имя, Виды_оборудования.Имя"
+    "FROM Оборудование INNER JOIN Виды_оборудования"
+    "WHERE Оборудование.ID_вида = Виды_оборудования.ID"
+    , connect
+).head()</code></pre>
+<p>Условие <code class="inline">&laquo;Оборудование.ID_вида = Виды_оборудования.ID&raquo;</code> позволяет сопоставить строки из таблицы <code class="inline">&laquo;Оборудование&raquo;</code> с таблицей <code class="inline">&laquo;Виды_оборудования&raquo;</code> так, чтобы каждой строке из таблицы <code class="inline">&laquo;Оборудование&raquo;</code> была поставлена в соответствие именно так строка из таблицы <code class="inline">&laquo;Виды_оборудования&raquo;</code>, которая содержит имя вида этого оборудования.</p>

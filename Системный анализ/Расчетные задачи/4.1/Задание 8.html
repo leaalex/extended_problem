@@ -1,0 +1,50 @@
+<problem>
+  <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+  <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+  <script type="text/javascript" src="/static/highlight.js"></script>
+  <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function(block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
+  <script type="loncapa/python">task_id="NgDTktTr5z"</script>
+
+  <div class="code-task">
+    <p><strong>Цель: </strong>составлять поисковые запросы к базе данных на языке SQL.</p>
+    <p><strong>Задача.</strong> Составить SQL для получения указанных данных.</p>
+    <p>Составьте SQL запрос и заполните пропуски в форме ниже. Для самопроверки правильности запроса используйте код из примеров. Ключевые слова (SELECT, FROM, WHERE, INNER JOIN, AND вводите заглавными буквами).</p>
+    <p>Вывести даты испытаний и фамилии сотрудников, которые их проводили.</p>
+
+    <pre><code class="language-SQL">
+
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-right: 4px;">SELECT Испытания_оборудования.Дата, </span>
+<span><stringresponse answer="Сотрудники" type="ci"><textline size="8"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>.</span>
+<span><stringresponse answer="Фамилия" type="ci"><textline size="6"/></stringresponse></span>
+</div>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-right: 4px;">FROM Испытания_оборудования </span>
+<span style="padding-right: 8px;"><stringresponse answer="INNER" type="ci"><textline size="5"/></stringresponse></span>
+<span style="padding-right: 8px;"><stringresponse answer="JOIN" type="ci"><textline size="4"/></stringresponse></span>
+<span><stringresponse answer="Сотрудники" type="ci"><textline size="8"/></stringresponse></span>
+</div>
+
+<div class="inline-input-task paragraph-class firts class_$task_id">
+<span style="padding-right: 4px;"><stringresponse answer="WHERE" type="ci"><textline size="5"/></stringresponse></span>
+<span style="padding-right: 4px;">Испытания_оборудования.ID_сотрудника = </span>
+<span><stringresponse answer="Сотрудники" type="ci"><textline size="8"/></stringresponse></span>
+<span>.</span>
+<span><stringresponse answer="ID" type="ci"><textline size="2"/></stringresponse></span>
+</div>
+
+
+</code></pre>
+  </div>
+</problem>
