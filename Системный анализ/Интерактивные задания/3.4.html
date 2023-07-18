@@ -2,9 +2,16 @@
   <style>
     .center {text-align:center  !important;}
     .img-class{
-      width: 50px;
-      height: 50px
+      width: 76px;
+      height: 76px;
+      margin: 0 auto;
+      display: block;
     }
+
+    .matching-table .answer, .answers .answer{
+      padding: 0px !important;
+    }
+
   </style>
   <script type="loncapa/python">
 import json
@@ -38,7 +45,7 @@ data = {
   },
   "style": {
         'rows': ['', ''],
-        'colls': ['w50', '']
+        'colls': ['w80', '']
     },
   "distractors": ['![](/static/SYSANALYSIS_03_04_int_08.png).{.img-class} .{.center}', '![](/static/SYSANALYSIS_03_04_int_09.png).{.img-class} .{.center}', '![](/static/SYSANALYSIS_03_04_int_10.png).{.img-class} .{.center}'],
 }

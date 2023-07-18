@@ -1,244 +1,300 @@
 /*
-*
-* дать таблице класс top-items - перетаскивающиеся блоки будут прижиматься к верху
-*
-* */
+ *
+ * дать таблице класс top-items - перетаскивающиеся блоки будут прижиматься к верху
+ *
+ * */
 
-if (MatchingTableObjects == undefined) var MatchingTableObjects = {};
+if (MatchingTableObjects == undefined) var MatchingTableObjects = {}
 
 function MatchingTableActivation(selector) {
-    Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
-        return element.dataset.status == undefined
-    }).forEach(function(element, i, array) {
-        MatchingTableObjects[element.id] = (new MatchingTableObjects(element, element.getAttribute("data")));
-        element.dataset.status = "activate";
-    });
-    setTimeout(function() {
-        MatchingTableActivation(selector)
-    }, 1000);
+  Array.prototype.filter
+    .call(document.querySelectorAll(selector), function (element) {
+      return element.dataset.status == undefined
+    })
+    .forEach(function (element, i, array) {
+      MatchingTableObjects[element.id] = new MatchingTableObjects(
+        element,
+        element.getAttribute('data')
+      )
+      element.dataset.status = 'activate'
+    })
+  setTimeout(function () {
+    MatchingTableActivation(selector)
+  }, 1000)
 }
 
 function Answer(elementField) {
-    this.elementField = elementField;
-    this.fieldValue = "";
-    this.fieldObject = {};
-    this.get = function() {
-        this.fieldValue = elementField.value;
-        return this.fieldValue;
-    };
-    this.set = function(value) {
-        if (value == undefined) value = this.fieldValue;
-        elementField.value = value;
-    };
-    this.getJSON = function() {
-        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
-        return this.fieldObject;
-    };
-    this.setJSON = function(object) {
-        if (object == undefined) object = this.fieldObject;
-        this.set(JSON.stringify(object))
-    };
-    this.isJsonString = function(str) {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    };
-};
-
-$.fn.shuffleChildren = function() {
-    $.each(this.get(), function(index, el) {
-        var $el = $(el);
-        var $find = $el.children();
-
-        $find.sort(function() {
-            return 0.5 - Math.random();
-        });
-
-        $el.empty();
-        $find.appendTo($el);
-    });
-};
-
-function MatchingTableObjects(element, data){
-
-    this.lang = "ru";
-
-    this.translations = {
-        ru: {
-            correct_answers_label: "",
-        },
-        en:{
-            correct_answers_label: "",
-        }
-
+  this.elementField = elementField
+  this.fieldValue = ''
+  this.fieldObject = {}
+  this.get = function () {
+    this.fieldValue = elementField.value
+    return this.fieldValue
+  }
+  this.set = function (value) {
+    if (value == undefined) value = this.fieldValue
+    elementField.value = value
+  }
+  this.getJSON = function () {
+    if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get())
+    return this.fieldObject
+  }
+  this.setJSON = function (object) {
+    if (object == undefined) object = this.fieldObject
+    this.set(JSON.stringify(object))
+  }
+  this.isJsonString = function (str) {
+    try {
+      JSON.parse(str)
+    } catch (e) {
+      return false
     }
+    return true
+  }
+}
 
-    if(data){
-        try {
-            a = JSON.parse(data);
-            if(a.lang){
-                this.lang = a.lang;
-            }
-        } catch(e) {
-            console.log(e);
-        }
-    }
+$.fn.shuffleChildren = function () {
+  $.each(this.get(), function (index, el) {
+    var $el = $(el)
+    var $find = $el.children()
 
-    //Перемешать незадействованные элементы
-
-    //
-    // $('.conf-all-answers', element).each(function(){
-    //     $(this).shuffleChildren();
-    // });
-
-    $(".matching_table").hide().fadeIn(500);
-
-    this.element = element;
-
-    var answer = new Answer(element.querySelector("#matching_table_input").querySelector("input[type='text']"));
-
-    console.log(this.element.querySelector('.conf-all-answers.A'))
-    const sortable = Sortable.create(
-        this.element.querySelector('.conf-all-answers.A'), {
-            group: {
-                name: 'shared',
-                pull: 'clone' // To clone: set pull to 'clone'
-            },
-            draggable: '.conf-item.conf-draggable',
-            delay: 0,
-            mirror: {
-                constrainDimensions: true,
-            },
-            onStart: function (/**Event*/evt) {
-                console.log(evt)  // element index within parent
-            },
-            // onAdd: function (evt) {
-            //     evt.clone.replaceWith(evt.item)
-            // }
-        }
-    )
-
-    this.element.querySelectorAll('.conf-table .conf-inputable.AC').forEach((el)=>{
-        Sortable.create(
-            el, {
-                group: {
-                    name: 'shared',
-                },
-                draggable: '.conf-item.conf-draggable',
-                delay: 0,
-                mirror: {
-                    constrainDimensions: true,
-                },
-            }
-        )
+    $find.sort(function () {
+      return 0.5 - Math.random()
     })
 
-    // sortable.on('drag:start', (evt) => {
-    // })
-    // sortable.on('drag:over', (evt) => {
-    // })
-    // sortable.on('drag:out', (evt) => {
-    // })
-    // sortable.on('drag:move', (evt) => {
-    // })
-    // sortable.on('drag:over:container', (evt) => {
-    // })
-    // sortable.on('drag:out:container', (evt) => {
-    // })
-    // sortable.on('drag:pressure', (evt) => {
-    // })
+    $el.empty()
+    $find.appendTo($el)
+  })
+}
 
-    // sortable.on('drag:stop', (evt) => {
-    //     setAnswer();
-    //     $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
-    // });
-    //
-    // $(".conf-select select").on('change', function() {
-    //     setAnswer();
-    //     $(".conf-table .conf-answers-place", element).removeClass("conf-wrong-cell");
-    // });
-    //
-    // sortable.on('sortable:sort', (evt) => {
-    //     var capacity = evt.data.dragEvent.data.overContainer.getAttribute("capacity");
-    //     var count = sortable.getDraggableElementsForContainer(evt.data.dragEvent.data.overContainer).length;
-    //     if (!isNaN(capacity)){
-    //         capacity = parseInt(capacity)
-    //         if(capacity == count){
-    //             evt.cancel();
-    //         }
-    //     }
-    // })
+function MatchingTableObjects(element, data) {
+  this.lang = 'ru'
 
-    function setAnswer(){
-        var problem =  $("#" + element.id).closest(".problem");
-        var checkButton = $("button.submit", problem);
-        checkButton.removeClass("is-disabled");
-        checkButton.disabled = false;
-        $(checkButton).removeAttr("disabled");
+  this.translations = {
+    ru: {
+      correct_answers_label: '',
+    },
+    en: {
+      correct_answers_label: '',
+    },
+  }
 
-        var student_answer = {};
+  if (data) {
+    try {
+      a = JSON.parse(data)
+      if (a.lang) {
+        this.lang = a.lang
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
-        $(".input-place.conf-answers-place", element).map(function(indx, item){
-            item_id = $(item).attr("id");
-            student_answer[item_id] = $(item).find(".conf-item.conf-draggable").map(function(index, sub_item){
+  //Перемешать незадействованные элементы
 
-                if(sub_item.classList.contains('draggable--original') || sub_item.classList.contains('draggable--mirror') ){
+  //
+  // $('.conf-all-answers', element).each(function(){
+  //     $(this).shuffleChildren();
+  // });
 
-                }else{
-                    return $(sub_item).attr("id")
-                }
+  $('.matching_table').hide().fadeIn(500)
 
-            }).get();
+  this.element = element
 
-            student_answer[item_id] = student_answer[item_id].filter((el, i, a) => i === a.indexOf(el))
+  var answer = new Answer(
+    element
+      .querySelector('#matching_table_input')
+      .querySelector("input[type='text']")
+  )
 
-        }).get();
+  const sortable = Sortable.create(
+    this.element.querySelector('.conf-all-answers.A'),
+    {
+      group: {
+        name: 'shared_A',
+        put: false,
+        pull: 'clone',
+      },
+      onClone: function (/**Event*/ evt) {
+        var cloneEl = evt.clone
+        cloneEl.classList.remove('conf-item')
+        cloneEl.classList.remove('conf-draggable')
+        cloneEl.classList.add('not-use')
+      },
+      filter: '.not-use',
+      delay: 0,
+      mirror: {
+        constrainDimensions: true,
+      },
+      sort: false,
+      onEnd: function (/**Event*/ evt) {
+        setAnswer()
+        $('.conf-table .conf-answers-place', element).removeClass(
+          'conf-wrong-cell'
+        )
+      },
+    }
+  )
 
-        var select_answer = {};
-        $(".conf-select select", element).map(function(indx, item){
-            var select_item_id = $(item).attr("id");
-            select_answer[select_item_id] = $(item).find(":selected").val()
-        }).get()
+  const sortable1 = Sortable.create(
+    this.element.querySelector('.conf-all-answers.C'),
+    {
+      group: {
+        name: 'shared_C',
+        put: false,
+        pull: 'clone',
+      },
+      onClone: function (/**Event*/ evt) {
+        var cloneEl = evt.clone
+        cloneEl.classList.remove('conf-item')
+        cloneEl.classList.remove('conf-draggable')
+        cloneEl.classList.add('not-use')
+      },
+      filter: '.not-use',
+      delay: 0,
+      mirror: {
+        constrainDimensions: true,
+      },
+      sort: false,
+      onEnd: function (/**Event*/ evt) {
+        setAnswer()
+        $('.conf-table .conf-answers-place', element).removeClass(
+          'conf-wrong-cell'
+        )
+      },
+    }
+  )
 
+  this.element
+    .querySelectorAll('.conf-table .conf-inputable.AC')
+    .forEach((el) => {
+      Sortable.create(el, {
+        group: {
+          name: 'shared_A',
+          put: ['shared_A'],
+        },
+        draggable: '.conf-item.conf-draggable',
+        delay: 0,
+        mirror: {
+          constrainDimensions: true,
+        },
+      })
+    })
 
-        // console.log({answer: student_answer, select_answer: select_answer})
-        answer.setJSON({answer: student_answer, select_answer: select_answer});
+  this.element
+    .querySelectorAll('.conf-table .conf-inputable.BC')
+    .forEach((el) => {
+      Sortable.create(el, {
+        group: {
+          name: 'shared_C',
+          put: ['shared_C'],
+        },
+        draggable: '.conf-item.conf-draggable',
+        delay: 0,
+        mirror: {
+          constrainDimensions: true,
+        },
+      })
+    })
 
+  $('.conf-select select').on('change', function () {
+    setAnswer()
+    $('.conf-table .conf-answers-place', element).removeClass('conf-wrong-cell')
+  })
+
+  //   sortable1.on('sortable:sort', (evt) => {
+  //     var capacity =
+  //       evt.data.dragEvent.data.overContainer.getAttribute('capacity')
+  //     var count = sortable.getDraggableElementsForContainer(
+  //       evt.data.dragEvent.data.overContainer
+  //     ).length
+  //     if (!isNaN(capacity)) {
+  //       capacity = parseInt(capacity)
+  //       if (capacity == count) {
+  //         evt.cancel()
+  //       }
+  //     }
+  //   })
+
+  function setAnswer() {
+    var problem = $('#' + element.id).closest('.problem')
+    var checkButton = $('button.submit', problem)
+    checkButton.removeClass('is-disabled')
+    checkButton.disabled = false
+    $(checkButton).removeAttr('disabled')
+
+    var student_answer = {}
+
+    $('.input-place.conf-answers-place', element)
+      .map(function (indx, item) {
+        item_id = $(item).attr('id')
+        student_answer[item_id] = $(item)
+          .find('.conf-item.conf-draggable')
+          .map(function (index, sub_item) {
+            if (
+              sub_item.classList.contains('draggable--original') ||
+              sub_item.classList.contains('draggable--mirror')
+            ) {
+            } else {
+              return $(sub_item).attr('id')
+            }
+          })
+          .get()
+
+        student_answer[item_id] = student_answer[item_id].filter(
+          (el, i, a) => i === a.indexOf(el)
+        )
+      })
+      .get()
+
+    var select_answer = {}
+    $('.conf-select select', element)
+      .map(function (indx, item) {
+        var select_item_id = $(item).attr('id')
+        select_answer[select_item_id] = $(item).find(':selected').val()
+      })
+      .get()
+
+    // console.log({answer: student_answer, select_answer: select_answer})
+    answer.setJSON({ answer: student_answer, select_answer: select_answer })
+  }
+
+  if (answer.get()) {
+    var student_answer = answer.getJSON()['answer']
+    for (key in student_answer) {
+      for (l in student_answer[key]) {
+        $('#' + key, element).append($('#' + student_answer[key][l], element))
+      }
+    }
+    var student_answer_select = answer.getJSON()['select_answer']
+    for (select_key in student_answer_select) {
+      // console.log($("#"+select_key, element))
+      $('#' + select_key, element).val(student_answer_select[select_key])
+      // .append($("#"+student_answer_select[select_key][h], element));
     }
 
-    if(answer.get()){
-        var student_answer = answer.getJSON()["answer"];
-        for (key in student_answer) {
-            for ( l in student_answer[key]) {
-                $("#"+key, element).append($("#"+student_answer[key][l], element));
-            }
+    if ($('span.message', element)) {
+      if ($('span.message', element).text() != '') {
+        var wrongCells = JSON.parse($('span.message', element).text())[
+          'wrong_cells'
+        ]
+        var message = JSON.parse($('span.message', element).text())['message']
+        for (cellId in wrongCells) {
+          $('.conf-table #' + wrongCells[cellId], element).addClass(
+            'conf-wrong-cell'
+          )
         }
-        var student_answer_select = answer.getJSON()["select_answer"];
-        for (select_key in student_answer_select) {
-                // console.log($("#"+select_key, element))
-                $("#"+select_key, element).val(student_answer_select[select_key])
-                    // .append($("#"+student_answer_select[select_key][h], element));
-        }
-
-        if($("span.message", element)){
-            if( $("span.message", element).text() != ""){
-                var wrongCells = JSON.parse($("span.message",element).text())["wrong_cells"];
-                var message = JSON.parse($("span.message",element).text())["message"];
-                for (cellId in wrongCells){
-                    $(".conf-table #" + wrongCells[cellId], element).addClass("conf-wrong-cell");
-                }
-                // $(".message-about-grade", element).html(message);
-            }
-        }
-
-        // $(document).ready(function(){$("input[type=text]", element).hide()});
-        $(document).ready(function(){$("span.message", element).hide()});
+        // $(".message-about-grade", element).html(message);
+      }
     }
 
-    var css = `
+    // $(document).ready(function(){$("input[type=text]", element).hide()});
+    $(document).ready(function () {
+      $('span.message', element).hide()
+    })
+  }
+
+  var css = `
     .conf-text{
         text-align: center !important;
         padding: 5px !important;
@@ -476,44 +532,42 @@ function MatchingTableObjects(element, data){
         .conf-wrong-cell{
             border: 2px solid rgb(178, 6, 16) !important;
         }
-`;
+`
 
-
-
-    css += "#" + element.id + " .capa_inputtype{text-align: center !important;}";
-    var style = document.createElement("style")
-    style.id = "matching_table";
-    if (style.styleSheet) {
-        style.styleSheet.cssText = css;
-    } else {
-        style.appendChild(document.createTextNode(css));
-    }
-    if (!document.querySelector("style#matching_table")) document.querySelector("head").appendChild(style);
+  css += '#' + element.id + ' .capa_inputtype{text-align: center !important;}'
+  var style = document.createElement('style')
+  style.id = 'matching_table'
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css
+  } else {
+    style.appendChild(document.createTextNode(css))
+  }
+  if (!document.querySelector('style#matching_table'))
+    document.querySelector('head').appendChild(style)
 }
 
 function whenAvailable(name, callback) {
-    let interval = 10; // ms
-    window.setTimeout(function() {
-        if (window[name]) {
-            callback(window[name]);
-        } else {
-            window.setTimeout(arguments.callee, interval);
-        }
-    }, interval);
+  let interval = 10 // ms
+  window.setTimeout(function () {
+    if (window[name]) {
+      callback(window[name])
+    } else {
+      window.setTimeout(arguments.callee, interval)
+    }
+  }, interval)
 }
 
 // if(window.location.href.replace("https://", "").replace("http://", "").split(".")[0] != "studio") {
-    whenAvailable("Sortable", function (t) {
-        MatchingTableActivation(".matching_table");
-        window.define = window.__define;
-        window.require = window.__require;
-        window.__define = undefined;
-        window.__require = undefined;
-    });
+whenAvailable('Sortable', function (t) {
+  MatchingTableActivation('.matching_table')
+  window.define = window.__define
+  window.require = window.__require
+  window.__define = undefined
+  window.__require = undefined
+})
 
 // }
 // else{
 //     MatchingTableActivation(".matching_table");
 // }
 // setTimeout( function() { MatchingTableActivation(".matching_table") } , 1000);
-
