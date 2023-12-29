@@ -1,0 +1,101 @@
+    <problem>
+    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+    <link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"></link>
+    <script type="text/javascript" src="/static/highlight.js"></script>
+    <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+    </script>
+<script type="loncapa/python">
+task_id="YdfJtXXX"
+</script>
+
+    <p><strong>Цель:</strong> составить код для чтения численных и текстовых данных из файлов.</p>
+    <p><strong>Задание:</strong> вписать пропущенные фрагменты кода для построчного чтения текстового файла с выводом результатов на экран.</p>
+
+    <div class="code-task">
+    <pre><code class="language-python">
+    <strong>Код</strong>
+    <hr />
+
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>with</span>
+    <span style="padding-left: 4px;">
+        <stringresponse answer="open" type="ci"><textline size="4"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>("/file.txt") as fp:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+    <span>while</span>
+    <span style="padding-left: 4px;">
+        <stringresponse answer="True" type="ci"><textline size="4"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>line = </span>
+    <span>
+    <stringresponse answer="fp" type="ci"><textline size="2"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>.</span>
+    <span>
+    <stringresponse answer="readline" type="ci"><textline size="8"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>()</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>if not line:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+    <span>
+        <stringresponse answer="break" type="ci"><textline size="5"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>data = line.split() # в строке имя параметра и численное значение</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>if len(</span>
+    <span>
+        <stringresponse answer="data" type="ci"><textline size="4"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+        <span>) == 2:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+        <span> # число выводится с точностью 2 знака после запятой</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+    <span>print('{} {:.2f}'.format(data[0],</span>
+    <span>
+        <stringresponse answer="float" type="ci"><textline size="5"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>(data[1])))</span>
+    </div>
+    
+    </code></pre>
+      </div>
+    </problem>
+    

@@ -1,0 +1,800 @@
+<problem>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import math
+    import json
+
+    unique_id = "task_HHg63lfO8f"
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        a = student_answer['answer']
+        left = []
+        right = []
+        used = []
+        for item in a:
+            if '_' not in item:
+                left.append(a[item])
+                right.append(a[item + '_1'])
+                used.append(student_answer['select_answer']['conf_select_' + (item[1:] if int(item[1:]) > 9 else ('0' + item[1:]))])
+        SA = zip(left, right, used)
+        print(SA)
+
+        RA = [([], ['b15_1'], ''), ([], ['b14_1'], ''), (['b11'], ['b11_1'], 'used'),
+              (['b7'], ['b7_1'], 'used'), (['b12'], ['b12_1'], 'used'), (['b1'], ['b1_1'], 'used'),
+              (['b3'], ['b3_1'], 'used'), (['b2'], ['b2_1'], 'used'), (['b5'], ['b5_1'], 'used'),
+              (['b4'], ['b4_1'], 'used'), (['b9'], ['b9_1'], 'used'), (['b8'], ['b8_1'], 'used'),
+              (['b6'], ['b6_1'], 'used'), (['b10'], ['b10_1'], 'used'), ([], ['b13_1'], '')]
+
+        max_points = len(RA)
+        points = 0
+        for item in SA:
+            if item in RA:
+                points += 1
+
+        result_grade = points/float(max_points)
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': '', 'grade_decimal': result_grade}, ]}
+  </script>
+
+  <script type="text/javascript">
+    window.__define = window.define
+    window.__require = window.require
+    window.define = undefined
+    window.require = undefined
+  </script>
+
+  <script type="text/javascript" src="/static/Sortable.js"></script>
+
+  <script type="text/javascript">
+    window.define = window.__define
+    window.require = window.__require
+    window.__define = undefined
+    window.__require = undefined
+  </script>
+  <style>
+    #$unique_id .text-fixed-width {
+      width: 33%;
+    }
+
+    #$unique_id .text-fixed-height {
+      height: 40px;
+    }
+
+    .conf-table td {
+      word-break: initial;
+    }
+
+    .solution-table td {
+      border: 1px solid #eee !important;
+      padding: 10px !important;
+    }
+  </style>
+
+  <script
+    type="text/javascript"
+    src="/static/matching_table_mobile_shulgin.js"
+  ></script>
+
+  <div class="matching_table disable-marker" id="$unique_id">
+    <p><strong>Введение:</strong></p>
+    <p>
+      Важной частью проверки патентной чистоты продукта является задача
+      установления факта использования изобретения в объекте техники.
+    </p>
+    <p>
+      В предложенном учебном примере предполагается, что первые два шага
+      алгоритма проверки патентной чистоты, рассмотренного в лекции, вы уже
+      освоили при изучении тем 2 и 7, т.е. патентный поиск уже проведен. Ваша
+      задача – провести сопоставительный анализ и сделать выводы.
+    </p>
+
+    <p><strong>1. Цель учебного задания</strong></p>
+
+    <p>
+      Освоить на практике алгоритм установления факта использования изобретения
+      (полезной модели) в продукте на основе сопоставительного анализа продукта
+      и формулы изобретения (полезной модели).
+    </p>
+
+    <p><strong>2. Исходные данные</strong></p>
+
+    <p><strong>2.1. Патент на полезную модель</strong></p>
+    <p>
+      Для предлагаемого учебного примера выбран патент РФ № 163412 на полезную
+      модель ЛЕТАТЕЛЬНЫЙ АППАРАТ С ВЕРТИКАЛЬНЫМ ВЗЛЕТОМ И ПОСАДКОЙ.
+    </p>
+    <p>
+      Ссылка на патент на сайте ФИПС:
+      <a
+        href="https://new.fips.ru/Archive4/PAT/2016FULL/2016.07.20/DOC/RUNWU1/000/000/000/163/412/DOCUMENT.PDF"
+        target="_blank"
+        ><u
+          >https://new.fips.ru/Archive4/PAT/2016FULL/2016.07.20/DOC/RUNWU1/000/000/000/163/412/DOCUMENT.PDF</u
+        ></a
+      >
+    </p>
+    <p>
+      Формула полезной модели по патенту РФ № 163412 приведена также в п.3.2.
+    </p>
+
+    <p>
+      <strong
+        >2.2. Продукт для сопоставительного анализа
+        <a href="#_ftn1" name="_ftnref1">[1]</a></strong
+      >
+    </p>
+    <p>
+      В качестве продукта для сопоставительного анализа выбран беспилотный
+      летательный аппарат с вертикальным взлетом и посадкой. Общая схема
+      беспилотного аппарата для иллюстрации показана на рисунке 1., а ниже
+      приведен перечень элементов устройства.
+    </p>
+
+    <figure style="text-align: center">
+      <img
+        src="/static/PATINFANSCTECHPROJ_14.1.png"
+        alt=""
+        style="/*max-width: 700px;*/"
+      />
+      <figcaption>Рисунок 1 – Общий вид анализируемого продукта</figcaption>
+    </figure>
+    <p></p>
+
+    <p>
+      Детальное описание продукта приведено в п.3.2. под таблицей
+      сопоставительного анализа.
+    </p>
+
+    <p style="font-size: 0.9em">
+      <a href="#_ftnref1" name="_ftn1">[1]</a> При подготовке учебного примера
+      использовано описание устройства, приведенное в материалах патента на
+      полезную модель RU204527, авторы Максименко Юрий Александрович, Рубан
+      Анатолий Рашидович, Кушнер Гурий Алексеевич
+    </p>
+
+    <p><strong>3. Задание</strong></p>
+    <p><strong>3.1. Что нужно сделать</strong></p>
+
+    <p>
+      В предлагаемом задании нужно определить, использована ли полезная модель
+      по патенту РФ № 163412 в продукте, описанном в п.2.2.
+    </p>
+    <p>
+      Согласно законодательству РФ для того, чтобы определить, использована ли
+      полезная модель в продукте, нужно сопоставить признаки формулы полезной
+      модели с признаками продукта.
+    </p>
+    <p>
+      Для справки: ... Изобретение или полезная модель признаются
+      использованными в продукте или способе, если продукт содержит, а в способе
+      использован каждый признак изобретения или полезной модели, приведенный в
+      независимом пункте ... формулы изобретения или полезной модели*...
+    </p>
+    <p>* Статья 1358 ГК РФ</p>
+    <p>Сопоставительный анализ нужно провести в два этапа:</p>
+
+    <p>
+      Этап 1 – заполнить таблицу сопоставительного анализа и сделать выводы об
+      использовании в отношении каждого признака формулы полезной модели.
+    </p>
+    <p>
+      Этап 2 – сделать общий вывод об использовании полезной модели в продукте.
+    </p>
+
+    <p><strong>3.2. Решение</strong></p>
+    <p>
+      <strong
+        >Этап 1. Занесение в колонки таблицы признаков патентной формулы и
+        признаков продукта
+      </strong>
+    </p>
+    <p>
+      <strong>Шаг 1.</strong> Заполните сначала первую колонку таблицы с
+      признаками полезной модели путем перетаскивания из формулы, приведенной
+      ниже. Для упрощения задачи признаки подсвечены.
+    </p>
+
+    <p><strong>Формула полезной модели по патенту РФ № 163412. </strong></p>
+    <div class="conf-answers-place conf-inputable conf-all-answers A">
+      <span id="b1" class="conf-item conf-draggable"
+        >Летательный аппарат вертикального взлета и посадки</span
+      >
+      <span class="not-use">, содержащий</span>
+      <span id="b2" class="conf-item conf-draggable">корпус</span>
+      <span class="not-use">, </span>
+      <span id="b3" class="conf-item conf-draggable"
+        >выполненный с возможностью уравновешивания веса летательного аппарата
+        на расчетных скоростях горизонтального полета</span
+      >
+      <span class="not-use">, и</span>
+      <span id="b4" class="conf-item conf-draggable"
+        >закрепленные снаружи по бокам корпуса</span
+      >
+      <span class="not-use"> </span>
+      <span id="b5" class="conf-item conf-draggable"
+        >четыре силовых агрегата</span
+      >
+      <span class="not-use">, </span>
+      <span id="b6" class="conf-item conf-draggable"
+        >по два с каждой стороны</span
+      >
+      <span class="not-use">, при этом</span>
+      <span id="b7" class="conf-item conf-draggable"
+        >силовые агрегаты каждого бока расположены симметрично по отношению друг
+        к другу относительно вертикальной плоскости, проходящей через продольную
+        ось корпуса</span
+      >
+      <span class="not-use">, </span>
+      <span id="b8" class="conf-item conf-draggable"
+        >и имеют возможность поворота в местах своего закрепления вокруг
+        горизонтальной оси, перпендикулярной вертикальной плоскости, проходящей
+        через продольную ось корпуса</span
+      >
+      <span class="not-use">, </span>
+      <span id="b9" class="conf-item conf-draggable"
+        >причем каждый силовой агрегат выполнен из защитного корпуса</span
+      >
+      <span class="not-use">, </span>
+      <span id="b10" class="conf-item conf-draggable"
+        >внутри которого расположены два электродвигателя с воздушными
+        винтами</span
+      >
+      <span id="b11" class="conf-item conf-draggable">изменяемого шага</span>
+      <span class="not-use">, </span>
+      <span id="b12" class="conf-item conf-draggable"
+        >вращающимися в противоположных направлениях</span
+      >
+      <span class="not-use">.</span>
+    </div>
+    <p></p>
+    <p>
+      <strong>Шаг 2.</strong> Затем заполните вторую колонку таблицы с
+      признаками продукта путем перетаскивания из описания продукта,
+      приведенного ниже (под таблицей). Для упрощения задачи признаки
+      подсвечены.
+    </p>
+
+    <table class="conf-table top-items">
+      <tr>
+        <th
+          class="conf-text conf-header text-fixed-width"
+          style="width: calc(36%)"
+        >
+          Признаки формулы полезной модели
+        </th>
+        <th
+          class="conf-text conf-header text-fixed-width"
+          style="width: calc(36%)"
+        >
+          Признаки продукта
+        </th>
+        <th class="conf-text conf-header">
+          Заключение об использовании признака формулы в продукте
+        </th>
+      </tr>
+      <tr>
+        <td
+          id="a1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a1_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_01">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a2"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a2_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_02">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a3"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a3_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_03">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a4"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a4_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_04">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a5"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a5_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_05">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a6"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a6_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_06">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a7"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a7_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_07">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a8"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a8_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_08">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a9"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a9_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_09">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a10"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a10_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_10">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a11"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a11_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_11">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a12"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a12_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_12">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a13"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a13_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_13">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a14"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a14_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_14">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td
+          id="a15"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place text-fixed-height AC"
+        ></td>
+        <td
+          id="a15_1"
+          capacity="1"
+          class="conf-answers-place conf-inputable input-place BC"
+        ></td>
+        <td class="conf-select" style="text-align: center">
+          <select name="select_01" id="conf_select_15">
+            <option value="">-- Выберите значение --</option>
+            <option value="used">Использован</option>
+            <option value="noused">Не использован</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <p><strong>Описание анализируемого продукта</strong></p>
+    <p>
+      <span
+        >Анализируемый продукт представляет собой следующее устройство:</span
+      >
+    </p>
+    <div
+      class="conf-answers-place conf-inputable conf-all-answers C"
+      style="margin-bottom: 10px"
+    >
+      <span class="not-use">Анализируемый</span>
+      <span id="b1_1" class="conf-item conf-draggable">
+        беспилотный летательный аппарат с вертикальным взлетом и посадкой</span
+      >
+      <span class="not-use">содержит следующие узлы и детали:</span>
+      <br />
+      <span class="not-use"><strong>1.</strong></span>
+      <span id="b2_1" class="conf-item conf-draggable">Корпус</span>
+      <span class="not-use">, </span>
+      <span id="b3_1" class="conf-item conf-draggable">
+        выполненный с возможностью уравновешивания веса летательного аппарата на
+        расчетных скоростях горизонтального полета;
+      </span>
+      <br />
+      <span class="not-use"><strong>2.</strong></span>
+      <span id="b4_1" class="conf-item conf-draggable"
+        >закрепленные снаружи по бокам корпуса</span
+      >
+      <span id="b5_1" class="conf-item conf-draggable"
+        >четыре силовых агрегата</span
+      >
+      <span class="not-use">, </span>
+      <span id="b6_1" class="conf-item conf-draggable"
+        >по два с каждой стороны</span
+      >
+      <br />
+      <span class="not-use"><strong>3.</strong></span>
+      <span id="b7_1" class="conf-item conf-draggable"
+        >силовые агрегаты каждого бока расположены симметрично по отношению друг
+        к другу относительно вертикальной плоскости, проходящей через продольную
+        ось корпуса</span
+      >
+      <span class="not-use">, и </span>
+      <span id="b8_1" class="conf-item conf-draggable"
+        >имеют возможность поворота в местах своего закрепления вокруг
+        горизонтальной оси, перпендикулярной вертикальной плоскости, проходящей
+        через продольную ось корпуса</span
+      >
+      <br />
+      <span class="not-use"><strong>4.</strong></span>
+      <span id="b9_1" class="conf-item conf-draggable"
+        >каждый силовой агрегат выполнен из защитного корпуса</span
+      >
+      <span class="not-use">, </span>
+      <span id="b10_1" class="conf-item conf-draggable"
+        >внутри которого расположены два электродвигателя с воздушными
+        винтами</span
+      >
+      <span id="b11_1" class="conf-item conf-draggable">изменяемого шага</span>
+      <span class="not-use">, </span>
+      <span id="b12_1" class="conf-item conf-draggable"
+        >вращающимися в противоположных направлениях</span
+      >
+      <br />
+      <span class="not-use"><strong>5.</strong></span>
+      <span class="not-use">устройство также имеет</span>
+      <span id="b13_1" class="conf-item conf-draggable"
+        >вертикально-осевую ветрогенераторную установку</span
+      >
+      <span class="not-use">, </span>
+      <span id="b14_1" class="conf-item conf-draggable"
+        >жестко закрепленную в средней части корпуса устройства</span
+      >
+      <br />
+      <span class="not-use"><strong>6.</strong></span>
+      <span id="b15_1" class="conf-item conf-draggable"
+        >солнечную батарею, установленную и фиксированную на поверхности верхней
+        части корпуса</span
+      >
+      <span class="not-use"
+        >, обеспечивающие возможность зарядки бортовых источников питания.</span
+      >
+    </div>
+
+    <p></p>
+    <strong>Шаг 3.</strong> Сделать выводы об использования каждого признака
+    формулы в продукте.
+    <!-- (заполнить третью колонку таблицы). -->
+    <div id="matching_table_input" style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="40" value="$taskId" />
+        <br />
+      </customresponse>
+
+      <div class="message-about-grade"></div>
+    </div>
+
+    <solution>
+      <div class="detailed-solution">
+        <div class="detailed-solution-header"><h1>Решение задачи</h1></div>
+        <table class="solution-table">
+          <tbody>
+            <tr>
+              <td>
+                <strong>Признаки формулы полезной модели</strong>
+              </td>
+              <td>
+                <strong>Признаки продукта</strong>
+              </td>
+              <td>
+                <strong
+                  >Заключение об использовании признака формулы в
+                  продукте</strong
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Летательный аппарат вертикального взлета и посадки</td>
+              <td>
+                беспилотный летательный аппарат с вертикальным взлетом и
+                посадкой
+              </td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>корпус</td>
+              <td>корпус</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>
+                выполненный с возможностью уравновешивания веса летательного
+                аппарата на расчетных скоростях горизонтального полета
+              </td>
+              <td>
+                выполненный с возможностью уравновешивания веса летательного
+                аппарата на расчетных скоростях горизонтального полета
+              </td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>закрепленные снаружи по бокам корпуса</td>
+              <td>закрепленные снаружи по бокам корпуса</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>четыре силовых агрегата</td>
+              <td>четыре силовых агрегата</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>
+                и имеют возможность поворота в местах своего закрепления вокруг
+                горизонтальной оси, перпендикулярной вертикальной плоскости,
+                проходящей через продольную ось корпуса
+              </td>
+              <td>
+                имеют возможность поворота в местах своего закрепления вокруг
+                горизонтальной оси, перпендикулярной вертикальной плоскости,
+                проходящей через продольную ось корпуса
+              </td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>
+                причем каждый силовой агрегат выполнен из защитного корпуса
+              </td>
+              <td>каждый силовой агрегат выполнен из защитного корпуса</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>
+                внутри которого расположены два электродвигателя с воздушными
+                винтами
+              </td>
+              <td>
+                внутри которого расположены два электродвигателя с воздушными
+                винтами
+              </td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>по два с каждой стороны</td>
+              <td>по два с каждой стороны</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>
+                силовые агрегаты каждого бока расположены симметрично по
+                отношению друг к другу относительно вертикальной плоскости,
+                проходящей через продольную ось корпуса
+              </td>
+              <td>
+                силовые агрегаты каждого бока расположены симметрично по
+                отношению друг к другу относительно вертикальной плоскости,
+                проходящей через продольную ось корпуса
+              </td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>изменяемого шага</td>
+              <td>изменяемого шага</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td>вращающимися в противоположных направлениях</td>
+              <td>вращающимися в противоположных направлениях</td>
+              <td>Использован</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>вертикально-осевую ветрогенераторную установку</td>
+              <td>Не использован</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>жестко закрепленную в средней части корпуса устройства</td>
+              <td>Не использован</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                солнечную батарею, установленную и фиксированную на поверхности
+                верхней части корпуса
+              </td>
+              <td>Не использован</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </solution>
+  </div>
+</problem>

@@ -1,0 +1,210 @@
+<problem>
+  <div>
+    <h2>Маркетплейс для российских брендов одежды</h2>
+    <div>
+      <div
+        data-type="SelectedTextApp"
+        class="adv-app"
+        data-initial-data="$student_data"
+      ></div>
+    </div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import json
+
+    component_types = [
+    {
+        "header": "Инновационный характер:",
+        "description": ["Определите, в чем состоит инновационный характер данного стартапа, подчеркните цветом  в тексте ключевые слова.", "В элементе - не более 2 -х вариантов ответов."],
+        "variants": [
+            {
+                "title": "Создание нового предложения, рождающего спрос",
+                "id": "type_1"
+            },
+            {
+                "title": "Получение прибыли за счет создания нового товара или технологии",
+                "id": "type_2"
+            }
+        ]
+    }
+    ]
+
+    data = [
+        [
+            {
+                "id": "block_001",
+                "component_type": "selectable",
+                "text": "В крупном городе-миллионнике  работает дизайнерская студия одежды. В структуре организации есть дизайнеры, которые разрабатывают женскую и детскую одежду спортивного и повседневного стиля."
+            },
+            {
+                "id": "block_002",
+                "component_type": "selectable",
+                "text": "В студии есть цех, в котором отшивается одежда, разработанная дизайнерами."
+            },
+            {
+                "id": "block_003",
+                "component_type": "selectable",
+                "text": "Продукция предприятия продается в сети собственных фирменных  магазинов  и в нескольких ТЦ города."
+            }
+        ],
+        [
+            {
+                "id": "block_004",
+                "component_type": "selectable",
+                "text": "Полгода назад"
+            },
+            {
+                "id": "block_005",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "компания решила начала продавать свою продукцию на собственном маркетплейсе,"
+            },
+            {
+                "id": "block_006",
+                "component_type": "selectable",
+                "text": "разработанном IT специалистами компании."
+            },
+            {
+                "id": "block_007",
+                "component_type": "selectable",
+                "text": "Маркетплейс  - сайт, который представляет коллекции детской и  женской  одежды среднего ценового  сегмента – уровня массмаркет."
+            },
+            {
+                "id": "block_008",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "На его сайте представлены коллекции собственных дизайнеров, консультации дизайнеров, которые могут помочь составить образ (look) к конкретному случаю (деловой, праздничный, повседневный, спортивный и т.д.) для детей и  женщин."
+            }
+        ],
+        [
+            {
+                "id": "block_009",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "Возможен заказ по индивидуальным меркам."
+            },
+            {
+                "id": "block_010",
+                "component_type": "selectable",
+                "text": "Маркетплейс осуществляет доставку в любую точку РФ через разные почтовые сервисы, или курьером."
+            }
+        ],
+        [
+            {
+                "id": "block_011",
+                "component_type": "selectable",
+                "text": "В настоящее время компания выделила маркетплейс в отдельную дочернюю компанию,"
+            },
+            {
+                "id": "block_012",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "и на своем маркетплейсе продает одежду других российских брендов, приглашает к сотрудничеству отечественных производителей одежды из разных городов России и зарубежных брендов."
+            }
+        ],
+        [
+            {
+                "id": "block_013",
+                "component_type": "selectable",
+                "text": "Целевая аудитория:"
+            }
+        ],
+        [
+            {
+                "id": "block_014",
+                "component_type": "selectable",
+                "text": "1. Женщины, готовые заменить ушедшие западные бренды для себя и детей российскими качественными брендами, имеющие опыт покупок онлайн на разных маркетплейсах."
+            }
+        ],
+        [
+            {
+                "id": "block_015",
+                "component_type": "selectable",
+                "text": "2. Производители российских брендов одежды, не имеющие собственных сетей розничных магазинов, или желающие сочетать онлайн и офлайн торговлю в России и за рубежом."
+            }
+        ]
+    ]
+
+    student_texts = []
+
+    for paragraph_block in data:
+        pb = []
+        for block in paragraph_block:
+            if "id" in block.keys():
+                pb.append({
+                    "id": block["id"],
+                    "component_type": block["component_type"],
+                    "text": block["text"]
+                })
+
+            else:
+                pb.append({
+                    "text": block["text"],
+                    "component_type": block["component_type"],
+                })
+        student_texts.append(pb)
+
+    student_data = {
+        "component_types": component_types,
+        "student_texts": student_texts,
+        "modal_header": "Cоставляющие ценностного предложения:",
+        "cancel_component_title": "Убрать выделение"
+    }
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = {"student_texts": [x for x in data]}
+    correct_data = json.dumps(correct_data)
+    correct_data = correct_data.replace('"', "'")
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        # print(student_answer)
+        correct_answer = {}
+        for _paragraph_block in data:
+            for _block in _paragraph_block:
+                if "answer" in _block.keys():
+                    correct_answer[_block['id']] = _block['answer']
+        max_grade = len(correct_answer.keys())
+
+        # print max_grade
+        # print len(student_answer.keys())
+
+        feedback = {
+            "correct": [],
+            "incorrect": []
+        }
+        grade = 0
+        for student_block_id in student_answer.keys():
+            if student_block_id in correct_answer.keys():
+                if student_answer[student_block_id] == correct_answer[student_block_id]:
+                    feedback["correct"].append(student_block_id)
+                    grade = grade + 1
+            else:
+                feedback["incorrect"].append(student_block_id)
+                grade = grade - 1
+
+        if 0 > grade:
+            grade = 0
+
+        result_grade = grade/max_grade
+
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+  </script>
+</problem>

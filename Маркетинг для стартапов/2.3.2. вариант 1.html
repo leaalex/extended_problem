@@ -1,0 +1,305 @@
+<problem>
+  <style>
+    .center {
+      text-align: center !important;
+    }
+    .h150 {
+      height: 150px !important;
+    }
+
+    .answers .answer,
+    .matching-table .answer {
+      padding: 4px !important;
+      margin: 4px !important;
+      font-size: 0.75em !important;
+      line-height: 1.25em !important;
+    }
+    .conf-header {
+      vertical-align: middle !important;
+    }
+  </style>
+  <script type="loncapa/python">
+    import json
+    import random
+    import string
+
+    data = {
+        "content": {
+            "body": "",
+            "answers_title" : '',
+            },
+    "table":
+    [
+        [
+            '__Ключевые партнеры__ .{.center}',
+            '__Ключевые действия__ .{.center}',
+            '__Ценностное предлоожение__ .{.center}',
+            '__Взаимодействие с клиентами__ .{.center}',
+            '__Сегменты клиентов__ .{.center}'
+        ],
+        [
+            ['Модераторы', 'Фотографы', 'Кейтеринг', 'ЗАГСы', 'Транспортные компании', 'Предприятия, сдающие в аренду помещения для проведения ивентов', 'Компании, оказывающие услуги по бронированию и продаже билетов'],
+            ['Предоставление услуг комплексной команды или отдельных специалистов', 'Подбор помещения', 'Обеспечение транспортом', 'Обеспечение питанием', 'Организация фотосессий', 'Разработка программы ивента под ключ'],
+            ['Организация ивентов под ключ', 'Приложение–агрегатор и команда стартапа позволяют значительно сократить время на организацию мероприятия и за счет комплексного обслуживания мероприятия оптимизировать его бюджет'],
+            ['Сайт-агрегатор', 'Контекстная реклама', 'Реклама в бизнес изданиях', 'Реклама в ЗАГСах', 'Участие в государственых закупках'],
+            ['Предприятия, органы власти', 'Частные лица'],
+        ],
+        [
+            '__Ключевые ресурсы__ .{.center}',
+            '__Каналы сбыта__ .{.center}',
+        ],
+        [
+            ['Приложение–агрегатор', 'Базы данных специалистов модераторов, организаторов, фотографов', 'База данных арендодателей', 'База данных предприятий, предоставляющих услуги кейтеринга', 'Персонал компании стартапа'],
+            ['Онлайн продажи через агрегатор', 'Отдел продаж в офисе компании', 'Договора с предприятими', 'Тендерные площадки', 'Приглашенные', 'специалисты', 'арендодатели помещений'],
+        ],
+        [
+            '__Структура издержек__ .{.center}',
+            '__Потоки доходов__ .{.center}',
+        ],
+        [
+            ['Обслуживания и развитие приложения–агрегатора', 'Составление и обновление баз данных', 'Реклама', 'Оплата работы персонала компании'],
+            ['Онлайн продажи через агрегатор', 'Продаж в офисе компании', 'Договора с предприятими', 'Гос.заказы', 'Мерч продукция', 'Комиссия от приглашенных специалистов', 'Комиссия  от аренды помещений'],
+        ]
+
+    ],
+        "distractors": [],
+      "settings":{
+            "is_exist_markdown": True,
+            "is_exist_advanced_style": True,
+            'is_exist_mathjax': True,
+            'is_exist_image': True,
+            'show_incorrect': False,
+            "rowspan": { 2:{1:3,3:5,5:3},},
+            "colspan": {5:{1:2, 2:2},6:{1:2, 2:2}},
+      },
+        "style": {
+          "colls": ['w20','w20','w20','w20','w20','w20'],
+          "rows": ['', 'h150', '', 'h150', '', 'h150'],
+        }
+    }
+
+
+    def generate_id(length=8):
+        return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+    data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+    data["settings"] = data["settings"] if "settings" in data.keys() else {}
+    data["style"] = data["style"] if "style" in data.keys() else {}
+    correct_answer = {}
+    student_data = {
+        "table": [],
+        "answers": [],
+        "settings": data["settings"],
+        "style": data["style"],
+        "content": data["content"]
+    }
+
+    use_multi_answers = ''
+    if "multi_answers" in data["settings"].keys():
+        if data["settings"]["multi_answers"] == "horizontal":
+            use_multi_answers = "horizontal"
+        elif data["settings"]["multi_answers"] == "vertical":
+            use_multi_answers = "vertical"
+
+
+    all_answers_obj = {}
+
+    for row_index, row in enumerate(data["table"]):
+        student_data["table"].append([])
+        for column_index, cell in enumerate(row):
+            student_cell = {}
+            if not isinstance(cell, str):
+                student_cell["id"] = generate_id()
+                student_cell["isFixed"] = False
+                correct_answer[student_cell["id"]] = []
+
+                for cell_answer in cell:
+                    cell_answer_id = generate_id()
+
+                    if use_multi_answers:
+                        direction_index = column_index if use_multi_answers == 'vertical' else row_index
+                        if "block" + str(direction_index) not in all_answers_obj.keys():
+                            all_answers_obj["block" + str(direction_index)] = []
+                        all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
+
+                    student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                    correct_answer[student_cell["id"]].append(cell_answer_id)
+            else:
+                student_cell["value"] = [cell]
+                student_cell["isFixed"] = True
+            student_data["table"][row_index].append(student_cell)
+
+
+    for distractor in data["distractors"]:
+        student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+    if use_multi_answers:
+        student_data["answers"] = []
+        for block_idx, block_key in enumerate(all_answers_obj.keys()):
+            student_data["answers"].append(all_answers_obj[block_key])
+            try:
+                if isinstance(data["distractors"][block_idx], list):
+                    for dist in data["distractors"][block_idx]:
+                        student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
+            except:
+                pass
+                # raise Exception("DISTRACTORS ERROR")
+
+
+    random.shuffle(student_data["answers"])
+
+    def get_response(grade_decimal, wrong_answers=None):
+        response = {}
+        response["grade"] = grade_decimal
+        if wrong_answers is not None:
+            response["wrong_answers"] = wrong_answers
+        if grade_decimal == 1:
+            response["ok"] = True
+        elif grade_decimal == 0:
+            response["ok"] = False
+        else:
+            response["ok"] = 'Partial'
+        return response
+
+
+    def check_partially(c_a, s_a):
+        result = {
+            "grade": 0.0,
+            "wrong_answers": [],
+        }
+        local_grade = 0
+        for ans in c_a:
+            if ans in s_a:
+                local_grade += 1
+        for ans in s_a:
+            if ans not in c_a:
+                result["wrong_answers"].append(ans)
+        result["grade"] = local_grade
+
+        return result
+
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)["answer"]
+        max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+        grade = 0
+        wrong_answers = []
+
+        for correct_cell_id in correct_answer.keys():
+            correct_cell = correct_answer[correct_cell_id]
+            res = check_partially(correct_cell, student_answer[correct_cell_id])
+            grade += res["grade"]
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+        response = get_response(float(grade / max_grade), wrong_answers, )
+
+        return {
+            'input_list': [
+                {
+                    # true, false partially
+                    'ok': response['ok'],
+                    # string - отображаения под Input'ом
+                    # как проавило сюда отправляется json со всеми дополнительными данными
+                    'msg': str(json.dumps(response)),
+                    # number [0, 1] - оценка за задание
+                    'grade_decimal': response['grade']
+                },
+            ]
+        }
+
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = json.dumps(data)
+    correct_data = correct_data.replace('"', "'")
+  </script>
+  <div>
+    <h2>Приложение для проведения тематических мероприятий</h2>
+    <p>
+      Группа предпринимателей разработала и внедрила Приложение-агрегатор для
+      организации сети удобных пространств с парковкой, фудкортом,
+      конференц-залами и индивидуальными зонами для разной целевой аудитории в
+      городе миллионнике для проведения мероприятий разной направленности и
+      масштаба под ключ (политических конференций, профессиональных митапов и
+      тематических вечеров). Исследования, проведенные до разработки
+      Приложения–агрегатора в городе, показали, что подготовка к проведению
+      мероприятий как корпоративных, так и мероприятий для частных лиц, занимает
+      несколько недель, требует длительного согласования всех составляющих,
+      необходимости обращения в разные организации.
+    </p>
+    <p>
+      Приложение дает возможность предоставления услуг администратора,
+      модератора, ведущего. Возможность услуг по бронированию и продаже билетов,
+      push - уведомлений, видео записей мероприятия, фотосессий, кейтеринг.
+    </p>
+    <p>
+      Приложение содержит обширную базу городских предприятий, сдающих площади
+      для проведения мероприятий разной направленности, предприятий,
+      организующих ивенты разного масштаба, базу модераторов, компаний,
+      предлагающих кейтеринг. По каждой заявке создается временная команда
+      исполнителей во главе с администратором от команды фаундера.
+    </p>
+    <p>
+      Приложение позволяет оперативно организовать мероприятия под ключ по
+      заявке клиента в течение 2-3 дней, подобрать оптимальные условия и
+      стоимость мероприятия. Клиент может получить консультацию администратора и
+      с его помощью или самостоятельно оформить заявку на организацию
+      мероприятия. Приложение позволяет значительно сократить время на
+      организацию мероприятия и за счет комплексного обслуживания мероприятия
+      оптимизировать его бюджет.
+    </p>
+    <p>
+      Компания постоянно размещает контекстную рекламу, рекламу в бизнес
+      изданиях: рекламу в ЗАГСах, участвует в корпоративных тендерах и в
+      государственных закупках. В настоящее время запущено направление «мерч».
+    </p>
+    <p>
+      По мнению разработчиков, стартапа, в подобном Агрегатное заинтересованы
+      как предприятия города и органы власти, которые регулярно проводят тендеры
+      по организации выездных мероприятий для своих сотрудников и горожан, а
+      также частные лица, планирующие семейное мероприятие, юбилей, свадьбу и
+      т.д.
+    </p>
+    <p><strong>Задание</strong></p>
+    <p>
+      Прочитайте кейс, внесите в каждое поле бизнес модели А. Остервальдера
+      соответствующую информацию из списка
+    </p>
+  </div>
+  <div
+    class="adv-app"
+    data-type="MatchingTableVueApp"
+    data-initial-data="$student_data"
+    data-static="/static/_"
+  >
+    <span class="loadingspinner" />
+    <style>
+      .loadingspinner {
+        display: block;
+        margin: 0 auto;
+        pointer-events: none;
+        width: 2.5em;
+        height: 2.5em;
+        border: 0.4em solid transparent;
+        border-color: #eee;
+        border-top-color: #3e67ec;
+        border-radius: 50%;
+        animation: loadingspin 1s linear infinite;
+      }
+
+      @keyframes loadingspin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </div>
+  <div style="display: none">
+    <customresponse cfn="check_answer">
+      <textline size="120" />
+    </customresponse>
+    <solution data-initial-data="$correct_data" />
+  </div>
+</problem>

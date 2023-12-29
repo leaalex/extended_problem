@@ -1,0 +1,435 @@
+<problem>
+  <div>
+    <p><strong>Задание</strong></p>
+    <p>
+      Определите в тексте ключевые составляющие ценностного предложения: решение
+      задач клиентов/основные требования и потребности, факторы помощи и факторы
+      выгоды. Выделяйте в тексте последовательно все составляющие каждого
+      элемента ценностного предложения. В каждом элементе - не более 3-х
+      вариантов ответов.
+    </p>
+    <div>
+      <div
+        data-type="SelectedTextApp"
+        class="adv-app"
+        data-initial-data="$student_data"
+      ></div>
+    </div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import json
+
+    component_types = [
+        {
+        "header": "Cоставляющие ценностного предложения:",
+        "variants": [
+                {
+                    "title": "Решение",
+                    "id": "type_1"
+                },
+                {
+                    "title": "Факторы помощи",
+                    "id": "type_2"
+                },
+                {
+                    "title": "Факторы выгоды",
+                    "id": "type_3"
+                }
+            ]
+        }
+    ]
+
+    data = [
+    [
+        {
+            "id": "block_001",
+            "component_type": "selectable",
+            "text": "Компания-застройщик элитной недвижимости в Самаре (город-миллионник) предлагает на рынке новый вид продукта – "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "квартиры с дизайнерским ремонтом "
+        },
+        {
+            "id": "block_003",
+            "component_type": "selectable",
+            "text": "в элитном ЖК. Застройщик сообщает о том, что ЖК расположен в "
+        },
+        {
+            "id": "block_004",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "квартале элитной застройки "
+        },
+        {
+            "id": "block_005",
+            "component_type": "selectable",
+            "text": "города на берегу Волги. При этом среди конкурентов, которые также участвуют в застройке квартала, компания является одним из лидеров рынка с собственным парком техники, полностью укомплектованным собственным штатом высококвалифицированных и опытных специалистов – от архитекторов и проектировщиков до работников строительных площадок. "
+        },
+        {
+            "id": "block_006",
+            "component_type": "selectable",
+            "text": "Компания более 20 лет работает в сегменте «комфорт», «бизнес» и «премиум» классов. "
+        },
+        {
+            "id": "block_007",
+            "component_type": "selectable",
+            "text": "Информация об этом представлена в рекламно-информационных материалах фирмы, транслируется первыми лицами в интервью."
+        }
+    ],
+    [
+        {
+            "id": "block_008",
+            "component_type": "selectable",
+            "text": "Компания представлена на рынке с 90-х годов. "
+        },
+        {
+            "id": "block_009",
+            "component_type": "selectable",
+            "text": "В фокусе ее деятельности есть в том числе востребованные риелторские услуги и ипотечный консалтинг. "
+        },
+        {
+            "id": "block_010",
+            "component_type": "selectable",
+            "text": "Застройщик обеспечивает полный цикл работ – от разработки концепции застройки, строительства и сдачи объектов с последующей эксплуатацией до оказания комплексных услуг по продаже и покупке недвижимости. "
+        },
+        {
+            "id": "block_011",
+            "component_type": "selectable",
+            "text": "Компания и ее руководители имеют награды федерального и регионального уровня как развивающийся, надежный бизнес."
+        }
+    ],
+    [
+        {
+            "id": "block_012",
+            "component_type": "selectable",
+            "text": "Покупка объекта (квартира) в ЖК предполагает, что компания на этапе продажи квартиры предлагает клиенту произвести "
+        },
+        {
+            "id": "block_013",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "ремонт и комплектацию интерьера объектами мебели и оборудования по индивидуальному решению"
+        },
+        {
+            "id": "block_014",
+            "component_type": "selectable",
+            "text": ". Клиент производит выбор "
+        },
+        {
+            "id": "block_015",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "из пула частично готовых с возможностью финальной кастомизации решений планировки квартиры "
+        },
+        {
+            "component_type": "text",
+            "text": "с индивидуальным "
+        },
+        {
+            "id": "block_016",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "подбором материалов и оснащения из каталогов"
+        },
+        {
+            "id": "block_017",
+            "component_type": "selectable",
+            "text": ", подготовленных застройщиков совместно с партнерами специально под данный тип объекта. Компания давно и успешно сотрудничает "
+        },
+        {
+            "id": "block_018",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "с ведущими салонами и фабриками международных и локальных брендов мебели и отделочных материалов, освещения класса-люкс. "
+        },
+        {
+            "id": "block_019",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "Все они предлагают стильные решения, благородные материалы, уникальность в деталях. "
+        },
+        {
+            "component_type": "text",
+            "text": "Все компании - представлены в городе и регионе. "
+        },
+    ],
+    [
+        {
+            "id": "block_020",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "Разработка и реализация индивидуального проекта дизайна интерьера и оснащения происходит на этапе строительства объекта."
+        },
+        {
+            "id": "block_021",
+            "component_type": "selectable",
+            "text": "Специалисты застройщика полностью сопровождают процесс выбора материалов решая вопросы оплаты с каждым из поставщиков самостоятельно. "
+        },
+        {
+            "id": "block_022",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "Для клиента действует принцип «одного окна». За каждым покупателем закреплен «свой менеджер»,"
+        },
+        {
+            "id": "block_023",
+            "component_type": "selectable",
+            "text": " который сопровождает не только процесс покупки квартиры, но и все вопросы оформления, согласования дизайн-проекта и его реализации, "
+        },
+        {
+            "id": "block_024",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "несет полную ответственность за весь проект."
+        }
+    ], [
+        {
+            "id": "block_025",
+            "component_type": "selectable",
+            "text": "При этом концептуальный "
+        },
+        {
+            "id": "block_026",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "дизайн-проект, включая визуальный макет и чертежи клиент получает в подарок,"
+        },
+        {
+            "id": "block_027",
+            "component_type": "selectable",
+            "text": " а оплату закупа материалов и комплектацию "
+        },
+        {
+            "id": "block_028",
+            "component_type": "selectable",
+            "text": "производит частями в соответствии с выбором и графиком поставки. "
+        },
+        {
+            "id": "block_029",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "Финальная оплата происходит по факту сдачи дома с квартирой «под ключ»"
+        },
+        {
+            "id": "block_030",
+            "component_type": "selectable",
+            "text": " - с полной отделкой, меблированную и оснащенную."
+        }
+    ], [
+        {
+            "id": "block_031",
+            "component_type": "selectable",
+            "text": "Под данный объект у компании создан отдельно сайт, "
+        },
+        {
+            "id": "block_032",
+            "component_type": "selectable",
+            "text": "активные аккаунты в социальных сетях, "
+        },
+        {
+            "id": "block_033",
+            "component_type": "selectable",
+            "text": "где застройщик демонстрирует (в том числе в режиме реального времени) процесс возведения дома, делится советами по вопросам дизайна, оснащения различными системами типа «умный дом», отвечает на вопросы потенциальных и реальных клиентов. "
+        },
+        {
+            "id": "block_034",
+            "component_type": "selectable",
+            "text": "Также на сайте разработан детальный калькулятор проекта, "
+        },
+        {
+            "id": "block_035",
+            "component_type": "selectable",
+            "text": "в личном кабинете клиент может видеть детализированную смету всех видов работ, "
+        },
+        {
+            "id": "block_036",
+            "component_type": "selectable",
+            "text": "сравнить их с рыночными предложениями. При этом компания обещает, что "
+        },
+        {
+            "id": "block_037",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "итоговый бюджет будет оптимизирован, цена будет ниже, чем отдельно заказывать дизайн-проект и ремонт в агентствах или работать с фрилансерами и строительными бригадами."
+        }
+    ], [
+        {
+            "id": "block_038",
+            "component_type": "selectable",
+            "text": "Недавно компания запустила еще одно направление своей деятельности - дизайн общественных зон, архитектура, ландшафтный дизайн. "
+        },
+        {
+            "id": "block_039",
+            "component_type": "selectable",
+            "text": "Поскольку рынок жилой недвижимости в разных сегментах активно развивается в этом направлении, "
+        },
+        {
+            "id": "block_040",
+            "component_type": "selectable",
+            "text": "решения, связанные с особым благоустройством мест общего пользования в новом ЖК также реализуются."
+        },
+        {
+            "id": "block_041",
+            "component_type": "selectable",
+            "text": "Компания тратит значительные средства на позиционирование своих решений, креативную подачу информации, доверительную коммуникации с клиентами."
+        }
+    ], [
+        {
+            "id": "block_042",
+            "component_type": "selectable",
+            "text": "Целевая аудитория данного предложения достаточно однородная. "
+        },
+        {
+            "id": "block_043",
+            "component_type": "selectable",
+            "text": "Это представители среднего и более высокого класса – люди, достигшие определенных высот по карьерной лестнице с устоявшейся жизненной позицией. Чаще всего это семейные пары, с детьми или без. "
+        },
+        {
+            "id": "block_044",
+            "component_type": "selectable",
+            "text": "Это люди, которые знаю цену времени и деньгам. "
+        },
+        {
+            "id": "block_045",
+            "component_type": "selectable",
+            "text": "Зачастую цена при покупке такого жилья играет не первую роль. "
+        },
+        {
+            "id": "block_046",
+            "component_type": "selectable",
+            "text": "Важнее уникальность проекта, продуманность в мелочах, индивидуальность, полная уверенность в безопасности, возможность добираться до необходимых точек города за оптимальное время. "
+        },
+        {
+            "id": "block_047",
+            "component_type": "selectable",
+            "text": "Как правило, покупая квартиру, клиент планирует сделать индивидуальный дизайн-проект, поэтому важны технические возможности и их реализация в жизни. "
+        },
+        {
+            "id": "block_048",
+            "component_type": "selectable",
+            "text": "При рассмотрении вариантов и последующем выборе, они готовы платить за локацию жилья, безопасность проживания, дополнительные привилегии. "
+        },
+        {
+            "id": "block_049",
+            "component_type": "selectable",
+            "text": "Представители этого сегмента очень требовательны и чувствительны к эстетическим функциям и параметрам объекта, демонстрируют подчеркнуто индивидуальный стиль в организации своего образа жизни. "
+        },
+        {
+            "id": "block_050",
+            "component_type": "selectable",
+            "text": "Цель покупки – долгосрочное комфортное проживание или улучшение жилищных условий семьи в соответствии с повышением статуса среди соседей «своего круга», не инвестиционное вложение. "
+        },
+        {
+            "id": "block_051",
+            "component_type": "selectable",
+            "text": "Заезжать будут сразу в полностью готовую для проживания квартиру, без последующих доделок и доп. этапов ремонта. "
+        },
+        {
+            "id": "block_052",
+            "component_type": "selectable",
+            "text": "Несмотря на высокий уровень доходов привыкли тратить деньги «разумно», умеют считать. "
+        },
+        {
+            "id": "block_053",
+            "component_type": "selectable",
+            "text": "Решение о покупке жилья такого уровня принимается рационально, рассчитывается детально. "
+        },
+        {
+            "id": "block_054",
+            "component_type": "selectable",
+            "text": "Также стремятся оптимизировать свое время, усилия по ведению переговоров, вопросов согласования. "
+        },
+        {
+            "id": "block_055",
+            "component_type": "selectable",
+            "text": "«Боятся» срыва сроков подрядчиков, несогласованности действий разных участников работы в проекте, некомпетентности нанятых самостоятельно ими дизайнеров и строителей, переплаты."
+        }
+    ]
+    ]
+
+    student_texts = []
+
+    for paragraph_block in data:
+        pb = []
+        for block in paragraph_block:
+            if "id" in block.keys():
+                pb.append({
+                    "id": block["id"],
+                    "component_type": block["component_type"],
+                    "text": block["text"]
+                })
+
+            else:
+                pb.append({
+                    "text": block["text"],
+                    "component_type": block["component_type"],
+                })
+        student_texts.append(pb)
+
+    student_data = {
+        "component_types": component_types,
+        "student_texts": student_texts,
+        "modal_header": "Cоставляющие ценностного предложения:",
+        "cancel_component_title": "Убрать выделение"
+    }
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = {"student_texts": [x for x in data]}
+    correct_data = json.dumps(correct_data)
+    correct_data = correct_data.replace('"', "'")
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        # print(student_answer)
+        correct_answer = {}
+        for _paragraph_block in data:
+            for _block in _paragraph_block:
+                if "answer" in _block.keys():
+                    correct_answer[_block['id']] = _block['answer']
+        max_grade = len(correct_answer.keys())
+
+        # print max_grade
+        # print len(student_answer.keys())
+
+        feedback = {
+            "correct": [],
+            "incorrect": []
+        }
+        grade = 0
+        for student_block_id in student_answer.keys():
+            if student_block_id in correct_answer.keys():
+                if student_answer[student_block_id] == correct_answer[student_block_id]:
+                    feedback["correct"].append(student_block_id)
+                    grade = grade + 1
+            else:
+                feedback["incorrect"].append(student_block_id)
+                grade = grade - 1
+
+        if 0 > grade:
+            grade = 0
+
+        result_grade = grade/max_grade
+
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+  </script>
+</problem>

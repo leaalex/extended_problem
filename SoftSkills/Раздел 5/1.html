@@ -1,0 +1,243 @@
+<problem>
+  <script type="loncapa/python">
+    import json
+    import random
+    import string
+
+    data = {
+        "tableData": [
+            ['### Элемент «Google Формы»', '### Содержательное наполнение'],
+            [
+                'Раздел «Новая форма»:', ['Вебинар «ИТ: актуальные вопросы для бизнеса»']
+            ],
+            [
+                'Раздел «Описание»:', ['Приглашаем Вас на вебинар «ИТ: актуальные вопросы для бизнеса», который состоится 27 ноября в 18:00 (МСК). Для того, чтобы ваше пребывание на вебинаре было максимально комфортным, просьба заполнить регистрационную форму.']
+            ],
+            [
+                'Вопрос, на который нужно дать краткий ответ:', ['Ваше полное ФИО', 'Место работы', 'Должность']
+            ],
+            [
+                'Вопрос «Один вариант из списка»:', ['Ваш возраст (выберите диапозон):\\\n \- менее 25\\\n \- 25-35 лет\\\n \- 36-45 лет\\\n \- 46-55 лет\\\n \- старше 55']
+            ],
+            [
+                'Вопрос, на который нужно дать развернутый ответ:', ['Ниже напишите ваши вопросы по теме вебинара, ведущий обязательно их рассмотрит подробнее.']
+            ],
+            [
+                'Вопрос «Несколько вариантов из списка»:', []
+            ],
+            [
+                'Вопрос «Загрузка файлов»:', []
+            ],
+            [
+                'Вопрос «Шкала»:', []
+            ],
+            [
+                'Вопрос «Сетка с множественным выбором»:', []
+            ],
+            [
+                'Вопрос «Сетка флажков»:', []
+            ],
+            [
+                'Вопрос «Дата»:', []
+            ],
+            [
+                'Вопрос «Время»:', []
+            ],
+
+        ],
+        "distractors": [],
+        "tableSettings": {
+            "isGradeDecimal": True,
+            "isCheckSequence": True,
+            "isShowWrongCells": True,
+            "isShowWrongAnswers": True
+        },
+        "tableStyle": {
+            'table': ['bg-whate'],
+            'row':[],
+            'cell':[],
+            'cellFixed':['bg-grey-1'],
+            'header': ['bg-grey-1'],
+            'answer':['bg-grey-1', 'shadow-1'],
+            'answers':['bg-grey-1', 'h50'],
+            'colls': ['w40', ''],
+            'rows':[]
+        }
+    }
+
+
+    def generate_id(length=8):
+        return 'id_'+''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+    correct_answer = {}
+    student_data = {
+        "table": [],
+        "answers": [],
+        "settings": data["tableSettings"],
+        "tableStyle": data["tableStyle"]
+    }
+
+    for row_index, row in enumerate(data["tableData"]):
+        student_data["table"].append([])
+        for cell in row:
+            student_cell = {}
+            if not isinstance(cell, str):
+                student_cell["id"] = generate_id()
+                student_cell["isFixed"] = False
+                correct_answer[student_cell["id"]] = []
+                for cell_answer in cell:
+                    cell_answer_id = generate_id()
+                    student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                    correct_answer[student_cell["id"]].append(cell_answer_id)
+            else:
+                student_cell["value"] = [cell]
+                student_cell["isFixed"] = True
+            student_data["table"][row_index].append(student_cell)
+
+    for distractor in data["distractors"]:
+        student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+    random.shuffle(student_data["answers"])
+
+    def get_response(grade_decimal, wrong_answers=None):
+        response = {}
+        response["grade"] = grade_decimal
+        if wrong_answers is not None:
+            response["wrong_answers"] = wrong_answers
+        if grade_decimal == 1:
+            response["ok"] = True
+        elif grade_decimal == 0:
+            response["ok"] = False
+        else:
+            response["ok"] = 'Partial'
+        return response
+
+
+    def check_partially(c_a, s_a):
+        result = {
+            "grade": 0.0,
+            "wrong_answers": [],
+        }
+        local_grade = 0
+        for ans in c_a:
+            if ans in s_a:
+                local_grade += 1
+        for ans in s_a:
+            if ans not in c_a:
+                result["wrong_answers"].append(ans)
+        result["grade"] = local_grade
+
+        return result
+
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)["answer"]
+        # student_answer = {
+        #     'a1': ['b1', 'b', 'b10'],
+        #     'a2': ['b3'],
+        #     'a3': ['b4'],
+        #     'a4': ['b5']
+        # }
+        # correct_answer = {
+        #     'a1': ['b1', 'b2', 'b10'],
+        #     'a2': ['b3'],
+        #     'a3': ['b4'],
+        #     'a4': ['b5']
+        # }
+
+        max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+        grade = 0
+        wrong_answers = []
+
+        for correct_cell_id in correct_answer.keys():
+            correct_cell = correct_answer[correct_cell_id]
+            res = check_partially(correct_cell, student_answer[correct_cell_id])
+            grade += res["grade"]
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+        response = get_response(float(grade / max_grade), wrong_answers, )
+
+        return {
+            'input_list': [
+                {
+                    # true, false partially
+                    'ok': response['ok'],
+                    # string - отображаения под Input'ом
+                    # как проавило сюда отправляется json со всеми дополнительными данными
+                    'msg': str(json.dumps(response)),
+                    # number [0, 1] - оценка за задание
+                    'grade_decimal': response['grade']
+                },
+            ]
+        }
+
+
+    print(student_data)
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = json.dumps(data)
+    correct_data = correct_data.replace('"', "'")
+  </script>
+
+  <div>
+    <p>
+      Вы – представитель компании по организации мероприятий для бизнес-среды:
+      нетворкинги, форумы, конференции и пр. Ваша компания готовится к
+      проведению очередного мероприятия – вебинар на тему «ИТ: актуальные
+      вопросы для бизнеса». Ваше руководство поставило перед вами некоторые
+      задачи, для решения которых вам необходимо владение приложением «Google
+      Форма».
+    </p>
+    <p>
+      <strong>1.</strong> Вам необходимо провести регистрацию участников на
+      вебинар. Важно, чтобы в результате прохождения регистрации у вашей
+      компании остались следующие данные о будущих участниках: полное ФИО,
+      примерный возраст, место работы и должность, пожелания к содержанию
+      вебинара.
+    </p>
+    <p>
+      Установите соответствие между элементами «Google Формы» и содержательным
+      наполнением.
+    </p>
+  </div>
+
+  <div
+    class="adv-app"
+    data-type="MatchingTableVueApp"
+    data-initial-data="$student_data"
+    data-static="/static/*"
+  >
+    <span class="loadingspinner" />
+    <style>
+      .loadingspinner {
+        display: block;
+        margin: 0 auto;
+        pointer-events: none;
+        width: 2.5em;
+        height: 2.5em;
+        border: 0.4em solid transparent;
+        border-color: #eee;
+        border-top-color: #3e67ec;
+        border-radius: 50%;
+        animation: loadingspin 1s linear infinite;
+      }
+
+      @keyframes loadingspin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </div>
+  <div style="display: none">
+    <customresponse cfn="check_answer">
+      <textline />
+    </customresponse>
+  </div>
+  <solution data-initial-data="$correct_data">
+    <div>Загрузка...</div>
+  </solution>
+</problem>

@@ -1,0 +1,237 @@
+<problem>
+  <div>
+    <div>
+      <div
+        data-type="SelectedTextApp"
+        class="adv-app"
+        data-initial-data="$student_data"
+      ></div>
+    </div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import json
+
+    component_types = [
+    {
+        "header": "Группы:",
+        "description": ["Инструкция", "1. Внимательно прочитайте описание целевого сегмента компании", "2. Распределите все представленные характеристики из описания по группам"],
+        "variants": [
+            {
+                "title": "Группа «Социально-демографические критерии»",
+                "id": "type_1"
+            },
+            {
+                "title": "Группа «Финансово-экономические критерии»",
+                "id": "type_2"
+            },
+            {
+                "title": "Группа «Географические критерии»",
+                "id": "type_3"
+            },
+            {
+                "title": "Группа «Психографические критерии, особенности образа жизни»",
+                "id": "type_4"
+            },
+            {
+                "title": "Группа «Критерии потребительского опыта»",
+                "id": "type_5"
+            }
+        ]
+    }
+    ]
+
+    data = [
+    [
+        {
+            "id": "block_001",
+            "component_type": "selectable",
+            "text": "Компания Х-POD производит ортопедические подушки повышенной комфортности для путешествующих."
+        }
+    ],
+    [
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "text": "Целевая аудитория:"
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "женщина в возрасте 30-40 лет,"
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "с доходом 250-300 тысяч рублей,"
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "высшее образование,"
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "ТОП-менеджер крупной компании. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_4",
+            "text": "Ценит в жизни повышенный комфорт и ведет здоровый образ жизни."
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "Проживает в пригороде, "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_4",
+            "text": "в небольшом коттеджном поселке класса «премиум», "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_3",
+            "text": "ежедневно проводит не менее 2-х часов времени за рулем личного авто, добираясь на работу и обратно, а также совершая личные и деловые поездки по городу. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_5",
+            "text": "Товары для здоровья приобретает только самого высокого качества. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_5",
+            "text": "При этом, любит покупать «новые версии» знакомых товаров. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "Треть личного ежемесячного бюджета тратит на спортивные тренировки, процедуры по уходу за телом и лицом, активный отдых. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_5",
+            "text": "Ценит в товарах - эргономичность, натуральность материалов. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_2",
+            "text": "Недавно получила наследство, которое разместила в акциях крупных предприятий строительного сектора региона. "
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_4",
+            "text": "Активная, оптимистично смотрит на жизнь."
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_1",
+            "text": "Считает себя христианкой,"
+        },
+        {
+            "id": "block_002",
+            "component_type": "selectable",
+            "answer": "type_4",
+            "text": "но одновременно увлекается эзотерическими знаниями и восточной философией."
+        }
+    ],
+    ]
+    student_texts = []
+
+    for paragraph_block in data:
+        pb = []
+        for block in paragraph_block:
+            if "id" in block.keys():
+                pb.append({
+                    "id": block["id"],
+                    "component_type": block["component_type"],
+                    "text": block["text"]
+                })
+
+            else:
+                pb.append({
+                    "text": block["text"],
+                    "component_type": block["component_type"],
+                })
+        student_texts.append(pb)
+
+    student_data = {
+        "component_types": component_types,
+        "student_texts": student_texts,
+        "modal_header": "Cоставляющие ценностного предложения:",
+        "cancel_component_title": "Убрать выделение"
+    }
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = {"student_texts": [x for x in data]}
+    correct_data = json.dumps(correct_data)
+    correct_data = correct_data.replace('"', "'")
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        # print(student_answer)
+        correct_answer = {}
+        for _paragraph_block in data:
+            for _block in _paragraph_block:
+                if "answer" in _block.keys():
+                    correct_answer[_block['id']] = _block['answer']
+        max_grade = len(correct_answer.keys())
+
+        # print max_grade
+        # print len(student_answer.keys())
+
+        feedback = {
+            "correct": [],
+            "incorrect": []
+        }
+        grade = 0
+        for student_block_id in student_answer.keys():
+            if student_block_id in correct_answer.keys():
+                if student_answer[student_block_id] == correct_answer[student_block_id]:
+                    feedback["correct"].append(student_block_id)
+                    grade = grade + 1
+            else:
+                feedback["incorrect"].append(student_block_id)
+                grade = grade - 1
+
+        if 0 > grade:
+            grade = 0
+
+        result_grade = grade/max_grade
+
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+  </script>
+</problem>

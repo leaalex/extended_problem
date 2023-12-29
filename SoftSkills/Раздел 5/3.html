@@ -1,94 +1,83 @@
 <problem>
-  <style>
-    .center {
-      text-align: center !important;
-    }
-  </style>
   <script type="loncapa/python">
     import json
     import random
     import string
 
     data = {
-        "content": {
-            "body": "",
-            "answers_title": "Data:"
-        },
-        "table": [
-        [
-          '__Data structuring degree__.{.text-energy} .{.center}','__Data__.{.text-energy} .{.center}'
-         ],
-         [
-            'Unstructured',
-            ['File with coordinates of points that define the 3D relief of a section of the earth`s surface'],
-         ],
-         [
-            'Semi-structured',
-            ['Protocol of diagnostic tests of electrical equipment in an XLS file'],
-         ],
-         [
-            'Structured',
-            ['Passport data of electrical equipment in a CSV file'],
-         ]
+        "tableData": [
+            ['### Элемент «Google Формы»', '### Действия'],
+            [
+                'Выключатель «Принимать ответы»', ['Отключение данной функции позволит закрыть форму и больше не принимать ответы участников']
+            ],
+            [
+                'Вкладка «Ответы»', ['Здесь содержаться все ответы на форму']
+            ],
+            [
+                'Вкладка «Сводка»', ['Здесь для каждого вопроса приложение создает диаграммы, отображающие статистику ответов']
+            ],
+            [
+                'Функция «Установить связь с Таблицами»', ['Импорт всех ответов участников в «Google Таблицу»']
+            ],
+            [
+                'Кнопка «Копировать» в правом верхнем углу', ['Эта функция позволяет скопировать созданную диаграмму и вставить ее в любой другой документ']
+            ],
+            [
+                'Вкладка «Настройки»', []
+            ],
+            [
+                'Функция «Настройка доступа»', []
+            ],
+            [
+                'Вкладка «Вопросы»', []
+            ],
+            [
+                'Кнопка «Отправить»', []
+            ],
         ],
-      "settings":{
-            "is_exist_markdown": True,
-            "is_exist_advanced_style": True,
-            'is_exist_mathjax': False,
-            'is_exist_image': False,
-            'show_incorrect': True,
-            "capacity": 4,
-      },
-      "style": {
-            'rows': ['', ''],
-            'colls': ['w20', '', ]
+        "distractors": [],
+        "tableSettings": {
+            "isGradeDecimal": True,
+            "isCheckSequence": True,
+            "isShowWrongCells": True,
+            "isShowWrongAnswers": True
+        },
+        "tableStyle": {
+            'table': ['bg-whate'],
+            'row':[],
+            'cell':[],
+            'cellFixed':['bg-grey-1'],
+            'header': ['bg-grey-1'],
+            'answer':['bg-grey-1', 'shadow-1'],
+            'answers':['bg-grey-1', 'h50'],
+            'colls': ['w40', ''],
+            'rows':[]
         }
     }
 
 
     def generate_id(length=8):
-        return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+        return 'id_'+''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
 
-    show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
-    data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
-    data["settings"] = data["settings"] if "settings" in data.keys() else {}
-    data["style"] = data["style"] if "style" in data.keys() else {}
+
     correct_answer = {}
     student_data = {
         "table": [],
         "answers": [],
-        "settings": data["settings"],
-        "style": data["style"],
-        "content": data["content"]
+        "settings": data["tableSettings"],
+        "tableStyle": data["tableStyle"]
     }
 
-    use_multi_answers = ''
-    if "multi_answers" in data["settings"].keys():
-        if data["settings"]["multi_answers"] == "horizontal":
-            use_multi_answers = "horizontal"
-        elif data["settings"]["multi_answers"] == "vertical":
-            use_multi_answers = "vertical"
-
-    all_answers_obj = {}
-
-    for row_index, row in enumerate(data["table"]):
+    for row_index, row in enumerate(data["tableData"]):
         student_data["table"].append([])
-        for column_index, cell in enumerate(row):
+        for cell in row:
             student_cell = {}
             if not isinstance(cell, str):
                 student_cell["id"] = generate_id()
                 student_cell["isFixed"] = False
                 correct_answer[student_cell["id"]] = []
-
                 for cell_answer in cell:
                     cell_answer_id = generate_id()
-
-                    if use_multi_answers:
-                        direction_index = column_index if use_multi_answers == 'vertical' else row_index
-                        if "block" + str(direction_index) not in all_answers_obj.keys():
-                            all_answers_obj["block" + str(direction_index)] = []
-                        all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
-
                     student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
                     correct_answer[student_cell["id"]].append(cell_answer_id)
             else:
@@ -96,22 +85,8 @@
                 student_cell["isFixed"] = True
             student_data["table"][row_index].append(student_cell)
 
-
     for distractor in data["distractors"]:
         student_data["answers"].append({"title": distractor, "id": generate_id()})
-
-    if use_multi_answers:
-        student_data["answers"] = []
-        for block_idx, block_key in enumerate(all_answers_obj.keys()):
-            student_data["answers"].append(all_answers_obj[block_key])
-            try:
-                if isinstance(data["distractors"][block_idx], list):
-                    for dist in data["distractors"][block_idx]:
-                        student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
-            except:
-                pass
-                # raise Exception("DISTRACTORS ERROR")
-
 
     random.shuffle(student_data["answers"])
 
@@ -148,6 +123,19 @@
 
     def check_answer(expect, ans):
         student_answer = json.loads(ans)["answer"]
+        # student_answer = {
+        #     'a1': ['b1', 'b', 'b10'],
+        #     'a2': ['b3'],
+        #     'a3': ['b4'],
+        #     'a4': ['b5']
+        # }
+        # correct_answer = {
+        #     'a1': ['b1', 'b2', 'b10'],
+        #     'a2': ['b3'],
+        #     'a3': ['b4'],
+        #     'a4': ['b5']
+        # }
+
         max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
         grade = 0
         wrong_answers = []
@@ -156,8 +144,7 @@
             correct_cell = correct_answer[correct_cell_id]
             res = check_partially(correct_cell, student_answer[correct_cell_id])
             grade += res["grade"]
-            if show_incorrect:
-                wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
 
         response = get_response(float(grade / max_grade), wrong_answers, )
 
@@ -176,34 +163,31 @@
         }
 
 
+    print(student_data)
+
     student_data = json.dumps(student_data)
     student_data = student_data.replace('"', "'")
 
     correct_data = json.dumps(data)
     correct_data = correct_data.replace('"', "'")
   </script>
+
   <div>
     <p>
-      <strong>Purpose:</strong> to determine the degree of data structuring.
-    </p>
-    <p><strong>Assignment</strong></p>
-    <p>
-      Determine to what extent the enumerated data objects can have a
-      well-defined structure.
+      <strong>3. </strong>Для подготовки отчета вам необходимо выгрузить ответы
+      участников.
     </p>
     <p>
-      Distribute the given objects according to the degree of data structuring.
-    </p>
-    <p>
-      Complete the table by moving the correct answers to the appropriate cells
-      in the table.
+      Установите соответствие между элементами «Google Формы» и вашими
+      действиями.
     </p>
   </div>
+
   <div
     class="adv-app"
     data-type="MatchingTableVueApp"
     data-initial-data="$student_data"
-    data-static="/static/_"
+    data-static="/static/*"
   >
     <span class="loadingspinner" />
     <style>
@@ -229,8 +213,10 @@
   </div>
   <div style="display: none">
     <customresponse cfn="check_answer">
-      <textline size="120" />
+      <textline />
     </customresponse>
-    <solution data-initial-data="$correct_data" />
   </div>
+  <solution data-initial-data="$correct_data">
+    <div>Загрузка...</div>
+  </solution>
 </problem>

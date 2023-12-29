@@ -108,43 +108,14 @@ function MatchingTableObjects(element, data) {
   )
 
   const sortable = Sortable.create(
-    this.element.querySelector('.conf-all-answers.A'),
-    {
-      group: {
-        name: 'shared_A',
-        put: false,
-        pull: 'clone',
-      },
-      onClone: function (/**Event*/ evt) {
-        var cloneEl = evt.clone
-        cloneEl.classList.remove('conf-item')
-        cloneEl.classList.remove('conf-draggable')
-        cloneEl.classList.add('not-use')
-      },
-      filter: '.not-use',
-      delay: 0,
-      mirror: {
-        constrainDimensions: true,
-      },
-      sort: false,
-      onEnd: function (/**Event*/ evt) {
-        setAnswer()
-        $('.conf-table .conf-answers-place', element).removeClass(
-          'conf-wrong-cell'
-        )
-      },
-    }
-  )
-
-  const sortable1 = Sortable.create(
-    this.element.querySelector('.conf-all-answers.C'),
+    this.element.querySelector('.conf-all-answers'),
     {
       group: {
         name: 'shared_C',
         put: false,
         pull: 'clone',
       },
-      onClone: function (/**Event*/ evt) {
+      onClone: (evt) => {
         var cloneEl = evt.clone
         cloneEl.classList.remove('conf-item')
         cloneEl.classList.remove('conf-draggable')
@@ -156,77 +127,68 @@ function MatchingTableObjects(element, data) {
         constrainDimensions: true,
       },
       sort: false,
+      onEnd: (evt) => {
+        setAnswer()
+        $('.conf-table .conf-answers-place', element).removeClass(
+          'conf-wrong-cell'
+        )
+
+        this.element
+          .querySelectorAll('.conf-table .conf-draggable')
+          .forEach((el) => {
+            el.onclick = (event) => {
+              if (
+                this.element.querySelector(
+                  `.conf-all-answers [data-id='${el.id}']`
+                )
+              ) {
+                var oldElement = this.element.querySelector(
+                  `.conf-all-answers [data-id='${el.id}']`
+                )
+                oldElement.setAttribute('id', el.id)
+                oldElement.classList.add('conf-item')
+                oldElement.classList.add('conf-draggable')
+                oldElement.classList.remove('not-use')
+                el.remove()
+                setAnswer()
+              }
+            }
+            el.onmouseover = (event) => {
+              el.querySelector('.remove-item').style.visibility = 'visible'
+              console.log('mouseover', element.id)
+            }
+            el.onmouseout = (event) => {
+              el.querySelector('.remove-item').style.visibility = 'hidden'
+            }
+          })
+      },
+    }
+  )
+
+  this.element.querySelectorAll('.conf-table .conf-inputable').forEach((el) => {
+    Sortable.create(el, {
+      group: {
+        name: 'shared_C',
+        put: ['shared_C'],
+      },
+      draggable: '.conf-item.conf-draggable',
+      delay: 0,
+      mirror: {
+        constrainDimensions: true,
+      },
       onEnd: function (/**Event*/ evt) {
         setAnswer()
         $('.conf-table .conf-answers-place', element).removeClass(
           'conf-wrong-cell'
         )
       },
-    }
-  )
-
-  this.element
-    .querySelectorAll('.conf-table .conf-inputable.AC')
-    .forEach((el) => {
-      Sortable.create(el, {
-        group: {
-          name: 'shared_A',
-          put: ['shared_A'],
-        },
-        draggable: '.conf-item.conf-draggable',
-        delay: 0,
-        mirror: {
-          constrainDimensions: true,
-        },
-        onEnd: function (/**Event*/ evt) {
-          setAnswer()
-          $('.conf-table .conf-answers-place', element).removeClass(
-            'conf-wrong-cell'
-          )
-        },
-      })
     })
-
-  this.element
-    .querySelectorAll('.conf-table .conf-inputable.BC')
-    .forEach((el) => {
-      Sortable.create(el, {
-        group: {
-          name: 'shared_C',
-          put: ['shared_C'],
-        },
-        draggable: '.conf-item.conf-draggable',
-        delay: 0,
-        mirror: {
-          constrainDimensions: true,
-        },
-        onEnd: function (/**Event*/ evt) {
-          setAnswer()
-          $('.conf-table .conf-answers-place', element).removeClass(
-            'conf-wrong-cell'
-          )
-        },
-      })
-    })
+  })
 
   $('.conf-select select').on('change', function () {
     setAnswer()
     $('.conf-table .conf-answers-place', element).removeClass('conf-wrong-cell')
   })
-
-  //   sortable1.on('sortable:sort', (evt) => {
-  //     var capacity =
-  //       evt.data.dragEvent.data.overContainer.getAttribute('capacity')
-  //     var count = sortable.getDraggableElementsForContainer(
-  //       evt.data.dragEvent.data.overContainer
-  //     ).length
-  //     if (!isNaN(capacity)) {
-  //       capacity = parseInt(capacity)
-  //       if (capacity == count) {
-  //         evt.cancel()
-  //       }
-  //     }
-  //   })
 
   function setAnswer() {
     var problem = $('#' + element.id).closest('.problem')
@@ -259,23 +221,14 @@ function MatchingTableObjects(element, data) {
       })
       .get()
 
-    var select_answer = {}
-    $('.conf-select select', element)
-      .map(function (indx, item) {
-        var select_item_id = $(item).attr('id')
-        select_answer[select_item_id] = $(item).find(':selected').val()
-      })
-      .get()
-
-    // console.log({answer: student_answer, select_answer: select_answer})
-    answer.setJSON({ answer: student_answer, select_answer: select_answer })
+    answer.setJSON({ answer: student_answer })
   }
 
   if (answer.get()) {
     var student_answer = answer.getJSON()['answer']
     for (key in student_answer) {
       for (l in student_answer[key]) {
-        console.log(student_answer[key][l], $('#' + student_answer[key][l]))
+        // console.log(student_answer[key][l], $('#' + student_answer[key][l]))
         var button = $('#' + student_answer[key][l]).clone()
         $('#' + student_answer[key][l]).removeClass('conf-item')
         $('#' + student_answer[key][l]).removeClass('conf-draggable')
@@ -283,12 +236,6 @@ function MatchingTableObjects(element, data) {
         $('#' + student_answer[key][l]).removeAttr('id')
         $('#' + key, element).append(button)
       }
-    }
-    var student_answer_select = answer.getJSON()['select_answer']
-    for (select_key in student_answer_select) {
-      // console.log($('#' + select_key, element))
-      $('#' + select_key, element).val(student_answer_select[select_key])
-      // .append($("#"+student_answer_select[select_key][h], element));
     }
 
     if ($('span.message', element)) {
@@ -306,6 +253,34 @@ function MatchingTableObjects(element, data) {
       }
     }
 
+    this.element
+      .querySelectorAll('.conf-table .conf-draggable')
+      .forEach((el) => {
+        el.onclick = (event) => {
+          console.log('onclick', element.id)
+          if (
+            this.element.querySelector(`.conf-all-answers [data-id='${el.id}']`)
+          ) {
+            var oldElement = this.element.querySelector(
+              `.conf-all-answers [data-id='${el.id}']`
+            )
+            oldElement.setAttribute('id', el.id)
+            oldElement.classList.add('conf-item')
+            oldElement.classList.add('conf-draggable')
+            oldElement.classList.remove('not-use')
+            el.remove()
+            setAnswer()
+          }
+        }
+        el.onmouseover = (event) => {
+          el.querySelector('.remove-item').style.visibility = 'visible'
+          console.log('mouseover', element.id)
+        }
+        el.onmouseout = (event) => {
+          el.querySelector('.remove-item').style.visibility = 'hidden'
+        }
+      })
+
     // $(document).ready(function(){$("input[type=text]", element).hide()});
     $(document).ready(function () {
       $('span.message', element).hide()
@@ -313,6 +288,27 @@ function MatchingTableObjects(element, data) {
   }
 
   var css = `
+    .remove-item{
+      visibility: hidden;
+      position: absolute;
+      background: #e4e2e2;
+      color: #A1887F;
+      z-index: 9;
+      top: -8px;
+      right: -8px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      border-radius: 6px;
+      font-size: 1.1em;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+    }
+    .remove-item:hover{
+      color: #795548;
+    }
+
     .conf-text{
         text-align: center !important;
         padding: 5px !important;
@@ -335,13 +331,15 @@ function MatchingTableObjects(element, data) {
     }
     
     .conf-header{
-        font-style: italic !important;
+        /* font-style: italic !important; */
         /* font-weight: bold !important; */
         background: #ececec;
     }
 
     .conf-table{
-        width:100%;
+      width: 95%;
+      margin: 12px auto !important;
+        /*overflow: hidden;*/
     }
 
      .conf-answers-place{
@@ -356,10 +354,11 @@ function MatchingTableObjects(element, data) {
     }
 
     .conf-item{
+        position: relative;
         /*max-height: 154px;*/
         /*vertical-align: middle;*/
         /*border: 1px solid #b2b2b2;*/
-        background: #f6f6f6;
+        background: #f0efef;
         /*margin: 2px;*/
         /*text-align: center;*/
 

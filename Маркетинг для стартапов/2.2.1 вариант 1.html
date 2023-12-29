@@ -1,0 +1,208 @@
+<problem>
+  <div>
+    <h2>Приложение для проведения тематических мероприятий</h2>
+    <div>
+      <div
+        data-type="SelectedTextApp"
+        class="adv-app"
+        data-initial-data="$student_data"
+      ></div>
+    </div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import json
+
+    component_types = [
+    {
+        "header": "По типу команды:",
+        "description": ["Определите тип стартапа по следующему критерию: тип команды. подчеркните цветом в тексте ключевые слова, которые обозначают тип стартапа.", "В элементе - не более 2 -х вариантов ответов."],
+        "variants": [
+            {
+                "title": "Спин-офф",
+                "id": "type_1"
+            },
+            {
+                "title": "Предпринимательский",
+                "id": "type_2"
+            }
+        ]
+    },
+    {
+        "header": "По географическому охвату:",
+        "description": ["Определите тип стартапа по критерию географический охват. Подчеркните цветом в тексте ключевые слова, которые обозначают тип стартапа.", "В элементе - не более 2 -х вариантов ответов."],
+        "variants": [
+            {
+                "title": "Локальный",
+                "id": "type_3"
+            },
+            {
+                "title": "Национальный",
+                "id": "type_4"
+            },
+            {
+                "title": "Глобальный",
+                "id": "type_5"
+            }
+        ]
+    },
+    ]
+
+    data = [
+        [
+            {
+                "id": "block_001",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "Группа предпринимателей разработала и внедрила Приложение -агрегатор для организации сети удобных пространств"
+            },
+            {
+                "id": "block_002",
+                "component_type": "selectable",
+                "text": "с парковкой, фудкортом, конференц-залами и индивидуальными зонами для разной целевой аудитории в городе миллионнике для проведения мероприятий разной направленности и масштаба под ключ (политических конференций, профессиональных митапов и тематических вечеров)."
+            },
+            {
+                "id": "block_003",
+                "component_type": "selectable",
+                "text": "Исследования, проведенные до разработки Приложения–агрегатора в городе, показали, что подготовка к проведению  мероприятий как корпоративных, так и мероприятий для частных лиц, занимает несколько недель, требует длительного согласования всех составляющих, необходимости обращения в разные организации."
+            },
+        ],
+        [
+            {
+                "id": "block_004",
+                "component_type": "selectable",
+                "text": "Возможность предоставления услуг администратора, модератора, ведущего."
+            },
+            {
+                "id": "block_005",
+                "component_type": "selectable",
+                "text": "Возможность услуг по бронированию и продаже билетов, push -  уведомлений, видео записей мероприятия, фотосессий, кейтеринг."
+            }
+        ],
+        [
+            {
+                "id": "block_006",
+                "component_type": "selectable",
+                "answer": "type_3",
+                "text": "Приложение содержит обширную базу городских предприятий, сдающих площади для проведения мероприятий разной направленности, предприятий, организующих ивенты разного масштаба, базу модераторов, компаний, предлагающих кейтеринг."
+            },
+            {
+                "id": "block_007",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "По каждой заявке создается временная команда исполнителей во главе с администратором от компании, владельца приложения."
+            },
+        ],
+        [
+            {
+                "id": "block_008",
+                "component_type": "selectable",
+                "text": "Приложение позволяет оперативно организовать мероприятия под ключ по заявке клиента  в течение 2-3 дней, подобрать оптимальные условия и стоимость мероприятия."
+            },
+            {
+                "id": "block_009",
+                "component_type": "selectable",
+                "text": "Клиент может получить консультацию администратора и с его помощью или самостоятельно оформить заявку на организацию мероприятия."
+            },
+            {
+                "id": "block_010",
+                "component_type": "selectable",
+                "text": "Приложение позволяет значительно сократить время на организацию мероприятия и за счет комплексного обслуживания мероприятия оптимизировать его бюджет."
+            },
+        ],
+        [
+            {
+                "id": "block_011",
+                "component_type": "selectable",
+                "text": "По мнению разработчиков, стартапа, в подобном Агрегатное заинтересованы как предприятия города и органы власти, "
+            },
+            {
+                "id": "block_012",
+                "component_type": "selectable",
+                "text": "которые регулярно организуют выездные мероприятия для своих сотрудников и горожан, а также частные лица, планирующие семейное мероприятие, юбилей, свадьбу и т.д."
+            }
+        ]
+    ]
+
+    student_texts = []
+
+    for paragraph_block in data:
+        pb = []
+        for block in paragraph_block:
+            if "id" in block.keys():
+                pb.append({
+                    "id": block["id"],
+                    "component_type": block["component_type"],
+                    "text": block["text"]
+                })
+
+            else:
+                pb.append({
+                    "text": block["text"],
+                    "component_type": block["component_type"],
+                })
+        student_texts.append(pb)
+
+    student_data = {
+        "component_types": component_types,
+        "student_texts": student_texts,
+        "modal_header": "Cоставляющие ценностного предложения:",
+        "cancel_component_title": "Убрать выделение"
+    }
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = {"student_texts": [x for x in data]}
+    correct_data = json.dumps(correct_data)
+    correct_data = correct_data.replace('"', "'")
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        # print(student_answer)
+        correct_answer = {}
+        for _paragraph_block in data:
+            for _block in _paragraph_block:
+                if "answer" in _block.keys():
+                    correct_answer[_block['id']] = _block['answer']
+        max_grade = len(correct_answer.keys())
+
+        # print max_grade
+        # print len(student_answer.keys())
+
+        feedback = {
+            "correct": [],
+            "incorrect": []
+        }
+        grade = 0
+        for student_block_id in student_answer.keys():
+            if student_block_id in correct_answer.keys():
+                if student_answer[student_block_id] == correct_answer[student_block_id]:
+                    feedback["correct"].append(student_block_id)
+                    grade = grade + 1
+            else:
+                feedback["incorrect"].append(student_block_id)
+                grade = grade - 1
+
+        if 0 > grade:
+            grade = 0
+
+        result_grade = grade/max_grade
+
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+  </script>
+</problem>

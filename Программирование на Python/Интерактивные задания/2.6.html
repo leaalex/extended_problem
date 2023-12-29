@@ -1,0 +1,261 @@
+<problem>
+  <style type="text/css">
+    .drag-custom-aYoiTLYav4 {
+      word-break: initial;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      border: 0.5px solid #4572c3;
+      background: white !important;
+    }
+
+    .drag-custom-text-aYoiTLYav4 {
+      text-align: center !important;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      color: #364667;
+      height: 21px !important;
+      width: 130px !important;
+    }
+
+    .drop-custom-aYoiTLYav4 .drag-custom-aYoiTLYav4 {
+      padding: 0px !important;
+      margin: 0px !important;
+    }
+
+    .drag-custom-aYoiTLYav4 .drag-element-image img {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .drop-custom-aYoiTLYav4 {
+      display: flex;
+      align-items: center;
+      background: #ffffff00;
+    }
+
+    .custom-drag-zone-aYoiTLYav4 .drag-custom-aYoiTLYav4 {
+      margin: 4px;
+      padding: 2px;
+    }
+  </style>
+  <div>
+    <p>
+      <strong>Цель:</strong> построить UML диаграмму классов по их описанию и
+      отношениям между ними.
+    </p>
+    <p>
+      <strong>Задание:</strong> проанализируйте фрагмент UML диаграммы классов и
+      заполните пропуски, перетащив в них выбранные блоки.
+    </p>
+    <div
+      data-type="DragAndDropVueApp"
+      class="adv-app"
+      data-initial-data="$student_data"
+    ></div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import random
+    import json
+    import string
+
+
+    def generate_id(length=8):
+        return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+    source_data = {
+        "background_src": "/static/A1Z6bonRiW.png",
+        "width": 801,
+        "height": 451,
+        "drag_class": "drag-custom-aYoiTLYav4",
+        "drop_class": " drop-custom-aYoiTLYav4 animate",
+        "drop_zone_class": "center",
+        "drag_zone_class": "custom-drag-zone-aYoiTLYav4",
+        "answers": [
+            {
+                "coordinates": {"x": 420, "y": 79.5, "w": 46, "h": 21},
+                "content": [{"image": "/static/xm4TB2VTiu.png", "class": "drag-custom-image-aYoiTLYav4", "w": 46, "h": 20}],
+                "hint": "",
+            },
+            {
+                "coordinates": {"x": 420, "y": 106.5, "w": 46, "h": 21},
+                "content": [{"image": "/static/Sp1qZWonkG.png", "class": "drag-custom-image-aYoiTLYav4", "w": 46, "h": 20}],
+                "hint": "",
+            },
+
+            {
+                "coordinates": {"x": 216, "y": 28, "w": 130, "h": 21},
+                "content": [{"text": "Документ", "class": "drag-custom-text-aYoiTLYav4",}],
+                "hint": "",
+            },
+            {
+                "coordinates": {"x": 254, "y": 165, "w": 130, "h": 21},
+                "content": [{"text": "код_ошибки", "class": "drag-custom-text-aYoiTLYav4",}],
+                "hint": "",
+            },
+            {
+                "coordinates": {"x": 106, "y": 293, "w": 130, "h": 21},
+                "content": [{"text": "Отчет", "class": "drag-custom-text-aYoiTLYav4",}],
+                "hint": "",
+            },
+            {
+                "coordinates": {"x": 183, "y": 382, "w": 120, "h": 21},
+                "content": [{"text": "Статус", "class": "drag-custom-text-aYoiTLYav4",}],
+                "hint": "",
+            },
+            {
+                "coordinates": {"x": 496, "y": 294, "w": 130, "h": 21},
+                "content": [{"text": "Спецификация", "class": "drag-custom-text-aYoiTLYav4",}],
+                "hint": "",
+            },
+
+        ],
+        "settings": {
+            "show_incorrect": True,
+            "check_type": "partially",  # "partially", "full", "full_cell", "sequence"
+            "capacity": 1,
+        }
+    }
+
+
+    student_data = source_data.copy()
+    student_data["answers"] = []
+    student_data["all_answers"] = []
+    correct_answer = {}
+
+    for drop in source_data["answers"]:
+        drop_id = generate_id()
+        correct_answer[drop_id] = []
+        drop_element = drop.copy()
+        drop_element["id"] = drop_id
+        del drop_element["content"]
+        student_data["answers"].append(drop_element)
+
+        for drag in drop["content"]:
+            drag_id = generate_id()
+            if 'id' in drag.keys():
+                drag_id = drag['id']
+            drag_element = drag.copy()
+            drag_element["id"] = drag_id
+            correct_answer[drop_id].append(drag_id)
+            student_data["all_answers"].append(drag_element)
+    if 'distractors' in source_data.keys():
+        for distractor in source_data['distractors']:
+            distractor_element = distractor.copy()
+            distractor_element["id"] = generate_id()
+            student_data["all_answers"].append(distractor_element)
+
+    def check_partially(c_a, s_a):
+        local_grade = 0
+        local_incorrect = []
+        for item in c_a.keys():
+            for ans in c_a[item]:
+                if ans in s_a[item]:
+                    local_grade += 1
+            if sorted(s_a[item]) != sorted(c_a[item]):
+                local_incorrect.append(item)
+        return local_grade, local_incorrect
+
+
+    def check_full(c_a, s_a):
+        local_grade = 1
+        local_incorrect = []
+        for item in c_a.keys():
+            if sorted(s_a[item]) != sorted(c_a[item]):
+                local_grade = 0
+                local_incorrect.append(item)
+        return local_grade, local_incorrect
+
+
+    def check_full_cell(c_a, s_a):
+        local_grade = 0
+        local_incorrect = []
+        for item in c_a.keys():
+            if sorted(s_a[item]) == sorted(c_a[item]):
+                local_grade += 1
+            else:
+                local_incorrect.append(item)
+        return local_grade, local_incorrect
+
+
+    def check_sequence(c_a, s_a):
+        local_grade = 0
+        local_incorrect = []
+        for item in c_a.keys():
+            if s_a[item] == c_a[item]:
+                local_grade += 1
+            else:
+                local_incorrect.append(item)
+        return local_grade, local_incorrect
+
+
+    def get_ok(grade_decimal):
+        if grade_decimal == 1:
+            return True
+        elif grade_decimal == 0:
+            return False
+        else:
+            return 'Partial'
+
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)["answer"]
+        max_grade = len(correct_answer.keys())
+        if 'max_grade' in source_data["settings"]:
+            max_grade = source_data["settings"]["max_grade"]
+        check_types = ["partially", "full", "full_cell", "sequence"]
+        check_type = "partially"
+        if "check_type" in source_data["settings"].keys():
+            if source_data["settings"]["check_type"] in check_types:
+                check_type = source_data["settings"]["check_type"]
+
+        grade = 0
+        incorrect_answers = []
+        if check_type == "full_cell":
+            grade, incorrect_answers = check_full_cell(correct_answer, student_answer)
+        elif check_type == "full":
+            max_grade = 1
+            grade, incorrect_answers = check_full(correct_answer, student_answer)
+        elif check_type == "partially":
+            max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+            grade, incorrect_answers = check_partially(correct_answer, student_answer)
+        elif check_type == "sequence":
+            grade, incorrect_answers = check_sequence(correct_answer, student_answer)
+        else:
+            pass
+
+        result_grade = float(grade/max_grade)
+        msg_json = {
+            "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+        }
+
+        return {
+            'input_list': [
+                {
+                    'ok': get_ok(result_grade),
+                    'msg': json.dumps(msg_json),
+                    'grade_decimal': result_grade
+                },
+            ]
+        }
+
+
+    correct_data = json.dumps(source_data)
+    correct_data = correct_data.replace('"', "'")
+
+    random.shuffle(student_data["all_answers"])
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+  </script>
+</problem>

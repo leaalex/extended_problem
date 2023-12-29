@@ -1,0 +1,255 @@
+<problem>
+  <div>
+    <h2>Приложение для занятий фитнесом</h2>
+    <div>
+      <div
+        data-type="SelectedTextApp"
+        class="adv-app"
+        data-initial-data="$student_data"
+      ></div>
+    </div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import json
+
+    component_types = [
+    {
+        "header": "По типу команды:",
+        "description": ["Определите тип стартапа по  критерию тип команды.", "В элементе - не более 2-х вариантов ответов."],
+        "variants": [
+            {
+                "title": "Спин-офф",
+                "id": "type_1"
+            },
+            {
+                "title": "Предпринимательский",
+                "id": "type_2"
+            }
+        ]
+    },
+    {
+        "header": "По географическому охвату:",
+        "description": ["Определите тип стартапа по критерию географический охват.", "В элементе - не более 2-х вариантов ответов."],
+        "variants": [
+            {
+                "title": "Локальный",
+                "id": "type_3"
+            },
+            {
+                "title": "Национальный",
+                "id": "type_4"
+            },
+            {
+                "title": "Глобальный",
+                "id": "type_5"
+            }
+        ]
+    }
+    ]
+
+    data = [
+        [
+            {
+                "id": "block_001",
+                "component_type": "selectable",
+                "text": "«Эффективные тренировки с лучшими тренерами в домашних условиях»"
+            },
+            {
+                "id": "block_002",
+                "component_type": "selectable",
+                "text": "Во время пандемии, когда были закрыты фитнес центры,"
+            },
+            {
+                "id": "block_003",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "группа тренеров совместно с приглашенными IT – специалистами разработала приложение  для онлайн занятий фитнесом в домашних условиях, вложив в разработку собственные средства."
+            },
+            {
+                "id": "block_004",
+                "component_type": "selectable",
+                "text": "Приложение представляет базу данных фитнес тренеров, которые готовы проводить онлайн тренировки для людей с разным уровнем и опытом спортивной подготовки."
+            },
+            {
+                "id": "block_005",
+                "component_type": "selectable",
+                "text": "Посетители приложения могут выбрать себе тренера для решения конкретных задач: общее оздоровление, снижение веса, улучшение фигуры, терапия проблем с суставами, связками и пр."
+            },
+            {
+                "id": "block_006",
+                "component_type": "selectable",
+                "answer": "type_4",
+                "text": "База тренеров насчитывает больше сотни специалистов разного профиля и специализаций из разных городов РФ и постоянно пополняется."
+            },
+            {
+                "id": "block_007",
+                "component_type": "selectable",
+                "text": "Занятия с тренером могут переходить из онлайн в офлайн по обоюдному желанию пользователя и тренера."
+            }
+        ],
+        [
+            {
+                "id": "block_008",
+                "component_type": "selectable",
+                "text": "Пользователь после регистрации может в личном кабинете выбрать нужные ему комплекс услуг, самостоятельно подобрать специалистов, или получить консультацию администратора, который поможет сформировать индивидуальную программу и подобрать тренера и других специалистов."
+            },
+            {
+                "id": "block_009",
+                "component_type": "selectable",
+                "text": "Возможны и другие опции: запись комплексов тренировок, которые можно приобрести по подписке, контроль эффективности  самостоятельных занятий и пр."
+            }
+        ],
+        [
+            {
+                "id": "block_010",
+                "component_type": "selectable",
+                "text": "В настоящее время"
+            },
+            {
+                "id": "block_011",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "команда разработчиков  завершает разработку опции  «консультации диетологов, нутрициологов  и кинези- терапевтов»  в онлайн формате."
+            },
+            {
+                "id": "block_012",
+                "component_type": "selectable",
+                "text": "С этой целью создается новая база специалистов в области управления питанием и специалистов по кинези терапии."
+            }
+        ],
+        [
+            {
+                "id": "block_013",
+                "component_type": "selectable",
+                "text": "Также на сайте приложения  разработан калькулятор, в личном кабинете клиент может самостоятельно рассчитать стоимость  месячной подписки по выбранным услугам, скорректировать стоимость каждой услуги с учетом бонусов и скидок, а также сезонных акций."
+            }
+        ],
+        [
+            {
+                "id": "block_014",
+                "component_type": "selectable",
+                "answer": "type_4",
+                "text": "Целевая аудитория стартапа –  граждане РФ,"
+            },
+            {
+                "id": "block_015",
+                "component_type": "selectable",
+                "text": "ведущие активный образ жизни, имеющие плотный график трудовой, образовательной активности."
+            }
+        ],
+        [
+            {
+                "id": "block_016",
+                "component_type": "selectable",
+                "text": "1. Люди, желающие заниматься фитнесом, но не имеющие возможности, желания посещать спортзал."
+            }
+        ],
+        [
+            {
+                "id": "block_017",
+                "component_type": "selectable",
+                "text": "2. Люди, которые хотели бы заниматься фитнесом с конкретным тренером, живущим в другом городе."
+            }
+        ],
+        [
+            {
+                "id": "block_018",
+                "component_type": "selectable",
+                "text": "Уверенные пользователи Интернет, имеющие домашний интернет или Интернет на мобильном устройстве."
+            },
+            {
+                "id": "block_019",
+                "component_type": "selectable",
+                "text": "В силу занятости они не имеют возможности регулярно посещать фитнес центр, но хотели бы сделать занятия фитнесом регулярными."
+            },
+            {
+                "id": "block_020",
+                "component_type": "selectable",
+                "text": "У них нет персонального тренера, но хотелось бы такого иметь."
+            }
+        ]
+    ]
+
+    student_texts = []
+
+    for paragraph_block in data:
+        pb = []
+        for block in paragraph_block:
+            if "id" in block.keys():
+                pb.append({
+                    "id": block["id"],
+                    "component_type": block["component_type"],
+                    "text": block["text"]
+                })
+
+            else:
+                pb.append({
+                    "text": block["text"],
+                    "component_type": block["component_type"],
+                })
+        student_texts.append(pb)
+
+    student_data = {
+        "component_types": component_types,
+        "student_texts": student_texts,
+        "modal_header": "Cоставляющие ценностного предложения:",
+        "cancel_component_title": "Убрать выделение"
+    }
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = {"student_texts": [x for x in data]}
+    correct_data = json.dumps(correct_data)
+    correct_data = correct_data.replace('"', "'")
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        # print(student_answer)
+        correct_answer = {}
+        for _paragraph_block in data:
+            for _block in _paragraph_block:
+                if "answer" in _block.keys():
+                    correct_answer[_block['id']] = _block['answer']
+        max_grade = len(correct_answer.keys())
+
+        # print max_grade
+        # print len(student_answer.keys())
+
+        feedback = {
+            "correct": [],
+            "incorrect": []
+        }
+        grade = 0
+        for student_block_id in student_answer.keys():
+            if student_block_id in correct_answer.keys():
+                if student_answer[student_block_id] == correct_answer[student_block_id]:
+                    feedback["correct"].append(student_block_id)
+                    grade = grade + 1
+            else:
+                feedback["incorrect"].append(student_block_id)
+                grade = grade - 1
+
+        if 0 > grade:
+            grade = 0
+
+        result_grade = grade/max_grade
+
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+  </script>
+</problem>

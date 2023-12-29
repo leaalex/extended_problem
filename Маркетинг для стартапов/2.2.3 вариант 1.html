@@ -1,0 +1,308 @@
+<problem>
+  <div>
+    <h2>Стартап Checkme — сервис по комплексной проверке здоровья</h2>
+    <div>
+      <div
+        data-type="SelectedTextApp"
+        class="adv-app"
+        data-initial-data="$student_data"
+      ></div>
+    </div>
+    <div style="display: none !important">
+      <customresponse cfn="check_answer">
+        <textline size="100" />
+        <br />
+      </customresponse>
+    </div>
+    <solution data-initial-data="$correct_data"></solution>
+  </div>
+  <script type="loncapa/python">
+    # -*- coding: utf-8 -*-
+    import json
+
+    component_types = [
+    {
+        "header": "Ключевые позиции:",
+        "description": ["Прочитайте кейс, выделите цветом  в тексте фрагменты, которые отвечают ключевым позициям «Навигационной бизнес  модели» О. Гассмана (Волшебный треугольник)", "В элементе - не более 5-ти вариантов ответов."],
+        "variants": [
+            {
+                "title": "ЧТО? (ценностное предложение)",
+                "id": "type_1"
+            },
+            {
+                "title": "КТО? (целевой сегнмент)",
+                "id": "type_2"
+            },
+            {
+                "title": "ПОЧЕМУ? (каков механизм извлечения прибыли?)",
+                "id": "type_3"
+            },
+            {
+                "title": "КАК? (Как создается ценностное предложение?)",
+                "id": "type_4"
+            }
+        ]
+    }
+    ]
+
+    data = [
+        [
+            {
+                "id": "block_001",
+                "component_type": "selectable",
+                "text": "Стартап Checkme  - один из первых агрегаторов для клиник по типу Booking.com"
+            }
+        ],
+        [
+            {
+                "id": "block_002",
+                "component_type": "selectable",
+                "text": "Checkme — сервис по комплексной проверке здоровья. Стартап запустила в 2019 году предпринимательница Анастасия Файзуленова."
+            },
+            {
+                "id": "block_003",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "Сервис Checkme нацелен на то, чтобы помогать клиентам проходить чекапы (комплексные проверки здоровья) по выгодной цене."
+            },
+            {
+                "id": "block_004",
+                "component_type": "selectable",
+                "text": "Большинство заболеваний можно вылечить на ранней стадии и сохранить качество жизни, если вовремя сделать диагностику."
+            }
+        ],
+        [
+            {
+                "id": "block_005",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "Основной продукт стартапа – чекапы (комплексные программы обследования организма). Они напоминают привычную для россиян диспансеризацию и направлены на выявление тяжелых заболеваний на ранней стадии."
+            },
+            {
+                "id": "block_006",
+                "component_type": "selectable",
+                "answer": "type_4",
+                "text": "Также у сервиса есть технологическая платформа, агрегирующая подключенные к ней клиники и лаборатории, в которых можно пройти чекапы от Checkme. Платформа анализирует цены обследований в разных клиниках,"
+            },
+            {
+                "id": "block_007",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "чтобы предложить пользователям оптимальные варианты по стоимости и местоположению."
+            }
+        ],
+        [
+            {
+                "id": "block_008",
+                "component_type": "selectable",
+                "answer": "type_4",
+                "text": "На платформе для комплексного медицинского обследования клиенты получают доступ к базе из более чем четырех тысяч клиник и лабораторий,"
+            },
+            {
+                "id": "block_009",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "пользователи могут мгновенно сравнить цены и принять решение о записи на обследование."
+            },
+            {
+                "id": "block_010",
+                "component_type": "selectable",
+                "text": "При этом списки обследований разрабатывают врачи команды стартапа, которых в команде больше 20."
+            }
+        ],
+        [
+            {
+                "id": "block_011",
+                "component_type": "selectable",
+                "text": "«Ежегодная проверка», по словам фаундера, оказалась очень понятным для аудитории продуктом: «У многих она ассоциируется с диспансеризацией и не требует особого продвижения»."
+            },
+            {
+                "id": "block_012",
+                "component_type": "selectable",
+                "text": "Сейчас это один из самых популярных чекапов компании,"
+            },
+            {
+                "id": "block_013",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "на него приходится 60% продаж в сегменте b2c."
+            }
+        ],
+        [
+            {
+                "id": "block_014",
+                "component_type": "selectable",
+                "text": "Большую долю среди клиентов занимают чекапы для "
+            },
+            {
+                "id": "block_015",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "спортсменов любителей,"
+            },
+            {
+                "id": "block_016",
+                "component_type": "selectable",
+                "text": "участвующих в различных соревнованиях, например, марафонах. Им "
+            },
+            {
+                "id": "block_017",
+                "component_type": "selectable",
+                "answer": "type_1",
+                "text": "необходимо проходить предварительный чекап здоровья,"
+            },
+            {
+                "id": "block_018",
+                "component_type": "selectable",
+                "text": " который для них организуют "
+            },
+            {
+                "id": "block_019",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "компании, занимающиеся проведением  спортивных мероприятий Reg.place, Run lab, Golden Rings."
+            },
+        ],
+        [
+            {
+                "id": "block_020",
+                "component_type": "selectable",
+                "answer": "type_2",
+                "text": "Сервис Checkme интересен и  самим медицинским центрам."
+            },
+            {
+                "id": "block_021",
+                "component_type": "selectable",
+                "text": "Себестоимость привлечения клиентов стала очень высокой."
+            },
+            {
+                "id": "block_022",
+                "component_type": "selectable",
+                "answer": "type_4",
+                "text": "А с помощью различных агрегаторов клиники получают дополнительный источник трафика."
+            },
+            {
+                "id": "block_023",
+                "component_type": "selectable",
+                "answer": "type_3",
+                "text": "Стартап зарабатывает на комиссии за привлеченных пациентов, которая составляет от 10 до 35% в зависимости от договоренностей."
+            }
+        ],
+        [
+            {
+                "id": "block_024",
+                "component_type": "selectable",
+                "text": "Стартап продает до 2000 чекапов в месяц. Оборот за 2021 г., по прогнозу Файзуленовой, составит уже 40 млн руб. социальных сетях и отзывы клиентов, а также пиар-акции. "
+            },
+            {
+                "id": "block_025",
+                "component_type": "selectable",
+                "text": "Спрос на комплексные программы обследований растёт минимум на 10% в год."
+            }
+        ],
+        [
+            {
+                "id": "block_026",
+                "component_type": "selectable",
+                "answer": "type_3",
+                "text": "В 2020 году MedTech-стартап привлек инвестиции в размере $375 тыс. В числе инвесторов оказались Сергей Дашков и сингапурский фонд Altergate. В 2021 году Checkme привлёк $380 тысяч от Moscow Seed Fund и бизнес-ангелов."
+            },
+            {
+                "id": "block_027",
+                "component_type": "selectable",
+                "text": "Часть инвестиций была вложена в конструктор ДМС Checkme, другая — пошла на развитие на рынке медицинского туризма,"
+            },
+            {
+                "id": "block_028",
+                "component_type": "selectable",
+                "answer": "type_4",
+                "text": "развитие мобильного приложения Checkme"
+            },
+            {
+                "id": "block_029",
+                "component_type": "selectable",
+                "text": "и новых продуктов."
+            },
+            {
+                "id": "block_030",
+                "component_type": "selectable",
+                "text": "Проект реализует большое числе партнерских программ с такими крупными российскими компаниями, как «Тинькофф Банк», «Ингосстрах», YouDo и «Кухня на Районе»."
+            }
+        ]
+    ]
+
+    student_texts = []
+
+    for paragraph_block in data:
+        pb = []
+        for block in paragraph_block:
+            if "id" in block.keys():
+                pb.append({
+                    "id": block["id"],
+                    "component_type": block["component_type"],
+                    "text": block["text"]
+                })
+
+            else:
+                pb.append({
+                    "text": block["text"],
+                    "component_type": block["component_type"],
+                })
+        student_texts.append(pb)
+
+    student_data = {
+        "component_types": component_types,
+        "student_texts": student_texts,
+        "modal_header": "Cоставляющие ценностного предложения:",
+        "cancel_component_title": "Убрать выделение"
+    }
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = {"student_texts": [x for x in data]}
+    correct_data = json.dumps(correct_data)
+    correct_data = correct_data.replace('"', "'")
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)
+        # print(student_answer)
+        correct_answer = {}
+        for _paragraph_block in data:
+            for _block in _paragraph_block:
+                if "answer" in _block.keys():
+                    correct_answer[_block['id']] = _block['answer']
+        max_grade = len(correct_answer.keys())
+
+        # print max_grade
+        # print len(student_answer.keys())
+
+        feedback = {
+            "correct": [],
+            "incorrect": []
+        }
+        grade = 0
+        for student_block_id in student_answer.keys():
+            if student_block_id in correct_answer.keys():
+                if student_answer[student_block_id] == correct_answer[student_block_id]:
+                    feedback["correct"].append(student_block_id)
+                    grade = grade + 1
+            else:
+                feedback["incorrect"].append(student_block_id)
+                grade = grade - 1
+
+        if 0 > grade:
+            grade = 0
+
+        result_grade = grade/max_grade
+
+        if result_grade == 1:
+            ok = True
+        elif result_grade == 0:
+            ok = False
+        else:
+            ok = 'Partial'
+
+        return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+  </script>
+</problem>

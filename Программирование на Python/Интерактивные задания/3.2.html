@@ -1,0 +1,284 @@
+<problem>
+    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+    <link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"></link>
+    <script type="text/javascript" src="/static/highlight.js"></script>
+    <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+    </script>
+<script type="loncapa/python">
+task_id="YdfJtXXX"
+</script>
+
+    <p><strong>Цель:</strong> выстраивать верную структуру программного кода для решения системы линейных алгебраических уравнений с использованием библиотеки <code class="inline">NumPy</code>.</p>
+    <p><strong>Задание:</strong> заполните пропуски в коде.</p>
+
+    <div class="code-task">
+    <pre><code class="language-python">
+    <strong>Код</strong>
+    <hr />
+
+<div class="inline-input-task paragraph-class class_$task_id">
+    <span>
+<stringresponse answer="import" type="ci"><textline size="6"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span style="padding-left: 4px;">numpy as np</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>def kramer(A, nx, B):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span>  '''A - матрица коэффициентов СЛАУ,</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span>  nx - число неизвестных,</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span>B - столбец ответов''' </span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span># заготовка под вектор ответов</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span>X = []</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span># Расчет определителя матрицы A</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span style="padding-right: 4px;">det_A = </span>
+<span>
+    <stringresponse answer="np.linalg." type="ci"><textline size="10"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>det(A)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id"  style="padding-left: 40px;">
+<span style="padding-right: 4px;">for i in</span>
+<span>
+    <stringresponse answer="range" type="ci"><textline size="5"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+    <span>(A.</span>
+<span>
+    <stringresponse answer="shape" type="ci"><textline size="5"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+    <span>[0]):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>    # расчет определителя матрицы A с заменой одного из столбцов</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>    A_x = A.</span>
+<span>
+    <stringresponse answer="copy" type="ci"><textline size="4"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>()</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>A_x[</span>
+<stringresponse answer=":" type="ci"><textline size="1"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+<span>,i] = B[:, 0]</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>det_x = </span>
+<span>
+<stringresponse answer="np.linalg.det" type="ci"><textline size="13"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>(A_x)</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>    # расчет неизвестной переменной </span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>x = np.</span>
+<span>
+    <stringresponse answer="round" type="ci"><textline size="5"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="det_x" type="ci"><textline size="5"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>/</span>
+<span>
+<stringresponse answer="det_A" type="ci"><textline size="5"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>,</span>
+<span>
+<stringresponse answer="3" type="ci"><textline size="1"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>)</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>    X.</span>
+<span>
+<stringresponse answer="append" type="ci"><textline size="6"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>(x)</span>
+ </div>   
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>return np.array(X).</span>    
+<span>
+<stringresponse answer="reshape" type="ci"><textline size="7"/></stringresponse>
+<solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>(nx, 1)</span>
+</div>
+
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>A = np.array([[1, 1, 2, -1],</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 134px;">
+<span>[4, 1, -2, 1],</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 134px;">
+<span>[1, -1, 1, 2],</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 134px;">
+<span>[1, -1, -1, -2]])</span>
+ </div>   
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>B = np.array([[9], [7], [-6], [5]])</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-right: 4px;">ans = </span>
+<span>
+    <stringresponse answer="kramer" type="ci"><textline size="6"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+<span>(A, A.shape[1], B)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>print(ans)</span>
+</div>
+    
+
+
+
+
+
+
+<!--
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>with</span>
+    <span style="padding-left: 4px;">
+        <stringresponse answer="open" type="ci"><textline size="4"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>("/file.txt") as fp:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+    <span>while</span>
+    <span style="padding-left: 4px;">
+        <stringresponse answer="True" type="ci"><textline size="4"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>line = </span>
+    <span>
+    <stringresponse answer="fp" type="ci"><textline size="2"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>.</span>
+    <span>
+    <stringresponse answer="readline" type="ci"><textline size="8"/></stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>()</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>if not line:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+    <span>
+        <stringresponse answer="break" type="ci"><textline size="5"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>data = line.split() # в строке имя параметра и численное значение</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+    <span>if len(</span>
+    <span>
+        <stringresponse answer="data" type="ci"><textline size="4"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+        <span>) == 2:</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+        <span> # число выводится с точностью 2 знака после запятой</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+    <span>print('{} {:.2f}'.format(data[0],</span>
+    <span>
+        <stringresponse answer="float" type="ci"><textline size="5"/></stringresponse>
+        <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>(data[1])))</span>
+    </div>
+    -->
+    </code></pre>
+      </div>
+    </problem>
+    

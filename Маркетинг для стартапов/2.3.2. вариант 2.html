@@ -1,0 +1,298 @@
+<problem>
+  <style>
+    .center {
+      text-align: center !important;
+    }
+    .h100 {
+      height: 100px !important;
+    }
+    .answers .answer,
+    .matching-table .answer {
+      padding: 4px !important;
+      margin: 4px !important;
+      font-size: 0.75em !important;
+      line-height: 1.25em !important;
+    }
+    .conf-header {
+      vertical-align: middle !important;
+    }
+  </style>
+  <script type="loncapa/python">
+    import json
+    import random
+    import string
+
+    data = {
+        "content": {
+            "body": "",
+            "answers_title" : '',
+            },
+    "table":
+    [
+        [
+            '__Ключевые партнеры__ .{.center}',
+            '__Ключевые действия__ .{.center}',
+            '__Ценностное предлоожение__ .{.center}',
+            '__Взаимодействие с клиентами__ .{.center}',
+            '__Сегменты клиентов__ .{.center}'
+        ],
+        [
+            ['Учителя иностранного языка; репетиторы по иностранному языку'],
+            ['Обеспечение ребенка индивидуальными занятиями разговорным английским с репетитором или в языковых группах. Обучение проводится в игровой форме, что поддерживает интерес ребенка к занятиям'],
+            ['Неограниченные индивидуальные занятиями разговорным английским за малую долю затрат'],
+            ['Приложение-сайт', 'Социальные сети', 'Учителя иностранного языка'],
+            ['Родители детей, желающие обучить ребенка английскому языку, учителя и репетиторы'],
+        ],
+        [
+            '__Ключевые ресурсы__ .{.center}',
+            '__Каналы сбыта__ .{.center}',
+        ],
+        [
+            ['Приложение', 'Бизнес ангелы'],
+            ['Приложение-сайт', 'Учителя иностранного языка в школах'],
+        ],
+        [
+            '__Структура издержек__ .{.center}',
+            '__Потоки доходов__ .{.center}',
+        ],
+        [
+            ['Обслуживание и развитие Приложения', 'Продвижение Buddy. Ai на рынки других стран', 'Оплата работы персонала компании'],
+            ['Онлайн продажи через Приложение', 'Привлечение средств бизнес ангелов'],
+        ]
+
+    ],
+        "distractors": [],
+      "settings":{
+            "is_exist_markdown": True,
+            "is_exist_advanced_style": True,
+            'is_exist_mathjax': True,
+            'is_exist_image': True,
+            'show_incorrect': False,
+            "rowspan": { 2:{1:3,3:5,5:3},},
+            "colspan": {5:{1:2, 2:2},6:{1:2, 2:2}},
+      },
+        "style": {
+          "colls": ['w20','w20','w20','w20','w20','w20'],
+          "rows": ['', 'h100', '', 'h100', '', 'h100'],
+        }
+    }
+
+
+    def generate_id(length=8):
+        return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+    data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+    data["settings"] = data["settings"] if "settings" in data.keys() else {}
+    data["style"] = data["style"] if "style" in data.keys() else {}
+    correct_answer = {}
+    student_data = {
+        "table": [],
+        "answers": [],
+        "settings": data["settings"],
+        "style": data["style"],
+        "content": data["content"]
+    }
+
+    use_multi_answers = ''
+    if "multi_answers" in data["settings"].keys():
+        if data["settings"]["multi_answers"] == "horizontal":
+            use_multi_answers = "horizontal"
+        elif data["settings"]["multi_answers"] == "vertical":
+            use_multi_answers = "vertical"
+
+
+    all_answers_obj = {}
+
+    for row_index, row in enumerate(data["table"]):
+        student_data["table"].append([])
+        for column_index, cell in enumerate(row):
+            student_cell = {}
+            if not isinstance(cell, str):
+                student_cell["id"] = generate_id()
+                student_cell["isFixed"] = False
+                correct_answer[student_cell["id"]] = []
+
+                for cell_answer in cell:
+                    cell_answer_id = generate_id()
+
+                    if use_multi_answers:
+                        direction_index = column_index if use_multi_answers == 'vertical' else row_index
+                        if "block" + str(direction_index) not in all_answers_obj.keys():
+                            all_answers_obj["block" + str(direction_index)] = []
+                        all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
+
+                    student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                    correct_answer[student_cell["id"]].append(cell_answer_id)
+            else:
+                student_cell["value"] = [cell]
+                student_cell["isFixed"] = True
+            student_data["table"][row_index].append(student_cell)
+
+
+    for distractor in data["distractors"]:
+        student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+    if use_multi_answers:
+        student_data["answers"] = []
+        for block_idx, block_key in enumerate(all_answers_obj.keys()):
+            student_data["answers"].append(all_answers_obj[block_key])
+            try:
+                if isinstance(data["distractors"][block_idx], list):
+                    for dist in data["distractors"][block_idx]:
+                        student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
+            except:
+                pass
+                # raise Exception("DISTRACTORS ERROR")
+
+
+    random.shuffle(student_data["answers"])
+
+    def get_response(grade_decimal, wrong_answers=None):
+        response = {}
+        response["grade"] = grade_decimal
+        if wrong_answers is not None:
+            response["wrong_answers"] = wrong_answers
+        if grade_decimal == 1:
+            response["ok"] = True
+        elif grade_decimal == 0:
+            response["ok"] = False
+        else:
+            response["ok"] = 'Partial'
+        return response
+
+
+    def check_partially(c_a, s_a):
+        result = {
+            "grade": 0.0,
+            "wrong_answers": [],
+        }
+        local_grade = 0
+        for ans in c_a:
+            if ans in s_a:
+                local_grade += 1
+        for ans in s_a:
+            if ans not in c_a:
+                result["wrong_answers"].append(ans)
+        result["grade"] = local_grade
+
+        return result
+
+
+    def check_answer(expect, ans):
+        student_answer = json.loads(ans)["answer"]
+        max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+        grade = 0
+        wrong_answers = []
+
+        for correct_cell_id in correct_answer.keys():
+            correct_cell = correct_answer[correct_cell_id]
+            res = check_partially(correct_cell, student_answer[correct_cell_id])
+            grade += res["grade"]
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+        response = get_response(float(grade / max_grade), wrong_answers, )
+
+        return {
+            'input_list': [
+                {
+                    # true, false partially
+                    'ok': response['ok'],
+                    # string - отображаения под Input'ом
+                    # как проавило сюда отправляется json со всеми дополнительными данными
+                    'msg': str(json.dumps(response)),
+                    # number [0, 1] - оценка за задание
+                    'grade_decimal': response['grade']
+                },
+            ]
+        }
+
+
+    student_data = json.dumps(student_data)
+    student_data = student_data.replace('"', "'")
+
+    correct_data = json.dumps(data)
+    correct_data = correct_data.replace('"', "'")
+  </script>
+  <div>
+    <h2>
+      Сервис Buddi. Ai –голосовой репетитор по английскому языку для детей.
+    </h2>
+    <p>
+      Специализируется на обучении детей английскому языку в игровой форме.
+      Стартаперы из Красноярска Иван Крюков и Дмитрий Плотников в 2017 году
+      запустили в США платформу Buddy. ai. Сервис предлагает услуги виртуального
+      репетитора по английскому языку для обучения детей в возрасте от четырех
+      лет. Алгоритмы ИИ обучены распознавать речь ребенка, позволяют
+      виртуальному репетитору успешно улучшать словарный запас и произношение
+      учащихся. Основная идея стартапа состоит в том, чтобы обеспечить ребенка
+      неограниченными индивидуальными занятиями разговорным английским за малую
+      долю затрат на уроки с репетитором или в языковых группах. Buddy рад учить
+      ребенка всегда, везде и сколько угодно - без дополнительных затрат и
+      хлопот. Игры и развлечения поддерживают интерес ребенка к занятиям.
+    </p>
+    <p>
+      Основатели задумали Buddy. ai как голосового ассистента для ребенка.
+      Вскоре они поняли, что у платформы больше перспектив в образовательной
+      сфере, и преобразовали продукт — это стало лучшим решением, обеспечившим
+      разработчикам успех. За годы работы приложение Buddy. ai скачали суммарно
+      более 18 миллионов пользователей, на официальной странице платформы
+      указано, что более миллиона детей по всему миру уже подтянули свой
+      английский язык благодаря сервису. Услуги Buddy. Ai реализуются по
+      подписке, пробный урок предлагается бесплатно.
+    </p>
+    <p>
+      Уже на старте проект привлек инвестиции в размере $500 000 от
+      бизнес-ангела Константина Сенченко, одного из инвесторов Cubic AI. В
+      2020–2022 годах стартап Buddy. ai привлек $4,5 млн инвестиционных вложений
+      за несколько раундов с участием фондов Leta Capital, YellowRockets, One
+      Way Ventures и др.
+    </p>
+    <p>
+      В 2021 году произошла стратегически важная M&amp;A-сделка по объединению
+      Buddy. ai со стартапом Edwin. В 2022-м компания вышла на рынок Бразилии,
+      Франции, Германии и в регион MENA (Ближний Восток и Северная Африка).
+      Выручка Buddy. ai составила $2,5 млн за девять месяцев 2022 года.
+    </p>
+    <p><strong>Задание</strong></p>
+    <p>
+      Прочитайте кейс, внесите в каждое поле бизнес модели А. Остервальдера
+      соответствующую информацию из списка
+    </p>
+  </div>
+
+  <div
+    class="adv-app"
+    data-type="MatchingTableVueApp"
+    data-initial-data="$student_data"
+    data-static="/static/_"
+  >
+    <span class="loadingspinner" />
+    <style>
+      .loadingspinner {
+        display: block;
+        margin: 0 auto;
+        pointer-events: none;
+        width: 2.5em;
+        height: 2.5em;
+        border: 0.4em solid transparent;
+        border-color: #eee;
+        border-top-color: #3e67ec;
+        border-radius: 50%;
+        animation: loadingspin 1s linear infinite;
+      }
+
+      @keyframes loadingspin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </div>
+  <div style="display: none">
+    <customresponse cfn="check_answer">
+      <textline size="120" />
+    </customresponse>
+    <solution data-initial-data="$correct_data" />
+  </div>
+</problem>

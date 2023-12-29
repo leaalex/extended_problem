@@ -3,6 +3,21 @@
     .center {
       text-align: center !important;
     }
+    .h100 {
+      height: 100px !important;
+    }
+
+    /*      
+        .answers .answer, .matching-table .answer{
+          padding: 4px !important;
+          margin: 4px !important;
+          font-size: 0.75em !important;
+          line-height: 1.25em !important;
+          
+        }
+       .conf-header {
+            vertical-align: middle !important;
+        }*/
   </style>
   <script type="loncapa/python">
     import json
@@ -12,36 +27,30 @@
     data = {
         "content": {
             "body": "",
-            "answers_title": "Data:"
-        },
-        "table": [
-        [
-          '__Data structuring degree__.{.text-energy} .{.center}','__Data__.{.text-energy} .{.center}'
-         ],
-         [
-            'Unstructured',
-            ['File with coordinates of points that define the 3D relief of a section of the earth`s surface'],
-         ],
-         [
-            'Semi-structured',
-            ['Protocol of diagnostic tests of electrical equipment in an XLS file'],
-         ],
-         [
-            'Structured',
-            ['Passport data of electrical equipment in a CSV file'],
-         ]
-        ],
+            "answers_title" : '__Метрики:__',
+            },
+    "table":
+    [
+        ['__Группа__ .{.center}', '__Метрики__ .{.center}'],
+        ['«Социально-демографические критерии»', ['Религиозные взгляды', 'Уровень формального образования', 'Уровень занимаемой должности']],
+        ['«Финансово-экономические критерии»', ['Официальные источники дохода', 'Наличие денежных накоплений в семье']],
+        ['«Географические критерии»', ['Транспортная доступность района', 'Доступность СМИ в регионе']],
+        ['«Психографические критерии, особенности образа жизни»', ['Хобби', 'Наиболее распространенные способы проведения досуга']],
+        ['«Критерии потребительского опыта»', ['Частота совершения покупок', 'Повод для совершения покупки', 'Статус пользователя']],
+    ],
+        "distractors": [],
       "settings":{
             "is_exist_markdown": True,
             "is_exist_advanced_style": True,
-            'is_exist_mathjax': False,
-            'is_exist_image': False,
-            'show_incorrect': True,
-            "capacity": 4,
+            'is_exist_mathjax': True,
+            'is_exist_image': True,
+            'show_incorrect': False,
+            "rowspan": {},
+            "colspan": {},
       },
-      "style": {
-            'rows': ['', ''],
-            'colls': ['w20', '', ]
+        "style": {
+          "colls": ['w30'],
+          "rows": ['', 'h100', 'h100', 'h100', 'h100', 'h100'],
         }
     }
 
@@ -49,7 +58,7 @@
     def generate_id(length=8):
         return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
 
-    show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
+
     data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
     data["settings"] = data["settings"] if "settings" in data.keys() else {}
     data["style"] = data["style"] if "style" in data.keys() else {}
@@ -68,6 +77,7 @@
             use_multi_answers = "horizontal"
         elif data["settings"]["multi_answers"] == "vertical":
             use_multi_answers = "vertical"
+
 
     all_answers_obj = {}
 
@@ -156,8 +166,7 @@
             correct_cell = correct_answer[correct_cell_id]
             res = check_partially(correct_cell, student_answer[correct_cell_id])
             grade += res["grade"]
-            if show_incorrect:
-                wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
 
         response = get_response(float(grade / max_grade), wrong_answers, )
 
@@ -184,19 +193,9 @@
   </script>
   <div>
     <p>
-      <strong>Purpose:</strong> to determine the degree of data structuring.
-    </p>
-    <p><strong>Assignment</strong></p>
-    <p>
-      Determine to what extent the enumerated data objects can have a
-      well-defined structure.
-    </p>
-    <p>
-      Distribute the given objects according to the degree of data structuring.
-    </p>
-    <p>
-      Complete the table by moving the correct answers to the appropriate cells
-      in the table.
+      Указаны 5 базовых групп критериев сегментации рынка и выбора целевой
+      аудитории. Ниже приведены примеры конкретных «метрик». Распределите все
+      метрики списка по 5 ключевым группам.
     </p>
   </div>
   <div
