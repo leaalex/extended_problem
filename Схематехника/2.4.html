@@ -1,0 +1,244 @@
+<problem>
+<script type="loncapa/python">
+taskId = "lhbjnlk46gh"
+
+answer = [0,1,0,2,1,1]
+
+def check_answer(expect, ans):
+    mas = ans.split(',')
+    studentAnswer = []
+    for i in mas:
+        studentAnswer.append(int(i))
+    studentGrade = False
+    if(len(answer) == len(studentAnswer)):
+        if(answer == studentAnswer):
+            studentGrade = True
+    if studentGrade == False:
+        return {'input_list': [ { 'ok': False, 'msg': 'Ответ неверен!'},]}
+    if studentGrade == True:
+        return {'input_list': [{ 'ok': True, 'msg': "Ответ верен", 'grade_decimal':1},]}  
+        
+</script>
+
+<style>
+    #$taskId {
+    width: 500px;
+    max-width: 100%; /* Чтобы SVG не выходил за пределы контейнера */
+    height: auto; /* Соотношение сторон сохраняется */
+    }
+
+    .math-text {
+        font-size: 20px;
+    }
+
+    #$taskId .zone-text {
+    font-size: 29px;
+    font-family: Open Sans;
+    }
+
+    #$taskId .area:hover {
+    cursor: pointer;
+    stroke: black;
+    stroke-width: 1;
+    -webkit-transition: all 350ms;
+    }
+
+    #$taskId text {
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+
+    #$taskId input {
+        display: none !important;
+    }
+
+    .containerTask {
+        display: grid;
+        place-items: center; /* Центрирование по горизонтали и вертикали */
+    }
+    .containerTask #$taskId {
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); /* Легкая тень */
+        border-radius: 8px; /* Закругленные углы для плавного эффекта */
+        padding: 20px; /* Отступы внутри контейнера */
+        background-color: white; /* Цвет фона для контейнера */
+    }
+
+    .text-container {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .description-text {
+        font-size: 18px;
+        font-weight: 400;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .containerTask::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top left, #ffe6e9, #e6e9ff);
+        z-index: -1;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+</style>
+
+<script type="text/javascript">
+    var svgNS = "http://www.w3.org/2000/svg";
+    document.querySelector("#$taskId input").value = "0,0,0,0,0,0";
+
+    var contentMap = {
+        "answer-1": ["\u0417", "\u0421"], // "С" in Unicode
+        "answer-2": ["\u0417", "\u0421"], // "С" in Unicode
+        "answer-3": ["n+", "p+"],
+        "answer-4": ["p", "n", "SiO_2"],
+        "answer-5": ["p+", "n+"],
+        "answer-6": ["n", "p"]
+    };
+    
+    function updateContent(item) {
+        var cls = Array.from(item.classList).find(function(cls) { return cls.startsWith("answer-"); });
+        var textDiv = item.querySelector(".math-text");
+        // Получаем текущий текст с MathJax
+        var currentText = textDiv.querySelector("script") ? textDiv.querySelector("script").textContent.trim() : "";
+        // Находим следующий элемент
+        var contentArray = contentMap[cls];
+        var currentIndex = contentArray.indexOf(currentText);
+        var nextIndex = (currentIndex + 1) % contentArray.length;
+        var nextText = contentArray[nextIndex];
+        // Удаление старого содержимого
+        while (textDiv.firstChild) {
+            textDiv.removeChild(textDiv.firstChild);
+        }
+    
+        // Обновление содержимого
+        textDiv.innerHTML = `\\(${nextText}\\)`;
+    
+        // Обновление класса для хранения состояния
+        item.classList.remove(cls + "-" + currentIndex);
+        item.classList.add(cls + "-" + nextIndex);
+    
+        // Обработка MathJax
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, textDiv]);
+    }
+    
+
+    document.querySelector("#$taskId").addEventListener("click", function(event) {
+        var item = event.target.closest(".area");
+        if (!item) return;
+    
+        updateContent(item);
+        createAnswer();
+    });
+    
+    function createAnswer() {
+        var answer = [0, 0, 0, 0, 0, 0];
+        document.querySelectorAll(".area").forEach(function(zone, i) {
+            var cls = `answer-${i+1}`;
+            zone.classList.forEach(function(className) {
+                if (className.startsWith(cls + "-")) {
+                    answer[i] = parseInt(className.split("-")[2]);
+                }
+            });
+        });
+        document.querySelector("#$taskId input").value = answer.join(",");
+    }
+    
+    if (document.querySelector("#$taskId input").value) {
+        buildValues();
+    } else {
+        document.querySelector("#$taskId input").value = "0,0,0,0,0,0";
+    }
+    
+    function buildValues() { 
+        var arr = document.querySelector("#$taskId input").value.split(",");
+        arr.forEach(function(val, i) {
+            if (val != 0) setOne(`zone_${i+1}`, val);
+        });
+    }
+    
+    function setOne(className, val) {
+        var build = document.querySelector("#$taskId");
+        var area = build.querySelector(`.${className}`);
+        area.classList.add(`answer-${val}`);
+        area.querySelector(".math-text").innerHTML = contentMap[`answer-${val}`][0];
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, area.querySelector(".math-text")]);
+    }
+</script>
+<div class="text-container">
+    <p class="description-text">
+        На рисунке приведена структура МДП-транзистора с индуцированным каналом, на которой не приведены обозначения типа проводимости подложки, областей стока и истока, металлических контактов затвора и стока, области подзатворного диэлектрика. Выберите из выпадающего списка обозначения для перечисленных областей, соответствующие МДП-транзистору с индуцированным каналом n-типа.
+    </p>
+</div>
+
+<div class="containerTask">
+<div id="$taskId">
+    <svg id="Слой_1" data-name="Слой 1" viewBox="0 0 500 400">
+    <defs>
+        <style>
+        .cls-1 { fill: #fff; }
+        .cls-1, .cls-2, .cls-3 { stroke: #000; stroke-miterlimit: 10; stroke-width: 4px; }
+        .cls-2, .cls-3 { fill: none; }
+        .cls-2 { stroke-linecap: square; }
+        .cls-4 { fill: url(#grad1); }
+        </style>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#b0b6d4;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e4b0cf;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <image href="/static/shem.jpg" x="0" y="0" width="500" height="400"/>
+    <g class="area zone_1 answer-1">
+        <rect class="cls-4" x="175.5" y="144" width="47" height="33.33" />
+        <foreignObject x="185.5" y="144" width="47" height="33.33">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="math-text">\( \)</div>
+        </foreignObject>
+    </g>
+    <g class="area zone_2 answer-2">
+        <rect class="cls-4" x="273" y="156" width="47" height="33.33" />
+        <foreignObject x="280" y="156" width="47" height="33.33">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="math-text">\( \)</div>
+        </foreignObject>
+    </g>
+    <g class="area zone_3 answer-3">
+        <rect class="cls-4" x="273" y="193" width="47" height="33.33" />
+        <foreignObject x="282" y="193" width="47" height="33.33">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="math-text">\( \)</div>
+        </foreignObject>
+    </g>
+    <g class="area zone_4 answer-4">
+        <rect class="cls-4" x="275" y="240" width="55" height="33.33" />
+        <foreignObject x="278" y="240" width="55" height="33.33">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="math-text">\( \)</div>
+        </foreignObject>
+    </g>
+    <g class="area zone_5 answer-5">
+        <rect class="cls-4" x="80" y="193" width="47" height="33.33" />
+        <foreignObject x="87" y="193" width="47" height="33.33">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="math-text">\( \)</div>
+        </foreignObject>
+    </g>
+    <g class="area zone_6 answer-6">
+        <rect class="cls-4" x="175.5" y="340" width="47" height="33.33" />
+        <foreignObject x="190.5" y="340" width="47" height="33.33">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="math-text">\( \)</div>
+        </foreignObject>
+    </g>
+    </svg>
+    <customresponse cfn="check_answer">
+    <textline size="40" label="Ans1"/><br/>
+    </customresponse>
+</div>
+</div>
+</problem>

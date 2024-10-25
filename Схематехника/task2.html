@@ -1,0 +1,341 @@
+<problem>
+<script type="loncapa/python">
+taskId = "lhbjnlk46gh"
+
+answer = [0,1,0,2,1,1]
+
+def check_answer(expect, ans):
+    mas = ans.split(',')
+    studentAnswer = []
+    for i in mas:
+        studentAnswer.append(int(i))
+    studentGrade = False
+    if(len(answer) == len(studentAnswer)):
+        if(answer == studentAnswer):
+            studentGrade = True
+    if studentGrade == False:
+        return {'input_list': [ { 'ok': False, 'msg': 'Ответ неверен!'},]}
+    if studentGrade == True:
+        return {'input_list': [{ 'ok': True, 'msg': "Ответ верен", 'grade_decimal':1},]}  
+</script>  
+<style>
+#$taskId{
+width: 500px;
+}  
+
+#$taskId input{
+    display: none !important;
+  }
+
+#$taskId .zone-text{
+font-size: 29px;
+font-family: Open Sans;
+}
+#$taskId .area:hover{
+cursor: pointer;
+    
+stroke: black; 
+stroke-width: 1;  
+-webkit-transition: all 350ms;
+}
+
+#$taskId text{
+    -moz-user-select: -moz-none;
+-o-user-select: none;
+-khtml-user-select: none;
+-webkit-user-select: none;
+user-select: none;
+}  
+</style>
+
+<script type="text/javascript">  
+var svgNS = "http://www.w3.org/2000/svg";
+function $taskIdcreateText(){
+
+var text_1 = document.createElementNS(svgNS, "text");
+text_1.setAttributeNS(null,"class","zone-text"); 
+text_1.setAttributeNS(null,"transform", "translate(190 170)");
+text_1.innerHTML = "З";
+
+var text_2 = document.createElementNS(svgNS, "text");
+text_2.setAttributeNS(null,"class","zone-text"); 
+text_2.setAttributeNS(null,"transform", "translate(288.33 184.33)");
+text_2.innerHTML = "З";
+
+var text_3 = document.createElementNS(svgNS, "text");
+text_3.setAttributeNS(null,"class","zone-text "); 
+text_3.setAttributeNS(null,"transform", "translate(288.33 222.33)");
+text_3.innerHTML = "n+";
+
+var text_4 = document.createElementNS(svgNS, "text");
+text_4.setAttributeNS(null,"class","zone-text "); 
+text_4.setAttributeNS(null,"transform", "translate(295 267.33)");
+text_4.innerHTML = "p";
+
+var text_5 = document.createElementNS(svgNS, "text");
+text_5.setAttributeNS(null,"class","zone-text "); 
+text_5.setAttributeNS(null,"transform", "translate(95 222.33)");
+text_5.innerHTML = "p+";
+
+var text_6 = document.createElementNS(svgNS, "text");
+text_6.setAttributeNS(null,"class","zone-text "); 
+text_6.setAttributeNS(null,"transform", "translate(190 366.33)");
+text_6.innerHTML = "n";
+
+document.getElementById("$taskId").getElementsByClassName("zone_1")[0].appendChild(text_1);
+document.getElementById("$taskId").getElementsByClassName("zone_2")[0].appendChild(text_2);
+document.getElementById("$taskId").getElementsByClassName("zone_3")[0].appendChild(text_3);
+document.getElementById("$taskId").getElementsByClassName("zone_4")[0].appendChild(text_4);
+document.getElementById("$taskId").getElementsByClassName("zone_5")[0].appendChild(text_5);
+document.getElementById("$taskId").getElementsByClassName("zone_6")[0].appendChild(text_6);
+}
+
+$taskIdcreateText();
+
+var $taskIdAreas = document.querySelector("#$taskId").querySelectorAll(".area");  
+
+$taskIdAreas.forEach(function(item, i, element) {
+item.addEventListener("click", function(){ 
+    if(item.classList.contains("answer-1")){
+    item.classList.remove("answer-1");
+        item.classList.add("answer-1-one");
+    item.querySelector("text").innerHTML = "С";
+    }
+    else if(item.classList.contains("answer-1-one")){
+    item.classList.remove("answer-1-one");
+        item.classList.add("answer-1");
+    item.querySelector("text").innerHTML = "З";
+    }
+    if(item.classList.contains("answer-2")){
+    item.classList.remove("answer-2");
+        item.classList.add("answer-2-one");
+    item.querySelector("text").innerHTML = "С";
+    }
+    else if(item.classList.contains("answer-2-one")){
+    item.classList.remove("answer-2-one");
+        item.classList.add("answer-2");
+    item.querySelector("text").innerHTML = "З";
+    }
+    if(item.classList.contains("answer-3")){
+    item.classList.remove("answer-3");
+        item.classList.add("answer-3-one");
+    item.querySelector("text").innerHTML = "p+";
+    }
+    else if(item.classList.contains("answer-3-one")){
+    item.classList.remove("answer-3-one");
+        item.classList.add("answer-3");
+    item.querySelector("text").innerHTML = "n+";
+    }
+    
+    if(item.classList.contains("answer-4")){
+    item.classList.remove("answer-4");
+    item.classList.remove("answer-4-two");
+    item.classList.add("answer-4-one");
+    item.querySelector("text").innerHTML = "n";
+    }
+    else if(item.classList.contains("answer-4-one")){
+    item.classList.remove("answer-4-one");
+    item.classList.add("answer-4-two");
+    item.querySelector("text").innerHTML = "\\(SiO_{2}\\)";
+    }
+    else if(item.classList.contains("answer-4-two")){
+    item.classList.remove("answer-4-one");
+    item.classList.remove("answer-4-two");
+    item.classList.add("answer-4");
+    item.querySelector("text").innerHTML = "p";
+    }
+
+    if(item.classList.contains("answer-5")){
+    item.classList.remove("answer-5");
+        item.classList.add("answer-5-one");
+    item.querySelector("text").innerHTML = "n+";
+    }
+    else if(item.classList.contains("answer-5-one")){
+    item.classList.remove("answer-5-one");
+        item.classList.add("answer-5");
+    item.querySelector("text").innerHTML = "p+";
+    }
+
+    if(item.classList.contains("answer-6")){
+    item.classList.remove("answer-6");
+        item.classList.add("answer-6-one");
+    item.querySelector("text").innerHTML = "p";
+    }
+    else if(item.classList.contains("answer-6-one")){
+    item.classList.remove("answer-6-one");
+        item.classList.add("answer-6");
+    item.querySelector("text").innerHTML = "n";
+    }
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, item]);
+
+$taskIdcreateAnswer();  
+});
+});
+
+function $taskIdcreateAnswer(){
+    var answer = [0, 0, 0, 0, 0, 0];
+if(document.querySelector("#$taskId").querySelector(".zone_1").classList.contains("answer-1")){
+    answer[0] = 0;
+    }	
+    else if(document.querySelector("#$taskId").querySelector(".zone_1").classList.contains("answer-1-one")){
+    answer[0] = 1;
+    }
+
+    if(document.querySelector("#$taskId").querySelector(".zone_2").classList.contains("answer-2")){
+    answer[1] = 0;
+    }	
+    else if(document.querySelector("#$taskId").querySelector(".zone_2").classList.contains("answer-2-one")){
+    answer[1] = 1;
+    }
+
+    if(document.querySelector("#$taskId").querySelector(".zone_3").classList.contains("answer-3")){
+    answer[2] = 0;
+    }	
+    else if(document.querySelector("#$taskId").querySelector(".zone_3").classList.contains("answer-3-one")){
+    answer[2] = 1;
+    }
+
+    if(document.querySelector("#$taskId").querySelector(".zone_5").classList.contains("answer-5")){
+    answer[4] = 0;
+    }	
+    else if(document.querySelector("#$taskId").querySelector(".zone_5").classList.contains("answer-5-one")){
+    answer[4] = 1;
+    }
+
+    if(document.querySelector("#$taskId").querySelector(".zone_4").classList.contains("answer-4")){
+    answer[3] = 0;
+    }	
+    else if(document.querySelector("#$taskId").querySelector(".zone_4").classList.contains("answer-4-one")){
+    answer[3] = 1;
+    }
+    else if(document.querySelector("#$taskId").querySelector(".zone_4").classList.contains("answer-4-two")){
+    answer[3] = 2;
+    }
+
+    if(document.querySelector("#$taskId").querySelector(".zone_6").classList.contains("answer-6")){
+    answer[5] = 0;
+    }	
+    else if(document.querySelector("#$taskId").querySelector(".zone_6").classList.contains("answer-6-one")){
+    answer[5] = 1;
+    }
+    
+document.querySelector("#$taskId").querySelector("input").value = answer.join(",");
+}
+
+if($("#$taskId input").val()){
+$taskIdbuildValues();
+}
+else{
+document.querySelector("#$taskId").querySelector("input").value = "0,0,0,0,0,0";
+}
+
+function $taskIdbuildValues(){ 
+var arr = $("#$taskId input").val().split(",");
+if(arr[0] == 1){
+    $taskIdSetOne("zone_1")  			
+    }
+    if(arr[1] == 1){
+    $taskIdSetOne("zone_2")  			
+    }
+    if(arr[2] == 1){
+    $taskIdSetOne("zone_3")  			
+    }
+    if(arr[4] == 1){
+    $taskIdSetOne("zone_4")  			
+    }
+    if(arr[3] == 1){
+    $taskIdSetOne("zone_5")  			
+    }
+    if(arr[5] == 1){
+    $taskIdSetOne("zone_6")  			
+    }
+}
+
+function $taskIdSetOne(className){
+var build = document.querySelector("#$taskId");
+build.getElementsByClassName(className)[0].classList.add("answer-1-one");
+build.getElementsByClassName(className)[0].classList.remove("answer-1");
+build.getElementsByClassName(className)[0].getElementsByTagName("text")[0].innerHTML = "З";
+
+build.getElementsByClassName(className)[0].classList.add("answer-2-one");
+build.getElementsByClassName(className)[0].classList.remove("answer-2");
+build.getElementsByClassName(className)[0].getElementsByTagName("text")[0].innerHTML = "З";
+
+build.getElementsByClassName(className)[0].classList.add("answer-3-one");
+build.getElementsByClassName(className)[0].classList.remove("answer-3");
+build.getElementsByClassName(className)[0].getElementsByTagName("text")[0].innerHTML = "n+";
+
+build.getElementsByClassName(className)[0].classList.add("answer-4-one");
+build.getElementsByClassName(className)[0].classList.remove("answer-4");
+build.getElementsByClassName(className)[0].getElementsByTagName("text")[0].innerHTML = "SiO2";
+
+build.getElementsByClassName(className)[0].classList.add("answer-5-one");
+build.getElementsByClassName(className)[0].classList.remove("answer-5");
+build.getElementsByClassName(className)[0].getElementsByTagName("text")[0].innerHTML = "n+";
+
+build.getElementsByClassName(className)[0].classList.add("answer-6-one");
+build.getElementsByClassName(className)[0].classList.remove("answer-6");
+build.getElementsByClassName(className)[0].getElementsByTagName("text")[0].innerHTML = "p";
+}
+</script>
+
+
+
+<div id="$taskId">  
+
+<svg id="Слой_1" data-name="Слой 1" viewBox="0 0 500 400">
+<defs>
+<style>
+    .cls-1 {
+    fill: #fff;
+    }
+
+    .cls-1, .cls-2, .cls-3 {
+    stroke: #000;
+    stroke-miterlimit: 10;
+    stroke-width: 4px;
+    }
+
+    .cls-2, .cls-3 {
+    fill: none;
+    }
+
+    .cls-2 {
+    stroke-linecap: square;
+    }
+
+    .cls-4 {
+    fill: #b4c1c6;
+    }
+</style>
+</defs>
+
+<image href="/static/shem.jpg" x="0" y="0" width="500" height="400"/>
+<g class="area zone_1 answer-1">
+    <rect class="cls-4" x="175.5" y="144" width="47" height="33.33" />
+</g>
+
+<g class="area zone_2 answer-2">
+    <rect class="cls-4" x="273" y="156" width="47" height="33.33" />
+</g>
+
+<g class="area zone_3 answer-3">
+    <rect class="cls-4" x="273" y="193" width="47" height="33.33" />
+</g>
+<g class="area zone_4 answer-4">
+    <rect class="cls-4" x="280" y="240" width="47" height="33.33" />
+</g>
+<g class="area zone_5 answer-5">
+    <rect class="cls-4" x="80" y="193" width="47" height="33.33" />
+</g>
+<g class="area zone_6 answer-6">
+    <rect class="cls-4" x="175.5" y="340" width="47" height="33.33" />
+    <foreignObject width="47" height="33.33">\(\rm SiO_{2}\)</foreignObject>
+</g>
+
+</svg>
+<customresponse cfn="check_answer">
+    <textline  size="40" label="Ans1"/><br/>
+</customresponse>
+</div>
+</problem>
