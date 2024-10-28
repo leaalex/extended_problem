@@ -1,70 +1,32 @@
 <problem>
-<style>
-
-#$unique_id #select_task_input {
-    display: none !important;
-}
-
-#$unique_id .task-item {
-    display: inline;
-    padding: 1px;
-    }
-
-#$unique_id .task-paragraph{
-    display: inline-flex;
-    margin: 4px 0px;
-    /*border: 1px solid #e5e5e5;*/
-    width: 100%;
-}
-
-#$unique_id .task-item:hover{
-    /*background: #dcdada;*/
-    background: #a7ffaa;
-    cursor: pointer;
-}
-
-#$unique_id .task-item.selected-item:hover{
-    background: #ffb3b3;
-    /*background: #a7ffaa;*/
-    cursor: pointer;
-}
-
-#$unique_id .task-item.selected-item{
-    background: #ffff7e;
-}
-
-#$unique_id .task-paragraph-text{
-/*    background: #ffffffb3;
-    border: 1px solid #e5e5e5;
-    margin: 0 -7px;
-    padding: 4px 8px;
-        border-radius: 0px 4px 4px 4px;
-        width: 100%;*/
-}
-
-</style>
-
-    <script type="loncapa/python">
-import math
+<script type="loncapa/python">
 import json
 
 unique_id = "task_z8k42wz6"
+x1 = "I_0"
+x2 = "U_c"
+x3 = "\Delta U_{BX}"
+x4 = "R_{K}"
+x5 = "\phi_{t}"
+x6 = "2"
 
 def check_func(student_selected, correct_selected):
     response = {}
     max_grade = len(correct_selected)
-    grade = 0
     
-    for item_id in student_selected:
-        if item_id in correct_selected:
-            grade += 1
-        else:
-            grade -= 1
-    if 0 > grade:
-        grade = 0
+    # Создаем кортежи (index, element) для обеих последовательностей
+    correct_indexed = tuple(enumerate(correct_selected))
+    student_indexed = tuple(enumerate(student_selected))
 
-    grade_decimal = float(grade) / float(max_grade)
+    # Сравнение кортежей: если полностью совпадают — оценка 100%
+    if student_indexed == correct_indexed:
+        grade_decimal = 1.0
+    else:
+        # Подсчет правильных позиций и элементов
+        correct_count = sum(1 for i, el in correct_indexed if len(student_selected) > i and student_selected[i] == el)
+        grade_decimal = correct_count / max_grade
 
+    # Создаем ответ на основе grade_decimal
     response["grade"] = grade_decimal
     if grade_decimal == 1:
         ok = True
@@ -75,12 +37,13 @@ def check_func(student_selected, correct_selected):
     else:
         ok = 'Partial'
         message = 'Partial'
+    
     response["ok"] = ok
     response["message"] = message
     return response
 
 def check_answer(expect, ans):
-    correct_selected = ["hasu2v7d", "nvtnc0c3", "ui2dvoij", "wj8yilma", "relwf7bl"]
+    correct_selected = ["nvtnc0c30", "nvtnc0c35", "nvtnc0c33", "nvtnc0c34"]
     try:
         student_answer = json.loads(ans)
         student_answer = student_answer["answer"]
@@ -92,174 +55,137 @@ def check_answer(expect, ans):
 
 </script>
 
-<script type="text/javascript">
-    
-if (TaskSelectObjects == undefined) var TaskSelectObjects = {};
-
-function TaskSelectActivation(selector) {
-    Array.prototype.filter.call(document.querySelectorAll(selector), function(element) {
-        return element.dataset.status == undefined
-    }).forEach(function(element, i, array) {
-        TaskSelectObjects[element.id] = (new TaskSelectObjects(element, element.getAttribute("data")));
-        element.dataset.status = "activate";
-    });
-    setTimeout(function() {
-        TaskSelectActivation(selector)
-    }, 1000);
-}  
-function Answer(elementField) {
-    this.elementField = elementField;
-    this.fieldValue = "";
-    this.fieldObject = {};
-    this.get = function() {
-        this.fieldValue = elementField.value;
-        return this.fieldValue;
-    };
-    this.set = function(value) {
-        if (value == undefined) value = this.fieldValue;
-        elementField.value = value;
-    };
-    this.getJSON = function() {
-        if (this.isJsonString(this.get())) this.fieldObject = JSON.parse(this.get());
-        return this.fieldObject;
-    };
-    this.setJSON = function(object) {
-        if (object == undefined) object = this.fieldObject;
-        this.set(JSON.stringify(object))
-    };
-    this.isJsonString = function(str) {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    };
-};
-
-function TaskSelectObjects(element, data) {
-    this.element = element;
-
-    var answer = new Answer(element.querySelector("#select_task_input").querySelector("input[type='text']"));
-    var items = this.element.querySelectorAll(".task-item");
-    var student_answer = { selected: [] }; 
-    var problem = $("#" + element.id).closest(".problem");
-    var checkButton = $("button.submit", problem);
-    checkButton.attr("disabled", "disabled");
-
-    items.forEach(function(item) {
-        item.addEventListener("click", function() {
-            // Обработчик клика по элементу
-            if ($(item).hasClass('selected-item')) {
-                $(item).removeClass('selected-item');
-                // Удаляем элемент из массива при снятии выделения
-                removeSelected(item.id);
-            } else {
-                $(item).addClass('selected-item');
-                // Добавляем элемент в начало массива при выборе
-                addSelected(item.id);
-            }
-            setAnswer();
-        });
-    });
-
-    function addSelected(item_id) {
-        // Проверяем, есть ли элемент в массиве
-        const index = student_answer["selected"].indexOf(item_id);
-        if (index === -1) {
-            // Если элемента нет в массиве, добавляем его в начало
-            student_answer["selected"].unshift(item_id);
-        } else {
-            // Если элемент уже есть, перемещаем его на первое место
-            student_answer["selected"].splice(index, 1); // Удаляем его из текущей позиции
-            student_answer["selected"].unshift(item_id); // Добавляем в начало
-        }
+<style>
+    #$unique_id #select_task_input {
+        display: none !important;
     }
 
-    function removeSelected(item_id) {
-        const index = student_answer["selected"].indexOf(item_id);
-        if (index !== -1) {
-            student_answer["selected"].splice(index, 1); // Удаляем элемент из массива
-        }
+    #$unique_id .task-item {
+        display: inline;
+        padding: 1px;
+        cursor: pointer;
     }
 
-    function setAnswer() {
-        var answerDiv = element.querySelector(".answer");
-        answerDiv.innerHTML = ''; // Очищаем предыдущий ответ
-
-        // Устанавливаем стиль для отображения в одну строку
-        answerDiv.style.display = "flex"; // Используем Flexbox
-        answerDiv.style.flexWrap = "wrap"; // Разрешаем перенос элементов
-        answerDiv.style.gap = "5px"; // Добавляем промежуток между элементами
-
-        // Проверяем, есть ли выбранные элементы
-        if (student_answer["selected"].length) {
-            student_answer["selected"].forEach(function(item_id) {
-                var itemElement = document.getElementById(item_id);
-                if (itemElement) {
-                    var exists = Array.from(answerDiv.children).some(function(child) {
-                        return child.innerHTML === itemElement.innerHTML; // Сравниваем содержимое
-                    });
-
-                    // Если элемент еще не добавлен, добавляем его
-                    if (!exists) {
-                        var newElement = document.createElement('div');
-                        newElement.innerHTML = itemElement.innerHTML; // Копируем содержимое
-                        newElement.style.display = "inline-block"; // Отображаем элементы в одну строку
-                        answerDiv.appendChild(newElement); // Добавляем в ответ
-
-                        // Добавляем в очередь MathJax для обработки нового элемента
-                        MathJax.Hub.Queue(["Typeset", MathJax.Hub, newElement]);
-                    }
-                }
-            });
-        } else {
-            answerDiv.innerHTML = '<div>Нет выбранных элементов.</div>'; // Сообщение, если ничего не выбрано
-        }
+    #$unique_id .task-paragraph {
+        display: inline-flex;
+        margin: 4px 0px;
+        width: 100%;
     }
 
-    if (answer.get()) {
-        try {
-            var student_answer = answer.getJSON()["answer"];
-            student_answer["selected"].forEach(function(item_id) {
-                $("#" + item_id, element).addClass('selected-item');
-            });
-        } catch (err) {
-            setAnswer();
-        }
-    } else {
-        setAnswer();
+    #$unique_id .task-item:hover {
+        background: #a7ffaa;
     }
-}
 
-TaskSelectActivation(".task-select");
-</script>
+    #$unique_id .task-item.selected-item {
+        background: #ffff7e;
+    }
+
+    #$unique_id .answer {
+        padding: 5px;
+        border: 1px solid #e6e6e6;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+    }
+    .field {
+        padding: 5px;
+        border: 1px solid #e6e6e6;
+    }
+</style>
+
 
 <div id="$unique_id" class="task-select">
 
-<div style="padding: 5px;border: 1px solid #e6e6e6;">
-
-<div class="task-paragraph">
-    <div class="task-paragraph-text">
-    <div class="task-item" id="v2a74ba3">\(R1\)</div>
-    <div class="task-item" id="hasu2v7d">\(R_k\)</div>
-    <div class="task-item" id="cgovjcpe">\(\rm I_{Б0}\)</div>
-    <div class="task-item" id="nvtnc0c3">\(\rm U_{БЭ0}\)</div>
-    <div class="task-item" id="nvtnc0c5">\(\rm =\)</div>
+    <div class="field">
+        <div class="task-paragraph">
+            <div>Доступные символы: 
+            <div class="task-paragraph-text">
+                <div class="task-item" id="nvtnc0c30" onclick="selectItem(this)" data-item="$x1">\($x1\)</div>
+                <div class="task-item" id="nvtnc0c31" onclick="selectItem(this)" data-item="$x2">\($x2\)</div>
+                <div class="task-item" id="nvtnc0c32" onclick="selectItem(this)" data-item="$x3">\($x3\)</div>
+                <div class="task-item" id="nvtnc0c33" onclick="selectItem(this)" data-item="$x4">\($x4\)</div>
+                <div class="task-item" id="nvtnc0c34" onclick="selectItem(this)" data-item="$x5">\($x5\)</div>
+                <div class="task-item" id="nvtnc0c35" onclick="selectItem(this)" data-item="$x6">\($x6\)</div>
+            </div>
+        </div>
     </div>
-</div>
+    </div>
 
-<div class="answer" style="padding: 5px;border: 1px solid #e6e6e6;">
-</div>
+    <div class="field task-paragraph">
+        <div class="task-paragraph-text">
+            Составленная формула: 
+            <div id="formula-display">\( \)</div>
+        </div>
+    </div>
 
-</div>
     <div id="select_task_input">
-    <customresponse cfn="check_answer">
-        <textline size="40" value="$unique_id" />
-        <br/>
-    </customresponse>
-    <!-- <div class="message-about-grade"></div> -->
+        <customresponse cfn="check_answer">
+            <textline size="40" value="" />
+            <br/>
+        </customresponse>
     </div>
-
 </div>
+
+<script type="text/javascript">
+    let selectedElements = [];
+    const formulaDisplay = document.getElementById('formula-display');
+    const inputField = document.querySelector("#select_task_input input[type='text']");
+    let fractionParts = ["", "", "", ""];
+    const selected_elems = JSON.parse(inputField.value)['answer']['selected']
+
+    fractionParts = [
+        selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : document.getElementById(selected_elems[0]).getAttribute('data-item'),
+        selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : document.getElementById(selected_elems[1]).getAttribute('data-item'),
+        selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : document.getElementById(selected_elems[2]).getAttribute('data-item'),
+        selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : document.getElementById(selected_elems[3]).getAttribute('data-item'),
+    ];
+    let formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
+
+    formulaDisplay.innerHTML = formulaText;
+
+    function selectItem(element) {
+        const itemId = element.id;
+        const index = selectedElements.indexOf(itemId);
+        if (index !== -1) {
+            selectedElements.splice(index, 1);
+            element.classList.remove('selected-item');
+        } else {
+            selectedElements.push(itemId);
+            element.classList.add('selected-item');
+        }
+        fractionParts = [
+        selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : "",
+        selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : "",
+        selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : "",
+        selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : "",
+        selectedElements[4] ? document.getElementById(selectedElements[4]).getAttribute('data-item') : "",
+        selectedElements[5] ? document.getElementById(selectedElements[5]).getAttribute('data-item') : "",
+        ];
+        updateFormula();
+        setAnswer();
+    }
+
+    function updateFormula() {
+        // Обновляем текст формулы и рендерим MathJax
+        // let formulaText = selectedElements.map(function(id) {
+        // return document.getElementById(id).innerHTML; // Используем обычную функцию
+        // }).join(' ');
+        console.log(fractionParts)
+        let formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
+
+        formulaDisplay.innerHTML = formulaText;
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
+    }
+
+    function setAnswer() {
+        const answerJSON = {
+            "answer": {
+                "selected": selectedElements
+            }
+        };
+        inputField.value = JSON.stringify(answerJSON);
+    }
+</script>
+
 </problem>
