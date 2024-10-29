@@ -92,6 +92,9 @@ def check_answer(expect, ans):
         padding: 5px;
         border: 1px solid #e6e6e6;
     }
+    .hidden-item {
+        display: none;
+    }
 </style>
 
 
@@ -128,38 +131,23 @@ def check_answer(expect, ans):
 </div>
 
 <script type="text/javascript">
-    let selectedElements = [null, null, null, null];
+    const selectedElements = [null, null, null, null];
+    const elementColors = {};
     const formulaDisplay = document.getElementById('formula-display');
     const inputField = document.querySelector("#select_task_input input[type='text']"); 
-    let elementColors = {};
-    let fractionParts = ["", "", "", ""];
-    let selected_elems = ["", "", "", ""];
-    if (inputField.value !== '') {
-        selected_elems = JSON.parse(inputField.value)['answer']['selected']
-        fractionParts = [
-            selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : document.getElementById(selected_elems[0]).getAttribute('data-item'),
-            selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : document.getElementById(selected_elems[1]).getAttribute('data-item'),
-            selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : document.getElementById(selected_elems[2]).getAttribute('data-item'),
-            selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : document.getElementById(selected_elems[3]).getAttribute('data-item'),
-        ];
-        for (let i in selected_elems) {
-            selectedElements[i] = selected_elems[i];
-            elementColors[selected_elems[i]] = getRandomColor();
+    const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : ["", "", "", ""];
+    
+    selected_elems.forEach(function (elem, i) {
+        if (elem) {
+            selectedElements[i] = elem;
+            elementColors[elem] = getRandomColor();
         }
-    } else {
-        fractionParts = [
-            selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : "",
-            selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : "",
-            selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : "",
-            selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : "",
-        ];
+    });
+
+    function getRandomColor() {
+        const hue = Math.floor(Math.random() * 360);
+        return `hsl(${hue}, 100%, 75%)`;
     }
-
-
-
-    let formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
-
-    formulaDisplay.innerHTML = formulaText;
 
     function selectItem(element) {
         const itemId = element.id;
@@ -170,39 +158,25 @@ def check_answer(expect, ans):
             element.classList.remove('selected-item');
             element.style.backgroundColor = '';
         } else {
-            for (let i in selected_elems) {
+            const countSelected = selectedElements.filter(function (item) { return item !== null }).length;
+            for (let i in selectedElements) {
                 if (selectedElements[i] === null) {
                     selectedElements[i] = itemId;
-                    if (!elementColors[itemId]) {
-                        elementColors[itemId] = getRandomColor();
-                    }
+                    elementColors[itemId] = elementColors[itemId] || getRandomColor();
                     element.style.backgroundColor = elementColors[itemId];
                     element.classList.add('selected-item');
                     break;
                 }
             }
-            //selectedElements.push(itemId);
-            //element.classList.add('selected-item');
         }
-        fractionParts = [
-        selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : "",
-        selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : "",
-        selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : "",
-        selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : "",
-        selectedElements[4] ? document.getElementById(selectedElements[4]).getAttribute('data-item') : "",
-        selectedElements[5] ? document.getElementById(selectedElements[5]).getAttribute('data-item') : "",
-        ];
+
         updateFormula();
         setAnswer();
     }
 
     function updateFormula() {
-        // Обновляем текст формулы и рендерим MathJax
-        // let formulaText = selectedElements.map(function(id) {
-        // return document.getElementById(id).innerHTML; // Используем обычную функцию
-        // }).join(' ');
-        console.log(fractionParts)
-        let formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
+        const fractionParts = selectedElements.map(function(id) { return id ? document.getElementById(id).getAttribute('data-item') : ""});
+        const formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
 
         formulaDisplay.innerHTML = formulaText;
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
@@ -216,13 +190,18 @@ def check_answer(expect, ans):
         };
         inputField.value = JSON.stringify(answerJSON);
     }
-
-    function getRandomColor() {
-        const hue = Math.floor(Math.random() * 360);
-        const saturation = 100; // Полная насыщенность
-        const lightness = 75; // Высокая светлота для читаемого черного текста
-        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    
+    function updateAvailableItems() {
+        const items = document.querySelectorAll('.task-item');
+        items.forEach(function (item) {
+            if (!item.classList.contains('selected-item')) {
+                item.classList.add('hidden-item');
+            } else {
+                item.classList.remove('hidden-item');
+            }
+        });
     }
+
     updateFormula();
 </script>
 
