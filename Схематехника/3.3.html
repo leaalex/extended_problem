@@ -99,7 +99,7 @@ def check_answer(expect, ans):
 
     <div class="field">
         <div class="task-paragraph">
-            <div>Доступные символы: 
+            <div>Набор символов: 
             <div class="task-paragraph-text">
                 <div class="task-item" id="nvtnc0c30" onclick="selectItem(this)" data-item="$x1">\($x1\)</div>
                 <div class="task-item" id="nvtnc0c31" onclick="selectItem(this)" data-item="$x2">\($x2\)</div>
@@ -128,18 +128,35 @@ def check_answer(expect, ans):
 </div>
 
 <script type="text/javascript">
-    let selectedElements = [];
+    let selectedElements = [null, null, null, null];
     const formulaDisplay = document.getElementById('formula-display');
-    const inputField = document.querySelector("#select_task_input input[type='text']");
+    const inputField = document.querySelector("#select_task_input input[type='text']"); 
+    let elementColors = {};
     let fractionParts = ["", "", "", ""];
-    const selected_elems = JSON.parse(inputField.value)['answer']['selected']
+    let selected_elems = ["", "", "", ""];
+    if (inputField.value !== '') {
+        selected_elems = JSON.parse(inputField.value)['answer']['selected']
+        fractionParts = [
+            selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : document.getElementById(selected_elems[0]).getAttribute('data-item'),
+            selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : document.getElementById(selected_elems[1]).getAttribute('data-item'),
+            selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : document.getElementById(selected_elems[2]).getAttribute('data-item'),
+            selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : document.getElementById(selected_elems[3]).getAttribute('data-item'),
+        ];
+        for (let i in selected_elems) {
+            selectedElements[i] = selected_elems[i];
+            elementColors[selected_elems[i]] = getRandomColor();
+        }
+    } else {
+        fractionParts = [
+            selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : "",
+            selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : "",
+            selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : "",
+            selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : "",
+        ];
+    }
 
-    fractionParts = [
-        selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : document.getElementById(selected_elems[0]).getAttribute('data-item'),
-        selectedElements[1] ? document.getElementById(selectedElements[1]).getAttribute('data-item') : document.getElementById(selected_elems[1]).getAttribute('data-item'),
-        selectedElements[2] ? document.getElementById(selectedElements[2]).getAttribute('data-item') : document.getElementById(selected_elems[2]).getAttribute('data-item'),
-        selectedElements[3] ? document.getElementById(selectedElements[3]).getAttribute('data-item') : document.getElementById(selected_elems[3]).getAttribute('data-item'),
-    ];
+
+
     let formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
 
     formulaDisplay.innerHTML = formulaText;
@@ -148,11 +165,24 @@ def check_answer(expect, ans):
         const itemId = element.id;
         const index = selectedElements.indexOf(itemId);
         if (index !== -1) {
-            selectedElements.splice(index, 1);
+            selectedElements[index] = null;
+            delete elementColors[itemId];
             element.classList.remove('selected-item');
+            element.style.backgroundColor = '';
         } else {
-            selectedElements.push(itemId);
-            element.classList.add('selected-item');
+            for (let i in selected_elems) {
+                if (selectedElements[i] === null) {
+                    selectedElements[i] = itemId;
+                    if (!elementColors[itemId]) {
+                        elementColors[itemId] = getRandomColor();
+                    }
+                    element.style.backgroundColor = elementColors[itemId];
+                    element.classList.add('selected-item');
+                    break;
+                }
+            }
+            //selectedElements.push(itemId);
+            //element.classList.add('selected-item');
         }
         fractionParts = [
         selectedElements[0] ? document.getElementById(selectedElements[0]).getAttribute('data-item') : "",
@@ -186,6 +216,14 @@ def check_answer(expect, ans):
         };
         inputField.value = JSON.stringify(answerJSON);
     }
+
+    function getRandomColor() {
+        const hue = Math.floor(Math.random() * 360);
+        const saturation = 100; // Полная насыщенность
+        const lightness = 75; // Высокая светлота для читаемого черного текста
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    }
+    updateFormula();
 </script>
 
 </problem>
