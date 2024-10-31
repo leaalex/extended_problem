@@ -91,9 +91,16 @@ def check_answer(expect, ans):
     .field {
         padding: 5px;
         border: 1px solid #e6e6e6;
+        
     }
     .hidden-item {
         display: none;
+    }
+    .task-paragraph {
+        font-size: 1.8rem;
+    }
+    #formula-display {
+        font-size: 2rem !important;
     }
 </style>
 
@@ -104,12 +111,12 @@ def check_answer(expect, ans):
         <div class="task-paragraph">
             <div>Набор символов: 
             <div class="task-paragraph-text">
-                <div class="task-item" id="nvtnc0c30" onclick="selectItem(this)" data-item="$x1">\($x1\)</div>
-                <div class="task-item" id="nvtnc0c31" onclick="selectItem(this)" data-item="$x2">\($x2\)</div>
-                <div class="task-item" id="nvtnc0c32" onclick="selectItem(this)" data-item="$x3">\($x3\)</div>
-                <div class="task-item" id="nvtnc0c33" onclick="selectItem(this)" data-item="$x4">\($x4\)</div>
-                <div class="task-item" id="nvtnc0c34" onclick="selectItem(this)" data-item="$x5">\($x5\)</div>
-                <div class="task-item" id="nvtnc0c35" onclick="selectItem(this)" data-item="$x6">\($x6\)</div>
+                <div class="task-item" id="nvtnc0c30" onclick="selectItem(this)" data-item="$x1">\($x1\);</div>
+                <div class="task-item" id="nvtnc0c31" onclick="selectItem(this)" data-item="$x2">\($x2\);</div>
+                <div class="task-item" id="nvtnc0c32" onclick="selectItem(this)" data-item="$x3">\($x3\);</div>
+                <div class="task-item" id="nvtnc0c33" onclick="selectItem(this)" data-item="$x4">\($x4\);</div>
+                <div class="task-item" id="nvtnc0c34" onclick="selectItem(this)" data-item="$x5">\($x5\);</div>
+                <div class="task-item" id="nvtnc0c35" onclick="selectItem(this)" data-item="$x6">\($x6\).</div>
             </div>
         </div>
     </div>
@@ -175,7 +182,7 @@ def check_answer(expect, ans):
     }
 
     function updateFormula() {
-        const fractionParts = selectedElements.map(function(id) { return id ? document.getElementById(id).getAttribute('data-item') : ""});
+        const fractionParts = selectedElements.map(function(id) { return id ? document.getElementById(id).getAttribute('data-item') : "?"});
         const formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
 
         formulaDisplay.innerHTML = formulaText;
