@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  const few_questions = true
+  const current_problem_input = 0
+  const current_problem =
+    document.querySelectorAll('.vert')[current_problem_input]
+  if (current_problem) {
+    const next_problem =
+      document.querySelectorAll('.vert')[current_problem_input + 1]
+    const selector = few_questions
+      ? '.notification.success .icon.fa-check'
+      : '.correct'
+    if (current_problem.querySelectorAll(selector).length !== 0) {
+      next_problem.style.display = 'block'
+    } else {
+      const verticals = Array.from(document.querySelectorAll('.vert')).slice(
+        current_problem_input + 1
+      )
+      verticals.forEach(function (vert) {
+        vert.style.display = 'none'
+      })
+    }
+  }
+</script>

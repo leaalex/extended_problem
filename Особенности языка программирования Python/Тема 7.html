@@ -1,0 +1,283 @@
+<problem>
+    <div>
+        <div>
+
+            <p><strong>Цель</strong><br />Соотносить ключевые слова, применяемые в ветвлениях Python с местами их использования в коде.</p>
+            <p><strong>Задание</strong><br />Pаполните пропуски во фрагментах кода, используя правильные ключевые слова в ветвлениях.</p>
+
+        </div>
+        <div data-type="SQLBuilderApp" class="adv-app" data-initial-data='$student_data'></div>
+
+        <div style="height: 50px;"></div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": True,
+        "show_numbering": False,
+        "operator_title": "",
+        "correct_answer_title": "Верный ответ:",
+        "select_title": "Операторы:"
+    },
+    "data": [
+    {
+        "answers": [["for"], "if", "else", "elif", "while"],
+        "type": "operator",
+    },
+    {
+        "answers": " i",
+        "type": "black"
+    },
+    {
+        "answers": " in ",
+        "type": "operator"
+    },
+    {
+        "answers": "range",
+        "type": "text"
+    },
+    {
+        "answers": "(",
+        "type": "black"
+    },
+    {
+        "answers": "25",
+        "type": "operator"
+    },
+    {
+        "answers": "):",
+        "type": "black"
+    },
+    {
+         "answers": "\n    ",
+         "type": "text"
+    },
+    {
+        "answers": [["if"], "for", "else", "elif", "while"],
+        "type": "operator",
+    },
+    {
+        "answers": " (i == ",
+        "type": "black"
+    },
+    {
+        "answers": "10",
+        "type": "operator"
+    },
+    {
+        "answers": "):",
+        "type": "black"
+    },
+    {
+         "answers": "\n        ",
+         "type": "text"
+    },
+    {
+        "answers": "print",
+        "type": "text"
+    },
+    {
+        "answers": "(",
+        "type": "black"
+    },
+    {
+        "answers": '"i = 10"',
+        "type": "variable"
+    },
+    {
+        "answers": ")",
+        "type": "black"
+    },
+    {
+        "answers": "\n    ",
+        "type": "text"
+    },
+    {
+        "answers": ["if", "for", "else", ["elif"], "while"],
+        "type": "operator",
+    },
+    {
+        "answers": " (i == ",
+        "type": "black"
+    },
+    {
+        "answers": "15",
+        "type": "operator"
+    },
+    {
+        "answers": "):",
+        "type": "black"
+    },
+    {
+         "answers": "\n        ",
+         "type": "text"
+    },
+    {
+        "answers": "print",
+        "type": "text"
+    },
+    {
+        "answers": "(",
+        "type": "black"
+    },
+    {
+        "answers": '"i = 15"',
+        "type": "variable"
+    },
+    {
+        "answers": ")",
+        "type": "black"
+    },
+    {
+        "answers": "\n    ",
+        "type": "text"
+    },
+    {
+        "answers": ["if", "for", "else", ["elif"], "while"],
+        "type": "operator",
+    },
+    {
+        "answers": " (i == ",
+        "type": "black"
+    },
+    {
+        "answers": "20",
+        "type": "operator"
+    },
+    {
+        "answers": "):",
+        "type": "black"
+    },
+    {
+         "answers": "\n        ",
+         "type": "text"
+    },
+    {
+        "answers": "print",
+        "type": "text"
+    },
+    {
+        "answers": "(",
+        "type": "black"
+    },
+    {
+        "answers": '"i = 20"',
+        "type": "variable"
+    },
+    {
+        "answers": ")",
+        "type": "black"
+    },
+    {
+        "answers": "\n    ",
+        "type": "text"
+    },
+    {
+        "answers": ["if", "for", ["else"], "elif", "while"],
+        "type": "operator",
+    },
+    {
+        "answers": ":",
+        "type": "text"
+    },
+    {
+        "answers": "\n        print",
+        "type": "text"
+    },
+    {
+        "answers": "(",
+        "type": "black"
+    },
+    {
+        "answers": '"другое значение"',
+        "type": "variable"
+    },
+    {
+        "answers": ")",
+        "type": "black"
+    },
+]}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer[item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type}
+        if "select_title" in student_data["settings"].keys():
+             student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+             student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer[item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        student_item = {"id": item_id, "answers": item["answers"], "type": variable_type}
+        student_data["data"].append(student_item)
+
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer.keys())
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer.keys():
+        if item_id in student_answer.keys():
+            if student_answer[item_id] in correct_answer[item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "incorrect_answers": incorrect_answers if source_data["settings"]["show_incorrect"] else []
+    }
+
+    if max_grade == grade:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+
+    return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+
+correct_data = json.dumps(source_data)
+correct_data = correct_data.replace('"', "'")
+
+
+    </script>
+
+
+</problem>

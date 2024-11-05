@@ -1,25 +1,38 @@
 <problem>
-    <script type="text/javascript">
-        const current_problem_input = 1
-        const current_problem = document.getElementsByClassName("vert")[current_problem_input];
-        const next_problem = document.getElementsByClassName("vert")[current_problem_input + 1];
-        if (current_problem.getElementsByClassName("correct").length !== 0){
-            next_problem.style.display = "block";
-        }
-        else{
-            const verticals = Array.from(document.querySelectorAll(".vert")).slice(current_problem_input + 1)
-            verticals.forEach(function(vert){
-                vert.style.display = "none";
-            })
-        }
-    </script>
-    <multiplechoiceresponse>
-        <label>Add the question text, or prompt, here. This text is required.</label>
-        <description>You can add an optional tip or note related to the prompt like this. </description>
-        <choicegroup type="MultipleChoice">
-            <choice correct="false">an incorrect answer</choice>
-            <choice correct="true">the correct answer</choice>
-            <choice correct="false">an incorrect answer</choice>
-        </choicegroup>
-    </multiplechoiceresponse>
+  <script type="text/javascript">
+    const few_questions = true
+    const current_problem_input = 1
+    const current_problem =
+      document.querySelectorAll('.vert')[current_problem_input]
+    if (current_problem) {
+      const next_problem =
+        document.querySelectorAll('.vert')[current_problem_input + 1]
+      const selector = few_questions
+        ? '.notification.success .icon.fa-check'
+        : '.correct'
+      if (current_problem.querySelectorAll(selector).length !== 0) {
+        next_problem.style.display = 'block'
+      } else {
+        const verticals = Array.from(document.querySelectorAll('.vert')).slice(
+          current_problem_input + 1
+        )
+        verticals.forEach(function (vert) {
+          vert.style.display = 'none'
+        })
+      }
+    }
+  </script>
+  <multiplechoiceresponse>
+    <label
+      >Add the question text, or prompt, here. This text is required.</label
+    >
+    <description
+      >You can add an optional tip or note related to the prompt like this.
+    </description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">an incorrect answer</choice>
+      <choice correct="true">the correct answer</choice>
+      <choice correct="false">an incorrect answer</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
 </problem>
