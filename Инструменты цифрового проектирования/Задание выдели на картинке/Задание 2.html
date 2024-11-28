@@ -1,0 +1,97 @@
+<problem>
+    <style type="text/css"></style>
+    <div>
+        <div>
+          <p>Для создания фланца, расположенного под углом к базовой пластине не по всей длине ребра, необходимо изменить значение настройки:</p>  
+        </div>
+        <div data-type="ImageSelectApp" class="adv-app" data-initial-data='$student_data' data-static="/static/_"></div>
+      <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+correct_answer = ["click_area_01"]
+
+task_data = {
+    "width": 880,
+    "height": 506,
+    "min_width": 700,
+    "max_width": 880,
+    "scale": 1,
+    "full_width": True,
+    "test_mode": False,
+    "multianswers": False,
+    "auto_submit": False,
+    "click_area_style": {"border": "2px solid #42a5f5", "background": "#0000ff00"},
+    "click_area_style_selected": {"border": "2px solid #1565c0", "background": "#0000ff12"},
+    "image_src": "/static/DRkdNxDO.png",
+    "click_areas": [
+        {
+            "id": 'click_area_01',
+            "l": 565,
+            "t": 128,
+            "w": 208,
+            "h": 16,
+            "classList": []
+        },
+        {
+            "id": 'click_area_02',
+            "l": 565,
+            "t": 149,
+            "w": 208,
+            "h": 15,
+            "classList": []
+        },
+        {
+            "id": 'click_area_03',
+            "l": 565,
+            "t": 187,
+            "w": 208,
+            "h": 15,
+            "classList": []
+        },
+        {
+            "id": 'click_area_04',
+            "l": 565,
+            "t": 227,
+            "w": 208,
+            "h": 15,
+            "classList": []
+        },
+    ]
+}
+
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    grade = 0
+    if 'answer' in student_answer:
+        if set(student_answer['answer']) == set(correct_answer):
+            grade = 1
+    if grade == 1:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}]}
+    else: 
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': 0}]}
+
+
+student_data = json.dumps(task_data)
+student_data = student_data.replace('"', "'")
+
+correct_data = json.dumps(correct_answer)
+correct_data = correct_data.replace('"', "'")
+
+</script>
+</problem>
