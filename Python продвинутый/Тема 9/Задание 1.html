@@ -1,0 +1,290 @@
+<problem>
+    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+    <script type="text/javascript" src="/static/highlight.js"/>
+    <script type="text/javascript">
+        document.querySelectorAll('pre code').forEach(function (block) {
+            hljs.highlightBlock(block)
+        })
+    </script>
+<script type="loncapa/python">
+task_id="YdfJt57867ER"
+</script>
+        <p><strong>Цель:</strong> составить программный код обработки графических данных.</p>
+        <p><strong>Задание:</strong> заполните пропуски во фрагментах кода, используя имена переменных, функций и констант. Введите имена переменных, функций и констант в соответствующие ячейки в тексте (без пробелов), чтобы получить код распознавания объектов на изображении с помощью пороговой фильтрации морфологических преобразований.</p>
+<div class="code-task">
+    <pre>
+    <code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import sys</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span class="input-blue" style="margin-left: 4px;margin-right: 4px;">
+    <stringresponse answer="from" type="cs">
+    <textline size="4"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout, QTextEdit</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>class MyApp(</span>
+<span>
+    <stringresponse answer="QWidget" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def __init__(self):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>super().__init__()</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.init_ui()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.previous_texts = []  # Список для истории ввода</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def init_ui(</span>
+<span>
+    <stringresponse answer="self" type="cs">
+    <textline size="4"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Создаем виджеты</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.label = QLabel('Введите текст:', self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.text_input = QLineEdit(self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.button = QPushButton('Показать', self)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Ообработчик события для кнопки</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.button.</span>
+<span>
+    <stringresponse answer="clicked" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.</span>
+<span>
+    <stringresponse answer="connect" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(self.on_button_click)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Поле для отображения истории ввода</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.history_display = QTextEdit(self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.history_display.setReadOnly(True)  # Только для чтения</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Добавление виджетов в вертикальный макет</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>layout = QVBoxLayout()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>layout.</span>
+<span>
+    <stringresponse answer="addWidget" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(self.label)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>layout.</span>
+<span>
+    <stringresponse answer="addWidget" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(self.text_input)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>layout.</span>
+<span>
+    <stringresponse answer="addWidget" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(self.button)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>layout.</span>
+<span>
+    <stringresponse answer="addWidget" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(QLabel("История ввода:", self))  # Заголовок для поля истории</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>layout.</span>
+<span>
+    <stringresponse answer="addWidget" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(self.history_display)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Установка основного макета</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.setLayout(layout)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Параметры основного окна</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.setWindowTitle('Учебное задание')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.setGeometry(100, 100, 300, 300)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def on_button_click(</span>
+<span>
+    <stringresponse answer="self" type="cs">
+    <textline size="4"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>text = self.text_input.text()  # Текст из поля ввода</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>if text:  # Проверка наличия текста в поле ввода</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>print(f'Вы ввели: {text}')  # Вывод в консоль</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.previous_texts.append(text)  # Добавление текста в историю ввода</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Обновление поля с историей ввода.</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>history_str = "\n".join(self.previous_texts)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.history_display.setPlainText(history_str)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span># Для запуска программы</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>if __name__ == '__main__':</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>app =</span>
+<span style="margin-left: 4px;">
+    <stringresponse answer="QApplication" type="cs">
+    <textline size="12"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(sys.argv)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>ex = MyApp()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>ex.show()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>sys.exit(app.exec_())</span>
+</div>
+<p></p>
+            </code>
+            </pre>
+        </div>
+        </problem>
+        

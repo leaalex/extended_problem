@@ -1,0 +1,312 @@
+<problem>
+    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+    <script type="text/javascript" src="/static/highlight.js"/>
+    <script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+    </script>
+<script type="loncapa/python">
+task_id="YdfJewr2212WER"
+
+</script>
+    <p><strong>Цель:</strong> применять инструменты библиотеки Pandas для группировки и визуализации данных.</p>
+    <p><strong>Задание:</strong> дополните код. Впишите пропущенные фрагменты кода в соответствующие поля ввода.</p>
+    
+    <figure style="text-align:center;">
+        <img src="/static/B99pjWbR.png" alt="" style="max-width: 900px;"/>
+        <figcaption></figcaption>
+    </figure>
+    <p></p>
+    <figure style="text-align:center;">
+        <img src="/static/zLI93W9r.png" alt="" style="max-width: 900px;"/>
+        <figcaption></figcaption>
+    </figure>
+    <p></p>
+    <figure style="text-align:center;">
+        <img src="/static/mgQ7pI9L.png" alt="" style="max-width: 900px;"/>
+        <figcaption></figcaption>
+    </figure>
+    <p></p>
+
+<div class="code-task">
+    <p>Для сравнения суммарного времени, проведенного в питомнике, животными разных цветов:</p>
+    <pre>
+<code class="language-python">
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import</span>
+<span style="margin-right: 4px;margin-left: 4px;">
+        <stringresponse answer="pandas" type="cs">
+        <textline size="6"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+</span>
+<span>as pd</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>path = '/content/pet_adoption_data.csv'</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>data = pd.</span>
+<span>
+        <stringresponse answer="read_csv" type="cs">
+        <textline size="8"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+</span>
+<span>(path, </span>
+
+<span style="margin-left: 4px;">
+        <stringresponse answer="encoding" type="cs">
+        <textline size="8"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+</span>
+<span>='windows-1251')</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>data.</span>
+<span>
+<stringresponse answer="groupby" type="cs">
+<textline size="7"/>
+</stringresponse>
+<solution>
+<style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>(by=</span>
+<span class="input-green">
+<stringresponse answer="'Color'" type="cs">
+<textline size="7"/>
+</stringresponse>
+<solution>
+<style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>)[</span>
+<span class="input-green">
+<stringresponse answer="'TimeInShelterDays'" type="cs">
+<textline size="19"/>
+</stringresponse>
+<solution>
+<style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>].</span>
+<span>
+<stringresponse answer="sum" type="cs">
+<textline size="3"/>
+</stringresponse>
+<solution>
+<style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+</solution>
+</span>
+<span>()</span>
+</div>
+
+
+    </code>
+    </pre>
+</div>
+
+<p></p>
+<div class="code-task">
+    <p>Для сравнения средней стоимости животных в питомнике:</p>
+    <pre>
+    <code class="language-python">
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>import</span>
+    <span style="margin-right: 4px;margin-left: 4px;">
+            <stringresponse answer="pandas" type="cs">
+            <textline size="6"/>
+            </stringresponse>
+            <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+            </solution>
+    </span>
+    <span>as pd</span>
+    </div>
+
+    <p></p>
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>path = '/content/pet_adoption_data.csv'</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>data = pd.</span>
+    <span>
+            <stringresponse answer="read_csv" type="cs">
+            <textline size="8"/>
+            </stringresponse>
+            <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+            </solution>
+    </span>
+    <span>(path, </span>
+
+    <span style="margin-left: 4px;">
+            <stringresponse answer="encoding" type="cs">
+            <textline size="8"/>
+            </stringresponse>
+            <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+            </solution>
+    </span>
+    <span>='windows-1251')</span>
+    </div>
+
+    <p></p>
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>data.</span>
+    <span>
+    <stringresponse answer="groupby" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>(by=</span>
+    <span class="input-green">
+    <stringresponse answer="'PetType'" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>)[</span>
+    <span class="input-green">
+    <stringresponse answer="'AdoptionFee'" type="cs">
+    <textline size="13"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>].</span>
+    <span>
+    <stringresponse answer="mean" type="cs">
+    <textline size="4"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>()</span>
+    </div>
+
+
+    </code>
+    </pre>
+</div>
+
+
+<p></p>
+<div class="code-task">
+    <p>Для сравнения максимального веса животных разного размера:</p>
+    <pre>
+    <code class="language-python">
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>import</span>
+    <span style="margin-right: 4px;margin-left: 4px;">
+            <stringresponse answer="pandas" type="cs">
+            <textline size="6"/>
+            </stringresponse>
+            <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+            </solution>
+    </span>
+    <span>as pd</span>
+    </div>
+
+    <p></p>
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>path = '/content/pet_adoption_data.csv'</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>data = pd.</span>
+    <span>
+            <stringresponse answer="read_csv" type="cs">
+            <textline size="8"/>
+            </stringresponse>
+            <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+            </solution>
+    </span>
+    <span>(path, </span>
+
+    <span style="margin-left: 4px;">
+            <stringresponse answer="encoding" type="cs">
+            <textline size="8"/>
+            </stringresponse>
+            <solution>
+            <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+            </solution>
+    </span>
+    <span>='windows-1251')</span>
+    </div>
+
+    <p></p>
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>data.</span>
+    <span>
+    <stringresponse answer="groupby" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>(by=</span>
+    <span class="input-green">
+    <stringresponse answer="'Size'" type="cs">
+    <textline size="6"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>)[</span>
+    <span class="input-green">
+    <stringresponse answer="'WeightKg'" type="cs">
+    <textline size="10"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>].</span>
+    <span>
+    <stringresponse answer="max" type="cs">
+    <textline size="3"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>()</span>
+    </div>
+
+
+    </code>
+    </pre>
+</div>
+</problem>
+    

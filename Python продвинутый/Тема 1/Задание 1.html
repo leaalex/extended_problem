@@ -1,0 +1,152 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+</script>
+<script type="loncapa/python">
+task_id="YdfJt1212WER"
+</script>
+    <p><strong>Цель:</strong> составить программный код реализации класса.</p>
+    <p><strong>Задание:</strong> заполните пропуски во фрагментах кода, используя ключевые слова и имена классов. Введите ключевые слова и имена классов в соответствующие ячейки в тексте.</p>
+    <div class="code-task">
+      <pre>
+        <code class="language-python">
+
+            <div class="inline-input-task paragraph-class class_$task_id">
+                <span>from abc import ABC, abstractmethod</span>
+            </div>
+            <p></p>
+            <div class="inline-input-task paragraph-class class_$task_id">
+            <span>class LibraryItem(</span>
+            <span>
+              <stringresponse answer="ABC" type="cs">
+                <textline size="3"/>
+              </stringresponse>
+              <solution>
+                <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+              </solution>
+            </span>
+            <span>):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+            <span>@abstractmethod</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+            <span>def display_info(self):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+            <span>pass</span>
+            </div>
+
+            <p></p>
+
+            <div class="inline-input-task paragraph-class class_$task_id">
+            <span>class Book(</span>
+            <span>
+              <stringresponse answer="LibraryItem" type="cs">
+                <textline size="11"/>
+              </stringresponse>
+              <solution>
+                <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+              </solution>
+            </span>
+            <span>):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+                <span style="padding-right: 4px;color: #0033b3;">
+                <stringresponse answer="def" type="cs">
+                    <textline size="3"/>
+                </stringresponse>
+                <solution>
+                    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+                </solution>
+                </span>
+                <span> __init__(self, book_id, title, author):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+                <span>self.book_id = book_id</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+                <span>self.title = title</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+                <span>self.author = author</span>
+            </div>
+            <p></p>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+                <span>def display_info(self):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+                <span>return f"{self.book_id}: {self.title} by {self.author}"</span>
+            </div>
+            <p></p>
+
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 4px;">
+            <span style="padding-right: 4px;padding-left: 4px;color: #0033b3;">
+              <stringresponse answer="class" type="cs">
+                <textline size="5"/>
+              </stringresponse>
+              <solution>
+                <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+              </solution>
+            </span> 
+            <span>Library:</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+            <span>def __init__(self):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+                <span>
+              <stringresponse answer="self." type="cs">
+                <textline size="5"/>
+              </stringresponse>
+              <solution>
+                <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+              </solution>
+            </span>
+            <span>books = []</span>
+            </div>
+            <p></p>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+            <span>def add_book(</span>
+            <span>
+              <stringresponse answer="self" type="cs">
+                <textline size="4"/>
+              </stringresponse>
+              <solution>
+                <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+              </solution>
+            </span>
+            <span>, book):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+            <span>if isinstance(book, Book):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+            <span>self.books.append(book)</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+            <span>else:</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+            <span>raise ValueError("Only objects of type Book can be added")</span>
+            </div>
+            <p></p>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+            <span>def show_books(self):</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+            <span>for book in self.books:</span>
+            </div>
+            <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 120px;">
+            <span>print(book.display_info())</span>
+            </div>
+        </code>
+      </pre>
+    </div>
+  </problem>
+  

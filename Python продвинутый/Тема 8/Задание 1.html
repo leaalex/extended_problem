@@ -1,0 +1,178 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+</script>
+<script type="loncapa/python">
+task_id="YdfJt57867ER"
+</script>
+    <p><strong>Цель:</strong> составить программный код обработки графических данных.</p>
+    <p><strong>Задание:</strong> заполните пропуски во фрагментах кода, используя имена переменных, функций и констант. Введите имена переменных, функций и констант в соответствующие ячейки в тексте (без пробелов), чтобы получить код распознавания объектов на изображении с помощью пороговой фильтрации морфологических преобразований.</p>
+    <div class="code-task">
+        <pre>
+        <code class="language-python">
+            
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from urllib.request import urlopen</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import </span>
+<span style="margin-right: 4px;margin-left: 4px;">
+    <stringresponse answer="cv2" type="cs">
+    <textline size="3"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>as cv</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import numpy as np</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import matplotlib.pyplot as plt</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>def load_image_from_url(url):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>req = urlopen(url)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>arr = np.asarray(bytearray(req.read()), dtype=np.uint8)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>return cv.imdecode(arr, -1)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>image = load_image_from_url("https://github.com/opencv/opencv/blob/master/samples/data/messi5.jpg?raw=true")</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>image = cv.</span>
+<span>
+    <stringresponse answer="cvtColor" type="cs">
+    <textline size="8"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="image" type="cs">
+    <textline size="5"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, cv.COLOR_BGRA2RGB)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>image_filtered = cv.inRange(image, np.</span>
+<span>
+    <stringresponse answer="array" type="cs">
+    <textline size="5"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>([160, 190, 40]), np.</span>
+<span>
+    <stringresponse answer="array" type="cs">
+    <textline size="5"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>([255, 255, 200]))</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>image_gs = cv.cvtColor(image, cv.</span>
+<span>
+    <stringresponse answer="COLOR_RGB2GRAY" type="cs">
+    <textline size="14"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>eroded = cv.</span>
+<span>
+    <stringresponse answer="morphologyEx" type="cs">
+    <textline size="12"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="image_filtered" type="cs">
+    <textline size="14"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, cv.MORPH_ERODE, np.ones((5,5),np.uint8))</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>dilated = cv.</span>
+<span>
+    <stringresponse answer="morphologyEx" type="cs">
+    <textline size="12"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+(<span></span>
+    <span>
+    <stringresponse answer="eroded" type="cs">
+    <textline size="6"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, cv.MORPH_DILATE, np.ones((15,15),np.uint8))</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>fig, ax = plt.subplots(2, 2, figsize=(12, 12))</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>ax[0, 0].imshow(image)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>ax[0, 1].imshow(cv.addWeighted(image_gs, 0.5, image_filtered, 0.5, 0.))</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>ax[1, 0].imshow(cv.addWeighted(image_gs, 0.5, eroded, 0.5, 0.))</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>ax[1, 1].imshow(cv.addWeighted(image_gs, 0.5, dilated, 0.5, 0.))</span>
+</div>
+        </code>
+        </pre>
+    </div>
+    </problem>
+    

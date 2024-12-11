@@ -1,0 +1,162 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+</script>
+<script type="loncapa/python">
+task_id="YdfJt57867ER"
+</script>
+    <p><strong>Цель:</strong> применять инструменты библиотеки SciPy для решения инженерных задач.</p>
+    <p><strong>Задание:</strong> дополните код. Впишите пропущенные фрагменты кода в соответствующие поля ввода.</p>
+    <div class="code-task">
+    <pre>
+    <code class="language-python">
+            
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>import</span>
+    <span style="margin-right: 4px;margin-left: 4px;">
+    <stringresponse answer="numpy" type="cs">
+    <textline size="5"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+    </span>
+    <span>as np</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>from scipy import optimize</span>
+    </div>
+    <p></p>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span># Определение функции для минимизации</span>
+    </div>
+
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>def func(x):</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+    <span>return x ** 2 + 2 *</span>
+    <span style="margin-left: 4px;">
+        <stringresponse answer="np" type="cs">
+        <textline size="2"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>.cos(0.7 * x) - 13</span>
+    </div>
+    <p></p>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span># Нахождение минимума функции</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>result = </span>
+
+    <span style="margin-left: 4px;">
+        <stringresponse answer="optimize" type="cs">
+        <textline size="8"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>.</span>
+
+    <span>
+        <stringresponse answer="minimize" type="cs">
+        <textline size="8"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span>(func, 0)</span>
+    </div>
+    <div class="inline-input-task paragraph-class class_$task_id">
+    <span>print(result)</span>
+    </div>
+    </code>
+    </pre>
+    </div>
+
+    <p></p>
+    <hr/>
+    <p></p>
+    <p></p>
+
+    <div class="code-task">
+    <pre>
+    <code class="language-python">
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import numpy as</span>
+<span style="margin-right: 4px;margin-left: 4px;">
+    <stringresponse answer="np" type="cs">
+    <textline size="2"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from scipy import integrate</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span># Определение функции для интегрирования</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>def intgrl_func(x):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>return 3 * x ** 2 + 2 * x +</span>
+<span style="margin-left: 4px;">
+    <stringresponse answer="np" type="cs">
+    <textline size="2"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.tan(3 * x)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span># Вычисление определённого интеграла функции от 0 до 1</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+result, error = 
+<span style="margin-left: 4px;">
+    <stringresponse answer="integrate" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.quad(</span>
+
+<span>
+    <stringresponse answer="intgrt_func" type="cs">
+    <textline size="11"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, 0, 3)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>print(result)</span>
+</div>
+
+    </code>
+    </pre>
+    </div>
+</problem>

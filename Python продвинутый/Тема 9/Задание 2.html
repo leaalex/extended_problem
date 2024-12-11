@@ -1,0 +1,430 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+</script>
+
+<style>
+.center {text-align:center  !important;}
+.answers_title {font-size: 16px !important; margin-bottom: 10px !important;}
+.img-s2HpKN5t7H{
+    max-height: 230px !important;
+}
+.answer.bg-white.shadow-1 p{
+text-align: center !important;
+}
+</style>
+<script type="loncapa/python">
+import json
+import random
+import string
+
+r_1 = '''
+```python
+vertical_layout.addWidget(label1)
+vertical_layout.addWidget(button1)
+vertical_layout.addStretch()
+
+horizontal_layout.addWidget(label2)
+horizontal_layout.addWidget(button2)
+horizontal_layout.addWidget(button3)
+horizontal_layout.addStretch()
+
+main_layout = QVBoxLayout()
+main_layout.addLayout(horizontal_layout)
+main_layout.addLayout(vertical_layout)
+```
+'''
+    
+r_2 = '''
+```python
+vertical_layout.addWidget(label1)
+vertical_layout.addWidget(button1)
+vertical_layout.addStretch()
+
+horizontal_layout.addWidget(label2)
+horizontal_layout.addWidget(button2)
+horizontal_layout.addWidget(button3)
+horizontal_layout.addStretch()
+
+main_layout = QHBoxLayout()
+main_layout.addLayout(horizontal_layout)
+main_layout.addLayout(vertical_layout)
+```
+'''
+
+r_3 = '''
+```python
+vertical_layout.addWidget(label1)
+vertical_layout.addWidget(button1)
+vertical_layout.addStretch()
+
+horizontal_layout.addWidget(label2)
+horizontal_layout.addWidget(button2)
+horizontal_layout.addWidget(button3)
+horizontal_layout.addStretch()
+
+main_layout = QHBoxLayout()
+main_layout.addLayout(vertical_layout)
+main_layout.addLayout(horizontal_layout)
+```
+'''
+    
+r_4 = '''
+```python
+vertical_layout.addWidget(label1)
+vertical_layout.addWidget(button1)
+vertical_layout.addStretch()
+
+horizontal_layout.addWidget(label2)
+horizontal_layout.addWidget(button2)
+horizontal_layout.addWidget(button3)
+horizontal_layout.addStretch()
+
+main_layout = QGridLayout()
+main_layout.addLayout(vertical_layout, 1, 1)
+main_layout.addLayout(horizontal_layout, 2, 2)
+
+```
+'''
+
+data = {
+    "content": {
+        "body": "",
+        "answers_title": ""
+    },
+        "table": [
+#        [
+#    '__Переменная__ .{.center}','__Тип данных__ .{.center}',
+#        ],
+        [
+            r_1, ['![](/static/kTnVT26i.png).{.img-s2HpKN5t7H}'],
+        ],
+        [
+            r_2, ['![](/static/yPS2MBXm.png).{.img-s2HpKN5t7H}'],
+        ],
+        [
+            r_3, ['![](/static/qyXufmV0.png).{.img-s2HpKN5t7H}'],
+        ],
+        [
+            r_4, ['![](/static/X2kAFuoa.png).{.img-s2HpKN5t7H}'],
+        ],
+    ],
+"settings":{
+        "is_exist_markdown": True,
+        "is_exist_advanced_style": True,
+        'is_exist_mathjax': False,
+        'is_exist_highlight': True,
+        'is_exist_image': True,
+        'show_incorrect': False,
+        'capacity' : 2
+
+},
+"style": {
+        'rows': ['', ''],
+        'colls': ['w20', 'w45', 'w35']
+    }
+}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
+data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+data["settings"] = data["settings"] if "settings" in data.keys() else {}
+data["style"] = data["style"] if "style" in data.keys() else {}
+correct_answer = {}
+student_data = {
+    "table": [],
+    "answers": [],
+    "settings": data["settings"],
+    "style": data["style"],
+    "content": data["content"]
+}
+
+use_multi_answers = ''
+if "multi_answers" in data["settings"].keys():
+    if data["settings"]["multi_answers"] == "horizontal":
+        use_multi_answers = "horizontal"
+    elif data["settings"]["multi_answers"] == "vertical":
+        use_multi_answers = "vertical"
+
+all_answers_obj = {}
+
+for row_index, row in enumerate(data["table"]):
+    student_data["table"].append([])
+    for column_index, cell in enumerate(row):
+        student_cell = {}
+        if not isinstance(cell, str):
+            student_cell["id"] = generate_id()
+            student_cell["isFixed"] = False
+            correct_answer[student_cell["id"]] = []
+
+            for cell_answer in cell:
+                cell_answer_id = generate_id()
+
+                if use_multi_answers:
+                    direction_index = column_index if use_multi_answers == 'vertical' else row_index
+                    if "block" + str(direction_index) not in all_answers_obj.keys():
+                        all_answers_obj["block" + str(direction_index)] = []
+                    all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
+
+                student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                correct_answer[student_cell["id"]].append(cell_answer_id)
+        else:
+            student_cell["value"] = [cell]
+            student_cell["isFixed"] = True
+        student_data["table"][row_index].append(student_cell)
+
+
+for distractor in data["distractors"]:
+    student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+if use_multi_answers:
+    student_data["answers"] = []
+    for block_idx, block_key in enumerate(all_answers_obj.keys()):
+        student_data["answers"].append(all_answers_obj[block_key])
+        try:
+            if isinstance(data["distractors"][block_idx], list):
+                for dist in data["distractors"][block_idx]:
+                    student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
+        except:
+            pass
+            # raise Exception("DISTRACTORS ERROR")
+
+
+random.shuffle(student_data["answers"])
+
+def get_response(grade_decimal, wrong_answers=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_answers is not None:
+        response["wrong_answers"] = wrong_answers
+    if grade_decimal == 1:
+        response["ok"] = True
+    elif grade_decimal == 0:
+        response["ok"] = False
+    else:
+        response["ok"] = 'Partial'
+    return response
+
+
+def check_partially(c_a, s_a):
+    result = {
+        "grade": 0.0,
+        "wrong_answers": [],
+    }
+    local_grade = 0
+    for ans in c_a:
+        if ans in s_a:
+            local_grade += 1
+    for ans in s_a:
+        if ans not in c_a:
+            result["wrong_answers"].append(ans)
+    result["grade"] = local_grade
+
+    return result
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+    grade = 0
+    wrong_answers = []
+
+    for correct_cell_id in correct_answer.keys():
+        correct_cell = correct_answer[correct_cell_id]
+        res = check_partially(correct_cell, student_answer[correct_cell_id])
+        grade += res["grade"]
+        if show_incorrect:
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+    response = get_response(float(grade / max_grade), wrong_answers, )
+
+    return {
+        'input_list': [
+            {
+                # true, false partially
+                'ok': response['ok'],
+                # string - отображаения под Input'ом
+                # как проавило сюда отправляется json со всеми дополнительными данными
+                'msg': str(json.dumps(response)),
+                # number [0, 1] - оценка за задание
+                'grade_decimal': response['grade']
+            },
+        ]
+    }
+
+
+student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
+correct_data = list(bytearray(json.dumps(data), 'utf-8'))
+</script>
+
+
+<p><strong>Цель:</strong> применять инструменты библиотеки PyQt5 для компоновки виджетов в  графическом интерфейсе пользователя.</p>
+<p><strong>Задание:</strong> сопоставьте фрагменты кода, описывающие расположение виджетов внутри макетов PyQt5, с внешним видом графического интерфейса пользователя. Переместите правильные ответы в соответствующие ячейки таблицы.</p>
+
+<p></p>
+
+<div class="code-task">
+    <pre>
+    <code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import sys</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout, QHBoxLayout, QGridLayout</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>class MyApp(QWidget):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def __init__(self):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>super().__init__()</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.initUI()</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def initUI(self):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.setWindowTitle('Компоновка виджетов')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.setGeometry(100, 100, 400, 300)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>label1 = QLabel('Вертикальный макет', self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>button1 = QPushButton('Кнопка 1', self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>label2 = QLabel('Горизонтальный макет', self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>button2 = QPushButton('Кнопка 2', self)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>button3 = QPushButton('Кнопка 3', self)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Вертикальный блок</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>vertical_layout = QVBoxLayout()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span># Горизонтальный блок</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>horizontal_layout = QHBoxLayout()</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span style="background: #FFF176;">__________________________________</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>if __name__ == '__main__':</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>app = QApplication(sys.argv)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>ex = MyApp()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>ex.show()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>sys.exit(app.exec_())</span>
+</div>
+
+
+
+</code>
+</pre>
+</div>
+<p></p>
+<p>Желтым выделено место, в котором расположен фрагмент кода, варианты которого расположены в таблице.</p>
+<p></p>
+
+
+<div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
+    <div class="loader"/>
+<style>
+.loader {
+margin: 100px auto;
+width: 4px;
+color: #0075b4;
+aspect-ratio: 1;
+border-radius: 50%;
+box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
+transform: translateX(-38px);
+animation: l26 1s infinite linear;
+}
+@keyframes l26 {
+12.5% {box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px}
+25% {box-shadow: 19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 0px}
+50% {box-shadow: 19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px}
+62.5% {box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 5px}
+75% {box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px}
+87.5% {box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,19px 0 0 0px, 38px 0 0 5px, 57px 0 0 0px,19px 19px 0 5px, 38px 19px 0 0px, 57px 19px 0 0px}
+}
+</style>
+</div>
+<div style="display: none">
+    <customresponse cfn="check_answer">
+    <textline size="120"/>
+    </customresponse>
+    <solution data-initial-data="$correct_data"/>
+</div>
+<script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
+</problem>

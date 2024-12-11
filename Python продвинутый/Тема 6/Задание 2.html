@@ -1,0 +1,117 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function (block) {
+        hljs.highlightBlock(block)
+    })
+</script>
+<script type="loncapa/python">
+task_id="YdfJt57867ER"
+</script>
+<p><strong>Цель:</strong> применять инструменты библиотеки SymPy для решения инженерных задач.</p>
+<p><strong>Задание:</strong> дополните код. Впишите пропущенные фрагменты кода в соответствующие поля ввода.</p>
+<div class="code-task">
+<pre>
+<code class="language-python">
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import sympy as sp</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>x =</span>
+<span style="margin-left: 4px;">
+    <stringresponse answer="symbols" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>('x')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>func = sin(x) * exp(x)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>print(</span>
+<span>
+    <stringresponse answer="sp" type="cs">
+    <textline size="2"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.diff(func,</span>
+<span style="margin-left: 4px;">
+    <stringresponse answer="x" type="cs">
+    <textline size="1"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>))</span>
+</div>
+</code>
+</pre>
+</div>
+
+<p></p>
+<hr/>
+<p></p>
+
+
+<div class="code-task">
+<pre>
+<code class="language-python">
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import sympy as sp</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>x =</span>
+<span style="margin-left: 4px;">
+    <stringresponse answer="symbols" type="cs">
+    <textline size="7"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>('x')</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>func = exp(x) * 3 * x ** 3 + exp(x) * cos(x)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>print(sp.</span>
+<span>
+    <stringresponse answer="integrate" type="cs">
+    <textline size="9"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(func,</span>
+<span style="margin-left: 4px;">
+    <stringresponse answer="x" type="cs">
+    <textline size="1"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>))</span>
+</div>
+</code>
+</pre>
+</div>
+</problem>

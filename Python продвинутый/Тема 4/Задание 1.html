@@ -1,0 +1,109 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+document.querySelectorAll('pre code').forEach(function (block) {
+    hljs.highlightBlock(block)
+})
+</script>
+<script type="loncapa/python">
+import json
+task_id="YdfJt1212WER"
+
+def check_func(expect, ans):
+    return json.loads(ans) == [[15, -8.5, 3], [10.3, 7, -0.4], [1, 1, 5.5]]
+
+</script>
+<p><strong>Цель:</strong> применять инструменты библиотеки NumPy для решения уравнений в матричной форме.</p>
+<p><strong>Задание:</strong> дополните код. Впишите пропущенные фрагменты кода в соответствующие поля ввода.</p>
+
+<p>\[A*B = Result\]</p>
+<figure style="text-align:center;">
+    <img src="/static/zGZihgBR.png" alt="" style="max-width: 900px;"/>
+    <figcaption></figcaption>
+</figure>
+
+<div class="code-task">
+    <pre>
+    <code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">        
+    <span>import </span>
+    <span style="margin-right: 4px;margin-left: 4px;">
+        <stringresponse answer="numpy" type="cs">
+        <textline size="5"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+    <span> as </span>
+    <span style="margin-right: 4px;margin-left: 4px;">
+        <stringresponse answer="np" type="cs">
+        <textline size="2"/>
+        </stringresponse>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+    </span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+    <span>a = np.array(</span>
+    <span>
+        <customresponse cfn="check_func">
+        <textline size="46" correct_answer="[[15, -8.5, 3], [10.3, 7, -0.4], [1, 1, 5.5]]"/>
+        <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+        </solution>
+        </customresponse>
+    </span>    
+    <span>)</span>
+</div>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+    <span>b = np.array([[0.6], [3.5], [-6]])</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>res = np.</span>
+<span>
+    <stringresponse answer="dot" type="cs">
+    <textline size="3"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(np.</span>
+<span>
+    <stringresponse answer="linalg" type="cs">
+    <textline size="6"/>
+    </stringresponse>
+    <solution>
+    <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.inv(a), b)</span>
+</div>
+
+<p></p>
+
+<div class="inline-input-task paragraph-class class_$task_id">
+print('A = ', a, sep='\n', end='\n\n')
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+print('B = ', b, sep='\n', end='\n\n')
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+print('Result = ', np.round(res, 2), sep='\n')
+</div>
+    </code>
+    </pre>
+</div>
+</problem>

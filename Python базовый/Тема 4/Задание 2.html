@@ -1,0 +1,16 @@
+<problem>
+    <multiplechoiceresponse>
+      <p><em>Выберите правильный вариант ответа</em>
+    </p><label>Для выравнивания текста по центру и ограничения поля вывода по количеству знаков необходимо использовать код…</label>
+    <choicegroup type="MultipleChoice">
+        <choice correct="false"><pre><code class="language-python">print('{:&lt;20}'.format('text'))</code></pre> <choicehint>При таком форматировании выравнивание текста произойдет по левому краю с ограничением поля вывода двадцатью символами</choicehint>
+    </choice>
+        <choice correct="true"><pre><code class="language-python">print('{:^15}'.format('text'))</code></pre> <choicehint>При таком форматировании выравнивание текста произойдет по центру с ограничением поля вывода пятнадцатью символами</choicehint>
+    </choice>
+        <choice correct="false"><pre><code class="language-python">print('{4:%}'.format('text'))</code></pre> <choicehint>Данный тип форматирования можно применять только к числовым значениям для их отображения в формате процентов; в данном случае возникнет ошибка, связанная с индексом переданных аргументов в функцию .format()</choicehint>
+    </choice>
+        <choice correct="false"><pre><code class="language-python">print('{:&gt;6}'.format('text'))</code></pre> <choicehint>При таком форматировании выравнивание текста произойдет по правому краю с ограничением поля вывода шестью символами</choicehint>
+    </choice>
+      </choicegroup>
+    </multiplechoiceresponse>
+    </problem>
