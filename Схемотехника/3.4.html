@@ -1,0 +1,190 @@
+<problem>
+<style>
+    .mytable {
+        border-collapse: separate !important;
+        width: 100% !important;
+        box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+        border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+        border: .5px solid #e6e6e6 !important;
+        padding: 1.3rem !important;
+        text-align: center !important;
+        vertical-align: top;
+    }
+
+    .formula-display {
+        font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+        color: #1e88e5;
+        background-color: #fafafa !important;
+    }
+
+    .custom-select {
+        margin: 0 auto !important;
+    }
+
+    .custom-select select {
+        width: 100% !important;---
+        cursor: pointer !important;
+        background-color: #f6f6f6 !important;
+        border: 1px solid #e6e6e6 !important;
+        border-radius: 4px !important;
+        height: 40px !important;
+    }
+
+    .custom-select::after {
+        content: '\25BC' !important;
+        /* Down arrow */
+        position: absolute !important;
+        top: 50% !important;
+        right: 10px !important;
+        transform: translateY(-50%) !important;
+        pointer-events: none !important;
+        color: #999 !important;
+    }
+
+    .custom-select select::-ms-expand {
+        display: none !important;
+        /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+        background-color: #fff !important;
+        color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+        background-color: #e9e9e9 !important;
+    }
+
+    .container-image {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .container-image img {
+        margin-right: 10px;
+    }
+
+    .container-image .number {
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+<p>
+    На рисунках приведены эквивалентные схемы по переменному току усилительных каскадов на биполярных транзисторах.
+</p>
+<p>
+    В таблице приведены выражения для коэффициентов усиления по напряжению \(K_U\) и току \(K_I\). Укажите в правом
+    столбце таблицы номера эквивалентных схем, соответствующие каждому приведенному выражению для коэффициентов
+    усиления.
+</p>
+<div class="container-image">
+    <img src="/static/DD_CIRCDESIGN_3.2.01_uz.png" alt="Схема 1" />
+    <div class="number">1</div>
+</div>
+<div class="container-image">
+    <img src="/static/DD_CIRCDESIGN_3.2.02_uz.png" alt="Схема 2" />
+    <div class="number">2</div>
+</div>
+<div class="container-image">
+    <img src="/static/DD_CIRCDESIGN_3.2.03_uz.png" alt="Схема 3" />
+    <div class="number">3</div>
+</div>
+<optionresponse>
+    <table class="mytable">
+        <tr>
+            <th>Коэффициент усиления</th>
+            <th>Номер эквивалентной схемы</th>
+        </tr>
+        <tr>
+            <td class="formula-display">\( K_U \approx -\beta \frac{R_{\rm К}||R_{\rm Н}}{r_Б + (1 + \beta) r_Э} \)
+            </td>
+            <td class="custom-select">
+                <optioninput>
+                    <option correct="True">1</option>
+                    <option correct="False">2</option>
+                    <option correct="False">3</option>
+                </optioninput>
+            </td>
+        </tr>
+        <tr>
+            <td class="formula-display">\( K_I = \beta \frac{R_{\rm К}}{\left(1 + \frac{r_Б + (1 + \beta)
+                r_Э}{R_1||R_2}\right) (R_{\rm К} + R_{\rm Н})} \)</td>
+            <td class="custom-select">
+                <optioninput>
+                    <option correct="True">1</option>
+                    <option correct="False">2</option>
+                    <option correct="False">3</option>
+                </optioninput>
+            </td>
+        </tr>
+        <tr>
+            <td class="formula-display">\( K_U = \frac{R_Э||R_H}{\frac{r_Б}{\beta + 1} + r_Э + R_{\rm Э}||R_{\rm Н}}
+                \)</td>
+            <td class="custom-select">
+                <optioninput>
+                    <option correct="False">1</option>
+                    <option correct="False">2</option>
+                    <option correct="True">3</option>
+                </optioninput>
+            </td>
+        </tr>
+        <tr>
+            <td class="formula-display">\( K_I = (\beta + 1) \frac{R_Э}{R_{\rm Э} + R_{\rm Н}}
+                \frac{R_1||R_2}{R_1||R_2 + r_Б + (1 + \beta) (r_Э + R_{\rm Э}||R_{\rm Н})} \)</td>
+            <td class="custom-select">
+                <optioninput>
+                    <option correct="False">1</option>
+                    <option correct="False">2</option>
+                    <option correct="True">3</option>
+                </optioninput>
+            </td>
+        </tr>
+        <tr>
+            <td class="formula-display">\( K_U = \alpha \frac{R_{\rm К}||R_{\rm Н}}{R_{\rm Э} + (1 - \alpha) r_Б} \)
+            </td>
+            <td class="custom-select">
+                <optioninput>
+                    <option correct="False">1</option>
+                    <option correct="True">2</option>
+                    <option correct="False">3</option>
+                </optioninput>
+            </td>
+        </tr>
+        <tr>
+            <td class="formula-display">\( K_I = \alpha \frac{R_{\rm К}}{R_{\rm К} + R_{\rm Н}} \)</td>
+            <td class="custom-select">
+                <optioninput>
+                    <option correct="False">1</option>
+                    <option correct="True">2</option>
+                    <option correct="False">3</option>
+                </optioninput>
+            </td>
+        </tr>
+    </table>
+</optionresponse>
+</problem>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+},
+"HTML-CSS": { availableFonts: ["TeX"], linebreaks: { automatic: false } },
+menuSettings: {
+    collapsibleMath: false
+}
+});
+</script>

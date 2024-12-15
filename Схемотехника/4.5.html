@@ -1,27 +1,26 @@
 <problem>
 <script type="loncapa/python">
 import json
+import random
+import string
 
-unique_id = "task_z8k42wz6"
-x1 = "R1"
-x2 = "R_К"
-x3 = "I_{Б0}"
-x4 = "U_{БЭ0}"
-x5 = "U_{ПИТ}"
-x6 = "("
-x7 = ")"
-x8 = "/"
-x9 = "\\times"
-x10 = "+"
-x11 = "-"
-x12 = "С_{Р1}"
-x13 = "С_{Р2}"
+def generate_unique_id():
+    return 'task_4_5' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
 
-correct_selected = ["nvtnc0c6", "nvtnc0c5", "nvtnc0c11", "nvtnc0c4", "nvtnc0c7", "nvtnc0c8", "nvtnc0c3"]
+unique_id = generate_unique_id()
+
+x1 = "I_С"
+x2 = "I_З"
+x3 = "U_{СИ}"
+x4 = "U_{ЗИ}"
+x5 = "U_{ЗС}"
+
+correct_selected = ["nvtnc0c1_4_5", "nvtnc0c4_4_5"]
 len_correct_selected = len(correct_selected)
 
 def check_func(student_selected, correct_selected):
     response = {}
+    max_grade = len(correct_selected)
     
     correct_indexed = tuple(enumerate(correct_selected))
     student_indexed = tuple(enumerate(student_selected))
@@ -30,7 +29,7 @@ def check_func(student_selected, correct_selected):
         grade_decimal = 1.0
     else:
         correct_count = sum(1 for i, el in correct_indexed if len(student_selected) > i and student_selected[i] == el)
-        grade_decimal = correct_count / len_correct_selected
+        grade_decimal = correct_count / max_grade
 
     response["grade"] = grade_decimal
     if grade_decimal == 1:
@@ -74,11 +73,11 @@ def check_answer(expect, ans):
     });
 </script>
 <style>
-    #$unique_id #select_task_input {
+    #$unique_id #select_task_input_$unique_id {
         display: none !important;
     }
 
-    #$unique_id .task-item {
+    #$unique_id .task-item_$unique_id {
         display: inline;
         padding: 1px;
         cursor: pointer;
@@ -91,15 +90,15 @@ def check_answer(expect, ans):
         width: 100%;
     }
 
-    #$unique_id .task-item:hover {
+    #$unique_id .task-item_$unique_id:hover {
         background: #a7ffaa;
     }
 
-    #$unique_id .task-item.selected-item {
+    #$unique_id .task-item_$unique_id.selected-item_$unique_id {
         background: #ffff7e;
     }
 
-    #$unique_id .task-item.disabled-item {
+    #$unique_id .task-item_$unique_id.disabled-item_$unique_id {
         background-color: #d3d3d3; /* Серый цвет */
         cursor: not-allowed; /* Курсор, как для заблокированного элемента */
         border: 0px solid #000;
@@ -118,37 +117,34 @@ def check_answer(expect, ans):
         border: 1px solid #e6e6e6;
         
     }
-    .hidden-item {
+    .hidden-item_$unique_id {
         display: none;
     }
     .task-paragraph {
         font-size: 1.3rem;
     }
-    #formula-display {
+    #formula-display_$unique_id {
         font-size: 1.5rem !important;
     }
 </style>
 
 <div id="$unique_id" class="task-select">
-    <p>Используя приведенный ниже рисунок и приведенный набор символов, составьте выражение для расчета сопротивления резистора \(R1\), обеспечивающего положение рабочей точки, отмеченное на входной ВАХ.</p>
-    <img src="/static/DD_CIRCDESIGN_3.1.11_uz.png" />
+    <p>На рисунке 2 приведена эквивалентная схема усилительного каскада с общим истоком. Используя эквивалентную схему, составьте выражение для выходного напряжения каскада, укажите верные знаки из приведенного набора символов.</p>
+    <p>\(I_C\) – ток стока <br/>
+        \(I_З\) – ток затвора <br/>
+        \(U_{СИ}\) – напряжение «сток–исток» <br/>
+        \(U_{ЗИ}\) – напряжение «затвор–исток» <br/>
+        \(U_{ЗС}\) – напряжение «затвор–сток»
+        </p>
     <div class="field">
         <div class="task-paragraph">
             <div>Набор символов: 
             <div class="task-paragraph-text">
-                <div class="task-item" id="nvtnc0c1" onclick="selectItem(this)" data-item="$x1">\($x1\)</div>;
-                <div class="task-item" id="nvtnc0c2" onclick="selectItem(this)" data-item="$x2">\($x2\)</div>;
-                <div class="task-item" id="nvtnc0c3" onclick="selectItem(this)" data-item="$x3">\($x3\)</div>;
-                <div class="task-item" id="nvtnc0c4" onclick="selectItem(this)" data-item="$x4">\($x4\)</div>;
-                <div class="task-item" id="nvtnc0c5" onclick="selectItem(this)" data-item="$x5">\($x5\)</div>;
-                <div class="task-item" id="nvtnc0c6" onclick="selectItem(this)" data-item="$x6">\($x6\)</div>;
-                <div class="task-item" id="nvtnc0c7" onclick="selectItem(this)" data-item="$x7">\($x7\)</div>;
-                <div class="task-item" id="nvtnc0c8" onclick="selectItem(this)" data-item="$x8">\($x8\)</div>;
-                <div class="task-item" id="nvtnc0c9" onclick="selectItem(this)" data-item="$x9">\($x9\)</div>;
-                <div class="task-item" id="nvtnc0c10" onclick="selectItem(this)" data-item="$x10">\($x10\)</div>;
-                <div class="task-item" id="nvtnc0c11" onclick="selectItem(this)" data-item="$x11">\($x11\)</div>;
-                <div class="task-item" id="nvtnc0c12" onclick="selectItem(this)" data-item="$x12">\($x12\)</div>;
-                <div class="task-item" id="nvtnc0c13" onclick="selectItem(this)" data-item="$x13">\($x13\)</div>.
+                <div class="task-item_$unique_id" id="nvtnc0c1_4_5" onclick="selectItem_$unique_id(this)" data-item="$x1">\($x1\)</div>;
+                <div class="task-item_$unique_id" id="nvtnc0c2_4_5" onclick="selectItem_$unique_id(this)" data-item="$x2">\($x2\)</div>;
+                <div class="task-item_$unique_id" id="nvtnc0c3_4_5" onclick="selectItem_$unique_id(this)" data-item="$x3">\($x3\)</div>;
+                <div class="task-item_$unique_id" id="nvtnc0c4_4_5" onclick="selectItem_$unique_id(this)" data-item="$x4">\($x4\)</div>;
+                <div class="task-item_$unique_id" id="nvtnc0c5_4_5" onclick="selectItem_$unique_id(this)" data-item="$x5">\($x5\)</div>;
             </div>
         </div>
     </div>
@@ -157,14 +153,14 @@ def check_answer(expect, ans):
     <div class="field task-paragraph">
         <div class="task-paragraph-text">
             Составленная формула: 
-            <div id="formula-display">\( \)</div>
+            <div id="formula-display_$unique_id">\( \)</div>
         </div>
     </div>
     <div>
-        <button onclick="clearSelection()">Очистить выбор</button>
+        <button onclick="clearSelection_$unique_id()">Очистить выбор</button>
     </div>
 
-    <div id="select_task_input">
+    <div id="select_task_input_$unique_id">
         <customresponse cfn="check_answer">
             <textline size="40" value="" />
             <br/>
@@ -175,8 +171,8 @@ def check_answer(expect, ans):
 <script type="text/javascript">
     const selectedElements = [];
     const elementColors = {};
-    const formulaDisplay = document.getElementById('formula-display');
-    const inputField = document.querySelector("#select_task_input input[type='text']");
+    const formulaDisplay = document.getElementById(`formula-display_$unique_id`);
+    const inputField = document.querySelector(`#select_task_input_$unique_id input[type='text']`);
     const len_correct_selected = $len_correct_selected
 
     const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : [];
@@ -184,7 +180,7 @@ def check_answer(expect, ans):
         if (elem) {
             selectedElements.push(elem);
             elementColors[elem] = getRandomColor();
-            document.getElementById(elem).classList.add('selected-item');
+            document.getElementById(elem).classList.add('selected-item_$unique_id');
             document.getElementById(elem).style.backgroundColor = elementColors[elem];
         }
     });
@@ -194,7 +190,7 @@ def check_answer(expect, ans):
         return `hsl(${hue}, 100%, 75%)`;
     }
 
-    function selectItem(element) {
+    function selectItem_$unique_id(element) {
         if (selectedElements.length === len_correct_selected) {
             return; // Если достигнут лимит, не даем выбрать больше
         }
@@ -203,28 +199,27 @@ def check_answer(expect, ans):
         selectedElements.push(itemId);
         elementColors[itemId] = elementColors[itemId] || getRandomColor();
         element.style.backgroundColor = elementColors[itemId];
-        element.classList.add('selected-item');
-        updateDisabledItems();
+        element.classList.add('selected-item_$unique_id');
+        updateDisabledItems_$unique_id();
 
-        updateFormula();
-        setAnswer();
+        updateFormula_$unique_id();
+        setAnswer_$unique_id();
     }
 
-    function updateFormula() {
+    function updateFormula_$unique_id() {
         const fractionParts = selectedElements.map(function(id) {
             return id ? document.getElementById(id).getAttribute('data-item') : "?";
         });
         while (fractionParts.length !== len_correct_selected) {
             fractionParts.push("?");
         }
-
-        const formulaText = `\\( R1 = {${fractionParts[0]}}{${fractionParts[1]}}{${fractionParts[2]}}{${fractionParts[3]}}{${fractionParts[4]}}{${fractionParts[5]}}{${fractionParts[6]}} \\)`;
+        const formulaText = `\\( S = \\frac{\\mathrm{d} ${fractionParts[0]}}{\\mathrm{d} ${fractionParts[1]} } \\)`;
 
         formulaDisplay.innerHTML = formulaText;
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
     }
 
-    function setAnswer() {
+    function setAnswer_$unique_id() {
         const answerJSON = {
             "answer": {
                 "selected": selectedElements
@@ -233,37 +228,36 @@ def check_answer(expect, ans):
         inputField.value = JSON.stringify(answerJSON);
     }
 
-    function clearSelection() {
+    function clearSelection_$unique_id() {
         // Удаление выделения и сброс выбранных элементов
         selectedElements.length = 0;
-        document.querySelectorAll('.task-item').forEach(function (element) {
-            element.classList.remove('selected-item');
+        document.querySelectorAll('.task-item_$unique_id').forEach(function (element) {
+            element.classList.remove('selected-item_$unique_id');
             element.style.backgroundColor = '';
         });
-        updateDisabledItems();
-        updateFormula();
-        setAnswer();
+        updateDisabledItems_$unique_id();
+        updateFormula_$unique_id();
+        setAnswer_$unique_id();
     }
 
-    function updateDisabledItems() {
-        const items = document.querySelectorAll('.task-item');
+    function updateDisabledItems_$unique_id() {
+        const items = document.querySelectorAll('.task-item_$unique_id');
         items.forEach(function (item) {
             if (selectedElements.length === len_correct_selected) {
-                if (!item.classList.contains('selected-item')) {
-                item.classList.add('disabled-item');
+                if (!item.classList.contains('selected-item_$unique_id')) {
+                item.classList.add('disabled-item_$unique_id');
                 item.style.pointerEvents = 'none'; // Отключить возможность клика
                 item.style.backgroundColor = '#d3d3d3'; // Серый цвет
             }
             } else {
-                item.classList.remove('disabled-item');
+                item.classList.remove('disabled-item_$unique_id');
                 item.style.pointerEvents = 'auto'; // Включить возможность клика
                 item.style.backgroundColor = ''; // Восстановить исходный цвет
             }
         });
     }
 
-    updateFormula();
-    updateDisabledItems();
-
+    updateFormula_$unique_id();
+    updateDisabledItems_$unique_id();
 </script>
 </problem>

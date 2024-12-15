@@ -1,0 +1,99 @@
+<problem>
+    <style type="text/css"></style>
+    <div>
+        <div>
+            <p>На рисунке 1 приведена проходная ВАХ МДП транзистора с индуцированным каналом.</p>
+            <p>Укажите на рисунке номер рабочей точки каскада с общим истоком, обеспечивающей  минимальные нелинейные искажения усиливаемого сигнала.</p>
+        </div>
+        <div data-type="ImageSelectApp" class="adv-app" data-initial-data='$student_data' data-static="/static/_"></div>
+        <label style="text-align: center;">Рис. 1. Проходная ВАХ МДП транзистора с индуцированным каналом</label>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+correct_answer = ["click_area_03"]
+
+task_data = {
+    "width": 456,
+    "height": 467,
+    "min_width": 456,
+    "max_width": 467,
+    "scale": 1,
+    "full_width": False,
+    "test_mode": False,
+    "multianswers": False,
+    "auto_submit": False,
+    "click_area_style": {"border": "4px solid black", "background": "white", "border-radius": '11px'},
+    "click_area_style_selected": {"border": "4px solid #1e88e5", "background": "white", "border-radius": '11px'},
+    "image_src": "/static/DD_CIRCDESIGN_4.1.07_uz.png",
+    "click_areas": [
+        {
+            "id": 'click_area_01',
+            "l": 325,
+            "t": 71,
+            "w": 11,
+            "h": 11,
+            "classList": []
+        },
+        {
+            "id": 'click_area_02',
+            "l": 285,
+            "t": 199,
+            "w": 11,
+            "h": 11,
+            "classList": []
+        },
+        {
+            "id": 'click_area_03',
+            "l": 229,
+            "t": 358,
+            "w": 11,
+            "h": 11,
+            "classList": []
+        },
+        {
+            "id": 'click_area_04',
+            "l": 185,
+            "t": 415,
+            "w": 11,
+            "h": 11,
+            "classList": []
+        },
+    ]
+}
+
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    grade = 0
+    if 'answer' in student_answer:
+        if set(student_answer['answer']) == set(correct_answer):
+            grade = 1
+    if grade == 1:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}]}
+    else: 
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': 0}]}
+
+
+student_data = json.dumps(task_data)
+student_data = student_data.replace('"', "'")
+
+correct_data = json.dumps(correct_answer)
+correct_data = correct_data.replace('"', "'")
+
+</script>
+</problem>

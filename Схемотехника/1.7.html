@@ -3,25 +3,23 @@
 import json
 
 unique_id = "task_z8k42wz6"
-x1 = "R1"
-x2 = "R_К"
-x3 = "I_{Б0}"
-x4 = "U_{БЭ0}"
-x5 = "U_{ПИТ}"
-x6 = "("
-x7 = ")"
-x8 = "/"
+x1 = "\\rm N"
+x2 = "^2"
+x3 = "^{1/2}"
+x4 = "\ln"
+x5 = "\lg"
+x6 = "\log_{2}"
+x7 = "+"
+x8 = "-"
 x9 = "\\times"
-x10 = "+"
-x11 = "-"
-x12 = "С_{Р1}"
-x13 = "С_{Р2}"
-
-correct_selected = ["nvtnc0c6", "nvtnc0c5", "nvtnc0c11", "nvtnc0c4", "nvtnc0c7", "nvtnc0c8", "nvtnc0c3"]
+x10 = "("
+x11 = ")"
+correct_selected = ["nvtnc0c5", "nvtnc0c10", "nvtnc0c1", "nvtnc0c11"]
 len_correct_selected = len(correct_selected)
 
 def check_func(student_selected, correct_selected):
     response = {}
+    max_grade = len(correct_selected)
     
     correct_indexed = tuple(enumerate(correct_selected))
     student_indexed = tuple(enumerate(student_selected))
@@ -30,7 +28,7 @@ def check_func(student_selected, correct_selected):
         grade_decimal = 1.0
     else:
         correct_count = sum(1 for i, el in correct_indexed if len(student_selected) > i and student_selected[i] == el)
-        grade_decimal = correct_count / len_correct_selected
+        grade_decimal = correct_count / max_grade
 
     response["grade"] = grade_decimal
     if grade_decimal == 1:
@@ -129,9 +127,15 @@ def check_answer(expect, ans):
     }
 </style>
 
+
 <div id="$unique_id" class="task-select">
-    <p>Используя приведенный ниже рисунок и приведенный набор символов, составьте выражение для расчета сопротивления резистора \(R1\), обеспечивающего положение рабочей точки, отмеченное на входной ВАХ.</p>
-    <img src="/static/DD_CIRCDESIGN_3.1.11_uz.png" />
+    <p>Используя приведенный набор символов, составьте верное выражение для степени интеграции I микросхем через число N элементов на кристалле.</p>
+    <ol>
+<strong>Рекомендации по работе с заданием на составление формулы:</strong>
+    <li>Указать символ: он отобразится в формуле.</li>
+    <li>Удалить символ из формулы: повторно указать его в наборе символов.</li>
+    <li>Отправить результат.</li>
+    </ol>
     <div class="field">
         <div class="task-paragraph">
             <div>Набор символов: 
@@ -146,9 +150,7 @@ def check_answer(expect, ans):
                 <div class="task-item" id="nvtnc0c8" onclick="selectItem(this)" data-item="$x8">\($x8\)</div>;
                 <div class="task-item" id="nvtnc0c9" onclick="selectItem(this)" data-item="$x9">\($x9\)</div>;
                 <div class="task-item" id="nvtnc0c10" onclick="selectItem(this)" data-item="$x10">\($x10\)</div>;
-                <div class="task-item" id="nvtnc0c11" onclick="selectItem(this)" data-item="$x11">\($x11\)</div>;
-                <div class="task-item" id="nvtnc0c12" onclick="selectItem(this)" data-item="$x12">\($x12\)</div>;
-                <div class="task-item" id="nvtnc0c13" onclick="selectItem(this)" data-item="$x13">\($x13\)</div>.
+                <div class="task-item" id="nvtnc0c11" onclick="selectItem(this)" data-item="$x11">\($x11\)</div>.
             </div>
         </div>
     </div>
@@ -217,8 +219,7 @@ def check_answer(expect, ans):
         while (fractionParts.length !== len_correct_selected) {
             fractionParts.push("?");
         }
-
-        const formulaText = `\\( R1 = {${fractionParts[0]}}{${fractionParts[1]}}{${fractionParts[2]}}{${fractionParts[3]}}{${fractionParts[4]}}{${fractionParts[5]}}{${fractionParts[6]}} \\)`;
+        const formulaText = `\\( \\rm I = {${fractionParts[0]}}{${fractionParts[1]}}{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
 
         formulaDisplay.innerHTML = formulaText;
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
@@ -264,6 +265,5 @@ def check_answer(expect, ans):
 
     updateFormula();
     updateDisabledItems();
-
 </script>
 </problem>

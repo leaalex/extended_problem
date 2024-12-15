@@ -1,0 +1,229 @@
+<problem>
+<script type="loncapa/python">
+import json
+
+unique_id = "task_z8k42wz6"
+x1 = "I_0"
+x2 = "U_c"
+x3 = "\Delta U_{BX}"
+x4 = "R_{K}"
+x5 = "\phi_{t}"
+x6 = "2"
+
+def check_func(student_selected, correct_selected):
+    response = {}
+    max_grade = len(correct_selected)
+    
+    # Создаем кортежи (index, element) для обеих последовательностей
+    correct_indexed = tuple(enumerate(correct_selected))
+    student_indexed = tuple(enumerate(student_selected))
+
+    # Сравнение кортежей: если полностью совпадают — оценка 100%
+    if student_indexed == correct_indexed:
+        grade_decimal = 1.0
+    else:
+        # Подсчет правильных позиций и элементов
+        correct_count = sum(1 for i, el in correct_indexed if len(student_selected) > i and student_selected[i] == el)
+        grade_decimal = correct_count / max_grade
+
+    # Создаем ответ на основе grade_decimal
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
+    
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_answer(expect, ans):
+    correct_selected = ["nvtnc0c30", "nvtnc0c35", "nvtnc0c33", "nvtnc0c34"]
+    try:
+        student_answer = json.loads(ans)
+        student_answer = student_answer["answer"]
+        student_selected = student_answer["selected"]
+        response = check_func(student_selected, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': response['message'], 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] },
+        menuSettings: {
+            collapsibleMath: false
+        }
+    });
+</script>
+<style>
+    #$unique_id #select_task_input {
+        display: none !important;
+    }
+
+    #$unique_id .task-item {
+        display: inline;
+        padding: 1px;
+        cursor: pointer;
+    }
+
+    #$unique_id .task-paragraph {
+        display: inline-flex;
+        margin: 4px 0px;
+        width: 100%;
+    }
+
+    #$unique_id .task-item:hover {
+        background: #a7ffaa;
+    }
+
+    #$unique_id .task-item.selected-item {
+        background: #ffff7e;
+    }
+
+    #$unique_id .answer {
+        padding: 5px;
+        border: 1px solid #e6e6e6;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+    }
+    .field {
+        padding: 5px;
+        border: 1px solid #e6e6e6;
+        
+    }
+    .hidden-item {
+        display: none;
+    }
+    .task-paragraph {
+        font-size: 1.3rem;
+    }
+    #formula-display {
+        font-size: 1.5rem !important;
+    }
+</style>
+
+
+<div id="$unique_id" class="task-select">
+
+    <div class="field">
+        <div class="task-paragraph">
+            <div>Набор символов: 
+            <div class="task-paragraph-text">
+                <div class="task-item" id="nvtnc0c30" onclick="selectItem(this)" data-item="$x1">\($x1\);</div>
+                <div class="task-item" id="nvtnc0c31" onclick="selectItem(this)" data-item="$x2">\($x2\);</div>
+                <div class="task-item" id="nvtnc0c32" onclick="selectItem(this)" data-item="$x3">\($x3\);</div>
+                <div class="task-item" id="nvtnc0c33" onclick="selectItem(this)" data-item="$x4">\($x4\);</div>
+                <div class="task-item" id="nvtnc0c34" onclick="selectItem(this)" data-item="$x5">\($x5\);</div>
+                <div class="task-item" id="nvtnc0c35" onclick="selectItem(this)" data-item="$x6">\($x6\).</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="field task-paragraph">
+        <div class="task-paragraph-text">
+            Составленная формула: 
+            <div id="formula-display">\( \)</div>
+        </div>
+    </div>
+
+    <div id="select_task_input">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="" />
+            <br/>
+        </customresponse>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const selectedElements = [null, null, null, null];
+    const elementColors = {};
+    const formulaDisplay = document.getElementById('formula-display');
+    const inputField = document.querySelector("#select_task_input input[type='text']"); 
+    const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : ["", "", "", ""];
+    
+    selected_elems.forEach(function (elem, i) {
+        if (elem) {
+            selectedElements[i] = elem;
+            elementColors[elem] = getRandomColor();
+        }
+    });
+
+    function getRandomColor() {
+        const hue = Math.floor(Math.random() * 360);
+        return `hsl(${hue}, 100%, 75%)`;
+    }
+
+    function selectItem(element) {
+        const itemId = element.id;
+        const index = selectedElements.indexOf(itemId);
+        if (index !== -1) {
+            selectedElements[index] = null;
+            delete elementColors[itemId];
+            element.classList.remove('selected-item');
+            element.style.backgroundColor = '';
+        } else {
+            const countSelected = selectedElements.filter(function (item) { return item !== null }).length;
+            for (let i in selectedElements) {
+                if (selectedElements[i] === null) {
+                    selectedElements[i] = itemId;
+                    elementColors[itemId] = elementColors[itemId] || getRandomColor();
+                    element.style.backgroundColor = elementColors[itemId];
+                    element.classList.add('selected-item');
+                    break;
+                }
+            }
+        }
+
+        updateFormula();
+        setAnswer();
+    }
+
+    function updateFormula() {
+        const fractionParts = selectedElements.map(function(id) { return id ? document.getElementById(id).getAttribute('data-item') : "?"});
+        const formulaText = `\\( K_{u} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\cdot \\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
+
+        formulaDisplay.innerHTML = formulaText;
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
+    }
+
+    function setAnswer() {
+        const answerJSON = {
+            "answer": {
+                "selected": selectedElements
+            }
+        };
+        inputField.value = JSON.stringify(answerJSON);
+    }
+    
+    function updateAvailableItems() {
+        const items = document.querySelectorAll('.task-item');
+        items.forEach(function (item) {
+            if (!item.classList.contains('selected-item')) {
+                item.classList.add('hidden-item');
+            } else {
+                item.classList.remove('hidden-item');
+            }
+        });
+    }
+
+    updateFormula();
+</script>
+
+</problem>
