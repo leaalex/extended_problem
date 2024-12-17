@@ -5,7 +5,7 @@ import random
 import string
 
 def generate_unique_id():
-    return 'task_2_5' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
+    return 'task_5_1' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
 
 unique_id = generate_unique_id()
 
@@ -13,12 +13,10 @@ x1 = "I_0"
 x2 = "U_С"
 x3 = "\\delta U_{\\rm ВХ}"
 x4 = "R_{\\rm К}"
-x5 = "-"
-x6 = "/"
-x7 = "^2"
-x8 = "2"
+x5 = "\\varphi_T"
+x6 = "2"
 
-correct_selected = ["nvtnc0c1_2_5", "nvtnc0c5_2_5", "nvtnc0c2_2_5"]
+correct_selected = ["nvtnc0c1_5_1", "nvtnc0c6_5_1", "nvtnc0c4_5_1", "nvtnc0c5_5_1"]
 len_correct_selected = len(correct_selected)
 
 def check_func(student_selected, correct_selected):
@@ -138,32 +136,40 @@ def check_answer(expect, ans):
     </style>
 
     <div id="$unique_id" class="task-select">
-        <p>УНапряжение насыщения МДП-транзистора \(U_{\rm СН}\) определяется напряжением «затвор – исток» \(U_{\rm ЗИ}\)
-            и пороговым напряжением \(U_{0}\).</p>
-        <p>
-            Используя приведенные ниже символы, составьте формулу, выражающую связь между напряжением насыщения \(U_{\rm СН}\),
-            напряжением «затвор – исток» \(U_{\rm ЗИ}\) и пороговым напряжением \(U_{0}\).
-        </p>
+        <p>При поступлении на входные контакты дифференциального усилителя противофазных сигналов</p>
+        <p style="text-align: center !important;">\( U_{ВХ1} = U_C + \Delta U_{ВХ}; \)</p>
+        <p style="text-align: center !important;">\( U_{ВХ2} = U_C - \Delta U_{ВХ}, \)</p>
+        <p>напряжения на выходных контактах будут определяться выражениями:</p>
+        <p style="text-align: center !important;">\( U_{ВЫХ1} = U_{ПИТ} - R_k \frac{I_0}{2} e^{\frac{\Delta U_{ВХ}}{\varphi_T}}; \)</p>
+        <p style="text-align: center !important;">\( U_{ВЫХ2} = U_{ПИТ} - R_k \frac{I_0}{2} e^{-\frac{\Delta U_{ВХ}}{\varphi_T}}. \)</p>
+        <p>Используя данные формулы и учитывая, что для малых значений аргумента можно записать</p>
+        <p style="text-align: center !important;">\( \sinh \left( \frac{\Delta U_{ВХ}}{\varphi_T} \right) \approx \frac{\Delta U_{ВХ}}{\varphi_T}, \)</p>
+        <p>выразите коэффициент усиления по напряжению \( K_U \) дифференциального усилителя и наберите полученное выражение из приведенного набора символов.</p>
+        <img src="/static/DD_CIRCDESIGN_5.1.01_uz.png" />
+        <div style="display: flex !important; align-items: center !important; justify-content: center !important;">
+            <label style="text-align: center !important;">Рис. 1. Схема дифференциального усилителя на биполярных транзисторах</label>
+        </div>
+        <ol>Рекомендации по работе с заданием на составление формулы:
+            <li>Указать символы, в следующем порядке: числитель дроби, затем знаменатель.</li>
+            <li>Удалить символ из формулы: нажать на кнопку «Очистить выбор»</li>
+            <li>Отправить результат.</li>
+        </ol>
         <div class="field">
             <div class="task-paragraph">
                 <div>Набор символов:
                     <div class="task-paragraph-text">
-                        <div class="task-item_$unique_id" id="nvtnc0c1_2_5" onclick="selectItem_$unique_id(this)"
+                        <div class="task-item_$unique_id" id="nvtnc0c1_5_1" onclick="selectItem_$unique_id(this)"
                             data-item="$x1">\($x1\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c2_2_5" onclick="selectItem_$unique_id(this)"
+                        <div class="task-item_$unique_id" id="nvtnc0c2_5_1" onclick="selectItem_$unique_id(this)"
                             data-item="$x2">\($x2\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_2_5" onclick="selectItem_$unique_id(this)"
+                        <div class="task-item_$unique_id" id="nvtnc0c3_5_1" onclick="selectItem_$unique_id(this)"
                             data-item="$x3">\($x3\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c4_2_5" onclick="selectItem_$unique_id(this)"
+                        <div class="task-item_$unique_id" id="nvtnc0c4_5_1" onclick="selectItem_$unique_id(this)"
                             data-item="$x4">\($x4\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c5_2_5" onclick="selectItem_$unique_id(this)"
+                        <div class="task-item_$unique_id" id="nvtnc0c5_5_1" onclick="selectItem_$unique_id(this)"
                             data-item="$x5">\($x5\)</div>;
-                            <div class="task-item_$unique_id" id="nvtnc0c6_2_5" onclick="selectItem_$unique_id(this)"
+                            <div class="task-item_$unique_id" id="nvtnc0c6_5_1" onclick="selectItem_$unique_id(this)"
                             data-item="$x6">\($x6\)</div>;
-                            <div class="task-item_$unique_id" id="nvtnc0c7_2_5" onclick="selectItem_$unique_id(this)"
-                            data-item="$x7">\($x7\)</div>;
-                            <div class="task-item_$unique_id" id="nvtnc0c8_2_5" onclick="selectItem_$unique_id(this)"
-                            data-item="$x8">\($x8\)</div>;
                     </div>
                 </div>
             </div>
@@ -232,7 +238,7 @@ def check_answer(expect, ans):
             while (fractionParts.length !== len_correct_selected) {
                 fractionParts.push("?");
             }
-            const formulaText = `\\( U_{\\rm СН} = ${fractionParts[0]} ${fractionParts[1]} ${fractionParts[2]} \\)`;
+            const formulaText = `\\( K_{U} = \\frac{${fractionParts[0]}}{${fractionParts[1]}} \\times \\frac{${fractionParts[2]}}{${fractionParts[3]}}  \\)`;
 
             formulaDisplay.innerHTML = formulaText;
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);

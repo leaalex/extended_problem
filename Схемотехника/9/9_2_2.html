@@ -36,6 +36,22 @@
     width: 100%;
     max-width: 250px;
 }
+.task-inputs-block .message, .task-inputs-block .response_message {
+            /*display: inline-block !important;*/
+            background: whitesmoke !important;
+            padding: 10px !important;
+            margin-top: 8px !important;
+            box-shadow: 0px 0px 1px 1px #d0d5dd !important;
+            font-weight: bold !important;
+        }
+
+        .task-inputs-block p {
+            margin-bottom: 0.41575em !important;
+        }
+
+        .task-text code {
+            white-space: normal !important;
+        }
 
 </style>
 <script type="loncapa/python">
@@ -45,40 +61,45 @@ import string
 
 data = {
     "content": {
-    "answers_title" "Принципиальные схемы:",
-    "body": "В левом столбце таблицы приведены эквивалентные схемы усилительных каскадов на МДП транзисторах. \\\n \\\n По местите предложенные ниже принципиальные схемы усилительных каскадов  напротив  соответствующих им эквивалентных схем."
+    "answers_title": "Варианты названий функциональных блоков:",
+    "body": "В таблице приведены схемы функциональных блоков статической памяти с произвольным доступом. \\\n Поставьте в соответствие этим схемам названия функциональных блоков из приведенного ниже списка. Переместите правильные ответы в соответствующие ячейки таблицы."
     },
     "table": [
     [
-        '__Эквивалентные схемы__.{.text-blue-7} .{.center}',
-        '__Принципиальные схемы__.{.text-blue-7} .{.center}',
+        '__Схема функционального блока__.{.text-blue-7} .{.center}',
+        '__Название функционального блока__.{.text-blue-7} .{.center}',
     ],
     [
-        '![](/static/DD_CIRCDESIGN_4.1.01_uz.png).{.img-class}',
-        ['![](/static/DD_CIRCDESIGN_4.1.02_uz.png).{.img-class}', ],
+        '![](/static/DD_CIRCDESIGN_9.2.02_uz.png).{.img-class}',
+        ['Усилитель записи'],
     ],
     [
-        '![](/static/DD_CIRCDESIGN_4.1.03_uz.png).{.img-class}',
-        ['![](/static/DD_CIRCDESIGN_4.1.04_uz.png).{.img-class}'],
+        '![](/static/DD_CIRCDESIGN_9.2.03_uz.png).{.img-class}',
+        ['Ячейка памяти'],
     ],
     [
-        '![](/static/DD_CIRCDESIGN_4.1.05_uz.png).{.img-class}',
-        ['![](/static/DD_CIRCDESIGN_4.1.06_uz.png).{.img-class}'],
+        '![](/static/DD_CIRCDESIGN_9.2.04_uz.png).{.img-class}',
+        ['Усилитель чтения'],
     ],
-
-
+    [
+        '![](/static/DD_CIRCDESIGN_9.2.05_uz.png).{.img-class}',
+        ['Устройство подзаряда разрядных линий'],
+    ],
+    [
+        '![](/static/DD_CIRCDESIGN_9.2.06_uz.png).{.img-class}',
+        ['Выходной усилитель'],
+    ],
 ],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
+        'is_exist_mathjax': True,
         'is_exist_image': True,
-        'show_incorrect': False,
+        'show_incorrect': False
 },
 "style":   {
         'rows': ['','', '', ''],
-        'colls': [''] 
-
+        'colls': ['w80', 'w20'] 
     }
 }
 
