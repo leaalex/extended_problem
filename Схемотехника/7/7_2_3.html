@@ -95,42 +95,6 @@ data = {
     }
 }
 
-data1 = {
-    "content": {
-    "answers_title": "",
-    "body": ""
-    },
-    "table": [
-    [
-    '__Элемент И-НЕ__.{.text-blue-7} .{.center}',
-    ],
-    [
-        '__Состояние__.{.text-blue-7} .{.center}',
-        '__Транзистор__.{.text-blue-7} .{.center}',
-    ],
-    [
-        'открыт.{.center}',
-        ['T2', 'T3'],
-    ],
-    [
-        'закрыт.{.center}',
-        ['T1', 'T4'],
-    ],
-],
-"settings":{
-        "is_exist_markdown": True,
-        "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_image': True,
-        'show_incorrect': False,
-        "colspan": {1:{1:2, 2:2}}
-},
-"style":   {
-        'rows': ['','', '', ''],
-        'colls': [''] 
-    }
-}
-
 def generate_id(length=8):
     return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
 
@@ -146,20 +110,6 @@ student_data = {
     "style": data["style"],
     "content": data["content"]
 }
-
-show_incorrect1 = data1["settings"]["show_incorrect"] if "show_incorrect" in data1["settings"].keys() else False
-data1["distractors"] = data1["distractors"] if "distractors" in data1.keys() else []
-data1["settings"] = data1["settings"] if "settings" in data1.keys() else {}
-data1["style"] = data1["style"] if "style" in data1.keys() else {}
-correct_answer1 = {}
-student_data1 = {
-    "table": [],
-    "answers": [],
-    "settings": data1["settings"],
-    "style": data1["style"],
-    "content": data1["content"]
-}
-
 
 use_multi_answers = ''
 if "multi_answers" in data["settings"].keys():
@@ -213,50 +163,6 @@ if use_multi_answers:
 
 
 random.shuffle(student_data["answers"])
-
-for row_index, row in enumerate(data1["table"]):
-    student_data1["table"].append([])
-    for column_index, cell in enumerate(row):
-        student_cell = {}
-        if not isinstance(cell, str):
-            student_cell["id"] = generate_id()
-            student_cell["isFixed"] = False
-            correct_answer[student_cell["id"]] = []
-
-            for cell_answer in cell:
-                cell_answer_id = generate_id()
-
-                if use_multi_answers:
-                    direction_index = column_index if use_multi_answers == 'vertical' else row_index
-                    if "block" + str(direction_index) not in all_answers_obj.keys():
-                        all_answers_obj["block" + str(direction_index)] = []
-                    all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
-
-                    student_data1["answers"].append({"title": cell_answer, "id": cell_answer_id})
-                correct_answer[student_cell["id"]].append(cell_answer_id)
-        else:
-            student_cell["value"] = [cell]
-            student_cell["isFixed"] = True
-            student_data1["table"][row_index].append(student_cell)
-
-
-for distractor in data1["distractors"]:
-    student_data1["answers"].append({"title": distractor, "id": generate_id()})
-
-if use_multi_answers:
-    student_data1["answers"] = []
-    for block_idx, block_key in enumerate(all_answers_obj.keys()):
-        student_data1["answers"].append(all_answers_obj[block_key])
-        try:
-            if isinstance(data1["distractors"][block_idx], list):
-                for dist in data1["distractors"][block_idx]:
-                    student_data1["answers"][block_idx].append({"title": dist, "id": generate_id()})
-        except:
-            pass
-            # raise Exception("DISTRACTORS ERROR")
-
-
-random.shuffle(student_data1["answers"])
 
 def get_response(grade_decimal, wrong_answers=None):
     response = {}
@@ -318,55 +224,25 @@ def check_answer(expect, ans):
         ]
     }
 
-def check_answer1(expect, ans):
-    student_answer = json.loads(ans)["answer"]
-    max_grade = sum([len(correct_answer1[x]) for x in correct_answer1.keys()])
-    grade = 0
-    wrong_answers = []
-
-    for correct_cell_id in correct_answer1.keys():
-        correct_cell = correct_answer1[correct_cell_id]
-        res = check_partially(correct_cell, student_answer[correct_cell_id])
-        grade += res["grade"]
-        if show_incorrect1:
-            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
-
-    response = get_response(float(grade / max_grade), wrong_answers, )
-
-    return {
-        'input_list': [
-            {
-                # true, false partially
-                'ok': response['ok'],
-                # string - отображаения под Input'ом
-                # как проавило сюда отправляется json со всеми дополнительными данными
-                'msg': str(json.dumps(response)),
-                # number [0, 1] - оценка за задание
-                'grade_decimal': response['grade']
-            },
-        ]
-    }
-
 
 student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
 correct_data = list(bytearray(json.dumps(data), 'utf-8'))
 
-student_data1 = list(bytearray(json.dumps(student_data1), 'utf-8'))
-correct_data1 = list(bytearray(json.dumps(data1), 'utf-8'))
 </script>
-    <p>
-        На рисунке 4 приведена схема логического ЭСЛ-элемента.
-    </p>
-    <p>
-        Укажите в таблице состояние (открыт или закрыт) для каждого транзистора логического элемента, если на входе \(А\)
-        установлен уровень логической единицы, а на входе \(В\) – логического нуля.
-    </p>
     <div class="container-image">
         <img src="/static/DD_CIRCDESIGN_7.2.03_uz.png" alt="Схема 3" />
         <div style="display: flex !important; align-items: center !important; justify-content: center !important;">
-            <label style="text-align: center !important;">Рис. 5. Схемы КМОП-элементов</label>
+            <label style="text-align: center !important;">Рис. 3. Схемы КМОП-элементов</label>
         </div>
     </div>
+    <p>
+        На рисунке 3 приведена схема логического ЭСЛ-элемента.
+    </p>
+    <p>
+        Укажите в таблице состояние (открыт или закрыт) для каждого транзистора логического элемента, если на входе \(\rm А\)
+        установлен уровень логической единицы, а на входе \(\rm В\) – логического нуля.
+    </p>
+
     <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data"
         data-static="/static/_">
         <div class="loader" />
@@ -414,54 +290,5 @@ correct_data1 = list(bytearray(json.dumps(data1), 'utf-8'))
             <textline size="120" />
         </customresponse>
         <solution data-initial-data="$correct_data" />
-    </div>
-
-    <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data1" data-initial-data="$student_data1"
-    data-static="/static/_">
-    <div class="loader" />
-    <style>
-        .loader {
-            margin: 100px auto;
-            width: 4px;
-            color: #0075b4;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
-            transform: translateX(-38px);
-            animation: l26 1s infinite linear;
-        }
-
-        @keyframes l26 {
-            12.5% {
-                box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px
-            }
-
-            25% {
-                box-shadow: 19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 0px
-            }
-
-            50% {
-                box-shadow: 19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
-            }
-
-            62.5% {
-                box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 5px
-            }
-
-            75% {
-                box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
-            }
-
-            87.5% {
-                box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 5px, 57px 0 0 0px, 19px 19px 0 5px, 38px 19px 0 0px, 57px 19px 0 0px
-            }
-        }
-    </style>
-</div>
-    <div style="display: none">
-        <customresponse cfn="check_answer1">
-            <textline size="120" />
-        </customresponse>
-        <solution data-initial-data="$correct_data1" />
     </div>
 </problem>

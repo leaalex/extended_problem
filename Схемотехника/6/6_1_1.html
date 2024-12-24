@@ -1,5 +1,5 @@
 <problem>
-    <script type="loncapa/python">
+<script type="loncapa/python">
 import json
 import random
 import string
@@ -24,7 +24,7 @@ len_correct_selected = len(correct_selected)
 def check_func(student_selected, correct_selected):
     response = {}
     max_grade = len(correct_selected)
-    
+
     correct_indexed = tuple(enumerate(correct_selected))
     student_indexed = tuple(enumerate(student_selected))
 
@@ -44,7 +44,7 @@ def check_func(student_selected, correct_selected):
     else:
         ok = 'Partial'
         message = 'Partial'
-    
+
     response["ok"] = ok
     response["message"] = message
     return response
@@ -60,7 +60,7 @@ def check_answer(expect, ans):
         return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
 
 </script>
-    <script type="text/x-mathjax-config">
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
         jax: ["input/TeX", "output/HTML-CSS"],
@@ -75,230 +75,230 @@ def check_answer(expect, ans):
         }
     });
 </script>
-    <style>
-        #$unique_id #select_task_input_$unique_id {
-            display: none !important;
-        }
+<style>
+    #$unique_id #select_task_input_$unique_id {
+        display: none !important;
+    }
 
-        #$unique_id .task-item_$unique_id {
-            display: inline;
-            padding: 1px;
-            cursor: pointer;
-            border: 1px solid #000;
-        }
+    #$unique_id .task-item_$unique_id {
+        display: inline;
+        padding: 1px;
+        cursor: pointer;
+        border: 1px solid #000;
+    }
 
-        #$unique_id .task-paragraph {
-            display: inline-flex;
-            margin: 4px 0px;
-            width: 100%;
-        }
+    #$unique_id .task-paragraph {
+        display: inline-flex;
+        margin: 4px 0px;
+        width: 100%;
+    }
 
-        #$unique_id .task-item_$unique_id: hover {
-            background: #a7ffaa;
-        }
+    #$unique_id .task-item_$unique_id: hover {
+        background: #a7ffaa;
+    }
 
-        #$unique_id .task-item_$unique_id.selected-item_$unique_id {
-            background: #ffff7e;
-        }
+    #$unique_id .task-item_$unique_id.selected-item_$unique_id {
+        background: #ffff7e;
+    }
 
-        #$unique_id .task-item_$unique_id.disabled-item_$unique_id {
-            background-color: #d3d3d3;
-            /* Серый цвет */
-            cursor: not-allowed;
-            /* Курсор, как для заблокированного элемента */
-            border: 0px solid #000;
-        }
+    #$unique_id .task-item_$unique_id.disabled-item_$unique_id {
+        background-color: #d3d3d3;
+        /* Серый цвет */
+        cursor: not-allowed;
+        /* Курсор, как для заблокированного элемента */
+        border: 0px solid #000;
+    }
 
-        #$unique_id .answer {
-            padding: 5px;
-            border: 1px solid #e6e6e6;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 10px;
-        }
+    #$unique_id .answer {
+        padding: 5px;
+        border: 1px solid #e6e6e6;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+    }
 
-        .field {
-            padding: 5px;
-            border: 1px solid #e6e6e6;
+    .field {
+        padding: 5px;
+        border: 1px solid #e6e6e6;
 
-        }
+    }
 
-        .hidden-item_$unique_id {
-            display: none;
-        }
+    .hidden-item_$unique_id {
+        display: none;
+    }
 
-        .task-paragraph {
-            font-size: 1.3rem;
-        }
+    .task-paragraph {
+        font-size: 1.3rem;
+    }
 
-        #formula-display_$unique_id {
-            font-size: 1.5rem !important;
-        }
-    </style>
+    #formula-display_$unique_id {
+        font-size: 1.5rem !important;
+    }
+</style>
 <multiplechoiceresponse>
-    <p><em>Выберите правильный вариант ответа функции, выполняемой блоком…</em>
-  </p><p>На рисунке 1 приведена схема функционального блока на операционном усилителе. </p>
-  <ol>
-              <li>Определите функцию, выполняемую данным блоком.</li>
-              <li>Составьте верное выражение для его коэффициента усиления \(K_U\), используя приведенный ниже набор символов.</li>
-          </ol>
-  <img src="/static/DD_CIRCDESIGN_6.1.01_uz.png"/><div style="display: flex !important; align-items: center !important; justify-content: center !important;">
-  <p>        </p>
-  <label style="text-align: center !important;">Рис. 1. Схема функционального блока на операционном усилителе</label>
-      </div>
-  <p>На рисунке 6 приведена схема двухтактного усилителя мощности на комплементарных МДП-транзисторах. В данной схеме сглаживание ступенек между положительными и отрицательными полупериодами выходного напряжения и тока обеспечивается…</p>
-  <choicegroup type="MultipleChoice" shuffle="true">
-      <choice correct="false">инвертирующий усилитель <choicehint>в инвертирующем усилителе входное напряжение и часть выходного напряжения подаются на инвертирующий вход</choicehint>
-  </choice>
-      <choice correct="true">неинвертирующий усилитель <choicehint>в неинвертирующем усилителе входное напряжение подается на неинвертирующий вход, а часть выходного напряжения – на инвертирующий вход</choicehint>
-  </choice>
-      <choice correct="false">интегрирующий усилитель <choicehint>в интегрирующем усилителе входное напряжение подается на инвертирующий вход через резистор, а выходное напряжение – на инвертирующий вход через конденсатор</choicehint>
-  </choice>
-      <choice correct="false">дифференцирующий усилитель <choicehint>в дифференцирующем усилителе входное напряжение подается на инвертирующий вход через конденсатор, а выходное напряжение – на инвертирующий вход через резистор</choicehint>
-  </choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-    <div id="$unique_id" class="task-select">
-        <p>Составьте верное выражение для его коэффициента усиления \(K_U\).</p>
-        <ol>Рекомендации по работе с заданием на составление формулы:
-            <li>Указать символы, в следующем порядке: числитель дроби, затем знаменатель.</li>
-            <li>Удалить символ из формулы: нажать на кнопку «Очистить выбор»</li>
-            <li>Отправить результат.</li>
+<img src="/static/DD_CIRCDESIGN_6.1.01_uz.png"/><div style="display: flex !important; align-items: center !important; justify-content: center !important;">
+<p>        </p>
+<label style="text-align: center !important;">Рис. 1. Схема функционального блока на операционном усилителе</label>
+    </div>
+<p><em>Выберите правильный вариант ответа функции, выполняемой блоком…</em>
+</p><p>На рисунке 1 приведена схема функционального блока на операционном усилителе. </p>
+<ol>
+            <li>Определите функцию, выполняемую данным блоком.</li>
+            <li>Составьте верное выражение для его коэффициента усиления \(K_U\), используя приведенный ниже набор символов.</li>
         </ol>
-        <div class="field">
-            <div class="task-paragraph">
-                <div>Набор символов:
-                    <div class="task-paragraph-text">
-                        <div class="task-item_$unique_id" id="nvtnc0c1_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x1">\($x1\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c2_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x2">\($x2\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x3">\($x3\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c4_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x4">\($x4\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c5_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x5">\($x5\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c6_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x6">\($x6\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c7_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x7">\($x7\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c8_6_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x8">\($x8\)</div>;
-                    </div>
+<choicegroup type="MultipleChoice" shuffle="true">
+    <choice correct="false">инвертирующий усилитель <choicehint>в инвертирующем усилителе входное напряжение и часть выходного напряжения подаются на инвертирующий вход</choicehint>
+</choice>
+    <choice correct="true">неинвертирующий усилитель <choicehint>в неинвертирующем усилителе входное напряжение подается на неинвертирующий вход, а часть выходного напряжения – на инвертирующий вход</choicehint>
+</choice>
+    <choice correct="false">интегрирующий усилитель <choicehint>в интегрирующем усилителе входное напряжение подается на инвертирующий вход через резистор, а выходное напряжение – на инвертирующий вход через конденсатор</choicehint>
+</choice>
+    <choice correct="false">дифференцирующий усилитель <choicehint>в дифференцирующем усилителе входное напряжение подается на инвертирующий вход через конденсатор, а выходное напряжение – на инвертирующий вход через резистор</choicehint>
+</choice>
+</choicegroup>
+</multiplechoiceresponse>
+<div id="$unique_id" class="task-select">
+    <p>Составьте верное выражение для его коэффициента усиления \(K_U\).</p>
+    <h4>Рекомендации по работе с заданием на составление формулы:</h4>
+    <ol>
+        <li>Указать символы, в следующем порядке: числитель дроби, затем знаменатель.</li>
+        <li>Удалить символ из формулы: нажать на кнопку «Очистить выбор»</li>
+        <li>Отправить результат.</li>
+    </ol>
+    <div class="field">
+        <div class="task-paragraph">
+            <div>Набор символов:
+                <div class="task-paragraph-text">
+                    <div class="task-item_$unique_id" id="nvtnc0c1_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x1">\($x1\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c2_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x2">\($x2\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c3_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x3">\($x3\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c4_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x4">\($x4\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c5_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x5">\($x5\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c6_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x6">\($x6\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c7_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x7">\($x7\)</div>;
+                    <div class="task-item_$unique_id" id="nvtnc0c8_6_1" onclick="selectItem_$unique_id(this)"
+                        data-item="$x8">\($x8\)</div>;
                 </div>
             </div>
         </div>
-
-        <div class="field task-paragraph">
-            <div class="task-paragraph-text">
-                Составленная формула:
-                <div id="formula-display_$unique_id">\( \)</div>
-            </div>
-        </div>
-        <div>
-            <button onclick="clearSelection_$unique_id()">Очистить выбор</button>
-        </div>
-
-        <div id="select_task_input_$unique_id">
-            <customresponse cfn="check_answer">
-                <textline size="40" value="" />
-                <br />
-            </customresponse>
-        </div>
     </div>
 
-    <script type="text/javascript">
-        const selectedElements = [];
-        const elementColors = {};
-        const formulaDisplay = document.getElementById(`formula-display_$unique_id`);
-        const inputField = document.querySelector(`#select_task_input_$unique_id input[type='text']`);
-        const len_correct_selected = $len_correct_selected
+    <div class="field task-paragraph">
+        <div class="task-paragraph-text">
+            Составленная формула:
+            <div id="formula-display_$unique_id">\( \)</div>
+        </div>
+    </div>
+    <div>
+        <button onclick="clearSelection_$unique_id()">Очистить выбор</button>
+    </div>
 
-        const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : [];
-        selected_elems.forEach(function (elem) {
-            if (elem) {
-                selectedElements.push(elem);
-                elementColors[elem] = getRandomColor();
-                document.getElementById(elem).classList.add('selected-item_$unique_id');
-                document.getElementById(elem).style.backgroundColor = elementColors[elem];
-            }
-        });
+    <div id="select_task_input_$unique_id">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="" />
+            <br />
+        </customresponse>
+    </div>
+</div>
 
-        function getRandomColor() {
-            const hue = Math.floor(Math.random() * 360);
-            return `hsl(${hue}, 100%, 75%)`;
+<script type="text/javascript">
+    const selectedElements = [];
+    const elementColors = {};
+    const formulaDisplay = document.getElementById(`formula-display_$unique_id`);
+    const inputField = document.querySelector(`#select_task_input_$unique_id input[type='text']`);
+    const len_correct_selected = $len_correct_selected
+
+    const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : [];
+    selected_elems.forEach(function (elem) {
+        if (elem) {
+            selectedElements.push(elem);
+            elementColors[elem] = getRandomColor();
+            document.getElementById(elem).classList.add('selected-item_$unique_id');
+            document.getElementById(elem).style.backgroundColor = elementColors[elem];
+        }
+    });
+
+    function getRandomColor() {
+        const hue = Math.floor(Math.random() * 360);
+        return `hsl(${hue}, 100%, 75%)`;
+    }
+
+    function selectItem_$unique_id(element) {
+        if (selectedElements.length === len_correct_selected) {
+            return; // Если достигнут лимит, не даем выбрать больше
         }
 
-        function selectItem_$unique_id(element) {
-            if (selectedElements.length === len_correct_selected) {
-                return; // Если достигнут лимит, не даем выбрать больше
-            }
-
-            const itemId = element.id;
-            selectedElements.push(itemId);
-            elementColors[itemId] = elementColors[itemId] || getRandomColor();
-            element.style.backgroundColor = elementColors[itemId];
-            element.classList.add('selected-item_$unique_id');
-            updateDisabledItems_$unique_id();
-
-            updateFormula_$unique_id();
-            setAnswer_$unique_id();
-        }
-
-        function updateFormula_$unique_id() {
-            const fractionParts = selectedElements.map(function (id) {
-                return id ? document.getElementById(id).getAttribute('data-item') : "?";
-            });
-            while (fractionParts.length !== len_correct_selected) {
-                fractionParts.push("?");
-            }
-            const formulaText = `\\( K_U = ${fractionParts[0]}${fractionParts[1]}\\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
-
-            formulaDisplay.innerHTML = formulaText;
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
-        }
-
-        function setAnswer_$unique_id() {
-            const answerJSON = {
-                "answer": {
-                    "selected": selectedElements
-                }
-            };
-            inputField.value = JSON.stringify(answerJSON);
-        }
-
-        function clearSelection_$unique_id() {
-            // Удаление выделения и сброс выбранных элементов
-            selectedElements.length = 0;
-            document.querySelectorAll('.task-item_$unique_id').forEach(function (element) {
-                element.classList.remove('selected-item_$unique_id');
-                element.style.backgroundColor = '';
-            });
-            updateDisabledItems_$unique_id();
-            updateFormula_$unique_id();
-            setAnswer_$unique_id();
-        }
-
-        function updateDisabledItems_$unique_id() {
-            const items = document.querySelectorAll('.task-item_$unique_id');
-            items.forEach(function (item) {
-                if (selectedElements.length === len_correct_selected) {
-                    if (!item.classList.contains('selected-item_$unique_id')) {
-                        item.classList.add('disabled-item_$unique_id');
-                        item.style.pointerEvents = 'none'; // Отключить возможность клика
-                        item.style.backgroundColor = '#d3d3d3'; // Серый цвет
-                    }
-                } else {
-                    item.classList.remove('disabled-item_$unique_id');
-                    item.style.pointerEvents = 'auto'; // Включить возможность клика
-                    item.style.backgroundColor = ''; // Восстановить исходный цвет
-                }
-            });
-        }
+        const itemId = element.id;
+        selectedElements.push(itemId);
+        elementColors[itemId] = elementColors[itemId] || getRandomColor();
+        element.style.backgroundColor = elementColors[itemId];
+        element.classList.add('selected-item_$unique_id');
+        updateDisabledItems_$unique_id();
 
         updateFormula_$unique_id();
+        setAnswer_$unique_id();
+    }
+
+    function updateFormula_$unique_id() {
+        const fractionParts = selectedElements.map(function (id) {
+            return id ? document.getElementById(id).getAttribute('data-item') : "?";
+        });
+        while (fractionParts.length !== len_correct_selected) {
+            fractionParts.push("?");
+        }
+        const formulaText = `\\( K_U = ${fractionParts[0]}${fractionParts[1]}\\frac{${fractionParts[2]}}{${fractionParts[3]}} \\)`;
+
+        formulaDisplay.innerHTML = formulaText;
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
+    }
+
+    function setAnswer_$unique_id() {
+        const answerJSON = {
+            "answer": {
+                "selected": selectedElements
+            }
+        };
+        inputField.value = JSON.stringify(answerJSON);
+    }
+
+    function clearSelection_$unique_id() {
+        // Удаление выделения и сброс выбранных элементов
+        selectedElements.length = 0;
+        document.querySelectorAll('.task-item_$unique_id').forEach(function (element) {
+            element.classList.remove('selected-item_$unique_id');
+            element.style.backgroundColor = '';
+        });
         updateDisabledItems_$unique_id();
-    </script>
+        updateFormula_$unique_id();
+        setAnswer_$unique_id();
+    }
+
+    function updateDisabledItems_$unique_id() {
+        const items = document.querySelectorAll('.task-item_$unique_id');
+        items.forEach(function (item) {
+            if (selectedElements.length === len_correct_selected) {
+                if (!item.classList.contains('selected-item_$unique_id')) {
+                    item.classList.add('disabled-item_$unique_id');
+                    item.style.pointerEvents = 'none'; // Отключить возможность клика
+                    item.style.backgroundColor = '#d3d3d3'; // Серый цвет
+                }
+            } else {
+                item.classList.remove('disabled-item_$unique_id');
+                item.style.pointerEvents = 'auto'; // Включить возможность клика
+                item.style.backgroundColor = ''; // Восстановить исходный цвет
+            }
+        });
+    }
+
+    updateFormula_$unique_id();
+    updateDisabledItems_$unique_id();
+</script>
 </problem>
