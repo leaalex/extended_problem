@@ -1,0 +1,330 @@
+<problem>
+    <script type="loncapa/python">
+import json
+import random
+import string
+
+def generate_unique_id():
+    return 'task_1_2' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
+
+unique_id = generate_unique_id()
+
+x1 = "p"
+x2 = "q"
+x3 = "r"
+x4 = "s"
+x5 = "t"
+x6 = "u"
+x7 = "v"
+x8 = "("
+x9 = ")"
+x10 = "\\lnot"
+x11 = "\\land"
+x12 = "\\lor"
+x13 = "\\to"
+x14 = "\\leftrightarrow"
+x15 = "\\veebar"
+
+correct_selected = ["nvtnc0c1_2_8", "nvtnc0c1_2_1", "nvtnc0c1_2_11", "nvtnc0c1_2_2", "nvtnc0c1_2_11", "nvtnc0c1_2_3", "nvtnc0c1_2_11", "nvtnc0c1_2_8", "nvtnc0c1_2_10", "nvtnc0c1_2_4", "nvtnc0c1_2_12", "nvtnc0c1_2_10", "nvtnc0c1_2_5", "nvtnc0c1_2_9", "nvtnc0c1_2_9", "nvtnc0c1_2_13", "nvtnc0c1_2_10","nvtnc0c1_2_6"]
+len_correct_selected = len(correct_selected)
+
+def check_func(student_selected, correct_selected):
+    response = {}
+    max_grade = len(correct_selected)
+    
+    correct_indexed = tuple(enumerate(correct_selected))
+    student_indexed = tuple(enumerate(student_selected))
+
+    if student_indexed == correct_indexed:
+        grade_decimal = 1.0
+    else:
+        correct_count = sum(1 for i, el in correct_indexed if len(student_selected) > i and student_selected[i] == el)
+        grade_decimal = correct_count / max_grade
+
+    response["grade"] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
+    
+    response["ok"] = ok
+    response["message"] = message
+    return response
+
+def check_answer(expect, ans):
+    try:
+        student_answer = json.loads(ans)
+        student_answer = student_answer["answer"]
+        student_selected = student_answer["selected"]
+        response = check_func(student_selected, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': response['message'], 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+
+</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] },
+        menuSettings: {
+            collapsibleMath: false
+        }
+    });
+</script>
+    <style>
+        #$unique_id #select_task_input_$unique_id {
+            display: none !important;
+        }
+
+        #$unique_id .task-item_$unique_id {
+            display: inline;
+            padding: 1px;
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+
+        #$unique_id .task-paragraph {
+            display: inline-flex;
+            margin: 4px 0px;
+            width: 100%;
+        }
+
+        #$unique_id .task-item_$unique_id: hover {
+            background: #a7ffaa;
+        }
+
+        #$unique_id .task-item_$unique_id.selected-item_$unique_id {
+            background: #ffff7e;
+        }
+
+        #$unique_id .task-item_$unique_id.disabled-item_$unique_id {
+            background-color: #d3d3d3;
+            /* Серый цвет */
+            cursor: not-allowed;
+            /* Курсор, как для заблокированного элемента */
+            border: 0px solid #000;
+        }
+
+        #$unique_id .answer {
+            padding: 5px;
+            border: 1px solid #e6e6e6;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .field {
+            padding: 5px;
+            border: 1px solid #e6e6e6;
+
+        }
+
+        .hidden-item_$unique_id {
+            display: none;
+        }
+
+        .task-paragraph {
+            font-size: 1.3rem;
+        }
+
+        #formula-display_$unique_id {
+            font-size: 1.5rem !important;
+        }
+    </style>
+
+    <div id="$unique_id" class="task-select">
+        <p>Используя стандартные символы пропозициональных связок, составьте формулу языка логики высказываний,
+            соответствующую приведённому ниже предложению:</p>
+        <p>
+            <em>
+                «Если аспирант за время обучения сдал все требуемые кандидатские экзамены, написал текст диссертации и
+                даже
+                успешно обсудил его на кафедре, но список его публикаций в журналах соответствующей квалификации не
+                достаточен по количеству или не полностью соответствует теме диссертационного исследования, то аспирант
+                не
+                может быть допущен к процедуре защиты кандидатской диссертации.
+            </em>
+        <p>
+            Указания к выполнению задания:
+            <ol>
+                <li>Определите все элементарные высказывания, составляющие приведённое предложение.</li>
+                <li>Обозначьте данные элементарные высказывания в порядке употребления в предложении буквами латинского алфавита, последовательно выбирая нужное количество из: \(p\), \(q\), \(r\), \(s\), \(t\), \(u\) и \(v\).</li>
+                <li>Определите логические связи между всеми высказываниями.</li>
+                <li>Выразите эти связи пропозициональными связками, выбирая некоторые из: \(\lnot\), \(\land\), \(\lor\), \(\to\), \(\leftrightarrow\) и \(\veebar\), соблюдая соглашения: внешние скобки, скобки для отдельных элементарных высказываний и их отрицаний – опускаем.</li>
+                <li>Составьте соответствующую приведённому предложению пропозициональную формулу, используя скобки и соблюдая соглашения: внешние скобки, скобки для отдельных элементарных высказываний и их отрицаний – опускаем; однородные конъюнкты записываем без скобок.</li>
+            </ol>
+        </p>
+        <p>
+            <strong>
+                Внимание!
+            </strong>
+            <br />
+            Некоторые символы могут быть использованы несколько раз, некоторые не будут использованы вовсе.
+            При обозначении различных элементарных высказываний буквами латинского алфавита необходимо использовать
+            нужное количество, ОБЯЗАТЕЛЬНО СОБЛЮДАЯ ПОРЯДОК их употребления в предложении. То есть, первой используется
+            \(p\), затем \(q\) и так далее. Это необходимо для корректного отображения вашего ответа.
+
+        </p>
+        </p>
+        <div class="field">
+            <div class="task-paragraph">
+                <div>Набор символов:
+                    <div class="task-paragraph-text">
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_1" onclick="selectItem_$unique_id(this)"
+                            data-item="$x1">\($x1\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_2" onclick="selectItem_$unique_id(this)"
+                            data-item="$x2">\($x2\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_3" onclick="selectItem_$unique_id(this)"
+                            data-item="$x3">\($x3\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_4" onclick="selectItem_$unique_id(this)"
+                            data-item="$x4">\($x4\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_5" onclick="selectItem_$unique_id(this)"
+                            data-item="$x5">\($x5\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_6" onclick="selectItem_$unique_id(this)"
+                            data-item="$x6">\($x6\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_7" onclick="selectItem_$unique_id(this)"
+                            data-item="$x7">\($x7\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_8" onclick="selectItem_$unique_id(this)"
+                            data-item="$x8">\($x8\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_9" onclick="selectItem_$unique_id(this)"
+                            data-item="$x9">\($x9\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_10" onclick="selectItem_$unique_id(this)"
+                            data-item="$x10">\($x10\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_11" onclick="selectItem_$unique_id(this)"
+                            data-item="$x11">\($x11\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_12" onclick="selectItem_$unique_id(this)"
+                            data-item="$x12">\($x12\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_13" onclick="selectItem_$unique_id(this)"
+                            data-item="$x13">\($x13\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_14" onclick="selectItem_$unique_id(this)"
+                            data-item="$x14">\($x14\)</div>;
+                        <div class="task-item_$unique_id" id="nvtnc0c1_2_15" onclick="selectItem_$unique_id(this)"
+                            data-item="$x15">\($x15\)</div>;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field task-paragraph">
+            <div class="task-paragraph-text">
+                Составленная формула:
+                <div id="formula-display_$unique_id">\( \)</div>
+            </div>
+        </div>
+        <div>
+            <button onclick="clearSelection_$unique_id()">Очистить выбор</button>
+        </div>
+
+        <div id="select_task_input_$unique_id">
+            <customresponse cfn="check_answer">
+                <textline size="40" value="" />
+                <br />
+            </customresponse>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const selectedElements = [];
+        const elementColors = {};
+        const formulaDisplay = document.getElementById(`formula-display_$unique_id`);
+        const inputField = document.querySelector(`#select_task_input_$unique_id input[type='text']`);
+        const len_correct_selected = $len_correct_selected
+
+        const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : [];
+        selected_elems.forEach(function (elem) {
+            if (elem) {
+                selectedElements.push(elem);
+                elementColors[elem] = getRandomColor();
+                document.getElementById(elem).classList.add('selected-item_$unique_id');
+                document.getElementById(elem).style.backgroundColor = elementColors[elem];
+            }
+        });
+
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            return `hsl(${hue}, 100%, 75%)`;
+        }
+
+        function selectItem_$unique_id(element) {
+            if (selectedElements.length === len_correct_selected) {
+                return; // Если достигнут лимит, не даем выбрать больше
+            }
+
+            const itemId = element.id;
+            selectedElements.push(itemId);
+            elementColors[itemId] = elementColors[itemId] || getRandomColor();
+            element.style.backgroundColor = elementColors[itemId];
+            element.classList.add('selected-item_$unique_id');
+            updateDisabledItems_$unique_id();
+
+            updateFormula_$unique_id();
+            setAnswer_$unique_id();
+        }
+
+        function updateFormula_$unique_id() {
+            const fractionParts = selectedElements.map(function (id) {
+                return id ? document.getElementById(id).getAttribute('data-item') : "?";
+            });
+            while (fractionParts.length !== len_correct_selected) {
+                fractionParts.push("?");
+            }
+            const formulaText = `\\( ${fractionParts[0]} ${fractionParts[1]} ${fractionParts[2]} ${fractionParts[3]} ${fractionParts[4]} ${fractionParts[5]} ${fractionParts[6]} ${fractionParts[7]} ${fractionParts[8]} ${fractionParts[9]} ${fractionParts[10]} ${fractionParts[11]} ${fractionParts[12]} ${fractionParts[13]} ${fractionParts[14]} ${fractionParts[15]} ${fractionParts[16]} ${fractionParts[17]} \\)`;
+
+            formulaDisplay.innerHTML = formulaText;
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
+        }
+
+        function setAnswer_$unique_id() {
+            const answerJSON = {
+                "answer": {
+                    "selected": selectedElements
+                }
+            };
+            inputField.value = JSON.stringify(answerJSON);
+        }
+
+        function clearSelection_$unique_id() {
+            // Удаление выделения и сброс выбранных элементов
+            selectedElements.length = 0;
+            document.querySelectorAll('.task-item_$unique_id').forEach(function (element) {
+                element.classList.remove('selected-item_$unique_id');
+                element.style.backgroundColor = '';
+            });
+            updateDisabledItems_$unique_id();
+            updateFormula_$unique_id();
+            setAnswer_$unique_id();
+        }
+
+        function updateDisabledItems_$unique_id() {
+            const items = document.querySelectorAll('.task-item_$unique_id');
+            items.forEach(function (item) {
+                if (selectedElements.length === len_correct_selected) {
+                    if (!item.classList.contains('selected-item_$unique_id')) {
+                        item.classList.add('disabled-item_$unique_id');
+                        item.style.pointerEvents = 'none'; // Отключить возможность клика
+                        item.style.backgroundColor = '#d3d3d3'; // Серый цвет
+                    }
+                } else {
+                    item.classList.remove('disabled-item_$unique_id');
+                    item.style.pointerEvents = 'auto'; // Включить возможность клика
+                    item.style.backgroundColor = ''; // Восстановить исходный цвет
+                }
+            });
+        }
+
+        updateFormula_$unique_id();
+        updateDisabledItems_$unique_id();
+    </script>
+</problem>
