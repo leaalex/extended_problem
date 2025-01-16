@@ -1,9 +1,8 @@
 <problem>
 <style>
-    .height200px{
-        height: 200px !important;
-    }
-    </style>
+        .center {text-align:center  !important;}
+        .answer pre code {font-size: 1em !important;}
+</style>
 <script type="loncapa/python">
 import json
 import random
@@ -12,30 +11,48 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": ""
+        "answers_title": "Своды правил (СП) в области информационного моделирования:"
     },
-    "table": [
-    [
-'__Положительные__ .{.center}','__Отрицательные__ .{.center}',
+        "table": [
+        [
+            '__Номер государственного стандарта__ .{.center}','__Наименование государственного стандарта__ .{.center}'
+        ],
+        [
+            '__1__ .{.center}', ['СП 301.1325800.2017 "Информационное моделирование в строительстве. Правила организации работ производственно-техническими отделами"'],
+        ],
+        [
+            '__2__ .{.center}', ['СП 331.1325800.2017 "Информационное моделирование в строительстве. Правила обмена между информационными моделями объектов и моделями, используемыми в программных комплексах"'],
+        ],
+        [
+            '__3__ .{.center}', ['СП 404.1325800.2018 "Информационное моделирование в строительстве. Правила разработки планов проектов, реализуемых с применением технологии информационного моделирования"'],
+        ],
+        [
+            '__4__ .{.center}', ['СП 471.1325800.2019 "Информационное моделирование в строительстве. Контроль качества производства строительных работ"'],
+        ],
+        [
+            '__5__ .{.center}', ['СП 480.1325800.2020 "Информационное моделирование в строительстве. Требования к формированию информационных моделей объектов капитального строительства для эксплуатации многоквартирных домов"'],
+        ],
+        [
+            '__6__ .{.center}', ['СП 481.1325800.2020 "Информационное моделирование в строительстве. Правила применения в экономически эффективной проектной документации повторного использования и при ее привязке"'],
+        ],
+        [
+            '__7__ .{.center}', ['СП 333.1325800.2020 "Информационное моделирование в строительстве. Правила формирования информационной модели объектов на различных стадиях жизненного цикла"'],
+        ],
     ],
-    [
-        ['Скорость разработки', 'Логичный синтаксис', 'Разнообразие библиотек', 'Кроссплатформенность'], ['Недостаточное быстродействие', 'Динамическая типизация'],
-    ],
-],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_highlight': False,
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
         'is_exist_image': False,
         'show_incorrect': False,
-        'capacity' : 5 
-
+        'capacity': 2,
 },
 "style": {
-        'rows': ['', 'height200px'],
-        'colls': ['w50']
-    }
+        'rows': ['', ''],
+        'colls': ['w10','']
+},
+"distractors": []
 }
 
 
@@ -169,17 +186,10 @@ def check_answer(expect, ans):
     }
 
 
-
 student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
 correct_data = list(bytearray(json.dumps(data), 'utf-8'))
-
 </script>
-
-
-<p><strong>Цель:</strong> различать положительные и отрицательные особенности языка программирования Python.</p>
-<p>Распределите особенности языка программирования Python по категориям.</p>
-
-
+<p>Расставьте своды правил (СП) в области информационного моделирования по дате их введения начиная от более ранних.</p>
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
 <style>
@@ -203,7 +213,6 @@ animation: l26 1s infinite linear;
 }
 </style>
 </div>
-
 <div style="display: none">
     <customresponse cfn="check_answer">
     <textline size="120"/>
@@ -212,4 +221,3 @@ animation: l26 1s infinite linear;
 </div>
 <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
 </problem>
-  

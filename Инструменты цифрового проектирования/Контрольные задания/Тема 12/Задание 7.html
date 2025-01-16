@@ -1,0 +1,90 @@
+<problem>
+    <style type="text/css"></style>
+    <div>
+        <div>
+            <p><em>Выделите область на изображении</em></p>
+            <p>Диаметр отверстия задан формулой в зависимости от параметра <strong>a</strong>. Для изменения значения диаметра отверстия необходимо изменить данные в следующем поле…</p>
+        </div>
+        <div data-type="ImageSelectApp" class="adv-app" data-initial-data='$student_data' data-static="/static/_"></div>
+      <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+
+    </div>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+correct_answer = ["click_area_02"]
+
+task_data = {
+    "width": 880,
+    "height": 283,
+    "min_width": 880,
+    "max_width": 880,
+    "scale": 1,
+    "full_width": False,
+    "test_mode": False,
+    "multianswers": False,
+    "auto_submit": False,
+    "click_area_style": {"border": "1px solid #ffffff00", "background": "#0000ff00", "border-radius": "0px"},
+    "click_area_style_selected": {"border": "1px solid #e72119", "background": "#f4433638", "border-radius": "0px"},
+    "image_src": "/static/zBkBDng2.png",
+    "click_areas": [
+        {
+            "id": 'click_area_01',
+            "l": 78.5,
+            "t": 185,
+            "w": 102.5,
+            "h": 29,
+            "classList": []
+        },
+        {
+            "id": 'click_area_02',
+            "l": 605,
+            "t": 79.5,
+            "w": 55,
+            "h": 21,
+            "classList": []
+        },
+        {
+            "id": 'click_area_03',
+            "l": 667,
+            "t": 80.5,
+            "w": 39,
+            "h": 20,
+            "classList": []
+        }
+    ]
+}
+
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    grade = 0
+    if 'answer' in student_answer:
+        if set(student_answer['answer']) == set(correct_answer):
+            grade = 1
+    if grade == 1:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}]}
+    else: 
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': 0}]}
+
+
+student_data = json.dumps(task_data)
+student_data = student_data.replace('"', "'")
+
+correct_data = json.dumps(correct_answer)
+correct_data = correct_data.replace('"', "'")
+
+</script>
+</problem>

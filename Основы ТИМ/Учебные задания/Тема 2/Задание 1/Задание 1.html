@@ -1,9 +1,8 @@
 <problem>
 <style>
-    .height200px{
-        height: 200px !important;
-    }
-    </style>
+        .center {text-align:center  !important;}
+        .answer pre code {font-size: 1em !important;}
+</style>
 <script type="loncapa/python">
 import json
 import random
@@ -12,30 +11,45 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": ""
+        "answers_title": "Нормативные акты:"
     },
-    "table": [
-    [
-'__Положительные__ .{.center}','__Отрицательные__ .{.center}',
+        "table": [
+        [
+            '__№__ .{.center}','__Нормативный акт__ .{.center}'
+        ],
+        [
+            '__1__ .{.center}', ['Федеральный закон'],
+        ],
+        [
+            '__2__ .{.center}', ['Постановления Правительства'],
+        ],
+        [
+            '__3__ .{.center}', ['Распоряжения Правительства'],
+        ],
+        [
+            '__4__ .{.center}', ['Ведомственный приказ'],
+        ],
+        [
+            '__5__ .{.center}', ['ГОСТ'],
+        ],
+        [
+            '__6__ .{.center}', ['Свод правил'],
+        ],
     ],
-    [
-        ['Скорость разработки', 'Логичный синтаксис', 'Разнообразие библиотек', 'Кроссплатформенность'], ['Недостаточное быстродействие', 'Динамическая типизация'],
-    ],
-],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_highlight': False,
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
         'is_exist_image': False,
         'show_incorrect': False,
-        'capacity' : 5 
-
+        'capacity': 2,
 },
 "style": {
-        'rows': ['', 'height200px'],
-        'colls': ['w50']
-    }
+        'rows': ['', ''],
+        'colls': ['w10','']
+},
+"distractors": ['Технико-информационное моделирование', 'Техническая информационная модель', 'Целостная информационная модель', 'Цифровое информационное моделирование ', 'Информационное моделирование', 'Информация о модели']
 }
 
 
@@ -169,17 +183,11 @@ def check_answer(expect, ans):
     }
 
 
-
 student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
 correct_data = list(bytearray(json.dumps(data), 'utf-8'))
-
 </script>
-
-
-<p><strong>Цель:</strong> различать положительные и отрицательные особенности языка программирования Python.</p>
-<p>Распределите особенности языка программирования Python по категориям.</p>
-
-
+<p>Расставьте в порядке иерархической значимости нормативные документы в строительной отрасли.</p>
+<p>Переместите названия от наиболее значимого к менее значимому.</p>
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
 <style>
@@ -203,7 +211,6 @@ animation: l26 1s infinite linear;
 }
 </style>
 </div>
-
 <div style="display: none">
     <customresponse cfn="check_answer">
     <textline size="120"/>
@@ -212,4 +219,3 @@ animation: l26 1s infinite linear;
 </div>
 <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
 </problem>
-  

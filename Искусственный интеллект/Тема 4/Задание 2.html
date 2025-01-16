@@ -1,8 +1,7 @@
 <problem>
 <style>
-    .height200px{
-        height: 200px !important;
-    }
+        .center {text-align:center  !important;}
+        .answer pre code {font-size: 1em !important;}
     </style>
 <script type="loncapa/python">
 import json
@@ -12,30 +11,39 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": ""
+        "answers_title": "Алгоритмы:"
     },
-    "table": [
-    [
-'__Положительные__ .{.center}','__Отрицательные__ .{.center}',
+        "table": [
+        [
+    '__Задача__ .{.center}','__Алгоритм__ .{.center}',
+        ],
+        [
+            'Проанализировать графики электропотребления предприятий для выявления потенциальных центров майнинга криптовалют', ['Модель Гауссовой смести'],
+        ],
+        [
+            'Реализовать «витрину данных» для аналитика, занимающегося персонализацией предложений для клиентов стоматологической клиники', ['UMAP'],
+        ],
+        [
+            'Разделить оборудование предприятия на десять непересекающихся групп на основе множества технико-экономических параметров', ['k-средних'],
+        ],
+        [
+            'Выполнить анализ конкурентов в сфере розничной торговли, разделив их по группам и подгруппам ', ['Англомеративная иерархическая кластеризация'],
+        ],
     ],
-    [
-        ['Скорость разработки', 'Логичный синтаксис', 'Разнообразие библиотек', 'Кроссплатформенность'], ['Недостаточное быстродействие', 'Динамическая типизация'],
-    ],
-],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_highlight': False,
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
         'is_exist_image': False,
         'show_incorrect': False,
-        'capacity' : 5 
-
+        'capacity': 2
 },
 "style": {
-        'rows': ['', 'height200px'],
-        'colls': ['w50']
-    }
+        'rows': ['', ''],
+        'colls': ['','w30']
+},
+"distractors": []
 }
 
 
@@ -169,17 +177,11 @@ def check_answer(expect, ans):
     }
 
 
-
 student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
 correct_data = list(bytearray(json.dumps(data), 'utf-8'))
-
 </script>
-
-
-<p><strong>Цель:</strong> различать положительные и отрицательные особенности языка программирования Python.</p>
-<p>Распределите особенности языка программирования Python по категориям.</p>
-
-
+<p><strong>Цель:</strong> выбирать алгоритмы кластеризации и редукции для решения прикладных задач.</p>
+<p><strong>Задание:</strong> распределите алгоритмы по задачам. Заполните таблицу, переместив правильные ответы в соответствующие ячейки таблицы.</p>
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
 <style>
@@ -203,7 +205,6 @@ animation: l26 1s infinite linear;
 }
 </style>
 </div>
-
 <div style="display: none">
     <customresponse cfn="check_answer">
     <textline size="120"/>
@@ -212,4 +213,3 @@ animation: l26 1s infinite linear;
 </div>
 <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
 </problem>
-  

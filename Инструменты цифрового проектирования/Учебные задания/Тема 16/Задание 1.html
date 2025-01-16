@@ -1,8 +1,7 @@
 <problem>
 <style>
-    .height200px{
-        height: 200px !important;
-    }
+        .center {text-align:center  !important;}
+        .answer pre code {font-size: 1em !important;}
     </style>
 <script type="loncapa/python">
 import json
@@ -12,30 +11,69 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": ""
+        "answers_title": "Информационные системы:"
     },
-    "table": [
-    [
-'__Положительные__ .{.center}','__Отрицательные__ .{.center}',
+        "table": [
+        [
+            '__Этап жизненного цикла__ .{.center}','__Информационные системы__ .{.center}',
+        ],
+        [
+        '__Маркетинговые исследованияе__', [],
+        ],
+        [
+            '__Проектирование__', ['CAD/CAE/','CAM','PDM'],
+        ],
+        [
+            '__Технологическая подготовка__'
+        ],
+        [
+            '__Закупки__', ['SCM','MRP-2','ERP','CPC'],
+        ],
+        [
+            '__Подготовка производства__'
+        ],
+        [
+            '__Производство__', ['MES','SCADA','CNC'],
+        ],
+        [
+            '__Испытания__'
+        ],
+        [
+            '__Продажа__', ['CRM'],
+        ],
+        [
+            '__Транспортировка__'
+        ],
+
+
+        [
+            '__Монтаж и наладка__', ['IETM'],
+        ],
+        [
+            '__Обслуживание__'
+        ],
+        [
+            '__Ремонт__'
+        ],
+        [
+            '__Утилизация__'
+        ],
     ],
-    [
-        ['Скорость разработки', 'Логичный синтаксис', 'Разнообразие библиотек', 'Кроссплатформенность'], ['Недостаточное быстродействие', 'Динамическая типизация'],
-    ],
-],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_highlight': False,
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
         'is_exist_image': False,
         'show_incorrect': False,
-        'capacity' : 5 
-
+        'capacity': 2,
+        "rowspan": {3:{2:2,},5:{2:2,},7:{2:2,},9:{2:2,},11:{2:4,}},
 },
 "style": {
-        'rows': ['', 'height200px'],
-        'colls': ['w50']
-    }
+        'rows': ['', ''],
+        'colls': ['w50','']
+},
+"distractors": []
 }
 
 
@@ -169,17 +207,10 @@ def check_answer(expect, ans):
     }
 
 
-
 student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
 correct_data = list(bytearray(json.dumps(data), 'utf-8'))
-
 </script>
-
-
-<p><strong>Цель:</strong> различать положительные и отрицательные особенности языка программирования Python.</p>
-<p>Распределите особенности языка программирования Python по категориям.</p>
-
-
+<p>Расположите этапы жизненного цикла изделия в правильной последовательности и соотнесите их с информационными системами производства.</p>
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
 <style>
@@ -203,7 +234,6 @@ animation: l26 1s infinite linear;
 }
 </style>
 </div>
-
 <div style="display: none">
     <customresponse cfn="check_answer">
     <textline size="120"/>
@@ -212,4 +242,3 @@ animation: l26 1s infinite linear;
 </div>
 <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
 </problem>
-  

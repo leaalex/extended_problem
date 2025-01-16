@@ -1,0 +1,141 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+document.querySelectorAll('pre code').forEach(function (block) {
+hljs.highlightBlock(block)
+})
+</script>
+<script type="loncapa/python">
+task_id="YdfJt1212WER"
+</script>
+<p><strong>Цель:</strong> формировать код применения ансамблевых моделей.</p>
+<p><strong>Задание:</strong> заполните пропуски во фрагментах кода, создав модели классификации на основе случайного леса и градиентного бустинга из библиотеки Sklearn, в каждой из которых по 25 деревьев. Объединение моделей выполните на основе стекинга и логистической регрессии. Введите пропущенный код в соответствующие ячейки в тексте.</p>
+<div class="code-task">
+<pre>
+<code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-right: 4px;padding-left: 4px;">
+    <stringresponse answer="base_estimators" type="cs">
+        <textline size="15"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>= [</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>('rf',</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="RandomForestClassifier" type="cs">
+        <textline size="22"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(n_estimators=</span>
+<span>
+    <stringresponse answer="100" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)),</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>('gb',</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="GradientBoostingClassifier" type="cs">
+        <textline size="26"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(n_estimators=</span>
+<span>
+    <stringresponse answer="100" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, learning_rate=0.1)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>]</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>stacking_model =</span>
+<span style="padding-right: 4px;">
+    <stringresponse answer="StackingClassifier" type="cs">
+        <textline size="18"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>estimators=base_estimators,</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>final_estimator=</span>
+<span>
+    <stringresponse answer="LogisticRegression" type="cs">
+        <textline size="18"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+(),
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>cv=5,</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>n_jobs=-1</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>stacking_model.</span>
+<span>
+    <stringresponse answer="fit" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(X_train, y_train)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>y_pred = stacking_model.</span>
+<span>
+    <stringresponse answer="predict" type="cs">
+        <textline size="7"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(X_test)</span>
+</div>
+<p></p>
+</code>
+</pre>
+</div>
+</problem>

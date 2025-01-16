@@ -1,0 +1,90 @@
+<problem>
+    <style type="text/css"></style>
+    <div>
+        <div><p>Расставьте выполнение команд в правильном порядке:</p></div>
+        <div data-type="ImageSelectApp" class="adv-app" data-initial-data='$student_data' data-static="/static/_"></div>
+      <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='$correct_data'></solution>
+    </div>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+correct_answer = ["click_area_01", "click_area_02", "click_area_03"]
+
+task_data = {
+    "width": 880,
+    "height": 465,
+    "min_width": 880,
+    "max_width": 880,
+    "scale": 1,
+    "full_width": False,
+    "test_mode": False,
+    "use_order": True,
+    "multianswers": True,
+    "auto_submit": False,
+    "click_area_style": {"border": "2px solid #e72119", "background": "#0000ff00", "border-radius": "4px"},
+    "click_area_style_selected": {"border": "2px solid #e72119", "background": "#f4433638", "border-radius": "4px"},
+    "order_num_style": {"background": "white", "padding": "2px 4px","border-radius": "2px"},
+    "click_area_style_correct": {"background": "#4caf50ba"},
+    "order_num_font_size": 17,
+    "image_src": "/static/mEGbLz3U.png",
+    "click_areas": [
+        {
+            "id": 'click_area_01',
+            "l": 39,
+            "t": 8,
+            "w": 29,
+            "h": 35,
+            "classList": []
+        },
+        {
+            "id": 'click_area_02',
+            "l": 475,
+            "t": 150,
+            "w": 80,
+            "h": 62,
+            "classList": []
+        },
+        {
+            "id": 'click_area_03',
+            "l": 203,
+            "t": 197,
+            "w": 55,
+            "h": 23,
+            "classList": []
+        },
+    ]
+}
+
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    grade = 0
+    if 'answer' in student_answer:
+        if student_answer['answer'] == correct_answer:
+            grade = 1
+    if grade == 1:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}]}
+    else: 
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': 0}]}
+
+
+student_data = json.dumps(task_data)
+student_data = student_data.replace('"', "'")
+
+correct_data = json.dumps(correct_answer)
+correct_data = correct_data.replace('"', "'")
+
+</script>
+</problem>

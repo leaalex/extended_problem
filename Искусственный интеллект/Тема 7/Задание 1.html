@@ -1,0 +1,195 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+document.querySelectorAll('pre code').forEach(function (block) {
+hljs.highlightBlock(block)
+})
+</script>
+<script type="loncapa/python">
+task_id="YdfJt1212WER"
+</script>
+<p><strong>Цель:</strong> формировать код создания сверточных нейронных сетей.</p>
+<p><strong>Задание:</strong> заполните пропуски во фрагментах кода, создав сверточную ИНС следующей архитектуры: слой свертки 24 фильтра 3x3, слой пулинга (максимизация) 2x2, слой свертки 12 фильтров 3x3, слой пулинга такой же как предыдущий, полносвязный слой на 64 нейрона; на выходе модели 3 класса. Введите пропущенный код в соответствующие ячейки в тексте.</p>
+<div class="code-task">
+<pre>
+<code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>class SimpleCNN(nn.Module):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def __init__(self):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>super(SimpleCNN, self).__init__()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.conv1 = nn.</span>
+<span>
+    <stringresponse answer="Conv2d" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(3, </span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="24" type="cs">
+        <textline size="2"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, kernel_size=</span>
+<span>
+    <stringresponse answer="3" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, stride=1, padding=1)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.pool = nn.</span>
+<span>
+    <stringresponse answer="MaxPool2d" type="cs">
+        <textline size="9"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(kernel_size=</span>
+<span>
+    <stringresponse answer="2" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, stride=2)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.conv2 = nn.</span>
+<span>
+    <stringresponse answer="Conv2d" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="24" type="cs">
+        <textline size="2"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, </span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="12" type="cs">
+        <textline size="2"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, kernel_size=</span>
+<span>
+    <stringresponse answer="3" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, stride=1, padding=1)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.pool = nn.</span>
+<span>
+    <stringresponse answer="MaxPool2d" type="cs">
+        <textline size="9"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(kernel_size=</span>
+<span>
+    <stringresponse answer="2" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, stride=2)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.fc1 = nn.</span>
+<span>
+    <stringresponse answer="Linear" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(12 * 8 * 8, </span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="64" type="cs">
+        <textline size="2"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.fc2 = nn.</span>
+<span>
+    <stringresponse answer="Linear" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="128" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, </span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="3" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+
+</code>
+</pre>
+</div>
+</problem>

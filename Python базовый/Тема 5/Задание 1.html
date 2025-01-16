@@ -1,131 +1,131 @@
 <problem>
-    <link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
-    <link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
-    <script type="text/javascript" src="/static/highlight.js"></script>
-    <script type="text/javascript">
-      document.querySelectorAll('pre code').forEach(function(block) {
-        hljs.highlightBlock(block);
-      });
-    </script>
-    
-    <style type="text/css">
-    .code-table pre {
-        padding: 0px !important;
-        border: none !important;
-        background-color: #f8f8f800 !important;
-        margin: 0px !important;
-        font-size: 1em !important;
-    }
-    
-    .code-table td{
-        border: 1px solid #e6e6e6;
-        padding: 10px !important;
-    }
-    
-    .code-table td .inputtype.option-input {
-        margin: 0px !important;
-    }
-    
-    .code-table{
-        width: 100%;
-    }
-    
-    </style>
-    
-    <p><strong>Цель:</strong> оценивать написанный код на языке программирования Python в соответствии с требованиями к его оформлению</p>
-    <p>Определите, соответствуют ли приведенные фрагменты кода положениям из PEP8 Style Guide for Python Code.</p>
-    
-    <p></p>
-    
-    <table class="code-table">
-    <tr>
-        <td><strong>Фрагмент кода</strong></td>
-        <td><strong>Соответствие PEP8</strong></td>
-    </tr>
-    
-    <tr>
-      <td>
-    <pre><code class="language-python" style="white-space: break-spaces !important; min-width: 500px;">def associate_ID(ID_database, path):
-                                rak = pd.read_excel(path)
-                                ID_data = pd.read_excel(ID_database)
-                                num = path.split('/')[-1].split('_')[1]
-                                return None
-    </code></pre>
-      </td>
-      <td style="text-align: center !important;">
-        <optionresponse>
-          <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
-        </optionresponse>
-      </td>
-    </tr>
-    
-    <tr>
-    <td>
-    <pre><code class="language-python" style="white-space: break-spaces !important;">for aim in range(id_data.shape[0]):
-        if rak.loc[r, 'ID'] == id_data.loc[aim, 'ID']:
-            rak.loc[r, 'Ass_ID'] = id_data.loc[aim, 'ID']
-        else:
-            continue    
-    </code></pre>    
-    </td>
-      <td style="text-align: center !important;">
-        <optionresponse>
-          <optioninput options="('соответствует','не соответствует')" correct="соответствует"/>
-        </optionresponse>
-      </td>
-    </tr>
-    
-    <tr>
-    <td>
-    <pre><code class="language-python" style="white-space: break-spaces !important;">def points_coords_convertion(points):
-        ConvPoints = pd.DataFrame()
-        ConvPoints['Name'] = points['Имя']
-        ConvPoints['Lat'] = p2(points['X'].values, points['Y'].values, inverse=True)[1]
-        ConvPoints['Lon'] = p2(points['X'].values, points['Y'].values, inverse=True)[0]
-        ConvPoints['Height'] = points['Z'].values
-        return ConvPoints
-    </code></pre>
-    </td>
-      <td style="text-align: center !important;">
-        <optionresponse>
-          <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
-        </optionresponse>
-      </td>
-    </tr>
-    
-    <tr>
-    <td>
-    <pre><code class="language-python" style="white-space: break-spaces !important;">import numpy as np
-    import pandas as pd
-    
-    # read the input file
-    input_df = pd.read_excel("C:\\Users\\andru\\Downloads\\L1_Power_Consumption.xlsx")
-    
-    import plotly.express as plex
-    
-    fig = plex.scatter(x=input_df.iloc[:,0], y=input_df.iloc[:,2])
-    fig.show()
-    </code></pre>
-    </td>
-      <td style="text-align: center !important;">
-        <optionresponse>
-          <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
-        </optionresponse>
-      </td>
-    </tr>
-    
-    <tr>
-    <td>
-    <pre><code class="language-python" style="white-space: break-spaces !important;">lst = [
-    1,2,3,4,5]
-    print(lst)
-    </code></pre>
-    </td>
-      <td style="text-align: center !important;">
-        <optionresponse>
-          <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
-        </optionresponse>
-      </td>
-    </tr>
-    </table>
-    </problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+<link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+<script type="text/javascript" src="/static/highlight.js"></script>
+<script type="text/javascript">
+  document.querySelectorAll('pre code').forEach(function(block) {
+    hljs.highlightBlock(block);
+  });
+</script>
+
+<style type="text/css">
+.code-table pre {
+    padding: 0px !important;
+    border: none !important;
+    background-color: #f8f8f800 !important;
+    margin: 0px !important;
+    font-size: 1em !important;
+}
+
+.code-table td{
+    border: 1px solid #e6e6e6;
+    padding: 10px !important;
+}
+
+.code-table td .inputtype.option-input {
+    margin: 0px !important;
+}
+
+.code-table{
+    width: 100%;
+}
+
+</style>
+
+<p><strong>Цель:</strong> оценивать написанный код на языке программирования Python в соответствии с требованиями к его оформлению</p>
+<p>Определите, соответствуют ли приведенные фрагменты кода положениям из PEP8 Style Guide for Python Code.</p>
+
+<p></p>
+
+<table class="code-table">
+<tr>
+    <td><strong>Фрагмент кода</strong></td>
+    <td><strong>Соответствие PEP8</strong></td>
+</tr>
+
+<tr>
+  <td>
+<pre><code class="language-python" style="white-space: break-spaces !important; min-width: 500px;">def associate_ID(ID_database, path):
+                            rak = pd.read_excel(path)
+                            ID_data = pd.read_excel(ID_database)
+                            num = path.split('/')[-1].split('_')[1]
+                            return None
+</code></pre>
+  </td>
+  <td style="text-align: center !important;">
+    <optionresponse>
+      <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
+    </optionresponse>
+  </td>
+</tr>
+
+<tr>
+<td>
+<pre><code class="language-python" style="white-space: break-spaces !important;">for aim in range(id_data.shape[0]):
+    if rak.loc[r, 'ID'] == id_data.loc[aim, 'ID']:
+        rak.loc[r, 'Ass_ID'] = id_data.loc[aim, 'ID']
+    else:
+        continue    
+</code></pre>    
+</td>
+  <td style="text-align: center !important;">
+    <optionresponse>
+      <optioninput options="('соответствует','не соответствует')" correct="соответствует"/>
+    </optionresponse>
+  </td>
+</tr>
+
+<tr>
+<td>
+<pre><code class="language-python" style="white-space: break-spaces !important;">def points_coords_convertion(points):
+    ConvPoints = pd.DataFrame()
+    ConvPoints['Name'] = points['Имя']
+    ConvPoints['Lat'] = p2(points['X'].values, points['Y'].values, inverse=True)[1]
+    ConvPoints['Lon'] = p2(points['X'].values, points['Y'].values, inverse=True)[0]
+    ConvPoints['Height'] = points['Z'].values
+    return ConvPoints
+</code></pre>
+</td>
+  <td style="text-align: center !important;">
+    <optionresponse>
+      <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
+    </optionresponse>
+  </td>
+</tr>
+
+<tr>
+<td>
+<pre><code class="language-python" style="white-space: break-spaces !important;">import numpy as np
+import pandas as pd
+
+# read the input file
+input_df = pd.read_excel("C:\\Users\\andru\\Downloads\\L1_Power_Consumption.xlsx")
+
+import plotly.express as plex
+
+fig = plex.scatter(x=input_df.iloc[:,0], y=input_df.iloc[:,2])
+fig.show()
+</code></pre>
+</td>
+  <td style="text-align: center !important;">
+    <optionresponse>
+      <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
+    </optionresponse>
+  </td>
+</tr>
+
+<tr>
+<td>
+<pre><code class="language-python" style="white-space: break-spaces !important;">lst = [
+1,2,3,4,5]
+print(lst)
+</code></pre>
+</td>
+  <td style="text-align: center !important;">
+    <optionresponse>
+      <optioninput options="('соответствует','не соответствует')" correct="не соответствует"/>
+    </optionresponse>
+  </td>
+</tr>
+</table>
+</problem>

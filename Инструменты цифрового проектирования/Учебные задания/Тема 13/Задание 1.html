@@ -1,11 +1,7 @@
 <problem>
 <style>
-    .center {
-        text-align: center;
-    }
-    .img-class {
-        width: 100%;
-    }
+        .center {text-align:center  !important;}
+        .answer pre code {font-size: 1em !important;}
     </style>
 <script type="loncapa/python">
 import json
@@ -15,45 +11,42 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": "__Действия:__"
+        "answers_title": "Определения:"
     },
-    "table": [
-    [
-'__Обозначение объекта__ .{.center}','__Определение объекта__ .{.center}'
+        "table": [
+        [
+    '__Название настройки__ .{.center}','__Определение__ .{.center}',
+        ],
+        [
+            '__толщина материала__', ['толщина листа металла, используемого для создания детали'],
+        ],
+        [
+            '__радиус сгиба__', ['величина внутреннего радиуса сгиба при создании фланцев'],
+        ],
+        [
+            '__коэффициент нейтрали__', ['величина, которая определяет положение нейтрального слоя'],
+        ],
+        [
+            '__глубина освобождения сгиба__', ['длина вырезов (галтелей) в местах переходов сгибов'],
+        ],
+        [
+            '__ширина освобождения сгиба__', ['ширина галтелей в местах переходов сгибов'],
+        ]
     ],
-    [
-        '![](/static/hEoTUfYf.png).{.img-class}', '![](/static/M497nZgH.png).{.img-class}'
-    ],
-    [
-        ['Выбор плоскости для создания Эскиза профиля поверхности'], ['Создание эскиза профиля поверхности'],
-    ],
-    [
-        '![](/static/X0WJX11n.png).{.img-class}', '![](/static/UsdkP57V.png).{.img-class}'
-    ],
-    [
-        ['Выбор плоскости для Эскиза направляющей поверхности'], ['Создание Эскиза направляющей поверхности'],
-    ],
-    [
-        '![](/static/ORLHmYC7.png).{.img-class}', ''
-    ],
-    [
-        ['Создание Поверхности Заметанием'], [],
-    ],
-],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_highlight': False,
-        'is_exist_image': True,
-        'show_incorrect': True,
-        'capacity' : 2
-
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
+        'is_exist_image': False,
+        'show_incorrect': False,
+        'capacity': 2
 },
 "style": {
         'rows': ['', ''],
-        'colls': ['w50', 'w50']
-    }
+        'colls': ['w40','']
+},
+"distractors": []
 }
 
 
@@ -187,18 +180,10 @@ def check_answer(expect, ans):
     }
 
 
-
-student_data = json.dumps(student_data)
-student_data = student_data.replace('"', "'")
-
-correct_data = json.dumps(data)
-correct_data = correct_data.replace('"', "'")
-
+student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
+correct_data = list(bytearray(json.dumps(data), 'utf-8'))
 </script>
-
-
-<p>Ниже приведены иллюстрации процесса создания поверхности с использованием команды Заметание. Установите соответствие между иллюстрацией и названием действия, которое отображено на иллюстрации.</p>
-
+<p>Установите соответствие между названием базовых настроек модуля Листовой металл и определением параметра, которые они определяют.</p>
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
 <style>
@@ -222,7 +207,6 @@ animation: l26 1s infinite linear;
 }
 </style>
 </div>
-
 <div style="display: none">
     <customresponse cfn="check_answer">
     <textline size="120"/>
