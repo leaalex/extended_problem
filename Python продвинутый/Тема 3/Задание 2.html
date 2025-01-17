@@ -1,0 +1,104 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"></link>
+<link type="text/css" rel="stylesheet" href="/static/code-task.css"></link>
+<script type="text/javascript" src="/static/highlight.js"></script>
+<script type="text/javascript">
+    document.querySelectorAll('pre code').forEach(function(block) {
+    hljs.highlightBlock(block);
+    });
+</script>
+
+<style type="text/css">
+.code-table pre {
+    padding: 0px !important;
+    border: none !important;
+    background-color: #f8f8f800 !important;
+    margin: 0px !important;
+    font-size: 1em !important;
+}
+
+.code-table td{
+    border: 1px solid #e6e6e6;
+    padding: 10px !important;
+}
+
+.code-table td .inputtype.option-input {
+    margin: 0px !important;
+}
+
+.code-table{
+    width: 100%;
+}
+
+</style>
+
+<p><strong>Цель:</strong> оценивать возможности больших языковых моделей</p>
+<p><strong>Задание:</strong> для приведенных пар «модель-задача» отметьте возможно ли решение задачи моделью или нет.</p>
+
+<p></p>
+
+<table class="code-table">
+<tr>
+    <td><strong>Модель</strong></td>
+    <td><strong>Задача</strong></td>
+    <td><strong>Возможность решения</strong></td>
+</tr>
+
+<tr>
+    <td>
+        N-граммная модель
+    </td>
+    <td>
+        Ответ на вопрос
+    </td> 
+    <td style="text-align: center !important;">
+    <optionresponse>
+        <optioninput options="('Да','Нет')" correct="Нет"/>
+    </optionresponse>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        BERT
+    </td>
+    <td>
+        Поиск информации в тексте
+    </td> 
+    <td style="text-align: center !important;">
+    <optionresponse>
+        <optioninput options="('Да','Нет')" correct="Да"/>
+    </optionresponse>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        GPT-3
+    </td>
+    <td>
+        Генерация связных текстов
+    </td> 
+    <td style="text-align: center !important;">
+    <optionresponse>
+        <optioninput options="('Да','Нет')" correct="Да"/>
+    </optionresponse>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        GPT-2
+    </td>
+    <td>
+        Написание программного кода
+    </td> 
+    <td style="text-align: center !important;">
+    <optionresponse>
+        <optioninput options="('Да','Нет')" correct="Нет"/>
+    </optionresponse>
+    </td>
+</tr>
+
+</table>
+</problem>
