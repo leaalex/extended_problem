@@ -1,8 +1,13 @@
 <problem>
 <style>
-    .height200px{
-        height: 200px !important;
-    }
+        .center {text-align:center  !important;}
+        .answer pre code {font-size: 1em !important;}
+        .w33{
+            width: 33%;
+        }
+        .w470 {
+            height: 470px !important;
+        }
     </style>
 <script type="loncapa/python">
 import json
@@ -12,30 +17,30 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": ""
+        "answers_title": "Характеристики:"
     },
-    "table": [
-    [
-'__Положительные__ .{.center}','__Отрицательные__ .{.center}',
+        "table": [
+        [
+            '__Принципы построения PLM-систем__ .{.center}','__Преимущества использования PLM-систем__ .{.center}','__Проблемы внедрения PLM-систем__ .{.center}'
+        ],
+        [
+            ['Любые инженерные данные, возникающие на этапах жизненного цикла изделия, хранятся и управляются централизованно в электронном виде', 'Создается единая информационная база, описывающая информацию о продукте и связанных с ним процессах и ресурсах', 'Вся информация по изделию хранится в структурированном виде либо связана друг с другом отношениями, позволяющими проследить их взаимосвязь'],['Упрощение процесса совместной работы и обмена информацией между подразделениями компании', 'Повышение качества изделий', 'Повышение эффективности использования ресурсов', 'Ускорение вывода продукции на рынок', 'Гарантия соответствия продукта нормативным документам'],['Необходимость создания дополнительной защиты данных', 'Интеграция PLM-систем с существующими корпоративными системами может быть сложной задачей и потребовать значительной ИТ-поддержки', 'Сотрудники могут сопротивляться внедрению новых процессов PLM', 'Необходимость переобучения сотрудников для использования новой системы', 'Сложность координации разработки продукта на разных территориях компании'],
+        ],
     ],
-    [
-        ['Скорость разработки', 'Логичный синтаксис', 'Разнообразие библиотек', 'Кроссплатформенность'], ['Недостаточное быстродействие', 'Динамическая типизация'],
-    ],
-],
 "settings":{
         "is_exist_markdown": True,
         "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_highlight': False,
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
         'is_exist_image': False,
         'show_incorrect': False,
-        'capacity' : 5 
-
+        'capacity': 7,
 },
 "style": {
-        'rows': ['', 'height200px'],
-        'colls': ['w50']
-    }
+        'rows': ['', 'w470'],
+        'colls': ['w33','w33']
+},
+"distractors": []
 }
 
 
@@ -169,17 +174,10 @@ def check_answer(expect, ans):
     }
 
 
-
 student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
 correct_data = list(bytearray(json.dumps(data), 'utf-8'))
-
 </script>
-
-
-<p><strong>Цель:</strong> различать положительные и отрицательные особенности языка программирования Python.</p>
-<p>Распределите особенности языка программирования Python по категориям.</p>
-
-
+<p>Установите соответствие между категорией и ее характеристиками.</p>
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
 <style>
@@ -203,7 +201,6 @@ animation: l26 1s infinite linear;
 }
 </style>
 </div>
-
 <div style="display: none">
     <customresponse cfn="check_answer">
     <textline size="120"/>
@@ -212,4 +209,3 @@ animation: l26 1s infinite linear;
 </div>
 <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
 </problem>
-  

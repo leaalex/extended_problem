@@ -1,0 +1,190 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+document.querySelectorAll('pre code').forEach(function (block) {
+hljs.highlightBlock(block)
+})
+</script>
+<script type="loncapa/python">
+task_id="YdfJt1212WER"
+</script>
+<p><strong>Цель:</strong> формировать код создания нейросетевых моделей.</p>
+<p><strong>Задание:</strong> заполните пропуски во фрагментах кода, создав ИНС из трех полносвзных слоев (два скрытых и один выходной). Первый скрытый слой сети содержит 16 нейронов, на выходе сети – два числа. Введите пропущенный код в соответствующие ячейки в тексте.</p>
+<div class="code-task">
+<pre>
+<code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import torch</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import torch.nn as nn</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import torch.optim as optim</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>class SimpleNN(nn.Module):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def __init__(self, input_dim):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>super(SimpleNN, self).__init__()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.fc1 = nn.</span>
+<span>
+    <stringresponse answer="Linear" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="input_dim" type="cs">
+        <textline size="9"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, </span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="16" type="cs">
+        <textline size="2"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.fc2 = nn.</span>
+<span>
+    <stringresponse answer="Linear" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="16" type="cs">
+        <textline size="2"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, 8)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>self.fc3 = nn.</span>
+<span>
+    <stringresponse answer="Linear" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(8,</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="2" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 40px;">
+<span>def forward(self, x):</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>x = torch.relu(self.</span>
+<span>
+    <stringresponse answer="fc1" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(</span>
+<span>
+    <stringresponse answer="x" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>))  # Активация ReLU для первого слоя</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+x = torch.
+<span>
+    <stringresponse answer="relu" type="cs">
+        <textline size="4"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(self.</span>
+<span>
+    <stringresponse answer="fc2" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(x)) # Активация ReLU для второго слоя</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+<span>x = self.</span>
+<span>
+    <stringresponse answer="fc3" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(x)  # Линейный выход</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id" style="padding-left: 80px;">
+return x
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+model = 
+<span style="padding-left: 4px;">
+    <stringresponse answer="SimpleNN" type="cs">
+        <textline size="8"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+(input_dim=10)
+</div>
+
+
+<p></p>
+</code>
+</pre>
+</div>
+</problem>

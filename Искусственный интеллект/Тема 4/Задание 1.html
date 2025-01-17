@@ -1,0 +1,202 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+document.querySelectorAll('pre code').forEach(function (block) {
+hljs.highlightBlock(block)
+})
+</script>
+<script type="loncapa/python">
+task_id="YdfJt1212WER"
+</script>
+<p><strong>Цель:</strong> сформировать программный код для редукции данных.</p>
+<p><strong>Задание:</strong> заполните пропуски во фрагментах кода. Введите пропущенный код в соответствующие ячейки в тексте.</p>
+<div class="code-task">
+<pre>
+<code class="language-python">
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import</span>
+<span style="padding-right: 4px;padding-left: 4px;">
+    <stringresponse answer="pandas" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>as pd</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import numpy as np</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.datasets import load_iris</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.</span>
+<span style="padding-right: 4px;">
+    <stringresponse answer="preprocessing" type="cs">
+        <textline size="13"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>import StandardScaler</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="umap" type="cs">
+        <textline size="4"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.</span>
+<span style="padding-right: 4px;">
+    <stringresponse answer="metrics" type="cs">
+        <textline size="7"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>import silhouette_score</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>import matplotlib.pyplot as plt</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>data = load_iris()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>X = data.data</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>y = data.target</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>target_names = data.target_names</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>data = pd.DataFrame(X, columns=data.feature_names)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>data['target'] = y</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>scaler = StandardScaler()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>X_scaled = scaler.fit_transform(</span>
+<span>
+    <stringresponse answer="X" type="cs">
+        <textline size="1"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>reducer = umap.UMAP(n_neighbors = 15, min_dist=0.1, n_components=2, random_state=42)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>X_umap =</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="reducer" type="cs">
+        <textline size="7"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.fit_transform(</span>
+<span>
+    <stringresponse answer="X_scaled" type="cs">
+        <textline size="8"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>kmeans = KMeans(n_clusters=3, random_state=42)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>cluster_labels = kmeans.fit_predict(X_umap)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>plt.figure(figsize=(10, 8))</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>scatter = plt.scatter(X_umap[:, 0], X_umap[:, 1], c=cluster_labels, cmap='viridis', s=50, alpha=0.7)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], color='red', marker='x', label='Centroids')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>plt.colorbar(scatter, label='Cluster Label')</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>plt.legend()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>plt.grid(True)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>plt.show()</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+silhouette_avg =
+<span style="padding-left: 4px;">
+    <stringresponse answer="silhouette_score" type="cs">
+        <textline size="16"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+(
+<span>
+    <stringresponse answer="X_umap" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+,
+<span style="padding-left: 4px;">
+    <stringresponse answer="cluster_labels" type="cs">
+        <textline size="14"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+)
+</div>
+
+<p></p>
+
+
+</code>
+</pre>
+</div>
+</problem>

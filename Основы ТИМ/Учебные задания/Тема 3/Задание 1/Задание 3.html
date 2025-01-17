@@ -1,0 +1,186 @@
+<problem>
+    <script type="loncapa/python">
+import json
+import copy
+
+source_data = [
+    {
+        "clue": "Сокращенное название комплекса программно-технических средств, представляющих единый источник данных, обеспечивающий совместное использование информации всеми участниками инвестиционно-строительного проекта",
+        "answer": u"СОД",
+        "position": 1,
+        "orientation": "across",
+        "start_x": 4,
+        "start_y": 2,
+        "hint": "Аббревиатура определения «Среда общих данных»"
+    },
+    {
+        "clue": "Процесс установления соответствия состава включенных в цифровую информационную модель атрибутивных и геометрических данных определенному набору требований",
+        "answer": u"ВЕРИФИКАЦИЯ",
+        "position": 2,
+        "orientation": "across",
+        "start_x": 2,
+        "start_y": 5,
+        "hint": "Термин указан в СП 333.1325800.2020"
+    },
+    {
+        "clue": "Сокращенное название электронного документа в составе информационной модели объекта капитального строительства (ИМ ОКС), представленный в цифровом объектно-пространственном виде",
+        "answer": u"ЦИМ",
+        "position": 3,
+        "orientation": "across",
+        "start_x": 4,
+        "start_y": 7,
+        "hint": "Термин указан в СП 333.1325800.2020"
+    },
+    {
+        "clue": "Цифровое представление части объекта капитального строительства или территории, характеризуемое атрибутивными и геометрическими данными",
+        "answer": u"ЭЛЕМЕНТ",
+        "position": 4,
+        "orientation": "across",
+        "start_x": 9,
+        "start_y": 8,
+        "hint": "Термин указан в СП 333.1325800.2020"
+    },
+    {
+        "clue": "Аббревиатура термина, определяющего совокупность взаимосвязанных инженерно-геодезических, инженерно-геологических, инженерно-гидрометеорологических, инженерно-экологических данных, инженерно-геотехнических данных и данных о территории объекта капитального строительства, представленных в цифровом виде для автоматизированного решения задач управления процессами на жизненном цикле объектов капитального строительства",
+        "answer": u"ИЦММ",
+        "position": 5,
+        "orientation": "across",
+        "start_x": 1,
+        "start_y": 11,
+        "hint": "Термин указан в СП 333.1325800.2020"
+    },
+    {
+        "clue": "Дефект, содержащийся в цифровой информационной модели и заключающийся в пространственном или ином пересечении двух или более элементов цифровой информационной модели",
+        "answer": u"коллизия",
+        "position": 6,
+        "orientation": "down",
+        "start_x": 5,
+        "start_y": 1,
+        "hint": "Термин указан в СП 333.1325800.2020"
+    },
+    {
+        "clue": "Аббревиатура термина, определяющего технический документ, который разрабатывается, как правило, генпроектной и (или) генподрядной организацией для регламентации взаимодействия с субпроектными/ субподрядными организациями и согласовывается с заказчиком",
+        "answer": u"пим",
+        "position": 7,
+        "orientation": "down",
+        "start_x": 7,
+        "start_y": 4,
+        "hint": "Термин указан в СП 404.1325800.2018"
+    },
+    {
+        "clue": "Жизненный период, в течение которого осуществляются инженерные изыскания, проектирование, строительство (в том числе консервация), эксплуатация (в том числе текущие ремонты), реконструкция, капитальный ремонт, снос здания или сооружения",
+        "answer": u"цикл",
+        "position": 8,
+        "orientation": "down",
+        "start_x": 10,
+        "start_y": 5,
+        "hint": "Термин указан в СП 331.1325800.2017"
+    },
+    {
+        "clue": "Цифровое представление части объекта капитального строительства или территории, характеризуемое атрибутивными и геометрическими данными",
+        "answer": u"валидация",
+        "position": 9,
+        "orientation": "down",
+        "start_x": 2,
+        "start_y": 5,
+        "hint": "Термин указан в СП 333.1325800.2020"
+    },
+
+]
+
+
+client_check = True
+language = "ru"
+
+def check_answer(exp, ans):
+    student_answer = json.loads(ans)["answer"]
+    grade = 0
+    max_grade = len(source_data)
+    msg = ""
+
+    if not client_check:
+        correct_list = []
+        for x in source_data:
+            student_word = student_answer["user_state"]["question_" + str(x["unique_position"])]["word"]
+            x_word = x["answer"]
+            if student_word == x_word:
+                grade = grade + 1
+                correct_list.append("question_" + str(x["unique_position"]))
+        msg = str(json.dumps({"correct_list": correct_list}))
+    else:
+        grade = float(student_answer["grade"])
+    result_grade = grade/max_grade
+
+    if result_grade == 1:
+        return {'input_list': [{'ok': True,'msg':msg,'grade_decimal':1}]}
+    elif result_grade == 0:
+        return {'input_list': [{'ok':False,'msg':msg,'grade_decimal':0}]}
+    else:
+        return {'input_list': [{'ok':'Partial','msg':msg,'grade_decimal':result_grade}]}
+
+student_data = []
+if not client_check:
+    for idx, item in enumerate(source_data):
+        item["unique_position"] = idx
+        new_item = item.copy()
+        new_item["answer"] = ''.join(['x'] * int(len(new_item["answer"])))
+        student_data.append(new_item)
+else:
+    for idx, item in enumerate(json.loads(json.dumps(source_data))):
+        item["unique_position"] = idx
+        new_item = item.copy()
+        student_data.append(new_item)
+
+# for new edX remove: ensure_ascii=False and .replace("\"", "'")
+
+student_data_json = json.dumps({"student_data":student_data, "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
+student_answer_json = json.dumps({"student_data":json.loads(json.dumps(source_data)), "client_check": client_check, "language": language}, ensure_ascii=False).replace("\"", "'")
+
+</script>
+    <link rel="stylesheet" type="text/css" href="/static/crossword.css" ></link>
+    <script type="text/javascript" src="/static/crossword.js"></script>
+
+    <div class="task-description">
+        <p>Заполните поля кроссворда</p>
+    </div>
+
+    <div id="crossword_container"></div>
+
+    <div id="crossword_input" style="/*display: none!important;*/">
+        <customresponse cfn="check_answer">
+            <textline size="40" value="$taskId" />
+            <br/>
+        </customresponse>
+    </div>
+
+    <script type="text/javascript">
+
+        let data = $student_data_json;
+
+        new Crossword({
+            element: document.getElementById('crossword_container'),
+            input:  document.getElementById('crossword_input'),
+            data: data["student_data"],
+            client_check: data.client_check,
+            language: data.language
+        });
+
+    </script>
+
+    <solution>
+
+        <div class="detailed-solution">
+            <div id="crossword_answer_container"></div>
+        </div>
+        <script type="text/javascript">
+            let data_answer = $student_answer_json;
+            new CrosswordAnswer({
+                element: document.getElementById('crossword_answer_container'),
+                data: data_answer["student_data"],
+                language: data_answer.language
+            });
+        </script>
+    </solution>
+
+
+</problem>

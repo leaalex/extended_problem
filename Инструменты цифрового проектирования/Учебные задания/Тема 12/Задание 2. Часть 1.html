@@ -1,7 +1,10 @@
 <problem>
 <style>
-    .height200px{
-        height: 200px !important;
+    .center {
+        text-align: center;
+    }
+    .img-class {
+        width: 100%;
     }
     </style>
 <script type="loncapa/python">
@@ -12,14 +15,20 @@ import string
 data = {
     "content": {
         "body": "",
-        "answers_title": ""
+        "answers_title": "__Действия:__"
     },
     "table": [
     [
-'__Положительные__ .{.center}','__Отрицательные__ .{.center}',
+'__Обозначение объекта__ .{.center}','__Определение объекта__ .{.center}'
     ],
     [
-        ['Скорость разработки', 'Логичный синтаксис', 'Разнообразие библиотек', 'Кроссплатформенность'], ['Недостаточное быстродействие', 'Динамическая типизация'],
+        '![](/static/oK10Z9yp.png).{.img-class}', ['Шаг 1']
+    ],
+    [
+        '![](/static/dYkqVTfq.png).{.img-class}', ['Шаг 2']
+    ],
+    [
+        '![](/static/UfMxoUeX.png).{.img-class}', ['Шаг 3']
     ],
 ],
 "settings":{
@@ -27,14 +36,14 @@ data = {
         "is_exist_advanced_style": True,
         'is_exist_mathjax': False,
         'is_exist_highlight': False,
-        'is_exist_image': False,
-        'show_incorrect': False,
-        'capacity' : 5 
+        'is_exist_image': True,
+        'show_incorrect': True,
+        'capacity' : 2
 
 },
 "style": {
-        'rows': ['', 'height200px'],
-        'colls': ['w50']
+        'rows': ['', ''],
+        'colls': ['w50', 'w50']
     }
 }
 
@@ -170,15 +179,16 @@ def check_answer(expect, ans):
 
 
 
-student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
-correct_data = list(bytearray(json.dumps(data), 'utf-8'))
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+correct_data = json.dumps(data)
+correct_data = correct_data.replace('"', "'")
 
 </script>
 
 
-<p><strong>Цель:</strong> различать положительные и отрицательные особенности языка программирования Python.</p>
-<p>Распределите особенности языка программирования Python по категориям.</p>
-
+<p>Расположите изображения в правильной хронологической последовательности, которая описывает создание детали с высотой, заданной параметром t.</p>
 
 <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
     <div class="loader"/>
@@ -212,4 +222,3 @@ animation: l26 1s infinite linear;
 </div>
 <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
 </problem>
-  

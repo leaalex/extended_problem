@@ -1,0 +1,236 @@
+<problem>
+<link type="text/css" rel="stylesheet" href="/static/intellij-light.min.css"/>
+<link type="text/css" rel="stylesheet" href="/static/code-task_PYTHON.css"/>
+<script type="text/javascript" src="/static/highlight.js"/>
+<script type="text/javascript">
+document.querySelectorAll('pre code').forEach(function (block) {
+hljs.highlightBlock(block)
+})
+</script>
+<script type="loncapa/python">
+task_id="YdfJt1212WER"
+</script>
+<p><strong>Цель:</strong> оценить точность регрессионной модели с использованием основных метрик.</p>
+<p><strong>Задание:</strong> заполните пропуски во фрагментах кода. Введите пропущенный код в соответствующие ячейки в тексте.</p>
+<div class="code-task">
+<pre>
+<code class="language-python">
+
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.datasets import load_diabetes</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.model_selection import train_test_split</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.preprocessing import StandardScaler</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.linear_model import LinearRegression</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>from sklearn.metrics import</span>
+<span style="padding-right: 4px;padding-left: 4px;">
+    <stringresponse answer="mean_squared_error" type="cs">
+        <textline size="18"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, mean_absolute_error</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>data = load_diabetes()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>X =</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="data" type="cs">
+        <textline size="4"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.</span>
+<span>
+    <stringresponse answer="data" type="cs">
+        <textline size="4"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>y = </span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="data" type="cs">
+        <textline size="4"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>.</span>
+<span>
+    <stringresponse answer="target" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-left: 4px;">
+    <stringresponse answer="X_train" type="cs">
+        <textline size="7"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>,</span>
+<span style="padding-left: 4px;">
+    <stringresponse answer="X_test" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>scaler = StandardScaler()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>X_train = scaler.fit_transform(X_train)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>X_test = scaler.</span>
+<span>
+    <stringresponse answer="transform" type="cs">
+        <textline size="9"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>(X_test)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>model = LinearRegression()</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>model.fit(</span>
+<span>
+    <stringresponse answer="X_train" type="cs">
+        <textline size="7"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>,</span>
+<span>
+    <stringresponse answer="y_train" type="cs">
+        <textline size="7"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>y_pred = model.predict(</span>
+<span>
+    <stringresponse answer="X_test" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-right: 4px;padding-left: 4px;">
+    <stringresponse answer="mse" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>= mean_squared_error(</span>
+<span>
+    <stringresponse answer="y_test" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>,</span>
+<span>
+    <stringresponse answer="y_pred" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span style="padding-right: 4px;padding-left: 4px;">
+    <stringresponse answer="mae" type="cs">
+        <textline size="3"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>= mean_absolute_error(</span>
+<span>
+    <stringresponse answer="y_test" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>,</span>
+<span>
+    <stringresponse answer="y_pred" type="cs">
+        <textline size="6"/>
+    </stringresponse>
+    <solution>
+        <style>.class_$task_id.paragraph-class.inline-input-task input[type="text"]{display: none !important;}</style>
+    </solution>
+</span>
+<span>)</span>
+</div>
+<p></p>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>print(f"MSE: {mse:.2f}")</span>
+</div>
+<div class="inline-input-task paragraph-class class_$task_id">
+<span>print(f"MAE: {mae:.2f}")</span>
+</div>
+<p></p>
+
+</code>
+</pre>
+</div>
+</problem>

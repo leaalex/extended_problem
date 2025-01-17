@@ -1,0 +1,217 @@
+<problem>
+    <style type="text/css"></style>
+    <div>
+        <div>
+           <p>На рисунке приведено стартовое окно Teamсenter. Для перечисленных элементов интерфейса укажите на рисунке те области, где данные элементы находятся.</p>
+           <ul>
+            <li>поисковая строка;</li>
+            <li>панель навигации;</li>
+            <li>рабочая область;</li>
+            <li>вызов приложения «Мой Teamcenter»;</li>
+            <li>строка информации об активном приложении, пользователи и его роли;</li>
+            <li>область вызова наиболее часто используемых приложений.</li>
+           </ul>
+        </div>
+        <div data-type="ImagesStepsApp" class="adv-app" data-initial-data='$student_data' data-static="/static/_"></div>
+      <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+        <solution data-initial-data='{}'></solution>
+
+    </div>
+<script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import random
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+task_data = {
+    "width": 880,
+    "height": 476,
+    "min_width": 700,
+    "max_width": 1080,
+    "initial_step": "step_1",
+    "test_mode": False,
+    "full_width": False,
+    "auto_submit": True,
+    "scale": 1,
+    "steps": {
+        "step_1": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Шаг 1. Выделите в интерфейсе элемент:\n Поисковая строка"
+            },
+            "click_areas": [{
+                "l": 2,
+                "t": 60,
+                "w": 170,
+                "h": 24,
+                "classList": []
+            }],
+            "next_step_method": "click",
+            "next_step": "step_2",
+            "is_info_step": False,
+            "is_finish": False
+        },
+        "step_2": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Шаг 2. Выделите в интерфейсе элемент:\nПанель навигации"
+            },
+            "click_areas": [{
+                "l": 4,
+                "t": 88,
+                "w": 171,
+                "h": 245,
+                "classList": []
+            }],
+            "next_step_method": "click",
+            "next_step": "step_3",
+            "is_info_step": False,
+            "is_finish": False
+        },
+        "step_3": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Шаг 3. Выделите в интерфейсе элемент:\nРабочая область"
+            },
+            "click_areas": [{
+                "l": 179,
+                "t": 65,
+                "w": 693,
+                "h": 393,
+                "classList": []
+            }],
+            "next_step_method": "click",
+            "next_step": "step_4",
+            "is_info_step": False,
+            "is_finish": False
+        },
+        "step_4": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Шаг 4. Выделите в интерфейсе элемент:\nВызов приложения «Мой Teamcenter»"
+            },
+            "click_areas": [{
+                "l": 2,
+                "t": 336,
+                "w": 171,
+                "h": 27,
+                "classList": []
+            }],
+            "next_step_method": "click",
+            "next_step": "step_5",
+            "is_info_step": False,
+            "is_finish": False
+        },
+        "step_5": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Шаг 5. Выделите в интерфейсе элемент:\nСтрока информации об активном приложении, пользователи и его роли"
+            },
+            "click_areas": [{
+                "l": 39,
+                "t": 34,
+                "w": 288,
+                "h": 15,
+                "classList": []
+            }],
+            "next_step_method": "click",
+            "next_step": "step_6",
+            "is_info_step": False,
+            "is_finish": False
+        },
+        "step_6": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Шаг 6.  Выделите в интерфейсе элемент:\nОбласть вызова наиболее часто используемых приложений"
+            },
+            "click_areas": [{
+                "l": 2,
+                "t": 365,
+                "w": 171,
+                "h": 80,
+                "classList": []
+            }],
+            "next_step_method": "click",
+            "next_step": "step_7",
+            "is_info_step": False,
+            "is_finish": False
+        },
+        "step_7": {
+            "image_src": "/static/EYxr44pU.png",
+            "task": {
+                "position": "absolute",
+                "coords": {
+                    "l": 280,
+                    "t": 200,
+                    "w": 330
+                },
+                "text": "Задание выполнено верно",
+                "classList": ["correct-step", "text-center"]
+            },
+            "is_info_step": False,
+            "is_finish": True
+        },
+
+    }
+}
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    grade = 0
+    correct_finish_steps = ["step_7"]
+    if 'currentStep' in student_answer:
+        if student_answer['currentStep'] in correct_finish_steps:
+            grade = 1
+    if grade == 1:
+        return {'input_list': [{'ok': True, 'msg': '', 'grade_decimal': 1}]}
+    else:
+        return {'input_list': [{'ok': False, 'msg': '', 'grade_decimal': 0}]}
+
+
+student_data = json.dumps(task_data)
+student_data = student_data.replace('"', "'")
+</script>
+</problem>
