@@ -1,0 +1,186 @@
+<problem>
+
+    <div>
+        <p>Ниже перечислены основные положительные результаты от внедрения технологии информационного моделирования на разных этапах жизненного цикла объекта капитального строительства.</p>
+        <p>Прочитайте текст, выделите в тексте фрагменты, которые относятся к разным этапам:</p>
+        <div>
+            <div data-type="SelectedTextApp" class="adv-app" data-initial-data='$student_data'></div>
+        </div>
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="100"/>
+                <br/>
+            </customresponse>
+        </div>
+    </div>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import json
+
+component_types = [
+    {
+        "title": "Этап технико-экономического обоснования",
+        "id": "purpose",
+    },
+    {
+        "title": "Этап проектирования",
+        "id": "research",
+    },
+    {
+        "title": "Исследовательские методы",
+        "id": "results",
+    },
+    {
+        "title": "Этап строительства",
+        "id": "conclusions",
+    },
+    {
+        "title": "Этап эксплуатации",
+        "id": "relevance",
+    }
+]
+
+
+variant_01 = [[
+    {
+        "id": "text_01",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "Понимание всеми сторонами концепции объекта (визуализация)",
+    },
+    {
+        "id": "text_02",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "Качество проекта",
+    },
+    {
+        "id": "text_03",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "Быстрый и достаточно точный подсчет основных характеристик объекта",
+    },
+    {
+        "id": "text_04",
+        "block_type": "selectable",
+        "answer": "purpose",
+        "text": "Презентационные материалы для публичных обсуждений или согласования с госорганами",
+    },
+    {
+        "id": "text_05",
+        "block_type": "selectable",
+        "answer": "research",
+        "text": "Сдвиг от рутинных операций (вычерчивание, ручной расчет) к творческим и инженерным",
+    },
+    {
+        "id": "text_06",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Уменьшение количества простоев из-за ошибок в проектной документации",
+    },
+    {
+        "id": "text_07",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Точные объемы материалов и работ",
+    },
+    {
+        "id": "text_08",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Визуальное календарное планирование",
+    },
+    {
+        "id": "text_09",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Облегчение разработки ПОС и ППР",
+    },
+    {
+        "id": "text_10",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Визуализация состояния объекта на 3D-модели для задач управления",
+    },
+    {
+        "id": "text_11",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Точные объемы при проведении ремонтов",
+    },
+    {
+        "id": "text_12",
+        "block_type": "selectable",
+        "answer": "results",
+        "text": "Понимание особенностей объекта без выхода в натуру и демонтажа (например: скрытые под натяжным потолком сети)",
+    },
+
+], [
+{
+    "id": "text_13",
+    "block_type": "selectable",
+    "answer": "results",
+    "text": "Возможность создания на основе модели единого цифрового хранилища всех данных об объекте",
+},
+]]
+
+
+data = random.choice([variant_01])
+
+student_texts = []
+
+for block in data:
+    if "id" in block.keys():
+        student_texts.append({
+            "id": block["id"],
+            "block_type": block["block_type"],
+            "text": block["text"]
+        })
+    else:
+        student_texts.append({
+            "text": block["text"]
+        })
+
+student_data = {
+    "component_types": component_types,
+    "student_texts": student_texts,
+    "modal_header": "Положительные результаты от внедрения технологии информационного моделирования:",
+    "cancel_component_title": "Не является элементом"
+}
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)
+    print(student_answer)
+    correct_items = [elem for elem in data if elem["block_type"] == 'selectable']
+    max_grade = len(correct_items)
+    feedback = {
+        "correct": [],
+        "incorrect": []
+    }
+    grade = 0
+    for item in correct_items:
+        if item['id'] in student_answer.keys():
+            if item['answer'] == student_answer[item['id']]:
+                grade = grade + 1
+                feedback["correct"].append(item['id'])
+            else:
+                feedback["incorrect"].append(item['id'])
+        else:
+            feedback["incorrect"].append(item['id'])
+
+
+    result_grade = grade/max_grade
+    if result_grade == 1:
+        ok = True
+    elif result_grade == 0:
+        ok = False
+    else:
+        ok = 'Partial'
+
+    return {'input_list': [{'ok': ok, 'msg': json.dumps(feedback), 'grade_decimal': result_grade}, ]}
+</script>
+</problem>
