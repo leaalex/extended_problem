@@ -1,258 +1,362 @@
 <problem>
-<style>
-.center {text-align:center  !important;}
-.answers_title {font-size: 16px !important; margin-bottom: 10px !important;}
-.h10_custom {
-    height: 2.1875rem !important;
-}
-.h20_custom {
-    height: 4.375rem !important;
-}
-.h30_custom {
-    height: 6.5625rem !important;
-}
-.h40_custom {
-    height: 8.75rem !important; 
-}
-.h50_custom {
-    height: 10.9375rem !important;
-}
-.h60_custom {
-    height: 13.125rem !important;
-}
-.h70_custom {
-    height: 15.3125rem !important;
-}
-.h80_custom {
-    height: 17.5rem !important;
-}
-.h90_custom {
-    height: 19.6875rem !important;
-}
-.h100_custom {
-    height: 21.875rem !important;
-}
-.img-class{
-    width: 100%;
-    max-width: 250px;
-}
-
-</style>
-<script type="loncapa/python">
-import json
-import random
-import string
-
-data = {
-    "content": {
-    "answers_title": "Варианты логических функций:",
-    "body": "В задании  приведены таблицы  истинности логических элементов. Поставьте логические функции из приведенного ниже списка в соответствии с таблицами истинности."
-    },
-    "table": [
-    [
-        '__Таблица истинности__.{.text-blue-7} .{.center}',
-        '__Логическая функция__.{.text-blue-7} .{.center}',
-    ],
-    [
-        '![](/static/DD_CIRCDESIGN_7.1.01_uz.png).{.img-class}',
-        ['Исключающее ИЛИ'],
-    ],
-    [
-        '![](/static/DD_CIRCDESIGN_7.1.02_uz.png).{.img-class}',
-        ['И'],
-    ],
-    [
-        '![](/static/DD_CIRCDESIGN_7.1.03_uz.png).{.img-class}',
-        ['ИЛИ-НЕ'],
-    ],
-    [
-        '![](/static/DD_CIRCDESIGN_7.1.04_uz.png).{.img-class}',
-        ['И-НЕ'],
-    ],
-    [
-        '![](/static/DD_CIRCDESIGN_7.1.05_uz.png).{.img-class}',
-        ['Исключающее ИЛИ-НЕ'],
-    ],
-    [
-        '![](/static/DD_CIRCDESIGN_7.1.06_uz.png).{.img-class}',
-        ['ИЛИ'],
-    ],
-],
-"settings":{
-        "is_exist_markdown": True,
-        "is_exist_advanced_style": True,
-        'is_exist_mathjax': False,
-        'is_exist_image': True,
-        'show_incorrect': False,
-},
-"style":   {
-        'rows': ['','', '', ''],
-        'colls': [''] 
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
     }
-}
-
-
-def generate_id(length=8):
-    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
-
-show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
-data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
-data["settings"] = data["settings"] if "settings" in data.keys() else {}
-data["style"] = data["style"] if "style" in data.keys() else {}
-correct_answer = {}
-student_data = {
-    "table": [],
-    "answers": [],
-    "settings": data["settings"],
-    "style": data["style"],
-    "content": data["content"]
-}
-
-use_multi_answers = ''
-if "multi_answers" in data["settings"].keys():
-    if data["settings"]["multi_answers"] == "horizontal":
-        use_multi_answers = "horizontal"
-    elif data["settings"]["multi_answers"] == "vertical":
-        use_multi_answers = "vertical"
-
-all_answers_obj = {}
-
-for row_index, row in enumerate(data["table"]):
-    student_data["table"].append([])
-    for column_index, cell in enumerate(row):
-        student_cell = {}
-        if not isinstance(cell, str):
-            student_cell["id"] = generate_id()
-            student_cell["isFixed"] = False
-            correct_answer[student_cell["id"]] = []
-
-            for cell_answer in cell:
-                cell_answer_id = generate_id()
-
-                if use_multi_answers:
-                    direction_index = column_index if use_multi_answers == 'vertical' else row_index
-                    if "block" + str(direction_index) not in all_answers_obj.keys():
-                        all_answers_obj["block" + str(direction_index)] = []
-                    all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
-
-                student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
-                correct_answer[student_cell["id"]].append(cell_answer_id)
-        else:
-            student_cell["value"] = [cell]
-            student_cell["isFixed"] = True
-        student_data["table"][row_index].append(student_cell)
-
-
-for distractor in data["distractors"]:
-    student_data["answers"].append({"title": distractor, "id": generate_id()})
-
-if use_multi_answers:
-    student_data["answers"] = []
-    for block_idx, block_key in enumerate(all_answers_obj.keys()):
-        student_data["answers"].append(all_answers_obj[block_key])
-        try:
-            if isinstance(data["distractors"][block_idx], list):
-                for dist in data["distractors"][block_idx]:
-                    student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
-        except:
-            pass
-            # raise Exception("DISTRACTORS ERROR")
-
-
-random.shuffle(student_data["answers"])
-
-def get_response(grade_decimal, wrong_answers=None):
-    response = {}
-    response["grade"] = grade_decimal
-    if wrong_answers is not None:
-        response["wrong_answers"] = wrong_answers
-    if grade_decimal == 1:
-        response["ok"] = True
-    elif grade_decimal == 0:
-        response["ok"] = False
-    else:
-        response["ok"] = 'Partial'
-    return response
-
-
-def check_partially(c_a, s_a):
-    result = {
-        "grade": 0.0,
-        "wrong_answers": [],
+    
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
     }
-    local_grade = 0
-    for ans in c_a:
-        if ans in s_a:
-            local_grade += 1
-    for ans in s_a:
-        if ans not in c_a:
-            result["wrong_answers"].append(ans)
-    result["grade"] = local_grade
-
-    return result
-
-
-def check_answer(expect, ans):
-    student_answer = json.loads(ans)["answer"]
-    max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
-    grade = 0
-    wrong_answers = []
-
-    for correct_cell_id in correct_answer.keys():
-        correct_cell = correct_answer[correct_cell_id]
-        res = check_partially(correct_cell, student_answer[correct_cell_id])
-        grade += res["grade"]
-        if show_incorrect:
-            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
-
-    response = get_response(float(grade / max_grade), wrong_answers, )
-
-    return {
-        'input_list': [
-            {
-                # true, false partially
-                'ok': response['ok'],
-                # string - отображаения под Input'ом
-                # как проавило сюда отправляется json со всеми дополнительными данными
-                'msg': str(json.dumps(response)),
-                # number [0, 1] - оценка за задание
-                'grade_decimal': response['grade']
-            },
-        ]
+    
+    .formula-display {
+      font-size: 1.5rem !important;
     }
-
-
-student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
-correct_data = list(bytearray(json.dumps(data), 'utf-8'))
-</script>
-<div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data" data-static="/static/_">
-<div class="loader"/>
-<style>
-    .loader {
-        margin: 100px auto;
-        width: 4px;
-        color: #0075b4;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
-        transform: translateX(-38px);
-        animation: l26 1s infinite linear;
+    
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
     }
-    @keyframes l26 {
-        12.5% {box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px}
-        25% {box-shadow: 19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 0px}
-        50% {box-shadow: 19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px}
-        62.5% {box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 5px}
-        75% {box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px}
-        87.5% {box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,19px 0 0 0px, 38px 0 0 5px, 57px 0 0 0px,19px 19px 0 5px, 38px 19px 0 0px, 57px 19px 0 0px}
+    .custom-select {
+      width: 50% !important;
     }
-</style>
-</div>
-<div style="display: none">
-<customresponse cfn="check_answer">
-    <textline size="120"/>
-</customresponse>
-<solution data-initial-data="$correct_data"/>
-</div>
-<script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
+    
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+    
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
+    
+    /* .custom-select::after {
+                      content: '\25BC' !important;
+                      transform: translateY(-50%) !important;
+                      color: #999 !important;
+                  } */
+    
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+    
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+    
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+    
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .container-image img {
+      margin-right: 10px;
+    }
+    
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>В задании приведены таблицы истинности логических элементов.</p>
+  <p>
+    Выберите правильный вариант логической функции из приведенного ниже списка в соответствии с таблицами истинности.
+  </p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Таблица истинности</th>
+        <th>Логическая функция</th>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          <table border="1" cellpadding="5" cellspacing="0" style="margin: 0; width: 100%">
+            <thead>
+              <tr>
+                <th>Вход 1</th>
+                <th>Вход 2</th>
+                <th>Выход</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">И</option>
+            <option correct="False">ИЛИ</option>
+            <option correct="False">И-НЕ</option>
+            <option correct="False">ИЛИ-НЕ</option>
+            <option correct="True">Исключающее ИЛИ</option>
+            <option correct="False">Исключающее ИЛИ-НЕ</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          <table border="1" cellpadding="5" cellspacing="0" style="margin: 0; width: 100%">
+            <thead>
+              <tr>
+                <th>Вход 1</th>
+                <th>Вход 2</th>
+                <th>Выход</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">И</option>
+            <option correct="False">ИЛИ</option>
+            <option correct="False">И-НЕ</option>
+            <option correct="False">ИЛИ-НЕ</option>
+            <option correct="False">Исключающее ИЛИ</option>
+            <option correct="False">Исключающее ИЛИ-НЕ</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          <table border="1" cellpadding="5" cellspacing="0" style="margin: 0; width: 100%">
+            <thead>
+              <tr>
+                <th>Вход 1</th>
+                <th>Вход 2</th>
+                <th>Выход</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">И</option>
+            <option correct="False">ИЛИ</option>
+            <option correct="False">И-НЕ</option>
+            <option correct="True">ИЛИ-НЕ</option>
+            <option correct="False">Исключающее ИЛИ</option>
+            <option correct="False">Исключающее ИЛИ-НЕ</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          <table border="1" cellpadding="5" cellspacing="0" style="margin: 0; width: 100%">
+            <thead>
+              <tr>
+                <th>Вход 1</th>
+                <th>Вход 2</th>
+                <th>Выход</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">И</option>
+            <option correct="False">ИЛИ</option>
+            <option correct="True">И-НЕ</option>
+            <option correct="False">ИЛИ-НЕ</option>
+            <option correct="False">Исключающее ИЛИ</option>
+            <option correct="False">Исключающее ИЛИ-НЕ</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          <table border="1" cellpadding="5" cellspacing="0" style="margin: 0; width: 100%">
+            <thead>
+              <tr>
+                <th>Вход 1</th>
+                <th>Вход 2</th>
+                <th>Выход</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">И</option>
+            <option correct="False">ИЛИ</option>
+            <option correct="False">И-НЕ</option>
+            <option correct="False">ИЛИ-НЕ</option>
+            <option correct="False">Исключающее ИЛИ</option>
+            <option correct="True">Исключающее ИЛИ-НЕ</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          <table border="1" cellpadding="5" cellspacing="0" style="margin: 0; width: 100%">
+            <thead>
+              <tr>
+                <th>Вход 1</th>
+                <th>Вход 2</th>
+                <th>Выход</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">И</option>
+            <option correct="True">ИЛИ</option>
+            <option correct="False">И-НЕ</option>
+            <option correct="False">ИЛИ-НЕ</option>
+            <option correct="False">Исключающее ИЛИ</option>
+            <option correct="False">Исключающее ИЛИ-НЕ</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
 </problem>

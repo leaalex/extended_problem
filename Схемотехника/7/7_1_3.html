@@ -14,11 +14,11 @@ x2 = "U^*"
 x3 = "R_0"
 x4 = "+"
 x5 = "-"
-x6 = "*"
+x6 = "\\times"
 x7 = "/"
 x8 = "2"
 
-correct_selected = ["nvtnc0c1_7_3", "nvtnc0c5_7_3", "nvtnc0c8_7_3", "nvtnc0c2_7_3", "nvtnc0c3_7_3"]
+correct_selected = ["nvtnc0c1_7_3", "nvtnc0c5_7_3", "nvtnc0c8_7_3", "nvtnc0c6_7_3", "nvtnc0c2_7_3", "nvtnc0c3_7_3"]
 len_correct_selected = len(correct_selected)
 
 def check_func(student_selected, correct_selected):
@@ -137,14 +137,16 @@ def check_answer(expect, ans):
         }
     </style>
     <div id="$unique_id" class="task-select">
-        <img src="/static/DD_CIRCDESIGN_7.1.08_uz.png" />
+      <div class="container-image">
+        <img src="/static/DD_CIRCDESIGN_7.1.02_uz.png" style="width: 20rem;" />
         <div style="display: flex !important; align-items: center !important; justify-content: center !important;">
             <label style="text-align: center !important;">Рис. 2. Схема логического ТТЛ-элемента</label>
         </div>
+</div>
         <p>
             На рисунке 2 приведена схема логического ТТЛ-элемента.
             Используя приведенный ниже набор символов, составьте верное выражение для тока базы многоэмиттерного
-            транзистора \(\rm Т_0\), если на входах \(\rm А\) и \(\rm В\) установлен уровень логической единицы.
+            транзистора \(\rm T_0\), если на входах \(\rm A\) и \(\rm B\) установлен уровень логической единицы.
 
         </p>
         <div class="field">
@@ -235,7 +237,7 @@ def check_answer(expect, ans):
             while (fractionParts.length !== len_correct_selected) {
                 fractionParts.push("?");
             }
-            const formulaText = `\\( I_0 = \\frac {${fractionParts[0]}${fractionParts[1]}${fractionParts[2]}${fractionParts[3]}}{${fractionParts[4]}}  \\)`
+            const formulaText = `\\( I_0 = \\frac {${fractionParts[0]}${fractionParts[1]}${fractionParts[2]}${fractionParts[3]}${fractionParts[4]}}{${fractionParts[5]}}  \\)`
 
             formulaDisplay.innerHTML = formulaText;
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);

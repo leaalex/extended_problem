@@ -19,7 +19,7 @@ x7 = "2"
 x8 = "R"
 x9 = "V_{in}"
 
-correct_selected = ["nvtnc0c6_6_3", "nvtnc0c8_6_3", "nvtnc0c9_6_3"]
+correct_selected = ["nvtnc0c6_6_3", "nvtnc0c8_6_3", "nvtnc0c3_6_3", "nvtnc0c9_6_3"]
 len_correct_selected = len(correct_selected)
 
 def check_func(student_selected, correct_selected):
@@ -138,12 +138,14 @@ def check_answer(expect, ans):
         }
     </style>
 <multiplechoiceresponse>
-<img src="/static/DD_CIRCDESIGN_6.2.01_uz.png"/><div style="display: flex !important; align-items: center !important; justify-content: center !important;">
+<div class="container-image">
+<img src="/static/DD_CIRCDESIGN_6.2.01_uz.png" style="width: 20rem;"/><div style="display: flex !important; align-items: center !important; justify-content: center !important;">
 <p>        </p>
-<label style="text-align: center !important;">Рис. 4. Схема функционального блока на операционном усилителе</label>
+<label style="text-align: center !important;">Рис. 1. Схема функционального блока на операционном усилителе</label>
+    </div>
     </div>
   <p><em>Выберите правильный вариант функции, выполняемой блоком…</em></p>
-  <p>На рисунке 4 приведена схема функционального блока на операционном усилителе. </p>
+  <p>На рисунке 1 приведена схема функционального блока на операционном усилителе. </p>
 <ol>
             <li>Определите функцию, выполняемую данным блоком.</li>
             <li>Составьте верное выражение для его выходного напряжения \(V_{out}\), используя приведенный ниже набор символов.</li>
@@ -257,7 +259,7 @@ def check_answer(expect, ans):
             while (fractionParts.length !== len_correct_selected) {
                 fractionParts.push("?");
             }
-            const formulaText = `\\( V_{out} = -\\frac{${fractionParts[0]}}{${fractionParts[1]}C}\\int_{0}^{t}${fractionParts[2]}(\\tau) \\mathrm \\tau + V_{out}(0) \\)`
+            const formulaText = `\\( V_{out} = -\\frac{${fractionParts[0]}}{ ${fractionParts[1]} ${fractionParts[2]} C} \\cdot \\int\\limits_{0}^{t}${fractionParts[3]}(\\tau) \\mathrm d \\tau + V_{out}(0) \\)`
 
             formulaDisplay.innerHTML = formulaText;
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
