@@ -1,0 +1,157 @@
+<problem>
+  <style>
+    .inline-dropdown .option {
+      display: inline-block;
+      margin: 0 4px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .inline-dropdown .option.correct {
+      background: #4caf50 !important;
+      color: white !important;
+    }
+
+    .inline-dropdown .option.incorrect {
+      background: #f44336 !important;
+      color: white !important;
+    }
+
+    .inline-dropdown select {
+      border: 2px solid #ddd !important;
+      border-radius: 6px;
+      padding: 5px 10px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      min-width: 140px;
+      appearance: none;
+      background: url("data:image/svg+xml;utf8,<svg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
+        no-repeat right 8px center/15px 15px;
+    }
+
+    .inline-dropdown select:focus {
+      border-color: #2196f3 !important;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+
+    .inline-dropdown .indicator-container {
+      display: none !important;
+    }
+
+    .inline-dropdown .status {
+      display: inline-block !important;
+      margin-left: 8px;
+      font-size: 0.9em;
+    }
+
+    .inline-dropdown .status.correct::after {
+      content: "✓";
+      color: #4caf50;
+    }
+
+    .inline-dropdown .status.incorrect::after {
+      content: "✕";
+      color: #f44336;
+    }
+  </style>
+
+  <div class="inline-dropdown">
+    <optionresponse>
+      <p style="display: inline">Проверяем полученную формулу на</p>
+      <optioninput
+        options="('тавтологию','противоречие')"
+        correct="тавтологию"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">. Допустим, что эта формула</p>
+      <optioninput options="('истинна','ложна')" correct="ложна" inline="1"></optioninput>
+      <p style="display: inline">, тогда ее</p>
+      <optioninput
+        options="('антецедент','консеквент')"
+        correct="антецедент"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">–</p>
+      <optioninput options="('истинный','ложный')" correct="истинный" inline="1"></optioninput>
+      <p style="display: inline">, а</p>
+      <optioninput
+        options="('антецедент','консеквент')"
+        correct="консеквент"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">–</p>
+      <optioninput options="('истинный','ложный')" correct="ложный" inline="1"></optioninput>
+      <p style="display: inline">, значит</p>
+      <optioninput inline="1">
+        <option correct="False">\\( q \\)</option>
+        <option correct="False">\\( r \\)</option>
+        <option correct="True">\\( \neg r \\)</option>
+      </optioninput>
+      <p style="display: inline">будет иметь истинное значение, а</p>
+      <optioninput
+        options="('\( p \)','\( \neg p \)','\( \neg q \)')"
+        correct="\( p \)"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">ложное значение. Антецедент имеет значение истины только если</p>
+      <optioninput options="('истинны','ложны')" correct="истинны" inline="1"></optioninput>
+      <p style="display: inline">оба его конъюнкта. Но тогда подформула</p>
+      <optioninput
+        options="('\(\neg p \rightarrow \neg q\)','\(\neg r \rightarrow q\)','\(\neg r \rightarrow p\)')"
+        correct="\(\neg p \rightarrow \neg q\)"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">, при истинном</p>
+      <optioninput
+        options="('\(p\)','\(\neg p\)','\(\neg r\)')"
+        correct="\(\neg p\)"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">обязана иметь</p>
+      <optioninput options="('истинное','ложное')" correct="истинное" inline="1"></optioninput>
+      <p style="display: inline">\( \neg q \). В таком случае подформула</p>
+      <optioninput
+        options="('\( \neg p \rightarrow \neg q \)','\( \neg r \rightarrow q \)','\( \neg r \rightarrow p \)')"
+        correct="\( \neg r \rightarrow q \)"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">, будет иметь истинным</p>
+      <optioninput
+        options="('\(p\)','\(\neg q\)','\(\neg r\)')"
+        correct="\(\neg r\)"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">и</p>
+      <optioninput options="('истинным','ложным')" correct="ложным" inline="1"></optioninput>
+      <p style="display: inline">
+        – \(q\), значит, быть ложным конъюнктом антецедента. Но ранее мы уже установили, что истинны
+        должны быть оба конъюнкта антецедента. Такого одновременно быть не может, это
+      </p>
+      <optioninput
+        options="('тавтология','противоречие')"
+        correct="противоречие"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">, следовательно, допущение о</p>
+      <optioninput options="('истинности','ложности')" correct="ложности" inline="1"></optioninput>
+      <p style="display: inline">проверяемой формулы несостоятельно, формула не может иметь</p>
+      <optioninput options="('истинное','ложное')" correct="ложное" inline="1"></optioninput>
+      <p style="display: inline">значение, она –</p>
+      <optioninput
+        options="('тавтология','противоречие')"
+        correct="тавтология"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">, а соответствующее ей рассуждение –</p>
+      <optioninput
+        options="('правильное','неправильное')"
+        correct="правильное"
+        inline="1"
+      ></optioninput>
+      <p style="display: inline">по своей форме.</p>
+    </optionresponse>
+  </div>
+</problem>
