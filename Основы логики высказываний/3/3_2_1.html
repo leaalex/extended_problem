@@ -1,5 +1,5 @@
 <problem>
-  <script type="loncapa/python">
+<script type="loncapa/python">
 import json
 import random
 import string
@@ -11,24 +11,24 @@ def suffix_number(val):
     return int(m.group(1)) if m else 0
 
 def generate_unique_id():
-    return 'task_3_2' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
+    return 'task_3_3' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
 
 unique_id = generate_unique_id()
 
-formula_symbols = ["\\lnot", "(", "(", "\\lnot", "A", "\\lor", "\\lnot", "(", "B", "\\leftrightarrow", "C", ")", ")", "\\leftrightarrow", "\\lnot", "(", "(", "B", "\\land", "\\lnot", "C", ")", "\\to", "D", ")", ")"]
+mathjax_formula = "( \\lnot ( ( p \\lor q ) \\to ( r \\leftrightarrow \\lnot s ) ) \\land \\lnot ( \\lnot p \\lor q ) ) \\lor ( r \\leftrightarrow s )"
+formula_symbols = mathjax_formula.split()
 symbol_to_id = {
-    "A": "nvtnc0c3_2_1",
-    "B": "nvtnc0c3_2_2",
-    "C": "nvtnc0c3_2_3",
-    "D": "nvtnc0c3_2_4",
-    "(": "nvtnc0c3_2_5",
-    ")": "nvtnc0c3_2_6",
-    "\\lnot": "nvtnc0c3_2_7",
-    "\\land": "nvtnc0c3_2_8",
-    "\\lor": "nvtnc0c3_2_9",
-    "\\to": "nvtnc0c3_2_10",
-    "\\leftrightarrow": "nvtnc0c3_2_11",
-    "\\veebar": "nvtnc0c3_2_12"
+    "p": "nvtnc0c3_3_1",
+    "q": "nvtnc0c3_3_2",
+    "r": "nvtnc0c3_3_3",
+    "s": "nvtnc0c3_3_4",
+    "(": "nvtnc0c3_3_5",
+    ")": "nvtnc0c3_3_6",
+    "\\lnot": "nvtnc0c3_3_7",
+    "\\land": "nvtnc0c3_3_8",
+    "\\lor": "nvtnc0c3_3_9",
+    "\\to": "nvtnc0c3_3_10",
+    "\\leftrightarrow": "nvtnc0c3_3_11"
 }
 correct_selected = [symbol_to_id[symbol] for symbol in formula_symbols]
 len_correct_selected = len(correct_selected)
@@ -155,61 +155,28 @@ def check_answer(expect, ans):
 
   <div id="$unique_id" class="task-select">
     <p>
-      Используя стандартные символы пропозициональных связок и только три метапеременные для формул:
-      \(A\), \(B\), \(C\) и \(D\) составьте схему формулы языка PL, соответствующую всем приведённым
-      ниже конкретным пропозициональным формулам:
+      Используя стандартные символы пропозициональных связок, составьте в инфиксной нотации формулу
+      языка PL, соответствующую приведенной ниже формуле, записанной в префиксной нотации.
     </p>
-    <b>Указания к выполнению задания:</b>
-    <ol>
-      <li>
-        Если непосредственное составление общей для всех приведённых формул схемы формулы вызывает
-        затруднение, постарайтесь несколько раз провести следующую процедуру (алгоритм): найдите
-        главную связку у каждой из приведённых формул и их непосредственные подформулы; затем у
-        каждой полученной подформулы найдите главную связку и непосредственные подформулы и т. д.
-      </li>
-      <li>
-        На каждом этапе проводимой процедуры для каждой конкретной формулы одинаковые подформулы
-        обозначайте одной метапеременной, не одинаковые – разными метапеременными.
-      </li>
-      <li>
-        Для составления схемы формулы каждой конкретной формулы необходимо и достаточно использовать
-        именно четыре метапеременные – \(A\), \(B\), \(C\) и \(D\).
-      </li>
-      <li>
-        Составьте одну соответствующую всем приведённым конкретным пропозициональным формулам схему
-        формул, используя скобки и соблюдая соглашения: внешние скобки, скобки для отдельных
-        метапеременных и их отрицаний – опускаем.
-      </li>
-    </ol>
+    <b>Формула в префиксной нотации:</b><br /><br />
+    \[AKNCApqErNsNANpqErs\]
     <p>
-      <b>Список конкретных пропозициональных формул:</b><br />
-      \[ \lnot\left(\lnot(p \land q) \lor \lnot\left((r \lor s) \leftrightarrow (t \to \lnot
-      p)\right)\right) \leftrightarrow \lnot\left(((r \lor s) \land \lnot(t \to \lnot p)) \to (q
-      \leftrightarrow r)\right) \]
-      \[ \lnot\left(\lnot(p \land q) \lor \lnot\left((q \lor r) \leftrightarrow (r \to
-      s)\right)\right) \leftrightarrow \lnot\left(((q \lor r) \land \lnot(r \to s)) \to (s
-      \leftrightarrow t)\right) \]
-      \[ \lnot\left(\lnot(p \land q) \lor \lnot\left((r \lor p) \leftrightarrow (r \to
-      s)\right)\right) \leftrightarrow \lnot\left(((p \lor r) \land \lnot(r \to s)) \to (p
-      \leftrightarrow t)\right) \]
-      \[  \lnot\left(\lnot(p \land q) \lor \lnot\left((r \lor q) \leftrightarrow (r \to
-      s)\right)\right) \leftrightarrow \lnot\left(((r \lor q) \land \lnot(r \to s)) \to (r
-      \leftrightarrow \lnot s)\right) \]
+      Поставьте необходимые символы в нужном порядке, чтобы получилась правильно построенная
+      формула, синтаксически соответствующая приведенной выше формуле:
     </p>
     <p>
       <strong> Внимание! </strong>
       <br />
-      Некоторые символы могут быть использованы несколько раз, некоторые не будут использованы
-      вовсе.<br />
-      При обозначении подформул каждой отдельной формулы необходимо соблюдать порядок употребления
-      метапеременных в общей для них схеме формулы: первой используется \(A\), затем \(B\), затем
-      \(C\) и только потом – \(D\). Это необходимо для корректного отображения вашего ответа.
+      Некоторые символы могут быть использованы несколько раз.
+      <br />
+      Соблюдайте соглашения: внешние скобки, скобки для отдельных элементарных высказываний и их
+      отрицаний – опускаем.
     </p>
     <div class="field">
       <div class="task-paragraph">
         <div>
           Набор символов:
-          <div id="task-paragraph-text" class="task-paragraph-text"></div>
+          <div id="task-paragraph-text_$unique_id" class="task-paragraph-text"></div>
         </div>
       </div>
     </div>
@@ -234,7 +201,7 @@ def check_answer(expect, ans):
 
   <script type="text/javascript">
     const mapping_json = $mapping_json;
-    var container = document.getElementById("task-paragraph-text");
+    var container = document.getElementById("task-paragraph-text_$unique_id");
     for (var sym in mapping_json) {
       var d = document.createElement("div");
       d.id = mapping_json[sym];

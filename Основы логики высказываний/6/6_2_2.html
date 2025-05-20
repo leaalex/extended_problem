@@ -1,0 +1,380 @@
+<problem>
+  <script type="loncapa/python">
+    import json
+    import random
+    import string
+
+    def generate_unique_id():
+        return 'task_6_2_2' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
+
+    unique_id = generate_unique_id()
+
+    correct_selected = {
+        "cell1_" + unique_id: "F",
+        "cell2_"+ unique_id: "T",
+        "cell3_"+ unique_id: "F",
+        "cell4_"+ unique_id: "T",
+        "cell5_"+ unique_id: "T",
+        "cell6_"+ unique_id: "F",
+        "cell7_"+ unique_id: "T",
+        "cell8_"+ unique_id: "T",
+        "cell9_"+ unique_id: "F",
+        "cell10_"+ unique_id: "T",
+        "cell11_" + unique_id: "T",
+        "cell12_"+ unique_id: "F",
+        "cell13_"+ unique_id: "T",
+        "cell14_"+ unique_id: "T",
+        "cell15_"+ unique_id: "F",
+        "cell16_"+ unique_id: "T",
+        "cell17_"+ unique_id: "T",
+        "cell18_"+ unique_id: "F",
+        "cell19_"+ unique_id: "T",
+        "cell20_"+ unique_id: "T",
+        "cell21_" + unique_id: "F",
+        "cell22_"+ unique_id: "T",
+        "cell23_"+ unique_id: "T",
+        "cell24_"+ unique_id: "F",
+        "cell25_"+ unique_id: "T",
+        "cell26_"+ unique_id: "T",
+        "cell27_"+ unique_id: "F",
+        "cell28_"+ unique_id: "F",
+        "cell29_"+ unique_id: "T",
+        "cell30_"+ unique_id: "T",
+        "cell31_"+ unique_id: "F",
+        "cell32_"+ unique_id: "F",
+    }
+
+    def check_func(student_answers, correct_selected):
+        response = {}
+        max_grade = len(correct_selected)
+        correct_count = 0
+
+        for key in correct_selected:
+            if key in student_answers and student_answers[key] == correct_selected[key]:
+                correct_count += 1
+
+        grade_decimal = float(correct_count) / max_grade if max_grade > 0 else 0.0
+
+        response['grade'] = grade_decimal
+        if grade_decimal == 1:
+            ok = True
+            message = 'Correct'
+        elif grade_decimal == 0:
+            ok = False
+            message = 'Incorrect'
+        else:
+            ok = 'Partial'
+            message = 'Partial'
+
+        response["ok"] = ok
+        response["message"] = message
+        response["student_data"] = student_answers
+        return response
+
+    def check_answer(expect, ans):
+        try:
+            student_answer = json.loads(ans)
+            response = check_func(student_answer, correct_selected)
+            return {'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+        except:
+            return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+  </script>
+
+  <style>
+    .formula-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 20px;
+    }
+
+    .toggle-cell-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-family: "Times New Roman", serif;
+    }
+
+    .formula-content {
+      flex-grow: 1;
+      text-align: center;
+      display: flex;
+    }
+
+    #answer-input_$unique_id {
+      display: none !important;
+    }
+
+    .toggle-cell_$unique_id {
+      width: 1.2rem;
+      height: 2rem;
+      border: 1.5px solid #333;
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+      margin-inline: 3px;
+    }
+
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+      table-layout: fixed;
+    }
+
+    .mytable th,
+    .mytable td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .mytable tr:first-child td:first-child {
+      border-top-left-radius: 8px !important;
+    }
+
+    .mytable tr:first-child td:last-child {
+      border-top-right-radius: 8px !important;
+    }
+
+    .mytable tr:last-child td:first-child {
+      border-bottom-left-radius: 8px !important;
+    }
+
+    .mytable tr:last-child td:last-child {
+      border-bottom-right-radius: 8px !important;
+    }
+
+    @media (max-width: 768px) {
+      .formula-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .toggle-cell_$unique_id {
+        width: 50px;
+        height: 35px;
+      }
+
+      .mytable td {
+        padding: 1rem !important;
+      }
+    }
+  </style>
+  <p>
+    Ниже построена аналитическая таблица для проверки тавтологичности пропозициональной формулы.<br />
+    Укажите в таблице литеры \(T\) или \(F\) так, чтобы эта таблица стала правильной.
+  </p>
+  <p><b>Указания к выполнению задания:</b></p>
+  <ol>
+    <li>
+      Если выполнение задания вызывает затруднение, внимательно посмотрите правила редукции для
+      импликации и примеры правильного построения аналитических таблиц, посредством которых
+      проверяют тавтологичность формул PL.
+    </li>
+    <li>Выберите в таблице правильные варианты ответа.</li>
+  </ol>
+  <p><b>Аналитическая таблица для пропозициональной формулы:</b></p>
+  \[ (( p \to q ) \to p ) \to p \] <br />
+  <div id="toggle-container">
+    <table class="mytable">
+      <tr>
+        <td colspan="2">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div
+                class="toggle-cell_$unique_id"
+                id="cell1_$unique_id"
+                onclick="toggleValue_$unique_id(this)"
+              >
+                <div class="math-value"></div>
+              </div>
+              <div class="formula-content">\( (( p \to q ) \to p ) \to p \)</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell2_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( (p \to q ) \to p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell3_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \)
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell4_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \to q, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell5_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \)
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td rowspan="2">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell6_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell7_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \)
+              </div>
+            </div>
+          </div>
+          <br />
+          \(\times\)
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell8_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell9_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( q, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell10_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \)
+              </div>
+            </div>
+          </div>
+          <br />\(\times\)
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="answer-input_$unique_id">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="" />
+      <br />
+    </customresponse>
+  </div>
+
+  <script type="text/javascript">
+    // Глобальный объект для хранения состояний
+    let answersState = {};
+    const inputField = document.querySelector(`#answer-input_$unique_id input[type='text']`);
+    const response = document.querySelector(`#answer-input_$unique_id .message`);
+    if (response) {
+      const respHtml = response.innerHTML !== "" ? JSON.parse(response.innerHTML) : {};
+      const student_data = respHtml["student_data"];
+      if (inputField.value == "") {
+        inputField.value = student_data;
+      }
+    }
+
+    const selected_elems = inputField.value !== "" ? JSON.parse(inputField.value) : {};
+    document.querySelectorAll(".toggle-cell_$unique_id").forEach(function (cell) {
+      const cellId = cell.id;
+      const initialValue = selected_elems[cellId] ? selected_elems[cellId] : "?";
+      cell.querySelector(".math-value").innerHTML = `\\(${initialValue}\\)`;
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, cell]);
+    });
+    updateHiddenInput();
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById("toggle-container")]);
+    function toggleValue_$unique_id(element) {
+      const cellId = element.id;
+      const current = selected_elems[cellId];
+      const newValue = current === "T" ? "F" : "T";
+
+      // Обновляем состояние
+      selected_elems[cellId] = newValue;
+
+      // Обновляем отображение
+      element.querySelector(".math-value").innerHTML = `\\(${newValue}\\)`;
+      element.classList.toggle("selected", newValue === "T");
+
+      // Обновляем скрытое поле
+      updateHiddenInput();
+
+      // Принудительная перерисовка MathJax
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, element]);
+    }
+
+    function updateHiddenInput() {
+      const inputField = document.querySelector(`#answer-input_$unique_id input[type='text']`);
+      inputField.value = JSON.stringify(selected_elems);
+    }
+  </script>
+</problem>

@@ -1,5 +1,5 @@
 <problem>
-    <script type="loncapa/python">
+<script type="loncapa/python">
 import json
 import random
 import string
@@ -21,13 +21,13 @@ x9 = "\\to"
 x10 = "\\leftrightarrow"
 x11 = "\\veebar"
 
-correct_selected = ["nvtnc0c3_1_4", "nvtnc0c3_1_1","nvtnc0c3_1_8", "nvtnc0c3_1_4", "nvtnc0c3_1_6", "nvtnc0c3_1_2", "nvtnc0c3_1_8", "nvtnc0c3_1_6", "nvtnc0c3_1_3", "nvtnc0c3_1_5", "nvtnc0c3_1_5","nvtnc0c3_1_11", "nvtnc0c3_1_6", "nvtnc0c3_1_1",]
+correct_selected = ["nvtnc0c3_1_4", "nvtnc0c3_1_1","nvtnc0c3_1_8", "nvtnc0c3_1_4", "nvtnc0c3_1_6", "nvtnc0c3_1_2", "nvtnc0c3_1_9", "nvtnc0c3_1_6", "nvtnc0c3_1_3", "nvtnc0c3_1_5", "nvtnc0c3_1_5","nvtnc0c3_1_10", "nvtnc0c3_1_6", "nvtnc0c3_1_1",]
 len_correct_selected = len(correct_selected)
 
 def check_func(student_selected, correct_selected):
     response = {}
     max_grade = len(correct_selected)
-    
+
     correct_indexed = tuple(enumerate(correct_selected))
     student_indexed = tuple(enumerate(student_selected))
 
@@ -47,7 +47,7 @@ def check_func(student_selected, correct_selected):
     else:
         ok = 'Partial'
         message = 'Partial'
-    
+
     response["ok"] = ok
     response["message"] = message
     return response
@@ -61,9 +61,8 @@ def check_answer(expect, ans):
         return {'input_list': [{'ok': response['ok'], 'msg': response['message'], 'grade_decimal': response['grade']}, ]}
     except:
         return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
-
-</script>
-    <script type="text/x-mathjax-config">
+  </script>
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
         jax: ["input/TeX", "output/HTML-CSS"],
@@ -77,260 +76,346 @@ def check_answer(expect, ans):
             collapsibleMath: false
         }
     });
-</script>
-    <style>
-        #$unique_id #select_task_input_$unique_id {
-            display: none !important;
-        }
+  </script>
+  <style>
+    #$unique_id #select_task_input_$unique_id {
+      display: none !important;
+    }
 
-        #$unique_id .task-item_$unique_id {
-            display: inline;
-            padding: 1px;
-            cursor: pointer;
-            border: 1px solid #000;
-        }
+    #$unique_id .task-item_$unique_id {
+      display: inline;
+      padding: 1px;
+      cursor: pointer;
+      border: 1px solid #000;
+    }
 
-        #$unique_id .task-paragraph {
-            display: inline-flex;
-            margin: 4px 0px;
-            width: 100%;
-        }
+    #$unique_id .task-paragraph {
+      display: inline-flex;
+      margin: 4px 0px;
+      width: 100%;
+    }
 
-        #$unique_id .task-item_$unique_id: hover {
-            background: #a7ffaa;
-        }
+    #$unique_id.task-item_$unique_id: hover {
+      background: #a7ffaa;
+    }
 
-        #$unique_id .task-item_$unique_id.selected-item_$unique_id {
-            background: #ffff7e;
-        }
+    #$unique_id .task-item_$unique_id.selected-item_$unique_id {
+      background: #ffff7e;
+    }
 
-        #$unique_id .task-item_$unique_id.disabled-item_$unique_id {
-            background-color: #d3d3d3;
-            /* Серый цвет */
-            cursor: not-allowed;
-            /* Курсор, как для заблокированного элемента */
-            border: 0px solid #000;
-        }
+    #$unique_id .task-item_$unique_id.disabled-item_$unique_id {
+      background-color: #d3d3d3;
+      /* Серый цвет */
+      cursor: not-allowed;
+      /* Курсор, как для заблокированного элемента */
+      border: 0px solid #000;
+    }
 
-        #$unique_id .answer {
-            padding: 5px;
-            border: 1px solid #e6e6e6;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 10px;
-        }
+    #$unique_id .answer {
+      padding: 5px;
+      border: 1px solid #e6e6e6;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
 
-        .field {
-            padding: 5px;
-            border: 1px solid #e6e6e6;
+    .field {
+      padding: 5px;
+      border: 1px solid #e6e6e6;
+    }
 
-        }
+    .hidden-item_$unique_id {
+      display: none;
+    }
 
-        .hidden-item_$unique_id {
-            display: none;
-        }
+    .task-paragraph {
+      font-size: 1.3rem;
+    }
 
-        .task-paragraph {
-            font-size: 1.3rem;
-        }
+    #formula-display_$unique_id {
+      font-size: 1.5rem !important;
+    }
+  </style>
 
-        #formula-display_$unique_id {
-            font-size: 1.5rem !important;
-        }
-    </style>
+  <div id="$unique_id" class="task-select">
+    <p>
+      Используя стандартные символы пропозициональных связок и только три метапеременные для формул:
+      \(A\), \(B\) и \(C\), составьте схему формулы языка PL, соответствующую всем приведённым ниже
+      конкретным пропозициональным формулам:
+    </p>
 
-    <div id="$unique_id" class="task-select">
-        <p>Используя стандартные символы пропозициональных связок и только три метапеременные для формул: А, В и С,
-            составьте схему формулы языка PL, соответствующую всем приведённым ниже конкретным пропозициональным
-            формулам:</p>
-        <p>
-            Рассуждение
-            <em>
-                «Если не добиваться идеального порядка, то не стоит и начинать переставлять мебель в комнате
-                разнообразными способами. Если не пытаться экономить много времени, то стоит начать переставлять мебель
-                в комнате разнообразными способами. Следовательно, если не экономить много времени, то добьёшься
-                идеального порядка».
-            </em>
-        <p>
-            Указания к выполнению задания:
-        <ol>
-            <li>Если непосредственное составление общей для всех приведённых формул схемы формулы вызывает затруднение,
-                постарайтесь несколько раз провести следующую процедуру (алгоритм):</li>
-            <ul>
-                <li>найдите главную связку у каждой из приведённых формул и их непосредственные подформулы;</li>
-                <li>затем у каждой полученной подформулы найдите главную связку и непосредственные подформулы и т. д.
-                </li>
-            </ul>
-            <li>На каждом этапе проводимой процедуры для каждой конкретной формулы одинаковые подформулы обозначайте
-                одной метапеременной, не одинаковые обозначайте разными метапеременными. </li>
-            <li>Для составления схемы формулы каждой конкретной формулы необходимо и достаточно использовать именно три
-                метапеременные: А, В и С.</li>
-            <li>Составьте одну соответствующую всем приведённым конкретным пропозициональным формулам схему формул,
-                используя скобки и соблюдая соглашения: внешние скобки, опускаем: скобки для отдельных метапеременных и
-                их отрицаний.</li>
-            <li>Сохраните для себя составленную пропозициональную формулу, она будет необходима для выполнения
-                следующего Задания 2.</li>
-        </ol>
-        </p>
-        <p>
-            Список конкретных пропозициональных формул:
-            \( \left(\lnot(p \to q) \leftrightarrow r\right) \lor \left(\lnot(q \leftrightarrow r) \to \lnot(p \lor \lnot q)\right) \leftrightarrow \lnot(\lnot(p \to q) \leftrightarrow r) \) <br />
-            \( \left(\lnot(p \to q) \lor \left(\lnot(\lnot r \lor q) \to \lnot(p \to (q \land r))\right)\right) \leftrightarrow \lnot(p \to q) \) <br />
-            \( \left(\lnot(p \to q) \lor \left((r \land p) \to \lnot q\right) \to \lnot(\lnot(p \leftrightarrow q))\right) \leftrightarrow \lnot(p \to q) \) <br />
-            \( \left((p \to (q \leftrightarrow r)) \lor \left(\lnot(q \lor \lnot r) \to \lnot(p \leftrightarrow \lnot q)\right)\right) \leftrightarrow \lnot(p \to (q \leftrightarrow r)) \)
-        </p>
-        <p>
-            <strong>
-                Внимание!
-            </strong>
-            <br />
-            Некоторые символы могут быть использованы несколько раз, некоторые не будут использованы вовсе.
-            При обозначении подформул каждой отдельной формулы необходимо соблюдать порядок употребления метапеременных
-            в общей для них схеме формулы: первой используется A, затем B и только затем C. Это необходимо для
-            корректного отображения вашего ответа.
+    <b>Указания к выполнению задания:</b>
 
-        </p>
-        </p>
-        <div class="field">
-            <div class="task-paragraph">
-                <div>Набор символов:
-                    <div class="task-paragraph-text">
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_1" onclick="selectItem_$unique_id(this)"
-                            data-item="$x1">\($x1\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_2" onclick="selectItem_$unique_id(this)"
-                            data-item="$x2">\($x2\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_3" onclick="selectItem_$unique_id(this)"
-                            data-item="$x3">\($x3\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_4" onclick="selectItem_$unique_id(this)"
-                            data-item="$x4">\($x4\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_5" onclick="selectItem_$unique_id(this)"
-                            data-item="$x5">\($x5\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_6" onclick="selectItem_$unique_id(this)"
-                            data-item="$x6">\($x6\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_7" onclick="selectItem_$unique_id(this)"
-                            data-item="$x7">\($x7\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_8" onclick="selectItem_$unique_id(this)"
-                            data-item="$x8">\($x8\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_9" onclick="selectItem_$unique_id(this)"
-                            data-item="$x9">\($x9\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_10" onclick="selectItem_$unique_id(this)"
-                            data-item="$x10">\($x10\)</div>;
-                        <div class="task-item_$unique_id" id="nvtnc0c3_1_11" onclick="selectItem_$unique_id(this)"
-                            data-item="$x11">\($x11\)</div>;
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="field task-paragraph">
-            <div class="task-paragraph-text">
-                Составленная формула:
-                <div id="formula-display_$unique_id">\( \)</div>
-            </div>
-        </div>
+    <ol>
+      <li>
+        Если непосредственное составление общей для всех приведённых формул схемы формулы вызывает
+        затруднение, постарайтесь несколько раз провести следующую процедуру (алгоритм):
+      </li>
+      <ul>
+        <li>
+          найдите главную связку у каждой из приведённых формул и их непосредственные подформулы;
+        </li>
+        <li>
+          затем у каждой полученной подформулы найдите главную связку и непосредственные подформулы
+          и т. д.
+        </li>
+      </ul>
+      <li>
+        На каждом этапе проводимой процедуры для каждой конкретной формулы одинаковые подформулы
+        обозначайте одной метапеременной, не одинаковые обозначайте разными метапеременными.
+      </li>
+      <li>
+        Для составления схемы формулы каждой конкретной формулы необходимо и достаточно использовать
+        именно три метапеременные: \(A\), \(B\) и \(C\).
+      </li>
+      <li>
+        Составьте одну соответствующую всем приведённым конкретным пропозициональным формулам схему
+        формул, используя скобки и соблюдая соглашения: внешние скобки, опускаем: скобки для
+        отдельных метапеременных и их отрицаний.
+      </li>
+      <li>
+        Сохраните для себя составленную пропозициональную формулу, она будет необходима для
+        выполнения следующего Задания 2.
+      </li>
+    </ol>
+    <p>
+      <b>Список конкретных пропозициональных формул</b>: <br />
+      \[ \left(\lnot(p \to q) \leftrightarrow r\right) \lor \left(\lnot(q \leftrightarrow r) \to
+      \lnot(p \lor \lnot q)\right) \leftrightarrow \lnot(\lnot(p \to q) \leftrightarrow r) \]
+      \[ \left(\lnot(p \to q) \lor \left(\lnot(\lnot r \lor q) \to \lnot(p \to (q \land
+      r))\right)\right) \leftrightarrow \lnot(p \to q) \]
+      \[ \left(\lnot(p \to q) \lor \left((r \land p) \to \lnot q\right) \to \lnot(\lnot(p
+      \leftrightarrow q))\right) \leftrightarrow \lnot(p \to q) \]
+      \[ \left((p \to (q \leftrightarrow r)) \lor \left(\lnot(q \lor \lnot r) \to \lnot(p
+      \leftrightarrow \lnot q)\right)\right) \leftrightarrow \lnot(p \to (q \leftrightarrow r)) \]
+    </p>
+    <p>
+      <strong> Внимание! </strong>
+      <br />
+      Некоторые символы могут быть использованы несколько раз, некоторые не будут использованы
+      вовсе. При обозначении подформул каждой отдельной формулы необходимо соблюдать порядок
+      употребления метапеременных в общей для них схеме формулы: первой используется \(A\), затем
+      \(B\) и только затем \(C\). Это необходимо для корректного отображения вашего ответа.
+    </p>
+    <div class="field">
+      <div class="task-paragraph">
         <div>
-            <button onclick="clearSelection_$unique_id()">Очистить выбор</button>
+          Набор символов:
+          <div class="task-paragraph-text">
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_1"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x1"
+            >
+              \($x1\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_2"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x2"
+            >
+              \($x2\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_3"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x3"
+            >
+              \($x3\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_4"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x4"
+            >
+              \($x4\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_5"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x5"
+            >
+              \($x5\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_6"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x6"
+            >
+              \($x6\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_7"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x7"
+            >
+              \($x7\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_8"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x8"
+            >
+              \($x8\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_9"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x9"
+            >
+              \($x9\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_10"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x10"
+            >
+              \($x10\)
+            </div>
+            ;
+            <div
+              class="task-item_$unique_id"
+              id="nvtnc0c3_1_11"
+              onclick="selectItem_$unique_id(this)"
+              data-item="$x11"
+            >
+              \($x11\)
+            </div>
+            ;
+          </div>
         </div>
-
-        <div id="select_task_input_$unique_id">
-            <customresponse cfn="check_answer">
-                <textline size="40" value="" />
-                <br />
-            </customresponse>
-        </div>
+      </div>
     </div>
 
-    <script type="text/javascript">
-        const selectedElements = [];
-        const elementColors = {};
-        const formulaDisplay = document.getElementById(`formula-display_$unique_id`);
-        const inputField = document.querySelector(`#select_task_input_$unique_id input[type='text']`);
-        const len_correct_selected = $len_correct_selected
+    <div class="field task-paragraph">
+      <div class="task-paragraph-text">
+        Составленная формула:
+        <div id="formula-display_$unique_id">\( \)</div>
+      </div>
+    </div>
+    <div>
+      <button onclick="clearSelection_$unique_id()">Очистить выбор</button>
+    </div>
 
-        const selected_elems = inputField.value !== '' ? JSON.parse(inputField.value)['answer']['selected'] : [];
-        selected_elems.forEach(function (elem) {
-            if (elem) {
-                selectedElements.push(elem);
-                elementColors[elem] = getRandomColor();
-                document.getElementById(elem).classList.add('selected-item_$unique_id');
-                document.getElementById(elem).style.backgroundColor = elementColors[elem];
-            }
-        });
+    <div id="select_task_input_$unique_id">
+      <customresponse cfn="check_answer">
+        <textline size="40" value="" />
+        <br />
+      </customresponse>
+    </div>
+  </div>
 
-        function getRandomColor() {
-            const hue = Math.floor(Math.random() * 360);
-            return `hsl(${hue}, 100%, 75%)`;
+  <script type="text/javascript">
+    const selectedElements = [];
+    const elementColors = {};
+    const formulaDisplay = document.getElementById(`formula-display_$unique_id`);
+    const inputField = document.querySelector(`#select_task_input_$unique_id input[type='text']`);
+    const len_correct_selected = $len_correct_selected;
+
+    const selected_elems =
+      inputField.value !== "" ? JSON.parse(inputField.value)["answer"]["selected"] : [];
+    selected_elems.forEach(function (elem) {
+      if (elem) {
+        selectedElements.push(elem);
+        elementColors[elem] = getRandomColor();
+        document.getElementById(elem).classList.add("selected-item_$unique_id");
+        document.getElementById(elem).style.backgroundColor = elementColors[elem];
+      }
+    });
+
+    function getRandomColor() {
+      const hue = Math.floor(Math.random() * 360);
+      return `hsl(${hue}, 100%, 75%)`;
+    }
+
+    function selectItem_$unique_id(element) {
+      if (selectedElements.length === len_correct_selected) {
+        return; // Если достигнут лимит, не даем выбрать больше
+      }
+
+      const itemId = element.id;
+      selectedElements.push(itemId);
+      elementColors[itemId] = elementColors[itemId] || getRandomColor();
+      element.style.backgroundColor = elementColors[itemId];
+      element.classList.add("selected-item_$unique_id");
+      updateDisabledItems_$unique_id();
+
+      updateFormula_$unique_id();
+      setAnswer_$unique_id();
+    }
+
+    function updateFormula_$unique_id() {
+      const fractionParts = selectedElements.map(function (id) {
+        return id ? document.getElementById(id).getAttribute("data-item") : "?";
+      });
+      while (fractionParts.length !== len_correct_selected) {
+        fractionParts.push("?");
+      }
+      const formulaText = `\\( ${fractionParts[0]} ${fractionParts[1]} ${fractionParts[2]} ${fractionParts[3]} ${fractionParts[4]} ${fractionParts[5]} ${fractionParts[6]} ${fractionParts[7]} ${fractionParts[8]} ${fractionParts[9]} ${fractionParts[10]} ${fractionParts[11]} ${fractionParts[12]} ${fractionParts[13]} \\)`;
+
+      formulaDisplay.innerHTML = formulaText;
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
+    }
+
+    function setAnswer_$unique_id() {
+      const answerJSON = {
+        answer: {
+          selected: selectedElements,
+        },
+      };
+      inputField.value = JSON.stringify(answerJSON);
+    }
+
+    function clearSelection_$unique_id() {
+      // Удаление выделения и сброс выбранных элементов
+      selectedElements.length = 0;
+      document.querySelectorAll(".task-item_$unique_id").forEach(function (element) {
+        element.classList.remove("selected-item_$unique_id");
+        element.style.backgroundColor = "";
+      });
+      updateDisabledItems_$unique_id();
+      updateFormula_$unique_id();
+      setAnswer_$unique_id();
+    }
+
+    function updateDisabledItems_$unique_id() {
+      const items = document.querySelectorAll(".task-item_$unique_id");
+      items.forEach(function (item) {
+        if (selectedElements.length === len_correct_selected) {
+          if (!item.classList.contains("selected-item_$unique_id")) {
+            item.classList.add("disabled-item_$unique_id");
+            item.style.pointerEvents = "none"; // Отключить возможность клика
+            item.style.backgroundColor = "#d3d3d3"; // Серый цвет
+          }
+        } else {
+          item.classList.remove("disabled-item_$unique_id");
+          item.style.pointerEvents = "auto"; // Включить возможность клика
+          item.style.backgroundColor = ""; // Восстановить исходный цвет
         }
+      });
+    }
 
-        function selectItem_$unique_id(element) {
-            if (selectedElements.length === len_correct_selected) {
-                return; // Если достигнут лимит, не даем выбрать больше
-            }
-
-            const itemId = element.id;
-            selectedElements.push(itemId);
-            elementColors[itemId] = elementColors[itemId] || getRandomColor();
-            element.style.backgroundColor = elementColors[itemId];
-            element.classList.add('selected-item_$unique_id');
-            updateDisabledItems_$unique_id();
-
-            updateFormula_$unique_id();
-            setAnswer_$unique_id();
-        }
-
-        function updateFormula_$unique_id() {
-            const fractionParts = selectedElements.map(function (id) {
-                return id ? document.getElementById(id).getAttribute('data-item') : "?";
-            });
-            while (fractionParts.length !== len_correct_selected) {
-                fractionParts.push("?");
-            }
-            const formulaText = `\\( ${fractionParts[0]} ${fractionParts[1]} ${fractionParts[2]} ${fractionParts[3]} ${fractionParts[4]} ${fractionParts[5]} ${fractionParts[6]} ${fractionParts[7]} ${fractionParts[8]} ${fractionParts[9]} ${fractionParts[10]} ${fractionParts[11]} ${fractionParts[12]} ${fractionParts[13]} \\)`;
-
-            formulaDisplay.innerHTML = formulaText;
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, formulaDisplay]);
-        }
-
-        function setAnswer_$unique_id() {
-            const answerJSON = {
-                "answer": {
-                    "selected": selectedElements
-                }
-            };
-            inputField.value = JSON.stringify(answerJSON);
-        }
-
-        function clearSelection_$unique_id() {
-            // Удаление выделения и сброс выбранных элементов
-            selectedElements.length = 0;
-            document.querySelectorAll('.task-item_$unique_id').forEach(function (element) {
-                element.classList.remove('selected-item_$unique_id');
-                element.style.backgroundColor = '';
-            });
-            updateDisabledItems_$unique_id();
-            updateFormula_$unique_id();
-            setAnswer_$unique_id();
-        }
-
-        function updateDisabledItems_$unique_id() {
-            const items = document.querySelectorAll('.task-item_$unique_id');
-            items.forEach(function (item) {
-                if (selectedElements.length === len_correct_selected) {
-                    if (!item.classList.contains('selected-item_$unique_id')) {
-                        item.classList.add('disabled-item_$unique_id');
-                        item.style.pointerEvents = 'none'; // Отключить возможность клика
-                        item.style.backgroundColor = '#d3d3d3'; // Серый цвет
-                    }
-                } else {
-                    item.classList.remove('disabled-item_$unique_id');
-                    item.style.pointerEvents = 'auto'; // Включить возможность клика
-                    item.style.backgroundColor = ''; // Восстановить исходный цвет
-                }
-            });
-        }
-
-        updateFormula_$unique_id();
-        updateDisabledItems_$unique_id();
-    </script>
+    updateFormula_$unique_id();
+    updateDisabledItems_$unique_id();
+  </script>
 </problem>

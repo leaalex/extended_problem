@@ -1,157 +1,173 @@
 <problem>
-    <style>
-        .mytable {
-            border-collapse: separate !important;
-            width: 100% !important;
-            box-shadow: 0 0 0 3.5px #f6f6f6 !important;
-            border-radius: 8px !important;
-        }
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
 
-        .mytable th,
-        td {
-            border: .5px solid #e6e6e6 !important;
-            padding: 1.3rem !important;
-            text-align: center !important;
-            vertical-align: top;
-        }
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
 
-        .formula-display {
-            font-size: 1.5rem !important;
-        }
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
 
-        .mytable th {
-            color: #1e88e5;
-            background-color: #fafafa !important;
-        }
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
 
-        .custom-select .option-input {
-            margin: 0 auto !important;
-        }
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
 
-        .custom-select select {
-            width: 100% !important;
-            cursor: pointer !important;
-            background-color: #f6f6f6 !important;
-            border: 1px solid #e6e6e6 !important;
-            border-radius: 4px !important;
-            height: 40px !important;
-            text-align: center !important;
-        }
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
 
-        /* .custom-select::after {
+    /* .custom-select::after {
             content: '\25BC' !important;
             transform: translateY(-50%) !important;
             color: #999 !important;
         } */
 
-        .custom-select select::-ms-expand {
-            display: none !important;
-            /* Remove default arrow in IE */
-        }
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
 
-        .custom-select option {
-            background-color: #fff !important;
-            color: #333 !important;
-        }
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
 
-        .custom-select select:hover,
-        .custom-select select:focus {
-            background-color: #e9e9e9 !important;
-        }
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
 
-        .container-image {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .container-image img {
-            margin-right: 10px;
-        }
+    .container-image img {
+      margin-right: 10px;
+    }
 
-        .container-image .number {
-            font-size: 16px;
-            font-weight: bold;
-        }
-    </style>
-    <p>
-        Выберите правильные производные семантические свойства предлагаемых ниже формул PL:
-    </p>
-    <p>
-        Указания к выполнению задания:
-    </p>
-    <ol>
-        <li>Все формулы PL имеют по два из следующих производных свойств: выполнимые формулы, опровержимые формулы и детерминированные формулы.</li>
-        <li>Если непосредственное определение производных семантических свойств формул вызывает затруднение, то, поскольку все предложенные формулы взяты из предыдущих заданий, вернитесь к вашим истинностным таблицам и ответам для формул из Учебного задания 1 (Задание 1 и Задание 2), проведите сравнение с определениями выполнимых, опровержимых и детерминированных формул.</li>
-    </ol>
-    
-    <optionresponse>
-        <table class="mytable">
-            <tr>
-                <th>Формула:</th>
-                <th>Производные семантические свойства:</th>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \leftrightarrow q) \leftrightarrow (p \leftrightarrow \neg q) \)
-                </td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">выполнимая и опровержимая</option>
-                        <option correct="False">выполнимая и детерминированная</option>
-                        <option correct="True">опровержимая и детерминированная</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \veebar q) \veebar (p \veebar \neg q) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">выполнимая и опровержимая</option>
-                        <option correct="True">выполнимая и детерминированная</option>
-                        <option correct="False">опровержимая и детерминированная</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \leftrightarrow q) \rightarrow (p \veebar q) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">выполнимая и опровержимая</option>
-                        <option correct="False">выполнимая и детерминированная</option>
-                        <option correct="False">опровержимая и детерминированная</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \downarrow (q \downarrow r)) \leftrightarrow ((p \mid q) \mid r) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">выполнимая и опровержимая</option>
-                        <option correct="False">выполнимая и детерминированная</option>
-                        <option correct="False">опровержимая и детерминированная</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \mid (q \mid \neg q)) \leftrightarrow ((\neg r \downarrow r) \downarrow \neg p) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">выполнимая и опровержимая</option>
-                        <option correct="True">выполнимая и детерминированная</option>
-                        <option correct="False">опровержимая и детерминированная</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \downarrow (\neg q \mid q)) \veebar ((r \mid \neg r) \downarrow \neg p) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">выполнимая и опровержимая</option>
-                        <option correct="False">выполнимая и детерминированная</option>
-                        <option correct="True">опровержимая и детерминированная</option>
-                    </optioninput>
-                </td>
-            </tr>
-        </table>
-    </optionresponse>
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>Выберите правильные производные семантические свойства предлагаемых в таблице формул PL</p>
+  <p>
+    <b>Указания к выполнению задания:</b>
+  </p>
+  <ol>
+    <li>
+      Все формулы PL имеют по два из следующих производных свойств: выполнимые формулы, опровержимые
+      формулы и детерминированные формулы.
+    </li>
+    <li>
+      Если непосредственное определение производных семантических свойств формул вызывает
+      затруднение, воспользуйтесь ответами из Учебного задания 1 (Задание 1 и Задание 2), проведите
+      сравнение с определениями выполнимых, опровержимых и детерминированных формул.
+    </li>
+  </ol>
+
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Формула</th>
+        <th>Производные семантические свойства</th>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          \( (p \leftrightarrow q) \leftrightarrow (p \leftrightarrow \neg q) \)
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">выполнимая и опровержимая</option>
+            <option correct="False">выполнимая и детерминированная</option>
+            <option correct="True">опровержимая и детерминированная</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">\( (p \veebar q) \veebar (p \veebar \neg q) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">выполнимая и опровержимая</option>
+            <option correct="True">выполнимая и детерминированная</option>
+            <option correct="False">опровержимая и детерминированная</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">\( (p \leftrightarrow q) \rightarrow (p \veebar q) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">выполнимая и опровержимая</option>
+            <option correct="False">выполнимая и детерминированная</option>
+            <option correct="False">опровержимая и детерминированная</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          \( (p \downarrow (q \downarrow r)) \leftrightarrow ((p \mid q) \mid r) \)
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">выполнимая и опровержимая</option>
+            <option correct="False">выполнимая и детерминированная</option>
+            <option correct="False">опровержимая и детерминированная</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          \( (p \mid (q \mid \neg q)) \leftrightarrow ((\neg r \downarrow r) \downarrow \neg p) \)
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">выполнимая и опровержимая</option>
+            <option correct="True">выполнимая и детерминированная</option>
+            <option correct="False">опровержимая и детерминированная</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          \( (p \downarrow (\neg q \mid q)) \veebar ((r \mid \neg r) \downarrow \neg p) \)
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">выполнимая и опровержимая</option>
+            <option correct="False">выполнимая и детерминированная</option>
+            <option correct="True">опровержимая и детерминированная</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+  <p>
+    <b>Внимание!</b><br />
+    Все предложенные формулы взяты из Учебного задания 1.
+  </p>
 </problem>

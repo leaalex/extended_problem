@@ -1,224 +1,156 @@
 <problem>
-    <style>
-        .mytable {
-            border-collapse: separate !important;
-            width: 100% !important;
-            box-shadow: 0 0 0 3.5px #f6f6f6 !important;
-            border-radius: 8px !important;
-        }
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
 
-        .mytable th,
-        td {
-            border: .5px solid #e6e6e6 !important;
-            padding: 1.3rem !important;
-            text-align: center !important;
-            vertical-align: top;
-        }
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
 
-        .formula-display {
-            font-size: 1.5rem !important;
-        }
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
 
-        .mytable th {
-            color: #1e88e5;
-            background-color: #fafafa !important;
-        }
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
 
-        .custom-select .option-input {
-            margin: 0 auto !important;
-        }
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
 
-        .custom-select select {
-            width: 100% !important;
-            cursor: pointer !important;
-            background-color: #f6f6f6 !important;
-            border: 1px solid #e6e6e6 !important;
-            border-radius: 4px !important;
-            height: 40px !important;
-            text-align: center !important;
-        }
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
 
-        /* .custom-select::after {
+    /* .custom-select::after {
             content: '\25BC' !important;
             transform: translateY(-50%) !important;
             color: #999 !important;
         } */
 
-        .custom-select select::-ms-expand {
-            display: none !important;
-            /* Remove default arrow in IE */
-        }
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
 
-        .custom-select option {
-            background-color: #fff !important;
-            color: #333 !important;
-        }
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
 
-        .custom-select select:hover,
-        .custom-select select:focus {
-            background-color: #e9e9e9 !important;
-        }
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
 
-        .container-image {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .container-image img {
-            margin-right: 10px;
-        }
+    .container-image img {
+      margin-right: 10px;
+    }
 
-        .container-image .number {
-            font-size: 16px;
-            font-weight: bold;
-        }
-    </style>
-    <p>
-        Укажите в таблице единственное производное логическое отношение, в котором находятся между собой предлагаемые
-        ниже формулы PL.
-    </p>
-    <p>
-        Указания к выполнению задания:
-    </p>
-    <ol>
-        <li>
-            Произвольные логические отношения взаимозависимы друг от друга, а также – зависят от фундаментальных
-            логических отношений.
-        </li>
-        <li>
-            Если непосредственное определение производных логических отношений, в которых находятся сравниваемые
-            формулы, вызывает затруднение, воспользуйтесь ответами из Учебного задания 1, проведите сравнение с
-            определениями производных логических отношений формул PL.
-        </li>
-    </ol>
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Укажите в таблице единственное производное логическое отношение, в котором находятся между собой
+    предлагаемые ниже формулы PL.
+  </p>
+  <p><b>Указания к выполнению задания:</b></p>
+  <ol>
+    <li>
+      Произвольные логические отношения взаимозависимы друг от друга, а также зависят от
+      фундаментальных логических отношений.
+    </li>
+    <li>
+      Если непосредственное определение производных логических отношений, в которых находятся
+      сравниваемые формулы, вызывает затруднение, воспользуйтесь ответами из Учебного задания 1,
+      проведите сравнение с определениями производных логических отношений формул PL.
+    </li>
+  </ol>
 
-    <p>Пропозициональные формулы:</p>
+  <p>
+    <b>Пропозициональные формулы:</b> <br />
     \[A: p \downarrow (q \leftrightarrow (r \land \neg p))\]
-
     \[B: ((p \downarrow q) \leftrightarrow r) \lor p\]
-
     \[C: p \downarrow (q \leftrightarrow (r \lor \neg p))\]
-    </p>
+  </p>
+  <b>Внимание!</b> <br />
+  Предложенные формулы взяты из Учебного задания 1. <br/>
+  Формулы подобраны так, что из
+  указанных семи производных логических отношений между формулами каждая пара формул находится
+  только в одном отношении.
 
-    <optionresponse>
-        <table class="mytable">
-            <tr>
-                <th>Формулы</th>
-                <th>Фундаментальное логическое отношение</th>
-                <th>Ответ</th>
-            </tr>
-            <tr>
-                <td rowspan="4">A и B</td>
-                <td>совместимы по истинности</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>совместимы по ложности</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>из A логически следует B</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>из B логически следует A</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">Да</option>
-                        <option correct="True">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="4">A и C</td>
-                <td>совместимы по истинности</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>совместимы по ложности</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>из A логически следует C</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>из C логически следует A</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">Да</option>
-                        <option correct="True">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="4">B и C</td>
-                <td>совместимы по истинности</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>совместимы по ложности</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">Да</option>
-                        <option correct="False">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>из B логически следует C</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">Да</option>
-                        <option correct="True">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td>из C логически следует B</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">Да</option>
-                        <option correct="True">Нет</option>
-                    </optioninput>
-                </td>
-            </tr>
-        </table>
-    </optionresponse>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Формулы</th>
+        <th>Производное логическое отношение</th>
+      </tr>
+      <tr>
+        <td>\(A\) и \(B\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">противоречия (контрадикторности)</option>
+            <option correct="False">противоположности (контрарности)</option>
+            <option correct="False">подпротивоположности (субконтрарности)</option>
+            <option correct="False">логической эквивалентности</option>
+            <option correct="False">А логически подчиняется В</option>
+            <option correct="True">B логически подчиняется A</option>
+            <option correct="False">логической независимости</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A\) и \(C\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">противоречия (контрадикторности)</option>
+            <option correct="False">противоположности (контрарности)</option>
+            <option correct="False">подпротивоположности (субконтрарности)</option>
+            <option correct="False">логической эквивалентности</option>
+            <option correct="False">А логически подчиняется C</option>
+            <option correct="True">C логически подчиняется A</option>
+            <option correct="False">логической независимости</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(B\) и \(C\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">противоречия (контрадикторности)</option>
+            <option correct="False">противоположности (контрарности)</option>
+            <option correct="False">подпротивоположности (субконтрарности)</option>
+            <option correct="False">логической эквивалентности</option>
+            <option correct="False">B логически подчиняется C</option>
+            <option correct="False">C логически подчиняется B</option>
+            <option correct="True">логической независимости</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
 </problem>

@@ -1,129 +1,144 @@
 <problem>
-    <style>
-        .mytable {
-            border-collapse: separate !important;
-            width: 100% !important;
-            box-shadow: 0 0 0 3.5px #f6f6f6 !important;
-            border-radius: 8px !important;
-        }
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
 
-        .mytable th,
-        td {
-            border: .5px solid #e6e6e6 !important;
-            padding: 1.3rem !important;
-            text-align: center !important;
-            vertical-align: top;
-        }
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
 
-        .formula-display {
-            font-size: 1.5rem !important;
-        }
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
 
-        .mytable th {
-            color: #1e88e5;
-            background-color: #fafafa !important;
-        }
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
 
-        .custom-select .option-input {
-            margin: 0 auto !important;
-        }
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
 
-        .custom-select select {
-            width: 100% !important;
-            cursor: pointer !important;
-            background-color: #f6f6f6 !important;
-            border: 1px solid #e6e6e6 !important;
-            border-radius: 4px !important;
-            height: 40px !important;
-            text-align: center !important;
-        }
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
 
-        /* .custom-select::after {
+    /* .custom-select::after {
             content: '\25BC' !important;
             transform: translateY(-50%) !important;
             color: #999 !important;
         } */
 
-        .custom-select select::-ms-expand {
-            display: none !important;
-            /* Remove default arrow in IE */
-        }
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
 
-        .custom-select option {
-            background-color: #fff !important;
-            color: #333 !important;
-        }
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
 
-        .custom-select select:hover,
-        .custom-select select:focus {
-            background-color: #e9e9e9 !important;
-        }
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
 
-        .container-image {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .container-image img {
-            margin-right: 10px;
-        }
+    .container-image img {
+      margin-right: 10px;
+    }
 
-        .container-image .number {
-            font-size: 16px;
-            font-weight: bold;
-        }
-    </style>
-    <p>
-        Выберите правильное основное семантическое свойство предлагаемых ниже формул PL:
-    </p>
-    <p>
-        Указания к выполнению задания:
-    </p>
-    <ol>
-        <li>Все формулы PL по основным семантическим свойствам разделяются на три вида: тождественно-истинные формулы, тождественно-ложные формулы и фактические формулы.</li>
-        <li>Каждая формула PL относится только к одному виду по основному семантическому свойству.</li>
-        <li>Если непосредственное определение основного семантического свойства формул вызывает затруднение, постройте для каждой из них таблицу истинности и по результату столбца с полученными значениями самой формулы проведите сравнение с определениями тождественно-истинных, тождественно-ложных и фактических формул.</li>
-        <li>Сохраните для себя составленные вами таблицы и правильные ответы, они будут необходимы для выполнения Учебного задания 2.</li>
-    </ol>
-    
-    <optionresponse>
-        <table class="mytable">
-            <tr>
-                <th>Формула:</th>
-                <th>Основное семантическое свойство:</th>
-            </tr>
-            <tr>
-                <td class="formula-display">\( (p \leftrightarrow q) \leftrightarrow (p \leftrightarrow \neg q ) \)
-                </td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">тождественно-истинная</option>
-                        <option correct="True">тождественно-ложная</option>
-                        <option correct="False">фактическая</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( ( p \veebar q) \veebar (p \veebar \neg q ) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="True">тождественно-истинная</option>
-                        <option correct="False">тождественно-ложная</option>
-                        <option correct="False">фактическая</option>
-                    </optioninput>
-                </td>
-            </tr>
-            <tr>
-                <td class="formula-display">\( ( p \leftrightarrow q) \rightarrow (p \veebar q ) \)</td>
-                <td class="custom-select">
-                    <optioninput>
-                        <option correct="False">тождественно-истинная</option>
-                        <option correct="False">тождественно-ложная</option>
-                        <option correct="True">фактическая</option>
-                    </optioninput>
-                </td>
-            </tr>
-        </table>
-    </optionresponse>
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>Выберите правильное основное семантическое свойство предлагаемых в таблице формул PL.</p>
+  <p>
+    <b>Указания к выполнению задания:</b>
+  </p>
+  <ol>
+    <li>
+      Все формулы PL по основным семантическим свойствам разделяются на три вида:
+      тождественно-истинные формулы, тождественно-ложные формулы и фактические формулы.
+    </li>
+    <li>Каждая формула PL относится только к одному виду по основному семантическому свойству.</li>
+    <li>
+      Если непосредственное определение основного семантического свойства формул вызывает
+      затруднение, постройте для каждой из них таблицу истинности и по результату столбца с
+      полученными значениями самой формулы проведите сравнение с определениями тождественно
+      истинных, тождественно ложных и фактических формул.
+    </li>
+    <li>
+      Сохраните для себя составленные вами таблицы и правильные ответы, они будут необходимы для
+      выполнения Учебного задания 2.
+    </li>
+  </ol>
+
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Формула</th>
+        <th>Основное семантическое свойство</th>
+      </tr>
+      <tr>
+        <td class="formula-display">
+          \( (p \leftrightarrow q) \leftrightarrow (p \leftrightarrow \neg q ) \)
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">тождественно истинная</option>
+            <option correct="True">тождественно ложная</option>
+            <option correct="False">фактическая</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">\( ( p \veebar q) \veebar (p \veebar \neg q ) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">тождественно истинная</option>
+            <option correct="False">тождественно ложная</option>
+            <option correct="False">фактическая</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td class="formula-display">\( ( p \leftrightarrow q) \rightarrow (p \veebar q ) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">тождественно истинная</option>
+            <option correct="False">тождественно ложная</option>
+            <option correct="True">фактическая</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+  <p>
+    <b>Внимание!</b><br />
+    В качестве правильных выбирайте из предложенных трех вариантов только одно основное
+    семантическое свойство.
+  </p>
 </problem>

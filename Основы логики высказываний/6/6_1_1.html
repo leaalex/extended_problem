@@ -1,0 +1,243 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .custom td {
+      padding: 0.5rem !important;
+    }
+  </style>
+  <p>
+    Для каждой из пропозициональных формул \(A\), \(B\), \(C\), представленных ниже, дана правильно
+    построенная аналитическая таблица. <br />
+    Определите по таблице, является ли пропозициональная формула, тождественно истинной
+    (тавтологией). Выберите правильные варианты ответа.
+  </p>
+  <p><b>Указания к выполнению задания:</b></p>
+  <ol>
+    <li>Посмотрите определение замкнутых и незамкнутых аналитических таблиц 1, 2, 3.</li>
+    <li>Определите, какие из построенных ниже аналитических таблиц замкнуты, а какие нет.</li>
+    <li>
+      Посмотрите определение того, как устанавливается тавтологичность пропозициональной формулы
+      посредством построенной для нее аналитической таблицы.
+    </li>
+    <li>Выберите правильные варианты ответа.</li>
+  </ol>
+
+  <p>
+    <b>Пропозициональные формулы:</b> <br />
+    <optionresponse>
+      <table class="mytable">
+        <tr>
+          <td>\(A: ( p \leftrightarrow q) \leftrightarrow (p \land q) \)</td>
+          <td class="custom-select">
+            <optioninput>
+              <option correct="False">тавтология</option>
+              <option correct="True">не тавтология</option>
+            </optioninput>
+          </td>
+        </tr>
+        <tr>
+          <td>\(B: ( p \leftrightarrow q) \leftrightarrow \neg (p \land \neg q) \)</td>
+          <td class="custom-select">
+            <optioninput>
+              <option correct="False">тавтология</option>
+              <option correct="True">не тавтология</option>
+            </optioninput>
+          </td>
+        </tr>
+        <tr>
+          <td>\(C: ( p \leftrightarrow q) \leftrightarrow \neg (p \leftrightarrow \neg q) \)</td>
+          <td class="custom-select">
+            <optioninput>
+              <option correct="True">тавтология</option>
+              <option correct="False">не тавтология</option>
+            </optioninput>
+          </td>
+        </tr>
+      </table>
+    </optionresponse>
+  </p>
+  <p>
+    <b>Исходные данные</b><br />
+    <b>Аналитические таблицы для формул</b><br />
+  </p>
+  <p style="text-align: center">
+    <b>Таблица 1 - Для формулы \(A\)</b>
+  </p>
+  <table class="mytable custom">
+    <tr>
+      <td colspan="6">\( F(p \leftrightarrow q) \leftrightarrow (p \land q) \)</td>
+    </tr>
+    <tr>
+      <td colspan="4">\( T\,p \leftrightarrow q,\, F\,p \land q \)</td>
+      <td colspan="4">\( F\,p \leftrightarrow q,\, T\,p \land q \)</td>
+    </tr>
+    <tr>
+      <td colspan="2">\( T\,p \leftrightarrow q,\, F\,p \)</td>
+      <td colspan="2">\( T\,p \leftrightarrow q,\, F\,q \)</td>
+      <td colspan="2">\( F\,p \leftrightarrow q,\, T\,p,\, T\,q \)</td>
+    </tr>
+    <tr>
+      <td>\( T\,p,\, T\,q,\, F\,p \)</td>
+      <td>\( F\,p,\, F\,q,\, F\,p \)</td>
+      <td>\( T\,p,\, T\,q,\, F\,q \)</td>
+      <td>\( F\,p,\, F\,q,\, F\,q \)</td>
+      <td>\( T\,p,\, F\,q,\, T\,p,\, T\,q \)</td>
+      <td>\( F\,p,\, T\,q,\, T\,p,\, T\,q \)</td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <b>Таблица 2 - Для формулы \(B\)</b>
+  </p>
+  <table class="mytable custom">
+    <tr>
+      <td colspan="8">\( F(p \leftrightarrow q) \leftrightarrow \neg(p \land \neg q) \)</td>
+    </tr>
+    <tr>
+      <td colspan="4">\( T\,p \leftrightarrow q,\, F\,\neg(p \land \neg q) \)</td>
+      <td colspan="4">\( F\,p \leftrightarrow q,\, T\,\neg(p \land \neg q) \)</td>
+    </tr>
+    <tr>
+      <td colspan="4">\( T\,p \leftrightarrow q,\, T\,p \land \neg q \)</td>
+      <td colspan="4">\( F\,p \leftrightarrow q,\, F\,p \land \neg q \)</td>
+    </tr>
+    <tr>
+      <td colspan="4">\( T\,p \leftrightarrow q,\, T\,p,\, T\,\neg q \)</td>
+      <td colspan="2">\( F\,p \leftrightarrow q,\, F\,p \)</td>
+      <td colspan="2">\( F\,p \leftrightarrow q,\, F\,\neg q \)</td>
+    </tr>
+    <tr>
+      <td colspan="4" rowspan="2">\( T\,p \leftrightarrow q,\, T\,p,\, F\,q \)</td>
+      <td colspan="1" rowspan="4">\( T\,p,\, F\,q,\, F\,p \)</td>
+      <td colspan="1" rowspan="4">\( F\,p,\, T\,q,\, F\,p \)</td>
+      <td colspan="2" rowspan="2">\( F\,p \leftrightarrow q,\, T\,q \)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td colspan="1" rowspan="2">\( T\,p,\, T\,q,\, T\,p,\, F\,q \)</td>
+      <td colspan="1" rowspan="2">\( F\,p,\, F\,q,\, T\,p,\, F\,q \)</td>
+      <td style="border: 0 !important" colspan="4"></td>
+      <td colspan="1" rowspan="2">\( T\,p,\, F\,q,\, T\,q \)</td>
+      <td colspan="1" rowspan="2">\( F\,p,\, T\,q,\, T\,q \)</td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <b>Таблица 3 - Для формулы \(C\)</b>
+  </p>
+  <table class="mytable custom">
+    <tr>
+      <td colspan="8">
+        \( F(p \leftrightarrow q) \leftrightarrow \neg(p \leftrightarrow \neg q) \)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">\( T\,p \leftrightarrow q,\, F\,\neg(p \leftrightarrow \neg q) \)</td>
+      <td colspan="4">\( F\,p \leftrightarrow q,\, T\,\neg(p \leftrightarrow \neg q) \)</td>
+    </tr>
+    <tr>
+      <td colspan="4">\( T\,p \leftrightarrow q,\, T\,p \leftrightarrow \neg q \)</td>
+      <td colspan="4">\( F\,p \leftrightarrow q,\, F\,p \leftrightarrow \neg q \)</td>
+    </tr>
+    <tr>
+      <td colspan="2">\( T\,p,\, T\,q,\,<br />T\,p \leftrightarrow \neg q \)</td>
+      <td colspan="2">\( F\,p,\, F\,q,\,<br />T\,p \leftrightarrow \neg q \)</td>
+      <td colspan="2">\( T\,p,\, F\,q,\,<br />F\,p \leftrightarrow \neg q \)</td>
+      <td colspan="2">\( F\,p,\, T\,q,\,<br />F\,p \leftrightarrow \neg q \)</td>
+    </tr>
+    <tr>
+      <td>\(T_p, T_q, T_p, T_{\neg q}\)</td>
+      <td>\(T_p, T_q, F_p, F_{\neg q}\)</td>
+      <td>\(F_p, F_q, T_p, T_{\neg q}\)</td>
+      <td>\(F_p, F_q, F_p, F_{\neg q}\)</td>
+      <td>\(T_p, F_q, T_p, F_{\neg q}\)</td>
+      <td>\(T_p, F_q, F_p, T_{\neg q}\)</td>
+      <td>\(F_p, T_q, T_p, F_{\neg q}\)</td>
+      <td>\(F_p, T_q, p, T_{\neg q}\)</td>
+    </tr>
+    <tr>
+      <td>\(T_p, T_q, T_p, F_q\)</td>
+      <td>\(T_p, T_q, F_p, T_q\)</td>
+      <td>\(F_p, F_q, T_p, F_q\)</td>
+      <td>\(F_p, F_q, F_p, T_q\)</td>
+      <td>\(T_p, F_q, T_p, T_q\)</td>
+      <td>\(T_p, F_q, F_p, F_q\)</td>
+      <td>\(F_p, T_q, T_p, T_q\)</td>
+      <td>\(F_p, T_q, F_p, F_q\)</td>
+    </tr>
+  </table>
+  <p>
+    <b>Внимание!</b><br />
+    Аналитические таблицы построены правильно, но в них не указано, замкнуты их столбцы или нет.
+  </p>
+</problem>
