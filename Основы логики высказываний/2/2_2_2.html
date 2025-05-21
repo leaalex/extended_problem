@@ -96,44 +96,32 @@
       <optioninput options="('истинный','ложный')" correct="ложный" inline="1"></optioninput>
       <p style="display: inline">, значит</p>
       <optioninput inline="1">
-        <option correct="False">\[ q \]</option>
-        <option correct="False">\[ r \]</option>
-        <option correct="True">\[ \neg r \]</option>
+        <option correct="False">q</option>
+        <option correct="False">r</option>
+        <option correct="True">¬r</option>
       </optioninput>
       <p style="display: inline">будет иметь истинное значение, а</p>
-      <optioninput
-        options="('\( p \)','\( \neg p \)','\( \neg q \)')"
-        correct="\( p \)"
-        inline="1"
-      ></optioninput>
+      <optioninput options="('p','¬p','¬q')" correct="p" inline="1"></optioninput>
       <p style="display: inline">ложное значение. Антецедент имеет значение истины только если</p>
       <optioninput options="('истинны','ложны')" correct="истинны" inline="1"></optioninput>
       <p style="display: inline">оба его конъюнкта. Но тогда подформула</p>
       <optioninput
-        options="('\(\neg p \rightarrow \neg q\)','\(\neg r \rightarrow q\)','\(\neg r \rightarrow p\)')"
-        correct="\(\neg p \rightarrow \neg q\)"
+        options="('¬p → ¬q','¬r → q','¬r → p')"
+        correct="¬p → ¬q"
         inline="1"
       ></optioninput>
       <p style="display: inline">, при истинном</p>
-      <optioninput
-        options="('\(p\)','\(\neg p\)','\(\neg r\)')"
-        correct="\(\neg p\)"
-        inline="1"
-      ></optioninput>
+      <optioninput options="('p','¬p','¬r')" correct="¬p" inline="1"></optioninput>
       <p style="display: inline">обязана иметь</p>
       <optioninput options="('истинное','ложное')" correct="истинное" inline="1"></optioninput>
-      <p style="display: inline">\( \neg q \). В таком случае подформула</p>
+      <p style="display: inline">\(\neg q\). В таком случае подформула</p>
       <optioninput
-        options="('\( \neg p \rightarrow \neg q \)','\( \neg r \rightarrow q \)','\( \neg r \rightarrow p \)')"
-        correct="\( \neg r \rightarrow q \)"
+        options="('¬p → ¬q ','¬r → q ','¬r → p ')"
+        correct="¬r → q "
         inline="1"
       ></optioninput>
       <p style="display: inline">, будет иметь истинным</p>
-      <optioninput
-        options="('\(p\)','\(\neg q\)','\(\neg r\)')"
-        correct="\(\neg r\)"
-        inline="1"
-      ></optioninput>
+      <optioninput options="('p','¬q','¬r')" correct="¬r" inline="1"></optioninput>
       <p style="display: inline">и</p>
       <optioninput options="('истинным','ложным')" correct="ложным" inline="1"></optioninput>
       <p style="display: inline">
