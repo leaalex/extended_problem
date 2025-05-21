@@ -94,45 +94,44 @@
     <li>Выберите правильные варианты ответа.</li>
   </ol>
 
+  <h4>Пропозициональные формулы</h4>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <td>\(A: ( p \leftrightarrow q) \leftrightarrow (p \land q) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">тавтология</option>
+            <option correct="True">не тавтология</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(B: ( p \leftrightarrow q) \leftrightarrow \neg (p \land \neg q) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">тавтология</option>
+            <option correct="True">не тавтология</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(C: ( p \leftrightarrow q) \leftrightarrow \neg (p \leftrightarrow \neg q) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">тавтология</option>
+            <option correct="False">не тавтология</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+
+  <h4>Исходные данные</h4>
+  <br />
+  <h5>Аналитические таблицы для формул</h5>
+
   <p>
-    <b>Пропозициональные формулы:</b> <br />
-    <optionresponse>
-      <table class="mytable">
-        <tr>
-          <td>\(A: ( p \leftrightarrow q) \leftrightarrow (p \land q) \)</td>
-          <td class="custom-select">
-            <optioninput>
-              <option correct="False">тавтология</option>
-              <option correct="True">не тавтология</option>
-            </optioninput>
-          </td>
-        </tr>
-        <tr>
-          <td>\(B: ( p \leftrightarrow q) \leftrightarrow \neg (p \land \neg q) \)</td>
-          <td class="custom-select">
-            <optioninput>
-              <option correct="False">тавтология</option>
-              <option correct="True">не тавтология</option>
-            </optioninput>
-          </td>
-        </tr>
-        <tr>
-          <td>\(C: ( p \leftrightarrow q) \leftrightarrow \neg (p \leftrightarrow \neg q) \)</td>
-          <td class="custom-select">
-            <optioninput>
-              <option correct="True">тавтология</option>
-              <option correct="False">не тавтология</option>
-            </optioninput>
-          </td>
-        </tr>
-      </table>
-    </optionresponse>
-  </p>
-  <p>
-    <b>Исходные данные</b><br />
-    <b>Аналитические таблицы для формул</b><br />
-  </p>
-  <p style="text-align: center">
     <b>Таблица 1 - Для формулы \(A\)</b>
   </p>
   <table class="mytable custom">
@@ -157,7 +156,7 @@
       <td>\( F\,p,\, T\,q,\, T\,p,\, T\,q \)</td>
     </tr>
   </table>
-  <p style="text-align: center">
+  <p>
     <b>Таблица 2 - Для формулы \(B\)</b>
   </p>
   <table class="mytable custom">
@@ -192,7 +191,7 @@
       <td colspan="1" rowspan="2">\( F\,p,\, T\,q,\, T\,q \)</td>
     </tr>
   </table>
-  <p style="text-align: center">
+  <p>
     <b>Таблица 3 - Для формулы \(C\)</b>
   </p>
   <table class="mytable custom">

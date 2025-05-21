@@ -1,0 +1,296 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 30px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Восстановите в таблице соответствие между схемами правильных прямых рассуждений (умозаключений)
+    и их распространенными названиями.
+  </p>
+  <p>Выберите названия умозаключений из выпадающего списка для соответствующих ячеек таблицы.</p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Схема умозаключения</th>
+        <th>Название умозаключения</th>
+      </tr>
+
+      <tr>
+        <td>\( A \land B \models A \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Введение конъюнкции</option>
+            <option correct="True">Удаление конъюнкции</option>
+            <option correct="False">Удаление дизъюнкции</option>
+            <option correct="False">Modus ponens</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A, B \models A \land B \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Удаление конъюнкции</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="True">Введение конъюнкции</option>
+            <option correct="False">Дистрибутивность дизъюнкции</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \models A \lor B \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">Введение дизъюнкции</option>
+            <option correct="False">Введение конъюнкции</option>
+            <option correct="False">Сложная конструктивная дилемма</option>
+            <option correct="False">Удаление дизъюнкции</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \land B \models A \lor B \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Монотонность следования</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="False">Введение дизъюнкции</option>
+            <option correct="True">Дизъюнкция подчиняется конъюнкции</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \rightarrow B, A \lor C \models B \lor C \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus ponens</option>
+            <option correct="True">Монотонность логического следования</option>
+            <option correct="False">Сложная конструктивная дилемма</option>
+            <option correct="False">Перестановка антецедентов</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \rightarrow B, B \rightarrow C \models A \rightarrow C \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus tollens</option>
+            <option correct="False">Введение дизъюнкции</option>
+            <option correct="True">Транзитивность импликации</option>
+            <option correct="False">Простая конструктивная дилемма</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \rightarrow (B \rightarrow C) \models B \rightarrow (A \rightarrow C) \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">Перестановка антецедентов</option>
+            <option correct="False">Дистрибутивность дизъюнкции</option>
+            <option correct="False">Транзитивность импликации</option>
+            <option correct="False">Удаление конъюнкции</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \rightarrow (B \rightarrow C), A \rightarrow B \models A \rightarrow C \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Перестановка антецедентов</option>
+            <option correct="False">Сложная деструктивная дилемма</option>
+            <option correct="False">Modus ponens</option>
+            <option correct="True">Самодистрибутивность импликации</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \rightarrow B, A \models B \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">Modus ponens</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="False">Modus ponendo-tollens</option>
+            <option correct="False">Сложная конструктивная дилемма</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \rightarrow B, \neg B \models \neg A \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus ponens</option>
+            <option correct="True">Modus tollens</option>
+            <option correct="False">Modus tollendo-ponens</option>
+            <option correct="False">Modus ponendo-tollens</option>
+            <option correct="False">Сложная деструктивная дилемма</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \lor B, \neg A \models B \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus ponens</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="False">Modus ponendo-tollens</option>
+            <option correct="True">Modus tollendo-ponens</option>
+            <option correct="False">Удаление дизъюнкции</option>
+            <option correct="False">Сложная деструктивная дилемма</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \lor B, A \models \neg B \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus ponens</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="True">Modus ponendo-tollens</option>
+            <option correct="False">Modus tollendo-ponens</option>
+            <option correct="False">Простая конструктивная дилемма</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \lor B, A \rightarrow C, B \rightarrow C \models C \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus ponens</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="False">Сложная конструктивная дилемма</option>
+            <option correct="True">Простая конструктивная дилемма</option>
+            <option correct="False">Транзитивность импликации</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( \neg A \lor \neg B, C \rightarrow A, C \rightarrow B \models \neg C \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus ponens</option>
+            <option correct="False">Modus tollens</option>
+            <option correct="False">Удаление конъюнкции</option>
+            <option correct="True">Простая деструктивная дилемма</option>
+            <option correct="False">Сложная деструктивная дилемма</option>
+            <option correct="False">Сложная конструктивная дилемма</option>
+            <option correct="False">Простая конструктивная дилемма</option>
+            <option correct="False">Транзитивность импликации</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\( A \lor B, A \rightarrow C, B \rightarrow D \models C \lor D \)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Простая конструктивная дилемма</option>
+            <option correct="False">Сложная деструктивная дилемма</option>
+            <option correct="True">Сложная конструктивная дилемма</option>
+            <option correct="False">Дизъюнкция подчиняется конъюнкции</option>
+            <option correct="False">Транзитивность импликации</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          \( \neg A \lor \neg B, C \rightarrow A, D \rightarrow B \models \neg C \lor \neg D \)
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Modus tollens</option>
+            <option correct="True">Сложная деструктивная дилемма</option>
+            <option correct="False">Сложная конструктивная дилемма</option>
+            <option correct="False">Перестановка антецедентов</option>
+            <option correct="False">Дизъюнкция подчиняется конъюнкции</option>
+            <option correct="False">Транзитивность импликации</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+</problem>

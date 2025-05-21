@@ -1,0 +1,288 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Восстановите в таблице соответствие между схемами правильных прямых рассуждений (умозаключений)
+    и их распространенными названиями.
+  </p>
+  <p>Выберите названия законов из выпадающего списка для соответствующих ячеек таблицы.</p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Схема формулы</th>
+        <th>Название закона</th>
+      </tr>
+      <tr>
+        <td>\(\models A \leftrightarrow A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="True">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models A \lor \neg A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="True">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models \neg (A \land \neg A)\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models \bot \to A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="True">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models A \to T\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="True">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models (A \land \neg A) \to B\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="True">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models A \to (B \lor \neg B)\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="True">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models A \to (B \to A)\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="True">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models A \to (\neg A \to B)\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="True">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models (A \to \neg A) \to \neg A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="True">Закон отрицания аргумента</option>
+            <option correct="False">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\models ((A \to B) \to A) \to A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон непротиворечия</option>
+            <option correct="False">Закон исключенного третьего</option>
+            <option correct="False">Закон тождественно ложной формулы</option>
+            <option correct="False">Закон тождества</option>
+            <option correct="False">Закон тождественно истинной формулы</option>
+            <option correct="False">Закон Дунса Скотта</option>
+            <option correct="False">Закон двойственный закону Дунса Скотта</option>
+            <option correct="False">Закон отрицания аргумента</option>
+            <option correct="True">Закон Пирса</option>
+            <option correct="False">Закон утверждения консеквента</option>
+            <option correct="False">Закон отрицания антецедента</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+</problem>

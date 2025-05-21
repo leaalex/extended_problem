@@ -1,0 +1,161 @@
+<problem>
+  <style>
+    .inline-dropdown .option {
+      display: inline-block;
+      margin: 0 4px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .inline-dropdown .option.correct {
+      background: #4caf50 !important;
+      color: white !important;
+    }
+
+    .inline-dropdown .option.incorrect {
+      background: #f44336 !important;
+      color: white !important;
+    }
+
+    .inline-dropdown select {
+      border: 2px solid #ddd !important;
+      border-radius: 6px;
+      padding: 5px 10px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      min-width: 140px;
+      appearance: none;
+      background: url("data:image/svg+xml;utf8,<svg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
+        no-repeat right 8px center/15px 15px;
+    }
+
+    .inline-dropdown select:focus {
+      border-color: #2196f3 !important;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+
+    .inline-dropdown select:hover {
+      cursor: pointer;
+    }
+
+    .inline-dropdown .indicator-container {
+      display: none !important;
+    }
+
+    .inline-dropdown .status {
+      display: inline-block !important;
+      margin-left: 8px;
+      font-size: 0.9em;
+    }
+
+    .inline-dropdown .status.correct::after {
+      content: "✓";
+      color: #4caf50;
+    }
+
+    .inline-dropdown .status.incorrect::after {
+      content: "✕";
+      color: #f44336;
+    }
+  </style>
+
+  <div class="inline-dropdown">
+    <p>
+      Ниже приведено равносильное преобразование пропозициональной формулы (ее схемы), существенно
+      сократившее эту формулу. Укажите в равносильном преобразовании название тех равносильностей,
+      которые применялись для перехода от предыдущих записей к следующим записям.
+    </p>
+    <p><b>Указания к выполнению задания:</b></p>
+    <ol>
+      <li>
+        Если выполнение задания вызывает затруднение, внимательно изучите основные равносильности PL
+        и примеры правильных равносильных преобразований (сокращений) формул PL в текстовых
+        материалах.
+      </li>
+      <li>
+        Выберите из предложенных вариантов равносильностей только один правильный ответ,
+        соответствующий конкретному равносильному преобразованию одной формульной записи в другую.
+      </li>
+    </ol>
+    <p><b>Равносильное преобразование формулы</b></p>
+    <optionresponse>
+      <p>\(A \leftrightarrow (B \to (A \downarrow \neg B)) \iff \)</p>
+      <p>
+        \((\neg A \lor (\neg B \lor (\neg A \land B))) \land (A \lor \neg(\neg B \lor (\neg A \land
+        B))) \iff \)
+      </p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('ассоциативности','де Моргана', 'идемпотентности')"
+        correct="ассоциативности"
+        inline="1"
+      ></optioninput>
+      <p>
+        \((\neg A \lor \neg B \lor (\neg A \land B)) \land (A \lor \neg(\neg B \lor (\neg A \land
+        B))) \iff \)
+      </p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('коммутативности','ассоциативности', 'де Моргана')"
+        correct="де Моргана"
+        inline="1"
+      ></optioninput>
+      <p>
+        \((\neg A \lor \neg B \lor (\neg A \land B)) \land (A \lor (B \land (A \lor \neg B))) \iff\)
+      </p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('поглощения','дистрибутивности', 'исключения')"
+        correct="поглощения"
+        inline="1"
+      ></optioninput>
+      <p>\((\neg A \lor \neg B \lor \neg A) \land (A \lor (B \land (A \lor \neg B))) \iff\)</p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('де Моргана','идемпотентности', 'коммутативности')"
+        correct="идемпотентности"
+        inline="1"
+      ></optioninput>
+      <p>\((\neg A \lor \neg B) \land (A \lor (B \land (A \lor \neg B))) \iff\)</p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('ассоциативности','поглощения', 'дистрибутивности')"
+        correct="дистрибутивности"
+        inline="1"
+      ></optioninput>
+      <p>\((\neg A \lor \neg B) \land (A \lor B) \land (A \lor A \lor \neg B) \iff\)</p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('исключения','идемпотентности', 'де Моргана')"
+        correct="идемпотентности"
+        inline="1"
+      ></optioninput>
+      <p>\((\neg A \lor \neg B) \land (A \lor B) \land (A \lor \neg B) \iff\)</p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('исключения','идемпотентности', 'коммутативности')"
+        correct="исключения"
+        inline="1"
+      ></optioninput>
+      <p>\((\neg A \lor \neg B) \land A \iff\)</p>
+      <p>Для перехода к следующей записи применялся</p>
+      <p style="display: inline"><em>Закон</em></p>
+      <optioninput
+        options="('ассоциативности','дистрибутивности', 'поглощения')"
+        correct="поглощения"
+        inline="1"
+      ></optioninput>
+      <p>\(A \land \neg B\)</p>
+    </optionresponse>
+  </div>
+</problem>

@@ -1,0 +1,298 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1.3rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 40px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .custom-select select:focus {
+      border-color: #2196f3 !important;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Восстановите в таблице соответствие между схемами логических равносильностей PL и их
+    распространенными названиями.
+  </p>
+  <p>Выберите названия равносильностей из выпадающего списка для соответствующих ячеек таблицы.</p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Схема равносильности</th>
+        <th>Название равносильности</th>
+      </tr>
+      <tr>
+        <td>\(A \leftrightarrow B \iff ((A \to B) \land (B \to A))\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="True">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \to B \iff \neg(A \land \neg B)\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="True">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \downarrow \bot \iff \neg A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="True">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\neg\neg A \iff A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="True">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(\neg(A \lor B) \iff \neg A \land \neg B\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="True">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \land A \iff A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="True">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \lor B \iff B \lor A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="True">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \land (B \land C) \iff (A \land B) \land C\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="True">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \lor (B \land C) \iff (A \lor B) \land (A \lor C)\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="True">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\(A \land (B \lor A) \iff A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">Закон поглощения</option>
+            <option correct="False">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\((A \land B) \lor (A \land \neg B) \iff A\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Закон поглощения</option>
+            <option correct="True">Закон исключения</option>
+            <option correct="False">Закон де Моргана</option>
+            <option correct="False">Закон идемпотентности</option>
+            <option correct="False">Закон коммутативности</option>
+            <option correct="False">Закон ассоциативности</option>
+            <option correct="False">Закон дистрибутивности</option>
+            <option correct="False">Преобразование эквивалентности</option>
+            <option correct="False">Сведения импликации к отрицанию конъюнкции</option>
+            <option correct="False">Сокращение стрелки Пирса</option>
+            <option correct="False">Закон снятия двойного отрицания</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+  <p>
+    <b>Внимание!</b><br />
+    Под одним названием нередко подразумеваются несколько, например, двойственных равносильностей, в
+    таблице же предлагается формульная схема только одной из них.
+  </p>
+</problem>

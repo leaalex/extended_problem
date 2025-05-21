@@ -1,83 +1,83 @@
 <problem>
   <script type="loncapa/python">
-    import json
-    import random
-    import string
+import json
+import random
+import string
 
-    def generate_unique_id():
-        return 'task_6_2_2' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
+def generate_unique_id():
+    return 'task_6_2_2' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
 
-    unique_id = generate_unique_id()
+unique_id = generate_unique_id()
 
-    correct_selected = {
-        "cell1_" + unique_id: "F",
-        "cell2_"+ unique_id: "T",
-        "cell3_"+ unique_id: "F",
-        "cell4_"+ unique_id: "T",
-        "cell5_"+ unique_id: "T",
-        "cell6_"+ unique_id: "F",
-        "cell7_"+ unique_id: "T",
-        "cell8_"+ unique_id: "T",
-        "cell9_"+ unique_id: "F",
-        "cell10_"+ unique_id: "T",
-        "cell11_" + unique_id: "T",
-        "cell12_"+ unique_id: "F",
-        "cell13_"+ unique_id: "T",
-        "cell14_"+ unique_id: "T",
-        "cell15_"+ unique_id: "F",
-        "cell16_"+ unique_id: "T",
-        "cell17_"+ unique_id: "T",
-        "cell18_"+ unique_id: "F",
-        "cell19_"+ unique_id: "T",
-        "cell20_"+ unique_id: "T",
-        "cell21_" + unique_id: "F",
-        "cell22_"+ unique_id: "T",
-        "cell23_"+ unique_id: "T",
-        "cell24_"+ unique_id: "F",
-        "cell25_"+ unique_id: "T",
-        "cell26_"+ unique_id: "T",
-        "cell27_"+ unique_id: "F",
-        "cell28_"+ unique_id: "F",
-        "cell29_"+ unique_id: "T",
-        "cell30_"+ unique_id: "T",
-        "cell31_"+ unique_id: "F",
-        "cell32_"+ unique_id: "F",
-    }
+correct_selected = {
+    "cell1_" + unique_id: "F",
+    "cell2_"+ unique_id: "T",
+    "cell3_"+ unique_id: "F",
+    "cell4_"+ unique_id: "T",
+    "cell5_"+ unique_id: "T",
+    "cell6_"+ unique_id: "F",
+    "cell7_"+ unique_id: "T",
+    "cell8_"+ unique_id: "T",
+    "cell9_"+ unique_id: "F",
+    "cell10_"+ unique_id: "T",
+    "cell11_" + unique_id: "T",
+    "cell12_"+ unique_id: "F",
+    "cell13_"+ unique_id: "T",
+    "cell14_"+ unique_id: "T",
+    "cell15_"+ unique_id: "F",
+    "cell16_"+ unique_id: "T",
+    "cell17_"+ unique_id: "T",
+    "cell18_"+ unique_id: "F",
+    "cell19_"+ unique_id: "T",
+    "cell20_"+ unique_id: "T",
+    "cell21_" + unique_id: "F",
+    "cell22_"+ unique_id: "T",
+    "cell23_"+ unique_id: "T",
+    "cell24_"+ unique_id: "F",
+    "cell25_"+ unique_id: "T",
+    "cell26_"+ unique_id: "T",
+    "cell27_"+ unique_id: "F",
+    "cell28_"+ unique_id: "F",
+    "cell29_"+ unique_id: "T",
+    "cell30_"+ unique_id: "T",
+    "cell31_"+ unique_id: "F",
+    "cell32_"+ unique_id: "F",
+}
 
-    def check_func(student_answers, correct_selected):
-        response = {}
-        max_grade = len(correct_selected)
-        correct_count = 0
+def check_func(student_answers, correct_selected):
+    response = {}
+    max_grade = len(correct_selected)
+    correct_count = 0
 
-        for key in correct_selected:
-            if key in student_answers and student_answers[key] == correct_selected[key]:
-                correct_count += 1
+    for key in correct_selected:
+        if key in student_answers and student_answers[key] == correct_selected[key]:
+            correct_count += 1
 
-        grade_decimal = float(correct_count) / max_grade if max_grade > 0 else 0.0
+    grade_decimal = float(correct_count) / max_grade if max_grade > 0 else 0.0
 
-        response['grade'] = grade_decimal
-        if grade_decimal == 1:
-            ok = True
-            message = 'Correct'
-        elif grade_decimal == 0:
-            ok = False
-            message = 'Incorrect'
-        else:
-            ok = 'Partial'
-            message = 'Partial'
+    response['grade'] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
 
-        response["ok"] = ok
-        response["message"] = message
-        response["student_data"] = student_answers
-        return response
+    response["ok"] = ok
+    response["message"] = message
+    response["student_data"] = student_answers
+    return response
 
-    def check_answer(expect, ans):
-        try:
-            student_answer = json.loads(ans)
-            response = check_func(student_answer, correct_selected)
-            return {'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
-        except:
-            return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+def check_answer(expect, ans):
+    try:
+        student_answer = json.loads(ans)
+        response = check_func(student_answer, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
   </script>
 
   <style>
@@ -181,18 +181,18 @@
   <p><b>Указания к выполнению задания:</b></p>
   <ol>
     <li>
-      Если выполнение задания вызывает затруднение, внимательно посмотрите правила редукции для
+      1. Если выполнение задания вызывает затруднение, внимательно посмотрите правила редукции для
       импликации и примеры правильного построения аналитических таблиц, посредством которых
       проверяют тавтологичность формул PL.
     </li>
     <li>Выберите в таблице правильные варианты ответа.</li>
   </ol>
   <p><b>Аналитическая таблица для пропозициональной формулы:</b></p>
-  \[ (( p \to q ) \to p ) \to p \] <br />
+  \[ (p \land (q \lor r)) \rightarrow ((p \lor q) \land r) \]<br />
   <div id="toggle-container">
     <table class="mytable">
       <tr>
-        <td colspan="2">
+        <td colspan="4">
           <div class="formula-row">
             <div class="toggle-cell-container">
               <div
@@ -202,7 +202,69 @@
               >
                 <div class="math-value"></div>
               </div>
-              <div class="formula-content">\( (( p \to q ) \to p ) \to p \)</div>
+              <div class="formula-content">
+                \( (p \land (q \lor r)) \rightarrow ((p \lor q) \land r) \)
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell2_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \land (q \lor r), \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell3_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( (p \lor q) \land \)
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell4_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell5_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( q \lor r, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell6_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( (p \lor q) \land r \)
+              </div>
             </div>
           </div>
         </td>
@@ -214,20 +276,60 @@
               <div class="formula-content">
                 <div
                   class="toggle-cell_$unique_id"
-                  id="cell2_$unique_id"
+                  id="cell7_$unique_id"
                   onclick="toggleValue_$unique_id(this)"
                 >
                   <div class="math-value"></div>
                 </div>
-                \( (p \to q ) \to p, \)
+                \( p, \)
                 <div
                   class="toggle-cell_$unique_id"
-                  id="cell3_$unique_id"
+                  id="cell8_$unique_id"
                   onclick="toggleValue_$unique_id(this)"
                 >
                   <div class="math-value"></div>
                 </div>
-                \( p \)
+                \( q, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell9_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( (p \lor q) \land r \)
+              </div>
+            </div>
+          </div>
+        </td>
+        <td colspan="2">
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell10_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell11_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( r, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell12_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( (p \lor q) \land r \)
               </div>
             </div>
           </div>
@@ -240,32 +342,7 @@
               <div class="formula-content">
                 <div
                   class="toggle-cell_$unique_id"
-                  id="cell4_$unique_id"
-                  onclick="toggleValue_$unique_id(this)"
-                >
-                  <div class="math-value"></div>
-                </div>
-                \( p \to q, \)
-                <div
-                  class="toggle-cell_$unique_id"
-                  id="cell5_$unique_id"
-                  onclick="toggleValue_$unique_id(this)"
-                >
-                  <div class="math-value"></div>
-                </div>
-                \( p \)
-              </div>
-            </div>
-          </div>
-        </td>
-
-        <td rowspan="2">
-          <div class="formula-row">
-            <div class="toggle-cell-container">
-              <div class="formula-content">
-                <div
-                  class="toggle-cell_$unique_id"
-                  id="cell6_$unique_id"
+                  id="cell13_$unique_id"
                   onclick="toggleValue_$unique_id(this)"
                 >
                   <div class="math-value"></div>
@@ -273,35 +350,7 @@
                 \( p, \)
                 <div
                   class="toggle-cell_$unique_id"
-                  id="cell7_$unique_id"
-                  onclick="toggleValue_$unique_id(this)"
-                >
-                  <div class="math-value"></div>
-                </div>
-                \( p \)
-              </div>
-            </div>
-          </div>
-          <br />
-          \(\times\)
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="2">
-          <div class="formula-row">
-            <div class="toggle-cell-container">
-              <div class="formula-content">
-                <div
-                  class="toggle-cell_$unique_id"
-                  id="cell8_$unique_id"
-                  onclick="toggleValue_$unique_id(this)"
-                >
-                  <div class="math-value"></div>
-                </div>
-                \( p, \)
-                <div
-                  class="toggle-cell_$unique_id"
-                  id="cell9_$unique_id"
+                  id="cell14_$unique_id"
                   onclick="toggleValue_$unique_id(this)"
                 >
                   <div class="math-value"></div>
@@ -309,17 +358,207 @@
                 \( q, \)
                 <div
                   class="toggle-cell_$unique_id"
-                  id="cell10_$unique_id"
+                  id="cell15_$unique_id"
                   onclick="toggleValue_$unique_id(this)"
                 >
                   <div class="math-value"></div>
                 </div>
-                \( p \)
+                \( p \lor q \)
               </div>
             </div>
           </div>
-          <br />\(\times\)
         </td>
+
+        <td>
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell16_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell17_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( q, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell18_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( r \)
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell19_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell20_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( r, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell21_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p \lor q \)
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell22_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell23_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( r, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell24_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( r \)
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell25_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell26_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( q, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell27_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell28_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( q \)
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td rowspan="2">\( \circ \)</td>
+
+        <td>
+          <div class="formula-row">
+            <div class="toggle-cell-container">
+              <div class="formula-content">
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell29_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell30_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( r, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell31_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( p, \)
+                <div
+                  class="toggle-cell_$unique_id"
+                  id="cell32_$unique_id"
+                  onclick="toggleValue_$unique_id(this)"
+                >
+                  <div class="math-value"></div>
+                </div>
+                \( q \)
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td rowspan="2">\( \times\)</td>
+      </tr>
+      <tr>
+        <td>\(\times\)</td>
+        <td>\(\times\)</td>
       </tr>
     </table>
   </div>

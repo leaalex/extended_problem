@@ -1,0 +1,474 @@
+<problem>
+  <script type="loncapa/python">
+import json
+import random
+import string
+
+def generate_unique_id():
+    return 'task_8_2_1' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, 8))
+
+unique_id = generate_unique_id()
+
+correct_selected = {
+    "cell1_" + unique_id: "B",
+    "cell2_"+ unique_id: "C",
+    "cell3_"+ unique_id: "C",
+    "cell4_"+ unique_id: "B",
+    "cell5_"+ unique_id: "B",
+    "cell6_"+ unique_id: "A",
+    "cell7_"+ unique_id: "A",
+    "cell8_"+ unique_id: "C",
+    "cell9_"+ unique_id: "B",
+    "cell10_"+ unique_id: "C",
+    "cell11_"+ unique_id: "B",
+    "cell12_"+ unique_id: "C",
+    "cell13_"+ unique_id: "B",
+    "cell14_"+ unique_id: "A",
+    "cell15_"+ unique_id: "C",
+}
+
+def check_func(student_answers, correct_selected):
+    response = {}
+    max_grade = len(correct_selected)
+    correct_count = 0
+
+    for key in correct_selected:
+        if key in student_answers and student_answers[key] == correct_selected[key]:
+            correct_count += 1
+
+    grade_decimal = float(correct_count) / max_grade if max_grade > 0 else 0.0
+
+    response['grade'] = grade_decimal
+    if grade_decimal == 1:
+        ok = True
+        message = 'Correct'
+    elif grade_decimal == 0:
+        ok = False
+        message = 'Incorrect'
+    else:
+        ok = 'Partial'
+        message = 'Partial'
+
+    response["ok"] = ok
+    response["message"] = message
+    response["student_data"] = student_answers
+    return response
+
+def check_answer(expect, ans):
+    try:
+        student_answer = json.loads(ans)
+        response = check_func(student_answer, correct_selected)
+        return {'input_list': [{'ok': response['ok'], 'msg': str(json.dumps(response)), 'grade_decimal': response['grade']}, ]}
+    except:
+        return {'input_list': [{'ok': False, 'msg': 'check error', 'grade_decimal': 0}, ]}
+  </script>
+
+  <style>
+    #toggle-container {
+      font-size: 1.5rem !important;
+    }
+    .formula-row {
+      display: flex;
+      align-items: start;
+      justify-content: start;
+      width: 100%;
+      gap: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .toggle-cell-container {
+      display: flex;
+      align-items: start;
+      justify-content: start;
+      font-family: "Times New Roman", serif;
+    }
+
+    .formula-content {
+      flex-grow: 1;
+      text-align: center;
+      display: flex;
+    }
+
+    #answer-input_$unique_id {
+      display: none !important;
+    }
+
+    .toggle-cell_$unique_id {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1.5px solid #333;
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+      margin-inline: 3px;
+    }
+
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+      table-layout: fixed;
+    }
+
+    .mytable th,
+    .mytable td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .mytable tr:first-child td:first-child {
+      border-top-left-radius: 8px !important;
+    }
+
+    .mytable tr:first-child td:last-child {
+      border-top-right-radius: 8px !important;
+    }
+
+    .mytable tr:last-child td:first-child {
+      border-bottom-left-radius: 8px !important;
+    }
+
+    .mytable tr:last-child td:last-child {
+      border-bottom-right-radius: 8px !important;
+    }
+
+    @media (max-width: 768px) {
+      .formula-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .toggle-cell_$unique_id {
+        width: 50px;
+        height: 35px;
+      }
+
+      .mytable td {
+        padding: 1rem !important;
+      }
+    }
+  </style>
+  <p>
+    Ниже проведено равносильное преобразование пропозициональной формулы (ее схемы), приводящее ее к
+    нормальным формам: КНФ, ДНФ, СКНФ и СДНФ. .<br />
+    Укажите в равносильном преобразовании переменные \(A\), \(B\) или \(C\) так, чтобы оно стало
+    правильным.
+  </p>
+  <p><b>Указания к выполнению задания:</b></p>
+  <ol>
+    <li>
+      Если выполнение задания вызывает затруднение, внимательно изучите стратегию и примеры
+      построения нормальных форм формул PL в текстовых материалах.
+    </li>
+    <li>Выберите в предложенном равносильном преобразовании правильные варианты ответа.</li>
+  </ol>
+  <h4>Построение нормальных форм</h4>
+  <br />
+
+  <div id="toggle-container">
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (\neg A \leftrightarrow (B \land C)) \downarrow \neg(A \lor \neg C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \(\neg(\neg A \leftrightarrow (B \land C)) \land \neg\neg(A \lor \neg C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (A \leftrightarrow ( \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell1_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \land C)) \land (A \lor \neg C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \((\neg A \lor (B \land \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell2_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \land \neg C)) \land (A \land \neg \) \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell3_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( )) \land (A \lor \neg(B \land C)) \land (A \lor \neg) \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell4_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          <b>Это КНФ: </b> \( \ (\neg A \lor \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell5_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \land (\neg A \lor C) \land (A \lor \neg C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (\neg A \land \neg C) \lor (\neg A \land B \land \neg C) \lor ( \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell6_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \land B \land C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (\neg A \land \neg C) \lor ( \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell7_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \land B \land C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          <b>Это ДНФ и СДНФ: </b> \( \ (\neg A \land B \land \neg \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell8_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \lor (\neg A \land \neg B \land \neg C) \lor (A \land B \land C) \)
+        </div>
+      </div>
+    </div>
+    <b>Построим совершенную форму для:</b>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (\neg A \lor \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell9_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \land (\neg A \lor C) \land (A \lor \neg C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (\neg A \lor B \lor \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell10_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \land (\neg A \lor B \lor \neg C) \land (\neg A \lor \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell11_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \lor C) \land (\neg A \lor \neg B \lor \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell12_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \land (A \lor B \lor \neg C) \land \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (A \lor \neg \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell13_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \lor \neg C) \iff \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          \( (\neg A \lor B \lor C) \land (\neg \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell14_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( \lor B \lor \neg C) \land (\neg A \lor \neg B \lor \)
+          <div
+            class="toggle-cell_$unique_id"
+            id="cell15_$unique_id"
+            onclick="toggleValue_$unique_id(this)"
+          >
+            <div class="math-value"></div>
+          </div>
+          \( ) \land \)
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-row">
+      <div class="toggle-cell-container">
+        <div class="formula-content">
+          <b>Это СКНФ:</b> \( \ (A \lor B \lor \neg C) \land (A \lor \neg B \lor \neg C)\)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="answer-input_$unique_id">
+    <customresponse cfn="check_answer">
+      <textline size="40" value="" />
+      <br />
+    </customresponse>
+  </div>
+
+  <script type="text/javascript">
+    // Глобальный объект для хранения состояний
+    let answersState = {};
+    const inputField = document.querySelector(`#answer-input_$unique_id input[type='text']`);
+    const response = document.querySelector(`#answer-input_$unique_id .message`);
+
+    if (response) {
+      const respHtml = response.innerHTML !== "" ? JSON.parse(response.innerHTML) : {};
+      const student_data = respHtml["student_data"];
+      if (inputField.value == "") {
+        inputField.value = student_data;
+      }
+    }
+
+    const selected_elems = inputField.value !== "" ? JSON.parse(inputField.value) : {};
+    const states = ["A", "B", "C"];
+
+    document.querySelectorAll(".toggle-cell_$unique_id").forEach(function (cell) {
+      const cellId = cell.id;
+      const initialValue = selected_elems[cellId] ? selected_elems[cellId] : "?";
+      cell.querySelector(".math-value").innerHTML = `\\(${initialValue}\\)`;
+      cell.classList.toggle("selected", initialValue === "A");
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, cell]);
+    });
+
+    updateHiddenInput();
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById("toggle-container")]);
+
+    function toggleValue_$unique_id(element) {
+      const cellId = element.id;
+      const current = selected_elems[cellId] || "?";
+
+      // Находим индекс текущего состояния
+      let currentIndex = states.indexOf(current);
+      console.log(currentIndex);
+      if (currentIndex === -1) currentIndex = -1; // Если не найдено, начинаем с 'A'
+
+      // Циклически переходим к следующему состоянию
+      const nextIndex = (currentIndex + 1) % states.length;
+      const newValue = states[nextIndex];
+
+      // Обновляем состояние
+      selected_elems[cellId] = newValue;
+
+      // Обновляем отображение
+      element.querySelector(".math-value").innerHTML = `\\(${newValue}\\)`;
+      element.classList.toggle("selected", newValue === "A");
+
+      // Обновляем скрытое поле
+      updateHiddenInput();
+
+      // Перерисовываем MathJax
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, element]);
+    }
+
+    function updateHiddenInput() {
+      const inputField = document.querySelector(`#answer-input_$unique_id input[type='text']`);
+      inputField.value = JSON.stringify(selected_elems);
+    }
+  </script>
+</problem>

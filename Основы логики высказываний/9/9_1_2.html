@@ -1,0 +1,182 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 30px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .custom-select select:focus {
+      border-color: #2196f3 !important;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Дана пропозициональная формула: \(A \to ( B \leftrightarrow C) \) <br />
+    Определите, какие формульные записи соответствуют ее совершенным нормальным формам: совершенной
+    конъюнктивной нормальной форме (СКНФ), совершенной дизъюнктивной нормальной форме (СДНФ) или ни
+    к одной из них.
+  </p>
+  <p>Укажите в таблице правильные ответы.</p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Формула</th>
+        <th>Тип совершенной нормальной формы</th>
+      </tr>
+      <tr>
+        <td>
+          \[(\neg A \lor B \lor \neg C) \land (\neg A \lor B \lor \neg C) \land (\neg A \lor \neg B \lor C)\]
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">СКНФ</option>
+            <option correct="False">СДНФ</option>
+            <option correct="True">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          \[(A \lor B \lor C) \land (A \lor \neg B \lor \neg C) \land (\neg A \lor B \lor C) \land (\neg A \lor \neg B \lor C) \land (\neg A \lor \neg B \lor \neg C)\]
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">СКНФ</option>
+            <option correct="False">СДНФ</option>
+            <option correct="True">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(\neg A \lor B \lor \neg C) \land (\neg A \lor \neg B \lor C \lor C)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">СКНФ</option>
+            <option correct="False">СДНФ</option>
+            <option correct="True">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          \[(A \land B \land C) \lor (A \land \neg B \land \neg C) \lor (\neg A \land B \land C) \lor (\neg A \land B \land \neg C) \lor (\neg A \land \neg B \land C) \lor (\neg A \land \neg B \land \neg C)\]
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">СКНФ</option>
+            <option correct="True">СДНФ</option>
+            <option correct="False">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(\neg A \land B \land \neg C) \lor (\neg A \land \neg B \land C)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">СКНФ</option>
+            <option correct="False">СДНФ</option>
+            <option correct="True">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(\neg A \lor B \lor \neg C) \land (\neg A \lor \neg B \lor C)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">СКНФ</option>
+            <option correct="False">СДНФ</option>
+            <option correct="False">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          \[(A \land B) \lor (A \land \neg C) \lor (\neg A \land B) \lor (B \land \neg C) \lor (\neg A \land C) \lor (\neg B \land \neg C)\]
+        </td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">СКНФ</option>
+            <option correct="False">СДНФ</option>
+            <option correct="True">ни одна</option>
+          </optioninput>
+        </td>
+      </tr>
+
+    </table>
+  </optionresponse>
+</problem>

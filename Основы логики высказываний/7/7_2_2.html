@@ -1,0 +1,142 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 30px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Восстановите в таблице соответствие между схемами правильных косвенных рассуждений и их
+    распространенными названиями.
+  </p>
+  <p>Выберите названия рассуждений из выпадающего списка для соответствующих ячеек таблицы.</p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Схема косвенного рассуждения</th>
+        <th>Название рассуждения</th>
+      </tr>
+      <tr>
+        <td>\( \frac{Г, A \models B}{Г \models A \to B}\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Удаление отрицания</option>
+            <option correct="False">Рассуждение методом от противного</option>
+            <option correct="True">Рассуждение по правилу дедукции (введение импликации)</option>
+            <option correct="False">
+              Рассуждение методом приведения к абсурду (введение отрицания)
+            </option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\( \frac{Г, A \models B \ Г, A \models \neg B}{Г \models \neg A}\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Удаление отрицания</option>
+            <option correct="False">Рассуждение методом от противного</option>
+            <option correct="False">Рассуждение по правилу дедукции (введение импликации)</option>
+            <option correct="True">
+              Рассуждение методом приведения к абсурду (введение отрицания)
+            </option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\( \frac{Г, \neg A \models B \ Г, \neg A \models \neg B}{Г \models A}\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">Удаление отрицания</option>
+            <option correct="True">Рассуждение методом от противного</option>
+            <option correct="False">Рассуждение по правилу дедукции (введение импликации)</option>
+            <option correct="False">
+              Рассуждение методом приведения к абсурду (введение отрицания)
+            </option>
+          </optioninput>
+        </td>
+      </tr>
+      <tr>
+        <td>\( \frac{Г, A \models B \ Г, \neg A \models B}{Г \models B}\)</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">Удаление отрицания</option>
+            <option correct="False">Рассуждение методом от противного</option>
+            <option correct="False">Рассуждение по правилу дедукции (введение импликации)</option>
+            <option correct="False">
+              Рассуждение методом приведения к абсурду (введение отрицания)
+            </option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+</problem>

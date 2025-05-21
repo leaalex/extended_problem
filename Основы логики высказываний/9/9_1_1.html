@@ -1,0 +1,226 @@
+<problem>
+  <style>
+    .mytable {
+      border-collapse: separate !important;
+      width: 100% !important;
+      box-shadow: 0 0 0 3.5px #f6f6f6 !important;
+      border-radius: 8px !important;
+    }
+
+    .mytable th,
+    td {
+      border: 0.5px solid #e6e6e6 !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      vertical-align: top;
+    }
+
+    .formula-display {
+      font-size: 1.5rem !important;
+    }
+
+    .mytable th {
+      color: #1e88e5;
+      background-color: #fafafa !important;
+    }
+
+    .custom-select .option-input {
+      margin: 0 auto !important;
+    }
+
+    .custom-select select {
+      width: 100% !important;
+      cursor: pointer !important;
+      background-color: #f6f6f6 !important;
+      border: 1px solid #e6e6e6 !important;
+      border-radius: 4px !important;
+      height: 30px !important;
+      text-align: center !important;
+    }
+
+    /* .custom-select::after {
+            content: '\25BC' !important;
+            transform: translateY(-50%) !important;
+            color: #999 !important;
+        } */
+
+    .custom-select select::-ms-expand {
+      display: none !important;
+      /* Remove default arrow in IE */
+    }
+
+    .custom-select option {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+
+    .custom-select select:hover,
+    .custom-select select:focus {
+      background-color: #e9e9e9 !important;
+    }
+
+    .custom-select select:focus {
+      border-color: #2196f3 !important;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+
+    .container-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .container-image img {
+      margin-right: 10px;
+    }
+
+    .container-image .number {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+  <p>
+    Определите, к какой нормальной форме приведены предложенные в таблице формулы PL: к
+    конъюнктивной (КНФ), к дизъюнктивной (ДНФ), к обеим, ни к одной из них.
+  </p>
+  <p>Укажите в таблице правильные ответы.</p>
+  <optionresponse>
+    <table class="mytable">
+      <tr>
+        <th>Формула</th>
+        <th>Тип нормальной формы</th>
+      </tr>
+      <tr>
+        <td>\[(A \land B) \lor ((A \lor B) \land (B \lor A))\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="True">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(A \lor B \lor C) \land (D \lor \neg E) \land (\neg F \lor G)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[A \lor B \lor \neg C\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="True">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[\neg(\neg A \lor B \lor C)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="True">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(A \land B) \lor (A \land D) \lor (\neg B \lor \neg D)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="True">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[A \land (A \lor \neg B \lor \neg C)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(A \lor B \lor C) \land A \land \neg B \land \neg C\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(A \land (B \lor C)) \lor ((A \lor B) \land C)\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="True">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[\neg A \land (B \lor \neg C \lor D) \land E \land \neg F\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="True">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[\neg A \land \neg B \land \neg C \land \neg D \land \neg E \land F\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="False">только ДНФ</option>
+            <option correct="True">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+
+      <tr>
+        <td>\[(A \land B) \lor (C \land \neg D) \lor E \lor \neg F \lor G\]</td>
+        <td class="custom-select">
+          <optioninput>
+            <option correct="False">только КНФ</option>
+            <option correct="True">только ДНФ</option>
+            <option correct="False">и КНФ, и ДНФ</option>
+            <option correct="False">ни КНФ, ни ДНФ</option>
+          </optioninput>
+        </td>
+      </tr>
+    </table>
+  </optionresponse>
+</problem>
