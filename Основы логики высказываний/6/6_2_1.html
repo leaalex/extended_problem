@@ -165,8 +165,9 @@ def check_answer(expect, ans):
     </li>
     <li>Выберите в таблице правильные варианты ответа.</li>
   </ol>
-  <p><b>Аналитическая таблица для пропозициональной формулы:</b></p>
-  \[ (( p \to q ) \to p ) \to p \] <br/>
+  <h4>Аналитическая таблица для пропозициональной формулы</h4>
+  <br />
+  \[ (( p \to q ) \to p ) \to p \] <br />
   <div id="toggle-container">
     <table class="mytable">
       <tr>
@@ -237,7 +238,7 @@ def check_answer(expect, ans):
           </div>
         </td>
 
-        <td rowspan="2">
+        <td rowspan="2" style="border-bottom: 0 !important;">
           <div class="formula-row">
             <div class="toggle-cell-container">
               <div class="formula-content">
@@ -265,7 +266,7 @@ def check_answer(expect, ans):
         </td>
       </tr>
       <tr>
-        <td rowspan="2">
+        <td rowspan="2" style="border-bottom: 0 !important;">
           <div class="formula-row">
             <div class="toggle-cell-container">
               <div class="formula-content">
@@ -315,15 +316,12 @@ def check_answer(expect, ans):
     const inputField = document.querySelector(`#answer-input_$unique_id input[type='text']`);
     const response = document.querySelector(`#answer-input_$unique_id .message`);
     if (response) {
-        const respHtml = response.innerHTML !== "" ? JSON.parse(response.innerHTML) : {}
-        const student_data = respHtml["student_data"]
-        if (inputField.value == ""){
-            inputField.value = student_data
-        }
+      const respHtml = response.innerHTML !== "" ? JSON.parse(response.innerHTML) : {};
+      const student_data = respHtml["student_data"];
+      if (inputField.value == "") {
+        inputField.value = student_data;
+      }
     }
-
-
-
 
     const selected_elems = inputField.value !== "" ? JSON.parse(inputField.value) : {};
     document.querySelectorAll(".toggle-cell_$unique_id").forEach(function (cell) {
