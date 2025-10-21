@@ -1,0 +1,234 @@
+<problem>
+    <style>
+        .center {
+            text-align: center !important;
+        }
+
+        .answers_title {
+            font-size: 16px !important;
+        }
+
+        .matching-table {
+            margin-top: 16px !important;
+            margin-bottom: 16px !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import json
+import random
+import string
+import re
+
+data = {
+    "content": {
+        "body": "",
+        "answers_title": ""
+    },
+"table": [
+    [
+        "__Международная организация__.{.text-blue-8} .{.center}",
+        "__Страны__.{.text-blue-8} .{.center}"
+    ],
+    ["БРИКС", ["Бразилия", "Россия", "Индия", "Китай", "Южно-Африканская республика"]],
+    ["ШОС", ["Китай", "Россия", "Казахстан", "Таджикистан Киргизия", "Узбекистан"]],
+    ["СНГ", ["Азербайджан", "Армения", "Белоруссия", "Казахстан", "Киргизия", "Молдавия", "Россия", "Таджикистан", "Узбекистан"]],
+    ["ОДКБ", ["Армения", "Белоруссия", "Казахстан", "Киргизия", "Россия", "Таджикистан"]],
+],
+    "settings": {
+        "is_exist_markdown": True,
+        "is_exist_advanced_style": True,
+        "is_exist_mathjax": False,
+        "is_exist_highlight": True,
+        "is_exist_image": False,
+        "show_incorrect": True,
+        "capacity": 26
+    },
+    "style": {
+        "rows": ['', ''],
+        "colls": ['w40', 'w60']
+    }
+}
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+def norm_text(s: str) -> str:
+    s = (s or "").strip().lower().replace('ё', 'е')
+    s = re.sub(r'\s+', ' ', s)
+    return s
+
+id2title = {}
+correct_titles = {}
+
+show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
+data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+data["settings"] = data["settings"] if "settings" in data.keys() else {}
+data["style"] = data["style"] if "style" in data.keys() else {}
+correct_answer = {}
+student_data = {
+    "table": [],
+    "answers": [],
+    "settings": data["settings"],
+    "style": data["style"],
+    "content": data["content"]
+}
+
+use_multi_answers = ''
+if "multi_answers" in data["settings"].keys():
+    if data["settings"]["multi_answers"] == "horizontal":
+        use_multi_answers = "horizontal"
+    elif data["settings"]["multi_answers"] == "vertical":
+        use_multi_answers = "vertical"
+
+all_answers_obj = {}
+
+for row_index, row in enumerate(data["table"]):
+    student_data["table"].append([])
+    for column_index, cell in enumerate(row):
+        student_cell = {}
+        if not isinstance(cell, str):
+            student_cell["id"] = generate_id()
+            student_cell["isFixed"] = False
+            correct_answer[student_cell["id"]] = []
+            correct_titles[student_cell["id"]] = set()
+
+            for cell_answer in cell:
+                cell_answer_id = generate_id()
+
+                if use_multi_answers:
+                    direction_index = column_index if use_multi_answers == 'vertical' else row_index
+                    if "block" + str(direction_index) not in all_answers_obj.keys():
+                        all_answers_obj["block" + str(direction_index)] = []
+                    all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
+
+                student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                correct_answer[student_cell["id"]].append(cell_answer_id)
+
+                id2title[cell_answer_id] = norm_text(cell_answer)
+                correct_titles[student_cell["id"]].add(norm_text(cell_answer))
+        else:
+            student_cell["value"] = [cell]
+            student_cell["isFixed"] = True
+        student_data["table"][row_index].append(student_cell)
+
+for distractor in data["distractors"]:
+    student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+if use_multi_answers:
+    student_data["answers"] = []
+    for block_idx, block_key in enumerate(all_answers_obj.keys()):
+        student_data["answers"].append(all_answers_obj[block_key])
+        try:
+            if isinstance(data["distractors"][block_idx], list):
+                for dist in data["distractors"][block_idx]:
+                    student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
+        except:
+            pass
+
+random.shuffle(student_data["answers"])
+
+def get_response(grade_decimal, wrong_answers=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_answers is not None:
+        response["wrong_answers"] = wrong_answers
+    if grade_decimal == 1:
+        response["ok"] = True
+    elif grade_decimal == 0:
+        response["ok"] = False
+    else:
+        response["ok"] = 'Partial'
+    return response
+
+def check_partially(correct_titles_set, student_ids):
+    matched_titles = set()
+    wrong_ids = []
+    for ans_id in student_ids:
+        title = id2title.get(ans_id, "")
+        if title in correct_titles_set and title not in matched_titles:
+            matched_titles.add(title)
+        else:
+            wrong_ids.append(ans_id)
+    return {
+        "grade": float(len(matched_titles)),
+        "wrong_answers": wrong_ids
+    }
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = sum([len(correct_titles[x]) for x in correct_titles.keys()])
+    grade = 0.0
+    wrong_answers = []
+
+    for cell_id in correct_titles.keys():
+        s_ids = student_answer.get(cell_id, [])
+        res = check_partially(correct_titles[cell_id], s_ids)
+        grade += res["grade"]
+        if show_incorrect:
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+    response = get_response(float(grade / max_grade if max_grade else 0.0), wrong_answers)
+
+    return {
+        'input_list': [
+            {
+                'ok': response['ok'],
+                'msg': str(json.dumps(response)),
+                'grade_decimal': response['grade']
+            },
+        ]
+    }
+
+student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
+correct_data = list(bytearray(json.dumps(data), 'utf-8'))
+    </script>
+    <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data"
+        data-static="/static/_">
+        <div class="loader"></div>
+        <style>
+            .loader {
+                margin: 100px auto;
+                width: 4px;
+                color: #0075b4;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
+                transform: translateX(-38px);
+                animation: l26 1s infinite linear;
+            }
+
+            @keyframes l26 {
+                12.5% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px
+                }
+
+                25% {
+                    box-shadow: 19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 0px
+                }
+
+                50% {
+                    box-shadow: 19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
+                }
+
+                62.5% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 5px
+                }
+
+                75% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
+                }
+
+                87.5% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 5px, 57px 0 0 0px, 19px 19px 0 5px, 38px 19px 0 0px, 57px 19px 0 0px
+                }
+            }
+        </style>
+    </div>
+    <div style="display: none">
+        <customresponse cfn="check_answer">
+            <textline size="120" />
+        </customresponse>
+        <solution data-initial-data="$correct_data" />
+    </div>
+    <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js"></script>
+</problem>
