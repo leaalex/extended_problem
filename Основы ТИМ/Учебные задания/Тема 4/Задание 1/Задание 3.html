@@ -1,0 +1,396 @@
+<problem>
+    <style>
+        .center {
+            text-align: center !important;
+        }
+
+        .answer pre code {
+            font-size: 1em !important;
+        }
+
+        .h120px {
+            height: 120px !important;
+        }
+    </style>
+    <script type="loncapa/python">
+import json
+import random
+import string
+
+data = {
+    "content": {
+        "body": "",
+        "answers_title": "Положительные результаты от внедрения технологии информационного моделирования:"
+    },
+        "table": [
+        [
+            '__Участник реализации BIM-проекта__.{.text-blue-7} .{.center}','__Преимущества от применения ТИМ__.{.text-blue-7} .{.center}'
+        ],
+        [
+            '__Заказчик__ .{.center}', ['максимально точно рассчитывать стоимость проекта и управлять его рисками', 'контролировать проектирование и строительство в режиме реального времени', 'получить цифрового «двойника» объекта для обслуживания, реконструкции, демонтажа'],
+        ],
+        [
+            '__Проектировщик__ .{.center}', ['автоматизировать рутинные операции', 'быстрее вносить изменения в рабочую документацию', 'минимизировать ошибки благодаря визуализации элементов модели или 3D-элементов', 'проверять проект на коллизии до того, как начнется стройка'],
+        ],
+        [
+            '__Строительная компания__ .{.center}', ['соотносить процесс строительства с календарным графиком через функционал визуализации', 'выгружать материалы для производственно-технического отдела нажатием одной кнопки', 'вносить и согласовывать корректировки в проект прямо на строительной площадке', 'выгружать исполнительную документацию из BIM-модели'],
+        ],
+        [
+            '__Эксплуатирующая организация__ .{.center}', ['видеть необходимую техническую документацию непосредственно на строительных элементах BIM-модели', 'в любом формате принимать заявки о неполадках на объекте с привязкой к конкретному расположению', 'быстро находить и устранять неполадки, осуществлять текущее техническое обслуживание объекта'],
+        ],
+    ],
+"settings":{
+        "is_exist_markdown": True,
+        "is_exist_advanced_style": True,
+        'is_exist_mathjax': True,
+        'is_exist_highlight': True,
+        'is_exist_image': False,
+        'show_incorrect': False,
+        'capacity': 8,
+},
+"style": {
+        'rows': ['', 'h120px', 'h120px', 'h120px', 'h120px'],
+        'colls': ['w20','']
+},
+"distractors": ['Инвестиционная цифровая модель местности', 'Информационная цифровая модель местности', 'Скопление общих данных', 'Сводные общие данные', 'План информационной модели', 'План инвестиционной модели']
+}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+show_incorrect = data["settings"]["show_incorrect"] if "show_incorrect" in data["settings"].keys() else False
+data["distractors"] = data["distractors"] if "distractors" in data.keys() else []
+data["settings"] = data["settings"] if "settings" in data.keys() else {}
+data["style"] = data["style"] if "style" in data.keys() else {}
+correct_answer = {}
+student_data = {
+    "table": [],
+    "answers": [],
+    "settings": data["settings"],
+    "style": data["style"],
+    "content": data["content"]
+}
+
+use_multi_answers = ''
+if "multi_answers" in data["settings"].keys():
+    if data["settings"]["multi_answers"] == "horizontal":
+        use_multi_answers = "horizontal"
+    elif data["settings"]["multi_answers"] == "vertical":
+        use_multi_answers = "vertical"
+
+all_answers_obj = {}
+
+for row_index, row in enumerate(data["table"]):
+    student_data["table"].append([])
+    for column_index, cell in enumerate(row):
+        student_cell = {}
+        if not isinstance(cell, str):
+            student_cell["id"] = generate_id()
+            student_cell["isFixed"] = False
+            correct_answer[student_cell["id"]] = []
+
+            for cell_answer in cell:
+                cell_answer_id = generate_id()
+
+                if use_multi_answers:
+                    direction_index = column_index if use_multi_answers == 'vertical' else row_index
+                    if "block" + str(direction_index) not in all_answers_obj.keys():
+                        all_answers_obj["block" + str(direction_index)] = []
+                    all_answers_obj["block" + str(direction_index)].append({"title": cell_answer, "id": cell_answer_id})
+
+                student_data["answers"].append({"title": cell_answer, "id": cell_answer_id})
+                correct_answer[student_cell["id"]].append(cell_answer_id)
+        else:
+            student_cell["value"] = [cell]
+            student_cell["isFixed"] = True
+        student_data["table"][row_index].append(student_cell)
+
+
+for distractor in data["distractors"]:
+    student_data["answers"].append({"title": distractor, "id": generate_id()})
+
+if use_multi_answers:
+    student_data["answers"] = []
+    for block_idx, block_key in enumerate(all_answers_obj.keys()):
+        student_data["answers"].append(all_answers_obj[block_key])
+        try:
+            if isinstance(data["distractors"][block_idx], list):
+                for dist in data["distractors"][block_idx]:
+                    student_data["answers"][block_idx].append({"title": dist, "id": generate_id()})
+        except:
+            pass
+            # raise Exception("DISTRACTORS ERROR")
+
+
+random.shuffle(student_data["answers"])
+
+def get_response(grade_decimal, wrong_answers=None):
+    response = {}
+    response["grade"] = grade_decimal
+    if wrong_answers is not None:
+        response["wrong_answers"] = wrong_answers
+    if grade_decimal == 1:
+        response["ok"] = True
+    elif grade_decimal == 0:
+        response["ok"] = False
+    else:
+        response["ok"] = 'Partial'
+    return response
+
+
+def check_partially(c_a, s_a):
+    result = {
+        "grade": 0.0,
+        "wrong_answers": [],
+    }
+    local_grade = 0
+    for ans in c_a:
+        if ans in s_a:
+            local_grade += 1
+    for ans in s_a:
+        if ans not in c_a:
+            result["wrong_answers"].append(ans)
+    result["grade"] = local_grade
+
+    return result
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = sum([len(correct_answer[x]) for x in correct_answer.keys()])
+    grade = 0
+    wrong_answers = []
+
+    for correct_cell_id in correct_answer.keys():
+        correct_cell = correct_answer[correct_cell_id]
+        res = check_partially(correct_cell, student_answer[correct_cell_id])
+        grade += res["grade"]
+        if show_incorrect:
+            wrong_answers = list(set(wrong_answers + res["wrong_answers"]))
+
+    response = get_response(float(grade / max_grade), wrong_answers, )
+
+    return {
+        'input_list': [
+            {
+                # true, false partially
+                'ok': response['ok'],
+                # string - отображаения под Input'ом
+                # как проавило сюда отправляется json со всеми дополнительными данными
+                'msg': str(json.dumps(response)),
+                # number [0, 1] - оценка за задание
+                'grade_decimal': response['grade']
+            },
+        ]
+    }
+
+
+student_data = list(bytearray(json.dumps(student_data), 'utf-8'))
+correct_data = list(bytearray(json.dumps(data), 'utf-8'))
+</script>
+    <p>Ознакомтесь с фрагментом статьи 2. Сопоставьте в таблице 3 преимущества от применения ТИМ для каждого участника
+        реализации BIM-проекта.</p>
+
+
+    <figure>
+        <details class="img-toggle">
+            <summary style="cursor: pointer; color: inherit; color: #006daa;">Фрагмент статьи 2</summary>
+            <div data-toggle-img="1">
+
+                <div class="MsoNormal"><a
+                        href="https://bim-info.ru/articles/prosto-o-bim-chto-takoe-kak-rabotaet-gde-primenyaetsya/#id-3"
+                        target="_blank" rel="noopener">«Просто о BIM: что такое, как работает, где применяется» </a>
+                    <p></p>
+                </div>
+                <p> <strong>Применение BIM для разных участников проекта</strong>
+                </p>
+                <p>Информационное моделирование позволяет более точно проектировать, оптимально выполнять строительные
+                    работы, а
+                    также эффективно эксплуатировать здание на протяжении всего жизненного цикла, что увеличивает его
+                    долговечность
+                    и снижает издержки на обслуживание.</p>
+                <p> </p>
+                <div>
+                    <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" width="699" height="940"
+                        style="width: 967px; background: white; border-collapse: collapse; border: none;">
+                        <tbody>
+                            <tr style="mso-yfti-irow: 0; mso-yfti-firstrow: yes;">
+                                <td valign="top" style="border: 1pt solid #dee2e6; padding: 0.75pt; width: 389.643px;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">С
+                                            помощью </span><span lang="EN-US"
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">BIM</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">
+                                            заказчик может</span></p>
+                                </td>
+                                <td width="436" valign="top"
+                                    style="width: 569.929px; border-top: 1pt solid #dee2e6; border-right: 1pt solid #dee2e6; border-bottom: 1pt solid #dee2e6; border-image: initial; border-left: none; padding: 0.75pt;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">полностью
+                                            визуализировать объект еще до начала стройки,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">максимально
+                                            точно рассчитывать стоимость проекта и управлять его рисками,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">контролировать
+                                            проектирование и строительство в режиме реального времени,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">принимать
+                                            своевременные управленческие решения,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">получить
+                                            цифрового «двойника» объекта для обслуживания, реконструкции,
+                                            демонтажа.</span></p>
+                                </td>
+                            </tr>
+                            <tr style="mso-yfti-irow: 1;">
+                                <td valign="top"
+                                    style="border-right: 1pt solid #dee2e6; border-bottom: 1pt solid #dee2e6; border-left: 1pt solid #dee2e6; border-image: initial; border-top: none; padding: 0.75pt; width: 389.643px;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">С
+                                            помощью </span><span lang="EN-US"
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">BIM</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">
+                                            проектировщик может</span></p>
+                                </td>
+                                <td width="436" valign="top"
+                                    style="width: 569.929px; border-top: none; border-left: none; border-bottom: 1pt solid #dee2e6; border-right: 1pt solid #dee2e6; padding: 0.75pt;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">автоматизировать
+                                            рутинные операции,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">быстрее
+                                            вносить изменения в рабочую документацию,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">минимизировать
+                                            ошибки благодаря визуализации элементов модели или 3D-элементов,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">проверять
+                                            проект на коллизии до того, как начнется стройка (например, в российском ПО
+                                            Larix.Manager),</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">работать
+                                            совместно с другими специалистами в 3D,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">упростить
+                                            коммуникацию с заказчиком, органами экспертизы, подрядчиками,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">проверять
+                                            на соответствие ГОСТам, строительным нормам и правилам,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">защитить
+                                            результаты проектирования при передаче заказчику.</span></p>
+                                </td>
+                            </tr>
+                            <tr style="mso-yfti-irow: 2;">
+                                <td valign="top"
+                                    style="border-right: 1pt solid #dee2e6; border-bottom: 1pt solid #dee2e6; border-left: 1pt solid #dee2e6; border-image: initial; border-top: none; padding: 0.75pt; width: 389.643px;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">С
+                                            помощью </span><span lang="EN-US"
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">BIM</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">
+                                            строитель может</span></p>
+                                </td>
+                                <td width="436" valign="top"
+                                    style="width: 569.929px; border-top: none; border-left: none; border-bottom: 1pt solid #dee2e6; border-right: 1pt solid #dee2e6; padding: 0.75pt;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">наглядно
+                                            представить итоговый результат — готовое здание,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">«увидеть»
+                                            применяемые технические решения,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">соотносить
+                                            процесс строительства с календарным графиком через функционал
+                                            визуализации,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">ставить
+                                            задачи и сроки их выполнения,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">узнавать
+                                            о текущих неполадках и возникающих изменениях,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">наполнять
+                                            информационную модель электронной нормативно-технической
+                                            документацией,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">выгружать
+                                            материалы для производственно-технического отдела нажатием одной
+                                            кнопки,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">взаимодействовать
+                                            с проектными организациями в режиме реального времени,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">вносить
+                                            и согласовывать корректировки в проект прямо на строительной
+                                            площадке,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">выгружать
+                                            исполнительную документацию из BIM-модели.</span></p>
+                                </td>
+                            </tr>
+                            <tr style="mso-yfti-irow: 3; mso-yfti-lastrow: yes;">
+                                <td valign="top"
+                                    style="border-right: 1pt solid #dee2e6; border-bottom: 1pt solid #dee2e6; border-left: 1pt solid #dee2e6; border-image: initial; border-top: none; padding: 0.75pt; width: 389.643px;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">С
+                                            помощью </span><span lang="EN-US"
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">BIM</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext; mso-fareast-language: ZH-CN; mso-bidi-language: AR;">
+                                            эксплуатирующая организация может</span></p>
+                                </td>
+                                <td width="436" valign="top"
+                                    style="width: 569.929px; border-top: none; border-left: none; border-bottom: 1pt solid #dee2e6; border-right: 1pt solid #dee2e6; padding: 0.75pt;">
+                                    <p><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">видеть
+                                            необходимую техническую документацию непосредственно на строительных
+                                            элементах BIM-модели,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">в
+                                            любом формате принимать заявки о неполадках на объекте с привязкой к
+                                            конкретному расположению,</span><span
+                                            style="font-size: 10.5pt; mso-fareast-font-family: sans-serif; color: black; mso-color-alt: windowtext;">быстро
+                                            находить и устранять неполадки, осуществлять текущее техническое
+                                            обслуживание объекта.</span></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div></div>
+            </div>
+        </details>
+    </figure>
+    <br />
+    <p>Таблица 3 — Преимущества от применения ТИМ</p>
+    <div class="adv-app" data-type="MatchingTableVueApp" data-payload="$student_data" data-initial-data="$student_data"
+        data-static="/asset-v1:UrFU+DD_BIMBAS+original+type@asset+block/_">
+        <div class="loader" />
+        <style>
+            .loader {
+                margin: 100px auto;
+                width: 4px;
+                color: #0075b4;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
+                transform: translateX(-38px);
+                animation: l26 1s infinite linear;
+            }
+
+            @keyframes l26 {
+                12.5% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px
+                }
+
+                25% {
+                    box-shadow: 19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 0px
+                }
+
+                50% {
+                    box-shadow: 19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
+                }
+
+                62.5% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 0px, 57px 0 0 0px, 19px 19px 0 0px, 38px 19px 0 5px, 57px 19px 0 5px
+                }
+
+                75% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 0px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 5px
+                }
+
+                87.5% {
+                    box-shadow: 19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px, 19px 0 0 0px, 38px 0 0 5px, 57px 0 0 0px, 19px 19px 0 5px, 38px 19px 0 0px, 57px 19px 0 0px
+                }
+            }
+        </style>
+    </div>
+    <div style="display: none">
+        <customresponse cfn="check_answer">
+            <textline size="120" />
+        </customresponse>
+        <solution data-initial-data="$correct_data" />
+    </div>
+    <script type="text/javascript" src="https://cdn.urfu.online/bontaropax/index.js" />
+</problem>

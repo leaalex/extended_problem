@@ -1,12 +1,125 @@
-<p>Сформулируйте определение «Интероперабельность», используя предложенные словосочетания:</p>
-<p>Интероперабельность …</p>
-[x] способность двух или более
-[ ] взаимный обмен данными
-[ ] это обмен между продуктами
-[x] информационных систем или компонентов
-[ ] программных продуктов
-[ ] среды общих данных
-[x] к обмену информацией
-[x] и использованию информации
-[ ] на основе открытых данных
-[x] полученной в результате обмена
+<problem>
+    <div>
+        <!-- <div>
+    <p><i>Цель:</i> создавать и изменять таблицы в SQL</p>
+    <i>Инструкция:</i>
+    </div> -->
+        <p>Сформулируйте определение «Интероперабельность», используя предложенные словосочетания:</p>
+
+        <div style="/*margin-bottom: 220px;*/" data-type="SentenceBuilderApp" class="adv-app"
+            data-initial-data="$student_data" />
+        <div style="display: none !important;">
+            <customresponse cfn="check_answer">
+                <textline size="150" />
+                <br />
+            </customresponse>
+        </div>
+        <solution data-initial-data="$correct_data" />
+    </div>
+    <script type="loncapa/python">
+# -*- coding: utf-8 -*-
+import string
+import random
+import json
+
+source_data = {
+    "settings": {
+        "show_incorrect": False,
+        "correct_answer_title": "Верный ответ:",
+        "select_title": "укажите кек"
+    },
+    "data": [
+        {"answers": "Интероперабельность – ", },
+        {
+            "default_text": "*выберите вариант* ",
+            "answers": [["способность двух или более"], "взаимный обмен данными ", "обмен между продуктами", "обмен программных продуктов", "информационных систем или компонентов"],
+            "type": "selected",
+            "select_title": "Выберите вариант"
+        },
+        {
+            "default_text": "*выберите вариант*",
+            "answers": [" обмен программных продуктов", [" информационных систем или компонентов"], " среды общих данных", " на основе открытых данных"],
+            "type": "selected",
+            "select_title": "Выберите вариант"
+        },
+        {"answers": " к обмену информацией и использованию информации, ", },
+        {
+            "default_text": "*выберите вариант*",
+            "answers": [ "обмен программных продуктов","среды общих данных", ["полученной в результате обмена"], "на основе открытых данных"],
+            "type": "selected",
+            "select_title": "Выберите вариант"
+        },
+        {"answers": ". ", },
+    ]
+}
+
+
+def generate_id(length=8):
+    return 'id_' + ''.join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits, length))
+
+
+student_data = {"data": [], "settings": source_data["settings"].copy()}
+correct_answer = {"part_01": {}, "part_02": {"input_01": 1000, "input_02": 55, "input_03": 96}}
+
+for item in source_data["data"]:
+    item_id = generate_id()
+    if isinstance(item["answers"], list):
+        correct_answer["part_01"][item_id] = []
+        correct_item = {"id": item_id, "answers": []}
+        variable_type = "" if not "type" in item.keys() else item["type"]
+        item_default_text = "" if not "default_text" in item.keys() else item["default_text"]
+        student_item = {"id": item_id, "answers": [], "type": variable_type, "default_text": item_default_text}
+        if "select_title" in student_data["settings"].keys():
+                student_item["select_title"] = student_data["settings"]["select_title"]
+        if "select_title" in item.keys():
+                student_item["select_title"] = item["select_title"]
+        for answer in item["answers"]:
+            if isinstance(answer, list):
+                for c_a in answer:
+                    c_a_id = generate_id()
+                    correct_answer["part_01"][item_id].append(c_a_id)
+                    student_item["answers"].append({"id": c_a_id, "title": c_a})
+            else:
+                a_id = generate_id()
+                student_item["answers"].append({"id": a_id, "title": answer})
+        random.shuffle(student_item["answers"])
+        student_data["data"].append(student_item)
+    else:
+        student_data["data"].append(item["answers"])
+
+student_data = json.dumps(student_data)
+student_data = student_data.replace('"', "'")
+
+
+def check_answer(expect, ans):
+    student_answer = json.loads(ans)["answer"]
+    max_grade = len(correct_answer["part_01"].keys()) 
+    incorrect_answers = []
+    grade = 0
+    for item_id in correct_answer["part_01"].keys():
+        if item_id in student_answer['part_01'].keys():
+            if student_answer['part_01'][item_id] in correct_answer["part_01"][item_id]:
+                grade += 1
+            else:
+                incorrect_answers.append(item_id)
+
+    msg_json = {
+        "part_01": {"incorrect_answers": incorrect_answers},
+    }
+
+    
+    grade_decimal = grade/max_grade
+    msg_json["grade"] = grade_decimal
+    if grade_decimal == 1:
+        return {'input_list': [{'ok': True, 'msg': json.dumps(msg_json), 'grade_decimal': 1}]}
+    elif grade_decimal == 0:
+        return {'input_list': [{'ok': False, 'msg': json.dumps(msg_json), 'grade_decimal': 0}]}
+    else:
+        return {'input_list': [{'ok': 'Partial', 'msg': json.dumps(msg_json), 'grade_decimal': grade_decimal}]}
+
+    
+
+correct_data = json.dumps({"part_01": source_data})
+correct_data = correct_data.replace('"', "'")
+</script>
+</problem>
